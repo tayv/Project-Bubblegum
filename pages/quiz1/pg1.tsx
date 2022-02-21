@@ -22,7 +22,7 @@ export default () => {
       <div className="flex items-center">
         <input
           id="yay"
-          name="proceed-form"
+          name="revealForm"
           type="radio"
           className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
         />
@@ -33,7 +33,7 @@ export default () => {
       <div className="flex items-center">
         <input
           id="nay"
-          name="proceed-form"
+          name="revealForm"
           type="radio"
           className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
         />
@@ -44,7 +44,7 @@ export default () => {
       <div className="flex items-center">
         <input
           id="undecided"
-          name="proceed-form"
+          name="revealForm"
           type="radio"
           className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
         />
@@ -60,7 +60,7 @@ export default () => {
           <div className="pt-10 mt-5 md:mt-0 md:col-span-2">
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="shadow overflow-hidden sm:rounded-md">
-                <div className="px-4 py-5 bg-white sm:p-6">
+                <div className="bg-slate-50 px-4 py-5 bg-white sm:p-6">
                   <div className="grid grid-cols-6 gap-6">
                     <div className="col-span-6 sm:col-span-3">
                       <label htmlFor="fullName" className="block text-sm font-medium text-gray-700">
@@ -68,13 +68,42 @@ export default () => {
                       </label>
                       <input 
                         {...register("fullName")}
-                        defaultValue="test default value" 
+                        placeholder="test placeholder value" 
                         type="text"
                         name="fullName"
                         id="fullName"
                         autoComplete="name"
                         className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       />
+                    </div>
+
+                    <div className="col-span-6 sm:col-span-4">
+                      <label htmlFor="telephone" className="block text-sm font-medium text-gray-700">
+                      Telephone
+                      </label>
+                      <input
+                        {...register("telephone", {required: true})}
+                        type="tel"
+                        name="telephone"
+                        id="telephone"
+                        autoComplete="tel-area-code"
+                        className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                      />
+                      { errors.telephone && <p className="text-red-600">Please enter a telephone number</p> }
+                    </div>
+
+                    <div className="col-span-6 sm:col-span-4">
+                      <label htmlFor="numberThings" className="block text-sm font-medium text-gray-700">
+                      How many things?
+                      </label>
+                      <input
+                        {...register("numberThings", {required: true, min: 10, max: 100})}
+                        type="number"
+                        name="numberThings"
+                        id="numberThings"
+                        className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                      />
+                      { errors.numberThings && <p className="text-red-600">Please enter a number</p> }
                     </div>
 
                     <div className="col-span-6 sm:col-span-4">
@@ -89,7 +118,7 @@ export default () => {
                         autoComplete="email"
                         className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       />
-                      { errors.emailRequired && <p className="text-red-600">Please enter an email</p>}
+                      { errors.emailRequired && <p className="text-red-600">Please enter an email</p> }
                     </div>
 
                     <div className="col-span-6 sm:col-span-3">
