@@ -4,14 +4,15 @@ import { useForm } from 'react-hook-form'
 
 export default () => {
   
-  const { register, handleSubmit, watch, formState: { errors } } = useForm()
+  const { register, handleSubmit, watch, reset, formState: { errors } } = useForm()
   const onSubmit = (data: any) => console.log(data)
 
-  console.log(watch("example"))
+  console.log(watch("fullName"))
 
   return (
    <>
      <Breadcrumbs></Breadcrumbs>
+
      <fieldset className="pt-4 pl-8">
     <div>
       <legend className="text-base font-medium text-gray-900">Will you proceed?</legend>
@@ -62,43 +63,33 @@ export default () => {
                 <div className="px-4 py-5 bg-white sm:p-6">
                   <div className="grid grid-cols-6 gap-6">
                     <div className="col-span-6 sm:col-span-3">
-                      <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
-                        First name
+                      <label htmlFor="fullName" className="block text-sm font-medium text-gray-700">
+                        Full name
                       </label>
-                      <input
-                        defaultValue="test default value" {...register("example")}
+                      <input 
+                        {...register("fullName")}
+                        defaultValue="test default value" 
                         type="text"
-                        name="first-name"
-                        id="first-name"
-                        autoComplete="given-name"
-                        className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                      />
-                    </div>
-
-                    <div className="col-span-6 sm:col-span-3">
-                      <label htmlFor="last-name" className="block text-sm font-medium text-gray-700">
-                        Last name
-                      </label>
-                      <input
-                        type="text"
-                        name="last-name"
-                        id="last-name"
-                        autoComplete="family-name"
+                        name="fullName"
+                        id="fullName"
+                        autoComplete="name"
                         className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       />
                     </div>
 
                     <div className="col-span-6 sm:col-span-4">
-                      <label htmlFor="email-address" className="block text-sm font-medium text-gray-700">
+                      <label htmlFor="emailRequired" className="block text-sm font-medium text-gray-700">
                         Email address
                       </label>
                       <input
+                        {...register("emailRequired", {required: true})}
                         type="text"
-                        name="email-address"
-                        id="email-address"
+                        name="emailRequired"
+                        id="emailRequired"
                         autoComplete="email"
                         className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       />
+                      { errors.emailRequired && <p className="text-red-600">Please enter an email</p>}
                     </div>
 
                     <div className="col-span-6 sm:col-span-3">
@@ -170,10 +161,16 @@ export default () => {
                     </div>
                   </div>
                 </div>
-                <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                <div className="grid grid-cols-2 gap-6 px-4 py-3 bg-gray-50 text-right sm:px-6">
+                <button
+                    type="submit"
+                    className="inline-flex justify-center max-w-xs py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  >
+                    Reset
+                  </button>
                   <button
                     type="submit"
-                    className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    className="inline-flex justify-center max-w-xs py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   >
                     Send
                   </button>
