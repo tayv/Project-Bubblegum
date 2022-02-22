@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import Breadcrumbs from '@components/Breadcrumbs'
 import { useForm } from 'react-hook-form'
+import React, { useState, useEffect } from 'react'
+
 
 export default () => {
   
@@ -192,7 +194,13 @@ export default () => {
                 </div>
                 <div className="grid grid-cols-2 gap-6 px-4 py-3 bg-gray-50 text-right sm:px-6">
                 <button
-                    type="submit"
+                   
+                    onClick={() => {
+                      reset({
+                        keepErrors: false,
+                        })
+                      }
+                    }
                     className="inline-flex justify-center max-w-xs py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   >
                     Reset
