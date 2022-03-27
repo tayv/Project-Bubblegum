@@ -7,9 +7,12 @@ import React, { useState, useEffect } from 'react'
 export default () => {
   
   const { register, handleSubmit, watch, reset, formState: { errors } } = useForm()
-  const onSubmit = (data: any) => console.log(data)
+  const onSubmit = (data: any) => {
+    console.log(data)
+    reset()
+  }
 
-  console.log(watch("fullName"))
+ // console.log(watch("fullName"))
 
   return (
    <>
