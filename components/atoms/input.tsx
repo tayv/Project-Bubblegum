@@ -1,8 +1,12 @@
 import React, { FC, forwardRef, InputHTMLAttributes, DetailedHTMLProps} from 'react'
 import classNames from 'classnames'
 
+// OVERVIEW
+  // This atom form component provides styling and accessibility requirements. Validation, event handlers, etc. 
+  // will use react-hook-form via a wrapper component to add interactivity
+
 // TYPES
-  // Goal is to use this input component for all single line inputs (phone, numbers, text input)
+  // This input component is intended to be used for all single line inputs (phone, numbers, text input)
 export type InputSize = "standard" | "large"
 export type InputType = "text" | "email" | "tel" | "number"
 export type InputProps = {
@@ -11,7 +15,7 @@ export type InputProps = {
   type?: InputType
   size?: InputSize
   className?: string
-} & Omit <DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>, "size">
+} 
 
 // DYNAMIC STYLING
   // Using maps so full Tailwind classes can be seen for purging https://tailwindcss.com/docs/optimizing-for-production#writing-purgeable-html
@@ -46,7 +50,7 @@ export const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
           className={
             classNames([
               "mt-1 block border border-gray-300 bg-white rounded-md shadow-sm", 
-              inputSizeMap[size], 
+              inputSizeMap[size], // to dynamically set styling for different input sizes
               className,
             ])
           }
