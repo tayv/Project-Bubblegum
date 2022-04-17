@@ -1,5 +1,5 @@
 {
-  "name": "Quiz Template",
+  "name": "Form System",
   "private": true,
   "scripts": {
     "dev": "next dev",
