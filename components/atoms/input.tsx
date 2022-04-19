@@ -15,6 +15,7 @@ export type InputProps = {
   type?: InputType
   size?: InputSize
   className?: string
+  placeholder?: string
 } 
 
 // DYNAMIC STYLING
@@ -68,7 +69,8 @@ export const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
 
 // FORWARDING REFS
   // https://felixgerschau.com/react-forwardref-explained/ 
-  // https://reactjs.org/docs/forwarding-refs.html 
+  // https://blog.logrocket.com/cleaning-up-the-dom-with-forwardref-in-react/ 
+  // https://betterprogramming.pub/a-guide-to-working-with-forms-and-input-fields-in-react-403d64aaedf3 
 
 // USING CLASSNAMES PACKAGE TO COMBINE & MAKE CONDITIONAL CLASSES
   // https://nikitahl.com/how-to-assign-multiple-classes-in-react/ 
