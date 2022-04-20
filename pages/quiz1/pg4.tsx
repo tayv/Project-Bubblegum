@@ -12,6 +12,7 @@ import WrapperInput from '@components/WrapperInput'
 
   const onSubmit = handleSubmit((data) => {
     console.log("Form submitted:", data)
+    console.log("errors", Error)
   })
 
   return (
