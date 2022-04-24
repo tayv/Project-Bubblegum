@@ -4,11 +4,14 @@ import Breadcrumbs from '@components/Breadcrumbs'
 import TextInput from '@components/TextInput'
 import { useForm } from 'react-hook-form'
 import WrapperInput from '@components/WrapperInput'
+import UpdateInputState from '@components/UpdateInputState'
 
 
  const testForm: FC = () => {
   
   const { register, handleSubmit, formState: { errors } } = useForm()
+
+  // const [inputValue, handleInputChange] = UpdateInputState()
 
   const onSubmit = handleSubmit((data) => {
     console.log("Form submitted:", data)
@@ -30,7 +33,7 @@ import WrapperInput from '@components/WrapperInput'
          name="firstInput"
          label="Here's another label"
          type="text"
-         
+        // onChange={handleInputChange}
       />
 
       <WrapperInput
