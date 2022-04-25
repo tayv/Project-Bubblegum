@@ -11,7 +11,7 @@ import UpdateInputState from '@components/UpdateInputState'
   
   const { register, handleSubmit, formState: { errors } } = useForm()
 
-  // const [inputValue, handleInputChange] = UpdateInputState()
+  const [inputValue, handleInputChange] = UpdateInputState()
 
   const onSubmit = handleSubmit((data) => {
     console.log("Form submitted:", data)
@@ -33,7 +33,7 @@ import UpdateInputState from '@components/UpdateInputState'
          name="firstInput"
          label="Here's another label"
          type="text"
-        // onChange={handleInputChange}
+         onChange={handleInputChange}
       />
 
       <WrapperInput
@@ -43,6 +43,7 @@ import UpdateInputState from '@components/UpdateInputState'
         register={register}
         rules={{ required: "You must enter something" }}
         errors={errors}
+        onChange={handleInputChange}
       />
 
       <button type="submit">Submit</button>
