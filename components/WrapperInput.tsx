@@ -1,7 +1,6 @@
 import React from 'react'
 import { Input } from '@components/atoms/input'
 import { appendErrors } from 'react-hook-form'
-import UpdateInputState from '@components/UpdateInputState'
 
 const WrapperInput = ({
   name,
