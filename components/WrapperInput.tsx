@@ -19,7 +19,7 @@ const WrapperInput = ({
   return (
 
     <div>
-      <Input name={name} {...props} onChange={onChange} {...(register && register(name, rules))} 
+      <Input name={name} {...props} onChange={onChange} //{...(register && register(name, rules))} 
       />
       { 
       //  errors[{name}] && <p className="text-red-600">Please enter something</p> 
