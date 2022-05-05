@@ -1,7 +1,6 @@
 import React, { useState, FC } from 'react'
 import { Input } from '@components/atoms/input'
 import Breadcrumbs from '@components/Breadcrumbs'
-import TextInput from '@components/TextInput'
 import { useForm } from 'react-hook-form'
 import WrapperInput from '@components/WrapperInput'
 import UpdateInputState from '@components/UpdateInputState'
@@ -22,11 +21,6 @@ import UpdateInputState from '@components/UpdateInputState'
     <form onSubmit={onSubmit}>
       <Breadcrumbs></Breadcrumbs>
     
-      <TextInput 
-        register={register}
-        fieldName="firstName"  
-        label="This is a label"  
-      />
       <p>Test Content</p>
 
       <Input
@@ -42,7 +36,7 @@ import UpdateInputState from '@components/UpdateInputState'
         type="text"
         register={register}
         rules={{ required: "You must enter something" }}
-        errors={errors}
+        //errors={errors}
         onChange={handleInputChange}
       />
 

@@ -1,12 +1,13 @@
-import React from 'react'
+import React, {FC} from 'react'
 import { Input } from '@components/atoms/input'
 import { appendErrors } from 'react-hook-form'
+import { InputProps } from '@components/atoms/input'
 
-const WrapperInput = ({
+const WrapperInput: FC<InputProps> = ({
   name,
-  register,
   rules,
-  errors,
+  register,
+ // errors,
   onChange,
   ...props
 }) => {
@@ -18,7 +19,7 @@ const WrapperInput = ({
   return (
 
     <div>
-      <Input name={name} {...props} onChange={onChange} //{...(register && register(name, rules))} 
+      <Input name={name} {...props} {...(register && register(name, rules))} 
       />
       { 
       //  errors[{name}] && <p className="text-red-600">Please enter something</p> 

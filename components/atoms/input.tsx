@@ -1,4 +1,4 @@
-import React, { FC, forwardRef, InputHTMLAttributes, DetailedHTMLProps} from 'react'
+import React, { FC, ChangeEvent, forwardRef, InputHTMLAttributes, DetailedHTMLProps} from 'react'
 import classNames from 'classnames'
 
 // OVERVIEW
@@ -16,6 +16,9 @@ export type InputProps = {
   size?: InputSize
   className?: string
   placeholder?: string
+  onChange?: any
+  register?: any
+  rules?: any
 } 
 
 // DYNAMIC STYLING
