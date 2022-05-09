@@ -5,7 +5,6 @@ import { useForm } from 'react-hook-form'
 import WrapperInput from '@components/WrapperInput'
 import UpdateInputState from '@components/UpdateInputState'
 
-
  const testForm: FC = () => {
   
   const { register, handleSubmit, formState: { errors } } = useForm()
@@ -34,10 +33,20 @@ import UpdateInputState from '@components/UpdateInputState'
         name="firstWrapperInput"
         label="This is a wrapper input"
         type="text"
-        register={register}
+      //  register={register}
         rules={{ required: "You must enter something" }}
         //errors={errors}
         onChange={handleInputChange}
+      />
+
+      <WrapperInput
+        name="controllerInput"
+        label="This input uses Controller:"
+        type="text"
+        rules={{ required: "You must enter something" }}
+        defaultValue=""
+        //errors={errors}
+       // onChange={handleInputChange}
       />
 
       <button type="submit">Submit</button>
