@@ -8,39 +8,45 @@ import UpdateInputState from '@components/UpdateInputState'
 const WrapperInput: FC<InputProps> = ({
   name,
   rules,
+  label,
  // register,
  // errors,
   onChange,
+  defaultValue,
   ...props
 }) => {
   
- // const [inputValue, handleInputChange] = UpdateInputState()
- const [inputValue, handleInputChange] = UpdateInputState()
 
- const { register, control, handleSubmit, formState: { errors } } = useForm()
+ const { register, control, handleSubmit, getValues, formState: { errors } } = useForm()
 
-  const testName = {name}
- // console.log("name:", testName,"errors:", errors, "errors[{name}] is true:", !(errors[{name}]))
+
   return (
-
+<>
     <div>
-      <Input name={name} {...props} {...register(name, {onChange: (e)=>{console.log("yes", e)} }, rules ) } 
-      /> 
-      { 
-      //  errors[{name}] && <p className="text-red-600">Please enter something</p> 
-        // https://react-hook-form.com/api/useform/register rules says rhf uses dot notation only for typescript consistency 
-      }
 
       <Controller
         control={control}
-        name="test"
+        name={name}
+        defaultValue={defaultValue}
         render={({ field }) => (
-          <Input label="controlled label" {...field} onChange={(e) => {console.log("jjjjj", field.value)}} />
+          <Input label={label} {...field} />
         )}
       />
 
     </div>
-    
+{/* 
+    <div>
+      <Controller
+        control={control}
+        name="test"
+        defaultValue={defaultValue}
+        render={({ field }) => (
+          <Input label="controlled label" {...field} onChange={(e) => {console.log("jjjjj", JSON.stringify(getValues("test")))}} />
+        )}
+      />
+    </div> */}
+    </>
+  
   )
 }
 
