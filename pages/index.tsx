@@ -38,7 +38,7 @@ export default function Home() {
             </a>
           </Link>  
 
-          <Link href="/quiz1/pg4">
+          <Link href="/quiz1/text-inputs">
             <a className="p-6 mt-6 text-left border w-96 rounded-xl border-black hover:text-blue-600 focus:text-blue-600">
               <h3 className="text-2xl font-bold">Text Input &rarr;</h3>
               <p className="mt-4 text-xl">Single and multi-line text inputs</p>
