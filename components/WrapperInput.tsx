@@ -8,6 +8,7 @@ import UpdateInputState from '@components/UpdateInputState'
 const WrapperInput: FC<InputProps> = ({
   name,
   rules,
+  control,
   label,
  // register,
  // errors,
@@ -17,7 +18,7 @@ const WrapperInput: FC<InputProps> = ({
 }) => {
   
 
- const { register, control, handleSubmit, getValues, formState: { errors } } = useForm()
+ const { register, handleSubmit, getValues, formState: { errors } } = useForm()
 
 
   return (

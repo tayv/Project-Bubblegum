@@ -7,7 +7,7 @@ import UpdateInputState from '@components/UpdateInputState'
 
  const TestForm: FC = () => {
   
-  const { register, setValue, getValues, handleSubmit, formState: { errors } } = useForm()
+  const { register, setValue, getValues, handleSubmit, formState: { errors }, control } = useForm()
 
   const onSubmit = handleSubmit((data) => {
     console.log("Form submitted. Data:", data, "Submit form - errors", Error)
@@ -23,15 +23,13 @@ import UpdateInputState from '@components/UpdateInputState'
         name="controllerInput"
         label="This input uses Controller:"
         type="text"
+        control={control}
         rules={{ required: "You must enter something" }}
         defaultValue=""
       />
       <button type="button" onClick={ () => { 
         
-        const testSetVal = setValue("controllerInput", "Hopper", {
-          shouldValidate: true,
-          shouldDirty: true
-        })
+    
         const testGetVal = getValues("controllerInput")
         console.log(testGetVal)
         // console.log("getValues:", JSON.stringify(getValues("controllerInput"))) 
