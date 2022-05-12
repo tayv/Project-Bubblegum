@@ -1,5 +1,7 @@
 import {useState, ChangeEvent} from 'react'
 
+// This event handler has been replaced by Controller in react-hook-form
+
 const UpdateInputState = () => {
 
   const [inputValue, setInputValue] = useState({})

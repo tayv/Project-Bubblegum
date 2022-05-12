@@ -10,7 +10,6 @@ const WrapperInput: FC<InputProps> = ({
   rules,
   control,
   label,
- // register,
  // errors,
   onChange,
   defaultValue,
@@ -18,11 +17,10 @@ const WrapperInput: FC<InputProps> = ({
 }) => {
   
 
- const { register, handleSubmit, getValues, formState: { errors } } = useForm()
+ //const { register, handleSubmit, getValues, formState: { errors } } = useForm()
 
 
   return (
-<>
     <div>
 
       <Controller
@@ -34,20 +32,7 @@ const WrapperInput: FC<InputProps> = ({
         )}
       />
 
-    </div>
-{/* 
-    <div>
-      <Controller
-        control={control}
-        name="test"
-        defaultValue={defaultValue}
-        render={({ field }) => (
-          <Input label="controlled label" {...field} onChange={(e) => {console.log("jjjjj", JSON.stringify(getValues("test")))}} />
-        )}
-      />
-    </div> */}
-    </>
-  
+    </div>  
   )
 }
 
