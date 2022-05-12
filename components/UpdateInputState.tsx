@@ -1,5 +1,7 @@
 import {useState, ChangeEvent} from 'react'
 
+// This event handler has been replaced by Controller in react-hook-form
+
 const UpdateInputState = () => {
 
   const [inputValue, setInputValue] = useState({})
@@ -8,7 +10,7 @@ const UpdateInputState = () => {
       ...inputValue, 
       [e.currentTarget.name]: e.currentTarget.value
     })
-    console.log("State", inputValue)
+    console.log("Save this value to state", inputValue)
   return [inputValue, handleInputChange] // Need so we can use array destructuring when called in the component to make state available
   }
 

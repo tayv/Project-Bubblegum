@@ -1,32 +1,38 @@
-import React from 'react'
+import React, {FC} from 'react'
 import { Input } from '@components/atoms/input'
-import { appendErrors } from 'react-hook-form'
+import { useForm, Controller } from 'react-hook-form'
+import { InputProps } from '@components/atoms/input'
 import UpdateInputState from '@components/UpdateInputState'
 
-const WrapperInput = ({
+
+const WrapperInput: FC<InputProps> = ({
   name,
-  register,
   rules,
-  errors,
+  control,
+  label,
+ // errors,
   onChange,
+  defaultValue,
   ...props
 }) => {
   
- // const [inputValue, handleInputChange] = UpdateInputState()
 
-  const testName = {name}
- // console.log("name:", testName,"errors:", errors, "errors[{name}] is true:", !(errors[{name}]))
+ //const { register, handleSubmit, getValues, formState: { errors } } = useForm()
+
+
   return (
-
     <div>
-      <Input name={name} {...props} onChange={onChange} {...(register && register(name, rules))} 
+
+      <Controller
+        control={control}
+        name={name}
+        defaultValue={defaultValue}
+        render={({ field }) => (
+          <Input label={label} {...field} />
+        )}
       />
-      { 
-      //  errors[{name}] && <p className="text-red-600">Please enter something</p> 
-        // https://react-hook-form.com/api/useform/register rules says rhf uses dot notation only for typescript consistency 
-      }
-    </div>
-    
+
+    </div>  
   )
 }
 

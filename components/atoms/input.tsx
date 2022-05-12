@@ -1,4 +1,4 @@
-import React, { FC, forwardRef, InputHTMLAttributes, DetailedHTMLProps} from 'react'
+import React, { FC, ChangeEvent, forwardRef, InputHTMLAttributes, DetailedHTMLProps} from 'react'
 import classNames from 'classnames'
 
 // OVERVIEW
@@ -16,6 +16,11 @@ export type InputProps = {
   size?: InputSize
   className?: string
   placeholder?: string
+  defaultValue?: string | number 
+  onChange?: any
+  register?: any // react-hook-form: to register an input (not needed if using Controller)
+  rules?: any // react-hook-form: validation rules
+  control?: any // react-hook-form: used by Controller
 } 
 
 // DYNAMIC STYLING
