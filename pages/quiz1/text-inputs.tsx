@@ -7,6 +7,14 @@ const TestForm: FC = () => {
   
   const { getValues, handleSubmit, formState: { errors }, control } = useForm()
 
+  const onBlurFirst = (value) => {
+    console.log("BLUR", value)
+  }
+
+  const onChangeFirst = (value) => {
+    console.log("ONCHANGE WORKED", value)
+  }
+
   const onSubmit = handleSubmit((data) => {
     console.log("Form submitted. Data:", data, "Submit form - errors", Error)
   })
@@ -24,6 +32,8 @@ const TestForm: FC = () => {
         control={control}
         rules={{ required: "You must enter something" }}
         defaultValue=""
+        warnBlur={onBlurFirst} // Warning/tips message triggered onBlur
+        warnChange={onChangeFirst} // Warning/tips message triggered onChange
       />
       <button type="button" onClick={ () => { 
         const testGetVal = getValues("controllerInput")

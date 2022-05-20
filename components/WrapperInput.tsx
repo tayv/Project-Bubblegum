@@ -13,14 +13,20 @@ const WrapperInput: FC<InputProps> = ({
  // errors,
   onChange,
   defaultValue,
+  warnBlur,
+  warnChange,
   ...props
 }) => {
   
 
  //const { register, handleSubmit, getValues, formState: { errors } } = useForm()
- const onChangeFirst = (value) => {
-   console.log("ONCHANGE WORKED", value)
- }
+//  const onChangeFirst = (value) => {
+//    console.log("ONCHANGE WORKED", value)
+//  }
+
+//  const onBlurFirst = (value) => {
+//   console.log("BLUR", value)
+// }
 
   return (
     <div>
@@ -31,8 +37,11 @@ const WrapperInput: FC<InputProps> = ({
         defaultValue={defaultValue}
         render={({ field }) => (
           <Input label={label} {...field} onChange={e => {
-            onChangeFirst(field.value);
-            field.onChange(e);
+            {warnChange(field.value)}
+            field.onChange(e)
+          }} onBlur={e => {
+            {warnBlur(field.value)} // passed blur prop here
+            field.onBlur(e)
           }} />
         )}
       />
@@ -42,3 +51,11 @@ const WrapperInput: FC<InputProps> = ({
 }
 
 export default WrapperInput
+
+
+
+// Need to pass a custom onChange inside Controller in order to support soft validation/warning messages
+  // See https://stackoverflow.com/questions/67917480/onchange-input-in-react-hook-form 
+
+
+// Able to pass custom onChange and onBlur function props from parent component that can do a custom action
