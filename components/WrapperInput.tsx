@@ -18,7 +18,9 @@ const WrapperInput: FC<InputProps> = ({
   
 
  //const { register, handleSubmit, getValues, formState: { errors } } = useForm()
-
+ const onChangeFirst = (value) => {
+   console.log("ONCHANGE WORKED", value)
+ }
 
   return (
     <div>
@@ -28,7 +30,10 @@ const WrapperInput: FC<InputProps> = ({
         name={name}
         defaultValue={defaultValue}
         render={({ field }) => (
-          <Input label={label} {...field} />
+          <Input label={label} {...field} onChange={e => {
+            onChangeFirst(field.value);
+            field.onChange(e);
+          }} />
         )}
       />
 
