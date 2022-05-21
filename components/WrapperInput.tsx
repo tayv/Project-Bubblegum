@@ -18,7 +18,7 @@ const WrapperInput: FC<InputProps> = ({
   ...props
 }) => {
   
-
+  const {trigger, include} = warnBlur()
  //const { register, handleSubmit, getValues, formState: { errors } } = useForm()
 //  const onChangeFirst = (value) => {
 //    console.log("ONCHANGE WORKED", value)
@@ -40,7 +40,7 @@ const WrapperInput: FC<InputProps> = ({
             {warnChange(field.value)}
             field.onChange(e)
           }} onBlur={e => {
-            {warnBlur(field.value)} // passed blur prop here
+            {trigger(field.value)} // passed blur prop here
             field.onBlur(e)
           }} />
         )}
@@ -58,4 +58,5 @@ export default WrapperInput
   // See https://stackoverflow.com/questions/67917480/onchange-input-in-react-hook-form 
 
 
-// Able to pass custom onChange and onBlur function props from parent component that can do a custom action
+// Able to pass custom onChange and onBlur function props from parent component that can do a custom action. 
+  // can be used for soft validation/tip messages.

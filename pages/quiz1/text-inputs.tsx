@@ -9,6 +9,12 @@ const TestForm: FC = () => {
 
   const onBlurFirst = (value) => {
     console.log("BLUR", value)
+    return messageBlur
+  }
+
+  const messageBlur = {
+    trigger: onBlurFirst,
+    include: true,
   }
 
   const onChangeFirst = (value) => {
