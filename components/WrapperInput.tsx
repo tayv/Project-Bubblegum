@@ -40,7 +40,7 @@ const WrapperInput: FC<InputProps> = ({
             {warnChange(field.value)}
             field.onChange(e)
           }} onBlur={e => {
-            {trigger(field.value)} // passed blur prop here
+            {include && trigger(field.value)} // passed blur prop here
             field.onBlur(e)
           }} />
         )}
@@ -60,3 +60,5 @@ export default WrapperInput
 
 // Able to pass custom onChange and onBlur function props from parent component that can do a custom action. 
   // can be used for soft validation/tip messages.
+  // To allow further flexibility, can pass in an object with method and properties to determine if the custom event handler
+  // should fire and/or specify custom messages by using a logical && operator
