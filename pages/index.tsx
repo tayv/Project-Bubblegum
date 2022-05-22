@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen pt-10 bg-yellow-300">
+    <div className="flex flex-col items-center justify-center min-h-screen pt-10 bg-purple-300">
       <Head>
         <title>Bubblegum - reusable React form components to chew on</title>
         <link rel="icon" href="/favicon.ico" />
