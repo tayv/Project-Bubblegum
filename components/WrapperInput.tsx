@@ -18,15 +18,8 @@ const WrapperInput: FC<InputProps> = ({
   ...props
 }) => {
   
-  const {trigger, include} = warnBlur()
- //const { register, handleSubmit, getValues, formState: { errors } } = useForm()
-//  const onChangeFirst = (value) => {
-//    console.log("ONCHANGE WORKED", value)
-//  }
+ 
 
-//  const onBlurFirst = (value) => {
-//   console.log("BLUR", value)
-// }
 
   return (
     <div>
@@ -40,7 +33,11 @@ const WrapperInput: FC<InputProps> = ({
             {warnChange(field.value)}
             field.onChange(e)
           }} onBlur={e => {
-            {include && trigger(field.value)} // passed blur prop here
+            
+            {if (warnBlur) {
+              const {trigger, include} = warnBlur
+              trigger(field.value)}
+            } // passed blur prop here
             field.onBlur(e)
           }} />
         )}

@@ -15,6 +15,8 @@ const TestForm: FC = () => {
   const messageBlur = {
     trigger: onBlurFirst,
     include: true,
+    valid: true,
+    setWarningFlag: null,
   }
 
   const onChangeFirst = (value) => {
@@ -38,7 +40,12 @@ const TestForm: FC = () => {
         control={control}
         rules={{ required: "You must enter something" }}
         defaultValue=""
-        warnBlur={onBlurFirst} // Warning/tips message triggered onBlur
+        warnBlur={{
+          trigger: onBlurFirst,
+          include: true,
+          valid: true,
+          setWarningFlag: null,
+        }} // Warning/tips message triggered onBlur
         warnChange={onChangeFirst} // Warning/tips message triggered onChange
       />
       <button type="button" onClick={ () => { 
