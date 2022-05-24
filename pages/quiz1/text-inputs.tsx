@@ -9,14 +9,15 @@ const TestForm: FC = () => {
 
   const onBlurFirst = (value) => {
     console.log("BLUR", value)
-    return messageBlur
+    return messageBlur // need to setState to check validity and switch flagboolean if needed
   }
 
   const messageBlur = {
-    trigger: onBlurFirst,
+    message: "This is a warning message",
+    checkOnBlur: onBlurFirst,
     include: true,
     valid: true,
-    setWarningFlag: null,
+    setWarningBoolean: false,
   }
 
   const onChangeFirst = (value) => {
@@ -40,12 +41,15 @@ const TestForm: FC = () => {
         control={control}
         rules={{ required: "You must enter something" }}
         defaultValue=""
-        warnBlur={{
-          trigger: onBlurFirst,
+        warnBlur={
+          {
+          message: "This is a warning message",
+          checkOnBlur: onBlurFirst,
           include: true,
           valid: true,
-          setWarningFlag: null,
-        }} // Warning/tips message triggered onBlur
+          setWarningBoolean: false,
+         }
+        } // Warning/tips message triggered onBlur
         warnChange={onChangeFirst} // Warning/tips message triggered onChange
       />
       <button type="button" onClick={ () => { 

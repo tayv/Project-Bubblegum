@@ -29,20 +29,29 @@ const WrapperInput: FC<InputProps> = ({
         name={name}
         defaultValue={defaultValue}
         render={({ field }) => (
-          <Input label={label} {...field} onChange={e => {
-            {warnChange(field.value)}
+          <Input label={label} {...field} 
+          onChange={e => {
+            { warnChange(field.value) }
             field.onChange(e)
-          }} onBlur={e => {
-            
-            {if (warnBlur) {
-              const {trigger, include} = warnBlur
-              trigger(field.value)}
+            }
+          } 
+          onBlur={e => {
+            { if (warnBlur) {
+              const {checkOnBlur, include, message} = warnBlur
+              checkOnBlur(field.value)
+             // {<p>hello{message}</p>} // TO DO: HOW TO PASS THIS TO CHILD COMPONENT TO RENDER THE MESSAGE
             } // passed blur prop here
+          
             field.onBlur(e)
-          }} />
+            }
+        
+          }
+          } />
         )}
+        
       />
 
+        
     </div>  
   )
 }

@@ -38,11 +38,13 @@ export const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
       type = "text",
       size = "standard",
       className = "", // to pass custom one-off styling
+      message,
       ...props
     },
     ref
   ) => {
     return (
+      
       <div className="max-w-sm">
         <label htmlFor="text" className="block text-sm font-medium text-gray-700">
           {label}
@@ -62,6 +64,7 @@ export const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
           }
           {...props}
         />
+       
       </div>
     )
   }
