@@ -43,7 +43,7 @@ const TestForm: FC = () => {
         defaultValue=""
         warnBlur={
           {
-          message: "This is a warning message",
+          messageWarn: "This is a warning message",
           checkOnBlur: onBlurFirst,
           include: true,
           valid: true,

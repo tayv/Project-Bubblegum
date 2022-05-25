@@ -38,7 +38,6 @@ export const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
       type = "text",
       size = "standard",
       className = "", // to pass custom one-off styling
-      message,
       ...props
     },
     ref

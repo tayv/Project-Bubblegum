@@ -1,7 +1,6 @@
 import React, {FC} from 'react'
-import { Input } from '@components/atoms/Input'
+import { Input, InputProps } from '@atoms/Input'
 import { useForm, Controller } from 'react-hook-form'
-import { InputProps } from '@components/atoms/Input'
 import UpdateInputState from '@components/UpdateInputState'
 import { WarningText } from './atoms/WarningText'
 
@@ -20,14 +19,13 @@ const WrapperInput: FC<InputProps> = ({
 }) => {
   
  
-  const {checkOnBlur, include, message} = warnBlur
+  const {checkOnBlur, include, messageWarn} = warnBlur
 
   return (
     <div>
 
       <Controller
         control={control}
-        message={message}
         name={name}
         defaultValue={defaultValue}
         render={({ field }) => (
@@ -39,9 +37,9 @@ const WrapperInput: FC<InputProps> = ({
           } 
           onBlur={e => {
             { if (warnBlur) {
-             // const {checkOnBlur, include, message} = warnBlur
+             // const {checkOnBlur, include, messageWarn} = warnBlur
               checkOnBlur(field.value)
-             // {<p>hello{message}</p>} // TO DO: HOW TO PASS THIS TO CHILD COMPONENT TO RENDER THE MESSAGE
+             // {<p>hello{messageWarn}</p>} // TO DO: HOW TO PASS THIS TO CHILD COMPONENT TO RENDER THE message
             } // passed blur prop here
           
             field.onBlur(e)
@@ -52,7 +50,7 @@ const WrapperInput: FC<InputProps> = ({
         )}
         
       />
-      <WarningText />
+      <WarningText messageWarn={messageWarn} />
         
     </div>  
   )

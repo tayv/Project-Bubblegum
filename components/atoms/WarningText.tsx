@@ -1,9 +1,18 @@
 import React, { FC, ChangeEvent} from 'react'
 
-export const WarningText: FC = () => {
+export type Messages = {
+  messageWarn: string | number
+}
+
+export const WarningText: FC<Messages> = (
+  {
+    messageWarn,
+    ...props
+  }
+) => {
 
   return (
-    <p>hello</p>
+    <p>hello {messageWarn}</p>
   )
 }    
  
