@@ -64,7 +64,6 @@ export const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
           }
           {...props}
         />
-       
       </div>
     )
   }
