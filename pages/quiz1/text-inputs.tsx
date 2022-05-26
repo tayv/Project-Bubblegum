@@ -38,6 +38,7 @@ const TestForm: FC = () => {
         name="controllerInput"
         label="This input uses Controller:"
         type="text"
+        size="standard"
         control={control}
         rules={{ required: "You must enter something" }}
         defaultValue=""

@@ -10,6 +10,7 @@ const WrapperInput: FC<InputProps> = ({
   rules,
   control,
   label,
+  size,
  // errors,
   onChange,
   defaultValue,
@@ -30,6 +31,7 @@ const WrapperInput: FC<InputProps> = ({
         defaultValue={defaultValue}
         render={({ field }) => (
           <Input label={label} {...field} 
+          size={size}
           onChange={e => {
             { warnChange(field.value) }
             field.onChange(e)
