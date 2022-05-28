@@ -1,3 +1,7 @@
+🚧 WORK IN PROGRESS 🚧
+
+- Project is very rough. Ignore for now.
+
 # About
 
 This project will build out a basic design library for form components using react-hook-form, tailwind css, and NextJs.
