@@ -16,29 +16,28 @@ export default function Home() {
         <p className="mt-3 text-2xl">Reusable react form components (wip 🏗️)</p>
 
         <div className="flex flex-wrap items-center justify-around max-w-4xl mt-6 sm:w-full">
-          
-          <Link href="/quiz1/pg1">
+          <Link href="/forms/radios">
             <a className="p-6 mt-6 text-left border w-96 rounded-xl border-black hover:text-blue-600 focus:text-blue-600">
               <h3 className="text-2xl font-bold">Multiple choice &rarr;</h3>
-              <p className="mt-4 text-xl">Radios and checkboxes live here.</p>
+              <p className="mt-4 text-xl">Radio buttons live here.</p>
             </a>
           </Link>
             
-          <Link href="/quiz1/pg2">
+          <Link href="/forms/select">
             <a className="p-6 mt-6 text-left border w-96 rounded-xl border-black hover:text-blue-600 focus:text-blue-600">
-              <h3 className="text-2xl font-bold">Lists &rarr;</h3>
+              <h3 className="text-2xl font-bold">Select from a single list &rarr;</h3>
               <p className="mt-4 text-xl">You'll find dropdowns and comboboxes here.</p>
             </a>
           </Link>
 
-          <Link href="/quiz1/pg3">
+          <Link href="/forms/buttons">
             <a className="p-6 mt-6 text-left border w-96 rounded-xl border-black hover:text-blue-600 focus:text-blue-600">
               <h3 className="text-2xl font-bold">Buttons &rarr;</h3>
               <p className="mt-4 text-xl">Things you press go here.</p>
             </a>
           </Link>  
 
-          <Link href="/quiz1/text-inputs">
+          <Link href="/forms/text-inputs">
             <a className="p-6 mt-6 text-left border w-96 rounded-xl border-black hover:text-blue-600 focus:text-blue-600">
               <h3 className="text-2xl font-bold">Text Input &rarr;</h3>
               <p className="mt-4 text-xl">Single and multi-line text inputs</p>
