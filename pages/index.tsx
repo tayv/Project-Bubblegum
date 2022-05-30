@@ -18,22 +18,22 @@ export default function Home() {
         <div className="flex flex-wrap items-center justify-around max-w-4xl mt-6 sm:w-full">
           <Link href="/forms/radios">
             <a className="p-6 mt-6 text-left border w-96 rounded-xl border-black hover:text-blue-600 focus:text-blue-600">
-              <h3 className="text-2xl font-bold">Multiple choice &rarr;</h3>
-              <p className="mt-4 text-xl">Radio buttons live here.</p>
+              <h3 className="text-2xl font-bold">Radio buttons &rarr;</h3>
+              <p className="mt-4 text-xl">Used for 2 or more options</p>
             </a>
           </Link>
             
           <Link href="/forms/select">
             <a className="p-6 mt-6 text-left border w-96 rounded-xl border-black hover:text-blue-600 focus:text-blue-600">
-              <h3 className="text-2xl font-bold">Select from a single list &rarr;</h3>
-              <p className="mt-4 text-xl">You'll find dropdowns and comboboxes here.</p>
+              <h3 className="text-2xl font-bold">Select from a list &rarr;</h3>
+              <p className="mt-4 text-xl">You'll find dropdowns and comboboxes here</p>
             </a>
           </Link>
 
           <Link href="/forms/buttons">
             <a className="p-6 mt-6 text-left border w-96 rounded-xl border-black hover:text-blue-600 focus:text-blue-600">
               <h3 className="text-2xl font-bold">Buttons &rarr;</h3>
-              <p className="mt-4 text-xl">Things you press go here.</p>
+              <p className="mt-4 text-xl">Things you press go here</p>
             </a>
           </Link>  
 

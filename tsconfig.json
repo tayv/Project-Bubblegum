@@ -24,6 +24,6 @@
       "@utils/*": ["utils/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/Breadcrumbs.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/layout/Breadcrumbs.tsx"],
   "exclude": ["node_modules"]
 }

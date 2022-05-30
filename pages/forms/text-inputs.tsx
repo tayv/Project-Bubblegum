@@ -1,5 +1,5 @@
 import React, { useState, FC } from 'react'
-import Breadcrumbs from '@components/Breadcrumbs'
+import Breadcrumbs from '@components/layout/Breadcrumbs'
 import { useForm } from 'react-hook-form'
 import WrapperInput from '@components/WrapperInput'
 
@@ -12,10 +12,14 @@ const TestForm: FC = () => {
   })
 
   return (
-    <form onSubmit={onSubmit}>
-      <Breadcrumbs></Breadcrumbs>
+
+  <> 
+    <h1>Text Inputs</h1>
+    <Breadcrumbs></Breadcrumbs>
     
-      <p>Test Content</p>
+    <h2>Sub heading</h2>
+    <form onSubmit={onSubmit}>
+     
 
       <WrapperInput
         name="controllerInput"
@@ -34,6 +38,7 @@ const TestForm: FC = () => {
       <button type="submit">Submit</button>
     
     </form>
+  </>
   )
 }
 
