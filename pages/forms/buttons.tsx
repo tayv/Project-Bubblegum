@@ -20,7 +20,7 @@ export default function MyRadioGroup() {
     <> 
      <Breadcrumbs></Breadcrumbs>
      <h1 className="text-2xl">Buttons</h1>
-    {/* <HeadingArticle text="This is a heading" size="h1" /> // COMPONENT NEEDS WORK */ }
+    <HeadingArticle text="This is a heading" size="h1" /> 
 
       <p>Explainer about buttons and when to use them goes here</p>
 
