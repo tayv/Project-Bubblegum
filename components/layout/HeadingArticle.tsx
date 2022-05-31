@@ -1,8 +1,8 @@
 import { FC } from 'react'
 
 export type HeadingProps = {
-  text: string | number
   size: "h1" | "h2" | "h3" | "h4"
+  text: string | number
   type?: "primary" | "secondary" // Add ability in future to reuse for multiple heading styles
 }
 
@@ -13,19 +13,19 @@ const HeadingArticle: FC<HeadingProps> = (
     ...props
   }) => {
 
-    const renderHeading = (...props) => {
+    const renderHeading = ({size, text}: HeadingProps) => {
       switch (size) {
         case "h1":
-          return <h1 className="text-2xl">{text}</h1>
+          return <h1 className="text-2xl pt-2 pb-2">{text}</h1>
           
         case "h2":
-          return <h2>{text}</h2>
+          return <h2 className="text-xl pt-2 pb-2">{text}</h2>
           
         case "h3":
-          return <h3>{text}</h3>
+          return <h3 className="text-l pt-2 pb-2">{text}</h3>
           
         case "h4":
-        return <h4>{text}</h4>
+        return <h4 className="text-m pt-2 pb-2">{text}</h4>
         
         default:
           return null;
@@ -34,7 +34,7 @@ const HeadingArticle: FC<HeadingProps> = (
 
   return (
     <>
-      { renderHeading(size, text) }
+      { renderHeading({size, text}) }
 
     </>
   )

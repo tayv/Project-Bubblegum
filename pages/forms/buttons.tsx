@@ -18,13 +18,11 @@ export default function MyRadioGroup() {
 
   return (
     <> 
-     <Breadcrumbs></Breadcrumbs>
-     <h1 className="text-2xl">Buttons</h1>
-    <HeadingArticle text="This is a heading" size="h1" /> 
-
+      <Breadcrumbs></Breadcrumbs>
+      <HeadingArticle text="Buttons" size="h1" /> 
       <p>Explainer about buttons and when to use them goes here</p>
 
-      <h2 className="text-xl">When to use a button</h2>
+      <HeadingArticle text="When to use a button" size="h2" />
       <p>Do's and Dont's</p>
 
     <div className="grid grid-cols-2 gap-2 px-4 py-3 text-right sm:px-6">
