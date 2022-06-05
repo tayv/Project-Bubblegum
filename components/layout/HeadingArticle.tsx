@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, ReactNode } from 'react'
 
 // export type HeadingProps = {
 //   size: "h1" | "h2" | "h3" | "h4"
@@ -18,7 +18,7 @@ const HeadingArticle: FC<HeadingProps> = (
     ...props
   ) => {
 
-    const renderHeading:HeadingProps = (size, text) => {
+    const renderHeading: HeadingProps = (size, text) => {
       switch (size) {
         case "h1":
           return <h1 className="text-2xl pt-2 pb-2">{text}</h1>
