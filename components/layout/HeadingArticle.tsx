@@ -10,7 +10,7 @@ export type HeadingProps = (
     size: "h1" | "h2" | "h3" | "h4",
     text: string | number,
     type?: "primary" | "secondary" // Add ability in future to reuse for multiple heading styles
-  ) => void
+  ) => ReactNode
 
 const HeadingArticle: FC<HeadingProps> = (
     text,
