@@ -19,8 +19,9 @@ export default function MyRadioGroup() {
   return (
     <> 
       <Breadcrumbs></Breadcrumbs>
-      <HeadingArticle text="Buttons" size="h1" /> 
+      <HeadingArticle text="Buttons Heading" size="h1" type="primary"/> 
       <p>Explainer about buttons and when to use them goes here</p>
+      <HeadingArticle text="Buttons Secondary Heading Style" size="h1" type="secondary"/> 
 
       <HeadingArticle text="When to use a button" size="h2" />
       <p>Do's and Dont's</p>

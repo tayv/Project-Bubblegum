@@ -18,10 +18,10 @@ const HeadingArticle: FC<HeadingProps> = ({
     ...props
 }) => {
 
-    const renderHeading = ({size, text}: HeadingProps) => {
+    const renderHeading = ({size, text, type}: HeadingProps) => {
       switch (size) {
         case "h1":
-          return <h1 className="text-2xl pt-2 pb-2">{text}</h1>
+          return (type==="primary") ? <h1 className="text-2xl pt-2 pb-2">{text}</h1> : <h1 className="text-2xl pt-2 pb-2 text-slate-500">{text}</h1>
           
         case "h2":
           return <h2 className="text-xl pt-2 pb-2">{text}</h2>
