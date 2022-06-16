@@ -19,7 +19,6 @@ export default function MyRadioGroup() {
 
   return (
     <> 
-      <Breadcrumbs></Breadcrumbs>
       <div className="h-screen flex flex-initial flex-row">
         <SideNav />
         <div>

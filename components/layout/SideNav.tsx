@@ -1,4 +1,5 @@
 import { FC, ReactNode } from 'react'
+import Breadcrumbs from './Breadcrumbs'
 
 export type SideNavProps = {
     size?: "h1" | "h2" | "h3" | "h4",
@@ -35,6 +36,7 @@ const SideNav: FC<SideNavProps> = ({
     <>
       <aside className="w-64" aria-label="Sidebar">
         <div className="overflow-y-auto py-4 px-3">
+          <Breadcrumbs />
             <ul className="space-y-2">
               <li>
                 <a href="#" className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-300">
