@@ -40,17 +40,17 @@ const SideNav: FC<SideNavProps> = ({
             <ul className="space-y-2">
               <li>
                 <a href="#" className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-300">
-                  <span className="flex-1 ml-3 whitespace-nowrap">Button Overview</span> 
+                  <span className="flex-1 ml-2 whitespace-nowrap">Button Overview</span> 
                 </a>
               </li>
               <li>
                 <a href="#" className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-300">
-                  <span className="flex-1 ml-3 whitespace-nowrap">Best Practices</span> 
+                  <span className="flex-1 ml-2 whitespace-nowrap">Best Practices</span> 
                 </a>
               </li>
               <li>
                 <a href="#" className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-300">
-                  <span className="flex-1 ml-3 whitespace-nowrap">Code Snippets</span> 
+                  <span className="flex-1 ml-2 whitespace-nowrap">Code Snippets</span> 
                 </a>
               </li>
             </ul>

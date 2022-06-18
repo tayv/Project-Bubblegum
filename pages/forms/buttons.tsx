@@ -21,7 +21,7 @@ export default function MyRadioGroup() {
     <> 
       <div className="h-screen flex flex-initial flex-row">
         <SideNav />
-        <div>
+        <div className="py-3">
           <HeadingArticle text="Buttons Heading" size="h1" type="primary"/> 
           <p>Explainer about buttons and when to use them goes here</p>
           <HeadingArticle text="Buttons Secondary Heading Style" size="h1" type="secondary"/> 
@@ -29,7 +29,7 @@ export default function MyRadioGroup() {
           <HeadingArticle text="When to use a button" size="h2" />
           <p>Do's and Dont's</p>
 
-        <div className="grid grid-cols-2 gap-2 px-4 py-3 text-right sm:px-6">
+        <div className="grid grid-cols-2 gap-2 py-3 text-right">
           <button 
             className="block inline-flex justify-center max-w-xs py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
