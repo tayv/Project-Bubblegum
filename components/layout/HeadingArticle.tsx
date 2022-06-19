@@ -15,16 +15,16 @@ const HeadingArticle: FC<HeadingProps> = ({
     const renderHeading = ({size, text, type}: HeadingProps) => {
       switch (size) {
         case "h1":
-          return (type==="primary") && <h1 className="text-2xl pt-2 pb-2">{text}</h1> || (type==="secondary") && <h1 className="text-2xl pt-2 pb-2 text-slate-500">{text}</h1>
+          return (type==="primary") && <h1 className="text-4xl pt-2 pb-2">{text}</h1> || (type==="secondary") && <h1 className="text-4xl pt-2 pb-2 text-slate-500">{text}</h1>
           
         case "h2":
-          return (type==="primary") && <h2 className="text-xl pt-2 pb-2">{text} </h2> || (type==="secondary") && <h2 className="text-xl pt-2 pb-2 text-slate-500">{text} </h2> 
+          return (type==="primary") && <h2 className="text-2xl pt-2 pb-2">{text} </h2> || (type==="secondary") && <h2 className="text-2xl pt-2 pb-2 text-slate-500">{text} </h2> 
           
         case "h3":
-          return (type==="primary") && <h3 className="text-l pt-2 pb-2">{text}</h3> || (type==="secondary") && <h3 className="text-l pt-2 pb-2 text-slate-500">{text}</h3>
+          return (type==="primary") && <h3 className="text-xl pt-2 pb-2">{text}</h3> || (type==="secondary") && <h3 className="text-xl pt-2 pb-2 text-slate-500">{text}</h3>
           
         case "h4":
-        return (type==="primary") && <h4 className="text-m pt-2 pb-2">{text}</h4> || (type==="secondary") && <h4 className="text-m pt-2 pb-2 text-slate-500">{text}</h4>
+        return (type==="primary") && <h4 className="text-l pt-2 pb-2">{text}</h4> || (type==="secondary") && <h4 className="text-l pt-2 pb-2 text-slate-500">{text}</h4>
         
         default:
           return null;
