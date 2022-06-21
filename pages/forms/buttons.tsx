@@ -47,11 +47,6 @@ export default function MyRadioGroup() {
           <HeadingArticle text="Best Practices" size="h3" type="primary" />
           <DoDont />
 
-          <div className="grid grid-cols-2 gap-2 py-3 text-left">
-            <div>Do</div>
-            <div>Don't</div>     
-          </div>
-
           <HeadingArticle text="How to implement" size="h3" type="primary" />
           <p>Code details go here</p>
 

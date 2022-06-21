@@ -24,7 +24,7 @@ const HeadingArticle: FC<HeadingProps> = ({
           return (type==="primary") && <h3 className="text-xl pt-4 pb-2">{text}</h3> || (type==="secondary") && <h3 className="text-xl pt-4 pb-2 text-slate-500">{text}</h3>
           
         case "h4":
-        return (type==="primary") && <h4 className="text-l pt-4 pb-2">{text}</h4> || (type==="secondary") && <h4 className="text-l pt-4 pb-2 text-slate-500">{text}</h4>
+        return (type==="primary") && <h4 className="text-lg pt-4 pb-2">{text}</h4> || (type==="secondary") && <h4 className="text-lg pt-4 pb-2 text-slate-500">{text}</h4>
         
         default:
           return null;
