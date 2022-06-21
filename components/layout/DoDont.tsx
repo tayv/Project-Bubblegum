@@ -4,10 +4,10 @@ const DoDont = () => {
   return (
     <>
     <table className="table-auto">
-    <thead>
+    <thead className="text-left">
       <tr>
-        <th>Do</th>
-        <th>Don't</th>
+        <th>🙌 Do</th>
+        <th>🙅‍♀️ Don't</th>
       </tr>
     </thead>
     <tbody>
