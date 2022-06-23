@@ -3,7 +3,7 @@ const DoDont = () => {
 
   return (
     <>
-     <div className="grid grid-cols-2 gap-2 pt-1 text-left">
+     <div className="grid grid-cols-2 gap-2 pt-1 text-left border-solid border-2 border-sky-500">
       <div>
         <div className="font-bold text-lg pb-2">🙌 Do</div>
         <div className="pb-1">Do this</div>
