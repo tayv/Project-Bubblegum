@@ -1,5 +1,16 @@
+import { FC } from 'react'
 
-const DoDont = () => {
+export type DoDontProps = {
+  type?: "do" | "dont",
+  text?: string | number,
+  image?: "test.jpg" 
+}
+
+const DoDont: FC<DoDontProps> = ({
+  type,
+  text,
+  ...props
+}) => {
 
   return (
     <>
