@@ -26,6 +26,9 @@ export default function MyRadioGroup() {
           <HeadingArticle text="Buttons Heading" size="h1" type="primary"/> 
           <p>Explainer about buttons and when to use them goes here</p>
 
+          <br />
+          <hr />
+
           <HeadingArticle text="Primary Buttons" size="h2" type="primary" />
           <p>Sometimes called Call-To-Action (CTA) buttons.</p>
 
@@ -49,6 +52,12 @@ export default function MyRadioGroup() {
 
           <HeadingArticle text="How to implement" size="h3" type="primary" />
           <p>Code details go here</p>
+
+          <br />
+          <hr />
+
+          <HeadingArticle text="Secondary Buttons" size="h2" type="primary" />
+          <p>Sometimes called Ghost buttons.</p>
 
           <HeadingArticle text="Related links" size="h3" type="secondary" />
           <ul>
