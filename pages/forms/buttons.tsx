@@ -23,6 +23,9 @@ export default function MyRadioGroup() {
       <div className="h-screen flex flex-initial flex-row">
         <SideNav />
         <div className="py-3">
+
+          <Breadcrumbs />
+
           <HeadingArticle text="Buttons Heading" size="h1" type="primary"/> 
           <p>Explainer about buttons and when to use them goes here</p>
 

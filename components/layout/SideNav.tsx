@@ -34,22 +34,26 @@ const SideNav: FC<SideNavProps> = ({
 
   return (
     <>
-      <aside className="w-64" aria-label="Sidebar">
-        <div className="overflow-y-auto py-4 px-3">
-          <Breadcrumbs />
+      <aside className="w-1/6 min-w-fit mr-4 border-2 border-r-slate-100 bg-gray-100/50" aria-label="Sidebar">
+        <div className="overflow-y-auto py-4 px-1">
             <ul className="space-y-2">
               <li>
-                <a href="#" className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-300">
+                <a href="/" className="flex items-center p-1 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-300">
+                 ⬅️ Go home
+                </a>
+              </li>
+              <li>
+                <a href="#" className="flex items-center p-1 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-300">
                   <span className="flex-1 ml-2 whitespace-nowrap">Button Overview</span> 
                 </a>
               </li>
               <li>
-                <a href="#" className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-300">
+                <a href="#" className="flex items-center p-1 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-300">
                   <span className="flex-1 ml-2 whitespace-nowrap">Best Practices</span> 
                 </a>
               </li>
               <li>
-                <a href="#" className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-300">
+                <a href="#" className="flex items-center p-1 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-300">
                   <span className="flex-1 ml-2 whitespace-nowrap">Code Snippets</span> 
                 </a>
               </li>
