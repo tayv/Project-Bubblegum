@@ -3,7 +3,6 @@ import Breadcrumbs from '@components/layout/Breadcrumbs'
 import HeadingArticle from '@components/layout/HeadingArticle'
 import SideNav from '@components/layout/SideNav'
 import DoDont from '@components/layout/DoDont'
-import Tester from '@components/layout/Tester'
 
 export default function MyRadioGroup() {
   let [submittingForm, setSubmittingForm] = useState(false)
@@ -26,7 +25,6 @@ export default function MyRadioGroup() {
       <div className="h-screen flex flex-initial flex-row">
         <SideNav />
         <div className="py-3">
-          <Tester crumbs={crumbs} />
           <Breadcrumbs crumbs={crumbs} />
 
           <HeadingArticle text="Buttons Heading" size="h1" type="primary"/> 
