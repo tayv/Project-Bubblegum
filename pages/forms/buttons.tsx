@@ -18,7 +18,17 @@ export default function MyRadioGroup() {
     }, 3000)
 
   }
-  const crumbs = [{text: "breadcrumb 1", path: "/"}, {text: "breadcrumb 2", path: "/"}]
+  const crumbs = [
+    {
+      text: "Home", 
+      path: "/",
+      active: false,
+    }, {
+      text: "breadcrumb 2", 
+      path: "/",
+      active: true,
+    }
+  ]
 
   return (
     <> 
