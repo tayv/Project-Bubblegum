@@ -3,17 +3,19 @@ import Link from 'next/link'
 import path from 'path'
 
 export type BreadcrumbProps = {
-  path: string,
-  text: string | number,
-  active?: boolean,
-  crumbs: any
+  crumbs: { 
+    path: string,
+    text: string | number,
+    active?: boolean
+  }[]
+ 
 }
 
 const Breadcrumbs: FC<BreadcrumbProps> = (props) => {
   const { crumbs } = props
 
   const renderCrumbs = (props: any) => {
-    return crumbs.map((crumb: BreadcrumbProps, index: number) => (
+    return crumbs.map((crumb, index: number) => (
       <span key={index}>
         <span className="text-sm text-gray-500"> / </span>
         { 
