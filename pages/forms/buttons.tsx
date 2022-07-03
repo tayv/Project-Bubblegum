@@ -1,8 +1,8 @@
-import {FormEvent, useState} from 'react' 
 import Breadcrumbs from '@components/layout/Breadcrumbs'
 import HeadingArticle from '@components/layout/HeadingArticle'
-import SideNav from '@components/layout/SideNav'
 import DoDont from '@components/layout/DoDont'
+import LayoutContainerSide from '@components/layout/LayoutContainerSide'
+import Link from 'next/link'
 
 export default function MyRadioGroup() {
   // data for Breadcrumbs
@@ -12,7 +12,7 @@ export default function MyRadioGroup() {
       path: "/",
       active: false,
     }, {
-      text: "breadcrumb 2", 
+      text: "Buttons", 
       path: "/",
       active: true,
     }
@@ -20,10 +20,8 @@ export default function MyRadioGroup() {
 
   return (
     <> 
-      <div className="min-h-screen flex flex-initial flex-row">
-        <SideNav />
-        <div className="py-3">
-          <Breadcrumbs crumbs={crumbs} />
+      <LayoutContainerSide>
+          <Breadcrumbs crumbs={crumbs} />  
 
           <HeadingArticle text="Buttons Heading" size="h1" type="primary"/> 
           <p>Explainer about buttons and when to use them goes here</p>
@@ -31,8 +29,10 @@ export default function MyRadioGroup() {
           <br />
           <hr />
 
-          <HeadingArticle text="Primary Buttons" size="h2" type="primary" />
+          <HeadingArticle id="primary" text="Primary Buttons" size="h2" type="primary" />
           <p>Sometimes called Call-To-Action (CTA) buttons.</p>
+
+          <HeadingArticle text="Example" size="h3" type="primary" />
 
           <div className="grid grid-cols-2 gap-2 py-3 text-right">
             <button 
@@ -58,8 +58,11 @@ export default function MyRadioGroup() {
           <br />
           <hr />
 
-          <HeadingArticle text="Secondary Buttons" size="h2" type="primary" />
+          <HeadingArticle id="secondary" text="Secondary Buttons" size="h2" type="primary" />
           <p>Sometimes called Ghost buttons.</p>
+
+          <HeadingArticle text="Example" size="h3" type="primary" />
+          <p>Example goes here</p>
 
           <HeadingArticle text="Related links" size="h3" type="secondary" />
           <ul>
@@ -67,8 +70,7 @@ export default function MyRadioGroup() {
             <li>- Link 2</li>
           </ul>
       
-        </div>
-      </div>
+      </LayoutContainerSide>
     </>
   )
 }
