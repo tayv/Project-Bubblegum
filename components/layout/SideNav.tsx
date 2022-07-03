@@ -2,9 +2,9 @@ import { FC, ReactNode } from 'react'
 import Breadcrumbs from './Breadcrumbs'
 
 export type SideNavProps = {
-    size?: "h1" | "h2" | "h3" | "h4",
-    text?: string | number,
-    type?: "primary" | "secondary" 
+  size?: "h1" | "h2" | "h3" | "h4",
+  text?: string | number,
+  type?: "primary" | "secondary" 
 }
 
 const SideNav: FC<SideNavProps> = ({
@@ -34,12 +34,12 @@ const SideNav: FC<SideNavProps> = ({
 
   return (
     <>
-      <aside className="w-1/6 min-w-fit mr-4 border-2 border-r-slate-100 bg-gray-100/50" aria-label="Sidebar">
-        <div className="overflow-y-auto py-4 px-1">
-            <ul className="space-y-2">
+      <aside className="min-h-screen w-1/6 min-w-fit mr-4 border-2 border-r-slate-100 bg-gray-100/50" aria-label="Sidebar">
+        <div className="overflow-y-auto py-2 px-1">
+            <ul className="space-y-1">
               <li>
-                <a href="/" className="flex items-center p-1 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-300">
-                 ⬅️ Go home
+                <a href="#" className="flex items-center p-1 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-300">
+                  <span className="flex-1 ml-2 whitespace-nowrap">⬅️ Home</span> 
                 </a>
               </li>
               <li>

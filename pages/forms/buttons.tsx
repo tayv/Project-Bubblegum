@@ -20,7 +20,7 @@ export default function MyRadioGroup() {
 
   return (
     <> 
-      <div className="h-screen flex flex-initial flex-row">
+      <div className="min-h-screen flex flex-initial flex-row">
         <SideNav />
         <div className="py-3">
           <Breadcrumbs crumbs={crumbs} />
