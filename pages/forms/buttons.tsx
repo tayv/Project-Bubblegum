@@ -21,14 +21,7 @@ export default function MyRadioGroup() {
   return (
     <> 
       <LayoutContainerSide>
-          <Breadcrumbs crumbs={crumbs} />
-
-          <Link href="#secondary">
-            <a className="p-6 mt-6 text-left border w-96 rounded-xl border-black hover:text-blue-600 focus:text-blue-600">
-              <h3 className="text-2xl font-bold">Text Input &rarr;</h3>
-              <p className="mt-4 text-xl">Single and multi-line text inputs</p>
-            </a>
-          </Link>  
+          <Breadcrumbs crumbs={crumbs} />  
 
           <HeadingArticle text="Buttons Heading" size="h1" type="primary"/> 
           <p>Explainer about buttons and when to use them goes here</p>
