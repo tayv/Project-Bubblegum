@@ -1,7 +1,9 @@
  import Link from 'next/link'
 import Breadcrumbs from '@components/layout/Breadcrumbs'
+import SideNav from '@components/layout/SideNav'
 import { useForm } from 'react-hook-form'
 import React, { useState, useEffect } from 'react'
+import LayoutContainerSide from '@components/layout/LayoutContainerSide'
 
 
 export default () => {
@@ -12,11 +14,25 @@ export default () => {
     reset()
   }
 
+   // data for Breadcrumbs
+   const crumbs = [
+    {
+      text: "Home", 
+      path: "/",
+      active: false,
+    }, {
+      text: "Radios", 
+      path: "/",
+      active: true,
+    }
+  ]
+
   return (
    <>
-     <Breadcrumbs></Breadcrumbs>
+    <LayoutContainerSide>
+    <Breadcrumbs crumbs={crumbs} />
 
-     <fieldset className="pt-4 pl-8">
+    <fieldset className="pt-4">
     <div>
       <legend className="text-base font-medium text-gray-900">Will you proceed?</legend>
       <p className="text-sm text-gray-500">Choose your fate.</p>
@@ -199,7 +215,7 @@ export default () => {
           </div>
         </div>
       </div>
-
+      </LayoutContainerSide>
    </>
   )
 }

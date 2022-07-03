@@ -1,9 +1,26 @@
 import Breadcrumbs from '@components/layout/Breadcrumbs'
+import LayoutContainerSide from '@components/layout/LayoutContainerSide';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 
+// data for Breadcrumbs
+const crumbs = [
+  {
+    text: "Home", 
+    path: "/",
+    active: false,
+  }, {
+    text: "Select", 
+    path: "/",
+    active: true,
+  }
+]
+
 export default () => (
+
 <>
-  <Breadcrumbs></Breadcrumbs>
+  <LayoutContainerSide>
+  <Breadcrumbs crumbs={crumbs} />
+  <br></br>
 
   <DropdownMenu.Root>
 
@@ -22,6 +39,6 @@ export default () => (
     </DropdownMenu.Content>
 
   </DropdownMenu.Root>
-
+  </LayoutContainerSide>
 </>
 );
