@@ -31,8 +31,9 @@ export default function MyRadioGroup() {
           <HeadingArticle text="Page Containers" size="h2" type="primary" />
           <p>A page content container that provides consistent spacing and allows children to use css flex.</p>
 
+          <HeadingArticle text="Example" size="h3" type="primary" />
           {/* Example components  */}
-          <div className="mt-4 space-y-4 shadow overflow-hidden border-solid border border-slate-300 py-2 px-4">
+          <div className="space-y-4 shadow overflow-hidden border-solid border border-slate-300 py-2 px-4">
             <div className="flex items-center">
               <p>Page content goes here</p>
             </div>
