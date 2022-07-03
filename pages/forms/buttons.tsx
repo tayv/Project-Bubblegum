@@ -5,19 +5,7 @@ import SideNav from '@components/layout/SideNav'
 import DoDont from '@components/layout/DoDont'
 
 export default function MyRadioGroup() {
-  let [submittingForm, setSubmittingForm] = useState(false)
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setSubmittingForm(true)
-
-    // simulate asynchronous form submission via API
-    setTimeout(() => {
-      setSubmittingForm(false)
-      alert("You have submitted the form.")
-    }, 3000)
-
-  }
+  // data for Breadcrumbs
   const crumbs = [
     {
       text: "Home", 
