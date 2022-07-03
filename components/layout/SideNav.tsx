@@ -38,7 +38,7 @@ const SideNav: FC<SideNavProps> = ({
         <div className="overflow-y-auto py-2 px-1">
             <ul className="space-y-1">
               <li>
-                <a href="#" className="flex items-center p-1 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-300">
+                <a href="/" className="flex items-center p-1 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-300">
                   <span className="flex-1 ml-2 whitespace-nowrap">⬅️ Home</span> 
                 </a>
               </li>
