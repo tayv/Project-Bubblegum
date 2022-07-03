@@ -1,7 +1,5 @@
-import {FormEvent, useState} from 'react' 
 import Breadcrumbs from '@components/layout/Breadcrumbs'
 import HeadingArticle from '@components/layout/HeadingArticle'
-import SideNav from '@components/layout/SideNav'
 import DoDont from '@components/layout/DoDont'
 import LayoutContainerSide from '@components/layout/LayoutContainerSide'
 
