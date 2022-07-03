@@ -1,4 +1,4 @@
-import Breadcrumbs from '@components/Breadcrumbs'
+import Breadcrumbs from '@components/layout/Breadcrumbs'
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 
 export default () => (
