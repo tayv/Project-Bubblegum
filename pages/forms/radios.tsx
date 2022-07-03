@@ -32,7 +32,7 @@ export default () => {
     <LayoutContainerSide>
     <Breadcrumbs crumbs={crumbs} />
 
-     <fieldset className="pt-4 pl-8">
+    <fieldset className="pt-4">
     <div>
       <legend className="text-base font-medium text-gray-900">Will you proceed?</legend>
       <p className="text-sm text-gray-500">Choose your fate.</p>
