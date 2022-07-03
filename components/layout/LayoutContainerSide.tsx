@@ -6,8 +6,8 @@ const LayoutContainerSide = ({children}: any) => {
 
   return (
     <div className="min-h-screen flex flex-initial flex-row">
-    <SideNav />
-    <div className="py-3">{children}</div>
+     <SideNav />
+     <div className="py-3">{children}</div>
     </div>
   )
 }

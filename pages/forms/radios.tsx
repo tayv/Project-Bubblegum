@@ -21,7 +21,7 @@ export default () => {
       path: "/",
       active: false,
     }, {
-      text: "breadcrumb 2", 
+      text: "Radios", 
       path: "/",
       active: true,
     }

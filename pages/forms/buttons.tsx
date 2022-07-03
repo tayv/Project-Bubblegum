@@ -3,6 +3,7 @@ import Breadcrumbs from '@components/layout/Breadcrumbs'
 import HeadingArticle from '@components/layout/HeadingArticle'
 import SideNav from '@components/layout/SideNav'
 import DoDont from '@components/layout/DoDont'
+import LayoutContainerSide from '@components/layout/LayoutContainerSide'
 
 export default function MyRadioGroup() {
   // data for Breadcrumbs
@@ -12,7 +13,7 @@ export default function MyRadioGroup() {
       path: "/",
       active: false,
     }, {
-      text: "breadcrumb 2", 
+      text: "Buttons", 
       path: "/",
       active: true,
     }
@@ -20,9 +21,7 @@ export default function MyRadioGroup() {
 
   return (
     <> 
-      <div className="min-h-screen flex flex-initial flex-row">
-        <SideNav />
-        <div className="py-3">
+      <LayoutContainerSide>
           <Breadcrumbs crumbs={crumbs} />
 
           <HeadingArticle text="Buttons Heading" size="h1" type="primary"/> 
@@ -67,8 +66,7 @@ export default function MyRadioGroup() {
             <li>- Link 2</li>
           </ul>
       
-        </div>
-      </div>
+      </LayoutContainerSide>
     </>
   )
 }
