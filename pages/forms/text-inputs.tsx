@@ -18,11 +18,11 @@ const TestForm: FC = () => {
     {
       text: "Home", 
       path: "/",
-      active: false,
+      currentPg: false,
     }, {
       text: "Text Inputs", 
       path: "/",
-      active: true,
+      currentPg: true,
     }
   ]
 

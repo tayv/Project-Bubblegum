@@ -4,7 +4,7 @@ import Link from 'next/link'
 export type BreadcrumbProps = {
   path: string,
   text: string,
-  active: boolean
+  currentPg: boolean
 }
 
 const Breadcrumbs = ({crumbs}: any) => {
@@ -14,8 +14,8 @@ const Breadcrumbs = ({crumbs}: any) => {
       <span key={index}>
         <span className="text-sm text-gray-500"> / </span>
         { 
-          (crumb.active)
-          // if the prop is active then render without a link as it's the current page
+          (crumb.currentPg)
+          // if the prop is currentPg then render without a link as it's the current page
           ? (
             <>
               <span className="text-sm text-gray-500">{crumb.text}</span>
@@ -53,10 +53,10 @@ export default Breadcrumbs
     //   {
     //     text: "Home", 
     //     path: "/",
-    //     active: false,
+    //     currentPg: false,
     //   }, {
     //     text: "breadcrumb 2", 
     //     path: "/",
-    //     active: true,
+    //     currentPg: true,
     //   }
     // ]

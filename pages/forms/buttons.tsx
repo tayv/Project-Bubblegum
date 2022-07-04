@@ -11,11 +11,11 @@ export default function MyRadioGroup() {
     {
       text: "Home", 
       path: "/",
-      active: false,
+      currentPg: false,
     }, {
       text: "Buttons", 
       path: "/",
-      active: true,
+      currentPg: true,
     }
   ]
 

@@ -10,11 +10,11 @@ export default function KitchenSink() {
     {
       text: "Home", 
       path: "/",
-      active: false,
+      currentPg: false,
     }, {
       text: "Kitchen Sink", 
       path: "/",
-      active: true,
+      currentPg: true,
     }
   ]
 

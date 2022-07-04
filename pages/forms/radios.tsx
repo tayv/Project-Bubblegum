@@ -16,11 +16,11 @@ export default () => {
     {
       text: "Home", 
       path: "/",
-      active: false,
+      currentPg: false,
     }, {
       text: "Radios", 
       path: "/",
-      active: true,
+      currentPg: true,
     }
   ]
 

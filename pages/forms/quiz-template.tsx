@@ -9,7 +9,7 @@ const crumbs = [
     path: "/",
     currentPg: false,
   }, {
-    text: "Select", 
+    text: "Quiz Template", 
     path: "/",
     currentPg: true,
   }
