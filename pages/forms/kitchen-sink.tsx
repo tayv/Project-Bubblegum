@@ -1,7 +1,7 @@
 import Breadcrumbs from '@components/layout/Breadcrumbs'
 import HeadingArticle from '@components/layout/HeadingArticle'
-import DoDont from '@components/layout/DoDont'
 import LayoutContainerSide from '@components/layout/LayoutContainerSide'
+import Paragraph from '@components/layout/Paragraph'
 import Link from 'next/link'
 
 export default function KitchenSink() {
@@ -23,21 +23,17 @@ export default function KitchenSink() {
       <LayoutContainerSide>
       <Breadcrumbs crumbs={crumbs} />  
 
-      <div className="max-w-xl mx-auto py-12 divide-y md:max-w-4xl">
-        {/* Intro paragraph */}
-        <div className="py-8">
-          <h1 className="text-4xl font-bold">@tailwindcss/forms examples</h1>
-          <p className="mt-2 text-lg text-gray-600">
-            An opinionated form reset designed to make form elements easy to style with utility
-            classes.
-          </p>
-          <div className="mt-4 flex space-x-4">
-            <a className="text-lg underline" href="https://github.com/tailwindlabs/tailwindcss-forms"
-              >Documentation</a
-            >
-            <a className="text-lg underline" href="/kitchen-sink.html">Kitchen Sink</a>
-          </div>
-        </div>
+
+      <HeadingArticle text="Kitchen Sink Examples" size="h1" type="primary" />
+      <Paragraph text="An opinionated form reset designed to make form elements easy to style with utility classes." size="standard" type="primary" />
+      <div className="mt-4 mb-8 flex space-x-4">
+        <a className="text-lg underline" href="https://github.com/tailwindlabs/tailwindcss-forms"
+          >Documentation</a
+        >
+        <a className="text-lg underline" href="/kitchen-sink.html">Kitchen Sink</a>
+      </div>
+      
+      <hr />
 
         <div className="max-w-xl mx-auto py-12 md:max-w-4xl">
         <h2 className="text-2xl font-bold">Reset styles</h2>
@@ -148,7 +144,7 @@ export default function KitchenSink() {
               <span className="text-gray-700">Textarea</span>
               <textarea
                 className="form-textarea mt-1 block w-full h-24"
-                rows="2"
+                rows={2}
                 placeholder="Enter some long form content."
               ></textarea>
             </label>
@@ -229,7 +225,7 @@ export default function KitchenSink() {
         </div>
       </div>
         
-      </div>
+
       
       </LayoutContainerSide>
     </>

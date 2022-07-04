@@ -3,6 +3,7 @@ import HeadingArticle from '@components/layout/HeadingArticle'
 import DoDont from '@components/layout/DoDont'
 import LayoutContainerSide from '@components/layout/LayoutContainerSide'
 import Link from 'next/link'
+import Paragraph from '@components/layout/Paragraph'
 
 export default function MyRadioGroup() {
   // data for Breadcrumbs
@@ -24,13 +25,12 @@ export default function MyRadioGroup() {
           <Breadcrumbs crumbs={crumbs} />  
 
           <HeadingArticle text="Buttons Heading" size="h1" type="primary"/> 
-          <p>Explainer about buttons and when to use them goes here</p>
-
+          <Paragraph text="Explainer about buttons and when to use them goes here" size="standard" type="primary" />
           <br />
           <hr />
 
           <HeadingArticle id="primary" text="Primary Buttons" size="h2" type="primary" />
-          <p>Sometimes called Call-To-Action (CTA) buttons.</p>
+          <Paragraph text="Sometimes called Call-To-Action (CTA) buttons." size="standard" type="primary" />
 
           <HeadingArticle text="Example" size="h3" type="primary" />
 
@@ -59,10 +59,10 @@ export default function MyRadioGroup() {
           <hr />
 
           <HeadingArticle id="secondary" text="Secondary Buttons" size="h2" type="primary" />
-          <p>Sometimes called Ghost buttons.</p>
+          <Paragraph text="Sometimes called Ghost buttons." size="standard" type="primary" />
 
           <HeadingArticle text="Example" size="h3" type="primary" />
-          <p>Example goes here</p>
+          <Paragraph text="Example goes here" size="standard" type="primary" />
 
           <HeadingArticle text="Related links" size="h3" type="secondary" />
           <ul>
