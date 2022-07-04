@@ -16,13 +16,13 @@ const Paragraph: FC<ParagraphProps> = ({
     const renderParagraph = ({size, text, type}: ParagraphProps) => {
       switch (size) {
         case "small":
-          return (type==="primary") && <p className="text-sm mt-2 text-gray-600">{text}</p> || (type==="secondary") && <p className="text-sm mt-2 text-gray-300">{text}</p>
+          return (type==="primary") && <p className="text-sm text-gray-600">{text}</p> || (type==="secondary") && <p className="text-sm text-gray-300">{text}</p>
           
         case "standard":
-          return (type==="primary") && <p className= "text-lg mt-2 text-gray-600">{text} </p> || (type==="secondary") && <p className="mt-2 text-gray-300">{text} </p> 
+          return (type==="primary") && <p className= "text-lg text-gray-600">{text} </p> || (type==="secondary") && <p className="text-gray-300">{text} </p> 
           
         case "large":
-          return (type==="primary") && <p className="mt-2 text-xl text-gray-600">{text}</p> || (type==="secondary") && <p className="mt-2 text-lg text-gray-300">{text}</p>
+          return (type==="primary") && <p className="text-xl text-gray-600">{text}</p> || (type==="secondary") && <p className="text-lg text-gray-300">{text}</p>
         
         default:
           return null;

@@ -26,7 +26,7 @@ export default function KitchenSink() {
 
       <HeadingArticle text="Kitchen Sink Examples" size="h1" type="primary" />
       <Paragraph text="An opinionated form reset designed to make form elements easy to style with utility classes." size="standard" type="primary" />
-      <div className="mt-4 mb-8 flex space-x-4">
+      <div className="mt-2 mb-8 flex space-x-4">
         <a className="text-lg underline" href="https://github.com/tailwindlabs/tailwindcss-forms"
           >Documentation</a
         >
@@ -35,12 +35,11 @@ export default function KitchenSink() {
       
       <hr />
 
-        <div className="max-w-xl mx-auto py-12 md:max-w-4xl">
-        <h2 className="text-2xl font-bold">Reset styles</h2>
-        <p className="mt-2 text-lg text-gray-500">
-          These are form elements this plugin styles by default.
-        </p>
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+        <div className="max-w-xl mx-auto py-8 md:max-w-4xl">
+        <HeadingArticle text="Reset Styles" size="h2" type="primary" />
+        <Paragraph text="Default Tailwind plugin styles." size="standard" type="primary" />
+       
+        <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
           <div className="grid grid-cols-1 gap-6">
             <label className="block">
               <span className="text-gray-700">Input (text)</span>
@@ -198,11 +197,8 @@ export default function KitchenSink() {
         </div>
       </div>
       <div className="max-w-4xl mx-auto py-12">
-        <h2 className="text-2xl font-bold">Untouched</h2>
-        <p className="mt-2 text-lg text-gray-500">
-          These are form elements we don't handle (yet?), but we use this to make sure we haven't
-          accidentally styled them by mistake.
-        </p>
+        <HeadingArticle text="Untouched" size="h2" type="primary" />
+        <Paragraph text="These are form elements we don't handle (yet?), but we use this to make sure we haven't accidentally styled them by mistake." size="standard" type="primary" />
         <div className="mt-8 grid grid-cols-2 gap-6 items-start">
           <div className="grid grid-cols-1 gap-6">
             <label className="block">
