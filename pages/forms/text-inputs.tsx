@@ -3,7 +3,7 @@ import Breadcrumbs from '@components/layout/Breadcrumbs'
 import { useForm } from 'react-hook-form'
 import WrapperInput from '@components/WrapperInput'
 import LayoutContainerSide from '@components/layout/LayoutContainerSide'
-import HeadingArticle from '@components/layout/HeadingArticle'
+import Heading from '@components/layout/Heading'
 
 const TestForm: FC = () => {
   
@@ -31,7 +31,7 @@ const TestForm: FC = () => {
   <> 
     <LayoutContainerSide>
       <Breadcrumbs crumbs={crumbs} />
-      <HeadingArticle text="Text Input" size="h1" type="primary"/>
+      <Heading text="Text Input" size="h1" type="primary"/>
       <form onSubmit={onSubmit}>
     
       <WrapperInput

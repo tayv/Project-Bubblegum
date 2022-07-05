@@ -7,7 +7,7 @@ export type HeadingProps = {
     id?: string
 }
 
-const HeadingArticle: FC<HeadingProps> = ({
+const Heading: FC<HeadingProps> = ({
     text,
     size, 
     ...props
@@ -39,7 +39,7 @@ const HeadingArticle: FC<HeadingProps> = ({
   )
 }
 
-export default HeadingArticle
+export default Heading
 
 
 // Need to use function expression to render a switch statement in react. 

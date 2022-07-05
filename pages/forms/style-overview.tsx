@@ -1,5 +1,5 @@
 import Breadcrumbs from '@components/layout/Breadcrumbs'
-import HeadingArticle from '@components/layout/HeadingArticle'
+import Heading from '@components/layout/Heading'
 import DoDont from '@components/layout/DoDont'
 import LayoutContainerSide from '@components/layout/LayoutContainerSide'
 import Link from 'next/link'

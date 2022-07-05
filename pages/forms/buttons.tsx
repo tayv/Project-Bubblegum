@@ -1,5 +1,5 @@
 import Breadcrumbs from '@components/layout/Breadcrumbs'
-import HeadingArticle from '@components/layout/HeadingArticle'
+import Heading from '@components/layout/Heading'
 import DoDont from '@components/layout/DoDont'
 import LayoutContainerSide from '@components/layout/LayoutContainerSide'
 import Link from 'next/link'
@@ -24,15 +24,15 @@ export default function MyRadioGroup() {
       <LayoutContainerSide>
           <Breadcrumbs crumbs={crumbs} />  
 
-          <HeadingArticle text="Buttons Heading" size="h1" type="primary"/> 
+          <Heading text="Buttons Heading" size="h1" type="primary"/> 
           <Paragraph text="Explainer about buttons and when to use them goes here" size="standard" type="primary" />
           <br />
           <hr />
 
-          <HeadingArticle id="primary" text="Primary Buttons" size="h2" type="primary" />
+          <Heading id="primary" text="Primary Buttons" size="h2" type="primary" />
           <Paragraph text="Sometimes called Call-To-Action (CTA) buttons." size="standard" type="primary" />
 
-          <HeadingArticle text="Example" size="h3" type="primary" />
+          <Heading text="Example" size="h3" type="primary" />
 
           <div className="grid grid-cols-2 gap-2 py-3 text-right">
             <button 
@@ -49,22 +49,22 @@ export default function MyRadioGroup() {
             </button>      
           </div>
 
-          <HeadingArticle text="Best Practices" size="h3" type="primary" />
+          <Heading text="Best Practices" size="h3" type="primary" />
           <DoDont />
 
-          <HeadingArticle text="How to implement" size="h3" type="primary" />
+          <Heading text="How to implement" size="h3" type="primary" />
           <p>Code details go here</p>
 
           <br />
           <hr />
 
-          <HeadingArticle id="secondary" text="Secondary Buttons" size="h2" type="primary" />
+          <Heading id="secondary" text="Secondary Buttons" size="h2" type="primary" />
           <Paragraph text="Sometimes called Ghost buttons." size="standard" type="primary" />
 
-          <HeadingArticle text="Example" size="h3" type="primary" />
+          <Heading text="Example" size="h3" type="primary" />
           <Paragraph text="Example goes here" size="standard" type="primary" />
 
-          <HeadingArticle text="Related links" size="h3" type="secondary" />
+          <Heading text="Related links" size="h3" type="secondary" />
           <ul>
             <li>- Link 1</li>
             <li>- Link 2</li>

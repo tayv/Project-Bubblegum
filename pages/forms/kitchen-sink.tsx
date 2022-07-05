@@ -1,5 +1,5 @@
 import Breadcrumbs from '@components/layout/Breadcrumbs'
-import HeadingArticle from '@components/layout/HeadingArticle'
+import Heading from '@components/layout/Heading'
 import LayoutContainerSide from '@components/layout/LayoutContainerSide'
 import Paragraph from '@components/layout/Paragraph'
 import Link from 'next/link'
@@ -24,7 +24,7 @@ export default function KitchenSink() {
       <Breadcrumbs crumbs={crumbs} />  
 
 
-      <HeadingArticle text="Kitchen Sink Examples" size="h1" type="primary" />
+      <Heading text="Kitchen Sink Examples" size="h1" type="primary" />
       <Paragraph text="An opinionated form reset designed to make form elements easy to style with utility classes." size="standard" type="primary" />
       <div className="mt-2 mb-8 flex space-x-4">
         <a className="text-lg underline" href="https://github.com/tailwindlabs/tailwindcss-forms"
@@ -35,8 +35,8 @@ export default function KitchenSink() {
       
       <hr />
 
-        <div className="max-w-xl mx-auto py-8 md:max-w-4xl">
-        <HeadingArticle text="Reset Styles" size="h2" type="primary" />
+      <div className="max-w-xl mx-auto py-3 md:max-w-4xl">
+        <Heading text="Reset Styles" size="h2" type="primary" />
         <Paragraph text="Default Tailwind plugin styles." size="standard" type="primary" />
        
         <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
@@ -196,8 +196,10 @@ export default function KitchenSink() {
           </div>
         </div>
       </div>
-      <div className="max-w-4xl mx-auto py-12">
-        <HeadingArticle text="Untouched" size="h2" type="primary" />
+
+      <div className="max-w-4xl mx-auto py-3">
+        <hr />
+        <Heading text="Untouched" size="h2" type="primary" />
         <Paragraph text="These are form elements we don't handle (yet?), but we use this to make sure we haven't accidentally styled them by mistake." size="standard" type="primary" />
         <div className="mt-8 grid grid-cols-2 gap-6 items-start">
           <div className="grid grid-cols-1 gap-6">
@@ -220,8 +222,6 @@ export default function KitchenSink() {
           </div>
         </div>
       </div>
-        
-
       
       </LayoutContainerSide>
     </>

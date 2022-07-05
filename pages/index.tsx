@@ -23,6 +23,13 @@ export default function Home() {
             </a>
           </Link>
 
+          <Link href="/forms/quiz-template">
+            <a className="p-6 mt-6 text-left border w-96 rounded-xl border-black hover:text-blue-600 focus:text-blue-600">
+              <h3 className="text-2xl font-bold">Quiz Template &rarr;</h3>
+              <p className="mt-4 text-xl">For testing layout and form functionality.</p>
+            </a>
+          </Link>
+
           <Link href="/forms/radios">
             <a className="p-6 mt-6 text-left border w-96 rounded-xl border-black hover:text-blue-600 focus:text-blue-600">
               <h3 className="text-2xl font-bold">Radio buttons &rarr;</h3>
