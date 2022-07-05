@@ -4,7 +4,7 @@ import Heading from '@components/layout/Heading'
 import Paragraph from '@components/layout/Paragraph'
 import {FC} from 'react'
 import { useForm } from 'react-hook-form'
-import WrapperInput from '@components/WrapperInput'
+import WrapperInput from '@components/controlled-wrappers/WrapperInput'
 import { Input } from '@components/atoms/input'
 
 // data for Breadcrumbs
@@ -23,7 +23,7 @@ const crumbs = [
 const QuizTemplate: FC = () => {
 
   // React hook form
-  const { handleSubmit, control} = useForm()
+  const { handleSubmit, control, getValues, formState: { errors }} = useForm()
 
   // Sample onSubmit form handler
   const onSubmit = handleSubmit((data) => {
@@ -55,7 +55,13 @@ const QuizTemplate: FC = () => {
         />
         <br />
         <br />
-        <button className="block border-gray-900 bg-gray-300 border px-2 py-1" type="submit">Test Submit</button>
+        <button className="block border-gray-900 bg-gray-300 border px-2 py-1" type="button" onClick={ () => { 
+            const testGetVal = getValues("controlledInput")
+            console.log(testGetVal)
+          } }>
+          Get Input Value 
+        </button>
+        <button className="mt-4 block border-gray-900 bg-gray-300 border px-2 py-1" type="submit">Test Submit</button>
       </form>
 
     </LayoutContainerSide>

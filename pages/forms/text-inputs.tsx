@@ -1,7 +1,7 @@
 import React, { useState, FC } from 'react'
 import Breadcrumbs from '@components/layout/Breadcrumbs'
 import { useForm } from 'react-hook-form'
-import WrapperInput from '@components/WrapperInput'
+import WrapperInput from '@components/controlled-wrappers/WrapperInput'
 import LayoutContainerSide from '@components/layout/LayoutContainerSide'
 import Heading from '@components/layout/Heading'
 
@@ -42,13 +42,13 @@ const TestForm: FC = () => {
         rules={{ required: "You must enter something" }}
         defaultValue=""
       />
-      <button type="button" onClick={ () => { 
-        const testGetVal = getValues("controllerInput")
-        console.log(testGetVal)
-        } 
-      }>GET VALUES</button>
-
-      <button type="submit">Submit</button>
+      <button className="my-4 block border-gray-900 bg-gray-300 border px-2 py-1" type="button" onClick={ () => { 
+          const testGetVal = getValues("controllerInput")
+          console.log(testGetVal)
+          } }>
+        GET VALUES
+      </button>
+      <button className="block border-gray-900 bg-gray-300 border px-2 py-1" type="submit">Submit</button>
     
     </form>
     </LayoutContainerSide>
