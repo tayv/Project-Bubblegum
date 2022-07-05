@@ -3,6 +3,7 @@ import Heading from '@components/layout/Heading'
 import LayoutContainerSide from '@components/layout/LayoutContainerSide'
 import Paragraph from '@components/layout/Paragraph'
 import Link from 'next/link'
+import { Input } from '@components/atoms/input'
 
 export default function KitchenSink() {
   // data for Breadcrumbs
@@ -35,6 +36,21 @@ export default function KitchenSink() {
       
       <hr />
 
+      <Heading text="Bubblegum Components" size="h2" type="primary" />
+      <Paragraph text="List of all created form components." size="standard" type="primary" />
+
+      <div className="border border-gray-900 py-4 px-4 mb-6">
+        <Heading text="Finished Components" size="h3" type="secondary" />
+      </div>
+
+      <div className="border border-gray-900 py-4 px-4 mb-6">
+        <Heading text="Unfinished Components" size="h3" type="secondary" />
+        <Input name="uncontrolledInput" label="This is a standard text input:" />
+        <br />
+        <Input name="uncontrolledInput" label="This is a large text input:" size="large" />
+      </div>
+
+      <hr />
       <div className="max-w-xl mx-auto py-3 md:max-w-4xl">
         <Heading text="Reset Styles" size="h2" type="primary" />
         <Paragraph text="Default Tailwind plugin styles." size="standard" type="primary" />
