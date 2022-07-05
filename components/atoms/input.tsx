@@ -15,10 +15,14 @@ export type InputProps = {
   label: string
   type?: InputType
   size?: InputSize
+  tipText?: string | null
+  exampleText?: string | null
   className?: string
   placeholder?: string
   defaultValue?: string | number 
   onChange?: any
+
+  // RHF prop types
   register?: any // react-hook-form: to register an input (not needed if using Controller)
   rules?: Record<string, any> // react-hook-form: validation rules. Any object so used generic Record type.
   control?: Control // react-hook-form: used by Controller. https://react-hook-form.com/ts/#Control
@@ -40,6 +44,7 @@ export const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
       type = "text",
       size = "standard",
       className = "", // to pass custom one-off styling
+      tipText = null,
       ...props
     },
     ref
@@ -49,6 +54,7 @@ export const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
         <label htmlFor="text" className="block text-md font-bold text-gray-900">
           {label}
         </label>
+        <span className="text-sm font-light text-gray-500 mb-2">{tipText}</span>
         <input
           ref={ref}
           id={name}
@@ -64,6 +70,7 @@ export const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
           }
           {...props}
         />
+        <span className="text-xs font-light italic text-gray-500 mt-1">e.g. A word</span>
       </div>
     )
   }

@@ -49,6 +49,7 @@ const QuizTemplate: FC = () => {
           name="controlledInput"
           label="This is a label"
           type="text"
+          tipText="This is a tip"
           control={control}
           rules={{ required: "You must enter something" }}
           defaultValue=""
