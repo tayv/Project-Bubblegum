@@ -14,6 +14,7 @@ const WrapperInput: FC<InputProps> = ({
   onChange,
   defaultValue,
   tipText,
+  exampleText,
   ...props
 }) => {
   
@@ -29,7 +30,7 @@ const WrapperInput: FC<InputProps> = ({
         name={name}
         defaultValue={defaultValue}
         render={({ field }) => (
-          <Input label={label} tipText={tipText} {...field} />
+          <Input label={label} tipText={tipText} exampleText={exampleText} {...field} />
         )}
       />
 

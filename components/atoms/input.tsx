@@ -45,6 +45,7 @@ export const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
       size = "standard",
       className = "", // to pass custom one-off styling
       tipText = null,
+      exampleText = null,
       ...props
     },
     ref
@@ -70,7 +71,7 @@ export const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
           }
           {...props}
         />
-        <span className="text-xs font-light italic text-gray-500 mt-1">e.g. A word</span>
+        <span className="text-xs font-light italic text-gray-500 mt-1">{exampleText}</span>
       </div>
     )
   }

@@ -50,6 +50,7 @@ const QuizTemplate: FC = () => {
           label="This is a label"
           type="text"
           tipText="This is a tip"
+          exampleText="e.g. Example goes here."
           control={control}
           rules={{ required: "You must enter something" }}
           defaultValue=""
