@@ -7,11 +7,11 @@ const crumbs = [
   {
     text: "Home", 
     path: "/",
-    active: false,
+    currentPg: false,
   }, {
     text: "Select", 
     path: "/",
-    active: true,
+    currentPg: true,
   }
 ]
 

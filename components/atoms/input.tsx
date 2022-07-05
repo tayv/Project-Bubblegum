@@ -44,7 +44,7 @@ export const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
   ) => {
     return (
       <div className="max-w-sm">
-        <label htmlFor="text" className="block text-sm font-medium text-gray-700">
+        <label htmlFor="text" className="block text-md font-bold text-gray-900">
           {label}
         </label>
         <input
@@ -55,7 +55,7 @@ export const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
           aria-label={label}
           className={
             classNames([
-              "mt-1 block border border-gray-300 bg-white rounded-md shadow-sm", 
+              "mt-1 block border border-gray-900 bg-white shadow-sm", 
               inputSizeMap[size], // to dynamically set styling for different input sizes
               className,
             ])

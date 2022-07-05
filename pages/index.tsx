@@ -16,6 +16,20 @@ export default function Home() {
         <p className="mt-3 text-2xl">Reusable react form components (wip 🏗️)</p>
 
         <div className="flex flex-wrap items-center justify-around max-w-4xl mt-6 sm:w-full">
+          <Link href="/forms/kitchen-sink">
+            <a className="p-6 mt-6 text-left border w-96 rounded-xl border-black hover:text-blue-600 focus:text-blue-600">
+              <h3 className="text-2xl font-bold">Form Kitchen Sink &rarr;</h3>
+              <p className="mt-4 text-xl">Overview of all form inputs</p>
+            </a>
+          </Link>
+
+          <Link href="/forms/quiz-template">
+            <a className="p-6 mt-6 text-left border w-96 rounded-xl border-black hover:text-blue-600 focus:text-blue-600">
+              <h3 className="text-2xl font-bold">Quiz Template &rarr;</h3>
+              <p className="mt-4 text-xl">For testing layout and form functionality.</p>
+            </a>
+          </Link>
+
           <Link href="/forms/radios">
             <a className="p-6 mt-6 text-left border w-96 rounded-xl border-black hover:text-blue-600 focus:text-blue-600">
               <h3 className="text-2xl font-bold">Radio buttons &rarr;</h3>

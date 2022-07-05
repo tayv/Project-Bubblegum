@@ -1,5 +1,5 @@
 import Breadcrumbs from '@components/layout/Breadcrumbs'
-import HeadingArticle from '@components/layout/HeadingArticle'
+import Heading from '@components/layout/Heading'
 import DoDont from '@components/layout/DoDont'
 import LayoutContainerSide from '@components/layout/LayoutContainerSide'
 
@@ -9,11 +9,11 @@ export default function MyRadioGroup() {
     {
       text: "Home", 
       path: "/",
-      active: false,
+      currentPg: false,
     }, {
       text: "Containers", 
       path: "/",
-      active: true,
+      currentPg: true,
     }
   ]
 
@@ -22,16 +22,16 @@ export default function MyRadioGroup() {
       <LayoutContainerSide>
           <Breadcrumbs crumbs={crumbs} />
 
-          <HeadingArticle text="Containers" size="h1" type="primary"/> 
+          <Heading text="Containers" size="h1" type="primary"/> 
           <p>Containers that hold content and providing a consistent spacing.</p>
 
           <br />
           <hr />
 
-          <HeadingArticle text="Page Containers" size="h2" type="primary" />
+          <Heading text="Page Containers" size="h2" type="primary" />
           <p>A page content container that provides consistent spacing and allows children to use css flex.</p>
 
-          <HeadingArticle text="Example" size="h3" type="primary" />
+          <Heading text="Example" size="h3" type="primary" />
           {/* Example components  */}
           <div className="space-y-4 shadow overflow-hidden border-solid border border-slate-300 py-2 px-4">
             <div className="flex items-center">
@@ -39,19 +39,19 @@ export default function MyRadioGroup() {
             </div>
           </div>
 
-          <HeadingArticle text="Best Practices" size="h3" type="primary" />
+          <Heading text="Best Practices" size="h3" type="primary" />
           <DoDont />
 
-          <HeadingArticle text="How to implement" size="h3" type="primary" />
+          <Heading text="How to implement" size="h3" type="primary" />
           <p>Code details go here</p>
 
           <br />
           <hr />
 
-          <HeadingArticle text="Content Cards" size="h2" type="primary" />
+          <Heading text="Content Cards" size="h2" type="primary" />
           <p>Containers for organizing individual pieces of content such as specific groups of form inputs.</p>
 
-          <HeadingArticle text="Related links" size="h3" type="secondary" />
+          <Heading text="Related links" size="h3" type="secondary" />
           <ul>
             <li>- Link 1</li>
             <li>- Link 2</li>
