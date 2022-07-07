@@ -5,7 +5,6 @@ import Paragraph from '@components/layout/Paragraph'
 import {FC} from 'react'
 import { useForm } from 'react-hook-form'
 import WrapperInput from '@components/controlled-wrappers/WrapperInput'
-import { Input } from '@components/atoms/input'
 
 // data for Breadcrumbs
 const crumbs = [
