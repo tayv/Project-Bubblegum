@@ -41,9 +41,7 @@ const QuizTemplate: FC = () => {
       
       <form className="border border-gray-900 py-2 px-4" onSubmit={onSubmit}>
         <Heading text="Test Form 1" size="h2" type="primary"/>
-        <Paragraph text="This section is used to test a text input using a RHF controlled input." size="standard" type="primary" />
-        <Heading text="Standard Uncontrolled Text Input" size="h3" type="primary"/>
-        <Input name="uncontrolledInput" label="This is a label" />
+        <Paragraph text="This section is used to test the text input component." size="standard" type="primary" />
         <Heading text="Controlled Wrapper Input" size="h3" type="primary"/>
         <WrapperInput
           name="controlledInput"
@@ -58,7 +56,7 @@ const QuizTemplate: FC = () => {
         <br />
         <br />
         <button className="block border-gray-900 bg-gray-300 border px-2 py-1" type="button" onClick={ () => { 
-            const testGetVal = getValues("controlledInput")
+            const testGetVal = getValues("controlledInput") 
             console.log(testGetVal)
           } }>
           Get Input Value 

@@ -17,10 +17,6 @@ const WrapperInput: FC<InputProps> = ({
   exampleText,
   ...props
 }) => {
-  
-
- //const { register, handleSubmit, getValues, formState: { errors } } = useForm()
-
 
   return (
     <div>
