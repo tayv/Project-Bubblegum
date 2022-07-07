@@ -29,9 +29,8 @@ export default function KitchenSink() {
       <Paragraph text="An opinionated form reset designed to make form elements easy to style with utility classes." size="standard" type="primary" />
       <div className="mt-2 mb-8 flex space-x-4">
         <a className="text-lg underline" href="https://github.com/tailwindlabs/tailwindcss-forms"
-          >Documentation</a
-        >
-        <a className="text-lg underline" href="/kitchen-sink.html">Kitchen Sink</a>
+          >Documentation</a>
+        <a className="text-lg underline" href="/forms/quiz-template">Quiz Template</a>
       </div>
       
       <hr />
@@ -56,7 +55,7 @@ export default function KitchenSink() {
 
       <hr />
       <div className="max-w-xl mx-auto py-3 md:max-w-4xl">
-        <Heading text="Reset Styles" size="h2" type="primary" />
+        <Heading text="Tailwind Reset Styles" size="h2" type="primary" />
         <Paragraph text="Default Tailwind plugin styles." size="standard" type="primary" />
        
         <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
