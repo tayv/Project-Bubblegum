@@ -41,13 +41,17 @@ export default function KitchenSink() {
 
       <div className="border border-gray-900 py-4 px-4 mb-6">
         <Heading text="Finished Components" size="h3" type="secondary" />
+        <Input name="uncontrolledInput1" type="text" label="Standard text input:" tipText="Optional tip text" exampleText="Optional example" />
+        <Input name="uncontrolledInput2" type="text" label="Large text input:" size="large" tipText="Optional tip text" exampleText="Optional example" />
+        <Input name="uncontrolledInput3" type="email" label="Email input" size="standard" tipText="Optional tip text" exampleText="Optional example" />
+        <Input name="uncontrolledInput4" type="tel" label="Telephone input" size="standard" tipText="Optional tip text" exampleText="Optional example" />
+        <Input name="uncontrolledInput5" type="number" label="Number input" size="standard" tipText="Optional tip text" exampleText="Optional example" />
       </div>
 
       <div className="border border-gray-900 py-4 px-4 mb-6">
         <Heading text="Unfinished Components" size="h3" type="secondary" />
-        <Input name="uncontrolledInput" label="This is a standard text input:" />
         <br />
-        <Input name="uncontrolledInput" label="This is a large text input:" size="large" />
+       
       </div>
 
       <hr />
