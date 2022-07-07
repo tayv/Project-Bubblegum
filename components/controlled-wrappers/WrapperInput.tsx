@@ -13,12 +13,10 @@ const WrapperInput: FC<InputProps> = ({
  // errors,
   onChange,
   defaultValue,
+  tipText,
+  exampleText,
   ...props
 }) => {
-  
-
- //const { register, handleSubmit, getValues, formState: { errors } } = useForm()
-
 
   return (
     <div>
@@ -28,7 +26,7 @@ const WrapperInput: FC<InputProps> = ({
         name={name}
         defaultValue={defaultValue}
         render={({ field }) => (
-          <Input label={label} {...field} />
+          <Input label={label} tipText={tipText} exampleText={exampleText} {...field} />
         )}
       />
 

@@ -1,5 +1,6 @@
 import React, { FC, ChangeEvent, forwardRef, InputHTMLAttributes, DetailedHTMLProps} from 'react'
 import classNames from 'classnames'
+import { Control } from 'react-hook-form'
 
 // OVERVIEW
   // This atom form component provides styling and accessibility requirements. Validation, event handlers, etc. 
@@ -14,13 +15,17 @@ export type InputProps = {
   label: string
   type?: InputType
   size?: InputSize
+  tipText?: string | null
+  exampleText?: string | null
   className?: string
   placeholder?: string
   defaultValue?: string | number 
   onChange?: any
+
+  // RHF prop types
   register?: any // react-hook-form: to register an input (not needed if using Controller)
-  rules?: any // react-hook-form: validation rules
-  control?: any // react-hook-form: used by Controller
+  rules?: Record<string, any> // react-hook-form: validation rules. Any object so used generic Record type.
+  control?: Control // react-hook-form: used by Controller. https://react-hook-form.com/ts/#Control
 } 
 
 // DYNAMIC STYLING
@@ -30,6 +35,7 @@ const inputSizeMap: {[key in InputSize]: string} = {
   large: "w-full py-3 px-4",
 }
 
+// forwardRef so RHF can work properly in WrapperInput
 export const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
   (
     {
@@ -38,6 +44,8 @@ export const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
       type = "text",
       size = "standard",
       className = "", // to pass custom one-off styling
+      tipText = null,
+      exampleText = null,
       ...props
     },
     ref
@@ -47,6 +55,7 @@ export const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
         <label htmlFor="text" className="block text-md font-bold text-gray-900">
           {label}
         </label>
+        <span className="text-sm font-light text-gray-500 mb-2">{tipText}</span>
         <input
           ref={ref}
           id={name}
@@ -62,12 +71,19 @@ export const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
           }
           {...props}
         />
+        <span className="text-xs font-light italic text-gray-500 mt-1">{exampleText}</span>
       </div>
     )
   }
 )
 
 // HELPFUL SOURCES
+
+// Type mapping
+  // https://learntypescript.dev/08/intro
+
+// Generic Types
+  // https://stackoverflow.com/questions/40641370/generic-object-type-in-typescript
   
 // REUSABLE TYPESCRIPT COMPONENTS
   // https://www.thisdot.co/blog/how-to-create-reusable-form-components-with-react-hook-forms-and-typescript
