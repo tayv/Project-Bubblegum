@@ -3,6 +3,7 @@ import { Input } from '@components/atoms/input'
 import { useForm, Controller } from 'react-hook-form'
 import { InputProps } from '@components/atoms/input'
 import UpdateInputState from '@components/UpdateInputState'
+import WarningMessage from '@components/utils/WarningMessage'
 
 
 const WrapperInput: FC<InputProps> = ({
@@ -26,7 +27,16 @@ const WrapperInput: FC<InputProps> = ({
         name={name}
         defaultValue={defaultValue}
         render={({ field }) => (
-          <Input label={label} tipText={tipText} exampleText={exampleText} {...field} />
+          <Input {...field} // Need to place field above custom event handlers so that the built in handlers are overridden
+            label={label} 
+            tipText={tipText} 
+            exampleText={exampleText} 
+            onChange={e => {
+              { WarningMessage(field.value) }
+              field.onChange(e)
+              }
+            } 
+            />
         )}
       />
 

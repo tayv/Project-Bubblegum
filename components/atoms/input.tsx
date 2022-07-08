@@ -21,6 +21,7 @@ export type InputProps = {
   placeholder?: string
   defaultValue?: string | number 
   onChange?: any
+  warnChange?: any 
 
   // RHF prop types
   register?: any // react-hook-form: to register an input (not needed if using Controller)

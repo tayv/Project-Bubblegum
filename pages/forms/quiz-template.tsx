@@ -5,6 +5,7 @@ import Paragraph from '@components/layout/Paragraph'
 import {FC} from 'react'
 import { useForm } from 'react-hook-form'
 import WrapperInput from '@components/controlled-wrappers/WrapperInput'
+import WarningMessage from '@components/utils/WarningMessage'
 
 // data for Breadcrumbs
 const crumbs = [
@@ -19,6 +20,14 @@ const crumbs = [
   }
 ]
 
+// Sample warning message object
+const messageWarn = {
+  message: "This is a warning message",
+  include: true,
+  valid: true,
+  setWarningBoolean: false,
+  }
+
 const QuizTemplate: FC = () => {
 
   // React hook form
@@ -27,6 +36,7 @@ const QuizTemplate: FC = () => {
   // Sample onSubmit form handler
   const onSubmit = handleSubmit((data) => {
     console.log("Form submitted. Data:", data, "Submit form - errors", Error)
+
   })
 
   return (
@@ -52,6 +62,7 @@ const QuizTemplate: FC = () => {
           rules={{ required: "You must enter something" }}
           defaultValue=""
         />
+        <WarningMessage messageWarn={"test warning"} />
         <br />
         <br />
         <button className="block border-gray-900 bg-gray-300 border px-2 py-1" type="button" onClick={ () => { 
