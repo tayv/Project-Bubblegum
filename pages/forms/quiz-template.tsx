@@ -62,7 +62,7 @@ const QuizTemplate: FC = () => {
           rules={{ required: "You must enter something" }}
           defaultValue=""
         />
-        <WarningMessage messageWarn={"test warning"} />
+        {/* <WarningMessage messageWarn={"test warning"} /> */}
         <br />
         <br />
         <button className="block border-gray-900 bg-gray-300 border px-2 py-1" type="button" onClick={ () => { 

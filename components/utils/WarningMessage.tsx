@@ -12,8 +12,13 @@ export const WarningMessage: FC<Messages> = (
   }
 ) => {
 
+  const regEx = /(a)/g; // check if contains "a"
   return (
-    <p>hello {messageWarn}</p>
+    <>
+      {console.log(props, regEx.test(props[1]))}
+      (regEx.test(props[1])) && <p>hello {messageWarn}</p>
+    </>
+ 
   )
 }    
 

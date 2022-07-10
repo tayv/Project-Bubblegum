@@ -17,7 +17,7 @@ const WrapperInput: FC<InputProps> = ({
   tipText,
   exampleText,
   ...props
-}) => {
+}) => {  
 
   return (
     <div>
@@ -39,7 +39,7 @@ const WrapperInput: FC<InputProps> = ({
             />
         )}
       />
-
+    <WarningMessage />
     </div>  
   )
 }
