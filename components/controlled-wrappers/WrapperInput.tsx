@@ -39,7 +39,7 @@ const WrapperInput: FC<InputProps> = ({
             />
         )}
       />
-    <WarningMessage />
+    {/* <WarningMessage mess={["b", "a", "a"]}/> */}
     </div>  
   )
 }
