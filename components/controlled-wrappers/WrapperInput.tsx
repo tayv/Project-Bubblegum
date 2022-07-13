@@ -19,12 +19,12 @@ const WrapperInput: FC<InputProps> = ({
   ...props
 }) => {  
 
-  const { getValues } = useForm()
-  const testWatch = useWatch({
-    control,
-    name: "controlledInput",
-  });
-  const regEx = /(a)/g
+  // const { getValues } = useForm()
+  // const testWatch = useWatch({
+  //   control,
+  //   name: "controlledInput",
+  // });
+  // const regEx = /(a)/g
 
   return (
     <div>
@@ -39,8 +39,8 @@ const WrapperInput: FC<InputProps> = ({
             tipText={tipText} 
             exampleText={exampleText} 
             onChange={e => {
-              {console.log("TestWatch: ", testWatch)}
-              { regEx.test(testWatch) 
+              {//console.log("TestWatch: ", testWatch)}
+               //regEx.test(testWatch) 
               console.log(field.value == "a") }
               field.onChange(e)
               }
@@ -49,8 +49,9 @@ const WrapperInput: FC<InputProps> = ({
         )}
       />
     <>
-    { useEffect( () => console.log("use effect: ", testWatch), [testWatch]) } 
+    {/* { useEffect( () => console.log("use effect: ", testWatch), [testWatch]) }  */}
     </>
+    <WarningMessage control={control} />
     </div>  
   )
 }

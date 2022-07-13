@@ -1,4 +1,5 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
+import { useForm, useWatch, Controller } from 'react-hook-form'
 
 export type Messages = {
   messageWarn?: string | number | object
@@ -8,11 +9,17 @@ export type Messages = {
 export const WarningMessage: FC<Messages> = (
   {
     messageWarn,
+    control,
     ...props
   }
 ) => {
 
   // const [inputChange, setInputChange] = useState({}) // doesn't work
+  const { getValues } = useForm()
+  const testWatch = useWatch({
+    control,
+    name: "controlledInput",
+  });
 
   const regEx = /(a)/g // check if contains "a"
   const regTest = (value) => {
@@ -29,10 +36,10 @@ export const WarningMessage: FC<Messages> = (
 
   return (
     <>
-      {console.log(props, regEx.test(props[1]), regTest(props[1]))}
-      {(regEx.test(props[1])) && <p>hello {messageWarn}</p>}
+      {(regEx.test(testWatch)) && <p>hello {messageWarn}</p>}
      { regTest(props) && <p>hello test{messageWarn}</p> }
      {/* {regTest(["b", "a", "a"]) ? <p>works</p>: <p>doesn't work</p>} */}
+     { useEffect( () => console.log("The new use effect: ", testWatch), [testWatch]) } 
     </>
  
   )
