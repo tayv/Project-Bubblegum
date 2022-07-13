@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 
 export type Messages = {
   messageWarn?: string | number | object
@@ -12,7 +12,9 @@ export const WarningMessage: FC<Messages> = (
   }
 ) => {
 
-  const regEx = /(a)/g; // check if contains "a"
+  // const [inputChange, setInputChange] = useState({}) // doesn't work
+
+  const regEx = /(a)/g // check if contains "a"
   const regTest = (value) => {
     console.log("regTest value: ", value)
     if (value == undefined) {
@@ -20,10 +22,8 @@ export const WarningMessage: FC<Messages> = (
     }
 
     else if (regEx.test(value[1]) == true) {
-      return true
+     // setInputChange("worked")  
     }
-    
-    
  
   }
 
