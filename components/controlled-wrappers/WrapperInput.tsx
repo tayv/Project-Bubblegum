@@ -38,14 +38,7 @@ const WrapperInput: FC<InputProps> = ({
             label={label} 
             tipText={tipText} 
             exampleText={exampleText} 
-            onChange={e => {
-              {//console.log("TestWatch: ", testWatch)}
-               //regEx.test(testWatch) 
-              console.log(field.value == "a") }
-              field.onChange(e)
-              }
-            } 
-            />
+          />
         )}
       />
       <WarningMessage control={control} />
@@ -65,7 +58,7 @@ export default WrapperInput
         // can be used for soft validation/tip messages.
         // To allow further flexibility, can pass in an object with method and properties to determine if the custom event handler
         // should fire and/or specify custom messages by using a logical && operator
-        
+
     // Example:
       
       // <Controller

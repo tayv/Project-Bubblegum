@@ -1,9 +1,10 @@
 import React, { FC, useEffect, useState } from 'react'
-import { useForm, useWatch, Controller } from 'react-hook-form'
+import { useForm, useWatch, Control } from 'react-hook-form'
 
 export type Messages = {
   messageWarn?: string | number | object
   messageTip?: string | number
+  control: Control | undefined // Required by rhf Controller: https://react-hook-form.com/ts/#Control. Will be undefined if field empty
 }
 
 export const WarningMessage: FC<Messages> = (
@@ -14,8 +15,6 @@ export const WarningMessage: FC<Messages> = (
   }
 ) => {
 
-  // const [inputChange, setInputChange] = useState({}) // doesn't work
-  const { getValues } = useForm()
   const testWatch = useWatch({
     control,
     name: "controlledInput",
@@ -23,7 +22,7 @@ export const WarningMessage: FC<Messages> = (
 
   const regEx = /(a)/g // check if contains "a"
   const regTest = (value) => {
-    console.log("regTest value: ", value)
+    // console.log("regTest value: ", value)
     if (value == undefined) {
       return false
     }
