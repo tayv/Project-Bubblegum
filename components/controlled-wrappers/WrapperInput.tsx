@@ -1,6 +1,6 @@
-import React, {FC} from 'react'
+import React, {FC, useEffect} from 'react'
 import { Input } from '@components/atoms/input'
-import { useForm, Controller } from 'react-hook-form'
+import { useForm, useWatch, Controller } from 'react-hook-form'
 import { InputProps } from '@components/atoms/input'
 import UpdateInputState from '@components/UpdateInputState'
 import WarningMessage from '@components/utils/WarningMessage'
@@ -19,6 +19,13 @@ const WrapperInput: FC<InputProps> = ({
   ...props
 }) => {  
 
+  const { getValues } = useForm()
+  const testWatch = useWatch({
+    control,
+    name: "controlledInput",
+  });
+  const regEx = /(a)/g
+
   return (
     <div>
 
@@ -32,14 +39,18 @@ const WrapperInput: FC<InputProps> = ({
             tipText={tipText} 
             exampleText={exampleText} 
             onChange={e => {
-              { WarningMessage(field.value) }
+              {console.log("TestWatch: ", testWatch)}
+              { regEx.test(testWatch) 
+              console.log(field.value == "a") }
               field.onChange(e)
               }
             } 
             />
         )}
       />
-    {/* <WarningMessage mess={["b", "a", "a"]}/> */}
+    <>
+    { useEffect( () => console.log("use effect: ", testWatch), [testWatch]) } 
+    </>
     </div>  
   )
 }
