@@ -4,13 +4,13 @@ import { useForm, useWatch, Control } from 'react-hook-form'
 export type MessageProps = {
   messageWarn?: string | number | object
   messageTip?: string | number
-  messageType: "warn" | "info"
+  messageType: "warn" | "Warn" |"info" | "Info" | null
   control: Control | undefined // Required by rhf Controller: https://react-hook-form.com/ts/#Control. Will be undefined if input field empty
 }
 
 export const WarningMessage: FC<MessageProps> = (
   {
-    messageWarn,
+    messageType,
     control,
     ...props
   }
@@ -41,13 +41,13 @@ export const WarningMessage: FC<MessageProps> = (
         return (regEx.test(testWatch)) && <span className="text-sm text-slate-500 pt-4 pb-2">🤓 This is a neutral informational message based on what you wrote in the input field: {message}</span> 
         
       default:
-        return null;
+        return null
   }
 }
 
   return (
     <>
-      {renderMessageStyle("info", "message")}
+      {renderMessageStyle(messageType, "message")}
 
       {/* {(regEx.test(testWatch)) && <p>hello {messageWarn}</p>}
      { regTest(props) && <p>hello test{messageWarn}</p> } */}

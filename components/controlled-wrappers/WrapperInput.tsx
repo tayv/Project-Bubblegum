@@ -2,7 +2,6 @@ import React, {FC, useEffect} from 'react'
 import { Input } from '@components/atoms/input'
 import { useForm, useWatch, Controller } from 'react-hook-form'
 import { InputProps } from '@components/atoms/input'
-import UpdateInputState from '@components/UpdateInputState'
 import WarningMessage from '@components/utils/WarningMessage'
 
 
@@ -16,15 +15,9 @@ const WrapperInput: FC<InputProps> = ({
   defaultValue,
   tipText,
   exampleText,
+  messageType,
   ...props
 }) => {  
-
-  // const { getValues } = useForm()
-  // const testWatch = useWatch({
-  //   control,
-  //   name: "controlledInput",
-  // });
-  // const regEx = /(a)/g
 
   return (
     <div>
@@ -41,7 +34,7 @@ const WrapperInput: FC<InputProps> = ({
           />
         )}
       />
-      <WarningMessage control={control} />
+      <WarningMessage control={control} messageType={messageType} />
     </div>  
   )
 }
