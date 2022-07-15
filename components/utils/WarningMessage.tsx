@@ -1,13 +1,14 @@
 import React, { FC, useEffect, useState } from 'react'
 import { useForm, useWatch, Control } from 'react-hook-form'
 
-export type Messages = {
+export type MessageProps = {
   messageWarn?: string | number | object
   messageTip?: string | number
-  control: Control | undefined // Required by rhf Controller: https://react-hook-form.com/ts/#Control. Will be undefined if field empty
+  messageType: "warn" | "info"
+  control: Control | undefined // Required by rhf Controller: https://react-hook-form.com/ts/#Control. Will be undefined if input field empty
 }
 
-export const WarningMessage: FC<Messages> = (
+export const WarningMessage: FC<MessageProps> = (
   {
     messageWarn,
     control,
@@ -26,17 +27,30 @@ export const WarningMessage: FC<Messages> = (
     if (value == undefined) {
       return false
     }
-
     else if (regEx.test(value[1]) == true) {
-
     }
- 
   }
+
+  // Render style logic
+  const renderMessageStyle = (messageType) => {
+    switch (messageType) {
+      case "warn":
+        return (regEx.test(testWatch)) && <span className="text-sm font-bold text-amber-600 pt-4 pb-2">⚠️ This is a warning message for what you wrote in the input field: {messageWarn}</span> 
+        
+      case "info":
+        return (regEx.test(testWatch)) && <span className="text-sm text-slate-500 pt-4 pb-2">🤓 This is a neutral informational message based on what you wrote in the input field: {messageWarn}</span> 
+        
+      default:
+        return null;
+  }
+}
 
   return (
     <>
-      {(regEx.test(testWatch)) && <p>hello {messageWarn}</p>}
-     { regTest(props) && <p>hello test{messageWarn}</p> }
+      {renderMessageStyle("info")}
+
+      {/* {(regEx.test(testWatch)) && <p>hello {messageWarn}</p>}
+     { regTest(props) && <p>hello test{messageWarn}</p> } */}
      {/* {regTest(["b", "a", "a"]) ? <p>works</p>: <p>doesn't work</p>} */}
      { useEffect( () => console.log("The new use effect: ", testWatch), [testWatch]) } 
     </>
