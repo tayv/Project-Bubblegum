@@ -32,13 +32,13 @@ export const WarningMessage: FC<MessageProps> = (
   }
 
   // Render style logic
-  const renderMessageStyle = (messageType) => {
+  const renderMessageStyle = (messageType, message) => {
     switch (messageType) {
       case "warn":
-        return (regEx.test(testWatch)) && <span className="text-sm font-bold text-amber-600 pt-4 pb-2">⚠️ This is a warning message for what you wrote in the input field: {messageWarn}</span> 
+        return (regEx.test(testWatch)) && <span className="text-sm font-bold text-amber-600 pt-4 pb-2">⚠️ This is a warning message for what you wrote in the input field: {message}</span> 
         
       case "info":
-        return (regEx.test(testWatch)) && <span className="text-sm text-slate-500 pt-4 pb-2">🤓 This is a neutral informational message based on what you wrote in the input field: {messageWarn}</span> 
+        return (regEx.test(testWatch)) && <span className="text-sm text-slate-500 pt-4 pb-2">🤓 This is a neutral informational message based on what you wrote in the input field: {message}</span> 
         
       default:
         return null;
@@ -47,7 +47,7 @@ export const WarningMessage: FC<MessageProps> = (
 
   return (
     <>
-      {renderMessageStyle("info")}
+      {renderMessageStyle("info", "message")}
 
       {/* {(regEx.test(testWatch)) && <p>hello {messageWarn}</p>}
      { regTest(props) && <p>hello test{messageWarn}</p> } */}
