@@ -12,33 +12,27 @@ export const WarningMessage: FC<MessageProps> = (
   {
     messageType,
     control,
+    regEx,
     ...props
   }
 ) => {
 
-  const testWatch = useWatch({
-    control,
-    name: "controlledInput",
-  });
+  // const testWatch = useWatch({
+  //   control,
+  //   name: "controlledInput",
+  // })
 
-  const regEx = /(a)/g // check if contains "a"
-  const regTest = (value) => {
-    // console.log("regTest value: ", value)
-    if (value == undefined) {
-      return false
-    }
-    else if (regEx.test(value[1]) == true) {
-    }
-  }
+//  const regEx = /(a)/g // check if contains "a"
 
   // Render style logic
   const renderMessageStyle = (messageType, message) => {
+    // console.log("1st renderMessage fired!", testWatch)
     switch (messageType) {
       case "warn":
-        return (regEx.test(testWatch)) && <span className="text-sm font-bold text-amber-600 pt-4 pb-2">⚠️ This is a warning message for what you wrote in the input field: {message}</span> 
+        return <span className="text-sm font-bold text-amber-600 pt-4 pb-2">⚠️ This is a warning message for what you wrote in the input field: {message}</span> 
         
       case "info":
-        return (regEx.test(testWatch)) && <span className="text-sm text-slate-500 pt-4 pb-2">🤓 This is a neutral informational message based on what you wrote in the input field: {message}</span> 
+        // return (regEx.test(testWatch)) && <span className="text-sm text-slate-500 pt-4 pb-2">🤓 This is a neutral informational message based on what you wrote in the input field: {message}</span> 
         
       default:
         return null
@@ -47,12 +41,12 @@ export const WarningMessage: FC<MessageProps> = (
 
   return (
     <>
-      {renderMessageStyle(messageType, "message")}
+      {/* {regEx.test(testWatch) && <span className="text-sm font-bold text-amber-600 pt-4 pb-2">⚠️ This is a warning message for what you wrote in the input field</span>} */}
+      {regEx && renderMessageStyle(messageType, "message")}
 
       {/* {(regEx.test(testWatch)) && <p>hello {messageWarn}</p>}
      { regTest(props) && <p>hello test{messageWarn}</p> } */}
      {/* {regTest(["b", "a", "a"]) ? <p>works</p>: <p>doesn't work</p>} */}
-     { useEffect( () => console.log("The new use effect: ", testWatch), [testWatch]) } 
     </>
  
   )

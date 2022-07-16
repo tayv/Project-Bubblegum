@@ -39,6 +39,9 @@ const QuizTemplate: FC = () => {
 
   })
 
+  // const regEx = /(a)/g // check if contains "a"
+
+
   return (
   <>
     <LayoutContainerSide>
@@ -58,12 +61,13 @@ const QuizTemplate: FC = () => {
           type="text"
           tipText="This is a tip"
           messageType="warn"
+          testFor="b"
+         // regEx={regEx}
           exampleText="e.g. Example goes here."
           control={control}
           rules={{ required: "You must enter something" }}
           defaultValue=""
         />
-        {/* <WarningMessage messageWarn={"test warning"} /> */}
         <br />
         <br />
         <button className="block border-gray-900 bg-gray-300 border px-2 py-1" type="button" onClick={ () => { 
