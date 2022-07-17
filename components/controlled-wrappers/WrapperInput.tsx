@@ -15,28 +15,28 @@ const WrapperInput: FC<InputProps> = ({
   defaultValue,
   tipText,
   exampleText,
-  messageType,
-  testFor,
+  children,
+  //messageType,
+ // testFor,
 //  regEx,
   ...props
 }) => {  
-  const testWatch = useWatch({
-    control,
-    name: name,
-  })
+  // const testWatch = useWatch({
+  //   control,
+  //   name: name,
+  // })
 
-  const testForX = (testFor) => {
-    // console.log("1st renderMessage fired!", testWatch)
-    if (testFor == "a") {
-        const regEx = /(a)/g
-        return regEx
-    } else {
-      const regEx = /(b)/g
-      return regEx
-    }
-}
-  const regEx = testForX(testFor)
-  // const regEx = /(a)/g // check if contains "a"
+  // const testForX = (testFor) => {
+  //    console.log("1st renderMessage fired!", testFor)
+  //   if (testFor == "a") {
+  //       const regEx = /(a)/g
+  //       return regEx
+  //   } else {
+  //     const regEx = /(b)/g
+  //     return regEx
+  //   }
+  // }
+  // const regEx = testForX(testFor)
 
   return (
     <div>
@@ -53,7 +53,9 @@ const WrapperInput: FC<InputProps> = ({
           />
         )}
       />
-      <WarningMessage control={control} messageType={messageType} regEx={regEx.test(testWatch)} />
+      {children}
+       {/* {regEx.test(testWatch) && children} */}
+      {/* <WarningMessage control={control} messageType={messageType} testFor={testFor} /> */}
     </div>  
   )
 }

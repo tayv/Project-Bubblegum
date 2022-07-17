@@ -60,14 +60,16 @@ const QuizTemplate: FC = () => {
           label="This is a label"
           type="text"
           tipText="This is a tip"
-          messageType="warn"
-          testFor="b"
+          // messageType="warn"
+          // testFor="a"
          // regEx={regEx}
           exampleText="e.g. Example goes here."
           control={control}
           rules={{ required: "You must enter something" }}
           defaultValue=""
-        />
+        >
+          <WarningMessage messageType="warn" control={control} testFor="a"/>
+        </WrapperInput>
         <br />
         <br />
         <button className="block border-gray-900 bg-gray-300 border px-2 py-1" type="button" onClick={ () => { 

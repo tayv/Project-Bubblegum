@@ -12,21 +12,33 @@ export const WarningMessage: FC<MessageProps> = (
   {
     messageType,
     control,
-    regEx,
+    testFor,
     ...props
   }
 ) => {
 
-  // const testWatch = useWatch({
-  //   control,
-  //   name: "controlledInput",
-  // })
+  const testWatch = useWatch({
+    control,
+    name: "controlledInput",
+  })
 
-//  const regEx = /(a)/g // check if contains "a"
+ // const regEx = /(a)/g // check if contains "a"
 
+  const testForX = (testFor) => {
+    // console.log("1st renderMessage fired!", testWatch)
+    if (testFor == "a") {
+        const regEx = /(a)/g
+        return regEx
+    } else {
+      const regEx = /(b)/g
+      return regEx
+    }
+  }
+  const regEx = testForX(testFor)
+ 
   // Render style logic
   const renderMessageStyle = (messageType, message) => {
-    // console.log("1st renderMessage fired!", testWatch)
+   console.log("1st renderMessage fired!", testWatch, testFor)
     switch (messageType) {
       case "warn":
         return <span className="text-sm font-bold text-amber-600 pt-4 pb-2">⚠️ This is a warning message for what you wrote in the input field: {message}</span> 
@@ -41,8 +53,9 @@ export const WarningMessage: FC<MessageProps> = (
 
   return (
     <>
+      {/* {console.log("return:", regEx.test(testWatch))} */}
       {/* {regEx.test(testWatch) && <span className="text-sm font-bold text-amber-600 pt-4 pb-2">⚠️ This is a warning message for what you wrote in the input field</span>} */}
-      {regEx && renderMessageStyle(messageType, "message")}
+      {regEx.test(testWatch) && renderMessageStyle(messageType, "message")}
 
       {/* {(regEx.test(testWatch)) && <p>hello {messageWarn}</p>}
      { regTest(props) && <p>hello test{messageWarn}</p> } */}
