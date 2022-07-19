@@ -2,17 +2,20 @@ import React, { FC, useEffect, useState } from 'react'
 import { useForm, useWatch, Control } from 'react-hook-form'
 
 export type MessageProps = {
-  messageWarn?: string | number | object
-  messageTip?: string | number
-  messageType: "warn" | "Warn" |"info" | "Info" | null
+  messageType: "warn" |"info" | null
+  testFor: string | number 
+  message: string | number
+  regFormula: RegExp
   control: Control | undefined // Required by rhf Controller: https://react-hook-form.com/ts/#Control. Will be undefined if input field empty
 }
 
 export const WarningMessage: FC<MessageProps> = (
   {
     messageType,
-    control,
     testFor,
+    message,
+    regFormula,
+    control,
     ...props
   }
 ) => {
@@ -20,31 +23,31 @@ export const WarningMessage: FC<MessageProps> = (
   const testWatch = useWatch({
     control,
     name: "controlledInput",
+    defaultValue: " ", // MUST HAVE A DEFAULT VALUE or testWatch.match(regEx) will fail
   })
 
- // const regEx = /(a)/g // check if contains "a"
-
-  const testForX = (testFor) => {
-    // console.log("1st renderMessage fired!", testWatch)
+  const testForX = (testFor, regFormula) => {
     if (testFor == "a") {
-        const regEx = /(a)/g
-        return regEx
+        return /(a)/g
+    } else if (testFor == "custom") {
+        return regFormula  
     } else {
-      const regEx = /(b)/g
-      return regEx
-    }
+      return /(b)/g
+    } 
   }
-  const regEx = testForX(testFor)
- 
+
+  // This variable holds the string that the .match() will use as gatekeeper for renderMessageStyl() 
+  let regEx = testForX(testFor, regFormula)
+
   // Render style logic
   const renderMessageStyle = (messageType, message) => {
-   console.log("1st renderMessage fired!", testWatch, testFor)
+   console.log("Message Type: ", messageType, "message:")
     switch (messageType) {
       case "warn":
         return <span className="text-sm font-bold text-amber-600 pt-4 pb-2">⚠️ This is a warning message for what you wrote in the input field: {message}</span> 
         
       case "info":
-        // return (regEx.test(testWatch)) && <span className="text-sm text-slate-500 pt-4 pb-2">🤓 This is a neutral informational message based on what you wrote in the input field: {message}</span> 
+        return <span className="text-sm text-slate-500 pt-4 pb-2">🤓 This is a neutral informational message based on what you wrote in the input field: {message}</span> 
         
       default:
         return null
@@ -53,13 +56,7 @@ export const WarningMessage: FC<MessageProps> = (
 
   return (
     <>
-      {/* {console.log("return:", regEx.test(testWatch))} */}
-      {/* {regEx.test(testWatch) && <span className="text-sm font-bold text-amber-600 pt-4 pb-2">⚠️ This is a warning message for what you wrote in the input field</span>} */}
-      {regEx.test(testWatch) && renderMessageStyle(messageType, "message")}
-
-      {/* {(regEx.test(testWatch)) && <p>hello {messageWarn}</p>}
-     { regTest(props) && <p>hello test{messageWarn}</p> } */}
-     {/* {regTest(["b", "a", "a"]) ? <p>works</p>: <p>doesn't work</p>} */}
+      {testWatch.match(regEx) && renderMessageStyle(messageType, message)} {/* MUST use .match() instead of regEx.test() */ }
     </>
  
   )
@@ -67,4 +64,8 @@ export const WarningMessage: FC<MessageProps> = (
 
 export default WarningMessage
 
-
+// NOTES
+  // IMPORTANT: Use String.prototype.match instead of RegExp.prototype.test for logical gatekeeper or it will break when passing regFormula as a prop
+  // See: 
+    // https://stackoverflow.com/questions/73028753/why-do-these-seemingly-similar-props-result-in-different-behavior 
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match 

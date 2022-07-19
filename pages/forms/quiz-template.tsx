@@ -20,14 +20,6 @@ const crumbs = [
   }
 ]
 
-// Sample warning message object
-const messageWarn = {
-  message: "This is a warning message",
-  include: true,
-  valid: true,
-  setWarningBoolean: false,
-  }
-
 const QuizTemplate: FC = () => {
 
   // React hook form
@@ -38,9 +30,6 @@ const QuizTemplate: FC = () => {
     console.log("Form submitted. Data:", data, "Submit form - errors", Error)
 
   })
-
-  // const regEx = /(a)/g // check if contains "a"
-
 
   return (
   <>
@@ -60,15 +49,12 @@ const QuizTemplate: FC = () => {
           label="This is a label"
           type="text"
           tipText="This is a tip"
-          // messageType="warn"
-          // testFor="a"
-         // regEx={regEx}
           exampleText="e.g. Example goes here."
           control={control}
           rules={{ required: "You must enter something" }}
-          defaultValue=""
+          defaultValue="t"
         >
-          <WarningMessage messageType="warn" control={control} testFor="a"/>
+          <WarningMessage messageType="warn" control={control} testFor="custom" message="this is the message" regFormula={/(c)/g} />
         </WrapperInput>
         <br />
         <br />

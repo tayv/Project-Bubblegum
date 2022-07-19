@@ -1,8 +1,7 @@
-import React, {FC, useEffect} from 'react'
+import React, { FC } from 'react'
 import { Input } from '@components/atoms/input'
-import { useForm, useWatch, Controller } from 'react-hook-form'
+import { Controller } from 'react-hook-form'
 import { InputProps } from '@components/atoms/input'
-import WarningMessage from '@components/utils/WarningMessage'
 
 
 const WrapperInput: FC<InputProps> = ({
@@ -16,27 +15,8 @@ const WrapperInput: FC<InputProps> = ({
   tipText,
   exampleText,
   children,
-  //messageType,
- // testFor,
-//  regEx,
   ...props
 }) => {  
-  // const testWatch = useWatch({
-  //   control,
-  //   name: name,
-  // })
-
-  // const testForX = (testFor) => {
-  //    console.log("1st renderMessage fired!", testFor)
-  //   if (testFor == "a") {
-  //       const regEx = /(a)/g
-  //       return regEx
-  //   } else {
-  //     const regEx = /(b)/g
-  //     return regEx
-  //   }
-  // }
-  // const regEx = testForX(testFor)
 
   return (
     <div>
@@ -46,16 +26,14 @@ const WrapperInput: FC<InputProps> = ({
         name={name}
         defaultValue={defaultValue}
         render={({ field }) => (
-          <Input {...field} // Need to place field above custom event handlers so that the built in handlers are overridden
+          <Input {...field} // Need to place ...field above custom event handlers so that the built in handlers are overridden
             label={label} 
             tipText={tipText} 
             exampleText={exampleText} 
           />
         )}
       />
-      {children}
-       {/* {regEx.test(testWatch) && children} */}
-      {/* <WarningMessage control={control} messageType={messageType} testFor={testFor} /> */}
+      {children} {/* Children here will be warning messages, etc. */}
     </div>  
   )
 }
