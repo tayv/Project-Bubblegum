@@ -5,7 +5,7 @@ import Paragraph from '@components/layout/Paragraph'
 import {FC} from 'react'
 import { useForm } from 'react-hook-form'
 import WrapperInput from '@components/controlled-wrappers/WrapperInput'
-import WarningMessage from '@components/utils/WarningMessage'
+import WarningMessage from '@components/helpers/WarningMessage'
 
 // data for Breadcrumbs
 const crumbs = [
