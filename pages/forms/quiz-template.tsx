@@ -66,7 +66,7 @@ const QuizTemplate: FC = () => {
           rules={{ required: "You must enter something" }}
           defaultValue=" "
         >
-          <HelpMessage messageType="warn" control={control} testFor="custom" message="this is the message" regFormula={/(c)/g} />
+          <HelpMessage inputName="controlledInput" messageType="warn" control={control} testFor="custom" message="this is the message" regexFormula={/(c)/g} />
         </WrapperInput>
         <br />
         <br />

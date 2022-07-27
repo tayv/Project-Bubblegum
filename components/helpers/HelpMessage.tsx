@@ -1,23 +1,25 @@
 import React, { FC } from 'react'
 import { useWatch, Control } from 'react-hook-form'
 
-export type MessageProps = {
-  messageType: "warn" |"info" | null
+export type HelpMessageProps = {
+  inputName: string
+  messageType: "warn" | "info" | null
   testFor: string | number 
   message: string | number
-  regFormula?: RegExp | undefined
+  regexFormula?: RegExp | undefined
   control: Control | undefined // Required by rhf Controller: https://react-hook-form.com/ts/#Control. Will be undefined if input field empty
 }
 
 export type TestForX = (testFor: string | number, regFormula: RegExp | undefined) => RegExp | null
 
 
-export const HelpMessage: FC<MessageProps> = (
+export const HelpMessage: FC<HelpMessageProps> = (
   {
+    inputName,
     messageType,
     testFor,
     message,
-    regFormula,
+    regexFormula,
     control,
     ...props
   }
@@ -26,7 +28,7 @@ export const HelpMessage: FC<MessageProps> = (
   // Set up react hook form's Watch so we can get user's onChange input value. See: https://www.react-hook-form.com/api/usewatch
   const testWatch = useWatch({
     control,
-    name: "controlledInput",
+    name: inputName,
     defaultValue: " ", // MUST HAVE A DEFAULT VALUE or testWatch.match(regEx) will fail
   })
 
@@ -48,10 +50,10 @@ export const HelpMessage: FC<MessageProps> = (
   }
 
   // This variable holds the final regex that .match() will use as gatekeeper for renderMessageStyl() 
-  let regEx = testForX(testFor, regFormula)
+  let regEx = testForX(testFor, regexFormula)
 
   // Message style logic
-  const renderMessageStyle = (messageType, message) => {
+  const renderMessageStyle = (messageType: HelpMessageProps, message: HelpMessageProps) => {
     switch (messageType) {
       case "warn":
         return <span className="text-sm font-bold text-amber-600 pt-4 pb-2">⚠️ This is a warning message for what you wrote in the input field: {message}</span> 
@@ -79,6 +81,9 @@ export default HelpMessage
     // See: 
       // https://stackoverflow.com/questions/73028753/why-do-these-seemingly-similar-props-result-in-different-behavior 
       // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match 
+
+  // Usage notes:
+    // If you need to show multiple help messages for a single input then stack the component/message in the form. This will be optmized post-mvp.
 
   // Other resources:
     // Input changes are done using useWatch from rhf. See: https://www.react-hook-form.com/api/usewatch 
