@@ -12,7 +12,7 @@ export type MessageProps = {
 export type TestForX = (testFor: string | number, regFormula: RegExp | undefined) => RegExp | null
 
 
-export const WarningMessage: FC<MessageProps> = (
+export const HelpMessage: FC<MessageProps> = (
   {
     messageType,
     testFor,
@@ -72,7 +72,7 @@ export const WarningMessage: FC<MessageProps> = (
   )
 }    
 
-export default WarningMessage
+export default HelpMessage
 
 // NOTES
   // IMPORTANT: Use String.prototype.match instead of RegExp.prototype.test for logical gatekeeper or it will break when passing regFormula as a prop
