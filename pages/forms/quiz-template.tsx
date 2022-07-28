@@ -5,6 +5,7 @@ import Paragraph from '@components/layout/Paragraph'
 import {FC} from 'react'
 import { useForm } from 'react-hook-form'
 import WrapperInput from '@components/controlled-wrappers/WrapperInput'
+import HelpMessage from '@components/helpers/HelpMessage'
 
 // data for Breadcrumbs
 const crumbs = [
@@ -29,6 +30,19 @@ const QuizTemplate: FC = () => {
     console.log("Form submitted. Data:", data, "Submit form - errors", Error)
   })
 
+  const messageSchema = {
+    m1: {
+      type: "warn",
+      message: "This is the first message",
+      regex: /(c)/g
+    },
+    m2: {
+      type: "info",
+      message: "This is the second message",
+      regex: /(b)/g
+    }
+  }
+
   return (
   <>
     <LayoutContainerSide>
@@ -50,8 +64,17 @@ const QuizTemplate: FC = () => {
           exampleText="e.g. Example goes here."
           control={control}
           rules={{ required: "You must enter something" }}
-          defaultValue=""
-        />
+          defaultValue=" "
+        >
+          <HelpMessage 
+            inputName="controlledInput" 
+            messageType="warn" 
+            control={control} 
+            checkFor="a" 
+            message="This is the help message" 
+            customRegEx={null} 
+          />
+        </WrapperInput>
         <br />
         <br />
         <button className="block border-gray-900 bg-gray-300 border px-2 py-1" type="button" onClick={ () => { 
