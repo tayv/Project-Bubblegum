@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { useWatch, Control } from 'react-hook-form'
 
-export type regexFormula = RegExp | null | undefined 
+export type customRegEx = RegExp | null | undefined 
 export type checkFor = string | number
 export type messageType = "warn" | "info" | null
 
@@ -10,11 +10,11 @@ export type HelpMessageProps = {
   messageType: messageType
   checkFor: checkFor
   message: string | number
-  regexFormula?: regexFormula
+  customRegEx?: customRegEx
   control: Control | undefined // Required by rhf Controller: https://react-hook-form.com/ts/#Control. Will be undefined if input field empty
 }
 
-export type checkForMatch = ( checkFor: checkFor, regexFormula: regexFormula ) =>  regexFormula
+export type setRegEx = ( checkFor: checkFor, customRegEx: customRegEx ) =>  customRegEx
 
 
 export const HelpMessage: FC<HelpMessageProps> = (
@@ -23,7 +23,7 @@ export const HelpMessage: FC<HelpMessageProps> = (
     messageType,
     checkFor,
     message,
-    regexFormula,
+    customRegEx,
     control,
     ...props
   }
@@ -33,11 +33,11 @@ export const HelpMessage: FC<HelpMessageProps> = (
   const inputWatch = useWatch({
     control,
     name: inputName,
-    defaultValue: " ", // MUST HAVE A DEFAULT VALUE or inputWatch.match(regExBoolean) will fail
+    defaultValue: " ", // MUST HAVE A DEFAULT VALUE or inputWatch.match(checkForMatch) will fail
   })
 
-  // Set the regExBoolean formula to use as a rendering gatekeeper
-  const checkForMatch: checkForMatch = (checkFor, regexFormula) => {
+  // Set the checkForMatch formula to use as a rendering gatekeeper
+  const setRegEx: setRegEx = (checkFor, customRegEx) => {
     switch (checkFor) {
       case "a":
         return  /(a)/g
@@ -46,15 +46,17 @@ export const HelpMessage: FC<HelpMessageProps> = (
         return /(b)/g
 
       case "custom":
-        return regexFormula
+        return customRegEx
         
       default:
         return null
     }
   }
 
-  // This variable holds the final regExBoolean that .match() will use as gatekeeper for renderMessageStyl() 
-  let regExBoolean = checkForMatch(checkFor, regexFormula)
+  // Hold the regex formula that will be used to match input results from useWatch() 
+  let regExFormula = setRegEx(checkFor, customRegEx)
+  // Boolean regex result. Used as gatekeeper for displaying the warning message in UI in RenderMessageStyle()
+  let checkForMatch = (checkFor: checkFor, customRegEx: customRegEx) => inputWatch.match(regExFormula)
 
   // Message style logic
   const renderMessageStyle = <HelpMessageProps,>(messageType: messageType, message: HelpMessageProps) => {
@@ -72,7 +74,7 @@ export const HelpMessage: FC<HelpMessageProps> = (
 
   return (
     <>
-      {inputWatch.match(regExBoolean) && renderMessageStyle(messageType, message)} {/* MUST use .match() instead of regExBoolean.test() */ }
+      { checkForMatch(checkFor, regExFormula) && renderMessageStyle(messageType, message)} {/* MUST use .match() instead of checkForMatch.test() */ }
     </>
  
   )
