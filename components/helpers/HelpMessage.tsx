@@ -55,11 +55,11 @@ export const HelpMessage: FC<HelpMessageProps> = (
 
   // Hold the regex formula that will be used to match input results from useWatch() 
   let regExFormula = setRegEx(checkFor, customRegEx)
-  // Boolean regex result. Used as gatekeeper for displaying the warning message in UI in RenderMessageStyle()
-  let checkForMatch = (checkFor: checkFor, customRegEx: customRegEx) => inputWatch.match(regExFormula)
+  // Boolean regex result. Used as gatekeeper for displaying the warning message in UI in renderMessage()
+  let checkForMatch = (checkFor: checkFor, customRegEx: customRegEx): boolean => inputWatch.match(regExFormula)
 
   // Message style logic
-  const renderMessageStyle = <HelpMessageProps,>(messageType: messageType, message: HelpMessageProps) => {
+  const renderMessage = <HelpMessageProps,>(messageType: messageType, message: HelpMessageProps) => {
     switch (messageType) {
       case "warn":
         return <span className="text-sm font-bold text-amber-600 pt-4 pb-2">⚠️ This is a warning message for what you wrote in the input field: {message}</span> 
@@ -74,7 +74,7 @@ export const HelpMessage: FC<HelpMessageProps> = (
 
   return (
     <>
-      { checkForMatch(checkFor, regExFormula) && renderMessageStyle(messageType, message)} {/* MUST use .match() instead of checkForMatch.test() */ }
+      { checkForMatch(checkFor, regExFormula) && renderMessage(messageType, message) } {/* MUST use .match() instead of checkForMatch.test() */ }
     </>
  
   )
