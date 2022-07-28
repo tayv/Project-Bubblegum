@@ -10,7 +10,7 @@ export type HelpMessageProps = {
   control: Control | undefined // Required by rhf Controller: https://react-hook-form.com/ts/#Control. Will be undefined if input field empty
 }
 
-export type TestForX = (testFor: string | number, regFormula: RegExp | undefined) => RegExp | null
+export type TestForX = (testFor: string | number, regexFormula: RegExp) => HelpMessageProps| RegExp | null 
 
 
 export const HelpMessage: FC<HelpMessageProps> = (
@@ -33,7 +33,7 @@ export const HelpMessage: FC<HelpMessageProps> = (
   })
 
   // Set the regex formula to use as a rendering gatekeeper
-  const testForX: TestForX = (testFor, regFormula) => {
+  const testForX: TestForX = (testFor, regexFormula) => {
     switch (testFor) {
       case "a":
         return  /(a)/g
@@ -42,7 +42,7 @@ export const HelpMessage: FC<HelpMessageProps> = (
         return /(b)/g
 
       case "custom":
-        return regFormula
+        return regexFormula
         
       default:
         return null
@@ -50,7 +50,7 @@ export const HelpMessage: FC<HelpMessageProps> = (
   }
 
   // This variable holds the final regex that .match() will use as gatekeeper for renderMessageStyl() 
-  let regEx = testForX(testFor, regexFormula)
+  let regEx = testForX(testFor, regexFormula = /(b)/g)
 
   // Message style logic
   const renderMessageStyle = (messageType: HelpMessageProps, message: HelpMessageProps) => {
