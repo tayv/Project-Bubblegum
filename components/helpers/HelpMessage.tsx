@@ -1,16 +1,20 @@
 import React, { FC } from 'react'
 import { useWatch, Control } from 'react-hook-form'
 
+export type regexFormula = RegExp | null | undefined 
+export type checkFor = string | number
+export type messageType = "warn" | "info" | null
+
 export type HelpMessageProps = {
   inputName: string
-  messageType: "warn" | "info" | null
-  checkFor: string | number 
+  messageType: messageType
+  checkFor: checkFor
   message: string | number
-  regexFormula?: RegExp | undefined
+  regexFormula?: regexFormula
   control: Control | undefined // Required by rhf Controller: https://react-hook-form.com/ts/#Control. Will be undefined if input field empty
 }
 
-export type checkForMatch = (checkFor: string | number, regexFormula: RegExp | undefined) => HelpMessageProps| RegExp | null 
+export type checkForMatch = ( checkFor: checkFor, regexFormula: regexFormula ) =>  regexFormula
 
 
 export const HelpMessage: FC<HelpMessageProps> = (
@@ -53,7 +57,7 @@ export const HelpMessage: FC<HelpMessageProps> = (
   let regExBoolean = checkForMatch(checkFor, regexFormula)
 
   // Message style logic
-  const renderMessageStyle = (messageType: HelpMessageProps, message: HelpMessageProps) => {
+  const renderMessageStyle = <HelpMessageProps,>(messageType: messageType, message: HelpMessageProps) => {
     switch (messageType) {
       case "warn":
         return <span className="text-sm font-bold text-amber-600 pt-4 pb-2">⚠️ This is a warning message for what you wrote in the input field: {message}</span> 
