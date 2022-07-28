@@ -43,10 +43,10 @@ export const HelpMessage: FC<HelpMessageProps> = (
   const renderMessage = <HelpMessageProps,>(messageType: messageType, message: HelpMessageProps) => {
     switch (messageType) {
       case "warn":
-        return <span className="text-sm font-bold text-amber-600 pt-4 pb-2">⚠️ This is a warning message for what you wrote in the input field: {message}</span> 
+        return <span className="text-sm font-bold text-amber-600 pt-4 pb-2">⚠️ {message}</span> 
         
       case "info":
-        return <span className="text-sm text-slate-500 pt-4 pb-2">🤓 This is a neutral informational message based on what you wrote in the input field: {message}</span> 
+        return <span className="text-sm text-slate-500 pt-4 pb-2">🤓 {message}</span> 
         
       default:
         return null
