@@ -21,7 +21,7 @@
       "@atoms/*": ["components/atoms/*"],
       "@layouts/*": ["layouts/*"],
       "@styles/*": ["styles/*"],
-      "@helpers/*": ["helpers/*"]
+      "@helpers/*": ["components/helpers/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/layout/Breadcrumbs.tsx"],

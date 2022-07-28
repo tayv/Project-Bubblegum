@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
 import { useWatch, Control } from 'react-hook-form'
+import setRegEx from '@components/utils/setRegEx'
 
 export type customRegEx = RegExp | null | undefined 
 export type checkFor = string | number
@@ -13,9 +14,6 @@ export type HelpMessageProps = {
   customRegEx?: customRegEx
   control: Control | undefined // Required by rhf Controller: https://react-hook-form.com/ts/#Control. Will be undefined if input field empty
 }
-
-export type setRegEx = ( checkFor: checkFor, customRegEx: customRegEx ) =>  customRegEx
-
 
 export const HelpMessage: FC<HelpMessageProps> = (
   {
@@ -35,23 +33,6 @@ export const HelpMessage: FC<HelpMessageProps> = (
     name: inputName,
     defaultValue: " ", // MUST HAVE A DEFAULT VALUE or inputWatch.match(checkForMatch) will fail
   })
-
-  // Set the checkForMatch formula to use as a rendering gatekeeper
-  const setRegEx: setRegEx = (checkFor, customRegEx) => {
-    switch (checkFor) {
-      case "a":
-        return  /(a)/g
-
-      case "b":
-        return /(b)/g
-
-      case "custom":
-        return customRegEx
-        
-      default:
-        return null
-    }
-  }
 
   // Hold the regex formula that will be used to match input results from useWatch() 
   let regExFormula = setRegEx(checkFor, customRegEx)
