@@ -4,7 +4,7 @@ export type setRegEx = ( checkFor: checkFor, customRegEx: customRegEx ) =>  cust
 
 // Used by checkForMatch in HelpMessage
 // Parameters: Accepts a string for setting case and allows optional customRegEx formula to be passed.
-const setRegEx: setRegEx = (checkFor: checkFor, customRegEx: customRegEx) => {
+const setRegEx: setRegEx = (checkFor: checkFor, customRegEx: customRegEx = null) => {
   switch (checkFor) {
     case "a":
       return  /(a)/g
