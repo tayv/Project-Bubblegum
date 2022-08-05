@@ -1,5 +1,5 @@
 {
-  "name": "Project Bubblegum",
+  "name": "project-bubblegum",
   "private": true,
   "scripts": {
     "dev": "next dev",

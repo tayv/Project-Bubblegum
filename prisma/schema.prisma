@@ -11,3 +11,8 @@ datasource db {
   url = env("DATABASE_URL")
   referentialIntegrity = "prisma"
 }
+
+model Inquiry {
+id      Int   @default(autoincrement()) @id
+name    String
+}
