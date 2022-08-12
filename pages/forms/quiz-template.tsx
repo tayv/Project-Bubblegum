@@ -19,15 +19,37 @@ const crumbs = [
     currentPg: true,
   }
 ]
-
 const QuizTemplate: FC = () => {
 
   // React hook form
   const { handleSubmit, control, getValues, formState: { errors }} = useForm()
 
   // Sample onSubmit form handler
-  const onSubmit = handleSubmit((data) => {
-    console.log("Form submitted. Data:", data, "Submit form - errors", Error)
+    // NOTES: Don't need to  e.preventDefault() since rhf's handleSubmit() automatically prevents page reloads 
+    // and handles errors for you https://www.react-hook-form.com/api/useform/handlesubmit/
+  const onSubmit = handleSubmit( async (data, event) => {
+    console.log("Form submitted. data:", data, "Submit form - errors", Error)
+    console.log("event:", event)
+      const body = data
+      try {
+        const response = await fetch("/api/inquiry", {
+          method: "POST",
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify(body),
+      })
+      if (response.status !== 200){
+        console.log("something went wrong oops")
+        //set an error banner here
+      } else {
+       // resetForm();
+        console.log("form submitted successfully !!!")
+        //set a success banner here
+      }
+      //check response, if success is false, dont take them to success page
+      } catch (error) {
+        console.log("there was an error submitting", error)
+      }
+    
   })
 
   const messageSchema = {
@@ -57,17 +79,17 @@ const QuizTemplate: FC = () => {
         <Paragraph text="This section is used to test the text input component." size="standard" type="primary" />
         <Heading text="Controlled Wrapper Input" size="h3" type="primary"/>
         <WrapperInput
-          name="controlledInput"
+          name="firstName"
           label="This is a label"
           type="text"
           tipText="This is a tip"
           exampleText="e.g. Example goes here."
           control={control}
           rules={{ required: "You must enter something" }}
-          defaultValue=" "
+          defaultValue=" " 
         >
           <HelpMessage 
-            inputName="controlledInput" 
+            inputName="firstName" 
             messageType="warn" 
             control={control} 
             checkFor="a" 
@@ -83,7 +105,7 @@ const QuizTemplate: FC = () => {
           } }>
           Get Input Value 
         </button>
-        <button className="mt-4 block border-gray-900 bg-gray-300 border px-2 py-1" type="submit">Test Submit</button>
+        <button className="mt-4 block border-gray-900 bg-gray-300 border px-2 py-1" type="submit" onSubmit={ handleSubmit(onSubmit) }>Test Submit</button>
       </form>
 
     </LayoutContainerSide>
