@@ -33,7 +33,7 @@ const WrapperInput: FC<InputProps> = ({
           />
         )}
       />
-      {children} {/* Children here will be warning messages, etc. */}
+      {children} {/* Children here will be warning message components, etc. */}
     </div>  
   )
 }

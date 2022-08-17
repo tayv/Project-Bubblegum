@@ -22,6 +22,7 @@ export type InputProps = {
   defaultValue?: string | number 
   onChange?: any
   warnChange?: any 
+  children?: React.ReactElement
 
   // RHF prop types
   register?: any // react-hook-form: to register an input (not needed if using Controller)
@@ -47,7 +48,7 @@ export const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
       className = "", // to pass custom one-off styling
       tipText = null,
       exampleText = null,
-      child,
+      children,
       ...props
     },
     ref
@@ -74,7 +75,7 @@ export const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
           {...props}
         />
         <span className="text-xs font-light italic text-gray-500 mt-1">{exampleText}</span>
-        {child}
+        {children} {/* For warning message components, etc. */}
       </div>
      
     )

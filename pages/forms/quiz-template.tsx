@@ -2,8 +2,8 @@ import LayoutContainerSide from '@components/layout/LayoutContainerSide'
 import Breadcrumbs from '@components/layout/Breadcrumbs'
 import Heading from '@components/layout/Heading'
 import Paragraph from '@components/layout/Paragraph'
-import {FC} from 'react'
-import { useForm } from 'react-hook-form'
+import {FC, SyntheticEvent} from 'react'
+import { useForm, SubmitHandler } from 'react-hook-form'
 import WrapperInput from '@components/controlled-wrappers/WrapperInput'
 import HelpMessage from '@components/helpers/HelpMessage'
 
@@ -19,6 +19,7 @@ const crumbs = [
     currentPg: true,
   }
 ]
+
 const QuizTemplate: FC = () => {
 
   // React hook form
@@ -74,7 +75,7 @@ const QuizTemplate: FC = () => {
       <br />
       <hr />
       
-      <form className="border border-gray-900 py-2 px-4" onSubmit={onSubmit}>
+      <form className="border border-gray-900 py-2 px-4" onSubmit={ onSubmit }>
         <Heading text="Test Form 1" size="h2" type="primary"/>
         <Paragraph text="This section is used to test the text input component." size="standard" type="primary" />
         <Heading text="Controlled Wrapper Input" size="h3" type="primary"/>
@@ -100,12 +101,12 @@ const QuizTemplate: FC = () => {
         <br />
         <br />
         <button className="block border-gray-900 bg-gray-300 border px-2 py-1" type="button" onClick={ () => { 
-            const testGetVal = getValues("controlledInput") 
+            const testGetVal = getValues("firstName") 
             console.log(testGetVal)
           } }>
           Get Input Value 
         </button>
-        <button className="mt-4 block border-gray-900 bg-gray-300 border px-2 py-1" type="submit" onSubmit={ handleSubmit(onSubmit) }>Test Submit</button>
+        <button className="mt-4 block border-gray-900 bg-gray-300 border px-2 py-1" type="submit">Test Submit</button>
       </form>
 
     </LayoutContainerSide>
