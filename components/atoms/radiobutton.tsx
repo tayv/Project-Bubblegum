@@ -7,19 +7,16 @@ import { Control } from 'react-hook-form'
   // will use react-hook-form via a wrapper component to add interactivity
 
 // TYPES
-  // This input component is intended to be used for all single line inputs (phone, numbers, text input)
-export type InputSize = "standard" | "large"
-export type InputType = "text" | "email" | "tel" | "number"
-export type InputProps = {
+  // This input component is intended to be used for all radio button inputs (yes/no, lists, with standard radio and button styles
+export type RadioStyle = "standard" | "horizontal" | "button"
+export type RadioProps = {
   name: string
   label: string
-  type?: InputType
-  size?: InputSize
+  style?: RadioStyle
   tipText?: string | null
   exampleText?: string | null
   className?: string
-  placeholder?: string
-  defaultValue?: string | number 
+  checked?: true // sets the default checked state
   onChange?: any
   warnChange?: any 
   children?: React.ReactElement
@@ -32,19 +29,19 @@ export type InputProps = {
 
 // DYNAMIC STYLING
   // Using maps so full Tailwind classes can be seen for purging https://tailwindcss.com/docs/optimizing-for-production#writing-purgeable-html
-const inputSizeMap: {[key in InputSize]: string} = {
-  standard: "py-2 px-3",
-  large: "w-full py-3 px-4",
+const radioStyleMap: {[key in RadioStyle]: string} = {
+  standard: "", // css styles go here
+  horizontal: "",
+  button: "",
 }
 
 // forwardRef so RHF can work properly in WrapperInput
-export const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
+export const RadioButton: FC<RadioProps> = forwardRef<HTMLInputElement, RadioProps>(
   (
     {
       name,
       label,
-      type = "text",
-      size = "standard",
+      style = "standard",
       className = "", // to pass custom one-off styling
       tipText = null,
       exampleText = null,
@@ -63,12 +60,12 @@ export const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
           ref={ref}
           id={name}
           name={name}
-          type={type}
+          type="radio"
           aria-label={label}
           className={
             classNames([
-              "mt-1 block border border-gray-900 bg-white shadow-sm", 
-              inputSizeMap[size], // to dynamically set styling for different input sizes
+              " ", // standard css styles go here
+              radioStyleMap[style], // to dynamically set styling for different radio types
               className,
             ])
           }

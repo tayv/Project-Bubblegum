@@ -2,10 +2,11 @@ import LayoutContainerSide from '@components/layout/LayoutContainerSide'
 import Breadcrumbs from '@components/layout/Breadcrumbs'
 import Heading from '@components/layout/Heading'
 import Paragraph from '@components/layout/Paragraph'
-import {FC, SyntheticEvent} from 'react'
-import { useForm, SubmitHandler } from 'react-hook-form'
+import { FC } from 'react'
+import { useForm } from 'react-hook-form'
 import WrapperInput from '@components/controlled-wrappers/WrapperInput'
 import HelpMessage from '@components/helpers/HelpMessage'
+import { RadioButton } from '@components/atoms/radiobutton'
 
 // data for Breadcrumbs
 const crumbs = [
@@ -98,6 +99,17 @@ const QuizTemplate: FC = () => {
             customRegEx={null} 
           />
         </WrapperInput>
+
+        <RadioButton 
+          name="firstName"
+          label="This is a label"
+          style="standard"
+          tipText="This is a tip"
+          exampleText="e.g. Example goes here."
+          control={control}
+          //checked={checked}
+        />
+
         <br />
         <br />
         <button className="block border-gray-900 bg-gray-300 border px-2 py-1" type="button" onClick={ () => { 
@@ -107,9 +119,12 @@ const QuizTemplate: FC = () => {
           Get Input Value 
         </button>
         <button className="mt-4 block border-gray-900 bg-gray-300 border px-2 py-1" type="submit">Test Submit</button>
+
       </form>
 
     </LayoutContainerSide>
+
+   
   </>
   )
 }
