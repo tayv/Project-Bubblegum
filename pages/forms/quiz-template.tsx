@@ -101,7 +101,16 @@ const QuizTemplate: FC = () => {
         </WrapperInput>
 
         <RadioButton 
-          name="firstName"
+          name="firstRadio"
+          label="This is a label"
+          style="standard"
+          tipText="This is a tip"
+          exampleText="e.g. Example goes here."
+          control={control}
+          //checked={checked}
+        />
+         <RadioButton 
+          name="firstRadio"
           label="This is a label"
           style="standard"
           tipText="This is a tip"

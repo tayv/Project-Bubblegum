@@ -35,6 +35,25 @@ const radioStyleMap: {[key in RadioStyle]: string} = {
   button: "",
 }
 
+const testRadioProps = [{name: "testName", label: "testLabel"}, {name: "testName2", label: "testLabel2"}]
+
+const renderRadioGroup = (testRadioProps) => {
+ 
+ return testRadioProps.map((testRadioProp, index) => (
+    <span key={testRadioProp.name}>
+    <div class="field-radio-button">
+      <input 
+        type="radio" 
+        name={testRadioProp.name} 
+        id={testRadioProp.name} 
+        value={testRadioProp.name} />
+      <label htmlFor={testRadioProp.name}>{testRadioProp.label}</label>
+    </div>
+    </span>
+  ))
+}
+       
+
 // forwardRef so RHF can work properly in WrapperInput
 export const RadioButton: FC<RadioProps> = forwardRef<HTMLInputElement, RadioProps>(
   (
@@ -73,7 +92,12 @@ export const RadioButton: FC<RadioProps> = forwardRef<HTMLInputElement, RadioPro
         />
         <span className="text-xs font-light italic text-gray-500 mt-1">{exampleText}</span>
         {children} {/* For displaying warning message components, etc. */}
+     
+        <>
+          {renderRadioGroup(testRadioProps)} 
+        </>
       </div>
+      
      
     )
   }
