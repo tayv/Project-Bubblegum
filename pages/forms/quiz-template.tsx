@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form'
 import WrapperInput from '@components/controlled-wrappers/WrapperInput'
 import HelpMessage from '@components/helpers/HelpMessage'
 import { RadioButton } from '@components/atoms/radiobutton'
+import WrapperRadioGroup from '@components/controlled-wrappers/WrapperRadioGroup'
 
 // data for Breadcrumbs
 const crumbs = [
@@ -100,29 +101,27 @@ const QuizTemplate: FC = () => {
           />
         </WrapperInput>
 
-        <RadioButton 
+        <br />
+        <br />
+
+        <WrapperRadioGroup
           name="firstRadio"
-          label="This is a label"
-          style="standard"
-          tipText="This is a tip"
-          exampleText="e.g. Example goes here."
+          label="This is a radio group label"
+          tipText="This is a radio group tip"
+          exampleText="e.g. Radio group example goes here."
           control={control}
-          //checked={checked}
-        />
-         <RadioButton 
-          name="firstRadio"
-          label="This is a label"
-          style="standard"
-          tipText="This is a tip"
-          exampleText="e.g. Example goes here."
-          control={control}
-          //checked={checked}
-        />
+          options={ ["chocolate", "vanilla" ] }
+          value="look"
+        //  rules={{ required: "You must enter something" }}
+        >
+          
+        </WrapperRadioGroup>
+       
 
         <br />
         <br />
         <button className="block border-gray-900 bg-gray-300 border px-2 py-1" type="button" onClick={ () => { 
-            const testGetVal = getValues("firstName") 
+            const testGetVal = getValues("firstRadio") 
             console.log(testGetVal)
           } }>
           Get Input Value 

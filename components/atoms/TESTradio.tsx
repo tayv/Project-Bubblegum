@@ -56,7 +56,7 @@ const renderRadioGroup = (testRadioProps) => {
        
 
 // forwardRef so RHF can work properly in WrapperInput
-export const RadioButton: FC<RadioProps> = forwardRef<HTMLInputElement, RadioProps>(
+export const TestRadio: FC<RadioProps> = forwardRef<HTMLInputElement, RadioProps>(
   (
     {
       name,
@@ -72,34 +72,18 @@ export const RadioButton: FC<RadioProps> = forwardRef<HTMLInputElement, RadioPro
     ref
   ) => {
     return (
-      <div className="max-w-sm">
-        <label htmlFor="text" className="block text-md font-bold text-gray-900">
-          {label}
-        </label>
-        <span className="text-sm font-light text-gray-500 mb-2">{tipText}</span>
-        <input
-          ref={ref}
-          id={name}
-          name={name}
-          type="radio"
+      <>
+        <input 
+          ref={ref} 
+          name={name} 
+          type="radio" 
+          value={value} 
           aria-label={label}
-          value={value}
-          className={
-            classNames([
-              " ", // standard css styles go here
-              radioStyleMap[style], // to dynamically set styling for different radio types
-              className,
-            ])
-          }
-          {...props}
-        />
-        <span className="text-xs font-light italic text-gray-500 mt-1">{exampleText}</span>
-        {children} {/* For displaying warning message components, etc. */}
-     
-        <>
-          {/* {renderRadioGroup(testRadioProps)}  */}
-        </>
-      </div>
+          onChange={ () => props.onChange(props.value) }
+          {...props} />
+        <label htmlFor={name}>hi</label>
+      </>
+
       
      
     )
