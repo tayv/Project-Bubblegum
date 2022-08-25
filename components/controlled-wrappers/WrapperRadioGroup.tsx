@@ -1,47 +1,55 @@
-import React, { FC } from 'react'
-import { Input } from '@components/atoms/input'
+import React, { FC, JSXElementConstructor } from 'react'
 import { Controller } from 'react-hook-form'
-import { RadioProps } from '@components/atoms/radiobutton'
-import { TestRadio } from '@components/atoms/TESTradio'
+import { RadioButton, RadioProps } from '@components/atoms/radiobutton'
 
 
-const WrapperRadioGroup: FC<RadioProps> = ({
+export type RadioGroupProps = {
+  groupLabel: string
+  options: any // BUG: Unsure why TS doesn't like this being string[]. Flags map function in Controller render prop as error.
+  //value: string
+  tipText?: string | null
+}
+
+const WrapperRadioGroup: FC<RadioProps & RadioGroupProps> = ({
   name,
   rules,
   options,
   control,
+  groupLabel,
   label,
   value,
  // errors,
   onChange,
   tipText,
-  exampleText,
   children,
   ...props
 }) => {  
 
   return (
-    <>
-      {/* {label} */}
+    <div>
+      <label htmlFor={name} className="block text-md font-bold text-gray-900">
+        {groupLabel}
+      </label>
+      <span className="text-sm font-light text-gray-500 mb-2">{tipText}</span>
       <Controller
         control={control}
         name={name}
-        defaultValue={props.value}
-        render={({ field: {onChange, ...props} }) => 
-          options.map((option, index) => (
+        defaultValue={value}
+        render={({ field: {onChange, ...props} }) => (
+          options.map((option: string, index: number) => (
     
-          <TestRadio 
+          <RadioButton 
             key={index}
             {...props} 
             onChange={onChange}
             value={option}  
             label={label} 
           />
-           
+          
           ))
-        }
+        )}
       />
-    </>  
+    </div>  
   )
 }
 

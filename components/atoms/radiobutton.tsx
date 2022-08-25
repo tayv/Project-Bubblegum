@@ -14,13 +14,9 @@ export type RadioProps = {
   label: string
   value: string
   style?: RadioStyle
-  tipText?: string | null
-  exampleText?: string | null
   className?: string
   checked?: true // sets the default checked state
   onChange?: any
-  warnChange?: any 
-  children?: React.ReactElement
 
   // RHF prop types
   register?: any // react-hook-form: to register an input (not needed if using Controller)
@@ -34,26 +30,7 @@ const radioStyleMap: {[key in RadioStyle]: string} = {
   standard: "", // css styles go here
   horizontal: "",
   button: "",
-}
-
-const testRadioProps = [{name: "testName", label: "testLabel"}, {name: "testName2", label: "testLabel2"}]
-
-const renderRadioGroup = (testRadioProps) => {
- 
- return testRadioProps.map((testRadioProp, index) => (
-    <span key={testRadioProp.name}>
-    <div className="field-radio-button">
-      <input 
-        type="radio" 
-        name={testRadioProp.name} 
-        id={testRadioProp.name} 
-        value={testRadioProp.name} />
-      <label htmlFor={testRadioProp.name}>{testRadioProp.label}</label>
-    </div>
-    </span>
-  ))
-}
-       
+}      
 
 // forwardRef so RHF can work properly in WrapperInput
 export const RadioButton: FC<RadioProps> = forwardRef<HTMLInputElement, RadioProps>(
@@ -64,22 +41,15 @@ export const RadioButton: FC<RadioProps> = forwardRef<HTMLInputElement, RadioPro
       value,
       style = "standard",
       className = "", // to pass custom one-off styling
-      tipText = null,
-      exampleText = null,
-      children,
       ...props
     },
     ref
   ) => {
     return (
       <div className="max-w-sm">
-        <label htmlFor="text" className="block text-md font-bold text-gray-900">
-          {label}
-        </label>
-        <span className="text-sm font-light text-gray-500 mb-2">{tipText}</span>
+       
         <input
           ref={ref}
-          id={name}
           name={name}
           type="radio"
           aria-label={label}
@@ -91,17 +61,11 @@ export const RadioButton: FC<RadioProps> = forwardRef<HTMLInputElement, RadioPro
               className,
             ])
           }
+          onChange={ () => props.onChange(props.value) }
           {...props}
         />
-        <span className="text-xs font-light italic text-gray-500 mt-1">{exampleText}</span>
-        {children} {/* For displaying warning message components, etc. */}
-     
-        <>
-          {/* {renderRadioGroup(testRadioProps)}  */}
-        </>
+        <label htmlFor={name}>{label}</label>
       </div>
-      
-     
     )
   }
 )

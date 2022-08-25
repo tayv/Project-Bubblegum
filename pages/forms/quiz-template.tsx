@@ -106,10 +106,10 @@ const QuizTemplate: FC = () => {
 
         <WrapperRadioGroup
           name="firstRadio"
-          label="This is a radio group label"
+          groupLabel="This is a radio group label"
           tipText="This is a radio group tip"
-          exampleText="e.g. Radio group example goes here."
           control={control}
+          label="tester"
           options={ ["chocolate", "vanilla" ] }
           value="look"
         //  rules={{ required: "You must enter something" }}
