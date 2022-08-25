@@ -1,4 +1,4 @@
-import React, { FC, ChangeEvent, forwardRef, InputHTMLAttributes, DetailedHTMLProps} from 'react'
+import React, { FC, ChangeEvent, forwardRef, InputHTMLAttributes, DetailedHTMLProps, ReactEventHandler} from 'react'
 import classNames from 'classnames'
 import { Control } from 'react-hook-form'
 
@@ -15,13 +15,11 @@ export type RadioProps = {
   value: string
   style?: RadioStyle
   className?: string
-  checked?: true // sets the default checked state
-  onChange?: any
+  onChange: any
 
   // RHF prop types
   register?: any // react-hook-form: to register an input (not needed if using Controller)
   rules?: Record<string, any> // react-hook-form: validation rules. Any object so used generic Record type.
-  control?: Control // react-hook-form: used by Controller. https://react-hook-form.com/ts/#Control
 } 
 
 // DYNAMIC STYLING
@@ -41,6 +39,7 @@ export const RadioButton: FC<RadioProps> = forwardRef<HTMLInputElement, RadioPro
       value,
       style = "standard",
       className = "", // to pass custom one-off styling
+      onChange,
       ...props
     },
     ref
@@ -61,7 +60,7 @@ export const RadioButton: FC<RadioProps> = forwardRef<HTMLInputElement, RadioPro
               className,
             ])
           }
-          onChange={ () => props.onChange(value) }
+          onChange={ () => onChange(value) }
           {...props}
         />
         <label htmlFor={name}>{label}</label>

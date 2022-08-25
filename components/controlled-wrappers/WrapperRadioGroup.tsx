@@ -1,5 +1,5 @@
 import React, { FC, JSXElementConstructor } from 'react'
-import { Controller } from 'react-hook-form'
+import { Controller, Control } from 'react-hook-form'
 import { RadioButton, RadioProps } from '@components/atoms/RadioButton'
 
 
@@ -8,21 +8,18 @@ export type RadioGroupProps = {
   options: any // BUG: Unsure why TS doesn't like this being string[]. Flags map function in Controller render prop as error.
   //value: string
   tipText?: string | null
+  control: Control 
 }
+type LimitedRadioProps = Omit<RadioProps, "label" | "value" | "onChange">
 
-const WrapperRadioGroup: FC<RadioProps & RadioGroupProps> = ({
+const WrapperRadioGroup: FC<LimitedRadioProps & RadioGroupProps> = ({
   name,
   rules,
   options,
   control,
   groupLabel,
-  label,
-  value,
   style,
- // errors,
-  onChange,
   tipText,
-  children,
   ...props
 }) => {  
 
