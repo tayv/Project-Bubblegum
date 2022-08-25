@@ -18,6 +18,7 @@ const WrapperRadioGroup: FC<RadioProps & RadioGroupProps> = ({
   groupLabel,
   label,
   value,
+  style,
  // errors,
   onChange,
   tipText,
@@ -35,6 +36,7 @@ const WrapperRadioGroup: FC<RadioProps & RadioGroupProps> = ({
         control={control}
         name={name}
         defaultValue={value}
+        style={style}
         render={({ field: {onChange, ...props} }) => (
           options.map((option: string, index: number) => (
     
@@ -42,8 +44,8 @@ const WrapperRadioGroup: FC<RadioProps & RadioGroupProps> = ({
             key={index}
             {...props} 
             onChange={onChange}
-            value={option}  
-            label={label} 
+            value={option.value}  
+            label={option.label} 
           />
           
           ))

@@ -109,9 +109,8 @@ const QuizTemplate: FC = () => {
           groupLabel="This is a radio group label"
           tipText="This is a radio group tip"
           control={control}
-          label="tester"
-          options={ ["chocolate", "vanilla" ] }
-          value="look"
+          style="standard"
+          options={ [{value: "orange", label: "orange ice cream"}, {value: "mint", label: "mint ice cream"}] }
         //  rules={{ required: "You must enter something" }}
         >
           
