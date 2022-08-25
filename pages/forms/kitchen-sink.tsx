@@ -3,7 +3,7 @@ import Heading from '@components/layout/Heading'
 import LayoutContainerSide from '@components/layout/LayoutContainerSide'
 import Paragraph from '@components/layout/Paragraph'
 import Link from 'next/link'
-import { Input } from '@components/atoms/input'
+import { Input } from '@components/atoms/Input'
 
 export default function KitchenSink() {
   // data for Breadcrumbs

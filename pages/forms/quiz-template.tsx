@@ -6,7 +6,7 @@ import { FC } from 'react'
 import { useForm } from 'react-hook-form'
 import WrapperInput from '@components/controlled-wrappers/WrapperInput'
 import HelpMessage from '@components/helpers/HelpMessage'
-import { RadioButton } from '@components/atoms/radiobutton'
+import { RadioButton } from '@components/atoms/RadioButton'
 import WrapperRadioGroup from '@components/controlled-wrappers/WrapperRadioGroup'
 
 // data for Breadcrumbs
