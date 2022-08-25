@@ -61,7 +61,7 @@ export const RadioButton: FC<RadioProps> = forwardRef<HTMLInputElement, RadioPro
               className,
             ])
           }
-          onChange={ () => props.onChange(props.value) }
+          onChange={ () => props.onChange(value) }
           {...props}
         />
         <label htmlFor={name}>{label}</label>
