@@ -35,30 +35,31 @@ const WrapperRadioGroup: FC<LimitedRadioProps & RadioGroupProps> = ({
         render={({ field: {onChange, ...props} }) => (
           <>
           <fieldset>
-          <label htmlFor={name} className="block text-md font-bold text-gray-900">
-            {groupLabel}
-          </label>
-          <span className="text-sm font-light text-gray-500 mb-2">{tipText}</span>
-          
-          {options.map((option: {value: string, label: string}, index: number) => (
-           (defaultValue===option.value) ? (
-              <RadioButton 
-                key={index}
-                {...props} 
-                onChange={onChange}
-                value={option.value}  
-                label={option.label} 
-                style={style}
-                defaultChecked={true}
-              />) : ( <RadioButton 
-                key={index}
-                {...props} 
-                onChange={onChange}
-                value={option.value}  
-                label={option.label} 
-                style={style}
-              /> )
-          ))}
+            <label htmlFor={name} className="block text-md font-bold text-gray-900">
+              {groupLabel}
+            </label>
+            <span className="text-sm font-light text-gray-500 mb-2">{tipText}</span>
+            
+            { options.map((option: {value: string, label: string}, index: number) => (
+            (defaultValue===option.value) ? ( // if defaultValue is set, use it to set defaultChecked
+                <RadioButton 
+                  key={index}
+                  {...props} 
+                  onChange={onChange}
+                  value={option.value}  
+                  label={option.label} 
+                  style={style}
+                  defaultChecked={true} 
+                />) : ( 
+                  <RadioButton 
+                    key={index}
+                    {...props} 
+                    onChange={onChange}
+                    value={option.value}  
+                    label={option.label} 
+                    style={style}
+                  /> )
+            ))}
           </fieldset>
           </>
         )}

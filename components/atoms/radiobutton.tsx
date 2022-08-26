@@ -54,6 +54,7 @@ export const RadioButton: FC<RadioProps> = forwardRef<HTMLInputElement, RadioPro
           type="radio"
           aria-label={label}
           value={value}
+          id={value} // this is used so the label is clickable/associated with the input
           className={
             classNames([
               " ", // standard css styles go here
@@ -64,7 +65,7 @@ export const RadioButton: FC<RadioProps> = forwardRef<HTMLInputElement, RadioPro
           onChange={ () => onChange(value) }
           {...props}
         />
-        <label htmlFor={name}>{label}</label>
+        <label htmlFor={value}>{label}</label>
       </div>
     )
   }
