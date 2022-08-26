@@ -9,6 +9,7 @@ export type RadioGroupProps = {
   //value: string
   tipText?: string | null
   control: Control 
+  defaultValue?: string
 }
 type LimitedRadioProps = Omit<RadioProps, "label" | "value" | "onChange">
 
@@ -18,74 +19,60 @@ const WrapperRadioGroup: FC<LimitedRadioProps & RadioGroupProps> = ({
   options,
   control,
   groupLabel,
+  defaultChecked,
+  defaultValue,
   style,
   tipText,
   ...props
 }) => {  
 
   return (
-    <div>
-      <label htmlFor={name} className="block text-md font-bold text-gray-900">
-        {groupLabel}
-      </label>
-      <span className="text-sm font-light text-gray-500 mb-2">{tipText}</span>
+   <>
       <Controller
         control={control}
         name={name}
-        defaultValue={value}
+        defaultValue={defaultValue}
         render={({ field: {onChange, ...props} }) => (
-          options.map((option: {value: string, label: string}, index: number) => (
-    
-          <RadioButton 
-            key={index}
-            {...props} 
-            onChange={onChange}
-            value={option.value}  
-            label={option.label} 
-            style={style}
-          />
+          <>
+          <fieldset>
+          <label htmlFor={name} className="block text-md font-bold text-gray-900">
+            {groupLabel}
+          </label>
+          <span className="text-sm font-light text-gray-500 mb-2">{tipText}</span>
           
-          ))
+          {options.map((option: {value: string, label: string}, index: number) => (
+           (defaultValue===option.value) ? (
+              <RadioButton 
+                key={index}
+                {...props} 
+                onChange={onChange}
+                value={option.value}  
+                label={option.label} 
+                style={style}
+                defaultChecked={true}
+              />) : ( <RadioButton 
+                key={index}
+                {...props} 
+                onChange={onChange}
+                value={option.value}  
+                label={option.label} 
+                style={style}
+              /> )
+          ))}
+          </fieldset>
+          </>
         )}
       />
-    </div>  
+    </>  
   )
 }
 
 
 export default WrapperRadioGroup
 
-// Controller documentation
-  // Controller supports custom onChange and onBlur. 
-    // See https://stackoverflow.com/questions/67917480/onchange-input-in-react-hook-form 
-  
-    // Notes: 
-        // onChange / onBlur must be ordered after {}...field} so that they override the default event handlers 
-        // Able to pass custom onChange and onBlur function props from parent component that can do a custom action. 
-        // can be used for soft validation/tip messages.
-        // To allow further flexibility, can pass in an object with method and properties to determine if the custom event handler
-        // should fire and/or specify custom messages by using a logical && operator
-
-    // Example:
-      
-      // <Controller
-      //   control={control}
-      //   name={name}
-      //   defaultValue={defaultValue}
-      //   render={({ field }) => (
-      //     <Input {...field} // Need to place field above custom event handlers so that the built in handlers are overridden
-      //       label={label} 
-      //       tipText={tipText} 
-      //       exampleText={exampleText} 
-      //       onChange={e => {
-      //         {//console.log("TestWatch: ", testWatch)}
-      //          //regEx.test(testWatch) 
-      //         console.log(field.value == "a") }
-      //         field.onChange(e)
-      //         }
-      //       } 
-      //       />
-      //   )}
-      // />
+// Radio Input
+  // Setting a default value for radio input:
+    // Need to use defaultChecked to set initial value. See https://stackoverflow.com/questions/45072603/how-to-make-default-checked-for-radio-buttons-in-react
+    // Remember to use a ternary condition when using JSX
 
 

@@ -16,6 +16,7 @@ export type RadioProps = {
   style?: RadioStyle
   className?: string
   onChange: any
+  defaultChecked?: boolean
 
   // RHF prop types
   register?: any // react-hook-form: to register an input (not needed if using Controller)
