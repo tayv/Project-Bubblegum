@@ -75,5 +75,5 @@ export default WrapperRadioGroup
   // Setting a default value for radio input:
     // Need to use defaultChecked to set initial value. See https://stackoverflow.com/questions/45072603/how-to-make-default-checked-for-radio-buttons-in-react
     // Remember to use a ternary condition when using JSX
-
+  // Make label clickable by using an id attribute and referencing it in the label htmlFor attribute
 
