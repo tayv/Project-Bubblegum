@@ -41,7 +41,7 @@ const WrapperRadioGroup: FC<LimitedRadioProps & RadioGroupProps> = ({
             <span className="text-sm font-light text-gray-500 mb-2">{tipText}</span>
             
             { options.map((option: {value: string, label: string}, index: number) => (
-            (defaultValue===option.value) ? ( // if defaultValue is set, use it to set defaultChecked
+            (defaultValue===option.value) ? ( // if defaultValue is set then include defaultChecked
                 <RadioButton 
                   key={index}
                   {...props} 

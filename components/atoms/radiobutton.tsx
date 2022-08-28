@@ -1,6 +1,6 @@
 import React, { FC, ChangeEvent, forwardRef, InputHTMLAttributes, DetailedHTMLProps, ReactEventHandler} from 'react'
 import classNames from 'classnames'
-import { Control } from 'react-hook-form'
+import { useForm, useWatch } from 'react-hook-form'
 
 // OVERVIEW
   // This atom form component provides styling and accessibility requirements. Validation, event handlers, etc. 
@@ -28,7 +28,7 @@ export type RadioProps = {
 const radioStyleMap: {[key in RadioStyle]: string} = {
   standard: "", // css styles go here
   horizontal: "",
-  button: "",
+  button: "hidden",
 }      
 
 // forwardRef so RHF can work properly in WrapperInput
@@ -45,8 +45,11 @@ export const RadioButton: FC<RadioProps> = forwardRef<HTMLInputElement, RadioPro
     },
     ref
   ) => {
+
+   
+
     return (
-      <div className="max-w-sm">
+      <div className="group flex max-w-sm"> {/* flex is important to make full label width is clickable */}
        
         <input
           ref={ref}
@@ -57,7 +60,7 @@ export const RadioButton: FC<RadioProps> = forwardRef<HTMLInputElement, RadioPro
           id={value} // this is used so the label is clickable/associated with the input
           className={
             classNames([
-              " ", // standard css styles go here
+              "peer", // standard css styles go here. Peer is always required for label styling to work
               radioStyleMap[style], // to dynamically set styling for different radio types
               className,
             ])
@@ -65,7 +68,10 @@ export const RadioButton: FC<RadioProps> = forwardRef<HTMLInputElement, RadioPro
           onChange={ () => onChange(value) }
           {...props}
         />
-        <label htmlFor={value}>{label}</label>
+        <label 
+          className="w-full pl-2 border-4 border border-black solid peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-white peer-checked:font-semibold group-hover:font-semibold" 
+          htmlFor={value}>{label}
+        </label>
       </div>
     )
   }
@@ -89,4 +95,8 @@ export const RadioButton: FC<RadioProps> = forwardRef<HTMLInputElement, RadioPro
   // https://betterprogramming.pub/a-guide-to-working-with-forms-and-input-fields-in-react-403d64aaedf3 
 
 // USING CLASSNAMES PACKAGE TO COMBINE & MAKE CONDITIONAL CLASSES
-  // https://nikitahl.com/how-to-assign-multiple-classes-in-react/ 
+  // https://nikitahl.com/how-to-assign-multiple-classes-in-
+  
+// CSS
+  // Because this is a child atomic component, need to use CSS to style the input's sibling elements (e.g. for the full width Button style)
+  // See https://tailwindcss.com/docs/hover-focus-and-other-states#styling-based-on-parent-state 
