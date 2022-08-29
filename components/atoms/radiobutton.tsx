@@ -29,7 +29,13 @@ const radioStyleMap: {[key in RadioStyle]: string} = {
   standard: "", // css styles go here
   horizontal: "",
   button: "hidden",
-}      
+}   
+
+const labelStyleMap: {[key in RadioStyle]: string} = {
+  standard: "", // css styles go here
+  horizontal: "",
+  button: "w-full pl-2 cursor-pointer peer-checked:cursor-default border-1 border border-black solid peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-white peer-checked:font-semibold group-hover:font-semibold",
+}   
 
 // forwardRef so RHF can work properly in WrapperInput
 export const RadioButton: FC<RadioProps> = forwardRef<HTMLInputElement, RadioProps>(
@@ -49,7 +55,7 @@ export const RadioButton: FC<RadioProps> = forwardRef<HTMLInputElement, RadioPro
    
 
     return (
-      <div className="group flex max-w-sm"> {/* flex is important to make full label width is clickable */}
+      <div className="group flex max-w-sm mt-1"> {/* flex is important to make full label width is clickable */}
        
         <input
           ref={ref}
@@ -69,7 +75,12 @@ export const RadioButton: FC<RadioProps> = forwardRef<HTMLInputElement, RadioPro
           {...props}
         />
         <label 
-          className="w-full pl-2 border-4 border border-black solid peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-white peer-checked:font-semibold group-hover:font-semibold" 
+          className={classNames([
+            "", // standard css styles go here
+            labelStyleMap[style], // to dynamically set styling for different radio types
+            className,
+           ])
+          } 
           htmlFor={value}>{label}
         </label>
       </div>

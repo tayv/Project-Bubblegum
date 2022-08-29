@@ -111,8 +111,11 @@ const QuizTemplate: FC = () => {
           control={control}
           style="button"
           defaultValue="mint"
-          options={ [{value: "orange", label: "orange ice cream"}, {value: "mint", label: "mint ice cream"}] }
-        //  rules={{ required: "You must enter something" }}
+          options={ [
+            {value: "orange", label: "Orange ice cream"}, 
+            {value: "mint", label: "Mint ice cream"}, 
+            {value: "chocolate", label: "Chocolate ice cream"}, 
+            {value: "vanilla", label: "Vanilla ice cream"}] }
         >
           
         </WrapperRadioGroup>
