@@ -1,6 +1,7 @@
 import React, { FC, JSXElementConstructor } from 'react'
 import { Controller, Control } from 'react-hook-form'
-import { RadioButton, RadioProps } from '@components/atoms/RadioButton'
+import { RadioButton, RadioProps, RadioStyle } from '@components/atoms/RadioButton'
+import classNames from 'classnames'
 
 
 export type RadioGroupProps = {
@@ -21,10 +22,16 @@ const WrapperRadioGroup: FC<LimitedRadioProps & RadioGroupProps> = ({
   groupLabel,
   defaultChecked,
   defaultValue,
-  style,
+  style = "standard",
   tipText,
   ...props
 }) => {  
+
+  const divStyleMap: {[key in RadioStyle]: string} = {
+    standard: "", // css styles go here
+    horizontal: "flex gap-3",
+    button: "",
+  }  
 
   return (
    <>
@@ -39,18 +46,16 @@ const WrapperRadioGroup: FC<LimitedRadioProps & RadioGroupProps> = ({
               {groupLabel}
             </label>
             <span className="text-sm font-light text-gray-500 mb-2">{tipText}</span>
-            
+
+            <div className={ 
+              classNames([
+                "", // standard css styles go here. 
+                divStyleMap[style], // to dynamically set styling for different radio types
+              ]) }
+            > 
+
             { options.map((option: {value: string, label: string}, index: number) => (
-            (defaultValue===option.value) ? ( // if defaultValue is set then include defaultChecked
-                <RadioButton 
-                  key={index}
-                  {...props} 
-                  onChange={onChange}
-                  value={option.value}  
-                  label={option.label} 
-                  style={style}
-                  defaultChecked={true} 
-                />) : ( 
+              (defaultValue===option.value) ? ( // if defaultValue prop is set to a value then include defaultChecked
                   <RadioButton 
                     key={index}
                     {...props} 
@@ -58,8 +63,18 @@ const WrapperRadioGroup: FC<LimitedRadioProps & RadioGroupProps> = ({
                     value={option.value}  
                     label={option.label} 
                     style={style}
-                  /> )
-            ))}
+                    defaultChecked={true} 
+                  />) : ( 
+                    <RadioButton 
+                      key={index}
+                      {...props} 
+                      onChange={onChange}
+                      value={option.value}  
+                      label={option.label} 
+                      style={style}
+                    /> )
+              ))}
+            </div>
           </fieldset>
           </>
         )}

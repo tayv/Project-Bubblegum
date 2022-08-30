@@ -27,13 +27,13 @@ export type RadioProps = {
   // Using maps so full Tailwind classes can be seen for purging https://tailwindcss.com/docs/optimizing-for-production#writing-purgeable-html
 const radioStyleMap: {[key in RadioStyle]: string} = {
   standard: "", // css styles go here
-  horizontal: "",
+  horizontal: "inline-block",
   button: "hidden",
 }   
 
 const labelStyleMap: {[key in RadioStyle]: string} = {
-  standard: "", // css styles go here
-  horizontal: "",
+  standard: "pl-2 ", // css styles go here
+  horizontal: "inline-block px-2",
   button: "w-full pl-2 cursor-pointer peer-checked:cursor-default border-1 border border-black solid peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-white peer-checked:font-semibold group-hover:font-semibold",
 }   
 
@@ -55,7 +55,7 @@ export const RadioButton: FC<RadioProps> = forwardRef<HTMLInputElement, RadioPro
    
 
     return (
-      <div className="group flex max-w-sm mt-1"> {/* flex is important to make full label width is clickable */}
+      <div className="group flex max-w-sm mt-1 items-center"> {/* flex is important to make full label width is clickable */}
        
         <input
           ref={ref}
@@ -68,7 +68,7 @@ export const RadioButton: FC<RadioProps> = forwardRef<HTMLInputElement, RadioPro
             classNames([
               "peer", // standard css styles go here. Peer is always required for label styling to work
               radioStyleMap[style], // to dynamically set styling for different radio types
-              className,
+              className, // prop
             ])
           }
           onChange={ () => onChange(value) }
