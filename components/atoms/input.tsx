@@ -75,7 +75,7 @@ export const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
           {...props}
         />
         <span className="text-xs font-light italic text-gray-500 mt-1">{exampleText}</span>
-        {children} {/* For warning message components, etc. */}
+        {children} {/* For displaying warning message components, etc. */}
       </div>
      
     )

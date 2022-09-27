@@ -2,10 +2,12 @@ import LayoutContainerSide from '@components/layout/LayoutContainerSide'
 import Breadcrumbs from '@components/layout/Breadcrumbs'
 import Heading from '@components/layout/Heading'
 import Paragraph from '@components/layout/Paragraph'
-import {FC, SyntheticEvent} from 'react'
-import { useForm, SubmitHandler } from 'react-hook-form'
+import { FC } from 'react'
+import { useForm } from 'react-hook-form'
 import WrapperInput from '@components/controlled-wrappers/WrapperInput'
 import HelpMessage from '@components/helpers/HelpMessage'
+import { RadioButton } from '@components/atoms/RadioButton'
+import WrapperRadioGroup from '@components/controlled-wrappers/WrapperRadioGroup'
 
 // data for Breadcrumbs
 const crumbs = [
@@ -80,10 +82,10 @@ const QuizTemplate: FC = () => {
         <Paragraph text="This section is used to test the text input component." size="standard" type="primary" />
         <Heading text="Controlled Wrapper Input" size="h3" type="primary"/>
         <WrapperInput
-          name="firstName"
+          name="singleInput"
           label="This is a label"
           type="text"
-          tipText="This is a tip"
+          tipText="Tip: This is a single line input"
           exampleText="e.g. Example goes here."
           control={control}
           rules={{ required: "You must enter something" }}
@@ -98,18 +100,65 @@ const QuizTemplate: FC = () => {
             customRegEx={null} 
           />
         </WrapperInput>
+
+        <br />
+
+        <WrapperRadioGroup
+          name="standardRadio"
+          groupLabel="This is a radio group label"
+          tipText="Tip: These are standard radio buttons"
+          control={control}
+          style="standard"
+          defaultValue="orange"
+          options={ [
+            {value: "orange", label: "Orange ice cream"}, 
+            {value: "mint", label: "Mint ice cream"}, 
+            {value: "chocolate", label: "Chocolate ice cream"}, 
+            {value: "vanilla", label: "Vanilla ice cream"}] }
+        />
+        <br />
+        <WrapperRadioGroup
+          name="horizontalRadio"
+          groupLabel="This is a radio group label"
+          tipText="Tip: These radios are styled horizontally. Typically used for yes/no questions."
+          control={control}
+          style="horizontal"
+          defaultValue="mint"
+          options={ [
+            {value: "yes", label: "Yes"}, 
+            {value: "no", label: "No"}, 
+            ] }
+        />
+        <br />
+        <WrapperRadioGroup
+          name="buttonRadio"
+          groupLabel="This is a radio group label"
+          tipText="Tip: These radios are styled as buttons"
+          control={control}
+          style="button"
+          defaultValue="chocolate"
+          options={ [
+            {value: "orange-button", label: "Orange ice cream"}, 
+            {value: "mint-button", label: "Mint ice cream"}, 
+            {value: "chocolate-button", label: "Chocolate ice cream"}, 
+            {value: "vanilla-button", label: "Vanilla ice cream"}] }
+        />
+       
         <br />
         <br />
         <button className="block border-gray-900 bg-gray-300 border px-2 py-1" type="button" onClick={ () => { 
-            const testGetVal = getValues("firstName") 
+            const testGetVal = getValues("standardRadio") 
             console.log(testGetVal)
           } }>
           Get Input Value 
         </button>
         <button className="mt-4 block border-gray-900 bg-gray-300 border px-2 py-1" type="submit">Test Submit</button>
+
       </form>
 
     </LayoutContainerSide>
+
+   
   </>
   )
 }
