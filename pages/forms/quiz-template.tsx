@@ -138,16 +138,16 @@ const QuizTemplate: FC = () => {
           style="button"
           defaultValue="chocolate"
           options={ [
-            {value: "orange", label: "Orange ice cream"}, 
-            {value: "mint", label: "Mint ice cream"}, 
-            {value: "chocolate", label: "Chocolate ice cream"}, 
-            {value: "vanilla", label: "Vanilla ice cream"}] }
+            {value: "orange-button", label: "Orange ice cream"}, 
+            {value: "mint-button", label: "Mint ice cream"}, 
+            {value: "chocolate-button", label: "Chocolate ice cream"}, 
+            {value: "vanilla-button", label: "Vanilla ice cream"}] }
         />
        
         <br />
         <br />
         <button className="block border-gray-900 bg-gray-300 border px-2 py-1" type="button" onClick={ () => { 
-            const testGetVal = getValues("firstRadio") 
+            const testGetVal = getValues("standardRadio") 
             console.log(testGetVal)
           } }>
           Get Input Value 

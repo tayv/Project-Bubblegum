@@ -34,7 +34,7 @@ const radioStyleMap: {[key in RadioStyle]: string} = {
 const labelStyleMap: {[key in RadioStyle]: string} = {
   standard: "pl-2 ", // css styles go here
   horizontal: "inline-block px-2",
-  button: "w-full pl-2 cursor-pointer peer-checked:cursor-default border-1 border border-black solid peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-white peer-checked:font-semibold group-hover:font-semibold",
+  button: "w-full pl-2 border-1 border border-black solid peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-white peer-checked:font-semibold group-hover:font-semibold",
 }   
 
 // forwardRef so RHF can work properly in WrapperInput
@@ -66,7 +66,7 @@ export const RadioButton: FC<RadioProps> = forwardRef<HTMLInputElement, RadioPro
           id={value} // this is used so the label is clickable/associated with the input
           className={
             classNames([
-              "peer", // standard css styles go here. Peer is always required for label styling to work
+              "peer cursor-pointer", // standard css styles go here. Peer is always required for label styling to work
               radioStyleMap[style], // to dynamically set styling for different radio types
               className, // prop
             ])
@@ -76,7 +76,7 @@ export const RadioButton: FC<RadioProps> = forwardRef<HTMLInputElement, RadioPro
         />
         <label 
           className={classNames([
-            "", // standard css styles go here
+            "cursor-pointer peer-checked:cursor-default", // standard css styles go here
             labelStyleMap[style], // to dynamically set styling for different radio types
             className,
            ])
