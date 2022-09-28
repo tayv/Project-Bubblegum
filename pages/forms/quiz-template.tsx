@@ -8,6 +8,7 @@ import WrapperInput from '@components/controlled-wrappers/WrapperInput'
 import HelpMessage from '@components/helpers/HelpMessage'
 import WrapperRadioGroup from '@components/controlled-wrappers/WrapperRadioGroup'
 import Section from '@components/layout/Section'
+import Checkbox from '@components/atoms/checkbox'
 
 // data for Breadcrumbs
 const crumbs = [
@@ -147,6 +148,11 @@ const QuizTemplate: FC = () => {
               {value: "chocolate-button", label: "Chocolate ice cream"}, 
               {value: "vanilla-button", label: "Vanilla ice cream"}] }
           />
+        </Section>
+        
+        <Section id="checkbox-input" style="standard">
+          <Heading text="Section Title: Checkboxes" size="h3" type="primary"/>
+          <Checkbox type="multiple" />
         </Section>
         
         <br />
