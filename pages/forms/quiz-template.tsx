@@ -78,9 +78,11 @@ const QuizTemplate: FC = () => {
       <hr />
       
       <form className="border border-gray-900" onSubmit={ onSubmit }>
-        <Heading text="Test Form 1" size="h2" type="primary"/>
-        <Paragraph text="This form is used to show default styling for text, radio button, checkbox, and multi-line input components. Also used to test Controlled inputs" size="standard" type="primary" />
-        <Section>
+        <Section id="intro" style="blank">
+         <Heading text="Test Form 1" size="h2" type="primary"/>
+          <Paragraph text="This form is used to show default styling for text, radio button, checkbox, and multi-line input components. Also used to test Controlled inputs" size="standard" type="primary" />
+        </Section>
+        <Section id="text-input" style="standard">
           <Heading text="Section Title: Single Line Input" size="h3" type="primary"/>
           <WrapperInput
             name="singleInput"
@@ -103,7 +105,8 @@ const QuizTemplate: FC = () => {
           </WrapperInput>
         </Section>
  
-        <Section>
+        <Section id="radio-input" style="standard">
+          <Heading text="Section Title: Radio Groups" size="h3" type="primary"/>
           <WrapperRadioGroup
             name="standardRadio"
             groupLabel="This is a radio group label"
@@ -145,7 +148,8 @@ const QuizTemplate: FC = () => {
               {value: "vanilla-button", label: "Vanilla ice cream"}] }
           />
         </Section>
-  
+        
+        <br />
         <button className="block border-gray-900 bg-gray-300 border px-2 py-1" type="button" onClick={ () => { 
             const testGetVal = getValues("standardRadio") 
             console.log(testGetVal)
