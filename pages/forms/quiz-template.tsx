@@ -9,6 +9,7 @@ import HelpMessage from '@components/helpers/HelpMessage'
 import WrapperRadioGroup from '@components/controlled-wrappers/WrapperRadioGroup'
 import Section from '@components/layout/Section'
 import Checkbox from '@components/atoms/checkbox'
+import WrapperCheckbox from '@components/controlled-wrappers/WrapperCheckbox'
 
 // data for Breadcrumbs
 const crumbs = [
@@ -152,12 +153,19 @@ const QuizTemplate: FC = () => {
         
         <Section id="checkbox-input" style="standard">
           <Heading text="Section Title: Checkboxes" size="h3" type="primary"/>
-          <Checkbox type="multiple" />
+          <WrapperCheckbox 
+            groupLabel="This is a group label" 
+            id="test-checkbox2" 
+            style="single" 
+            value="g"
+            name="test-checkbox2" 
+            label="This is a label" 
+            control={control}  />
         </Section>
         
         <br />
         <button className="block border-gray-900 bg-gray-300 border px-2 py-1" type="button" onClick={ () => { 
-            const testGetVal = getValues("standardRadio") 
+            const testGetVal = getValues("test-checkbox2") 
             console.log(testGetVal)
           } }>
           Get Input Value 

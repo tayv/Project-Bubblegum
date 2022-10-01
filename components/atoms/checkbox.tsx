@@ -9,7 +9,7 @@ export type CheckboxProps = {
   value?: string
   style?: CheckboxStyle
   className?: string
-  onChange: any
+  onChange?: any
   defaultChecked?: boolean
 
   // RHF prop types
@@ -17,19 +17,33 @@ export type CheckboxProps = {
   rules?: Record<string, any> // react-hook-form: validation rules. Any object so used generic Record type.
 } 
 
-const Checkbox: FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>( ({
-  id,
-  style = "single",
-  name,
-  label,
-  value
-}) => {
+const Checkbox: FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>( (
+  {
+    id,
+    style = "single",
+    name,
+    label,
+    onChange,
+    value,
+    checked,
+    ...props
+  }, 
+  ref 
+) => {
+  {console.log("checked:", checked)}
   return (
-
+    
     <div>
       <label className="inline-flex items-center">
-        <input id={id} className="form-checkbox" type="checkbox" checked />
-        <span className="ml-2">Option 1</span>
+        <input 
+          type="checkbox"
+          id={id} 
+          name={name} 
+          className="form-checkbox"  
+          onChange={ (e) => onChange(value = e.target.checked, console.log(value)) }
+         // checked={value}
+          {...props} />
+        <span className="ml-2">{label}</span>
       </label>
     </div>
     

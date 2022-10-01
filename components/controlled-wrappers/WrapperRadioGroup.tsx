@@ -1,6 +1,6 @@
 import React, { FC, JSXElementConstructor } from 'react'
 import { Controller, Control } from 'react-hook-form'
-import { RadioButton, RadioProps, RadioStyle } from '@components/atoms/RadioButton'
+import { RadioButton, RadioProps, RadioStyle } from '@components/atoms/radiobutton'
 import classNames from 'classnames'
 
 
