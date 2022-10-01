@@ -6,7 +6,7 @@ export type CheckboxProps = {
   id: string
   name: string
   label: string
-  value?: string
+  value?: boolean
   style?: CheckboxStyle
   className?: string
   onChange?: any
@@ -26,6 +26,8 @@ const Checkbox: FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>(
     onChange,
     value,
     checked,
+    defaultChecked,
+    defaultValue,
     ...props
   }, 
   ref 
@@ -39,9 +41,11 @@ const Checkbox: FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>(
           type="checkbox"
           id={id} 
           name={name} 
+          defaultChecked={defaultChecked}
+          defaultValue={defaultValue}
           className="form-checkbox"  
           onChange={ (e) => onChange(value = e.target.checked, console.log(value)) }
-         // checked={value}
+          value={value}
           {...props} />
         <span className="ml-2">{label}</span>
       </label>

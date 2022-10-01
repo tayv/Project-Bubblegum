@@ -157,8 +157,8 @@ const QuizTemplate: FC = () => {
             groupLabel="This is a group label" 
             id="test-checkbox2" 
             style="single" 
-            value="g"
             name="test-checkbox2" 
+            defaultChecked={false}
             label="This is a label" 
             control={control}  />
         </Section>

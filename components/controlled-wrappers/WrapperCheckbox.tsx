@@ -23,6 +23,8 @@ const WrapperCheckbox: FC<CheckboxWrapperProps & CheckboxProps> = ({
   style = "single",
   name,
  // checked,
+  defaultChecked,
+  defaultValue,
   label,
   value,
   ...props
@@ -38,15 +40,16 @@ const WrapperCheckbox: FC<CheckboxWrapperProps & CheckboxProps> = ({
       <Controller
         control={control}
         name={name}
-        defaultValue={false}
+        defaultValue={defaultChecked}
+   
         render={({ field: {onChange, value, ...props}  }) => (
           <>
             <Checkbox
-            //  name={name}
               id={id}
               label={label}
               onChange={(e) => onChange(value = e)}
-              checked={value} // doesn't work
+              defaultChecked={defaultChecked}
+             // checked={value}
              // {...props}
             />
           </>
