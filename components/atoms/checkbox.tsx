@@ -10,7 +10,8 @@ export type CheckboxProps = {
   style?: CheckboxStyle
   className?: string
   onChange?: any
-  defaultChecked?: boolean
+  defaultChecked: boolean
+  defaultValue?: boolean // should match defaultChecked
 
   // RHF prop types
   register?: any // react-hook-form: to register an input (not needed if using Controller)
@@ -25,14 +26,11 @@ const Checkbox: FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>(
     label,
     onChange,
     value,
-    checked,
     defaultChecked,
-    defaultValue,
     ...props
   }, 
   ref 
 ) => {
-  {console.log("checked:", checked)}
   return (
     
     <div>
@@ -42,9 +40,9 @@ const Checkbox: FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>(
           id={id} 
           name={name} 
           defaultChecked={defaultChecked}
-          defaultValue={defaultValue}
+          defaultValue={defaultChecked}
           className="form-checkbox"  
-          onChange={ (e) => onChange(value = e.target.checked, console.log(value)) }
+          onChange={ (e) => onChange(value = e.target.checked) }
           value={value}
           {...props} />
         <span className="ml-2">{label}</span>

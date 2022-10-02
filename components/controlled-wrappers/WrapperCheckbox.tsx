@@ -5,29 +5,21 @@ import classNames from 'classnames'
 
 
 export type CheckboxWrapperProps = {
-  groupLabel: string
-  //options: any // BUG: Unsure why TS doesn't like this being string[]. Flags map function in Controller render prop as error.
-  //value: string
+  questionLabel: string
   tipText?: string | null
   control: Control 
-  defaultValue?: string
 }
 
 const WrapperCheckbox: FC<CheckboxWrapperProps & CheckboxProps> = ({
- // options,
   control,
-  groupLabel,
+  questionLabel,
   tipText,
 
   id,
   style = "single",
-  name,
- // checked,
-  defaultChecked,
-  defaultValue,
   label,
-  value,
-  ...props
+  name,
+  defaultChecked
 }) => {  
 
   const divStyleMap: {[key in CheckboxStyle]: string} = {
@@ -47,10 +39,10 @@ const WrapperCheckbox: FC<CheckboxWrapperProps & CheckboxProps> = ({
             <Checkbox
               id={id}
               label={label}
-              onChange={(e) => onChange(value = e)}
+             // onChange={(e: Event) => onChange(value = e)} // unnecessary for current setup
+              onChange={onChange}
               defaultChecked={defaultChecked}
-             // checked={value}
-             // {...props}
+              {...props}
             />
           </>
         )}

@@ -154,7 +154,7 @@ const QuizTemplate: FC = () => {
         <Section id="checkbox-input" style="standard">
           <Heading text="Section Title: Checkboxes" size="h3" type="primary"/>
           <WrapperCheckbox 
-            groupLabel="This is a group label" 
+            questionLabel="This is a question label" 
             id="test-checkbox2" 
             style="single" 
             name="test-checkbox2" 
