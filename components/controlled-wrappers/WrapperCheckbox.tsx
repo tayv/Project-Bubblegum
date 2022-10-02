@@ -5,15 +5,11 @@ import classNames from 'classnames'
 
 
 export type CheckboxWrapperProps = {
-  questionLabel: string
-  tipText?: string | null
   control: Control 
 }
 
 const WrapperCheckbox: FC<CheckboxWrapperProps & CheckboxProps> = ({
   control,
-  questionLabel,
-  tipText,
 
   id,
   style = "single",

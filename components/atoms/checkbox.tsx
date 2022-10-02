@@ -1,4 +1,4 @@
-import React, { FC, forwardRef } from 'react'
+import React, { FC, forwardRef, HTMLAttributes } from 'react'
 import classNames from 'classnames'
 
 export type CheckboxStyle = "single" | "multiple"
@@ -6,17 +6,18 @@ export type CheckboxProps = {
   id: string
   name: string
   label: string
-  value?: boolean
+  value?: any // HTMLInputElement type doesn't like use of boolean so switched to any
   style?: CheckboxStyle
   className?: string
   onChange?: any
   defaultChecked: boolean
-  defaultValue?: boolean // should match defaultChecked
+  defaultValue?: boolean // should match defaultChecked type
 
   // RHF prop types
   register?: any // react-hook-form: to register an input (not needed if using Controller)
   rules?: Record<string, any> // react-hook-form: validation rules. Any object so used generic Record type.
-} 
+  
+} & Omit <HTMLAttributes<HTMLInputElement>, 'defaultValues'> // omit used to prevent type error on input element
 
 const Checkbox: FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>( (
   {
@@ -40,7 +41,7 @@ const Checkbox: FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>(
           id={id} 
           name={name} 
           defaultChecked={defaultChecked}
-          defaultValue={defaultChecked}
+         // defaultValue={defaultChecked} // not necessary for single checkbox
           className="form-checkbox"  
           onChange={ (e) => onChange(value = e.target.checked) }
           value={value}
@@ -54,28 +55,3 @@ const Checkbox: FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>(
 )
 
 export default Checkbox
-
-
-{/* <fieldset className="block">
-      <legend className="text-gray-700">Checkboxes</legend>
-      <div className="mt-2">
-        <div>
-          <label className="inline-flex items-center">
-            <input className="form-checkbox" type="checkbox" checked />
-            <span className="ml-2">Option 1</span>
-          </label>
-        </div>
-        <div>
-          <label className="inline-flex items-center">
-            <input id={id} className="form-checkbox" type="checkbox" />
-            <span className="ml-2">Option 2</span>
-          </label>
-        </div>
-        <div>
-          <label className="inline-flex items-center">
-            <input className="form-checkbox" type="checkbox" />
-            <span className="ml-2">Option 3</span>
-          </label>
-        </div>
-      </div>
-    </fieldset> */}

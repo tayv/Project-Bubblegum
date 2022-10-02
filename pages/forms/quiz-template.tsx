@@ -154,11 +154,10 @@ const QuizTemplate: FC = () => {
         <Section id="checkbox-input" style="standard">
           <Heading text="Section Title: Checkboxes" size="h3" type="primary"/>
           <WrapperCheckbox 
-            questionLabel="This is a question label" 
             id="test-checkbox2" 
             style="single" 
             name="test-checkbox2" 
-            defaultChecked={false}
+            defaultChecked={true}
             label="This is a label" 
             control={control}  />
         </Section>
