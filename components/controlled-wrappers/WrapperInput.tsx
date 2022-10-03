@@ -1,8 +1,6 @@
 import React, { FC } from 'react'
-import { Input } from '@components/atoms/Input'
+import { Input, InputProps } from '@components/atoms/input'
 import { Controller } from 'react-hook-form'
-import { InputProps } from '@components/atoms/Input'
-
 
 const WrapperInput: FC<InputProps> = ({
   name,

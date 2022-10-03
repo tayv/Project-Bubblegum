@@ -6,8 +6,9 @@ import { FC } from 'react'
 import { useForm } from 'react-hook-form'
 import WrapperInput from '@components/controlled-wrappers/WrapperInput'
 import HelpMessage from '@components/helpers/HelpMessage'
-import { RadioButton } from '@components/atoms/RadioButton'
 import WrapperRadioGroup from '@components/controlled-wrappers/WrapperRadioGroup'
+import Section from '@components/layout/Section'
+import WrapperCheckbox from '@components/controlled-wrappers/WrapperCheckbox'
 
 // data for Breadcrumbs
 const crumbs = [
@@ -77,77 +78,92 @@ const QuizTemplate: FC = () => {
       <br />
       <hr />
       
-      <form className="border border-gray-900 py-2 px-4" onSubmit={ onSubmit }>
-        <Heading text="Test Form 1" size="h2" type="primary"/>
-        <Paragraph text="This section is used to test the text input component." size="standard" type="primary" />
-        <Heading text="Controlled Wrapper Input" size="h3" type="primary"/>
-        <WrapperInput
-          name="singleInput"
-          label="This is a label"
-          type="text"
-          tipText="Tip: This is a single line input"
-          exampleText="e.g. Example goes here."
-          control={control}
-          rules={{ required: "You must enter something" }}
-          defaultValue=" " 
-        >
-          <HelpMessage 
-            inputName="firstName" 
-            messageType="warn" 
-            control={control} 
-            checkFor="a" 
-            message="This is the help message" 
-            customRegEx={null} 
+      <form className="border border-gray-900" onSubmit={ onSubmit }>
+        <Section id="intro" style="blank">
+         <Heading text="Test Form 1" size="h2" type="primary"/>
+          <Paragraph text="This form is used to show default styling for text, radio button, checkbox, and multi-line input components. Also used to test Controlled inputs" size="standard" type="primary" />
+        </Section>
+        <Section id="text-input" style="standard">
+          <Heading text="Section Title: Single Line Input" size="h3" type="primary"/>
+          <WrapperInput
+            name="singleInput"
+            label="This is a label"
+            type="text"
+            tipText="Tip: This is a single line input"
+            exampleText="e.g. Example goes here."
+            control={control}
+            rules={{ required: "You must enter something" }}
+            defaultValue=" " 
+          >
+            <HelpMessage 
+              inputName="firstName" 
+              messageType="warn" 
+              control={control} 
+              checkFor="a" 
+              message="This is the help message" 
+              customRegEx={null} 
+            />
+          </WrapperInput>
+        </Section>
+ 
+        <Section id="radio-input" style="standard">
+          <Heading text="Section Title: Radio Groups" size="h3" type="primary"/>
+          <WrapperRadioGroup
+            name="standardRadio"
+            groupLabel="This is a radio group label"
+            tipText="Tip: These are standard radio buttons"
+            control={control}
+            style="standard"
+            defaultValue="orange"
+            options={ [
+              {value: "orange", label: "Orange ice cream"}, 
+              {value: "mint", label: "Mint ice cream"}, 
+              {value: "chocolate", label: "Chocolate ice cream"}, 
+              {value: "vanilla", label: "Vanilla ice cream"}] }
           />
-        </WrapperInput>
-
-        <br />
-
-        <WrapperRadioGroup
-          name="standardRadio"
-          groupLabel="This is a radio group label"
-          tipText="Tip: These are standard radio buttons"
-          control={control}
-          style="standard"
-          defaultValue="orange"
-          options={ [
-            {value: "orange", label: "Orange ice cream"}, 
-            {value: "mint", label: "Mint ice cream"}, 
-            {value: "chocolate", label: "Chocolate ice cream"}, 
-            {value: "vanilla", label: "Vanilla ice cream"}] }
-        />
-        <br />
-        <WrapperRadioGroup
-          name="horizontalRadio"
-          groupLabel="This is a radio group label"
-          tipText="Tip: These radios are styled horizontally. Typically used for yes/no questions."
-          control={control}
-          style="horizontal"
-          defaultValue="mint"
-          options={ [
-            {value: "yes", label: "Yes"}, 
-            {value: "no", label: "No"}, 
-            ] }
-        />
-        <br />
-        <WrapperRadioGroup
-          name="buttonRadio"
-          groupLabel="This is a radio group label"
-          tipText="Tip: These radios are styled as buttons"
-          control={control}
-          style="button"
-          defaultValue="chocolate"
-          options={ [
-            {value: "orange-button", label: "Orange ice cream"}, 
-            {value: "mint-button", label: "Mint ice cream"}, 
-            {value: "chocolate-button", label: "Chocolate ice cream"}, 
-            {value: "vanilla-button", label: "Vanilla ice cream"}] }
-        />
-       
-        <br />
+          <br />
+          <WrapperRadioGroup
+            name="horizontalRadio"
+            groupLabel="This is a radio group label"
+            tipText="Tip: These radios are styled horizontally. Typically used for yes/no questions."
+            control={control}
+            style="horizontal"
+            defaultValue="yes"
+            options={ [
+              {value: "yes", label: "Yes"}, 
+              {value: "no", label: "No"}, 
+              ] }
+          />
+          <br />
+          <WrapperRadioGroup
+            name="buttonRadio"
+            groupLabel="This is a radio group label"
+            tipText="Tip: These radios are styled as buttons"
+            control={control}
+            style="button"
+            defaultValue="chocolate-button"
+            options={ [
+              {value: "orange-button", label: "Orange ice cream"}, 
+              {value: "mint-button", label: "Mint ice cream"}, 
+              {value: "chocolate-button", label: "Chocolate ice cream"}, 
+              {value: "vanilla-button", label: "Vanilla ice cream"}] }
+          />
+        </Section>
+        
+        <Section id="checkbox-input" style="standard">
+          <Heading text="Section Title: Checkboxes" size="h3" type="primary"/>
+          <WrapperCheckbox 
+            id="test-checkbox" 
+            style="standard" 
+            name="test-checkbox" 
+            defaultChecked={true}
+            label="This is a checkbox label" 
+            control={control}  />
+        </Section>
+        
         <br />
         <button className="block border-gray-900 bg-gray-300 border px-2 py-1" type="button" onClick={ () => { 
-            const testGetVal = getValues("standardRadio") 
+            const testGetVal = getValues("test-checkbox") 
             console.log(testGetVal)
           } }>
           Get Input Value 
