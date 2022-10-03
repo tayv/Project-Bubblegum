@@ -166,13 +166,14 @@ const QuizTemplate: FC = () => {
             tipText="Tip: This is a group of checkboxes"
             id="test-checkboxgroup" 
             style="single" 
-            name="test-checkboxgroup" 
+           // name="test-checkboxgroup" 
             options={ [
-              {id: "check1", label: "Orange ice cream", defaultChecked: true}, 
-              {id: "check2", label: "Mint ice cream", defaultChecked: false}, 
-              {id: "check3", label: "Chocolate ice cream", defaultChecked: false}, 
+              // group checkboxes via name[] may work https://wastedpotential.com/html-multi-checkbox-set-the-correct-way-to-group-checkboxes/
+              {id: "check1", name: "test[]", label: "Orange ice cream", defaultChecked: true}, 
+              {id: "check2", name: "test[]", label: "Mint ice cream", defaultChecked: false}, 
+              {id: "check3", name: "test[]", label: "Chocolate ice cream", defaultChecked: true}, 
               ] }
-            defaultChecked={true}
+           // defaultChecked={true}
             label="This is a label" 
             control={control} 
           />
@@ -180,7 +181,7 @@ const QuizTemplate: FC = () => {
         
         <br />
         <button className="block border-gray-900 bg-gray-300 border px-2 py-1" type="button" onClick={ () => { 
-            const testGetVal = getValues("check2") 
+            const testGetVal = getValues("test[]") 
             console.log(testGetVal)
           } }>
           Get Input Value 

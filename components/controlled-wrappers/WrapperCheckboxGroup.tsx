@@ -26,19 +26,14 @@ const WrapperCheckboxGroup: FC<CheckboxWrapperGroupProps & CheckboxProps> = ({
 }) => {  
 
   // stylemap used for future styling flexibility of the Checkbox component
-  const divStyleMap: {[key in CheckboxStyle]: string} = { 
+  const checkStyleMap: {[key in CheckboxStyle]: string} = { 
     single: "", // css styles go here
-    multiple: "flex gap-3",
+    toggle: "",
   }  
 
   return (
    <>
-      <Controller
-        control={control}
-       // name={name}
-        //defaultValue={defaultChecked}
-   
-        render={({ field: {onChange, value, ...props}  }) => (
+      
           <>
           <fieldset>
             <label htmlFor={name} className="block text-md font-bold text-gray-900">
@@ -49,29 +44,38 @@ const WrapperCheckboxGroup: FC<CheckboxWrapperGroupProps & CheckboxProps> = ({
             <div className={ 
               classNames([
                 "", // standard css styles go here. 
-                divStyleMap[style], // to dynamically set styling for different radio types
+                checkStyleMap[style], // to dynamically set styling for different checkbox types
               ]) }
             > 
 
             { options.map((option: {id: string, label: string, defaultChecked: boolean}, index: number) => (
+              <Controller 
+               control={control}
+               name={option.name}
+               key={index}
+               defaultValue={option.defaultChecked}
+              
+                render={({ field: {onChange, value, ...props}  }) => (
                 <Checkbox
-                  key={index}
+                  
                   {...props} 
                   id={option.id}
                   label={option.label}
-                  name={option.id}
+                 // name={option.id}
                 // onChange={(e: Event) => onChange(value = e)} // unnecessary for current setup
                   onChange={onChange}
                   defaultChecked={option.defaultChecked} 
                 
+                />
+                )}
                 />
               ))}
             </div>
           </fieldset>
             
           </>
-        )}
-      />
+        
+    
     </>  
   )
 }

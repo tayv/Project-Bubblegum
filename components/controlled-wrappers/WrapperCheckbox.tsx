@@ -12,17 +12,16 @@ const WrapperCheckbox: FC<CheckboxWrapperProps & CheckboxProps> = ({
   control,
 
   id,
-  style = "single",
   label,
   name,
   defaultChecked
 }) => {  
 
   // stylemap used for future styling flexibility of the Checkbox component
-  const divStyleMap: {[key in CheckboxStyle]: string} = { 
-    single: "", // css styles go here
-    multiple: "flex gap-3",
-  }  
+  // const CheckboxStyleMap: {[key in CheckboxStyle]: string} = { 
+  //   single: "", // css styles go here
+  //   toggle: "",
+  // }  
 
   return (
    <>

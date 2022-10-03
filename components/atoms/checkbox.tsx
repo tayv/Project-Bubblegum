@@ -1,7 +1,7 @@
 import React, { FC, forwardRef, HTMLAttributes } from 'react'
 import classNames from 'classnames'
 
-export type CheckboxStyle = "single" | "multiple"
+export type CheckboxStyle = "single" | "toggle"
 export type CheckboxProps = {
   id: string
   name: string
