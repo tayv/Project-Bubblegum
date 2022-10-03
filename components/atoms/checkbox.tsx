@@ -1,7 +1,7 @@
 import React, { FC, forwardRef, HTMLAttributes } from 'react'
 import classNames from 'classnames'
 
-export type CheckboxStyle = "single" | "toggle"
+export type CheckboxStyle = "standard" | "toggle"
 export type CheckboxProps = {
   id: string
   name: string
@@ -22,7 +22,7 @@ export type CheckboxProps = {
 const Checkbox: FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>( (
   {
     id,
-    style = "single",
+    style = "standard",
     name,
     label,
     onChange,

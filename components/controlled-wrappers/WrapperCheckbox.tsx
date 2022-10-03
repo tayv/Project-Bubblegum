@@ -18,10 +18,10 @@ const WrapperCheckbox: FC<CheckboxWrapperProps & CheckboxProps> = ({
 }) => {  
 
   // stylemap used for future styling flexibility of the Checkbox component
-  // const CheckboxStyleMap: {[key in CheckboxStyle]: string} = { 
-  //   single: "", // css styles go here
-  //   toggle: "",
-  // }  
+    // const CheckboxStyleMap: {[key in CheckboxStyle]: string} = { 
+    //   single: "", // css styles go here
+    //   toggle: "",
+    // }  
 
   return (
    <>

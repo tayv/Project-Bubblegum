@@ -155,33 +155,17 @@ const QuizTemplate: FC = () => {
         <Section id="checkbox-input" style="standard">
           <Heading text="Section Title: Checkboxes" size="h3" type="primary"/>
           <WrapperCheckbox 
-            id="test-checkbox2" 
-            style="single" 
-            name="test-checkbox2" 
+            id="test-checkbox" 
+            style="standard" 
+            name="test-checkbox" 
             defaultChecked={true}
-            label="This is a label" 
+            label="This is a checkbox label" 
             control={control}  />
-          <WrapperCheckboxGroup 
-            groupLabel="This is a checkbox group label"
-            tipText="Tip: This is a group of checkboxes"
-            id="test-checkboxgroup" 
-            style="single" 
-           // name="test-checkboxgroup" 
-            options={ [
-              // group checkboxes via name[] may work https://wastedpotential.com/html-multi-checkbox-set-the-correct-way-to-group-checkboxes/
-              {id: "check1", name: "test[]", label: "Orange ice cream", defaultChecked: true}, 
-              {id: "check2", name: "test[]", label: "Mint ice cream", defaultChecked: false}, 
-              {id: "check3", name: "test[]", label: "Chocolate ice cream", defaultChecked: true}, 
-              ] }
-           // defaultChecked={true}
-            label="This is a label" 
-            control={control} 
-          />
         </Section>
         
         <br />
         <button className="block border-gray-900 bg-gray-300 border px-2 py-1" type="button" onClick={ () => { 
-            const testGetVal = getValues("test[]") 
+            const testGetVal = getValues("test-checkbox") 
             console.log(testGetVal)
           } }>
           Get Input Value 
