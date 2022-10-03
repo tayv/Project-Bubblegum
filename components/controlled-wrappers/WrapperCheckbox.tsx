@@ -1,4 +1,4 @@
-import React, { FC, JSXElementConstructor } from 'react'
+import React, { FC } from 'react'
 import { Controller, Control } from 'react-hook-form'
 import Checkbox, { CheckboxProps, CheckboxStyle } from '@components/atoms/checkbox'
 import classNames from 'classnames'
@@ -18,7 +18,8 @@ const WrapperCheckbox: FC<CheckboxWrapperProps & CheckboxProps> = ({
   defaultChecked
 }) => {  
 
-  const divStyleMap: {[key in CheckboxStyle]: string} = {
+  // stylemap used for future styling flexibility of the Checkbox component
+  const divStyleMap: {[key in CheckboxStyle]: string} = { 
     single: "", // css styles go here
     multiple: "flex gap-3",
   }  

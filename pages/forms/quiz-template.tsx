@@ -10,6 +10,7 @@ import WrapperRadioGroup from '@components/controlled-wrappers/WrapperRadioGroup
 import Section from '@components/layout/Section'
 import Checkbox from '@components/atoms/checkbox'
 import WrapperCheckbox from '@components/controlled-wrappers/WrapperCheckbox'
+import WrapperCheckboxGroup from '@components/controlled-wrappers/WrapperCheckboxGroup'
 
 // data for Breadcrumbs
 const crumbs = [
@@ -160,11 +161,26 @@ const QuizTemplate: FC = () => {
             defaultChecked={true}
             label="This is a label" 
             control={control}  />
+          <WrapperCheckboxGroup 
+            groupLabel="This is a checkbox group label"
+            tipText="Tip: This is a group of checkboxes"
+            id="test-checkboxgroup" 
+            style="single" 
+            name="test-checkboxgroup" 
+            options={ [
+              {id: "check1", label: "Orange ice cream", defaultChecked: true}, 
+              {id: "check2", label: "Mint ice cream", defaultChecked: false}, 
+              {id: "check3", label: "Chocolate ice cream", defaultChecked: false}, 
+              ] }
+            defaultChecked={true}
+            label="This is a label" 
+            control={control} 
+          />
         </Section>
         
         <br />
         <button className="block border-gray-900 bg-gray-300 border px-2 py-1" type="button" onClick={ () => { 
-            const testGetVal = getValues("test-checkbox2") 
+            const testGetVal = getValues("check2") 
             console.log(testGetVal)
           } }>
           Get Input Value 
