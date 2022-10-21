@@ -1,6 +1,7 @@
 import React, { FC, ChangeEvent, forwardRef, InputHTMLAttributes, DetailedHTMLProps} from 'react'
 import classNames from 'classnames'
 import { Control } from 'react-hook-form'
+import Tip, {TipProps} from '@components/layout/Tip'
 
 // OVERVIEW
   // This atom form component provides styling and accessibility requirements. Validation, event handlers, etc. 
@@ -15,8 +16,8 @@ export type InputProps = {
   label: string
   type?: InputType
   size?: InputSize
-  tipText?: string | null
-  exampleText?: string | null
+  tipText?: TipProps["text"] 
+  exampleText?: TipProps["text"]
   className?: string
   placeholder?: string
   defaultValue?: string | number 
@@ -58,7 +59,7 @@ export const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
         <label htmlFor="text" className="block text-md font-bold text-gray-900">
           {label}
         </label>
-        <span className="text-sm font-light text-gray-500 mb-2">{tipText}</span>
+        <Tip text={tipText} type="standard" />
         <input
           ref={ref}
           id={name}
@@ -74,7 +75,7 @@ export const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
           }
           {...props}
         />
-        <span className="text-xs font-light italic text-gray-500 mt-1">{exampleText}</span>
+        <Tip text={exampleText} type="example" /> 
         {children} {/* For displaying warning message components, etc. */}
       </div>
      

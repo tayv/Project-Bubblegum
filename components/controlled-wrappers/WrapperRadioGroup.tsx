@@ -2,13 +2,14 @@ import React, { FC, JSXElementConstructor } from 'react'
 import { Controller, Control } from 'react-hook-form'
 import { RadioButton, RadioProps, RadioStyle } from '@components/atoms/radiobutton'
 import classNames from 'classnames'
+import Tip, { TipProps } from '@components/layout/Tip'
 
 
 export type RadioGroupProps = {
   groupLabel: string
   options: any // BUG: Unsure why TS doesn't like this being string[]. Flags map function in Controller render prop as error.
   //value: string
-  tipText?: string | null
+  tipText?: TipProps["text"] 
   control: Control 
   defaultValue?: string
 }
@@ -23,7 +24,7 @@ const WrapperRadioGroup: FC<LimitedRadioProps & RadioGroupProps> = ({
   defaultChecked,
   defaultValue,
   style = "standard",
-  tipText,
+  tipText = null,
   ...props
 }) => {  
 
@@ -45,7 +46,7 @@ const WrapperRadioGroup: FC<LimitedRadioProps & RadioGroupProps> = ({
             <label htmlFor={name} className="block text-md font-bold text-gray-900">
               {groupLabel}
             </label>
-            <span className="text-sm font-light text-gray-500 mb-2">{tipText}</span>
+            <Tip text={tipText} type="standard" />
 
             <div className={ 
               classNames([

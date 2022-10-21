@@ -36,6 +36,7 @@ export const HelpMessage: FC<HelpMessageProps> = (
 
   // Hold the regex formula that will be used to match input results from useWatch() 
   let regExFormula = setRegEx(checkFor, customRegEx)
+  
   // Boolean regex result. Used as gatekeeper for displaying the warning message in UI in renderMessage()
   let checkForMatch = (checkFor: checkFor, customRegEx: customRegEx): boolean => inputWatch.match(regExFormula)
 
