@@ -9,7 +9,6 @@ import HelpMessage from '@components/helpers/HelpMessage'
 import WrapperRadioGroup from '@components/controlled-wrappers/WrapperRadioGroup'
 import Section from '@components/layout/Section'
 import WrapperCheckbox from '@components/controlled-wrappers/WrapperCheckbox'
-import Tip from '@components/layout/Tip'
 
 // data for Breadcrumbs
 const crumbs = [

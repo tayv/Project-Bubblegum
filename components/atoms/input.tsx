@@ -1,7 +1,7 @@
 import React, { FC, ChangeEvent, forwardRef, InputHTMLAttributes, DetailedHTMLProps} from 'react'
 import classNames from 'classnames'
 import { Control } from 'react-hook-form'
-import Tip from '@components/layout/Tip'
+import Tip, {TipProps} from '@components/layout/Tip'
 
 // OVERVIEW
   // This atom form component provides styling and accessibility requirements. Validation, event handlers, etc. 
@@ -16,8 +16,8 @@ export type InputProps = {
   label: string
   type?: InputType
   size?: InputSize
-  tipText?: string | null
-  exampleText?: string | null
+  tipText?: TipProps["text"] 
+  exampleText?: TipProps["text"]
   className?: string
   placeholder?: string
   defaultValue?: string | number 

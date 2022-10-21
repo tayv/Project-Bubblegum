@@ -3,8 +3,7 @@ import { InputProps } from '@components/atoms/input'
 
 export type TipProps = {
     type: "example" | "standard",
-    text: InputProps["tipText"] | InputProps["exampleText"],
-    id?: string
+    text: string | null
 }
 
 const Tip: FC<TipProps> = ({
