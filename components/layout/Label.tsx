@@ -1,7 +1,7 @@
 import { FC, ReactNode } from 'react'
 
 export type LabelProps = {
-    type: "standard" | "large",
+    type: "standard" | "checkbox",
     label: string,
     children?: ReactNode
 }
@@ -17,8 +17,8 @@ const Label: FC<LabelProps> = ({
         case "standard":
           return <label htmlFor="text" className="block text-md font-bold text-gray-900">{label}{props.children}</label>
           
-        case "large":
-          return <label htmlFor="text" className="block text-md font-bold text-gray-900">{label}{props.children}</label>
+        case "checkbox":
+          return <label className="inline-flex items-center">{props.children}</label>
         
         default:
           return null;
