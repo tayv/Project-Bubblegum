@@ -10,6 +10,7 @@ import WrapperRadioGroup from '@components/controlled-wrappers/WrapperRadioGroup
 import Section from '@components/layout/Section'
 import WrapperCheckbox from '@components/controlled-wrappers/WrapperCheckbox'
 import Tip from '@components/layout/Tip'
+import Label from '@components/layout/Label'
 
 // data for Breadcrumbs
 const crumbs = [
@@ -152,6 +153,7 @@ const QuizTemplate: FC = () => {
         
         <Section id="checkbox-input" style="standard">
           <Heading text="Section Title: Checkboxes" size="h3" type="primary"/>
+          <Label type="standard" label="This is a checkbox label" />
           <Tip text="Tip: These are standard checkboxes" type="standard" />
           <WrapperCheckbox 
             id="test-checkbox" 

@@ -1,5 +1,6 @@
 import React, { FC, forwardRef, HTMLAttributes } from 'react'
 import classNames from 'classnames'
+import Label from '@components/layout/Label'
 
 export type CheckboxStyle = "standard" | "toggle"
 export type CheckboxProps = {
@@ -35,7 +36,8 @@ const Checkbox: FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>(
   return (
     
     <div>
-      <label className="inline-flex items-center">
+       <Label type="checkbox" label={label}>
+      {/* <label className="inline-flex items-center"> */}
         <input 
           type="checkbox"
           id={id} 
@@ -47,7 +49,7 @@ const Checkbox: FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>(
           value={value}
           {...props} />
         <span className="ml-2">{label}</span>
-      </label>
+      </Label>
     </div>
     
   )
