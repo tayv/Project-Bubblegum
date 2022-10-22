@@ -2,7 +2,7 @@ import LayoutContainerSide from '@components/layout/LayoutContainerSide'
 import Breadcrumbs from '@components/layout/Breadcrumbs'
 import Heading from '@components/layout/Heading'
 import Paragraph from '@components/layout/Paragraph'
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import WrapperInput from '@components/controlled-wrappers/WrapperInput'
 import HelpMessage from '@components/helpers/HelpMessage'
@@ -28,7 +28,7 @@ const crumbs = [
 const QuizTemplate: FC = () => {
 
   // React hook form
-  const { handleSubmit, control, getValues, watch, formState: { errors }} = useForm()
+  const { register, reset, handleSubmit, control, getValues, watch, formState: { errors }} = useForm()
 
   // Sample onSubmit form handler
     // NOTES: Don't need to  e.preventDefault() since rhf's handleSubmit() automatically prevents page reloads 
@@ -70,7 +70,20 @@ const QuizTemplate: FC = () => {
       regex: /(b)/g
     }
   }
-  const testcheckbox = getValues("test-checkbox")
+  const testcheckbox = watch("registercheckbox")
+  const renderTest = () => {
+   console.log("registercheckbox test:", testcheckbox)
+    !!testcheckbox && console.log("testcheckbox: ", testcheckbox)
+  } 
+
+  // set up form default values
+  useEffect(() => {
+    let defaultValues = {
+      registercheckbox: true,
+    }
+    reset({ ...defaultValues }) 
+  }, [])
+
   return (
   <>
     <LayoutContainerSide>
@@ -165,12 +178,19 @@ const QuizTemplate: FC = () => {
           />
         </Section>
 
-        { 
-          !!testcheckbox && <Section id="test" style="standard"> 
+        {
+          useEffect(() => { renderTest()}, [testcheckbox])
+          // !!testcheckbox && <Section id="test" style="standard"> 
         
-          </Section>
+          // </Section>
+          
         }
-        
+       
+        <div>
+         <input {...register("registercheckbox")} id="registercheckbox" type="checkbox" value="A" />
+         <label htmlFor="registercheckbox"> I have a bike </label>
+        </div>
+
         <br />
         <button className="block border-gray-900 bg-gray-300 border px-2 py-1" type="button" onClick={ () => { 
             const testGetVal = getValues("test-checkbox") 
