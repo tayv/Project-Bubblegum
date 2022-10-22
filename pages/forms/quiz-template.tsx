@@ -28,7 +28,7 @@ const crumbs = [
 const QuizTemplate: FC = () => {
 
   // React hook form
-  const { handleSubmit, control, getValues, formState: { errors }} = useForm()
+  const { handleSubmit, control, getValues, watch, formState: { errors }} = useForm()
 
   // Sample onSubmit form handler
     // NOTES: Don't need to  e.preventDefault() since rhf's handleSubmit() automatically prevents page reloads 
@@ -70,7 +70,7 @@ const QuizTemplate: FC = () => {
       regex: /(b)/g
     }
   }
-
+  const testcheckbox = getValues("test-checkbox")
   return (
   <>
     <LayoutContainerSide>
@@ -161,8 +161,15 @@ const QuizTemplate: FC = () => {
             name="test-checkbox" 
             defaultChecked={true}
             label="This is a checkbox label" 
-            control={control}  />
+            control={control} 
+          />
         </Section>
+
+        { 
+          !!testcheckbox && <Section id="test" style="standard"> 
+        
+          </Section>
+        }
         
         <br />
         <button className="block border-gray-900 bg-gray-300 border px-2 py-1" type="button" onClick={ () => { 
