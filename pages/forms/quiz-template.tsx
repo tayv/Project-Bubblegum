@@ -11,6 +11,7 @@ import Section from '@components/layout/Section'
 import WrapperCheckbox from '@components/controlled-wrappers/WrapperCheckbox'
 import Tip from '@components/layout/Tip'
 import Label from '@components/layout/Label'
+import Checkbox from '@components/atoms/checkbox'
 
 // data for Breadcrumbs
 const crumbs = [
@@ -28,7 +29,7 @@ const crumbs = [
 const QuizTemplate: FC = () => {
 
   // React hook form
-  const { register, reset, handleSubmit, control, getValues, watch, formState: { errors }} = useForm()
+  const { register, getFieldState, reset, handleSubmit, control, getValues, setValue, watch, formState: { errors }} = useForm()
 
   // Sample onSubmit form handler
     // NOTES: Don't need to  e.preventDefault() since rhf's handleSubmit() automatically prevents page reloads 
@@ -73,16 +74,25 @@ const QuizTemplate: FC = () => {
   const testcheckbox = watch("registercheckbox")
   const renderTest = () => {
    console.log("registercheckbox test:", testcheckbox)
-    !!testcheckbox && console.log("testcheckbox: ", testcheckbox)
+   !!testcheckbox && console.log("testcheckbox: ", testcheckbox)
   } 
-
+  
   // set up form default values
   useEffect(() => {
     let defaultValues = {
       registercheckbox: true,
+      registerradio: "yamaha",
+     // buttonRadio: 
     }
     reset({ ...defaultValues }) 
   }, [])
+
+  const fieldValue = {
+    registercheckbox: getValues("registercheckbox") ,
+    buttonRadio: watch("buttonRadio", "chocolate-radio"),
+    registerradio: getValues("registerradio"),
+  }
+  console.log("values: ", fieldValue)
 
   return (
   <>
@@ -181,15 +191,26 @@ const QuizTemplate: FC = () => {
         {
           useEffect(() => { renderTest()}, [testcheckbox])
           // !!testcheckbox && <Section id="test" style="standard"> 
-        
           // </Section>
-          
         }
        
-        <div>
-         <input {...register("registercheckbox")} id="registercheckbox" type="checkbox" value="A" />
-         <label htmlFor="registercheckbox"> I have a bike </label>
-        </div>
+       {/* VISIBILITY CONDITION TEST SECTION */}
+          <div>
+            <input {...register("registercheckbox")} id="registercheckbox" type="checkbox" value="A" />
+            {!!fieldValue.registercheckbox && <label htmlFor="registercheckbox"> I have a bike </label> }
+            </div>
+
+          { 
+            !!fieldValue.registercheckbox && <Section id="rhf-radios" style="standard">
+              <Heading text="Section Title: RHF register radios" size="h3" type="primary"/>
+              <Label type="standard" label="These are rhf radio buttons" />
+              <Tip text="Tip: pick your favorite motorcycle" type="standard" />
+              <input {...register("registerradio")} id="registerradio1" type="radio" value="honda" />
+              <label htmlFor="registerradio1">Honda </label> 
+              <input {...register("registerradio")} id="registerradio2" type="radio" value="yamaha" />
+              <label htmlFor="registerradio2">Yamaha </label> 
+            </Section>
+          }
 
         <br />
         <button className="block border-gray-900 bg-gray-300 border px-2 py-1" type="button" onClick={ () => { 
