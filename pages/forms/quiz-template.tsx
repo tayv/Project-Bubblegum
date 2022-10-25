@@ -2,7 +2,7 @@ import LayoutContainerSide from '@components/layout/LayoutContainerSide'
 import Breadcrumbs from '@components/layout/Breadcrumbs'
 import Heading from '@components/layout/Heading'
 import Paragraph from '@components/layout/Paragraph'
-import { FC, useEffect } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import WrapperInput from '@components/controlled-wrappers/WrapperInput'
 import HelpMessage from '@components/helpers/HelpMessage'
@@ -71,6 +71,19 @@ const QuizTemplate: FC = () => {
       regex: /(b)/g
     }
   }
+
+  // TESTING. CAN REMOVE ------------------------------------------------------------------------------------
+
+  const [sectionVis, setSectionVis] = useState(
+    {
+      // Format { sectionID: showSectionBoolean }
+      textInput: true,
+      radioInput: false,
+      checkboxInput: true
+    }
+  )
+
+
   const testcheckbox = watch("registercheckbox")
   const renderTest = () => {
    console.log("registercheckbox test:", testcheckbox)
@@ -81,7 +94,7 @@ const QuizTemplate: FC = () => {
   useEffect(() => {
     let defaultValues = {
       registercheckbox: true,
-      registerradio: "yamaha",
+      registerradio: "yamaha", // works
      // buttonRadio: 
     }
     reset({ ...defaultValues }) 
@@ -93,6 +106,8 @@ const QuizTemplate: FC = () => {
     registerradio: getValues("registerradio"),
   }
   console.log("values: ", fieldValue)
+
+  // END OF TEST CODE ------------------------------------------------------------------------------------
 
   return (
   <>
@@ -107,7 +122,7 @@ const QuizTemplate: FC = () => {
          <Heading text="Test Form 1" size="h2" type="primary"/>
           <Paragraph text="This form is used to show default styling for text, radio button, checkbox, and multi-line input components. Also used to test Controlled inputs" size="standard" type="primary" />
         </Section>
-        <Section id="text-input" style="standard">
+        <Section id="textInput" style="standard">
           <Heading text="Section Title: Single Line Input" size="h3" type="primary"/>
           <WrapperInput
             name="singleInput"
@@ -130,7 +145,7 @@ const QuizTemplate: FC = () => {
           </WrapperInput>
         </Section>
  
-        <Section id="radio-input" style="standard">
+        <Section id="radioInput" style="standard">
           <Heading text="Section Title: Radio Groups" size="h3" type="primary"/>
           <WrapperRadioGroup
             name="standardRadio"
@@ -174,7 +189,7 @@ const QuizTemplate: FC = () => {
           />
         </Section>
         
-        <Section id="checkbox-input" style="standard">
+        <Section id="checkboxInput" style="standard">
           <Heading text="Section Title: Checkboxes" size="h3" type="primary"/>
           <Label type="standard" label="This is a checkbox label" />
           <Tip text="Tip: These are standard checkboxes" type="standard" />
@@ -188,22 +203,25 @@ const QuizTemplate: FC = () => {
           />
         </Section>
 
+             
+       {/* VISIBILITY CONDITION TEST SECTION --------------------------------------------- */}
+
         {
-          useEffect(() => { renderTest()}, [testcheckbox])
+          useEffect(() => { renderTest() }, [testcheckbox])
           // !!testcheckbox && <Section id="test" style="standard"> 
           // </Section>
         }
-       
-       {/* VISIBILITY CONDITION TEST SECTION */}
+      
+      
           <div>
             <input {...register("registercheckbox")} id="registercheckbox" type="checkbox" value="A" />
-            {!!fieldValue.registercheckbox && <label htmlFor="registercheckbox"> I have a bike </label> }
+            {!!sectionVis.radioInput && <label htmlFor="registercheckbox"> I have a bike </label> }
             </div>
 
           { 
             !!fieldValue.registercheckbox && <Section id="rhf-radios" style="standard">
               <Heading text="Section Title: RHF register radios" size="h3" type="primary"/>
-              <Label type="standard" label="These are rhf radio buttons" />
+              <Label type="standard" label="These use rhf's register" />
               <Tip text="Tip: pick your favorite motorcycle" type="standard" />
               <input {...register("registerradio")} id="registerradio1" type="radio" value="honda" />
               <label htmlFor="registerradio1">Honda </label> 
@@ -212,14 +230,33 @@ const QuizTemplate: FC = () => {
             </Section>
           }
 
+          <button 
+            type="button" 
+            className="mt-4 block border-gray-900 bg-blue-300 border px-2 py-1" 
+            onClick={ () => {
+              setSectionVis({ ...sectionVis, radioInput: !sectionVis.radioInput })
+              console.log("sectionVis updated: ", sectionVis)
+            }} 
+            >Toggle Visiblity
+          </button>
+
+          {/* VISIBILITY TEST SECTION END --------------------------------------------- */}
+
         <br />
-        <button className="block border-gray-900 bg-gray-300 border px-2 py-1" type="button" onClick={ () => { 
+        <button 
+          type="button" 
+          className="block border-gray-900 bg-gray-300 border px-2 py-1" 
+          onClick={ () => { 
             const testGetVal = getValues("test-checkbox") 
             console.log(testGetVal)
           } }>
           Get Input Value 
         </button>
-        <button className="mt-4 block border-gray-900 bg-gray-300 border px-2 py-1" type="submit">Test Submit</button>
+        <button 
+          type="submit"
+          className="mt-4 block border-gray-900 bg-gray-300 border px-2 py-1"
+          >Test Submit
+        </button>
 
       </form>
 
