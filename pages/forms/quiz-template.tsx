@@ -72,7 +72,7 @@ const QuizTemplate: FC = () => {
     }
   }
 
-  // TESTING. CAN REMOVE ------------------------------------------------------------------------------------
+  // TESTING START ------------------------------------------------------------------------------------
 
   const [sectionVis, setSectionVis] = useState(
     {
@@ -94,7 +94,7 @@ const QuizTemplate: FC = () => {
   useEffect(() => {
     let defaultValues = {
       registercheckbox: true,
-      registerradio: "yamaha", // works
+      registerradio: "supercross", // works
      // buttonRadio: 
     }
     reset({ ...defaultValues }) 
@@ -103,7 +103,7 @@ const QuizTemplate: FC = () => {
   const fieldValue = {
     registercheckbox: getValues("registercheckbox") ,
     buttonRadio: watch("buttonRadio", "chocolate-radio"),
-    registerradio: getValues("registerradio"),
+    registerradio: watch("registerradio"),
   }
   console.log("values: ", fieldValue)
 
@@ -222,13 +222,52 @@ const QuizTemplate: FC = () => {
             !!fieldValue.registercheckbox && <Section id="rhf-radios" style="standard">
               <Heading text="Section Title: RHF register radios" size="h3" type="primary"/>
               <Label type="standard" label="These use rhf's register" />
-              <Tip text="Tip: pick your favorite motorcycle" type="standard" />
-              <input {...register("registerradio")} id="registerradio1" type="radio" value="honda" />
-              <label htmlFor="registerradio1">Honda </label> 
-              <input {...register("registerradio")} id="registerradio2" type="radio" value="yamaha" />
-              <label htmlFor="registerradio2">Yamaha </label> 
+              <Tip text="Tip: pick your favorite type of racing" type="standard" />
+              <input {...register("registerradio")} id="registerradio1" type="radio" value="motogp" />
+              <label htmlFor="registerradio1">Moto GP</label> 
+              <input {...register("registerradio")} id="registerradio2" type="radio" value="worldsbk" />
+              <label htmlFor="registerradio2">World Superbike</label>
+              <input {...register("registerradio")} id="registerradio3" type="radio" value="supercross" />
+              <label htmlFor="registerradio3">Supercross</label> 
+              <input {...register("registerradio")} id="registerradio4" type="radio" value="islemantt" />
+              <label htmlFor="registerradio4">Isle of Man TT</label> 
             </Section>
           }
+
+          <Section id="moto" style="standard">
+            <Heading text={(fieldValue.registerradio === "motogp") ? "Who's your favorite team?" : "What's your favorite bike brand?"} size="h3" type="primary"/>
+            <Label type="standard" label="Choose from the list" />
+            <Tip text={(fieldValue.registerradio === "motogp") ? "Choose a bike brand" : "Choose a motorcycle"} type="standard" />
+            { 
+              (fieldValue.registerradio === "motogp") ?
+                <WrapperRadioGroup
+                  name="bikeBrandRadio"
+                  groupLabel="Pick your favorite bike brand"
+                  tipText="Tip: These are standard radio buttons"
+                  control={control}
+                  style="standard"
+                  defaultValue="yamaha"
+                  options={ [
+                    {value: "honda", label: "Honda"}, 
+                    {value: "yamaha", label: "Yamaha"}, 
+                    {value: "suzuki", label: "Suzuki"}, 
+                    {value: "kawasaki", label: "Kawasaki"}] }
+                /> :
+                  <WrapperRadioGroup
+                    name="motoTeamRadio"
+                    groupLabel="Pick your favorite racing team"
+                    tipText="Tip: These are standard radio buttons"
+                    control={control}
+                    style="standard"
+                    defaultValue="honda"
+                    options={ [
+                      {value: "yamaha", label: "Monster Energy Yamaha"}, 
+                      {value: "honda", label: "Repsol Honda"}, 
+                      {value: "ducati", label: "Factory Ducati"}, 
+                      {value: "vr46", label: "VR 46 Ducati"}] }
+                  /> 
+            }
+          </Section>
 
           <button 
             type="button" 
