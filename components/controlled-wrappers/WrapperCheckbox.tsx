@@ -13,8 +13,6 @@ const WrapperCheckbox: FC<CheckboxWrapperProps & CheckboxProps> = ({
 
   id,
   label,
-  name,
-  defaultChecked
 }) => {  
 
   // stylemap used for future styling flexibility of the Checkbox component
@@ -27,8 +25,8 @@ const WrapperCheckbox: FC<CheckboxWrapperProps & CheckboxProps> = ({
    <>
       <Controller
         control={control}
-        name={name}
-        defaultValue={defaultChecked}
+        name={id}
+      //  defaultValue={defaultChecked}
    
         render={({ field: {onChange, value, ...props}  }) => (
           <>
@@ -37,7 +35,7 @@ const WrapperCheckbox: FC<CheckboxWrapperProps & CheckboxProps> = ({
               label={label}
              // onChange={(e: Event) => onChange(value = e)} // unnecessary for current setup
               onChange={onChange}
-              defaultChecked={defaultChecked}
+              defaultChecked={value}
               {...props}
             />
           </>

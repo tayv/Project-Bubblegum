@@ -39,9 +39,9 @@ const WrapperRadioGroup: FC<LimitedRadioProps & RadioGroupProps> = ({
       <Controller
         control={control}
         name={name}
-        defaultValue={defaultValue}
         render={({ field: {onChange, ...props} }) => (
           <>
+          {console.log("props: ", props)}
           <fieldset>
             <label htmlFor={name} className="block text-md font-bold text-gray-900">
               {groupLabel}
@@ -56,7 +56,7 @@ const WrapperRadioGroup: FC<LimitedRadioProps & RadioGroupProps> = ({
             > 
 
             { options.map((option: {value: string, label: string}, index: number) => (
-              (defaultValue===option.value) ? ( // if defaultValue prop is set to a value then include defaultChecked
+              (props.value===option.value) ? ( // if defaultValue prop is set to a value then include defaultChecked
                   <RadioButton 
                     key={index}
                     {...props} 
