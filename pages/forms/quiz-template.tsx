@@ -2,7 +2,7 @@ import LayoutContainerSide from '@components/layout/LayoutContainerSide'
 import Breadcrumbs from '@components/layout/Breadcrumbs'
 import Heading from '@components/layout/Heading'
 import Paragraph from '@components/layout/Paragraph'
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import WrapperInput from '@components/controlled-wrappers/WrapperInput'
 import HelpMessage from '@components/helpers/HelpMessage'
@@ -28,7 +28,7 @@ const crumbs = [
 const QuizTemplate: FC = () => {
 
   // React hook form
-  const { handleSubmit, control, getValues, formState: { errors }} = useForm()
+  const { register, getFieldState, reset, handleSubmit, control, getValues, setValue, watch, formState: { errors }} = useForm()
 
   // Sample onSubmit form handler
     // NOTES: Don't need to  e.preventDefault() since rhf's handleSubmit() automatically prevents page reloads 
@@ -71,6 +71,60 @@ const QuizTemplate: FC = () => {
     }
   }
 
+  // TESTING START ------------------------------------------------------------------------------------
+
+  const [sectionVis, setSectionVis] = useState(
+    {
+      // Format { sectionID: showSectionBoolean }
+      textInput: true,
+      radioInput: false,
+      checkboxInput: true,
+      rhfradios: true,
+      moto: true,
+    }
+  )
+
+    // set up form default values
+    const defaultValues = {
+      // Text Input Section
+      singleInput: "",
+      // Radio Input Section
+      standardRadio: "mint",
+      horizontalRadio: "no",
+      buttonRadio: "orange-button",
+      bikeBrandRadio: "suzuki",
+      motoTeamRadio: "honda",
+      registerradio: "supercross", // works
+      // Checkbox Input Section
+      checkboxInput: true,
+    }
+
+    useEffect(() => {
+
+
+      reset({ ...defaultValues }) 
+    }, [])
+
+    const fieldValues = {
+      // Text Input Section
+      singleInput: getValues("singleInput"),
+      // Radio Input Section
+      standardRadio: getValues("standardRadio"),
+      horizontalRadio: getValues("horizontalRadio"),
+      buttonRadio: getValues("buttonRadio"),
+      registerradio: watch("registerradio"),
+      bikeBrandRadio: watch("bikeBrandRadio"),
+      motoTeamRadio: watch("motoTeamRadio"),
+      // Checkbox Input Section
+      checkboxInput: watch("checkboxInput"), 
+      
+    }
+
+  // TESTING END ------------------------------------------------------------------------------------
+  
+
+  // END OF TEST CODE ------------------------------------------------------------------------------------
+
   return (
   <>
     <LayoutContainerSide>
@@ -81,10 +135,10 @@ const QuizTemplate: FC = () => {
       <hr />
       <form className="border border-gray-900" onSubmit={ onSubmit }>
         <Section id="intro" style="blank">
-         <Heading text="Test Form 1" size="h2" type="primary"/>
+          <Heading text="Test Form 1" size="h2" type="primary"/>
           <Paragraph text="This form is used to show default styling for text, radio button, checkbox, and multi-line input components. Also used to test Controlled inputs" size="standard" type="primary" />
         </Section>
-        <Section id="text-input" style="standard">
+        <Section id="textInput" style="standard">
           <Heading text="Section Title: Single Line Input" size="h3" type="primary"/>
           <WrapperInput
             name="singleInput"
@@ -107,7 +161,7 @@ const QuizTemplate: FC = () => {
           </WrapperInput>
         </Section>
  
-        <Section id="radio-input" style="standard">
+        <Section id="radioInput" style="standard">
           <Heading text="Section Title: Radio Groups" size="h3" type="primary"/>
           <WrapperRadioGroup
             name="standardRadio"
@@ -115,7 +169,6 @@ const QuizTemplate: FC = () => {
             tipText="Tip: These are standard radio buttons"
             control={control}
             style="standard"
-            defaultValue="orange"
             options={ [
               {value: "orange", label: "Orange ice cream"}, 
               {value: "mint", label: "Mint ice cream"}, 
@@ -129,10 +182,9 @@ const QuizTemplate: FC = () => {
             tipText="Tip: These radios are styled horizontally. Typically used for yes/no questions."
             control={control}
             style="horizontal"
-            defaultValue="yes"
             options={ [
-              {value: "yes", label: "Yes"}, 
-              {value: "no", label: "No"}, 
+                {value: "yes", label: "Yes"}, 
+                {value: "no", label: "No"}, 
               ] }
           />
           <br />
@@ -142,7 +194,6 @@ const QuizTemplate: FC = () => {
             tipText="Tip: These radios are styled as buttons"
             control={control}
             style="button"
-            defaultValue="chocolate-button"
             options={ [
               {value: "orange-button", label: "Orange ice cream"}, 
               {value: "mint-button", label: "Mint ice cream"}, 
@@ -151,33 +202,104 @@ const QuizTemplate: FC = () => {
           />
         </Section>
         
-        <Section id="checkbox-input" style="standard">
+        <Section id="checkboxInput" style="standard">
           <Heading text="Section Title: Checkboxes" size="h3" type="primary"/>
           <Label type="standard" label="This is a checkbox label" />
           <Tip text="Tip: These are standard checkboxes" type="standard" />
           <WrapperCheckbox 
-            id="test-checkbox" 
+            id="checkboxInput" 
             style="standard" 
-            name="test-checkbox" 
-            defaultChecked={true}
             label="This is a checkbox label" 
-            control={control}  />
+            control={control} 
+          />
         </Section>
-        
+
+             
+       {/* VISIBILITY CONDITION TEST SECTION --------------------------------------------- */}
+
+          { 
+            sectionVis.rhfradios && <Section id="rhf-radios" style="standard">
+              <Heading text="Section Title: RHF register radios" size="h3" type="primary"/>
+              <Label type="standard" label="These use rhf's register" />
+              <Tip text="Tip: pick your favorite type of racing" type="standard" />
+              <input {...register("registerradio")} id="registerradio1" type="radio" value="motogp" />
+              <label htmlFor="registerradio1">Moto GP</label> 
+              <input {...register("registerradio")} id="registerradio2" type="radio" value="worldsbk" />
+              <label htmlFor="registerradio2">World Superbike</label>
+              <input {...register("registerradio")} id="registerradio3" type="radio" value="supercross" />
+              <label htmlFor="registerradio3">Supercross</label> 
+              <input {...register("registerradio")} id="registerradio4" type="radio" value="islemantt" />
+              <label htmlFor="registerradio4">Isle of Man TT</label> 
+            </Section>
+          }
+
+           { (fieldValues.registerradio === "supercross") && <Section id="moto" style="standard">
+            <Heading text={(fieldValues.registerradio === "motogp") ? "Who's your favorite team?" : "What's your favorite bike brand?"} size="h3" type="primary"/>
+            {
+              (getValues("checkboxInput") ) ?
+                <WrapperRadioGroup
+                  name="bikeBrandRadio"
+                  groupLabel="Pick your favorite bike brand"
+                  tipText="Tip: These are standard radio buttons"
+                  control={control}
+                  style="standard"
+                  defaultValue="yamaha"
+                  options={ [
+                    {value: "honda", label: "Honda"}, 
+                    {value: "yamaha", label: "Yamaha"}, 
+                    {value: "suzuki", label: "Suzuki"}, 
+                    {value: "kawasaki", label: "Kawasaki"}
+                  ] }
+                /> :
+                  <WrapperRadioGroup
+                    name="motoTeamRadio"
+                    groupLabel="Pick your favorite racing team"
+                    tipText="Tip: These are standard radio buttons"
+                    control={control}
+                    style="standard"
+                    options={ [
+                      {value: "yamaha", label: "Monster Energy Yamaha"}, 
+                      {value: "honda", label: "Repsol Honda"}, 
+                      {value: "ducati", label: "Factory Ducati"}, 
+                      {value: "vr46", label: "VR 46 Ducati"}
+                    ] }
+                  /> 
+            }
+          </Section>
+        }
+
+          <button 
+            type="button" 
+            className="mt-4 block border-gray-900 bg-blue-300 border px-2 py-1" 
+            onClick={ () => {
+              setSectionVis({ ...sectionVis, rhfradios: !sectionVis.rhfradios })
+            }} 
+            >Toggle Visiblity
+          </button>
+
+          {/* VISIBILITY TEST SECTION END --------------------------------------------- */}
+
         <br />
-        <button className="block border-gray-900 bg-gray-300 border px-2 py-1" type="button" onClick={ () => { 
-            const testGetVal = getValues("test-checkbox") 
+        <button 
+          type="button" 
+          className="block border-gray-900 bg-gray-300 border px-2 py-1" 
+          onClick={ () => { 
+            const testGetVal = getValues("regcheck") 
             console.log(testGetVal)
           } }>
           Get Input Value 
         </button>
-        <button className="mt-4 block border-gray-900 bg-gray-300 border px-2 py-1" type="submit">Test Submit</button>
+
+        <button 
+          type="submit"
+          className="mt-4 block border-gray-900 bg-gray-300 border px-2 py-1"
+          >Test Submit
+        </button>
 
       </form>
 
     </LayoutContainerSide>
 
-   
   </>
   )
 }

@@ -5,13 +5,12 @@ import Label from '@components/layout/Label'
 export type CheckboxStyle = "standard" | "toggle"
 export type CheckboxProps = {
   id: string
-  name: string
   label: string
   value?: any // HTMLInputElement type doesn't like use of boolean so switched to any
   style?: CheckboxStyle
   className?: string
   onChange?: any
-  defaultChecked: boolean
+  defaultChecked?: boolean
   defaultValue?: boolean // should match defaultChecked type
 
   // RHF prop types
@@ -24,7 +23,6 @@ const Checkbox: FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>(
   {
     id,
     style = "standard",
-    name,
     label,
     onChange,
     value,
@@ -41,7 +39,7 @@ const Checkbox: FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>(
         <input 
           type="checkbox"
           id={id} 
-          name={name} 
+          name={id} 
           defaultChecked={defaultChecked}
          // defaultValue={defaultChecked} // not necessary for single checkbox
           className="form-checkbox"  
