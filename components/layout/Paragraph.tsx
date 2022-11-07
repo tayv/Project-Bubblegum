@@ -10,10 +10,12 @@ export type ParagraphProps = {
 const Paragraph: FC<ParagraphProps> = ({
     text,
     size, 
+    type = "primary",
     ...props
 }) => {
 
-    const renderParagraph = ({size, text, type}: ParagraphProps) => {
+    const renderParagraph = ({size, text, type, ...props}: ParagraphProps) => {
+      {console.log("type: ", type, type==="secondary")}
       switch (size) {
         case "small":
           return (type==="primary") && <p className="text-sm text-gray-600">{text}</p> || (type==="secondary") && <p className="text-sm text-gray-300">{text}</p>
@@ -31,7 +33,7 @@ const Paragraph: FC<ParagraphProps> = ({
 
   return (
     <>
-      { renderParagraph({size, text, ...props}) }
+      { renderParagraph({size, text, type, ...props}) }
     </>
   )
 }

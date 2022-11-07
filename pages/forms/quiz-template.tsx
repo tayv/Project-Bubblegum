@@ -11,6 +11,7 @@ import Section from '@components/layout/Section'
 import WrapperCheckbox from '@components/controlled-wrappers/WrapperCheckbox'
 import Tip from '@components/layout/Tip'
 import Label from '@components/layout/Label'
+import TemplateGeneric from '@components/products/producta/TemplateGeneric'
 
 // data for Breadcrumbs
 const crumbs = [
@@ -297,6 +298,16 @@ const QuizTemplate: FC = () => {
         </button>
 
       </form>
+
+      { /*TEMPLATE TEST SECTION START --------------------------------------------- */}
+      <Section id="templateTest" style="standard">
+        <Heading text="Section Title: Template Test" size="h3" type="primary"/>
+        <TemplateGeneric formID="01" formData={ {input1: "some data" } } />
+
+      </Section>
+
+      { /*TEMPLATE TEST SECTION END --------------------------------------------- */}
+
 
     </LayoutContainerSide>
 

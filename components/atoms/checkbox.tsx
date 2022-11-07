@@ -50,7 +50,7 @@ const Checkbox: FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>(
       </Label>
     </div>
     
-  )
+   )
   }
 )
 
