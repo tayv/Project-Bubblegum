@@ -28,7 +28,7 @@ const Paragraph: FC<ParagraphProps> = ({
           return (type==="primary") && <p className="text-xl text-gray-600">{text}{props.children}</p> || (type==="secondary") && <p className="text-lg text-gray-300">{text}{props.children}</p>
         
         default:
-          return null;
+          return null
     }
   }
 
