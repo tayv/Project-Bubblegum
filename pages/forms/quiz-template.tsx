@@ -116,7 +116,7 @@ const QuizTemplate: FC = () => {
       bikeBrandRadio: watch("bikeBrandRadio"),
       motoTeamRadio: watch("motoTeamRadio"),
       // Checkbox Input Section
-      checkboxInput: getValues("checkboxInput"), 
+      checkboxInput: watch("checkboxInput"), 
       
     }
 
@@ -235,8 +235,8 @@ const QuizTemplate: FC = () => {
 
            { (fieldValues.registerradio === "supercross") && <Section id="moto" style="standard">
             <Heading text={(fieldValues.registerradio === "motogp") ? "Who's your favorite team?" : "What's your favorite bike brand?"} size="h3" type="primary"/>
-            { 
-              (fieldValues.checkboxInput ) ?
+            {
+              (getValues("checkboxInput") ) ?
                 <WrapperRadioGroup
                   name="bikeBrandRadio"
                   groupLabel="Pick your favorite bike brand"
