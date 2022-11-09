@@ -302,7 +302,7 @@ const QuizTemplate: FC = () => {
       { /*TEMPLATE TEST SECTION START --------------------------------------------- */}
       <Section id="templateTest" style="standard">
         <Heading text="Section Title: Template Test" size="h3" type="primary"/>
-        <TemplateGeneric formID="01" formData={ {input1: "some data" } } />
+        <TemplateGeneric location="a" formID="01" formData={ {input1: "some data" } } />
 
       </Section>
 
