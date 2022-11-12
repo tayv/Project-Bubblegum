@@ -11,6 +11,9 @@ import Section from '@components/layout/Section'
 import WrapperCheckbox from '@components/controlled-wrappers/WrapperCheckbox'
 import Tip from '@components/layout/Tip'
 import Label from '@components/layout/Label'
+import TemplateGeneric from '@components/products/producta/TemplateGeneric'
+import UpdateDocState from '@components/UpdateDocState'
+
 
 // data for Breadcrumbs
 const crumbs = [
@@ -26,6 +29,9 @@ const crumbs = [
 ]
 
 const QuizTemplate: FC = () => {
+
+  // Setup initial state
+  const [docValue, setDocValue] = useState({docID: 1, formData: {}})
 
   // React hook form
   const { register, getFieldState, reset, handleSubmit, control, getValues, setValue, watch, formState: { errors }} = useForm()
@@ -71,7 +77,7 @@ const QuizTemplate: FC = () => {
     }
   }
 
-  // TESTING START ------------------------------------------------------------------------------------
+  // VISIBILITY TESTING START ------------------------------------------------------------------------------------
 
   const [sectionVis, setSectionVis] = useState(
     {
@@ -100,8 +106,6 @@ const QuizTemplate: FC = () => {
     }
 
     useEffect(() => {
-
-
       reset({ ...defaultValues }) 
     }, [])
 
@@ -284,8 +288,11 @@ const QuizTemplate: FC = () => {
           type="button" 
           className="block border-gray-900 bg-gray-300 border px-2 py-1" 
           onClick={ () => { 
-            const testGetVal = getValues("regcheck") 
-            console.log(testGetVal)
+
+            UpdateDocState(getValues, setDocValue, docValue)
+          
+           // const testGetVal = getValues("regcheck") 
+           // console.log(testGetVal)
           } }>
           Get Input Value 
         </button>
@@ -297,6 +304,16 @@ const QuizTemplate: FC = () => {
         </button>
 
       </form>
+
+      { /*TEMPLATE TEST SECTION START --------------------------------------------- */}
+      <Section id="templateTest" style="standard">
+        <Heading text="Section Title: Template Test" size="h3" type="primary"/>
+        <TemplateGeneric location="b" docID={2} formData={ { input1: "some data", input2: "this is the dynamic data", input3: 100 } } />
+
+      </Section>
+
+      { /*TEMPLATE TEST SECTION END --------------------------------------------- */}
+
 
     </LayoutContainerSide>
 

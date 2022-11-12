@@ -5,33 +5,36 @@ export type ParagraphProps = {
     text: string | number,
     type?: "primary" | "secondary", 
     id?: string
+    children?: ReactNode
 }
 
 const Paragraph: FC<ParagraphProps> = ({
     text,
     size, 
+    type = "primary",
     ...props
 }) => {
 
-    const renderParagraph = ({size, text, type}: ParagraphProps) => {
+    const renderParagraph = ({size, text, type, ...props}: ParagraphProps) => {
+
       switch (size) {
         case "small":
-          return (type==="primary") && <p className="text-sm text-gray-600">{text}</p> || (type==="secondary") && <p className="text-sm text-gray-300">{text}</p>
+          return (type==="primary") && <p className="text-sm text-gray-600">{text}{props.children}</p> || (type==="secondary") && <p className="text-sm text-gray-300">{text}{props.children}</p>
           
         case "standard":
-          return (type==="primary") && <p className= "text-lg text-gray-600">{text} </p> || (type==="secondary") && <p className="text-gray-300">{text} </p> 
+          return (type==="primary") && <p className= "text-lg text-gray-600">{text}{props.children}</p> || (type==="secondary") && <p className="text-gray-300">{text}{props.children}</p> 
           
         case "large":
-          return (type==="primary") && <p className="text-xl text-gray-600">{text}</p> || (type==="secondary") && <p className="text-lg text-gray-300">{text}</p>
+          return (type==="primary") && <p className="text-xl text-gray-600">{text}{props.children}</p> || (type==="secondary") && <p className="text-lg text-gray-300">{text}{props.children}</p>
         
         default:
-          return null;
+          return null
     }
   }
 
   return (
     <>
-      { renderParagraph({size, text, ...props}) }
+      { renderParagraph({size, text, type, ...props}) }
     </>
   )
 }

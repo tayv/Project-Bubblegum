@@ -41,7 +41,6 @@ const WrapperRadioGroup: FC<LimitedRadioProps & RadioGroupProps> = ({
         name={name}
         render={({ field: {onChange, ...props} }) => (
           <>
-          {console.log("props: ", props)}
           <fieldset>
             <label htmlFor={name} className="block text-md font-bold text-gray-900">
               {groupLabel}
