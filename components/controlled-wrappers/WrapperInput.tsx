@@ -22,7 +22,7 @@ const WrapperInput: FC<InputProps> = ({
       <Controller
         control={control}
         name={name}
-        defaultValue={defaultValue}
+        defaultValue={defaultValue} // defaultValue is required for Input to prevent uncontrolled to controlled error
         render={({ field }) => (
           <Input {...field} // Need to place ...field above custom event handlers so that the built in handlers are overridden
             label={label} 

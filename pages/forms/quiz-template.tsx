@@ -95,7 +95,7 @@ const QuizTemplate: FC = () => {
     // set up form default values
     const defaultValues = {
       // Text Input Section
-      singleInput: "",
+      singleInput: " ",
       // Radio Input Section
       standardRadio: "mint",
       horizontalRadio: "no",
@@ -152,6 +152,7 @@ const QuizTemplate: FC = () => {
             type="text"
             tipText="Tip: This is a single line input"
             exampleText="e.g. Example goes here."
+            defaultValue="" 
             control={control}
             rules={{ required: "You must enter something" }}
           >
