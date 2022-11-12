@@ -14,6 +14,7 @@ import Label from '@components/layout/Label'
 import TemplateGeneric from '@components/products/producta/TemplateGeneric'
 import UpdateDocState from '@components/UpdateDocState'
 import { TextArea } from '@components/atoms/textarea'
+import WrapperTextArea from '@components/controlled-wrappers/WrapperTextArea'
 
 
 // data for Breadcrumbs
@@ -220,17 +221,17 @@ const QuizTemplate: FC = () => {
 
         <Section id="textArea" style="standard">
           <Heading text="Section Title: Text Areas" size="h3" type="primary"/>
-          <TextArea 
-            name="standardTextArea"
-            label="This is a standard text area"
+          <WrapperTextArea 
+            name="standardWrapperTextArea"
+            label="This is a standard wrapper text area"
             tipText="Tip: This is a standard text area"
             exampleText="e.g. Example goes here."
             control={control}
           />
-          <br/>
-          <TextArea 
-            name="largeTextArea"
-            label="This is a large text area"
+          <br />
+          <WrapperTextArea 
+            name="largeWrapperTextArea"
+            label="This is a large wrapper text area"
             tipText="Tip: This is a large text area"
             size="large"
             exampleText="e.g. Example goes here."
