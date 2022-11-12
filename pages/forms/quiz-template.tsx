@@ -95,7 +95,10 @@ const QuizTemplate: FC = () => {
     // set up form default values
     const defaultValues = {
       // Text Input Section
-      singleInput: " ",
+      singleInput: "",
+      // Text Area Section
+      standardTextArea: "",
+      largeTextArea: "",
       // Radio Input Section
       standardRadio: "mint",
       horizontalRadio: "no",
@@ -223,7 +226,7 @@ const QuizTemplate: FC = () => {
         <Section id="textArea" style="standard">
           <Heading text="Section Title: Text Areas" size="h3" type="primary"/>
           <WrapperTextArea 
-            name="standardWrapperTextArea"
+            name="standardTextArea"
             label="This is a standard wrapper text area"
             tipText="Tip: This is a standard text area"
             exampleText="e.g. Example goes here."
@@ -231,7 +234,7 @@ const QuizTemplate: FC = () => {
           />
           <br />
           <WrapperTextArea 
-            name="largeWrapperTextArea"
+            name="largeTextArea"
             label="This is a large wrapper text area"
             tipText="Tip: This is a large text area"
             size="large"
@@ -317,6 +320,17 @@ const QuizTemplate: FC = () => {
            // console.log(testGetVal)
           } }>
           Update Form State
+        </button>
+        
+        <br />
+        <button 
+          type="button" 
+          className="block border-gray-900 bg-pink-300 border px-2 py-1" 
+          onClick={ () => { 
+            const testGetVal = getValues("standardTextArea") 
+            console.log(testGetVal)
+          } }>
+          Print Input Value
         </button>
 
         <button 
