@@ -13,6 +13,7 @@ import Tip from '@components/layout/Tip'
 import Label from '@components/layout/Label'
 import TemplateGeneric from '@components/products/producta/TemplateGeneric'
 import UpdateDocState from '@components/UpdateDocState'
+import { TextArea } from '@components/atoms/textarea'
 
 
 // data for Breadcrumbs
@@ -152,7 +153,6 @@ const QuizTemplate: FC = () => {
             exampleText="e.g. Example goes here."
             control={control}
             rules={{ required: "You must enter something" }}
-            defaultValue=" " 
           >
             <HelpMessage 
               inputName="firstName" 
@@ -215,6 +215,17 @@ const QuizTemplate: FC = () => {
             style="standard" 
             label="This is a checkbox label" 
             control={control} 
+          />
+        </Section>
+
+        <Section id="textArea" style="standard">
+          <Heading text="Section Title: Text Areas" size="h3" type="primary"/>
+          <TextArea 
+            name="standardTextArea"
+            label="This is a standard text area"
+            tipText="Tip: This is a standard text area"
+            exampleText="e.g. Example goes here."
+            control={control}
           />
         </Section>
 
@@ -294,7 +305,7 @@ const QuizTemplate: FC = () => {
            // const testGetVal = getValues("regcheck") 
            // console.log(testGetVal)
           } }>
-          Get Input Value 
+          Update Form State
         </button>
 
         <button 
