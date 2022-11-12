@@ -227,6 +227,15 @@ const QuizTemplate: FC = () => {
             exampleText="e.g. Example goes here."
             control={control}
           />
+          <br/>
+          <TextArea 
+            name="largeTextArea"
+            label="This is a large text area"
+            tipText="Tip: This is a large text area"
+            size="large"
+            exampleText="e.g. Example goes here."
+            control={control}
+          />
         </Section>
 
              
