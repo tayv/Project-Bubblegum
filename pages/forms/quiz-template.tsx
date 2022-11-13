@@ -13,6 +13,8 @@ import Tip from '@components/layout/Tip'
 import Label from '@components/layout/Label'
 import TemplateGeneric from '@components/products/producta/TemplateGeneric'
 import UpdateDocState from '@components/UpdateDocState'
+import { TextArea } from '@components/atoms/textarea'
+import WrapperTextArea from '@components/controlled-wrappers/WrapperTextArea'
 
 
 // data for Breadcrumbs
@@ -94,6 +96,9 @@ const QuizTemplate: FC = () => {
     const defaultValues = {
       // Text Input Section
       singleInput: "",
+      // Text Area Section
+      standardTextArea: "",
+      largeTextArea: "",
       // Radio Input Section
       standardRadio: "mint",
       horizontalRadio: "no",
@@ -150,9 +155,9 @@ const QuizTemplate: FC = () => {
             type="text"
             tipText="Tip: This is a single line input"
             exampleText="e.g. Example goes here."
+            defaultValue="" 
             control={control}
             rules={{ required: "You must enter something" }}
-            defaultValue=" " 
           >
             <HelpMessage 
               inputName="firstName" 
@@ -215,6 +220,26 @@ const QuizTemplate: FC = () => {
             style="standard" 
             label="This is a checkbox label" 
             control={control} 
+          />
+        </Section>
+
+        <Section id="textArea" style="standard">
+          <Heading text="Section Title: Text Areas" size="h3" type="primary"/>
+          <WrapperTextArea 
+            name="standardTextArea"
+            label="This is a standard wrapper text area"
+            tipText="Tip: This is a standard text area"
+            exampleText="e.g. Example goes here."
+            control={control}
+          />
+          <br />
+          <WrapperTextArea 
+            name="largeTextArea"
+            label="This is a large wrapper text area"
+            tipText="Tip: This is a large text area"
+            size="large"
+            exampleText="e.g. Example goes here."
+            control={control}
           />
         </Section>
 
@@ -294,7 +319,18 @@ const QuizTemplate: FC = () => {
            // const testGetVal = getValues("regcheck") 
            // console.log(testGetVal)
           } }>
-          Get Input Value 
+          Update Form State
+        </button>
+        
+        <br />
+        <button 
+          type="button" 
+          className="block border-gray-900 bg-pink-300 border px-2 py-1" 
+          onClick={ () => { 
+            const testGetVal = getValues("standardTextArea") 
+            console.log(testGetVal)
+          } }>
+          Print Input Value
         </button>
 
         <button 
