@@ -13,8 +13,8 @@ import Tip from '@components/layout/Tip'
 import Label from '@components/layout/Label'
 import TemplateGeneric from '@components/products/producta/TemplateGeneric'
 import UpdateDocState from '@components/UpdateDocState'
-import { TextArea } from '@components/atoms/textarea'
 import WrapperTextArea from '@components/controlled-wrappers/WrapperTextArea'
+import { SelectItem } from '@components/atoms/select'
 
 
 // data for Breadcrumbs
@@ -241,6 +241,11 @@ const QuizTemplate: FC = () => {
             exampleText="e.g. Example goes here."
             control={control}
           />
+        </Section>
+
+        <Section id="radixSelect" style="standard">
+          <Heading text="Section Title: Radix Select" size="h3" type="primary"/>
+          <SelectItem />
         </Section>
 
              
