@@ -5,15 +5,17 @@ export type SelectProps = {
   
 }
 
-export const SelectItem = forwardRef(
+const SelectItem = forwardRef(
   (
-
+    {children,
+    ...props},
+    forwardedRef
 
   ) => {
    return (
-      <Select.Root>
-      <Select.Trigger className="text-md border-solid border-2 border-slate-500 px-2">
-        <Select.Value placeholder="select something"/>
+      <Select.Root {...props} >
+      <Select.Trigger ref={forwardedRef} className="text-md border-solid border-2 border-slate-500 px-2">
+        <Select.Value placeholder="select something" aria-label={props.value}>Select something...</Select.Value>
         <Select.Icon />
       </Select.Trigger>
 
@@ -48,3 +50,5 @@ export const SelectItem = forwardRef(
    )
   }
 )
+
+export default SelectItem
