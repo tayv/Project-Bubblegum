@@ -338,7 +338,7 @@ const QuizTemplate: FC = () => {
           type="button" 
           className="block border-gray-900 bg-pink-300 border px-2 py-1" 
           onClick={ () => { 
-            const testGetVal = getValues("standardTextArea") 
+            const testGetVal = getValues("wrapperselect") 
             console.log(testGetVal)
           } }>
           Print Input Value

@@ -15,7 +15,7 @@ const SelectItem = forwardRef(
    return (
       <Select.Root {...props} >
       <Select.Trigger ref={forwardedRef} className="text-md border-solid border-2 border-slate-500 px-2">
-        <Select.Value placeholder="select something" aria-label={props.value}>Select something...</Select.Value>
+        <Select.Value placeholder="select something" aria-label={props.value}>{props.value}.</Select.Value>
         <Select.Icon />
       </Select.Trigger>
 

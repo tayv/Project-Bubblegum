@@ -17,7 +17,7 @@ const WrapperSelect: FC= ({
         render={ ({ field: {onChange, value, ref, ...props} }) => (
           
           <SelectItem 
-            valueOnChange={onChange}
+            onValueChange={onChange}
             value={value}
             forwardedRef={ref}
           />
