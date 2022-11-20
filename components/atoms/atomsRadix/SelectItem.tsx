@@ -1,5 +1,6 @@
 import { Ref, forwardRef, SelectHTMLAttributes, FC, ReactNode, RefObject } from 'react'
 import * as Select from '@radix-ui/react-select'
+import { ChevronDownIcon } from '@heroicons/react/24/solid'
 
 export type SelectProps = {
   value: string
@@ -17,9 +18,11 @@ const SelectItem: FC<SelectProps> = forwardRef<HTMLButtonElement, SelectProps>(
   ) => {
    return (
       <Select.Root {...props} >
-      <Select.Trigger ref={forwardedRef} className="outline-none text-md border-solid border-2 border-slate-500 px-2 hover:bg-white">
+      <Select.Trigger ref={forwardedRef} className="inline-flex outline-none text-md border-solid border-2 border-slate-500 px-2 hover:bg-white">
         <Select.Value placeholder="select something" aria-label={props.value}></Select.Value>
-        <Select.Icon />
+        <Select.Icon>
+          <ChevronDownIcon className="h-6 w-6 text-black pt-1 pl-2" />
+        </Select.Icon>
       </Select.Trigger>
 
       <Select.Portal>
