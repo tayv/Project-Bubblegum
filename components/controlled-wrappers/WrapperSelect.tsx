@@ -1,7 +1,6 @@
 import React, { FC, JSXElementConstructor } from 'react'
 import { Controller, Control } from 'react-hook-form'
 import classNames from 'classnames'
-import { Control } from 'react-hook-form'
 import SelectItem, {SelectProps} from '@atoms/select'
 
 export type WrapperSelectProps = {
