@@ -1,11 +1,14 @@
-import { forwardRef, SelectHTMLAttributes } from 'react'
+import { Ref, forwardRef, SelectHTMLAttributes, FC, ReactNode, RefObject } from 'react'
 import * as Select from '@radix-ui/react-select'
 
 export type SelectProps = {
-  
+  value: string
+  name: string
+  onValueChange: (value: string) => void
+  forwardedRef: Ref<HTMLFormElement>
 }
 
-const SelectItem = forwardRef(
+const SelectItem: FC<SelectProps> = forwardRef<HTMLButtonElement, SelectProps>(
   (
     {children,
     ...props},
