@@ -7,7 +7,7 @@ import Tip, { TipProps } from '@components/layout/Tip'
 
 export type RadioGroupProps = {
   groupLabel: string
-  options: any // BUG: Unsure why TS doesn't like this being string[]. Flags map function in Controller render prop as error.
+  options: Array<{value: string, label: string}> 
   //value: string
   tipText?: TipProps["text"] 
   control: Control 

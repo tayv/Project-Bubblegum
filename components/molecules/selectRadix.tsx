@@ -2,15 +2,15 @@ import { Ref, forwardRef, SelectHTMLAttributes, FC, ReactNode, RefObject } from 
 import * as Select from '@radix-ui/react-select'
 import SelectItem from '@components/atoms/atomsRadix/SelectItem'
 
-export type SelectProps = {
+export type SelectRadixProps = {
   value: string
   name: string
-  options: []
+  options: Array<{value: string, labelText: string}>
   onValueChange: (value: string) => void
   forwardedRef: Ref<HTMLFormElement>
 }
 
-const SelectRadix: FC<SelectProps> = forwardRef<HTMLButtonElement, SelectProps>(
+const SelectRadix: FC<SelectRadixProps> = forwardRef<HTMLButtonElement, SelectRadixProps>(
   (
     {
       options,

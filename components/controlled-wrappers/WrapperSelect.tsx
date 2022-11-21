@@ -1,13 +1,15 @@
 import React, { FC, JSXElementConstructor } from 'react'
 import { Controller, Control } from 'react-hook-form'
 import classNames from 'classnames'
-import SelectRadix, {SelectProps} from '@components/molecules/SelectRadix'
+import SelectRadix, {SelectRadixProps} from '@components/molecules/SelectRadix'
 
 export type WrapperSelectProps = {
   control: Control
 }
 
-const WrapperSelect: FC<SelectProps & WrapperSelectProps>= ({
+type LimitedSelectRadixProps = Omit<SelectRadixProps, "value" | "onValueChange" | "forwardedRef">
+
+const WrapperSelect: FC<LimitedSelectRadixProps & WrapperSelectProps>= ({
   control,
   options,
   name

@@ -246,7 +246,7 @@ const QuizTemplate: FC = () => {
 
         <Section id="radixSelect" style="standard">
           <Heading text="Section Title: Radix Select" size="h3" type="primary"/>
-          <SelectRadix name="testRadixSelect" options={ [{value:"first", labelText:"firstText"}, {value:"second", labelText:"secondText"}] } />
+        
         </Section>
 
         <Section id="radixWrapperSelect" style="standard">
