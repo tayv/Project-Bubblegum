@@ -251,7 +251,7 @@ const QuizTemplate: FC = () => {
 
         <Section id="radixWrapperSelect" style="standard">
           <Heading text="Section Title: Wrapper Radix Select" size="h3" type="primary"/>
-          <WrapperSelect name="wrapperselect" control={control} options={ [{value:"first", labelText:"firstText"}, {value:"second", labelText:"secondText"}] }/>
+          <WrapperSelect name="wrapperselect" control={control} options={ [{value:"first", labelText:"firstText", separator: true}, {value:"second", labelText:"secondText", separator: false}] }/>
         </Section>
 
              
