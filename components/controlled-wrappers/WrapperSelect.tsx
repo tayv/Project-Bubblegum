@@ -1,7 +1,7 @@
 import React, { FC, JSXElementConstructor } from 'react'
 import { Controller, Control } from 'react-hook-form'
 import classNames from 'classnames'
-import SelectItem, {SelectProps} from '@atoms/atomsRadix/SelectItem'
+import SelectRadix, {SelectProps} from '@components/molecules/SelectRadix'
 
 export type WrapperSelectProps = {
   control: Control
@@ -9,6 +9,7 @@ export type WrapperSelectProps = {
 
 const WrapperSelect: FC<SelectProps & WrapperSelectProps>= ({
   control,
+  options,
   name
 }) => {  
 
@@ -19,10 +20,12 @@ const WrapperSelect: FC<SelectProps & WrapperSelectProps>= ({
         name={name}
         render={ ({ field: {onChange, value, ref, ...props} }) => (
           
-          <SelectItem 
+          <SelectRadix 
             onValueChange={onChange}
             value={value}
             forwardedRef={ref}
+            options={options}
+            {...props}
           />
      
          ) }  
