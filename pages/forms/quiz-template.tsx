@@ -256,9 +256,23 @@ const QuizTemplate: FC = () => {
             control={control} 
             placeholder="Select an option"
             options={ [
-              {value:"first", labelText:"firstText", separator: true}, 
-              {value:"second", labelText:"secondText", separator: false}
+                { groupLabel: "Group 1", 
+                  options: [
+                    {value:"first", labelText:"firstText", separator: false}, 
+                    {value:"second", labelText:"secondText", separator: true}
+                  ] 
+                },
+                { groupLabel: "Group 2", 
+                  options: [
+                    {value:"third", labelText:"thirdText", separator: false}, 
+                    {value:"fourth", labelText:"fourthText", separator: true}
+                  ] 
+                }
               ] }
+            // options={ [
+            //   {value:"first", labelText:"firstText", separator: true}, 
+            //   {value:"second", labelText:"secondText", separator: false}
+            //   ] }
             
           />
         </Section>
