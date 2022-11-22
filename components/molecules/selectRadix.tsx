@@ -38,7 +38,7 @@ const SelectRadix: FC<SelectRadixProps> = forwardRef<HTMLButtonElement, SelectRa
               { options.map((option: {value: string, labelText: string, separator: Boolean}, index: number) => {
                 return (
                 <>
-                  <Select.Label className="text-sm text-slate-500 pt-2">Greetings</Select.Label>
+                  <Select.Label className="text-sm text-slate-500 pt-2">{option.groupLabel}</Select.Label>
                   
                   { option.options.map((option: {value: string, labelText: string, separator: Boolean}, index: number) => {
                     return (
