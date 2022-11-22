@@ -33,20 +33,24 @@ const SelectRadix: FC<SelectRadixProps> = forwardRef<HTMLButtonElement, SelectRa
         <Select.Content className="outline-none border-solid border-2 border-slate-500 bg-white py-1 px-2">
           <Select.ScrollUpButton />
           <Select.Viewport>
-           
-           <SelectItem value="test" labelText="label test" />
 
             <Select.Group>
-              <Select.Label className="text-sm text-slate-500 pt-2">Greetings</Select.Label>
               { options.map((option: {value: string, labelText: string, separator: Boolean}, index: number) => {
                 return (
-
-                  <Select.Item key={index} value={option.value} className="outline-none cursor-pointer hover:bg-sky-300 px-2">
-                    <Select.ItemText>{option.labelText}</Select.ItemText>
-                    <Select.ItemIndicator />
-                    { (option.separator) && <Select.SelectSeparator className="h-px bg-slate-300" /> }
-                  </Select.Item>
-
+                <>
+                  <Select.Label className="text-sm text-slate-500 pt-2">Greetings</Select.Label>
+                  
+                  { option.options.map((option: {value: string, labelText: string, separator: Boolean}, index: number) => {
+                    return (
+                    <Select.Item key={index} value={option.value} className="outline-none cursor-pointer hover:bg-sky-300 px-2">
+                      <Select.ItemText>{option.labelText}</Select.ItemText>
+                      <Select.ItemIndicator />
+                      { (option.separator) && <Select.SelectSeparator className="h-px bg-slate-300" /> }
+                    </Select.Item>
+                    )
+                  })}
+                 
+                </>
                 )
               } ) }
             </Select.Group>
