@@ -10,9 +10,10 @@ export type WrapperSelectProps = {
 type LimitedSelectRadixProps = Omit<SelectRadixProps, "value" | "onValueChange" | "forwardedRef">
 
 const WrapperSelect: FC<LimitedSelectRadixProps & WrapperSelectProps>= ({
-  control,
+  name,
+  placeholder,
   options,
-  name
+  control,
 }) => {  
 
   return (
@@ -26,6 +27,7 @@ const WrapperSelect: FC<LimitedSelectRadixProps & WrapperSelectProps>= ({
             onValueChange={onChange}
             value={value}
             forwardedRef={ref}
+            placeholder={placeholder}
             options={options}
             {...props}
           />

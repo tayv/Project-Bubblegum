@@ -5,6 +5,7 @@ import SelectItem from '@components/atoms/atomsRadix/SelectItem'
 export type SelectRadixProps = {
   value: string
   name: string
+  placeholder: string
   options: Array<{value: string, labelText: string, separator: Boolean}>
   onValueChange: (value: string) => void
   forwardedRef: Ref<HTMLFormElement>
@@ -13,6 +14,7 @@ export type SelectRadixProps = {
 const SelectRadix: FC<SelectRadixProps> = forwardRef<HTMLButtonElement, SelectRadixProps>(
   (
     {
+      placeholder,
       options,
       children,
       ...props
@@ -23,12 +25,12 @@ const SelectRadix: FC<SelectRadixProps> = forwardRef<HTMLButtonElement, SelectRa
    return (
       <Select.Root {...props} >
       <Select.Trigger ref={forwardedRef} className="outline-none text-md border-solid border-2 border-slate-500 px-2 hover:bg-white">
-        <Select.Value placeholder="select something" aria-label={props.value}></Select.Value>
+        <Select.Value placeholder={placeholder} />
         <Select.Icon />
       </Select.Trigger>
  
       <Select.Portal>
-        <Select.Content className="outline-none border-solid border-2 border-slate-500 bg-white px-2">
+        <Select.Content className="outline-none border-solid border-2 border-slate-500 bg-white py-1 px-2">
           <Select.ScrollUpButton />
           <Select.Viewport>
            
