@@ -12,7 +12,7 @@ type LimitedSelectRadixProps = Omit<SelectRadixProps, "value" | "onValueChange" 
 const WrapperSelect: FC<LimitedSelectRadixProps & WrapperSelectProps>= ({
   name,
   placeholder,
-  options,
+  itemOptions,
   control,
 }) => {  
 
@@ -28,13 +28,12 @@ const WrapperSelect: FC<LimitedSelectRadixProps & WrapperSelectProps>= ({
             value={value}
             forwardedRef={ref}
             placeholder={placeholder}
-            options={options}
+            itemOptions={itemOptions}
             {...props}
           />
      
          ) }  
       />
-          { console.log("select item:", name)}
     </> 
   )
 }

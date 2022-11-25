@@ -14,7 +14,6 @@ import Label from '@components/layout/Label'
 import TemplateGeneric from '@components/products/producta/TemplateGeneric'
 import UpdateDocState from '@components/UpdateDocState'
 import WrapperTextArea from '@components/controlled-wrappers/WrapperTextArea'
-import SelectRadix from '@components/molecules/SelectRadix'
 import WrapperSelect from '@components/controlled-wrappers/WrapperSelect'
 
 
@@ -255,25 +254,20 @@ const QuizTemplate: FC = () => {
             name="wrapperselect" 
             control={control} 
             placeholder="Select an option"
-            options={ [
+            itemOptions={ [
                 { groupLabel: "Group 1", 
-                  options: [
+                  items: [
                     {value:"first", labelText:"firstText", separator: false}, 
                     {value:"second", labelText:"secondText", separator: true}
                   ] 
                 },
                 { groupLabel: "Group 2", 
-                  options: [
+                  items: [
                     {value:"third", labelText:"thirdText", separator: false}, 
                     {value:"fourth", labelText:"fourthText", separator: true}
                   ] 
                 }
               ] }
-            // options={ [
-            //   {value:"first", labelText:"firstText", separator: true}, 
-            //   {value:"second", labelText:"secondText", separator: false}
-            //   ] }
-            
           />
         </Section>
 

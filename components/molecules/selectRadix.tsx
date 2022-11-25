@@ -1,12 +1,15 @@
 import { Ref, forwardRef, SelectHTMLAttributes, FC, ReactNode, RefObject } from 'react'
 import * as Select from '@radix-ui/react-select'
-import SelectItem from '@components/atoms/atomsRadix/SelectItem'
+
+export type ItemDetails = { value: string, labelText: string, separator: Boolean }
+
+export type ItemOptions = { groupLabel: string | null, items: Array<ItemDetails> }
 
 export type SelectRadixProps = {
   value: string
   name: string
   placeholder: string
-  options: Array<{value: string, labelText: string, separator: Boolean}>
+  itemOptions: Array<ItemOptions>
   onValueChange: (value: string) => void
   forwardedRef: Ref<HTMLFormElement>
 }
@@ -15,7 +18,7 @@ const SelectRadix: FC<SelectRadixProps> = forwardRef<HTMLButtonElement, SelectRa
   (
     {
       placeholder,
-      options,
+      itemOptions,
       children,
       ...props
     },
@@ -35,18 +38,19 @@ const SelectRadix: FC<SelectRadixProps> = forwardRef<HTMLButtonElement, SelectRa
           <Select.Viewport>
 
             <Select.Group>
-              { options.map((option: {value: string, labelText: string, separator: Boolean}, index: number) => {
+              { itemOptions.map((itemOption: ItemOptions, index: number) => {
                 return (
                 <>
-                  <Select.Label className="text-sm text-slate-500 pt-2">{option.groupLabel}</Select.Label>
+                  <Select.Label key={"a" + index} className="text-sm text-slate-500 pt-2">{itemOption.groupLabel}</Select.Label>
                   
-                  { option.options.map((option: {value: string, labelText: string, separator: Boolean}, index: number) => {
+                  { itemOption.items.map((item: ItemDetails, index: number) => {
                     return (
-                    <Select.Item key={index} value={option.value} className="outline-none cursor-pointer hover:bg-sky-300 px-2">
-                      <Select.ItemText>{option.labelText}</Select.ItemText>
-                      <Select.ItemIndicator />
-                      { (option.separator) && <Select.SelectSeparator className="h-px bg-slate-300" /> }
-                    </Select.Item>
+                      <Select.Item key={index} value={item.value} className="outline-none cursor-pointer hover:bg-sky-300 px-2">
+                        <Select.ItemText key={"b" + index}>{item.labelText}</Select.ItemText>
+                        <Select.ItemIndicator key={"c" + index} />
+                        
+                        { (item.separator) && <Select.SelectSeparator key={"d" + index} className="h-px bg-slate-300" /> } 
+                      </Select.Item>
                     )
                   })}
                  
@@ -68,3 +72,6 @@ const SelectRadix: FC<SelectRadixProps> = forwardRef<HTMLButtonElement, SelectRa
 export default SelectRadix
 
 // Radix documentation: https://www.radix-ui.com/docs/primitives/components/select 
+
+// Usage
+  // To hide group label: Assign groupLabel value to null
