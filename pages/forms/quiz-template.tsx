@@ -254,6 +254,17 @@ const QuizTemplate: FC = () => {
             name="wrapperselect" 
             control={control} 
             placeholder="Select an option"
+            isGroup={true}
+            // itemOptions={ [
+
+            //       {value:"first", labelText:"firstText", separator: false}, 
+            //       {value:"second", labelText:"secondText", separator: true},
+            //       {value:"third", labelText:"thirdText", separator: false}, 
+            //       {value:"fourth", labelText:"fourthText", separator: true},
+                
+          
+            // ] }
+
             itemOptions={ [
                 { groupLabel: "Group 1", 
                   items: [
