@@ -1,25 +1,27 @@
 import { Ref, forwardRef, SelectHTMLAttributes, FC, ReactNode, RefObject } from 'react'
 import * as Select from '@radix-ui/react-select'
 
-export type ItemDetails = { value: string, labelText: string, separator: Boolean }
+export type ItemOptions = { value: string, labelText: string, separator: Boolean }
+export type GroupItemOptions = { groupLabel: string | null, items: Array<ItemOptions> }
 
-export type ItemOptions = { groupLabel: string | null, items: Array<ItemDetails> }
+// export type ItemOptions<T> = T extends SingleItemOptions ? SingleItemOptions : GroupItemOptions
 
 export type SelectRadixProps = {
   value: string
   name: string
   placeholder: string
-  itemOptions: Array<ItemOptions>
+  itemOptions: Array<ItemOptions | GroupItemOptions>
   onValueChange: (value: string) => void
   forwardedRef: Ref<HTMLFormElement>
 }
 
 // Utility functions for this component
-const renderItems = (itemOptions) => {
+const renderItems = (itemOptions: Array<ItemOptions> ) => {
   return (
     <>
-    { itemOptions[0].items.map((item: ItemDetails, index: number) => {
-      return (
+    {/* [0] is used because only one group is allowed in a standard Select component */}
+    { itemOptions.map((item: ItemOptions, index: number) => {
+      return ( 
       
         <Select.Item key={index} value={item.value} className="outline-none cursor-pointer hover:bg-sky-300 px-2">
           <Select.ItemText>{item.labelText}</Select.ItemText>

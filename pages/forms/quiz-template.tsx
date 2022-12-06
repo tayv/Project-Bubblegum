@@ -255,30 +255,30 @@ const QuizTemplate: FC = () => {
             control={control} 
             placeholder="Select an option"
             isGroup={true}
-            // itemOptions={ [
+            itemOptions={ [
 
-            //       {value:"first", labelText:"firstText", separator: false}, 
-            //       {value:"second", labelText:"secondText", separator: true},
-            //       {value:"third", labelText:"thirdText", separator: false}, 
-            //       {value:"fourth", labelText:"fourthText", separator: true},
+                  {value:"first", labelText:"firstText", separator: false}, 
+                  {value:"second", labelText:"secondText", separator: true},
+                  {value:"third", labelText:"thirdText", separator: false}, 
+                  {value:"fourth", labelText:"fourthText", separator: true},
                 
           
-            // ] }
+            ] }
 
-            itemOptions={ [
-                { groupLabel: "Group 1", 
-                  items: [
-                    {value:"first", labelText:"firstText", separator: false}, 
-                    {value:"second", labelText:"secondText", separator: true}
-                  ] 
-                },
-                { groupLabel: "Group 2", 
-                  items: [
-                    {value:"third", labelText:"thirdText", separator: false}, 
-                    {value:"fourth", labelText:"fourthText", separator: true}
-                  ] 
-                }
-              ] }
+            // itemOptions={ [
+            //     { groupLabel: "Group 1", 
+            //       items: [
+            //         {value:"first", labelText:"firstText", separator: false}, 
+            //         {value:"second", labelText:"secondText", separator: true}
+            //       ] 
+            //     },
+            //     { groupLabel: "Group 2", 
+            //       items: [
+            //         {value:"third", labelText:"thirdText", separator: false}, 
+            //         {value:"fourth", labelText:"fourthText", separator: true}
+            //       ] 
+            //     }
+            //   ] }
           />
         </Section>
 
