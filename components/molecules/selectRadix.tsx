@@ -36,9 +36,10 @@ const renderItems = (itemOptions: Array<ItemOptions> ) => {
   )
 }
 
- // Check if the itemOptions object is for grouped items or not
+ // Check if the itemOptions object has grouped items 
 const checkForGroupedItems = (itemOptions: any) => {
-  (itemOptions[0].groupLabel) ? renderGroupedItems(itemOptions) : renderItems(itemOptions)
+  let renderList = (itemOptions[0] === "groupLabel") ? renderGroupedItems(itemOptions) : renderItems(itemOptions)
+  return renderList
 }
 
 const renderGroupedItems = (itemOptions: Array<GroupItemOptions>) => {
@@ -87,7 +88,6 @@ const SelectRadix: FC<SelectRadixProps> = forwardRef<HTMLButtonElement, SelectRa
           <Select.ScrollUpButton />
           <Select.Viewport>
               {/* Need a condition here to check whether to render grouped list vs standard select  */}
-              {/* { (checkForGroupedItems(itemOptions) ) ? renderGroupedItems(itemOptions) : renderItems(itemOptions) } */}
               { checkForGroupedItems(itemOptions) }
           </Select.Viewport>
           <Select.ScrollDownButton />
