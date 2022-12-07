@@ -254,7 +254,7 @@ const QuizTemplate: FC = () => {
             name="wrapperselect" 
             control={control} 
             placeholder="Select an option"
-            isGroup={true}
+            isGroup={false}
             itemOptions={ [
 
                   {value:"first", labelText:"firstText", separator: false}, 

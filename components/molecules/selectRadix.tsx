@@ -10,6 +10,7 @@ export type SelectRadixProps = {
   value: string
   name: string
   placeholder: string
+  isGroup: Boolean
   itemOptions: Array<ItemOptions | GroupItemOptions>
   onValueChange: (value: string) => void
   forwardedRef: Ref<HTMLFormElement>
@@ -19,7 +20,7 @@ export type SelectRadixProps = {
 const renderItems = (itemOptions: Array<ItemOptions> ) => {
   return (
     <>
-    {/* [0] is used because only one group is allowed in a standard Select component */}
+    {console.log("renderItems: ", itemOptions)}
     { itemOptions.map((item: ItemOptions, index: number) => {
       return ( 
       
@@ -35,16 +36,23 @@ const renderItems = (itemOptions: Array<ItemOptions> ) => {
   )
 }
 
-const renderGroupedItems = (itemOptions) => {
+ // Check if the itemOptions object is for grouped items or not
+const checkForGroupedItems = (itemOptions: any) => {
+  (itemOptions[0].groupLabel) ? renderGroupedItems(itemOptions) : renderItems(itemOptions)
+}
+
+const renderGroupedItems = (itemOptions: Array<GroupItemOptions>) => {
+
   return (
     <>
-      { itemOptions.map((itemOption: ItemOptions, index: number) => {
+      { itemOptions.map((itemOption: GroupItemOptions, index: number) => {
         return (
           <Select.Group key={index}>
 
             {/*  One label per group. It's not reachable via keyboard and used only for the respective group of items. It's different from the input's label. */}
             <Select.Label key={itemOption.groupLabel} className="text-sm text-slate-500 pt-2">{itemOption.groupLabel}</Select.Label>
-            { renderItems(itemOption)}
+          
+            { renderItems(itemOption.items)}
 
           </Select.Group>
         )
@@ -78,9 +86,9 @@ const SelectRadix: FC<SelectRadixProps> = forwardRef<HTMLButtonElement, SelectRa
         <Select.Content className="outline-none border-solid border-2 border-slate-500 bg-white py-1 px-2">
           <Select.ScrollUpButton />
           <Select.Viewport>
-              {/* Need a condition here to check whether to render grouped lists vs standard select  */}
-              { isGroup ? renderGroupedItems(itemOptions) : renderItems(itemOptions) }
-
+              {/* Need a condition here to check whether to render grouped list vs standard select  */}
+              {/* { (checkForGroupedItems(itemOptions) ) ? renderGroupedItems(itemOptions) : renderItems(itemOptions) } */}
+              { checkForGroupedItems(itemOptions) }
           </Select.Viewport>
           <Select.ScrollDownButton />
         </Select.Content>
