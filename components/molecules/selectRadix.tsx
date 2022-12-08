@@ -34,8 +34,8 @@ const renderItems = (itemOptions: Array<ItemOptions> ) => {
 
  // Check if the itemOptions object has grouped items 
 const checkForGroupedItems = (itemOptions: any) => {
-  // If the first property of the itemOptions object is "groupLabel", then it's a grouped item
-  let renderList = (itemOptions[0] === "groupLabel") ? renderGroupedItems(itemOptions) : renderItems(itemOptions)
+  // If the itemOptions object is missing a "groupLabel" property, then it's NOT a grouped item list
+  let renderList = (!!itemOptions[0].groupLabel) ? renderGroupedItems(itemOptions) : renderItems(itemOptions)
   return renderList
 }
 
@@ -44,13 +44,14 @@ const renderGroupedItems = (itemOptions: Array<GroupItemOptions>) => {
   return (
     <>
       { itemOptions.map((itemOption: GroupItemOptions, index: number) => {
+          {console.log("renderGroup", itemOption)}
         return (
           <Select.Group key={index}>
 
             {/*  One label per group. It's not reachable via keyboard and used only for the respective group of items. It's different from the input's label. */}
             <Select.Label key={itemOption.groupLabel} className="text-sm text-slate-500 pt-2">{itemOption.groupLabel}</Select.Label>
           
-            { renderItems(itemOption.items)}
+            { renderItems(itemOption.items) }
 
           </Select.Group>
         )
@@ -100,4 +101,6 @@ export default SelectRadix
 // Radix documentation: https://www.radix-ui.com/docs/primitives/components/select 
 
 // Usage
-  // To hide group label: Assign groupLabel value to null
+  // Schema will change whether the select is grouped or not
+    // Flat List: type ItemOptions = { value: string, labelText: string, separator: Boolean }
+    // Group List: type GroupItemOptions = { groupLabel: string | null, items: Array<ItemOptions> }

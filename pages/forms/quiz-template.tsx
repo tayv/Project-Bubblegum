@@ -243,13 +243,9 @@ const QuizTemplate: FC = () => {
           />
         </Section>
 
-        <Section id="radixSelect" style="standard">
-          <Heading text="Section Title: Radix Select" size="h3" type="primary"/>
-        
-        </Section>
-
         <Section id="radixWrapperSelect" style="standard">
           <Heading text="Section Title: Wrapper Radix Select" size="h3" type="primary"/>
+          <Label type="standard" label="This is flat list Radix Select" />
           <WrapperSelect 
             name="wrapperselect" 
             control={control} 
@@ -261,6 +257,9 @@ const QuizTemplate: FC = () => {
                   {value:"fourth", labelText:"fourthText", separator: true},
             ] }
           />
+          <br />
+          <br />
+          <Label type="standard" label="This is grouped list Radix Select" />
           <WrapperSelect 
             name="wrapperselect" 
             control={control} 
