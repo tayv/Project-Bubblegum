@@ -44,7 +44,7 @@ const renderGroupedItems = (itemOptions: Array<GroupItemOptions>) => {
   return (
     <>
       { itemOptions.map((itemOption: GroupItemOptions, index: number) => {
-          {console.log("renderGroup", itemOption)}
+
         return (
           <Select.Group key={index}>
 
