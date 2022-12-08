@@ -57,7 +57,7 @@ export const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
   ) => {
     return (
       <div className="max-w-sm">
-        <Label type="standard" label={label} />
+        <Label type="standard" label={label} htmlFor={name} />
         <Tip text={tipText} type="standard" />
         <input
           ref={ref}

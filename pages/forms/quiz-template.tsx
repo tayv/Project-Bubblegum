@@ -15,6 +15,7 @@ import TemplateGeneric from '@components/products/producta/TemplateGeneric'
 import UpdateDocState from '@components/UpdateDocState'
 import WrapperTextArea from '@components/controlled-wrappers/WrapperTextArea'
 import WrapperSelect from '@components/controlled-wrappers/WrapperSelect'
+import { InputLabel } from '@components/atoms/InputLabelRadix'
 
 
 // data for Breadcrumbs
@@ -149,6 +150,7 @@ const QuizTemplate: FC = () => {
         </Section>
         <Section id="textInput" style="standard">
           <Heading text="Section Title: Single Line Input" size="h3" type="primary"/>
+          <InputLabel htmlFor="singleInput" labelText="This is a radix input label">
           <WrapperInput
             name="singleInput"
             label="This is a label"
@@ -168,10 +170,15 @@ const QuizTemplate: FC = () => {
               customRegEx={null} 
             />
           </WrapperInput>
+          </InputLabel>
+        
+            
+          
         </Section>
  
         <Section id="radioInput" style="standard">
           <Heading text="Section Title: Radio Groups" size="h3" type="primary"/>
+          <InputLabel htmlFor="standardRadio" labelText="This is a radix input label">
           <WrapperRadioGroup
             name="standardRadio"
             groupLabel="This is a radio group label"
@@ -184,6 +191,7 @@ const QuizTemplate: FC = () => {
               {value: "chocolate", label: "Chocolate ice cream"}, 
               {value: "vanilla", label: "Vanilla ice cream"}] }
           />
+          </InputLabel>
           <br />
           <WrapperRadioGroup
             name="horizontalRadio"
@@ -213,7 +221,7 @@ const QuizTemplate: FC = () => {
         
         <Section id="checkboxInput" style="standard">
           <Heading text="Section Title: Checkboxes" size="h3" type="primary"/>
-          <Label type="standard" label="This is a checkbox label" />
+          <Label type="standard" htmlFor="checkboxInput" label="This is a checkbox label" />
           <Tip text="Tip: These are standard checkboxes" type="standard" />
           <WrapperCheckbox 
             id="checkboxInput" 
@@ -245,7 +253,7 @@ const QuizTemplate: FC = () => {
 
         <Section id="radixWrapperSelect" style="standard">
           <Heading text="Section Title: Wrapper Radix Select" size="h3" type="primary"/>
-          <Label type="standard" label="This is flat list Radix Select" />
+          <Label type="standard" htmlFor="flatselect" label="This is flat list Radix Select" />
           <WrapperSelect 
             name="flatselect" 
             control={control} 
@@ -259,7 +267,7 @@ const QuizTemplate: FC = () => {
           />
           <br />
           <br />
-          <Label type="standard" label="This is grouped list Radix Select" />
+          <Label type="standard" htmlFor="groupselect" label="This is grouped list Radix Select" />
           <WrapperSelect 
             name="groupselect" 
             control={control} 
@@ -287,7 +295,7 @@ const QuizTemplate: FC = () => {
           { 
             sectionVis.rhfradios && <Section id="rhf-radios" style="standard">
               <Heading text="Section Title: RHF register radios" size="h3" type="primary"/>
-              <Label type="standard" label="These use rhf's register" />
+              <Label type="standard" htmlFor="registerradio" label="These use rhf's register" />
               <Tip text="Tip: pick your favorite type of racing" type="standard" />
               <input {...register("registerradio")} id="registerradio1" type="radio" value="motogp" />
               <label htmlFor="registerradio1">Moto GP</label> 
