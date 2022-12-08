@@ -4,13 +4,10 @@ import * as Select from '@radix-ui/react-select'
 export type ItemOptions = { value: string, labelText: string, separator: Boolean }
 export type GroupItemOptions = { groupLabel: string | null, items: Array<ItemOptions> }
 
-// export type ItemOptions<T> = T extends SingleItemOptions ? SingleItemOptions : GroupItemOptions
-
 export type SelectRadixProps = {
   value: string
   name: string
   placeholder: string
-  isGroup: Boolean
   itemOptions: Array<ItemOptions | GroupItemOptions>
   onValueChange: (value: string) => void
   forwardedRef: Ref<HTMLFormElement>
@@ -20,7 +17,6 @@ export type SelectRadixProps = {
 const renderItems = (itemOptions: Array<ItemOptions> ) => {
   return (
     <>
-    {console.log("renderItems: ", itemOptions)}
     { itemOptions.map((item: ItemOptions, index: number) => {
       return ( 
       
@@ -38,6 +34,7 @@ const renderItems = (itemOptions: Array<ItemOptions> ) => {
 
  // Check if the itemOptions object has grouped items 
 const checkForGroupedItems = (itemOptions: any) => {
+  // If the first property of the itemOptions object is "groupLabel", then it's a grouped item
   let renderList = (itemOptions[0] === "groupLabel") ? renderGroupedItems(itemOptions) : renderItems(itemOptions)
   return renderList
 }
@@ -69,7 +66,6 @@ const SelectRadix: FC<SelectRadixProps> = forwardRef<HTMLButtonElement, SelectRa
       placeholder,
       itemOptions,
       children,
-      isGroup,
       ...props
     },
     forwardedRef

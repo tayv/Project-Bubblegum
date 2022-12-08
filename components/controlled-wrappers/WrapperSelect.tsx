@@ -13,7 +13,6 @@ const WrapperSelect: FC<LimitedSelectRadixProps & WrapperSelectProps>= ({
   name,
   placeholder,
   itemOptions,
-  isGroup,
   control,
 }) => {  
 
@@ -27,7 +26,6 @@ const WrapperSelect: FC<LimitedSelectRadixProps & WrapperSelectProps>= ({
           <SelectRadix 
             onValueChange={onChange}
             value={value}
-            isGroup={isGroup}
             forwardedRef={ref}
             placeholder={placeholder}
             itemOptions={itemOptions}
