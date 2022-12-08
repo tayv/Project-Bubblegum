@@ -1,7 +1,7 @@
 import React, { FC, JSXElementConstructor } from 'react'
 import { Controller, Control } from 'react-hook-form'
 import classNames from 'classnames'
-import SelectRadix, {SelectRadixProps} from '@components/molecules/SelectRadix'
+import SelectRadix, {SelectRadixProps} from '@molecules/SelectRadix'
 
 export type WrapperSelectProps = {
   control: Control

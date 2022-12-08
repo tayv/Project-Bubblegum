@@ -247,7 +247,7 @@ const QuizTemplate: FC = () => {
           <Heading text="Section Title: Wrapper Radix Select" size="h3" type="primary"/>
           <Label type="standard" label="This is flat list Radix Select" />
           <WrapperSelect 
-            name="wrapperselect" 
+            name="flatselect" 
             control={control} 
             placeholder="Select an option"
             itemOptions={ [
@@ -261,7 +261,7 @@ const QuizTemplate: FC = () => {
           <br />
           <Label type="standard" label="This is grouped list Radix Select" />
           <WrapperSelect 
-            name="wrapperselect" 
+            name="groupselect" 
             control={control} 
             placeholder="Select an option"
             itemOptions={ [
