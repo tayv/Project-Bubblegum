@@ -17,7 +17,7 @@ export type CheckboxProps = {
   register?: any // react-hook-form: to register an input (not needed if using Controller)
   rules?: Record<string, any> // react-hook-form: validation rules. Any object so used generic Record type.
   
-} & Omit <HTMLAttributes<HTMLInputElement>, 'defaultValues'> // omit used to prevent type error on input element
+} & Omit <HTMLAttributes<HTMLInputElement>, "defaultValues"> // omit used to prevent type error on input element
 
 const Checkbox: FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>( (
   {

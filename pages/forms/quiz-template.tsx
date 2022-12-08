@@ -13,8 +13,8 @@ import Tip from '@components/layout/Tip'
 import Label from '@components/layout/Label'
 import TemplateGeneric from '@components/products/producta/TemplateGeneric'
 import UpdateDocState from '@components/UpdateDocState'
-import { TextArea } from '@components/atoms/textarea'
 import WrapperTextArea from '@components/controlled-wrappers/WrapperTextArea'
+import WrapperSelect from '@components/controlled-wrappers/WrapperSelect'
 
 
 // data for Breadcrumbs
@@ -243,6 +243,44 @@ const QuizTemplate: FC = () => {
           />
         </Section>
 
+        <Section id="radixWrapperSelect" style="standard">
+          <Heading text="Section Title: Wrapper Radix Select" size="h3" type="primary"/>
+          <Label type="standard" label="This is flat list Radix Select" />
+          <WrapperSelect 
+            name="wrapperselect" 
+            control={control} 
+            placeholder="Select an option"
+            itemOptions={ [
+                  {value:"first", labelText:"firstText", separator: false}, 
+                  {value:"second", labelText:"secondText", separator: true},
+                  {value:"third", labelText:"thirdText", separator: false}, 
+                  {value:"fourth", labelText:"fourthText", separator: true},
+            ] }
+          />
+          <br />
+          <br />
+          <Label type="standard" label="This is grouped list Radix Select" />
+          <WrapperSelect 
+            name="wrapperselect" 
+            control={control} 
+            placeholder="Select an option"
+            itemOptions={ [
+                { groupLabel: "Group 1", 
+                  items: [
+                    {value:"first", labelText:"firstText", separator: false}, 
+                    {value:"second", labelText:"secondText", separator: true}
+                  ] 
+                },
+                { groupLabel: "Group 2", 
+                  items: [
+                    {value:"third", labelText:"thirdText", separator: false}, 
+                    {value:"fourth", labelText:"fourthText", separator: true}
+                  ] 
+                }
+              ] }
+          />
+        </Section>
+
              
        {/* VISIBILITY CONDITION TEST SECTION --------------------------------------------- */}
 
@@ -327,7 +365,7 @@ const QuizTemplate: FC = () => {
           type="button" 
           className="block border-gray-900 bg-pink-300 border px-2 py-1" 
           onClick={ () => { 
-            const testGetVal = getValues("standardTextArea") 
+            const testGetVal = getValues("wrapperselect") 
             console.log(testGetVal)
           } }>
           Print Input Value
