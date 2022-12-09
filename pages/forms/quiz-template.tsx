@@ -10,12 +10,12 @@ import WrapperRadioGroup from '@components/controlled-wrappers/WrapperRadioGroup
 import Section from '@components/layout/Section'
 import WrapperCheckbox from '@components/controlled-wrappers/WrapperCheckbox'
 import Tip from '@components/layout/Tip'
-import Label from '@components/layout/Label'
+import Label from '@components/layout/InputLabelRadix'
 import TemplateGeneric from '@components/products/producta/TemplateGeneric'
 import UpdateDocState from '@components/UpdateDocState'
 import WrapperTextArea from '@components/controlled-wrappers/WrapperTextArea'
 import WrapperSelect from '@components/controlled-wrappers/WrapperSelect'
-import { InputLabel } from '@components/atoms/InputLabelRadix'
+import { InputLabelRadix } from '@components/atoms/InputLabelRadix'
 
 
 // data for Breadcrumbs
@@ -150,7 +150,6 @@ const QuizTemplate: FC = () => {
         </Section>
         <Section id="textInput" style="standard">
           <Heading text="Section Title: Single Line Input" size="h3" type="primary"/>
-          <InputLabel htmlFor="singleInput" labelText="This is a radix input label">
           <WrapperInput
             name="singleInput"
             label="This is a label"
@@ -170,15 +169,11 @@ const QuizTemplate: FC = () => {
               customRegEx={null} 
             />
           </WrapperInput>
-          </InputLabel>
-        
-            
           
         </Section>
  
         <Section id="radioInput" style="standard">
           <Heading text="Section Title: Radio Groups" size="h3" type="primary"/>
-          <InputLabel htmlFor="standardRadio" labelText="This is a radix input label">
           <WrapperRadioGroup
             name="standardRadio"
             groupLabel="This is a radio group label"
@@ -191,7 +186,6 @@ const QuizTemplate: FC = () => {
               {value: "chocolate", label: "Chocolate ice cream"}, 
               {value: "vanilla", label: "Vanilla ice cream"}] }
           />
-          </InputLabel>
           <br />
           <WrapperRadioGroup
             name="horizontalRadio"

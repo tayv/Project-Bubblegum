@@ -1,4 +1,5 @@
 import { FC, ReactNode } from 'react'
+import * as Label from '@radix-ui/react-label' 
 
 export type LabelProps = {
     type: "standard" | "checkbox"
@@ -7,7 +8,7 @@ export type LabelProps = {
     children?: ReactNode
 }
 
-const Label: FC<LabelProps> = ({
+const InputLabelRadix: FC<LabelProps> = ({
     type,
     label, 
     htmlFor,
@@ -17,7 +18,12 @@ const Label: FC<LabelProps> = ({
     const renderLabel = ({type, label}: LabelProps) => {
       switch (type) {
         case "standard":
-          return <label htmlFor={htmlFor} className="block text-md font-bold text-gray-900">{label}{props.children}</label>
+          return (<div>
+          <Label.Root htmlFor={htmlFor} className="block text-md font-bold text-gray-900">
+            {label}
+          </Label.Root>
+          {props.children}
+        </div> )
           
         case "checkbox":
           return <label className="inline-flex items-center">{props.children}</label>
@@ -34,7 +40,7 @@ const Label: FC<LabelProps> = ({
   )
 }
 
-export default Label
+export default InputLabelRadix
 
 
 // Need to use function expression to render a switch statement in react. 

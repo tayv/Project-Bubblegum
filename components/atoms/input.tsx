@@ -2,7 +2,8 @@ import React, { FC, ChangeEvent, forwardRef, InputHTMLAttributes, DetailedHTMLPr
 import classNames from 'classnames'
 import { Control } from 'react-hook-form'
 import Tip, { TipProps } from '@components/layout/Tip'
-import Label, { LabelProps } from '@components/layout/Label'
+import Label, { LabelProps } from '@components/layout/InputLabelRadix'
+import InputLabelRadix from '@components/layout/InputLabelRadix'
 
 // OVERVIEW
   // This atom form component provides styling and accessibility requirements. Validation, event handlers, etc. 
@@ -57,7 +58,7 @@ export const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
   ) => {
     return (
       <div className="max-w-sm">
-        <Label type="standard" label={label} htmlFor={name} />
+        <InputLabelRadix type="standard" label={label} htmlFor={name} />
         <Tip text={tipText} type="standard" />
         <input
           ref={ref}

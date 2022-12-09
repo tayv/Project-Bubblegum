@@ -2,7 +2,7 @@ import React, { FC, ChangeEvent, forwardRef, InputHTMLAttributes, DetailedHTMLPr
 import classNames from 'classnames'
 import { Control } from 'react-hook-form'
 import Tip, { TipProps } from '@components/layout/Tip'
-import Label, { LabelProps } from '@components/layout/Label'
+import InputLabel, { LabelProps } from '@components/layout/InputLabelRadix'
 
 // OVERVIEW
   // This atom form component provides styling and accessibility requirements. Validation, event handlers, etc. 
@@ -53,7 +53,7 @@ export const TextArea: FC<TextAreaProps> = forwardRef<HTMLTextAreaElement, TextA
   ) => {
     return (
       <div className="max-w-sm">
-        <Label type="standard" label={label} />
+        <InputLabel htmlFor={name} type="standard" label={label} />
         <Tip text={tipText} type="standard" />
         <textarea
           ref={ref}
