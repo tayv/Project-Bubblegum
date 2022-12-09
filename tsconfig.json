@@ -19,6 +19,7 @@
     "paths": {
       "@components/*": ["components/*"],
       "@atoms/*": ["components/atoms/*"],
+      "@molecules/*": ["components/molecules/*"],
       "@layouts/*": ["layouts/*"],
       "@styles/*": ["styles/*"],
       "@helpers/*": ["components/helpers/*"],

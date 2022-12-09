@@ -9,12 +9,13 @@ import HelpMessage from '@components/helpers/HelpMessage'
 import WrapperRadioGroup from '@components/controlled-wrappers/WrapperRadioGroup'
 import Section from '@components/layout/Section'
 import WrapperCheckbox from '@components/controlled-wrappers/WrapperCheckbox'
-import Tip from '@components/layout/Tip'
-import Label from '@components/layout/Label'
+import Tip from '@components/helpers/Tip'
+import Label from '@components/atoms/InputLabelRadix'
 import TemplateGeneric from '@components/products/producta/TemplateGeneric'
 import UpdateDocState from '@components/UpdateDocState'
 import WrapperTextArea from '@components/controlled-wrappers/WrapperTextArea'
 import WrapperSelect from '@components/controlled-wrappers/WrapperSelect'
+
 
 
 // data for Breadcrumbs
@@ -168,6 +169,7 @@ const QuizTemplate: FC = () => {
               customRegEx={null} 
             />
           </WrapperInput>
+          
         </Section>
  
         <Section id="radioInput" style="standard">
@@ -213,7 +215,7 @@ const QuizTemplate: FC = () => {
         
         <Section id="checkboxInput" style="standard">
           <Heading text="Section Title: Checkboxes" size="h3" type="primary"/>
-          <Label type="standard" label="This is a checkbox label" />
+          <Label type="standard" htmlFor="checkboxInput" label="This is a checkbox label" />
           <Tip text="Tip: These are standard checkboxes" type="standard" />
           <WrapperCheckbox 
             id="checkboxInput" 
@@ -245,9 +247,8 @@ const QuizTemplate: FC = () => {
 
         <Section id="radixWrapperSelect" style="standard">
           <Heading text="Section Title: Wrapper Radix Select" size="h3" type="primary"/>
-          <Label type="standard" label="This is flat list Radix Select" />
           <WrapperSelect 
-            name="wrapperselect" 
+            name="flatselect" 
             control={control} 
             placeholder="Select an option"
             itemOptions={ [
@@ -259,10 +260,11 @@ const QuizTemplate: FC = () => {
           />
           <br />
           <br />
-          <Label type="standard" label="This is grouped list Radix Select" />
           <WrapperSelect 
-            name="wrapperselect" 
+            name="groupselect" 
             control={control} 
+            label="This is a grouped list Radix Select"
+            tip="Tip: This is a grouped list Radix Select"
             placeholder="Select an option"
             itemOptions={ [
                 { groupLabel: "Group 1", 
@@ -287,7 +289,7 @@ const QuizTemplate: FC = () => {
           { 
             sectionVis.rhfradios && <Section id="rhf-radios" style="standard">
               <Heading text="Section Title: RHF register radios" size="h3" type="primary"/>
-              <Label type="standard" label="These use rhf's register" />
+              <Label type="standard" htmlFor="registerradio" label="These use rhf's register" />
               <Tip text="Tip: pick your favorite type of racing" type="standard" />
               <input {...register("registerradio")} id="registerradio1" type="radio" value="motogp" />
               <label htmlFor="registerradio1">Moto GP</label> 
