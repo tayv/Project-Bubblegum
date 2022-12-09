@@ -2,8 +2,8 @@ import React, { FC, JSXElementConstructor } from 'react'
 import { Controller, Control } from 'react-hook-form'
 import { RadioButton, RadioProps, RadioStyle } from '@components/atoms/radiobutton'
 import classNames from 'classnames'
-import Tip, { TipProps } from '@components/layout/Tip'
-import InputLabelRadix from '@components/layout/InputLabelRadix'
+import Tip, { TipProps } from '@components/helpers/Tip'
+import InputLabel from '@components/atoms/InputLabelRadix'
 
 
 export type RadioGroupProps = {
@@ -43,7 +43,7 @@ const WrapperRadioGroup: FC<LimitedRadioProps & RadioGroupProps> = ({
         render={({ field: {onChange, ...props} }) => (
           <>
           <fieldset>
-            <InputLabelRadix htmlFor={name} label={groupLabel} type="standard" />
+            <InputLabel htmlFor={name} label={groupLabel} type="standard" />
 
             <Tip text={tipText} type="standard" />
 

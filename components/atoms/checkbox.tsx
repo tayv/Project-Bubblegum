@@ -1,6 +1,6 @@
 import React, { FC, forwardRef, HTMLAttributes } from 'react'
 import classNames from 'classnames'
-import Label from '@components/layout/InputLabelRadix'
+import InputLabel from '@components/atoms/InputLabelRadix'
 
 export type CheckboxStyle = "standard" | "toggle"
 export type CheckboxProps = {
@@ -34,7 +34,7 @@ const Checkbox: FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>(
   return (
     
     <div>
-       <Label type="checkbox" label={label}>
+       <InputLabel htmlFor={id} type="checkbox" label={label}>
       {/* <label className="inline-flex items-center"> */}
         <input 
           type="checkbox"
@@ -47,7 +47,7 @@ const Checkbox: FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>(
           value={value}
           {...props} />
         <span className="ml-2">{label}</span>
-      </Label>
+      </InputLabel>
     </div>
     
    )

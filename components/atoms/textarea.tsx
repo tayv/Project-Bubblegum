@@ -1,8 +1,8 @@
 import React, { FC, ChangeEvent, forwardRef, InputHTMLAttributes, DetailedHTMLProps} from 'react'
 import classNames from 'classnames'
 import { Control } from 'react-hook-form'
-import Tip, { TipProps } from '@components/layout/Tip'
-import InputLabel, { LabelProps } from '@components/layout/InputLabelRadix'
+import Tip, { TipProps } from '@components/helpers/Tip'
+import InputLabel, { InputLabelProps } from '@components/atoms/InputLabelRadix'
 
 // OVERVIEW
   // This atom form component provides styling and accessibility requirements. Validation, event handlers, etc. 
@@ -12,7 +12,7 @@ import InputLabel, { LabelProps } from '@components/layout/InputLabelRadix'
 export type TextAreaSize = "standard" | "large" 
 export type TextAreaProps = {
   name: string
-  label: LabelProps["label"]
+  label: InputLabelProps["label"]
   size?: TextAreaSize
   tipText?: TipProps["text"] 
   exampleText?: TipProps["text"]
