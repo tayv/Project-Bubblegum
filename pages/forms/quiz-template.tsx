@@ -15,8 +15,7 @@ import TemplateGeneric from '@components/products/producta/TemplateGeneric'
 import UpdateDocState from '@components/UpdateDocState'
 import WrapperTextArea from '@components/controlled-wrappers/WrapperTextArea'
 import WrapperSelect from '@components/controlled-wrappers/WrapperSelect'
-
-
+import DatePicker from '@atoms/DatePicker'
 
 // data for Breadcrumbs
 const crumbs = [
@@ -281,6 +280,11 @@ const QuizTemplate: FC = () => {
                 }
               ] }
           />
+        </Section>
+
+        <Section id="datepick" style="standard">
+          <Heading text="Section Title: Date Picker" size="h3" type="primary"/>
+          <DatePicker label="This is a date picker"  />
         </Section>
 
              
