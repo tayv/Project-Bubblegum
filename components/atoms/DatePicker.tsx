@@ -44,7 +44,7 @@ const DatePicker: FC<DatePickProps> = forwardRef<HTMLInputElement, DatePickProps
     return (
       <div className="max-w-sm">
         <InputLabel htmlFor={name} type="standard" label={label} />
-        <input type="date" name={name} />
+        <input type="date" name={name} max="2100-12-31" />
       </div>
      
     )

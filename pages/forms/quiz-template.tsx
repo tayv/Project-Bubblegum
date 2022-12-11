@@ -284,7 +284,7 @@ const QuizTemplate: FC = () => {
 
         <Section id="datepick" style="standard">
           <Heading text="Section Title: Date Picker" size="h3" type="primary"/>
-          <DatePicker label="This is a date picker"  />
+          <DatePicker name="testdate" label="This is a date picker" />
         </Section>
 
              
