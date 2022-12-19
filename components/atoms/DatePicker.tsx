@@ -33,6 +33,8 @@ const DatePicker: FC<DatePickProps> = forwardRef<HTMLInputElement, DatePickProps
     {
       name,
       label,
+      min,
+      max = "2100-01-01", // To prevent bug where date picker allows 6 digit years
       className = "", // to pass custom one-off styling
       tipText = null,
       exampleText = null,
@@ -44,7 +46,7 @@ const DatePicker: FC<DatePickProps> = forwardRef<HTMLInputElement, DatePickProps
     return (
       <div className="max-w-sm">
         <InputLabel htmlFor={name} type="standard" label={label} />
-        <input type="date" name={name} max="2100-12-31" />
+        <input type="date" name={name} max="2100-12-31" min={min}/>
       </div>
      
     )

@@ -16,6 +16,7 @@ import UpdateDocState from '@components/UpdateDocState'
 import WrapperTextArea from '@components/controlled-wrappers/WrapperTextArea'
 import WrapperSelect from '@components/controlled-wrappers/WrapperSelect'
 import DatePicker from '@atoms/DatePicker'
+import DatePick from '@atoms/DatePick'
 
 // data for Breadcrumbs
 const crumbs = [
@@ -143,6 +144,7 @@ const QuizTemplate: FC = () => {
       <br />
       <hr />
       <form className="border border-gray-900" onSubmit={ onSubmit }>
+        <DatePick />
         <Section id="intro" style="blank">
           <Heading text="Test Form 1" size="h2" type="primary"/>
           <Paragraph text="This form is used to show default styling for text, radio button, checkbox, and multi-line input components. Also used to test Controlled inputs" size="standard" type="primary" />
