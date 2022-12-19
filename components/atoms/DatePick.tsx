@@ -1,8 +1,8 @@
 import React, { Fragment, useState } from 'react'
 import classNames from 'classnames'
-import { Menu, Transition } from '@headlessui/react';
-import { EllipsisVerticalIcon } from '@heroicons/react/20/solid';
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
+import { Menu, Transition } from '@headlessui/react'
+import { EllipsisVerticalIcon } from '@heroicons/react/20/solid'
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
 import {
   add,
   eachDayOfInterval,
@@ -16,13 +16,13 @@ import {
   parse,
   parseISO,
   startOfToday,
-} from 'date-fns';
+} from 'date-fns'
 
 const DatePick = () => {
   let today = startOfToday() // a date-fns function that gets current date on user's machine
-  let [selectedDay, setSelectedDay] = useState(today); // the day current selected by user
-  let [currentMonth, setCurrentMonth] = useState(format(today, 'MMM-yyyy')); // format is a date-fns function
-  let firstDaySelectedMonth = parse(currentMonth, 'MMM-yyyy', new Date()); // From date-fns. Returns the date parsed from string using the given format string
+  let [selectedDay, setSelectedDay] = useState(today) // the day current selected by user
+  let [currentMonth, setCurrentMonth] = useState(format(today, 'MMM-yyyy')) // format is a date-fns function
+  let firstDaySelectedMonth = parse(currentMonth, 'MMM-yyyy', new Date()) // From date-fns. Returns the date parsed from string using the given format string
 
   // store the days of the month in an array. This will be mapped through in order to create the calendar
   let daysInMonth = eachDayOfInterval({
@@ -31,13 +31,13 @@ const DatePick = () => {
   })
 
   const prevMonth = () => {
-    let firstDayNextMonth = add(firstDaySelectedMonth, { months: -1 });
-    setCurrentMonth(format(firstDayNextMonth, 'MMM-yyyy'));
+    let firstDayNextMonth = add(firstDaySelectedMonth, { months: -1 })
+    setCurrentMonth(format(firstDayNextMonth, 'MMM-yyyy'))
   }
 
   const nextMonth = () => {
-    let firstDayNextMonth = add(firstDaySelectedMonth, { months: 1 });
-    setCurrentMonth(format(firstDayNextMonth, 'MMM-yyyy'));
+    let firstDayNextMonth = add(firstDaySelectedMonth, { months: 1 })
+    setCurrentMonth(format(firstDayNextMonth, 'MMM-yyyy'))
   }
 
   return (
@@ -67,6 +67,7 @@ const DatePick = () => {
               </button>
             </div>
             <div className="grid grid-cols-7 mt-10 text-xs leading-6 text-center text-gray-500">
+              {/* // Can change the order of the days be re-ording the divs */}
               <div>S</div>
               <div>M</div>
               <div>T</div>
@@ -78,48 +79,40 @@ const DatePick = () => {
             <div className="grid grid-cols-7 mt-2 text-sm">
               {/* // Map through the array of days in the selected month and render each day of the month as a button. 
                   // Each button has its own conditional styling. */}
-              {daysInMonth.map((day, dayIdx) => (
+              {daysInMonth.map((day, dayId) => (
                 <div
                   key={day.toString()}
                   className={classNames(
-                    dayIdx === 0 && colStartClasses[getDay(day)],
+                    dayId === 0 && firstDayStartingCol[getDay(day)], // use date-fns getDay() as an index to start the first day of the month styling.
                     'py-1.5'
                   )}
                 >
                   <button
                     type="button"
-                    onClick={() => setSelectedDay(day)}
+                    onClick={() => setSelectedDay(day)} // when user clicks on a day, set that day as the selected day
                     className={ classNames(
-                      // is the current day selected? If so make text white
+                      // current day selected?
                       isEqual(day, selectedDay) && 'text-white',
-                      // if the current day is not the selected day = make the current day text red
-                      !isEqual(day, selectedDay) &&
-                      isToday(day) &&
-                       'text-red-500',
-                       // if the day is not selected + also not today's date + is in the current month = make the text gray
-                      !isEqual(day, selectedDay) &&
-                        !isToday(day) &&
-                        isSameMonth(day, firstDaySelectedMonth) &&
-                        'text-gray-900',
-                      // if the day is not selected + also not today's date + is NOT in the current month = make the text lighter gray
-                      !isEqual(day, selectedDay) &&
-                        !isToday(day) &&
-                        !isSameMonth(day, firstDaySelectedMonth) &&
-                        'text-gray-400',
-                      // if the day is selected + is today's date = make the background red
+                      // if day is selected + is today's date = make the background red
                       isEqual(day, selectedDay) && isToday(day) && 'bg-red-500',
-                      // if the day is selected + is NOT today's date = make the background gray
-                      isEqual(day, selectedDay) &&
-                        !isToday(day) &&
-                        'bg-gray-900',
-                      // if the day is NOT selected + user is hovering over it = make the background gray
-                      !isEqual(day, selectedDay) && 'hover:bg-gray-200',
+                      // if day is selected + is NOT today's date = make the background gray
+                      isEqual(day, selectedDay) && !isToday(day) && 'bg-gray-900',
                       // if the day is selected OR the day is today's date = make the font semi bold
-                      (isEqual(day, selectedDay) || isToday(day)) &&
-                        'font-semibold',
+                      (isEqual(day, selectedDay) || isToday(day)) && 'font-semibold',
+
+                      // if current day is not selected = make the current day text red
+                      !isEqual(day, selectedDay) && isToday(day) && 'text-red-500',
+                       // if day is not selected + also not today's date + is in the current month = make the text gray
+                      !isEqual(day, selectedDay) && !isToday(day) && isSameMonth(day, firstDaySelectedMonth) && 'text-gray-900',
+                      // if day is not selected + also not today's date + is NOT in the current month = make the text lighter gray
+                      !isEqual(day, selectedDay) && !isToday(day) && !isSameMonth(day, firstDaySelectedMonth) && 'text-gray-400',
+                      // if day is NOT selected + user is hovering over it = make the background gray
+                      !isEqual(day, selectedDay) && 'hover:bg-gray-200',
+                     
                       'mx-auto flex h-8 w-8 items-center justify-center rounded-full'
                     ) }
                   >
+                    {/* // display the day as a number */}
                     <time dateTime={format(day, 'yyyy-MM-dd')}>
                       {format(day, 'd')}
                     </time>
@@ -133,17 +126,25 @@ const DatePick = () => {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-let colStartClasses = [
-  '',
-  'col-start-2',
-  'col-start-3',
+  // Calendar is set up for a 7 day week so use a grid with 7 columns.
+  // The first day of the month is always on a different column depending on the day of the week
+  // Use date-fns's getDay() function to get the day of the week for the first day of the month as an index
+  // This index  which column to start the first day of the month on
+let firstDayStartingCol = [
+  '', // if the first day of the month is a Sunday, don't need to do anything
+  'col-start-2', // if first day is a monday then start the first day on the second column
+  'col-start-3', // etc...
   'col-start-4',
   'col-start-5',
   'col-start-6',
   'col-start-7',
-];
+]
 
 export default DatePick
+
+
+// Calendar based on this tutorial
+  // https://www.youtube.com/watch?v=9ySmMd5Cjc0 
