@@ -1,11 +1,11 @@
-import React, { Fragment, useState } from 'react'
+import React, { FC, Fragment, useState } from 'react'
 import classNames from 'classnames'
 import { Control, Controller } from 'react-hook-form'
 import { Menu, Transition } from '@headlessui/react'
 import { EllipsisVerticalIcon } from '@heroicons/react/20/solid'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
 import Input, { InputProps } from '@atoms/Input'
-import WrapperInput from '@components/controlled-wrappers/WrapperRadioGroup'
+import WrapperInput from '@components/controlled-wrappers/WrapperInput'
 import {
   add,
   eachDayOfInterval,
@@ -21,7 +21,7 @@ import {
   startOfToday,
 } from 'date-fns'
 
-const DatePick = ( control: InputProps["control"], name: InputProps["name"], label: InputProps["label"] ) => {
+const DatePick: FC<InputProps> = ( { name , label, control } ) => {
   let today = startOfToday() // a date-fns function that gets current date on user's machine
   let [selectedDay, setSelectedDay] = useState(today) // the day current selected by user
   let [currentMonth, setCurrentMonth] = useState(format(today, 'MMM-yyyy')) // format is a date-fns function
@@ -45,9 +45,9 @@ const DatePick = ( control: InputProps["control"], name: InputProps["name"], lab
 
   return (
     <>
-    <input type="text" name={name} value={format(selectedDay, 'MMM-dd-yyyy')} />
-    {/* <WrapperInput name={name} type="text" label={label} control={control} defaultValue=""/> */}
-    {/* <Input name={name} label={label} /> */}
+    <input type="text" name={name} defaultValue={format(selectedDay, 'MMM-dd-yyyy')} />
+    <WrapperInput name={name} type="text" label={label} control={control} defaultValue={format(selectedDay, 'MMM-dd-yyyy')}/> 
+    <Input name={name} label={label} value={format(selectedDay, 'MMM-dd-yyyy')}/>
     <div className="py-2 border-solid border-2">
       <div className="max-w-md mx-auto sm:px-7 md:max-w-4xl md:px-2">
         <div className="md:grid md:grid-cols-2 md:divide-x md:divide-gray-200">

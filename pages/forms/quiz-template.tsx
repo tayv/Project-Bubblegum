@@ -150,7 +150,7 @@ const QuizTemplate: FC = () => {
         </Section>
         <Section id="dates" style="standard">
           <Heading text="Date Picker" size="h2" type="primary"/>
-          <DatePick control={control} name="datePick" label="Pick a date:" />
+          <DatePick name="datePick" label="Pick a date:" control={control} />
         </Section>
         <Section id="textInput" style="standard">
           <Heading text="Section Title: Single Line Input" size="h3" type="primary"/>
