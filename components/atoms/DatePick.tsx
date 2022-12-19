@@ -1,8 +1,11 @@
 import React, { Fragment, useState } from 'react'
 import classNames from 'classnames'
+import { Control, Controller } from 'react-hook-form'
 import { Menu, Transition } from '@headlessui/react'
 import { EllipsisVerticalIcon } from '@heroicons/react/20/solid'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
+import Input, { InputProps } from '@atoms/Input'
+import WrapperInput from '@components/controlled-wrappers/WrapperRadioGroup'
 import {
   add,
   eachDayOfInterval,
@@ -18,7 +21,7 @@ import {
   startOfToday,
 } from 'date-fns'
 
-const DatePick = () => {
+const DatePick = ( control: InputProps["control"], name: InputProps["name"], label: InputProps["label"] ) => {
   let today = startOfToday() // a date-fns function that gets current date on user's machine
   let [selectedDay, setSelectedDay] = useState(today) // the day current selected by user
   let [currentMonth, setCurrentMonth] = useState(format(today, 'MMM-yyyy')) // format is a date-fns function
@@ -41,8 +44,12 @@ const DatePick = () => {
   }
 
   return (
-    <div className="p-2 max-w-xl border-solid border-2">
-      <div className=" px-4 max-w-md mx-auto sm:px-7 md:max-w-4xl md:px-6">
+    <>
+    <input type="text" name={name} value={format(selectedDay, 'MMM-dd-yyyy')} />
+    {/* <WrapperInput name={name} type="text" label={label} control={control} defaultValue=""/> */}
+    {/* <Input name={name} label={label} /> */}
+    <div className="py-2 border-solid border-2">
+      <div className="max-w-md mx-auto sm:px-7 md:max-w-4xl md:px-2">
         <div className="md:grid md:grid-cols-2 md:divide-x md:divide-gray-200">
           <div className="md:pr-14">
             <div className="flex items-center">
@@ -94,14 +101,14 @@ const DatePick = () => {
                       // current day selected?
                       isEqual(day, selectedDay) && 'text-white',
                       // if day is selected + is today's date = make the background red
-                      isEqual(day, selectedDay) && isToday(day) && 'bg-red-500',
+                      isEqual(day, selectedDay) && isToday(day) && 'bg-indigo-500',
                       // if day is selected + is NOT today's date = make the background gray
                       isEqual(day, selectedDay) && !isToday(day) && 'bg-gray-900',
                       // if the day is selected OR the day is today's date = make the font semi bold
                       (isEqual(day, selectedDay) || isToday(day)) && 'font-semibold',
 
                       // if current day is not selected = make the current day text red
-                      !isEqual(day, selectedDay) && isToday(day) && 'text-red-500',
+                      !isEqual(day, selectedDay) && isToday(day) && 'text-indigo-500',
                        // if day is not selected + also not today's date + is in the current month = make the text gray
                       !isEqual(day, selectedDay) && !isToday(day) && isSameMonth(day, firstDaySelectedMonth) && 'text-gray-900',
                       // if day is not selected + also not today's date + is NOT in the current month = make the text lighter gray
@@ -126,6 +133,7 @@ const DatePick = () => {
         </div>
       </div>
     </div>
+    </>
   )
 }
 

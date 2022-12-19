@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { Input, InputProps } from '@components/atoms/input'
+import Input, { InputProps } from '@components/atoms/Input'
 import { Controller } from 'react-hook-form'
 
 const WrapperInput: FC<InputProps> = ({
@@ -7,7 +7,6 @@ const WrapperInput: FC<InputProps> = ({
   rules,
   control,
   label,
- // errors,
   onChange,
   defaultValue,
   tipText,

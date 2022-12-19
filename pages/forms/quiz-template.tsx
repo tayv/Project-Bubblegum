@@ -144,10 +144,13 @@ const QuizTemplate: FC = () => {
       <br />
       <hr />
       <form className="border border-gray-900" onSubmit={ onSubmit }>
-        <DatePick />
         <Section id="intro" style="blank">
           <Heading text="Test Form 1" size="h2" type="primary"/>
           <Paragraph text="This form is used to show default styling for text, radio button, checkbox, and multi-line input components. Also used to test Controlled inputs" size="standard" type="primary" />
+        </Section>
+        <Section id="dates" style="standard">
+          <Heading text="Date Picker" size="h2" type="primary"/>
+          <DatePick control={control} name="datePick" label="Pick a date:" />
         </Section>
         <Section id="textInput" style="standard">
           <Heading text="Section Title: Single Line Input" size="h3" type="primary"/>
