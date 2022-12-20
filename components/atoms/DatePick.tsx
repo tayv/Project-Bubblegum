@@ -6,6 +6,7 @@ import { EllipsisVerticalIcon } from '@heroicons/react/20/solid'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
 import Input, { InputProps } from '@atoms/Input'
 import SelectRadix from '@atoms/SelectRadix'
+import * as Select from '@radix-ui/react-select'
 import WrapperInput from '@components/controlled-wrappers/WrapperInput'
 import {
   add,
@@ -156,10 +157,11 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
               <option value="2020">2020</option>
               <option value="2025">2025</option>
             </select>
+            <br/>
             <SelectRadix 
               name="testSelect"
-              onValueChange={(e) => setNewYear(e.target.value)}
-             // value={value}
+              onValueChange={setNewYear}
+              //value={value}
               // forwardedRef={ref}
              // placeholder={placeholder}
               itemOptions={[
@@ -170,6 +172,34 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
               ]}
              // {...props}
             />
+            <br/>
+            <Select.Root defaultValue="2005" onValueChange={setNewYear} >
+              <Select.Trigger className="outline-none text-md border-solid border-2 border-slate-500 px-2 hover:bg-white">
+                <Select.Value placeholder="choose a YEAR" />
+                <Select.Icon />
+              </Select.Trigger>
+        
+              <Select.Portal>
+                <Select.Content className="outline-none border-solid border-2 border-slate-500 bg-white py-1 px-2">
+                  <Select.ScrollUpButton />
+                  <Select.Viewport>
+                    <Select.Item className="outline-none cursor-pointer hover:bg-sky-300 px-2" value="2000">
+                      <Select.ItemText>2000</Select.ItemText>
+                      <Select.ItemIndicator />
+                    </Select.Item>
+                    <Select.Item className="outline-none cursor-pointer hover:bg-sky-300 px-2" value="2005">
+                      <Select.ItemText>2005</Select.ItemText>
+                      <Select.ItemIndicator />
+                    </Select.Item>
+                    <Select.Item className="outline-none cursor-pointer hover:bg-sky-300 px-2" value="2010">
+                     <Select.ItemText>2010</Select.ItemText>
+                      <Select.ItemIndicator />
+                    </Select.Item>
+                  </Select.Viewport>
+                  <Select.ScrollDownButton />
+                </Select.Content>
+              </Select.Portal>
+            </Select.Root>
           </section>
         </div>
       </div>
