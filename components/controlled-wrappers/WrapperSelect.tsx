@@ -9,6 +9,7 @@ export type WrapperSelectProps = {
   label?: string | null
   tip?: string | null
   control: Control
+  defaultValue: string
 }
 
 type LimitedSelectRadixProps = Omit<SelectRadixProps, "value" | "onValueChange" | "forwardedRef">
@@ -19,6 +20,7 @@ const WrapperSelect: FC<LimitedSelectRadixProps & WrapperSelectProps>= ({
   tip = null,
   placeholder,
   itemOptions,
+  defaultValue,
   control,
 }) => {  
 
@@ -27,6 +29,7 @@ const WrapperSelect: FC<LimitedSelectRadixProps & WrapperSelectProps>= ({
       <Controller
         control={control}
         name={name}
+        defaultValue={defaultValue}
         render={ ({ field: {onChange, value, ref, ...props} }) => (
           <>
             { !!label && <InputLabel type="standard" label={label} htmlFor={name} /> }

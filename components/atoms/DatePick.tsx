@@ -5,6 +5,7 @@ import { Menu, Transition } from '@headlessui/react'
 import { EllipsisVerticalIcon } from '@heroicons/react/20/solid'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
 import Input, { InputProps } from '@atoms/Input'
+import SelectRadix from '@atoms/SelectRadix'
 import WrapperInput from '@components/controlled-wrappers/WrapperInput'
 import {
   add,
@@ -18,6 +19,7 @@ import {
   isToday,
   parse,
   parseISO,
+  setYear,
   startOfToday,
 } from 'date-fns'
 
@@ -43,11 +45,22 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
     setCurrentMonth(format(firstDayNextMonth, 'MMM-yyyy'))
   }
 
+  const jumpToDate = (monthsToJump) => { 
+    let jumpDate = add(firstDaySelectedMonth, { months: monthsToJump })
+    setCurrentMonth(format(jumpDate, 'MMM-yyyy'))
+  }
+
+  const setNewYear = (e) => {
+    let result = setYear(firstDaySelectedMonth, e)
+    setCurrentMonth(format(result, 'MMM-yyyy'))
+    console.log(result)
+  }
+
   return (
     <>
     <input type="text" name={name} defaultValue={format(selectedDay, 'MMM-dd-yyyy')} />
-    <WrapperInput name={name} type="text" label={label} control={control} defaultValue={format(selectedDay, 'MMM-dd-yyyy')}/> 
-    <Input name={name} label={label} value={format(selectedDay, 'MMM-dd-yyyy')}/>
+    <WrapperInput name={name} type="text" label={label} control={control} defaultValue={format(selectedDay, 'MMM-dd-yyyy')} /> 
+    <Input name={name} label={label} value={format(selectedDay, 'MMM-dd-yyyy')} readOnly />
     <div className="py-2 border-solid border-2">
       <div className="max-w-md mx-auto sm:px-7 md:max-w-4xl md:px-2">
         <div className="md:grid md:grid-cols-2 md:divide-x md:divide-gray-200">
@@ -129,7 +142,35 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
               ))}
             </div>
           </div>
-          
+          <section>
+            <h2 className="text-emerald-500 font-medium">Quick Jump</h2>
+            <ol>
+              <li><button type="button" onClick={ () => setCurrentMonth(format(today, 'MMM-yyyy')) }>Today</button></li>
+              <li><button type="button" onClick={ () => jumpToDate(3) }>3 months</button></li>
+              <li><button type="button" onClick={ () => jumpToDate(6) }>6 months</button></li>
+              <li><button type="button" onClick={ () => jumpToDate(12) }>1 year</button></li>
+              <li><button type="button" onClick={ () => jumpToDate(24) }>2 years</button></li>
+            </ol>
+            <select name="yearSelect" id="yearSelect" onChange={(e) => setNewYear(e.target.value) } >
+              <option value="2015">2015</option>
+              <option value="2020">2020</option>
+              <option value="2025">2025</option>
+            </select>
+            <SelectRadix 
+              name="testSelect"
+              onValueChange={(e) => setNewYear(e.target.value)}
+             // value={value}
+              // forwardedRef={ref}
+             // placeholder={placeholder}
+              itemOptions={[
+                {value:"2000", labelText:"2000", separator: false}, 
+                {value:"2005", labelText:"2005", separator: true},
+                {value:"2010", labelText:"2010", separator: false}, 
+                {value:"2020", labelText:"2020", separator: true},
+              ]}
+             // {...props}
+            />
+          </section>
         </div>
       </div>
     </div>

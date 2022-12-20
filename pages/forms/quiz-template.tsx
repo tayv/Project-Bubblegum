@@ -109,6 +109,10 @@ const QuizTemplate: FC = () => {
       registerradio: "supercross", // works
       // Checkbox Input Section
       checkboxInput: true,
+      // Select Input Section
+      flatSelect: "third",
+      groupSelect: "third",
+
     }
 
     useEffect(() => {
@@ -255,6 +259,7 @@ const QuizTemplate: FC = () => {
             name="flatselect" 
             control={control} 
             placeholder="Select an option"
+            defaultValue=""
             itemOptions={ [
                   {value:"first", labelText:"firstText", separator: false}, 
                   {value:"second", labelText:"secondText", separator: true},
@@ -270,6 +275,8 @@ const QuizTemplate: FC = () => {
             label="This is a grouped list Radix Select"
             tip="Tip: This is a grouped list Radix Select"
             placeholder="Select an option"
+            defaultValue=""
+            
             itemOptions={ [
                 { groupLabel: "Group 1", 
                   items: [

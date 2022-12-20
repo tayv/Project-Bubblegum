@@ -84,8 +84,8 @@ const SelectRadix: FC<SelectRadixProps> = forwardRef<HTMLButtonElement, SelectRa
         <Select.Content className="outline-none border-solid border-2 border-slate-500 bg-white py-1 px-2">
           <Select.ScrollUpButton />
           <Select.Viewport>
-              {/* Need a condition here to check whether to render grouped list vs standard select  */}
-              { checkForGroupedItems(itemOptions) }
+            {/* Need a condition here to check whether to render grouped list vs standard select  */}
+            { checkForGroupedItems(itemOptions) }
           </Select.Viewport>
           <Select.ScrollDownButton />
         </Select.Content>
