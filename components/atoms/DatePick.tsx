@@ -147,10 +147,10 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
             <h2 className="text-emerald-500 font-medium">Quick Jump</h2>
             <ol>
               <li><button type="button" onClick={ () => setCurrentMonth(format(today, 'MMM-yyyy')) }>Today</button></li>
-              <li><button type="button" onClick={ () => jumpToDate(3) }>3 months</button></li>
-              <li><button type="button" onClick={ () => jumpToDate(6) }>6 months</button></li>
-              <li><button type="button" onClick={ () => jumpToDate(12) }>1 year</button></li>
-              <li><button type="button" onClick={ () => jumpToDate(24) }>2 years</button></li>
+              <li><button type="button" onClick={ () => jumpToDate(3) }>+3 months</button></li>
+              <li><button type="button" onClick={ () => jumpToDate(6) }>+6 months</button></li>
+              <li><button type="button" onClick={ () => jumpToDate(12) }>+1 year</button></li>
+              <li><button type="button" onClick={ () => jumpToDate(24) }>+2 years</button></li>
             </ol>
             <select name="yearSelect" id="yearSelect" onChange={(e) => setNewYear(e.target.value) } >
               <option value="2015">2015</option>
@@ -161,8 +161,8 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
             <SelectRadix 
               name="testSelect"
               onValueChange={setNewYear}
-              //value={value}
-              // forwardedRef={ref}
+             // value={value}
+             // forwardedRef={ref}
              // placeholder={placeholder}
               itemOptions={[
                 {value:"2000", labelText:"2000", separator: false}, 
