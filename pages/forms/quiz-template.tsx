@@ -131,7 +131,9 @@ const QuizTemplate: FC = () => {
       motoTeamRadio: watch("motoTeamRadio"),
       // Checkbox Input Section
       checkboxInput: watch("checkboxInput"), 
-      
+      // Select Input Section
+      flatSelect: getValues("flatSelect"),
+      groupSelect: getValues("groupSelect")
     }
 
   // TESTING END ------------------------------------------------------------------------------------
@@ -275,7 +277,7 @@ const QuizTemplate: FC = () => {
             label="This is a grouped list Radix Select"
             tip="Tip: This is a grouped list Radix Select"
             placeholder="Select an option"
-            defaultValue=""
+            defaultValue={defaultValues.groupSelect}
             
             itemOptions={ [
                 { groupLabel: "Group 1", 
