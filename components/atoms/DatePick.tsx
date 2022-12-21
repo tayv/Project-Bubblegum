@@ -22,6 +22,7 @@ import {
   parseISO,
   setYear,
   startOfToday,
+  eachYearOfInterval,
 } from 'date-fns'
 
 const DatePick: FC<InputProps> = ( { name , label, control } ) => {
@@ -54,6 +55,14 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
   const setNewYear = (e) => {
     let result = setYear(firstDaySelectedMonth, e)
     setCurrentMonth(format(result, 'MMM-yyyy'))
+    console.log(result)
+  }
+
+  const getYearRange = (startYearRange, endYearRange) => {
+    let result = eachYearOfInterval({ 
+      start: new Date(startYearRange, 1, 1),
+      end: new Date(endYearRange, 1, 1)
+    })
     console.log(result)
   }
 
@@ -144,6 +153,7 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
             </div>
           </div>
           <section>
+            <button type="button" onClick={ () => getYearRange(1986, 2022) }>Get Years</button>
             <h2 className="text-emerald-500 font-medium">Quick Jump</h2>
             <ol>
               <li><button type="button" onClick={ () => setCurrentMonth(format(today, 'MMM-yyyy')) }>Today</button></li>
@@ -157,21 +167,7 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
               <option value="2020">2020</option>
               <option value="2025">2025</option>
             </select>
-            <br/>
-            <SelectRadix 
-              name="testSelect"
-              onValueChange={setNewYear}
-             // value={value}
-             // forwardedRef={ref}
-             // placeholder={placeholder}
-              itemOptions={[
-                {value:"2000", labelText:"2000", separator: false}, 
-                {value:"2005", labelText:"2005", separator: true},
-                {value:"2010", labelText:"2010", separator: false}, 
-                {value:"2020", labelText:"2020", separator: true},
-              ]}
-             // {...props}
-            />
+        
             <br/>
             <Select.Root defaultValue="2005" onValueChange={setNewYear} >
               <Select.Trigger className="outline-none text-md border-solid border-2 border-slate-500 px-2 hover:bg-white">
