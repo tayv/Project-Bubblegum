@@ -59,11 +59,23 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
   }
 
   const getYearRange = (startYearRange, endYearRange) => {
-    let result = eachYearOfInterval({ 
+    let totalYearRangeUnformatted = eachYearOfInterval({ 
       start: new Date(startYearRange, 1, 1),
       end: new Date(endYearRange, 1, 1)
     })
-    console.log(result)
+
+     return totalYearRangeUnformatted.map((year, yearID) => {
+      let yearFormatted = format(year, 'yyyy')
+      console.log(yearFormatted)
+      return (
+        <Select.Item key={yearFormatted.toString()} className="outline-none cursor-pointer hover:bg-sky-300 px-2" value={yearFormatted}>
+          <Select.ItemText>{yearFormatted}</Select.ItemText>
+          <Select.ItemIndicator />
+        </Select.Item>
+      )
+     }) 
+    
+    
   }
 
   return (
@@ -113,7 +125,7 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
                 <div
                   key={day.toString()}
                   className={classNames(
-                    dayId === 0 && firstDayStartingCol[getDay(day)], // use date-fns getDay() as an index to start the first day of the month styling.
+                    dayId === 0 && firstDayStartingCol[getDay(day)], // First day equals index 0. So use date-fns getDay() as an index to start the first day of the month styling.
                     'py-1.5'
                   )}
                 >
@@ -143,8 +155,8 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
                     ) }
                   >
                     {/* // display the day as a number */}
-                    <time dateTime={format(day, 'yyyy-MM-dd')}>
-                      {format(day, 'd')}
+                    <time dateTime={format(day, "yyyy-MM-dd")}>
+                      {format(day, "d")}
                     </time>
                   </button>
 
@@ -171,7 +183,7 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
             <br/>
             <Select.Root defaultValue="2005" onValueChange={setNewYear} >
               <Select.Trigger className="outline-none text-md border-solid border-2 border-slate-500 px-2 hover:bg-white">
-                <Select.Value placeholder="choose a YEAR" />
+                <Select.Value placeholder="Year" />
                 <Select.Icon />
               </Select.Trigger>
         
@@ -179,7 +191,9 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
                 <Select.Content className="outline-none border-solid border-2 border-slate-500 bg-white py-1 px-2">
                   <Select.ScrollUpButton />
                   <Select.Viewport>
-                    <Select.Item className="outline-none cursor-pointer hover:bg-sky-300 px-2" value="2000">
+                      { getYearRange(1999, 2005) }
+                  
+                    {/* <Select.Item className="outline-none cursor-pointer hover:bg-sky-300 px-2" value="2000">
                       <Select.ItemText>2000</Select.ItemText>
                       <Select.ItemIndicator />
                     </Select.Item>
@@ -190,7 +204,7 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
                     <Select.Item className="outline-none cursor-pointer hover:bg-sky-300 px-2" value="2010">
                      <Select.ItemText>2010</Select.ItemText>
                       <Select.ItemIndicator />
-                    </Select.Item>
+                    </Select.Item> */}
                   </Select.Viewport>
                   <Select.ScrollDownButton />
                 </Select.Content>
