@@ -30,6 +30,7 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
   let [selectedDay, setSelectedDay] = useState(today) // the day current selected by user
   let [currentMonth, setCurrentMonth] = useState(format(today, 'MMM-yyyy')) // format is a date-fns function
   let firstDaySelectedMonth = parse(currentMonth, 'MMM-yyyy', new Date()) // From date-fns. Returns the date parsed from string using the given format string
+  let [showCalendar, setShowCalendar] = useState(false) // used to show/hide the calendar
 
   // store the days of the month in an array. This will be mapped through in order to create the calendar
   let daysInMonth = eachDayOfInterval({
@@ -84,8 +85,10 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
 
   return (
     <>   
-    <Input name={name} label={label} value={format(selectedDay, 'MMM-dd-yyyy')} readOnly />
-    <div className="py-2 border-solid border-2">
+    <Input name={name} label={label} value={format(selectedDay, 'MMM-dd-yyyy')} onClick={() => setShowCalendar(!showCalendar)} readOnly />
+    { showCalendar && // Only show the calendar if the user has clicked on the input field
+    
+      <div className="py-2 border-solid border-2">
       <div className="max-w-md mx-auto sm:px-7 md:max-w-4xl md:px-2">
         <div className="md:grid md:grid-cols-2 md:divide-x md:divide-gray-200">
           <div className="md:pr-14">
@@ -196,8 +199,10 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
           </section>
         </div>
       </div>
-    </div>
+      </div>
+    }
     </>
+                    
   )
 }
 
