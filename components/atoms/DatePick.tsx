@@ -1,6 +1,6 @@
-import React, { FC, Fragment, useState } from 'react'
+import React, { FC, Fragment, useState, useEffect } from 'react'
 import classNames from 'classnames'
-import { Control, Controller } from 'react-hook-form'
+import { Control, Controller, useForm } from 'react-hook-form'
 import { Menu, Transition } from '@headlessui/react'
 import { EllipsisVerticalIcon } from '@heroicons/react/20/solid'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
@@ -30,6 +30,7 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
   let [selectedDay, setSelectedDay] = useState(today) // the day current selected by user
   let [currentMonth, setCurrentMonth] = useState(format(today, 'MMM-yyyy')) // format is a date-fns function
   let firstDaySelectedMonth = parse(currentMonth, 'MMM-yyyy', new Date()) // From date-fns. Returns the date parsed from string using the given format string
+  let [currentYear, setCurrentYear] = useState(format(firstDaySelectedMonth, "yyyy")) // used to set the year in the quick jump dropdown when month stepper or calender selection is made
 
   // store the days of the month in an array. This will be mapped through in order to create the calendar
   let daysInMonth = eachDayOfInterval({
@@ -37,51 +38,54 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
     end: endOfMonth(firstDaySelectedMonth),
   })
 
+  // Used by stepper buttons to go back one month
   const prevMonth = () => {
     let firstDayNextMonth = add(firstDaySelectedMonth, { months: -1 })
     setCurrentMonth(format(firstDayNextMonth, 'MMM-yyyy'))
   }
-
+  // Used by stepper buttons to add one month
   const nextMonth = () => {
     let firstDayNextMonth = add(firstDaySelectedMonth, { months: 1 })
     setCurrentMonth(format(firstDayNextMonth, 'MMM-yyyy'))
   }
 
+  // Used to jump multiple months/years at a time
   const jumpToDate = (monthsToJump) => { 
     let jumpDate = add(firstDaySelectedMonth, { months: monthsToJump })
     setCurrentMonth(format(jumpDate, 'MMM-yyyy'))
+    setCurrentYear(format(firstDaySelectedMonth, "yyyy"))
   }
 
+  // Updates the calendar to a new year but keeps the same month
   const setNewYear = (e) => {
-    let result = setYear(firstDaySelectedMonth, e)
-    setCurrentMonth(format(result, 'MMM-yyyy'))
-    console.log(result)
+    let yearResult = setYear(firstDaySelectedMonth, e)
+    setCurrentMonth(format(yearResult, 'MMM-yyyy'))
   }
 
-  const getYearRange = (startYearRange, endYearRange) => {
-    let totalYearRangeUnformatted = eachYearOfInterval({ 
-      start: new Date(startYearRange, 1, 1),
-      end: new Date(endYearRange, 1, 1)
-    })
-
-     return totalYearRangeUnformatted.map((year, yearID) => {
+  const setYearRange = (startYearRange, endYearRange) => {
+    // takes a year as start/end date and returns an array of years in between in a full date format
+    let yearRangeUnformatted = eachYearOfInterval( 
+      { 
+        start: new Date(startYearRange, 1, 1), // add the 1, 1 to it fits the date-fns format
+        end: new Date(endYearRange, 1, 1)
+      } 
+    )
+     // Next, format the year then return a select item for each year in range array
+     return yearRangeUnformatted.map((year, yearID) => {
+      // Need to first format the year so that it can be used as the value for each select item
       let yearFormatted = format(year, 'yyyy')
-      console.log(yearFormatted)
       return (
+        // Use Radix UI's Select Component for accessibility. Hardcoded since it's unique to this component
         <Select.Item key={yearFormatted.toString()} className="outline-none cursor-pointer hover:bg-sky-300 px-2" value={yearFormatted}>
           <Select.ItemText>{yearFormatted}</Select.ItemText>
           <Select.ItemIndicator />
         </Select.Item>
       )
      }) 
-    
-    
   }
 
   return (
-    <>
-    <input type="text" name={name} defaultValue={format(selectedDay, 'MMM-dd-yyyy')} />
-    <WrapperInput name={name} type="text" label={label} control={control} defaultValue={format(selectedDay, 'MMM-dd-yyyy')} /> 
+    <>   
     <Input name={name} label={label} value={format(selectedDay, 'MMM-dd-yyyy')} readOnly />
     <div className="py-2 border-solid border-2">
       <div className="max-w-md mx-auto sm:px-7 md:max-w-4xl md:px-2">
@@ -164,24 +168,18 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
               ))}
             </div>
           </div>
-          <section>
-            <button type="button" onClick={ () => getYearRange(1986, 2022) }>Get Years</button>
-            <h2 className="text-emerald-500 font-medium">Quick Jump</h2>
+          <section className="pl-2">
+            <h2 className="pb-1 text-gray-500 font-medium">Quick Jump</h2>
             <ol>
-              <li><button type="button" onClick={ () => setCurrentMonth(format(today, 'MMM-yyyy')) }>Today</button></li>
-              <li><button type="button" onClick={ () => jumpToDate(3) }>+3 months</button></li>
-              <li><button type="button" onClick={ () => jumpToDate(6) }>+6 months</button></li>
-              <li><button type="button" onClick={ () => jumpToDate(12) }>+1 year</button></li>
-              <li><button type="button" onClick={ () => jumpToDate(24) }>+2 years</button></li>
+              <li className="text-emerald-500 pl-3 py-px"><button type="button" onClick={ () => setCurrentMonth(format(today, 'MMM-yyyy')) }>Today</button></li>
+              <li className="text-emerald-500 py-px"><button type="button" onClick={ () => jumpToDate(6) }>+ 6 months</button></li>
+              <li className="text-emerald-500 py-px"><button type="button" onClick={ () => jumpToDate(12) }>+ 1 year</button></li>
+              <li className="text-emerald-500 py-px"><button type="button" onClick={ () => jumpToDate(24) }>+ 2 years</button></li>
             </ol>
-            <select name="yearSelect" id="yearSelect" onChange={(e) => setNewYear(e.target.value) } >
-              <option value="2015">2015</option>
-              <option value="2020">2020</option>
-              <option value="2025">2025</option>
-            </select>
-        
             <br/>
-            <Select.Root defaultValue="2005" onValueChange={setNewYear} >
+            
+            {/* The Select.Root value is set to update whenever the user changes the calendar to a new year */}
+            <Select.Root  value={format(firstDaySelectedMonth,"yyyy")} defaultValue={format(firstDaySelectedMonth,"yyyy")} onValueChange={setNewYear} >
               <Select.Trigger className="outline-none text-md border-solid border-2 border-slate-500 px-2 hover:bg-white">
                 <Select.Value placeholder="Year" />
                 <Select.Icon />
@@ -191,20 +189,7 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
                 <Select.Content className="outline-none border-solid border-2 border-slate-500 bg-white py-1 px-2">
                   <Select.ScrollUpButton />
                   <Select.Viewport>
-                      { getYearRange(1999, 2005) }
-                  
-                    {/* <Select.Item className="outline-none cursor-pointer hover:bg-sky-300 px-2" value="2000">
-                      <Select.ItemText>2000</Select.ItemText>
-                      <Select.ItemIndicator />
-                    </Select.Item>
-                    <Select.Item className="outline-none cursor-pointer hover:bg-sky-300 px-2" value="2005">
-                      <Select.ItemText>2005</Select.ItemText>
-                      <Select.ItemIndicator />
-                    </Select.Item>
-                    <Select.Item className="outline-none cursor-pointer hover:bg-sky-300 px-2" value="2010">
-                     <Select.ItemText>2010</Select.ItemText>
-                      <Select.ItemIndicator />
-                    </Select.Item> */}
+                    { setYearRange(1999, 2025) }
                   </Select.Viewport>
                   <Select.ScrollDownButton />
                 </Select.Content>
