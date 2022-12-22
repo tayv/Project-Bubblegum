@@ -30,7 +30,6 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
   let [selectedDay, setSelectedDay] = useState(today) // the day current selected by user
   let [currentMonth, setCurrentMonth] = useState(format(today, 'MMM-yyyy')) // format is a date-fns function
   let firstDaySelectedMonth = parse(currentMonth, 'MMM-yyyy', new Date()) // From date-fns. Returns the date parsed from string using the given format string
-  let [currentYear, setCurrentYear] = useState(format(firstDaySelectedMonth, "yyyy")) // used to set the year in the quick jump dropdown when month stepper or calender selection is made
 
   // store the days of the month in an array. This will be mapped through in order to create the calendar
   let daysInMonth = eachDayOfInterval({
@@ -53,7 +52,6 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
   const jumpToDate = (monthsToJump) => { 
     let jumpDate = add(firstDaySelectedMonth, { months: monthsToJump })
     setCurrentMonth(format(jumpDate, 'MMM-yyyy'))
-    setCurrentYear(format(firstDaySelectedMonth, "yyyy"))
   }
 
   // Updates the calendar to a new year but keeps the same month
@@ -178,7 +176,7 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
             </ol>
             <br/>
             
-            {/* The Select.Root value is set to update whenever the user changes the calendar to a new year */}
+            {/* The Select.Root value syncs with state so it updates if user changes calendar to a new year. No name attribute since this field isn't submitted to server */}
             <Select.Root  value={format(firstDaySelectedMonth,"yyyy")} defaultValue={format(firstDaySelectedMonth,"yyyy")} onValueChange={setNewYear} >
               <Select.Trigger className="outline-none text-md border-solid border-2 border-slate-500 px-2 hover:bg-white">
                 <Select.Value placeholder="Year" />
