@@ -85,7 +85,13 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
 
   return (
     <>   
-    <Input name={name} label={label} value={format(selectedDay, 'MMM-dd-yyyy')} onClick={() => setShowCalendar(!showCalendar)} readOnly />
+    <Input 
+      name={name} 
+      label={label} 
+      value={format(selectedDay, 'MMM-dd-yyyy')} 
+      onClick={() => setShowCalendar(!showCalendar)} 
+      readOnly // Intentionally forcing user to use the calendar to select a date
+    />
     { showCalendar && // Only show the calendar if the user has clicked on the input field
     
       <div className="py-2 border-solid border-2">
@@ -136,7 +142,10 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
                 >
                   <button
                     type="button"
-                    onClick={() => setSelectedDay(day)} // when user clicks on a day, set that day as the selected day
+                    onClick={() => {
+                      setSelectedDay(day)
+                      setShowCalendar(false) // Remove if don't want calendar to close after selecting a day
+                    }} // when user clicks on a day, set that day as the selected day
                     className={ classNames(
                       // current day selected?
                       isEqual(day, selectedDay) && 'text-white',
@@ -200,6 +209,7 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
         </div>
       </div>
       </div>
+
     }
     </>
                     
