@@ -224,11 +224,16 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
     <InputLabel type="standard" label="Pick a date: (option 2)" htmlFor="date-option2" />
     <Accordion.Root type="single" collapsible className="flex shrink" > {/* Flex shrink used since can't change Root styles like width using Data Attributes */}
       <Accordion.Item value="item-1" className="mt-1 ">
-        <Accordion.Header className="group flex rounded-md shadow data-[state=closed]:w-60 data-[state=open]:w-full bg-neutral-200 ">
+        <Accordion.Header className="group flex rounded-md shadow data-[state=closed]:w-48 data-[state=open]:w-full bg-neutral-200 ">
           <Accordion.Trigger className="inline-flex justify-between items-center px-3 py-2 w-full text-left ">
             <div className="inline-flex align-left">
-              <CalendarIcon className="h-6 w-6 mr-2 text-black" />  
-              { format(selectedDay, 'MMM-dd-yyyy') } 
+              <CalendarIcon className="h-7 w-7 mr-2 text-black" />  
+              <input readOnly type="text" className="shrink w-full p-0 m-0 bg-transparent border-none focus:ring-0 text-black cursor-pointer" value={ format(selectedDay, 'MMM-dd-yyyy') }  />
+
+
+  {/* NEED TO ADD A READ ONLY INPUT WITH INTEGRATED ICONS HERE SO IT GETS SUBMITTED WITH THE FORM */}
+
+
             </div>
             <MinusIcon className="group-data-[state=closed]:hidden h-4 w-4 text-neutral-500 " /> {/* Hiding minus icon when calendar is closed via tailwind's group to avoid cluttering the starting state with icons */}
           </Accordion.Trigger>
@@ -359,7 +364,7 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
         <Accordion.Header className="flex rounded-md shadow data-[state=closed]:w-60 data-[state=open]:w-full bg-neutral-200 ">
           <Accordion.Trigger className="inline-flex justify-between px-3 py-2 w-full text-left "> 
             { format(selectedDay, 'MMM-dd-yyyy') } 
-             <CalendarIcon className="h-6 w-6 text-black" /> 
+            <CalendarIcon className="h-6 w-6 text-black" /> 
           </Accordion.Trigger>
         </Accordion.Header>
         <Accordion.Content className="data-[state=closed]:w-60 data-[state=open]:w-full">
@@ -586,7 +591,7 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
             <br/>
             
             {/* The Select.Root value syncs with state so it updates if user changes calendar to a new year. No name attribute since this field isn't submitted to server */}
-            <Select.Root  value={format(firstDaySelectedMonth,"yyyy")} defaultValue={format(firstDaySelectedMonth,"yyyy")} onValueChange={setNewYear} >
+            <Select.Root value={format(firstDaySelectedMonth,"yyyy")} defaultValue={format(firstDaySelectedMonth,"yyyy")} onValueChange={setNewYear} >
               <Select.Trigger className="outline-none text-md border-solid border-2 border-slate-500 px-2 hover:bg-white">
                 <Select.Value placeholder="Year" />
                 <Select.Icon />
