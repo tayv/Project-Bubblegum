@@ -5,7 +5,7 @@ import { Menu, Transition } from '@headlessui/react'
 import { EllipsisVerticalIcon } from '@heroicons/react/20/solid'
 import { ChevronLeftIcon, ChevronRightIcon, CalendarIcon, MinusIcon } from '@heroicons/react/24/solid'
 import Input, { InputProps } from '@atoms/Input'
-import SelectRadix from '@atoms/SelectRadix'
+import InputLabel from '@atoms/InputLabelRadix'
 import * as Select from '@radix-ui/react-select'
 import * as Accordion from '@radix-ui/react-accordion'
 import {
@@ -87,6 +87,7 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
     <> 
 
     {/* Calendar icon aligned to the left */}
+    <InputLabel type="standard" label="Pick a date: (option 1)" htmlFor="date-option1" />
     <Accordion.Root type="single" collapsible className="flex shrink" > {/* Flex shrink used since can't change Root styles like width using Data Attributes */}
       <Accordion.Item value="item-1" className="mt-1 ">
         <Accordion.Header className="flex rounded-md shadow data-[state=closed]:w-60 data-[state=open]:w-full bg-neutral-200 ">
@@ -220,6 +221,7 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
     
     <br/>
     {/* Calendar minus icon only shows when calendar is open */}
+    <InputLabel type="standard" label="Pick a date: (option 2)" htmlFor="date-option2" />
     <Accordion.Root type="single" collapsible className="flex shrink" > {/* Flex shrink used since can't change Root styles like width using Data Attributes */}
       <Accordion.Item value="item-1" className="mt-1 ">
         <Accordion.Header className="group flex rounded-md shadow data-[state=closed]:w-60 data-[state=open]:w-full bg-neutral-200 ">
@@ -351,6 +353,7 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
 
     <br/>
     {/* Calendar icon aligned on the right */}
+    <InputLabel type="standard" label="Pick a date: (option 3)" htmlFor="date-option3" />
     <Accordion.Root type="single" collapsible className="flex shrink" > {/* Flex shrink used since can't change Root styles like width using Data Attributes */}
       <Accordion.Item value="item-1" className="mt-1 ">
         <Accordion.Header className="flex rounded-md shadow data-[state=closed]:w-60 data-[state=open]:w-full bg-neutral-200 ">
