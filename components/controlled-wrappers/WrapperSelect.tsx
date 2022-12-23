@@ -1,8 +1,7 @@
 import React, { FC, JSXElementConstructor } from 'react'
 import { Controller, Control } from 'react-hook-form'
-import classNames from 'classnames'
-import SelectRadix, {SelectRadixProps} from '@components/atoms/SelectRadix'
-import InputLabel from '@components/atoms/InputLabelRadix'
+import SelectRadix, {SelectRadixProps} from '@atoms/SelectRadix'
+import InputLabel from '@atoms/InputLabelRadix'
 import Tip from '@components/helpers/Tip'
 
 export type WrapperSelectProps = {
