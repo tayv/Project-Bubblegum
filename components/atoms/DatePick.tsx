@@ -30,7 +30,7 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
   let [selectedDay, setSelectedDay] = useState(today) // the day current selected by user
   let [currentMonth, setCurrentMonth] = useState(format(today, 'MMM-yyyy')) // format is a date-fns function
   let firstDaySelectedMonth = parse(currentMonth, 'MMM-yyyy', new Date()) // From date-fns. Returns the date parsed from string using the given format string
-  let [showCalendar, setShowCalendar] = useState(false) // used to show/hide the calendar
+  let [showCalendar, setShowCalendar] = useState("CalendarClosed") // used to show/hide the calendar
 
   // store the days of the month in an array. This will be mapped through in order to create the calendar
   let daysInMonth = eachDayOfInterval({
@@ -81,6 +81,12 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
         </Select.Item>
       )
      }) 
+  }
+
+  const toggleCalendar = () => {
+   // Used by Radix UI's Accordion to open/close the Accordian. Not using Boolean because the Radix API requires a string value.
+   // https://www.radix-ui.com/docs/primitives/components/accordion
+   (showCalendar==="CalendarOpen") ? setShowCalendar("CalendarClosed") : setShowCalendar("CalendarOpen")
   }
 
   return (
@@ -222,8 +228,9 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
     <br/>
     {/* Calendar minus icon only shows when calendar is open */}
     <InputLabel type="standard" label="Pick a date: (option 2)" htmlFor={name} />
-    <Accordion.Root type="single" collapsible className="flex shrink" > {/* Flex shrink used since can't change Root styles like width using Data Attributes */}
-      <Accordion.Item value="item-1" className="mt-1 ">
+    {/* Value and OnValueChange are required to toggle the open/close state of the Accordian when users clicks the header */}
+    <Accordion.Root type="single" collapsible value={showCalendar} onValueChange={toggleCalendar} className="flex shrink" > {/* Flex shrink used since can't change Root styles like width using Data Attributes */}
+      <Accordion.Item value={"CalendarOpen"} className="mt-1 ">
         <Accordion.Header className="group flex shadow data-[state=closed]:w-48 data-[state=open]:w-full bg-neutral-200 data-[state=closed]:rounded-md data-[state=open]:rounded-tl-lg data-[state=open]:rounded-tr-lg">
           <Accordion.Trigger className="inline-flex justify-between items-center px-3 py-2 w-full text-left ">
             <div className="inline-flex align-left">
@@ -246,6 +253,7 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
               <div className="md:pt-4 md:pr-8 md:pb-2 md:pl-6">
                 <div className="flex items-center">
                   <h2 className="flex-auto font-semibold text-gray-900">
+
                     {format(firstDaySelectedMonth, "MMMM")}
                      {/* The Select.Root value syncs with state so it updates if user changes calendar to a new year. No name attribute since this field isn't submitted to server */}
                     <Select.Root value={format(firstDaySelectedMonth,"yyyy")} defaultValue={format(firstDaySelectedMonth,"yyyy")} onValueChange={setNewYear} >
@@ -269,6 +277,7 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
                         </Select.Content>
                       </Select.Portal>
                     </Select.Root>
+
                   </h2>
                   <button
                     type="button"
@@ -297,6 +306,7 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
                   <div>F</div>
                   <div>S</div>
                 </div>
+                
                 <div className="grid grid-cols-7 mt-2 text-sm">
                   {/* // Map through the array of days in the selected month and render each day of the month as a button. 
                       // Each button has its own conditional styling. */}
@@ -312,7 +322,7 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
                         type="button"
                         onClick={() => {
                           setSelectedDay(day)
-                          setShowCalendar(false) // Remove if don't want calendar to close after selecting a day
+                          setShowCalendar("CalendarClosed") // Remove if don't want calendar to close after selecting a day
                         }} // when user clicks on a day, set that day as the selected day
                         className={ classNames(
                           // current day selected?
@@ -368,7 +378,7 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
     {/* Calendar icon aligned on the right */}
     <InputLabel type="standard" label="Pick a date: (option 3)" htmlFor="date-option3" />
     <Accordion.Root type="single" className="flex shrink" > {/* Flex shrink used since can't change Root styles like width using Data Attributes */}
-      <Accordion.Item value="item-1" className="mt-1 ">
+      <Accordion.Item value="item1" className="mt-1 ">
         <Accordion.Header className="flex rounded-md shadow data-[state=closed]:w-60 data-[state=open]:w-full bg-neutral-200 ">
           <Accordion.Trigger className="inline-flex justify-between px-3 py-2 w-full text-left "> 
             { format(selectedDay, 'MMM-dd-yyyy') } 
