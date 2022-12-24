@@ -353,30 +353,33 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
                   <li className="text-indigo-500 py-px"><button type="button" onClick={ () => jumpToDate(6) }>+ 6 months</button></li>
                   <li className="text-indigo-500 py-px"><button type="button" onClick={ () => jumpToDate(12) }>+ 1 year</button></li>
                   <li className="text-indigo-500 py-px"><button type="button" onClick={ () => jumpToDate(24) }>+ 2 years</button></li>
+                  <li className="pl-1 py-px">
+                     {/* The Select.Root value syncs with state so it updates if user changes calendar to a new year. No name attribute since this field isn't submitted to server */}
+                    <Select.Root  value={format(firstDaySelectedMonth,"yyyy")} defaultValue={format(firstDaySelectedMonth,"yyyy")} onValueChange={setNewYear} >
+                      <Select.Trigger className="inline-flex items-center outline-none rounded-md text-md text-indigo-500 pl-2 pr-1 hover:bg-indigo-200">
+                        <Select.Value placeholder="Year" />
+                        <Select.Icon>
+                          <ChevronUpDownIcon className="h-4 w-4 text-indigo-500" />
+                        </Select.Icon>
+                      </Select.Trigger>
+                      <Select.Portal>
+                        <Select.Content className="outline-none border-solid border border-slate-200 rounded-md bg-white py-1 px-2">
+                          <Select.ScrollUpButton className="flex justify-center">
+                            <ChevronUpIcon className="h-4 w-4 text-neutral-800" />
+                          </Select.ScrollUpButton>
+                          <Select.Viewport>
+                            { setYearRange(1999, 2025) }
+                          </Select.Viewport>
+                          <Select.ScrollDownButton className="flex justify-center"> 
+                            <ChevronDownIcon className="h-4 w-4 mr-2 text-neutral-800" />  
+                          </Select.ScrollDownButton>
+                        </Select.Content>
+                      </Select.Portal>
+                    </Select.Root>
+                  </li>
                 </ol>
                 
-                {/* The Select.Root value syncs with state so it updates if user changes calendar to a new year. No name attribute since this field isn't submitted to server */}
-                <Select.Root  value={format(firstDaySelectedMonth,"yyyy")} defaultValue={format(firstDaySelectedMonth,"yyyy")} onValueChange={setNewYear} >
-                  <Select.Trigger className="inline-flex items-center outline-none rounded-md text-md text-indigo-500 pl-2 pr-1 hover:bg-indigo-200">
-                    <Select.Value placeholder="Year" />
-                    <Select.Icon>
-                      <ChevronUpDownIcon className="h-4 w-4 text-indigo-500" />
-                    </Select.Icon>
-                  </Select.Trigger>
-                  <Select.Portal>
-                    <Select.Content className="outline-none border-solid border border-slate-200 rounded-md bg-white py-1 px-2">
-                      <Select.ScrollUpButton className="flex justify-center">
-                        <ChevronUpIcon className="h-4 w-4 text-neutral-800" />
-                      </Select.ScrollUpButton>
-                      <Select.Viewport>
-                        { setYearRange(1999, 2025) }
-                      </Select.Viewport>
-                      <Select.ScrollDownButton className="flex justify-center"> 
-                        <ChevronDownIcon className="h-4 w-4 mr-2 text-neutral-800" />  
-                      </Select.ScrollDownButton>
-                    </Select.Content>
-                  </Select.Portal>
-                </Select.Root>
+               
               </section>
             </div>
           </div>
