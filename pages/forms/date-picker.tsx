@@ -40,9 +40,19 @@ const DatePickerPage: FC = () => {
 
       <Section id="dates" style="standard">
         <Heading text="Custom Date Picker" size="h2" type="primary"/>
-        <Paragraph text="Custom Date Picker using tailwind styled calendar and a read-only input field" size="standard" type="primary" />
+        <Paragraph 
+          text="Custom Date Picker using tailwind styled calendar and a read-only input field" 
+          size="standard" 
+          type="primary" 
+        />
         <br />
-        <DatePick name="testcustomdatepick" label="Pick a date:" control={control} />
+        <DatePick 
+          name="testcustomdatepick" 
+          label="Pick a date:" 
+          control={control} 
+          startYearRange={1992} 
+          endYearRange={2025} 
+        />
       </Section>
 
     </LayoutContainerSide>

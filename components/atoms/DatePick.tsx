@@ -1,9 +1,7 @@
-import React, { FC, Fragment, useState, useEffect } from 'react'
+import React, { FC, SyntheticEvent, useState } from 'react'
 import classNames from 'classnames'
-import { Control, Controller, useForm } from 'react-hook-form'
-import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon, ChevronUpDownIcon, ChevronUpIcon } from '@heroicons/react/20/solid'
-import { ChevronLeftIcon, ChevronRightIcon, CalendarIcon, MinusIcon, ArrowRightIcon, ArrowLeftIcon } from '@heroicons/react/24/solid'
+import { CalendarIcon, MinusIcon, ArrowRightIcon, ArrowLeftIcon } from '@heroicons/react/24/solid'
 import Input, { InputProps } from '@atoms/Input'
 import InputLabel from '@atoms/InputLabelRadix'
 import * as Select from '@radix-ui/react-select'
@@ -19,13 +17,18 @@ import {
   isSameMonth,
   isToday,
   parse,
-  parseISO,
   setYear,
   startOfToday,
   eachYearOfInterval,
 } from 'date-fns'
 
-const DatePick: FC<InputProps> = ( { name , label, control } ) => {
+export type DatePickProps = {
+  startYearRange: number // Range determines the years used by the Select in the calendar
+  endYearRange: number
+}
+
+const DatePick: FC<DatePickProps & InputProps> = ( { name , label, startYearRange, endYearRange } ) => {
+
   let today = startOfToday() // a date-fns function that gets current date on user's machine
   let [selectedDay, setSelectedDay] = useState(today) // the day current selected by user
   let [currentMonth, setCurrentMonth] = useState(format(today, 'MMM-yyyy')) // format is a date-fns function
@@ -50,14 +53,15 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
   }
 
   // Used to jump multiple months/years at a time
-  const jumpToDate = (monthsToJump) => { 
+  const jumpToDate = (monthsToJump: number) => { 
     let jumpDate = add(firstDaySelectedMonth, { months: monthsToJump })
     setCurrentMonth(format(jumpDate, 'MMM-yyyy'))
   }
 
   // Updates the calendar to a new year but keeps the same month
-  const setNewYear = (e) => {
-    let yearResult = setYear(firstDaySelectedMonth, e)
+  const setNewYear = (yearToSet: string ) => {
+    let yearToSetAsNumber = +yearToSet
+    let yearResult = setYear(firstDaySelectedMonth, yearToSetAsNumber)
     setCurrentMonth(format(yearResult, 'MMM-yyyy'))
   }
 
@@ -91,7 +95,6 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
 
   return (
   <> 
-    {/* Calendar minus icon only shows when calendar is open */}
     <InputLabel type="standard" label="Pick a date: " htmlFor={name} />
     {/* Value and OnValueChange are required to toggle the open/close state of the Accordian when users clicks the header */}
     <Accordion.Root type="single" collapsible value={showCalendar} onValueChange={toggleCalendar} className="flex shrink" > {/* Flex shrink used since can't change Root styles like width using Data Attributes */}
@@ -133,7 +136,7 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
                             <ChevronUpIcon className="h-4 w-4 text-neutral-800" />
                           </Select.ScrollUpButton>
                           <Select.Viewport>
-                            { setYearRange(1999, 2025) }
+                            { setYearRange(startYearRange, endYearRange) }
                           </Select.Viewport>
                           <Select.ScrollDownButton className="flex justify-center"> 
                             <ChevronDownIcon className="h-4 w-4 mr-2 text-neutral-800" />  
