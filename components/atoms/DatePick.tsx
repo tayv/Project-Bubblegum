@@ -2,7 +2,7 @@ import React, { FC, Fragment, useState, useEffect } from 'react'
 import classNames from 'classnames'
 import { Control, Controller, useForm } from 'react-hook-form'
 import { Menu, Transition } from '@headlessui/react'
-import { EllipsisVerticalIcon } from '@heroicons/react/20/solid'
+import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/20/solid'
 import { ChevronLeftIcon, ChevronRightIcon, CalendarIcon, MinusIcon } from '@heroicons/react/24/solid'
 import Input, { InputProps } from '@atoms/Input'
 import InputLabel from '@atoms/InputLabelRadix'
@@ -75,7 +75,7 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
       let yearFormatted = format(year, 'yyyy')
       return (
         // Use Radix UI's Select Component for accessibility. Hardcoded since it's unique to this component
-        <Select.Item key={yearFormatted.toString()} className="outline-none cursor-pointer hover:bg-sky-300 px-2" value={yearFormatted}>
+        <Select.Item key={yearFormatted.toString()} className="outline-none cursor-pointer hover:bg-indigo-200 px-2 rounded-md" value={yearFormatted}>
           <Select.ItemText>{yearFormatted}</Select.ItemText>
           <Select.ItemIndicator />
         </Select.Item>
@@ -221,25 +221,26 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
     
     <br/>
     {/* Calendar minus icon only shows when calendar is open */}
-    <InputLabel type="standard" label="Pick a date: (option 2)" htmlFor="date-option2" />
+    <InputLabel type="standard" label="Pick a date: (option 2)" htmlFor={name} />
     <Accordion.Root type="single" collapsible className="flex shrink" > {/* Flex shrink used since can't change Root styles like width using Data Attributes */}
       <Accordion.Item value="item-1" className="mt-1 ">
-        <Accordion.Header className="group flex rounded-md shadow data-[state=closed]:w-48 data-[state=open]:w-full bg-neutral-200 ">
+        <Accordion.Header className="group flex shadow data-[state=closed]:w-48 data-[state=open]:w-full bg-neutral-200 data-[state=closed]:rounded-md data-[state=open]:rounded-tl-lg data-[state=open]:rounded-tr-lg">
           <Accordion.Trigger className="inline-flex justify-between items-center px-3 py-2 w-full text-left ">
             <div className="inline-flex align-left">
               <CalendarIcon className="h-7 w-7 mr-2 text-black" />  
-              <input readOnly type="text" className="shrink w-full p-0 m-0 bg-transparent border-none focus:ring-0 text-black cursor-pointer" value={ format(selectedDay, 'MMM-dd-yyyy') }  />
-
-
-  {/* NEED TO ADD A READ ONLY INPUT WITH INTEGRATED ICONS HERE SO IT GETS SUBMITTED WITH THE FORM */}
-
-
+              <input 
+                name={name} 
+                readOnly 
+                type="text" 
+                className="shrink w-full p-0 m-0 bg-transparent border-none focus:ring-0 text-black cursor-pointer"
+                value={ format(selectedDay, 'MMM-dd-yyyy') }  
+              />
             </div>
             <MinusIcon className="group-data-[state=closed]:hidden h-4 w-4 text-neutral-500 " /> {/* Hiding minus icon when calendar is closed via tailwind's group to avoid cluttering the starting state with icons */}
           </Accordion.Trigger>
         </Accordion.Header>
         <Accordion.Content className="data-[state=closed]:w-60 data-[state=open]:w-full">
-         <div className="py-2 border-solid border-2 w-full">
+         <div className="bg-neutral-50 rounded-bl-lg rounded-br-lg border-solid border-2 shadow w-full p-3 py-6 md:p-0">
           <div className="max-w-md mx-auto sm:px-7 md:max-w-4xl md:px-2">
             <div className="md:grid md:grid-cols-2 md:divide-x md:divide-gray-200">
               <div className="md:pt-4 md:pr-8 md:pb-2 md:pl-6">
@@ -326,25 +327,29 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
               <section className="md:pl-8 md:pt-4 sm:pt-2 sm:pl-0">
                 <h2 className="pb-1 text-gray-500 font-medium">Quick Jump</h2>
                 <ol>
-                  <li className="text-emerald-500 pl-3 py-px"><button type="button" onClick={ () => setCurrentMonth(format(today, 'MMM-yyyy')) }>Today</button></li>
-                  <li className="text-emerald-500 py-px"><button type="button" onClick={ () => jumpToDate(6) }>+ 6 months</button></li>
-                  <li className="text-emerald-500 py-px"><button type="button" onClick={ () => jumpToDate(12) }>+ 1 year</button></li>
-                  <li className="text-emerald-500 py-px"><button type="button" onClick={ () => jumpToDate(24) }>+ 2 years</button></li>
+                  <li className="text-indigo-500 pl-3 py-px"><button type="button" onClick={ () => setCurrentMonth(format(today, 'MMM-yyyy')) }>Today</button></li>
+                  <li className="text-indigo-500 py-px"><button type="button" onClick={ () => jumpToDate(6) }>+ 6 months</button></li>
+                  <li className="text-indigo-500 py-px"><button type="button" onClick={ () => jumpToDate(12) }>+ 1 year</button></li>
+                  <li className="text-indigo-500 py-px"><button type="button" onClick={ () => jumpToDate(24) }>+ 2 years</button></li>
                 </ol>
                 
                 {/* The Select.Root value syncs with state so it updates if user changes calendar to a new year. No name attribute since this field isn't submitted to server */}
                 <Select.Root  value={format(firstDaySelectedMonth,"yyyy")} defaultValue={format(firstDaySelectedMonth,"yyyy")} onValueChange={setNewYear} >
-                  <Select.Trigger className="outline-none text-md border-solid border-2 border-slate-500 px-2 hover:bg-white">
+                  <Select.Trigger className="outline-none rounded-md text-md px-2 hover:bg-indigo-200">
                     <Select.Value placeholder="Year" />
                     <Select.Icon />
                   </Select.Trigger>
                   <Select.Portal>
-                    <Select.Content className="outline-none border-solid border-2 border-slate-500 bg-white py-1 px-2">
-                      <Select.ScrollUpButton />
+                    <Select.Content className="outline-none border-solid border border-slate-200 rounded-md bg-white py-1 px-2">
+                      <Select.ScrollUpButton className="flex justify-center">
+                        <ChevronUpIcon className="h-4 w-4 text-neutral-800" />
+                      </Select.ScrollUpButton>
                       <Select.Viewport>
                         { setYearRange(1999, 2025) }
                       </Select.Viewport>
-                      <Select.ScrollDownButton />
+                      <Select.ScrollDownButton className="flex justify-center"> 
+                        <ChevronDownIcon className="h-4 w-4 mr-2 text-neutral-800" />  
+                      </Select.ScrollDownButton>
                     </Select.Content>
                   </Select.Portal>
                 </Select.Root>
