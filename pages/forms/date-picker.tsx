@@ -34,12 +34,14 @@ const DatePickerPage: FC = () => {
       <Section id="datepick" style="standard">
         <Heading text="HTML5: Date Picker" size="h3" type="primary"/>
         <Paragraph text="This html5 date picker has basic formatting functionality but will appear inconsistently across devices and browsers" size="standard" type="primary" />
+        <br />
         <DatePicker name="testhtmldatepick" label="HTML5 Date Picker:" />
       </Section>
 
       <Section id="dates" style="standard">
         <Heading text="Custom Date Picker" size="h2" type="primary"/>
         <Paragraph text="Custom Date Picker using tailwind styled calendar and a read-only input field" size="standard" type="primary" />
+        <br />
         <DatePick name="testcustomdatepick" label="Pick a date:" control={control} />
       </Section>
 
