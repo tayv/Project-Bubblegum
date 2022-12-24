@@ -61,7 +61,7 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
     setCurrentMonth(format(yearResult, 'MMM-yyyy'))
   }
 
-  const setYearRange = (startYearRange, endYearRange) => {
+  const setYearRange = (startYearRange: number, endYearRange: number) => {
     // takes a year as start/end date and returns an array of years in between in a full date format
     let yearRangeUnformatted = eachYearOfInterval( 
       { 
@@ -249,18 +249,17 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
         <Accordion.Content className="data-[state=closed]:w-60 data-[state=open]:w-full">
          <div className="bg-neutral-50 rounded-bl-lg rounded-br-lg border-solid border-2 shadow w-full p-3 py-6 md:p-0">
           <div className="max-w-md mx-auto sm:px-7 md:max-w-4xl md:px-2">
-            <div className="md:grid md:grid-cols-2 md:divide-x md:divide-gray-200 ">
+            <div className="md:grid md:grid-cols-auto grid-flow-col md:divide-x md:divide-gray-200 ">
               <div className="md:pt-4 md:pr-8 md:pb-2 md:pl-6">
                 <div className="flex items-center">
                   <h2 className="flex-auto font-semibold text-gray-900">
-
                     {format(firstDaySelectedMonth, "MMMM")}
                      {/* The Select.Root value syncs with state so it updates if user changes calendar to a new year. No name attribute since this field isn't submitted to server */}
                     <Select.Root value={format(firstDaySelectedMonth,"yyyy")} defaultValue={format(firstDaySelectedMonth,"yyyy")} onValueChange={setNewYear} >
-                      <Select.Trigger className="inline-flex items-center outline-none rounded-md text-md pl-2 pr-1 hover:bg-indigo-100">
+                      <Select.Trigger className="inline-flex items-center outline-none rounded-md text-md ml-1 pl-1.5 pr-0.5 bg-indigo-100 hover:bg-indigo-200">
                         <Select.Value placeholder="Year" />
                         <Select.Icon>
-                          <ChevronUpDownIcon className="h-4 w-4 text-indigo-500" />
+                          <ChevronUpDownIcon className="h-4 w-4 pl-px text-indigo-500" />
                         </Select.Icon>
                       </Select.Trigger>
                       <Select.Portal>
@@ -277,7 +276,6 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
                         </Select.Content>
                       </Select.Portal>
                     </Select.Root>
-
                   </h2>
                   <button
                     type="button"
@@ -306,7 +304,7 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
                   <div>F</div>
                   <div>S</div>
                 </div>
-                
+
                 <div className="grid grid-cols-7 mt-2 text-sm">
                   {/* // Map through the array of days in the selected month and render each day of the month as a button. 
                       // Each button has its own conditional styling. */}
@@ -315,7 +313,7 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
                       key={day.toString()}
                       className={classNames(
                         dayId === 0 && firstDayStartingCol[getDay(day)], // First day equals index 0. So use date-fns getDay() as an index to start the first day of the month styling.
-                        'py-1.5'
+                        "py-1.5"
                       )}
                     >
                       <button
@@ -326,24 +324,24 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
                         }} // when user clicks on a day, set that day as the selected day
                         className={ classNames(
                           // current day selected?
-                          isEqual(day, selectedDay) && 'text-white',
+                          isEqual(day, selectedDay) && "text-white",
                           // if day is selected + is today's date = make the background red
-                          isEqual(day, selectedDay) && isToday(day) && 'bg-indigo-500',
+                          isEqual(day, selectedDay) && isToday(day) && "bg-indigo-500",
                           // if day is selected + is NOT today's date = make the background gray
-                          isEqual(day, selectedDay) && !isToday(day) && 'bg-gray-900',
+                          isEqual(day, selectedDay) && !isToday(day) && "bg-gray-900",
                           // if the day is selected OR the day is today's date = make the font semi bold
-                          (isEqual(day, selectedDay) || isToday(day)) && 'font-semibold',
+                          (isEqual(day, selectedDay) || isToday(day)) && "font-semibold",
 
                           // if current day is not selected = make the current day text red
-                          !isEqual(day, selectedDay) && isToday(day) && 'text-indigo-500',
+                          !isEqual(day, selectedDay) && isToday(day) && "text-indigo-500",
                           // if day is not selected + also not today's date + is in the current month = make the text gray
-                          !isEqual(day, selectedDay) && !isToday(day) && isSameMonth(day, firstDaySelectedMonth) && 'text-gray-900',
+                          !isEqual(day, selectedDay) && !isToday(day) && isSameMonth(day, firstDaySelectedMonth) && "text-gray-900",
                           // if day is not selected + also not today's date + is NOT in the current month = make the text lighter gray
-                          !isEqual(day, selectedDay) && !isToday(day) && !isSameMonth(day, firstDaySelectedMonth) && 'text-gray-400',
+                          !isEqual(day, selectedDay) && !isToday(day) && !isSameMonth(day, firstDaySelectedMonth) && "text-gray-400",
                           // if day is NOT selected + user is hovering over it = make the background gray
-                          !isEqual(day, selectedDay) && 'hover:bg-gray-200',
+                          !isEqual(day, selectedDay) && "hover:bg-gray-200",
                         
-                          'mx-auto flex h-8 w-8 items-center justify-center rounded-full'
+                          "mx-auto flex h-8 w-8 items-center justify-center rounded-full"
                         ) }
                       >
                         {/* // display the day as a number */}
@@ -356,17 +354,17 @@ const DatePick: FC<InputProps> = ( { name , label, control } ) => {
                   ))}
                 </div>
               </div>
-              <section className="border-t border-neutral-200 md:border-t-0 mt-4 md:mt-0 md:pl-8 md:pt-4 sm:pt-2 sm:pl-0  ">
-                <h2 className="pb-1 pt-4 md:pt-0 text-gray-500 font-medium">Quick Jump</h2>
+
+              <section className="border-t border-neutral-200 md:border-t-0 mt-4 md:mt-0 md:px-8 md:pt-4 sm:pt-2 sm:pl-0  ">
+                <h2 className="pb-1 pt-4 md:pt-0 text-neutral-500 font-medium text-sm">Quick Jump</h2>
                 <ol className="grid grid-cols-2 mt md:grid-cols-none">
-                  <li className="text-indigo-500 pl-3 py-px "><button type="button" onClick={ () => setCurrentMonth(format(today, 'MMM-yyyy')) }>Today</button></li>
+                  <li className="text-indigo-500 py-px "><button type="button" onClick={ () => setCurrentMonth(format(today, "MMM-yyyy")) }>Today</button></li>
                   <li className="text-indigo-500 py-px"><button type="button" onClick={ () => jumpToDate(6) }>+ 6 months</button></li>
                   <li className="text-indigo-500 py-px"><button type="button" onClick={ () => jumpToDate(12) }>+ 1 year</button></li>
                   <li className="text-indigo-500 py-px"><button type="button" onClick={ () => jumpToDate(24) }>+ 2 years</button></li>
-                </ol>
-                
-               
+                </ol>             
               </section>
+
             </div>
           </div>
          </div>
