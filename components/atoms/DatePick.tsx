@@ -1,8 +1,8 @@
-import React, { FC, SyntheticEvent, useState } from 'react'
+import React, { FC, useState } from 'react'
 import classNames from 'classnames'
 import { ChevronDownIcon, ChevronUpDownIcon, ChevronUpIcon } from '@heroicons/react/20/solid'
 import { CalendarIcon, MinusIcon, ArrowRightIcon, ArrowLeftIcon } from '@heroicons/react/24/solid'
-import Input, { InputProps } from '@atoms/Input'
+import { InputProps } from '@atoms/Input'
 import InputLabel from '@atoms/InputLabelRadix'
 import * as Select from '@radix-ui/react-select'
 import * as Accordion from '@radix-ui/react-accordion'
@@ -13,7 +13,6 @@ import {
   format,
   getDay,
   isEqual,
-  isSameDay,
   isSameMonth,
   isToday,
   parse,
@@ -95,12 +94,14 @@ const DatePick: FC<DatePickProps & InputProps> = ( { name , label, startYearRang
 
   return (
   <> 
-    <InputLabel type="standard" label="Pick a date: " htmlFor={name} />
+    <InputLabel type="standard" label="Pick a date: " htmlFor={name} /> 
     {/* Value and OnValueChange are required to toggle the open/close state of the Accordian when users clicks the header */}
     <Accordion.Root type="single" collapsible value={showCalendar} onValueChange={toggleCalendar} className="flex shrink" > {/* Flex shrink used since can't change Root styles like width using Data Attributes */}
       <Accordion.Item value={"CalendarOpen"} className="mt-1 ">
         <Accordion.Header className="group flex shadow data-[state=closed]:w-48 data-[state=open]:w-full bg-neutral-200 data-[state=closed]:rounded-md data-[state=open]:rounded-tl-lg data-[state=open]:rounded-tr-lg">
           <Accordion.Trigger className="inline-flex justify-between items-center px-3 py-2 w-full text-left ">
+           
+          { /* Integrated an input field into Accordian Header so that the form has an input value to submit */}
             <div className="inline-flex align-left">
               <CalendarIcon className="h-7 w-7 mr-2 text-black" />  
               <input 
@@ -111,10 +112,13 @@ const DatePick: FC<DatePickProps & InputProps> = ( { name , label, startYearRang
                 value={ format(selectedDay, 'MMM-dd-yyyy') }  
               />
             </div>
+
             <MinusIcon className="group-data-[state=closed]:hidden h-4 w-4 text-neutral-500 " /> {/* Hiding minus icon when calendar is closed via tailwind's group to avoid cluttering the starting state with icons */}
           </Accordion.Trigger>
         </Accordion.Header>
+
         <Accordion.Content className="data-[state=closed]:w-60 data-[state=open]:w-full">
+          {/* Calendar */}
         <div className="bg-neutral-50 rounded-bl-lg rounded-br-lg border-solid border-2 shadow w-full p-3 py-6 md:p-0">
           <div className="max-w-md mx-auto sm:px-7 md:max-w-4xl md:px-2">
             <div className="md:grid md:grid-cols-auto grid-flow-col md:divide-x md:divide-gray-200 ">
@@ -145,25 +149,17 @@ const DatePick: FC<DatePickProps & InputProps> = ( { name , label, startYearRang
                       </Select.Portal>
                     </Select.Root>
                   </h2>
-                  <button
-                    type="button"
-                    onClick={prevMonth}
-                    className="-my-1.5 flex flex-none items-center justify-center p-1 text-gray-400 hover:text-gray-500"
-                  >
+                  <button type="button" onClick={prevMonth} className="-my-1.5 flex flex-none items-center justify-center p-1 text-gray-400 hover:text-gray-500" >
                     <span className="sr-only">Previous month</span>
                     <ArrowLeftIcon className="w-5 h-5 text-indigo-500" aria-hidden="true" />
                   </button>
-                  <button
-                    onClick={nextMonth}
-                    type="button"
-                    className="-my-1.5 -mr-1.5 ml-2 flex flex-none items-center justify-center p-1 text-gray-400 hover:text-gray-500"
-                  >
+                  <button onClick={nextMonth} type="button" className="-my-1.5 -mr-1.5 ml-2 flex flex-none items-center justify-center p-1 text-gray-400 hover:text-gray-500" >
                     <span className="sr-only">Next month</span>
                     <ArrowRightIcon className="w-5 h-5 text-indigo-500" aria-hidden="true" />
                   </button>
                 </div>
                 <div className="grid grid-cols-7 mt-10 text-xs leading-6 text-center text-gray-500">
-                  {/* // Can change the order of the days be re-ording the divs */}
+                  {/* // Can change the order of the days be re-ording these divs */}
                   <div>S</div>
                   <div>M</div>
                   <div>T</div>
@@ -173,6 +169,7 @@ const DatePick: FC<DatePickProps & InputProps> = ( { name , label, startYearRang
                   <div>S</div>
                 </div>
 
+                {/* Calendar Days */}
                 <div className="grid grid-cols-7 mt-2 text-sm">
                   {/* // Map through the array of days in the selected month and render each day of the month as a button. 
                       // Each button has its own conditional styling. */}
@@ -212,10 +209,7 @@ const DatePick: FC<DatePickProps & InputProps> = ( { name , label, startYearRang
                           "mx-auto flex h-8 w-8 items-center justify-center rounded-full"
                         ) }
                       >
-                        {/* // display the day as a number */}
-                        <time dateTime={format(day, "yyyy-MM-dd")}>
-                          {format(day, "d")}
-                        </time>
+                        <time dateTime={format(day, "yyyy-MM-dd")}> {format(day, "d")} </time> {/* // display each day as a number */}
                       </button>
 
                     </div>
@@ -223,6 +217,7 @@ const DatePick: FC<DatePickProps & InputProps> = ( { name , label, startYearRang
                 </div>
               </div>
 
+              {/* Quick Jump Section */} 
               <section className="border-t border-neutral-200 md:border-t-0 mt-4 md:mt-0 md:px-8 md:pt-4 sm:pt-2 sm:pl-0  ">
                 <h2 className="pb-1 pt-4 md:pt-0 text-neutral-500 font-medium text-sm">Quick Jump</h2>
                 <ol className="grid grid-cols-2 mt md:grid-cols-none">
