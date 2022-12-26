@@ -154,10 +154,6 @@ const QuizTemplate: FC = () => {
           <Heading text="Test Form 1" size="h2" type="primary"/>
           <Paragraph text="This form is used to show default styling for text, radio button, checkbox, and multi-line input components. Also used to test Controlled inputs" size="standard" type="primary" />
         </Section>
-        <Section id="dates" style="standard">
-          <Heading text="Date Picker" size="h2" type="primary"/>
-          <DatePick name="datePick" label="Pick a date:" control={control} />
-        </Section>
         <Section id="textInput" style="standard">
           <Heading text="Section Title: Single Line Input" size="h3" type="primary"/>
           <WrapperInput
@@ -298,7 +294,7 @@ const QuizTemplate: FC = () => {
 
         <Section id="datepick" style="standard">
           <Heading text="Section Title: Date Picker" size="h3" type="primary"/>
-          <DatePicker name="testdate" label="This is a date picker" />
+          <DatePicker name="datepicktest" label="This is a date picker" />
         </Section>
 
              
