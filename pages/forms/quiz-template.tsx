@@ -15,8 +15,7 @@ import TemplateGeneric from '@components/products/producta/TemplateGeneric'
 import UpdateDocState from '@components/UpdateDocState'
 import WrapperTextArea from '@components/controlled-wrappers/WrapperTextArea'
 import WrapperSelect from '@components/controlled-wrappers/WrapperSelect'
-
-
+import DatePick from '@atoms/DatePick'
 
 // data for Breadcrumbs
 const crumbs = [
@@ -109,6 +108,10 @@ const QuizTemplate: FC = () => {
       registerradio: "supercross", // works
       // Checkbox Input Section
       checkboxInput: true,
+      // Select Input Section
+      flatSelect: "third",
+      groupSelect: "third",
+
     }
 
     useEffect(() => {
@@ -127,7 +130,9 @@ const QuizTemplate: FC = () => {
       motoTeamRadio: watch("motoTeamRadio"),
       // Checkbox Input Section
       checkboxInput: watch("checkboxInput"), 
-      
+      // Select Input Section
+      flatSelect: getValues("flatSelect"),
+      groupSelect: getValues("groupSelect")
     }
 
   // TESTING END ------------------------------------------------------------------------------------
@@ -251,6 +256,7 @@ const QuizTemplate: FC = () => {
             name="flatselect" 
             control={control} 
             placeholder="Select an option"
+            defaultValue=""
             itemOptions={ [
                   {value:"first", labelText:"firstText", separator: false}, 
                   {value:"second", labelText:"secondText", separator: true},
@@ -266,6 +272,8 @@ const QuizTemplate: FC = () => {
             label="This is a grouped list Radix Select"
             tip="Tip: This is a grouped list Radix Select"
             placeholder="Select an option"
+            defaultValue={defaultValues.groupSelect}
+            
             itemOptions={ [
                 { groupLabel: "Group 1", 
                   items: [
@@ -281,6 +289,11 @@ const QuizTemplate: FC = () => {
                 }
               ] }
           />
+        </Section>
+
+        <Section id="datepick" style="standard">
+          <Heading text="Section Title: Date Picker" size="h3" type="primary"/>
+          <DatePick name="datepicktest" label="This is a date picker (currently uncontrolled)" startYearRange={1990} endYearRange={2030} />
         </Section>
 
              

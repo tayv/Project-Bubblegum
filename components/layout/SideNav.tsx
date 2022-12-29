@@ -43,18 +43,18 @@ const SideNav: FC<SideNavProps> = ({
                 </a>
               </li>
               <li>
-                <a href="#" className="flex items-center p-1 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-300">
-                  <span className="flex-1 ml-2 whitespace-nowrap">Button Overview</span> 
+                <a href="/forms/quiz-template" className="flex items-center p-1 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-300">
+                  <span className="flex-1 ml-2 whitespace-nowrap">Test Form</span> 
                 </a>
               </li>
               <li>
-                <a href="#secondary" className="flex items-center p-1 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-300">
-                  <span className="flex-1 ml-2 whitespace-nowrap">Best Practices</span> 
+                <a href="/forms/radios" className="flex items-center p-1 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-300">
+                  <span className="flex-1 ml-2 whitespace-nowrap">Radio Buttons</span> 
                 </a>
               </li>
               <li>
-                <a href="#" className="flex items-center p-1 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-300">
-                  <span className="flex-1 ml-2 whitespace-nowrap">Code Snippets</span> 
+                <a href="/forms/date-pick-article" className="flex items-center p-1 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-300">
+                  <span className="flex-1 ml-2 whitespace-nowrap">Date Pick</span> 
                 </a>
               </li>
             </ul>

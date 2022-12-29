@@ -1,14 +1,14 @@
 import React, { FC, JSXElementConstructor } from 'react'
 import { Controller, Control } from 'react-hook-form'
-import classNames from 'classnames'
-import SelectRadix, {SelectRadixProps} from '@components/atoms/SelectRadix'
-import InputLabel from '@components/atoms/InputLabelRadix'
+import SelectRadix, {SelectRadixProps} from '@atoms/SelectRadix'
+import InputLabel from '@atoms/InputLabelRadix'
 import Tip from '@components/helpers/Tip'
 
 export type WrapperSelectProps = {
   label?: string | null
   tip?: string | null
   control: Control
+  defaultValue: string
 }
 
 type LimitedSelectRadixProps = Omit<SelectRadixProps, "value" | "onValueChange" | "forwardedRef">
@@ -19,6 +19,7 @@ const WrapperSelect: FC<LimitedSelectRadixProps & WrapperSelectProps>= ({
   tip = null,
   placeholder,
   itemOptions,
+  defaultValue,
   control,
 }) => {  
 
@@ -27,6 +28,7 @@ const WrapperSelect: FC<LimitedSelectRadixProps & WrapperSelectProps>= ({
       <Controller
         control={control}
         name={name}
+        defaultValue={defaultValue}
         render={ ({ field: {onChange, value, ref, ...props} }) => (
           <>
             { !!label && <InputLabel type="standard" label={label} htmlFor={name} /> }
