@@ -4,6 +4,7 @@ import { ChevronDownIcon, ChevronUpDownIcon, ChevronUpIcon } from '@heroicons/re
 import { CalendarIcon, MinusIcon, ArrowRightIcon, ArrowLeftIcon } from '@heroicons/react/24/solid'
 import { InputProps } from '@atoms/Input'
 import InputLabel from '@atoms/InputLabelRadix'
+import Tip, { TipProps } from '@helpers/Tip'
 import * as Select from '@radix-ui/react-select'
 import * as Accordion from '@radix-ui/react-accordion'
 import {
@@ -26,7 +27,7 @@ export type DatePickProps = {
   endYearRange: number
 }
 
-const DatePick: FC<DatePickProps & InputProps> = ( { name , label, startYearRange, endYearRange } ) => {
+const DatePick: FC<DatePickProps & InputProps> = ( { name , label = null, tipText = null, startYearRange, endYearRange } ) => {
 
   let today = startOfToday() // a date-fns function that gets current date on user's machine
   let [selectedDay, setSelectedDay] = useState(today) // the day current selected by user
@@ -93,8 +94,9 @@ const DatePick: FC<DatePickProps & InputProps> = ( { name , label, startYearRang
   }
 
   return (
-  <> 
-    <InputLabel type="standard" label="Pick a date: " htmlFor={name} /> 
+  <div> 
+    { !!label && <InputLabel type="standard" label={label} htmlFor={name} /> }
+    { !!tipText && <Tip type="standard" text={tipText} /> }
     {/* Value and OnValueChange are required to toggle the open/close state of the Accordian when users clicks the header */}
     <Accordion.Root type="single" collapsible value={showCalendar} onValueChange={toggleCalendar} className="flex shrink" > {/* Flex shrink used since can't change Root styles like width using Data Attributes */}
       <Accordion.Item value={"CalendarOpen"} className="mt-1 ">
@@ -234,7 +236,7 @@ const DatePick: FC<DatePickProps & InputProps> = ( { name , label, startYearRang
         </Accordion.Content>
       </Accordion.Item>
     </Accordion.Root>  
-  </>
+  </div>
                     
   )
 }

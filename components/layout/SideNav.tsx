@@ -53,8 +53,8 @@ const SideNav: FC<SideNavProps> = ({
                 </a>
               </li>
               <li>
-                <a href="/forms/date-picker" className="flex items-center p-1 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-300">
-                  <span className="flex-1 ml-2 whitespace-nowrap">Date Picker</span> 
+                <a href="/forms/date-pick-article" className="flex items-center p-1 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-300">
+                  <span className="flex-1 ml-2 whitespace-nowrap">Date Pick</span> 
                 </a>
               </li>
             </ul>

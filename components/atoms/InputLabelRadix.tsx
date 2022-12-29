@@ -3,7 +3,7 @@ import * as Label from '@radix-ui/react-label'
 
 export type InputLabelProps = {
     type: "standard" | "checkbox"
-    label: string
+    label: string | null
     htmlFor: string
     children?: ReactNode
 }

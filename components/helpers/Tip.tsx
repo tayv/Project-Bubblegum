@@ -1,12 +1,12 @@
 import { FC, ReactNode } from 'react'
 
 export type TipProps = {
-    type: "example" | "standard",
+    type?: "example" | "standard",
     text: string | null
 }
 
 const Tip: FC<TipProps> = ({
-    type,
+    type = "standard",
     text, 
     ...props
 }) => {

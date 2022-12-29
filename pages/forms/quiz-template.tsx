@@ -15,7 +15,6 @@ import TemplateGeneric from '@components/products/producta/TemplateGeneric'
 import UpdateDocState from '@components/UpdateDocState'
 import WrapperTextArea from '@components/controlled-wrappers/WrapperTextArea'
 import WrapperSelect from '@components/controlled-wrappers/WrapperSelect'
-import DatePicker from '@atoms/DatePicker'
 import DatePick from '@atoms/DatePick'
 
 // data for Breadcrumbs
@@ -294,7 +293,7 @@ const QuizTemplate: FC = () => {
 
         <Section id="datepick" style="standard">
           <Heading text="Section Title: Date Picker" size="h3" type="primary"/>
-          <DatePicker name="datepicktest" label="This is a date picker" />
+          <DatePick name="datepicktest" label="This is a date picker (currently uncontrolled)" startYearRange={1990} endYearRange={2030} />
         </Section>
 
              
