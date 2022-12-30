@@ -13,7 +13,7 @@ const crumbs = [
     path: "/",
     currentPg: false,
   }, {
-    text: "Date Pick", 
+    text: "Navigation", 
     path: "/",
     currentPg: true,
   }
@@ -33,13 +33,7 @@ const BreadCrumbsArticle: FC = () => {
       <Section id="breadcrumbs" style="standard">
         <Heading text="Breadcrumbs" size="h2" type="primary"/>
         <Paragraph 
-          text="Breadcrumbs are a navigational aid that shows the user their current location. It should be placed at the top of the page, above the title." 
-          size="standard" 
-          type="primary" 
-        />
-        <br />
-        <Paragraph 
-          text="Breadcrumbs take a 'crumbs' prop, which is an array of objects." 
+          text="Breadcrumbs are a navigational aid that shows the user their current location. It should be placed at the top of the page, above the title. It accepts a single 'crumbs prop, which is an array of objects." 
           size="standard" 
           type="primary" 
         />
