@@ -45,7 +45,7 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
   (
     {
       name,
-      label,
+      label = null,
       type = "text",
       size = "standard",
       className = "", // to pass custom one-off styling
@@ -65,7 +65,6 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
           id={name}
           name={name}
           type={type}
-          aria-label={label}
           className={
             classNames([
               "mt-1 block border border-gray-900 bg-white shadow-sm", 

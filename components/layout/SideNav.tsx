@@ -1,71 +1,60 @@
-import { FC, ReactNode } from 'react'
-import Breadcrumbs from './Breadcrumbs'
+import { FC } from 'react'
+import { useRouter } from 'next/router'
+import classNames from 'classnames'
 
-export type SideNavProps = {
-  size?: "h1" | "h2" | "h3" | "h4",
-  text?: string | number,
-  type?: "primary" | "secondary" 
-}
+type SideNavStyle = "selected" | "notSelected"
+type ArticleList = {title: string, path: string}[] // This is the list of articles that will be displayed in the side nav
+export type SideNavProps = { articleList: ArticleList }
 
 const SideNav: FC<SideNavProps> = ({
-    text,
-    size, 
-    ...props
+  articleList,
+  ...props
 }) => {
 
-    const renderHeading = ({size, text, type}: SideNavProps) => {
-      switch (size) {
-        case "h1":
-          return (type==="primary") && <h1 className="text-2xl pt-2 pb-2">{text}</h1> || (type==="secondary") && <h1 className="text-2xl pt-2 pb-2 text-slate-500">{text}</h1>
-          
-        case "h2":
-          return (type==="primary") && <h2 className="text-xl pt-2 pb-2">{text} </h2> || (type==="secondary") && <h2 className="text-xl pt-2 pb-2 text-slate-500">{text} </h2> 
-          
-        case "h3":
-          return (type==="primary") && <h3 className="text-l pt-2 pb-2">{text}</h3> || (type==="secondary") && <h3 className="text-l pt-2 pb-2 text-slate-500">{text}</h3>
-          
-        case "h4":
-        return (type==="primary") && <h4 className="text-m pt-2 pb-2">{text}</h4> || (type==="secondary") && <h4 className="text-m pt-2 pb-2 text-slate-500">{text}</h4>
-        
-        default:
-          return null;
-    }
-  }
+  const { asPath } = useRouter() // This hook returns the current url path
+
+  // The styles for the side nav are set here
+  const sideNavStyleMap: {[key in SideNavStyle]: string} = {
+    notSelected: "text-base text-gray-600 hover:text-gray-500", 
+    selected: "cursor-default text-base text-fuchsia-600 border-l-2 border-fuchsia-600"
+  } 
 
   return (
-    <>
-      <aside className="min-h-screen w-1/6 min-w-fit mr-4 border-2 border-r-slate-100 bg-gray-100/50" aria-label="Sidebar">
-        <div className="overflow-y-auto py-2 px-1">
-            <ul className="space-y-1">
-              <li>
-                <a href="/" className="flex items-center p-1 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-300">
-                  <span className="flex-1 ml-2 whitespace-nowrap">⬅️ Home</span> 
+    <nav className="flex flex-col w-64 min-w-fit pt-2 bg-gray-100" aria-label="Sidebar">
+      <div>
+        <a href="/" className={classNames("flex items-center p-1 text-base font-semibold text-gray-600 hover:text-gray-500 ")}>
+          <span className="flex-1 ml-3 whitespace-nowrap">🏠  Home</span> 
+        </a>
+      </div>
+      
+      <div className="flex overflow-scroll py-2 px-1">
+        <ul className="grow space-y-1">
+        { 
+          // The side nav is made up of these list items
+          articleList.map((article) => {
+            // Used by classnames to set the correct css style
+            let isSelected: SideNavStyle = (asPath === article.path) ? "selected" : "notSelected"
+            return (
+              <li key={article.title.toString()}>
+                <a 
+                  href={article.path}  
+                  className={classNames([
+                    "cursor-pointer flex items-center p-1", // standard css styles go here
+                    sideNavStyleMap[isSelected] 
+                  ]) } 
+                >
+                  <span className="flex-1 ml-2 whitespace-nowrap">{article.title}</span>
                 </a>
-              </li>
-              <li>
-                <a href="/forms/quiz-template" className="flex items-center p-1 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-300">
-                  <span className="flex-1 ml-2 whitespace-nowrap">Test Form</span> 
-                </a>
-              </li>
-              <li>
-                <a href="/forms/radios" className="flex items-center p-1 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-300">
-                  <span className="flex-1 ml-2 whitespace-nowrap">Radio Buttons</span> 
-                </a>
-              </li>
-              <li>
-                <a href="/forms/date-pick-article" className="flex items-center p-1 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-300">
-                  <span className="flex-1 ml-2 whitespace-nowrap">Date Pick</span> 
-                </a>
-              </li>
-            </ul>
-        </div>
-      </aside>
-    </>
+              </li>  
+            ) 
+          } )
+        }
+        </ul>
+       </div>
+    </nav>
   )
 }
 
 export default SideNav
 
 
-// Need to use function expression to render a switch statement in react. 
-  // See https://stackoverflow.com/questions/55237619/expression-expected-in-react-using-switch-statement  
