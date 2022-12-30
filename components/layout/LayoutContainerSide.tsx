@@ -14,12 +14,12 @@ const LayoutContainerSide = ({children}: any) => {
           {title: "Checkbox", path: "/forms/checkbox-article"}, 
           {title: "Date Pick", path: "/forms/date-pick-article"}, 
           {title: "Label", path: "/forms/label-article"}, 
-          {title: "Messages (Help)", path: "/forms/help-messages-article"}, 
-          {title: "Messages (System)", path: "/forms/system-messages-article"}, 
+          {title: "Messages (Help)", path: "/forms/messages-help-article"}, 
+          {title: "Messages (System)", path: "/forms/messages-system-article"}, 
           {title: "Radio Buttons", path: "/forms/radio-buttons-article"}, 
-          {title: "Sections", path: "/forms/section-article"}, 
+          {title: "UI Cards", path: "/forms/ui-cards-article"}, 
           {title: "Select/DropDown", path: "/forms/select-article"}, 
-          {title: "Text", path: "/forms/text-article"}, 
+          {title: "Text Styles", path: "/forms/text-styles-article"}, 
           {title: "Kitchen Sink (TBD)", path: "/forms/kitchen-sink"}, 
         ]} />
         <main className="w-full overflow-y-scroll">

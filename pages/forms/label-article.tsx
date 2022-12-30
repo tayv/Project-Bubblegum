@@ -13,26 +13,26 @@ const crumbs = [
     path: "/",
     currentPg: false,
   }, {
-    text: "Select", 
+    text: "Label", 
     path: "/",
     currentPg: true,
   }
 ]
 
-const SelectArticle: FC = () => {
+const LabelArticle: FC = () => {
 
   return (
   <>
     <LayoutContainerSide>
       <Breadcrumbs crumbs={crumbs} />
-      <Heading text="Select" size="h1" type="primary"/>
-      <Paragraph text="On this page you'll find Select components." size="standard" type="primary" />
+      <Heading text="Label" size="h1" type="primary"/>
+      <Paragraph text="On this page you'll find label components." size="standard" type="primary" />
 
       <br />
       <hr />
 
       <Section id="header" style="standard">
-        <Heading text="Select" size="h3" type="primary"/>
+        <Heading text="Input Label" size="h3" type="primary"/>
           <Paragraph 
             text="🚧 Work in progress" 
             size="standard" 
@@ -45,4 +45,4 @@ const SelectArticle: FC = () => {
   </>
   )
 }
-export default SelectArticle
+export default LabelArticle

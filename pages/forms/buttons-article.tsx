@@ -1,76 +1,66 @@
+import LayoutContainerSide from '@components/layout/LayoutContainerSide'
 import Breadcrumbs from '@components/layout/Breadcrumbs'
 import Heading from '@components/layout/Heading'
-import DoDont from '@components/layout/DoDont'
-import LayoutContainerSide from '@components/layout/LayoutContainerSide'
-import Link from 'next/link'
 import Paragraph from '@components/layout/Paragraph'
+import { FC } from 'react'
+import Section from '@components/layout/Section'
 
-export default function MyRadioGroup() {
-  // data for Breadcrumbs
-  const crumbs = [
-    {
-      text: "Home", 
-      path: "/",
-      currentPg: false,
-    }, {
-      text: "Buttons", 
-      path: "/",
-      currentPg: true,
-    }
-  ]
+
+// data for Breadcrumbs
+const crumbs = [
+  {
+    text: "Home", 
+    path: "/",
+    currentPg: false,
+  }, {
+    text: "Buttons", 
+    path: "/",
+    currentPg: true,
+  }
+]
+
+const ButtonsArticle: FC = () => {
 
   return (
-    <> 
-      <LayoutContainerSide>
-          <Breadcrumbs crumbs={crumbs} />  
+  <>
+    <LayoutContainerSide>
+      <Breadcrumbs crumbs={crumbs} />
+      <Heading text="Buttons" size="h1" type="primary"/>
+      <Paragraph text="On this page you'll find button components." size="standard" type="primary" />
 
-          <Heading text="Buttons Heading" size="h1" type="primary"/> 
-          <Paragraph text="Explainer about buttons and when to use them goes here" size="standard" type="primary" />
-          <br />
-          <hr />
+      <br />
+      <hr />
 
-          <Heading id="primary" text="Primary Buttons" size="h2" type="primary" />
-          <Paragraph text="Sometimes called Call-To-Action (CTA) buttons." size="standard" type="primary" />
+      <Section id="header" style="standard">
+        <Heading text="Primary Button" size="h3" type="primary"/>
+          <Paragraph 
+            text="🚧 Work in progress" 
+            size="standard" 
+            type="primary" 
+          />
+      </Section>
 
-          <Heading text="Example" size="h3" type="primary" />
+      <Section id="header" style="standard">
+        <Heading text="Secondary Button" size="h3" type="primary"/>
+          <Paragraph 
+            text="🚧 Work in progress" 
+            size="standard" 
+            type="primary" 
+          />
+      </Section>
 
-          <div className="grid grid-cols-2 gap-2 py-3 text-right">
-            <button 
-              className="block inline-flex justify-center max-w-xs py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            >
-              Reset
-            </button>
+      <Section id="header" style="standard">
+        <Heading text="Submit Button" size="h3" type="primary"/>
+          <Paragraph 
+            text="🚧 Work in progress" 
+            size="standard" 
+            type="primary" 
+          />
+      </Section>
 
-            <button
-              type="submit"
-              className="inline-flex justify-center max-w-xs py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            >
-              Send
-            </button>      
-          </div>
+    </LayoutContainerSide>
 
-          <Heading text="Best Practices" size="h3" type="primary" />
-          <DoDont />
-
-          <Heading text="How to implement" size="h3" type="primary" />
-          <p>Code details go here</p>
-
-          <br />
-          <hr />
-
-          <Heading id="secondary" text="Secondary Buttons" size="h2" type="primary" />
-          <Paragraph text="Sometimes called Ghost buttons." size="standard" type="primary" />
-
-          <Heading text="Example" size="h3" type="primary" />
-          <Paragraph text="Example goes here" size="standard" type="primary" />
-
-          <Heading text="Related links" size="h3" type="secondary" />
-          <ul>
-            <li>- Link 1</li>
-            <li>- Link 2</li>
-          </ul>
-      
-      </LayoutContainerSide>
-    </>
+  </>
   )
 }
+export default ButtonsArticle

@@ -13,26 +13,26 @@ const crumbs = [
     path: "/",
     currentPg: false,
   }, {
-    text: "Select", 
+    text: "Messages (Help)", 
     path: "/",
     currentPg: true,
   }
 ]
 
-const SelectArticle: FC = () => {
+const MessagesHelpArticle: FC = () => {
 
   return (
   <>
     <LayoutContainerSide>
       <Breadcrumbs crumbs={crumbs} />
-      <Heading text="Select" size="h1" type="primary"/>
-      <Paragraph text="On this page you'll find Select components." size="standard" type="primary" />
+      <Heading text="Messages" size="h1" type="primary"/>
+      <Paragraph text="On this page you'll find help message components." size="standard" type="primary" />
 
       <br />
       <hr />
 
       <Section id="header" style="standard">
-        <Heading text="Select" size="h3" type="primary"/>
+        <Heading text="Tip Message" size="h3" type="primary"/>
           <Paragraph 
             text="🚧 Work in progress" 
             size="standard" 
@@ -45,4 +45,4 @@ const SelectArticle: FC = () => {
   </>
   )
 }
-export default SelectArticle
+export default MessagesHelpArticle
