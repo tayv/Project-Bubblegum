@@ -8,7 +8,9 @@ const LayoutContainerSide = ({children}: any) => {
     <div className="flex flex-col h-screen">
       <div className="flex flex-1 overflow-hidden">
         <SideNav />
-        <div className="block py-3 overflow-y-scroll">{children}</div>
+        <div className="w-full overflow-y-scroll">
+         <div className="block max-w-4xl px-4 py-3">{children}</div>
+        </div>
      </div>
     </div>
   )

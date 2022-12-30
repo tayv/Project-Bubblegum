@@ -1,5 +1,4 @@
-import { FC, ReactNode } from 'react'
-import Breadcrumbs from './Breadcrumbs'
+import { FC } from 'react'
 
 export type SideNavProps = {
   size?: "h1" | "h2" | "h3" | "h4",
@@ -33,37 +32,32 @@ const SideNav: FC<SideNavProps> = ({
   }
 
   return (
-    <>
-      <nav className="flex flex-col w-1/6 min-w-fit mr-4 pt-2 border-2 border-r-slate-100 bg-gray-100/50" aria-label="Sidebar">
-        <div className="">
-          <a href="/" className="flex items-center p-1 text-base font-semibold text-gray-600 hover:text-blue-600">
-            <span className="flex-1 ml-3 whitespace-nowrap">🏠  Home</span> 
-          </a>
-        </div>
-        <div className="flex overflow-scroll py-2 px-1">
-            <ul className="space-y-1">
-              <li>
-                
-              </li>
-              <li>
-                <a href="/forms/quiz-template" className="flex items-center p-1 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-300">
-                  <span className="flex-1 ml-2 whitespace-nowrap">Test Form</span> 
-                </a>
-              </li>
-              <li>
-                <a href="/forms/radios" className="flex items-center p-1 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-300">
-                  <span className="flex-1 ml-2 whitespace-nowrap">Radio Buttons</span> 
-                </a>
-              </li>
-              <li>
-                <a href="/forms/date-pick-article" className="flex items-center p-1 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-300">
-                  <span className="flex-1 ml-2 whitespace-nowrap">Date Pick</span> 
-                </a>
-              </li>
-            </ul>
-        </div>
-      </nav>
-    </>
+    <nav className="flex flex-col w-1/6 min-w-fit pt-2 border-2 border-r-slate-100 bg-gray-100/50" aria-label="Sidebar">
+      <div>
+        <a href="/" className="flex items-center p-1 text-base font-semibold text-gray-600 hover:text-blue-600">
+          <span className="flex-1 ml-3 whitespace-nowrap">🏠  Home</span> 
+        </a>
+      </div>
+      <div className="flex overflow-scroll py-2 px-1">
+          <ul className="grow space-y-1">
+            <li>
+              <a href="/forms/quiz-template" className="flex items-center p-1 text-base font-normal text-gray-900 hover:text-gray-500 hover:border-l-2 hover:border-gray-300">
+                <span className="flex-1 ml-2 whitespace-nowrap">Test Form</span> 
+              </a>
+            </li>
+            <li>
+              <a href="/forms/radios" className="flex items-center p-1 text-base font-normal text-gray-900 hover:text-gray-500 hover:border-l-2 hover:border-gray-300">
+                <span className="flex-1 ml-2 whitespace-nowrap">Radio Buttons</span> 
+              </a>
+            </li>
+            <li>
+              <a href="/forms/date-pick-article" className="flex items-center p-1 text-base font-normal text-gray-900 hover:text-gray-500 hover:border-l-2 hover:border-gray-300">
+                <span className="flex-1 ml-2 whitespace-nowrap">Date Pick</span> 
+              </a>
+            </li>
+          </ul>
+      </div>
+    </nav>
   )
 }
 
