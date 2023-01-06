@@ -4,6 +4,7 @@ import Heading from '@components/layout/Heading'
 import Paragraph from '@components/layout/Paragraph'
 import { FC } from 'react'
 import Section from '@components/layout/Section'
+import Checkbox from '@components/atoms/checkbox'
 
 
 // data for Breadcrumbs
@@ -34,10 +35,29 @@ const CheckboxArticle: FC = () => {
       <Section id="header" style="standard">
         <Heading text="Checkbox" size="h3" type="primary"/>
           <Paragraph 
-            text="🚧 Work in progress" 
+            text="This is a standard checkbox. It's used for binary choices." 
             size="standard" 
             type="primary" 
           />
+          <br/>
+          <Heading text="Example:" size="h4" type="primary"/>
+          <Checkbox 
+            id="checkboxInput" 
+            style="standard" 
+            label="This is a checkbox label" 
+          />
+      </Section>
+
+      <Section id="header" style="standard">
+        <Heading text="Checkbox List" size="h3" type="primary"/>
+          <Paragraph 
+            text="This is a list of checkboxes. It's used for multi-select choices." 
+            size="standard" 
+            type="primary" 
+          />
+          <br/>
+          <Heading text="Example: WIP" size="h4" type="primary"/>
+          
       </Section>
 
     </LayoutContainerSide>
