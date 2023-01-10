@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { Controller, Control } from 'react-hook-form'
-import Checkbox, { CheckboxProps, CheckboxStyle } from '@components/atoms/checkbox'
+import Checkbox, { CheckboxProps, CheckboxStyle } from '@components/atoms/Checkbox'
 import classNames from 'classnames'
 
 

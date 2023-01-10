@@ -4,7 +4,7 @@ import Heading from '@components/layout/Heading'
 import Paragraph from '@components/layout/Paragraph'
 import { FC } from 'react'
 import Section from '@components/layout/Section'
-import Checkbox from '@components/atoms/checkbox'
+import Checkbox from '@components/atoms/Checkbox'
 
 
 // data for Breadcrumbs

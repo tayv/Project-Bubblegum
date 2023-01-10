@@ -26,7 +26,7 @@ const InputLabel: FC<InputLabelProps> = ({
         </div> )
           
         case "checkbox":
-          return <label className="inline-flex items-center">{props.children}</label>
+          return <label className="inline-flex items-center text-md text-gray-900">{props.children}</label>
         
         default:
           return null;
