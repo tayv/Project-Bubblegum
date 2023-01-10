@@ -60,6 +60,8 @@ const RadioButtonsArticle: FC = () => {
             type="primary" 
           />
           <br/>
+          <hr/>
+          <br/>
           <WrapperRadioGroup
             name="standardRadioGroup"
             groupLabel="Example: Standard Radio Group"
@@ -73,6 +75,8 @@ const RadioButtonsArticle: FC = () => {
               {value: "vanilla", label: "Vanilla ice cream"}] }
           />
           <br />
+          <hr/>
+          <br/>
           <WrapperRadioGroup
             name="horizontalRadioGroup"
             groupLabel="Example: Horizontal Radio Group"
@@ -85,6 +89,8 @@ const RadioButtonsArticle: FC = () => {
               ] }
           />
           <br />
+          <hr/>
+          <br/>
           <WrapperRadioGroup
             name="buttonRadioGroup"
             groupLabel="Example: Button Radio Group"

@@ -40,6 +40,8 @@ const CheckboxArticle: FC = () => {
             type="primary" 
           />
           <br/>
+          <hr/>
+          <br/>
           <Heading text="Example:" size="h4" type="primary"/>
           <Checkbox 
             id="checkboxInput" 
@@ -55,6 +57,8 @@ const CheckboxArticle: FC = () => {
             size="standard" 
             type="primary" 
           />
+          <br/>
+          <hr/>
           <br/>
           <Heading text="Example: WIP" size="h4" type="primary"/>
           

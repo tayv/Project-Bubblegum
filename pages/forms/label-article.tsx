@@ -46,6 +46,8 @@ const LabelArticle: FC = () => {
             type="primary" 
           />
          <br/>
+         <hr/>
+         <br/>
          <InputLabel type="standard" label="Example label: Standard" htmlFor="" />
       </Section>
 

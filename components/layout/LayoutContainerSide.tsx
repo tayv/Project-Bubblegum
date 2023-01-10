@@ -22,7 +22,7 @@ const LayoutContainerSide = ({children}: any) => {
           {title: "Text Styles", path: "/forms/text-styles-article"}, 
           {title: "Kitchen Sink (TBD)", path: "/forms/kitchen-sink"}, 
         ]} />
-        <main className="w-full overflow-y-scroll">
+        <main className="w-full overflow-y-scroll bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-50">
          <div className="block max-w-4xl px-6 py-3">{children}</div>
         </main>
      </div>
