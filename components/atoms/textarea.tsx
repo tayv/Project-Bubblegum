@@ -59,7 +59,7 @@ export const TextArea: FC<TextAreaProps> = forwardRef<HTMLTextAreaElement, TextA
           ref={ref}
           id={name}
           name={name}
-          aria-label={label}
+         // aria-label={label}
           className={
             classNames([
               "mt-1 block border border-gray-900 bg-white shadow-sm", 

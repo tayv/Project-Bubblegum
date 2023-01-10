@@ -28,10 +28,8 @@ const LabelArticle: FC = () => {
       <Breadcrumbs crumbs={crumbs} />
       <Heading text="Label" size="h1" type="primary"/>
       <Paragraph text="On this page you'll find label components." size="standard" type="primary" />
-
       <br />
       <hr />
-
       <Section id="header" style="standard">
         <Heading text="Input Label" size="h3" type="primary"/>
           <Paragraph 

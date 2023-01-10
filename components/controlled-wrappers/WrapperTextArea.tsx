@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { TextArea, TextAreaProps } from '@components/atoms/textarea'
+import { TextArea, TextAreaProps } from '@components/atoms/TextArea'
 import { Controller } from 'react-hook-form'
 
 const WrapperTextArea: FC<TextAreaProps> = ({
