@@ -4,6 +4,8 @@ import Heading from '@components/layout/Heading'
 import Paragraph from '@components/layout/Paragraph'
 import { FC } from 'react'
 import Section from '@components/layout/Section'
+import WrapperSelect from '@components/controlled-wrappers/WrapperSelect'
+import { useForm } from 'react-hook-form'
 
 
 // data for Breadcrumbs
@@ -20,6 +22,8 @@ const crumbs = [
 ]
 
 const SelectArticle: FC = () => {
+  
+  const { control } = useForm()
 
   return (
   <>
@@ -34,9 +38,76 @@ const SelectArticle: FC = () => {
       <Section id="header" style="standard">
         <Heading text="Select" size="h3" type="primary"/>
           <Paragraph 
-            text="🚧 Work in progress" 
+            text="
+              Uses Radix's Select primitive and is controlled via react-hook-form. Have two variations: flat and grouped.
+              The label and tip props are optional. Leave out or pass null to hide them.
+              " 
             size="standard" 
             type="primary" 
+          />
+          <br />
+          <hr />  
+          <br />
+          <Heading text="Example: No Label/Tip" size="h4" type="primary"/>
+          <WrapperSelect 
+              name="flatselect" 
+              control={control} 
+              label={null}
+              tip={null}
+              placeholder="Select an option"
+              defaultValue="first"
+              itemOptions={ [
+                    {value:"first", labelText:"firstText", separator: false}, 
+                    {value:"second", labelText:"secondText", separator: true},
+                    {value:"third", labelText:"thirdText", separator: false}, 
+                    {value:"fourth", labelText:"fourthText", separator: true},
+              ] }
+            />
+          <br />
+          <br/>
+          <hr />  
+          <br />
+          <Heading text="Example: Flat List Select" size="h4" type="primary"/>
+          <WrapperSelect 
+            name="flatselect" 
+            control={control} 
+            label="This is a label:"
+            tip="Tip: This is a flat list Select"
+            placeholder="Select an option"
+            defaultValue="first"
+            itemOptions={ [
+                  {value:"first", labelText:"firstText", separator: false}, 
+                  {value:"second", labelText:"secondText", separator: true},
+                  {value:"third", labelText:"thirdText", separator: false}, 
+                  {value:"fourth", labelText:"fourthText", separator: true},
+            ] }
+          />
+          <br/>
+          <br />
+          <hr/>
+          <br />
+          <Heading text="Example: Grouped List Select" size="h4" type="primary"/>
+          <WrapperSelect 
+            name="groupselect" 
+            control={control} 
+            label="This is a label:"
+            tip="Tip: This is a grouped list Select"
+            placeholder="Select an option"
+            defaultValue="second"
+            itemOptions={ [
+                { groupLabel: "Group 1", 
+                  items: [
+                    {value:"first", labelText:"firstText", separator: false}, 
+                    {value:"second", labelText:"secondText", separator: true}
+                  ] 
+                },
+                { groupLabel: "Group 2", 
+                  items: [
+                    {value:"third", labelText:"thirdText", separator: false}, 
+                    {value:"fourth", labelText:"fourthText", separator: true}
+                  ] 
+                }
+              ] }
           />
       </Section>
 
