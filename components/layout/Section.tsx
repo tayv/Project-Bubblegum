@@ -11,9 +11,9 @@ export type SectionProps = {
 export type SectionStyle = "standard" | "blank" | "special"
 
 const sectionStyleMap: {[key in SectionStyle]: string} = {
-  standard: "p-4 bg-white drop-shadow", // css styles go here
+  standard: "py-4 px-5 bg-white drop-shadow", // css styles go here
   blank: "bg-transparent",
-  special: "p-4 bg-blue-100 drop-shadow",
+  special: "p-5 bg-blue-100 drop-shadow",
 }   
 
 const Section = (
