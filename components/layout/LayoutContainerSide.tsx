@@ -5,7 +5,7 @@ import SideNav from '@components/layout/SideNav'
 const LayoutContainerSide = ({children}: any) => {
 
   return (
-    <div className="flex flex-col h-screen bg-gradient-to-r from-indigo-400 via-purple-300 to-pink-300">
+    <div className="flex flex-col h-screen bg-gradient-to-r from-sky-400 via-purple-300 to-pink-300">
       <div className="flex flex-1 overflow-hidden">
         <SideNav articleList={[
           {title: "Test Form", path: "/forms/test-form"},

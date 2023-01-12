@@ -15,8 +15,8 @@ const SideNav: FC<SideNavProps> = ({
 
   // The styles for the side nav are set here
   const sideNavStyleMap: {[key in SideNavStyle]: string} = {
-    notSelected: "text-base text-indigo-900 hover:text-indigo-600", 
-    selected: "cursor-default text-base text-pink-700 border-l-2 border-pink-700"
+    notSelected: "text-base text-gray-900 hover:text-gray-600", 
+    selected: "cursor-default text-base text-pink-600 border-l-2 border-pink-600"
   } 
 
   return (
