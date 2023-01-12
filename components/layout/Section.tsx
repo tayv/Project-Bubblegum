@@ -11,7 +11,7 @@ export type SectionProps = {
 export type SectionStyle = "standard" | "blank" | "special"
 
 const sectionStyleMap: {[key in SectionStyle]: string} = {
-  standard: "py-4 px-5 bg-white drop-shadow", // css styles go here
+  standard: "py-4 px-5 backdrop-blur-lg bg-white/30 border border-white/30 drop-shadow", // css styles go here
   blank: "bg-transparent",
   special: "p-5 bg-blue-100 drop-shadow",
 }   
@@ -28,7 +28,7 @@ const Section = (
     <section id={id} 
       className={
         classNames([
-          "mt-4 rounded-xl", // standard css styles go here. Peer is always required for label styling to work
+          "mt-4 rounded-3xl", // standard css styles go here. Peer is always required for label styling to work
           sectionStyleMap[style], // to dynamically set styling for different radio types
           className, // prop
         ])

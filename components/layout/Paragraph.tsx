@@ -19,13 +19,13 @@ const Paragraph: FC<ParagraphProps> = ({
 
       switch (size) {
         case "small":
-          return (type==="primary") && <p className="text-sm text-gray-600">{text}{props.children}</p> || (type==="secondary") && <p className="text-sm text-gray-300">{text}{props.children}</p>
+          return (type==="primary") && <p className="text-sm text-gray-900">{text}{props.children}</p> || (type==="secondary") && <p className="text-sm text-gray-300">{text}{props.children}</p>
           
         case "standard":
-          return (type==="primary") && <p className= "text-lg text-gray-600">{text}{props.children}</p> || (type==="secondary") && <p className="text-gray-300">{text}{props.children}</p> 
+          return (type==="primary") && <p className= "text-lg text-gray-900">{text}{props.children}</p> || (type==="secondary") && <p className="text-gray-300">{text}{props.children}</p> 
           
         case "large":
-          return (type==="primary") && <p className="text-xl text-gray-600">{text}{props.children}</p> || (type==="secondary") && <p className="text-lg text-gray-300">{text}{props.children}</p>
+          return (type==="primary") && <p className="text-xl text-gray-900">{text}{props.children}</p> || (type==="secondary") && <p className="text-lg text-gray-300">{text}{props.children}</p>
         
         default:
           return null
