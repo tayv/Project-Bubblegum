@@ -148,7 +148,7 @@ const QuizTemplate: FC = () => {
       <Paragraph text="This is a template to test form layout and start building out state and database behavior." size="standard" type="primary" />
       <br />
       <hr />
-      <form className="border border-gray-900" onSubmit={ onSubmit }>
+      <form className="border border-gray-900 py-3 px-8 my-8 rounded-xl border-4 border-dashed border-slate-400 drop-shadow-lg" onSubmit={ onSubmit }>
         <Section id="intro" style="blank">
           <Heading text="Test Form 1" size="h2" type="primary"/>
           <Paragraph text="This form is used to show default styling for text, radio button, checkbox, and multi-line input components. Also used to test Controlled inputs" size="standard" type="primary" />
@@ -391,7 +391,7 @@ const QuizTemplate: FC = () => {
           className="mt-4 block border-gray-900 bg-gray-300 border px-2 py-1"
           >Test Submit
         </button>
-
+        <br/>
       </form>
 
       { /*TEMPLATE TEST SECTION START --------------------------------------------- */}

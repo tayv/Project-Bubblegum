@@ -38,6 +38,8 @@ const BreadCrumbsArticle: FC = () => {
           type="primary" 
         />
         <br />
+        <hr/>
+        <br/>
         <Heading text="Example:" size="h4" type="primary"/>
         <Breadcrumbs crumbs={crumbs} />
       </Section>

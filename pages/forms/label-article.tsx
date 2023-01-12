@@ -46,7 +46,10 @@ const LabelArticle: FC = () => {
             type="primary" 
           />
          <br/>
-         <InputLabel type="standard" label="Example label: Standard" htmlFor="" />
+         <hr/>
+         <br/>
+         <Heading text="Example: Standard Label" size="h4" type="primary"/>
+         <InputLabel type="standard" label="This is a standard label" htmlFor="" />
       </Section>
 
     </LayoutContainerSide>

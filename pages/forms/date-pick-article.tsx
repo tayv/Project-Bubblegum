@@ -39,6 +39,8 @@ const DatePickerPage: FC = () => {
           type="primary" 
         />
         <br />
+        <hr/>
+        <br/>
         <DatePick 
           name="exampleSingleDatePick" 
           label={"Pick a date (still uncontrolled):" }
@@ -57,6 +59,8 @@ const DatePickerPage: FC = () => {
           type="primary" 
         />
         <br />
+        <hr/>
+        <br/>
         <div className="inline-flex flex-wrap gap-4">
           <DatePick 
             name="exampleStartDatePick" 
