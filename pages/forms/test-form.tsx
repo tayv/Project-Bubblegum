@@ -147,7 +147,7 @@ const QuizTemplate: FC = () => {
       <Heading text="Quiz Template" size="h1" type="primary"/>
       <Paragraph text="This is a template to test form layout and start building out state and database behavior." size="standard" type="primary" />
 
-      <form className="py-3 px-8 my-8 rounded-2xl rounded-3xl backdrop-blur-lg bg-white/30 border border-white/10 drop-shadow-md" onSubmit={ onSubmit }>
+      <form className="py-3 px-8 my-8 rounded-3xl bg-white/80 border border-black/10 drop-shadow-md" onSubmit={ onSubmit }>
         <Section id="intro" style="blank">
           <Heading text="Test Form 1" size="h2" type="primary"/>
           <Paragraph text="This form is used to show default styling for text, radio button, checkbox, and multi-line input components. Also used to test Controlled inputs" size="standard" type="primary" />
