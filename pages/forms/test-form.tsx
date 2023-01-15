@@ -16,6 +16,7 @@ import UpdateDocState from '@components/UpdateDocState'
 import WrapperTextArea from '@components/controlled-wrappers/WrapperTextArea'
 import WrapperSelect from '@components/controlled-wrappers/WrapperSelect'
 import DatePick from '@atoms/DatePick'
+import Divider from '@components/layout/Divider'
 
 // data for Breadcrumbs
 const crumbs = [
@@ -146,8 +147,8 @@ const QuizTemplate: FC = () => {
       <Breadcrumbs crumbs={crumbs} />
       <Heading text="Quiz Template" size="h1" type="primary"/>
       <Paragraph text="This is a template to test form layout and start building out state and database behavior." size="standard" type="primary" />
-
-      <form className="py-3 px-8 my-8 rounded-3xl bg-white/90 border border-black/10 drop-shadow-md" onSubmit={ onSubmit }>
+      <Divider />
+      <form className="py-3 px-8 my-8 rounded-3xl bg-white/90 drop-shadow" onSubmit={ onSubmit }>
         <Section id="intro" style="blank">
           <Heading text="Test Form 1" size="h2" type="primary"/>
           <Paragraph text="This form is used to show default styling for text, radio button, checkbox, and multi-line input components. Also used to test Controlled inputs" size="standard" type="primary" />
