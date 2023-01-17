@@ -17,10 +17,11 @@ const dividerPaddingMap: {[key in DividerPadding]: string} = {
   none: "py-0" 
 }  
 
-type DividerColor = "standard" | "darkmode" | "white" | "black"
+type DividerColor = "standard" | "darkmode" | "white" | "black" | "highlight"
 const dividerColorMap: {[key in DividerColor]: string} = {
-  standard: "bg-neutral-700",
-  darkmode: "bg-neutral-300",
+  standard: "bg-neutral-200",
+  darkmode: "bg-neutral-100",
+  highlight: "bg-lime-500",
   white: "bg-white",
   black: "bg-black"
 }
@@ -50,7 +51,7 @@ const Divider: FC<DividerProps> = ({
     }>
       <div className={
         classNames([
-          "bg-black h-0.5 w-full rounded-full", 
+          "w-full rounded-full", 
           dividerColorMap[color], 
           dividerSizeMap[size], 
           props.className, // custom styling passed as prop

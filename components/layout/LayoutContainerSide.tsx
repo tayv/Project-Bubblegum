@@ -13,6 +13,7 @@ const LayoutContainerSide = ({children}: any) => {
           {title: "Buttons", path: "/forms/buttons-article"}, 
           {title: "Checkbox", path: "/forms/checkbox-article"}, 
           {title: "Date Pick", path: "/forms/date-pick-article"}, 
+          {title: "Dividers", path: "/forms/dividers-article"}, 
           {title: "Label", path: "/forms/label-article"}, 
           {title: "Messages (Help)", path: "/forms/messages-help-article"}, 
           {title: "Messages (System)", path: "/forms/messages-system-article"}, 
