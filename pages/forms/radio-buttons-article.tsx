@@ -7,7 +7,7 @@ import Section from '@components/layout/Section'
 import WrapperRadioGroup from '@components/controlled-wrappers/WrapperRadioGroup'
 import { useForm } from 'react-hook-form'
 import { useEffect } from 'react'
-
+import Divider from '@components/layout/Divider'
 
 // data for Breadcrumbs
 const crumbs = [
@@ -45,9 +45,6 @@ const RadioButtonsArticle: FC = () => {
       <Heading text="Radio Buttons" size="h1" type="primary"/>
       <Paragraph text="On this page you'll find radio button components." size="standard" type="primary" />
 
-      <br />
-      <hr />
-
       <Section id="header" style="standard">
         <Heading text="Radio Button Group" size="h3" type="primary"/>
           <Paragraph 
@@ -59,9 +56,9 @@ const RadioButtonsArticle: FC = () => {
             size="standard" 
             type="primary" 
           />
-          <br/>
-          <hr/>
-          <br/>
+          
+          <Divider padding="xl" />
+
           <WrapperRadioGroup
             name="standardRadioGroup"
             groupLabel="Example: Standard Radio Group"
@@ -74,9 +71,9 @@ const RadioButtonsArticle: FC = () => {
               {value: "chocolate", label: "Chocolate ice cream"}, 
               {value: "vanilla", label: "Vanilla ice cream"}] }
           />
-          <br />
-          <hr/>
-          <br/>
+          
+          <Divider padding="xl" />
+
           <WrapperRadioGroup
             name="horizontalRadioGroup"
             groupLabel="Example: Horizontal Radio Group"
@@ -88,9 +85,9 @@ const RadioButtonsArticle: FC = () => {
                 {value: "no", label: "No"}, 
               ] }
           />
-          <br />
-          <hr/>
-          <br/>
+          
+          <Divider padding="xl" />
+          
           <WrapperRadioGroup
             name="buttonRadioGroup"
             groupLabel="Example: Button Radio Group"

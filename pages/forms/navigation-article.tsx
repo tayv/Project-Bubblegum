@@ -4,6 +4,7 @@ import Heading from '@components/layout/Heading'
 import Paragraph from '@components/layout/Paragraph'
 import { FC } from 'react'
 import Section from '@components/layout/Section'
+import Divider from '@components/layout/Divider'
 
 
 // data for Breadcrumbs
@@ -27,8 +28,6 @@ const BreadCrumbsArticle: FC = () => {
       <Breadcrumbs crumbs={crumbs} />
       <Heading text="Navigation" size="h1" type="primary"/>
       <Paragraph text="On this page you'll find navigation components." size="standard" type="primary" />
-      <br />
-      <hr />
 
       <Section id="breadcrumbs" style="standard">
         <Heading text="Breadcrumbs" size="h2" type="primary"/>
@@ -37,9 +36,9 @@ const BreadCrumbsArticle: FC = () => {
           size="standard" 
           type="primary" 
         />
-        <br />
-        <hr/>
-        <br/>
+     
+        <Divider padding="xl" />
+
         <Heading text="Example:" size="h4" type="primary"/>
         <Breadcrumbs crumbs={crumbs} />
       </Section>

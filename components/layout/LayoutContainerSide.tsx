@@ -13,6 +13,7 @@ const LayoutContainerSide = ({children}: any) => {
           {title: "Buttons", path: "/forms/buttons-article"}, 
           {title: "Checkbox", path: "/forms/checkbox-article"}, 
           {title: "Date Pick", path: "/forms/date-pick-article"}, 
+          {title: "Dividers", path: "/forms/dividers-article"}, 
           {title: "Label", path: "/forms/label-article"}, 
           {title: "Messages (Help)", path: "/forms/messages-help-article"}, 
           {title: "Messages (System)", path: "/forms/messages-system-article"}, 
@@ -20,7 +21,6 @@ const LayoutContainerSide = ({children}: any) => {
           {title: "UI Containers", path: "/forms/ui-containers-article"}, 
           {title: "Select/DropDown", path: "/forms/select-article"}, 
           {title: "Text Styles", path: "/forms/text-styles-article"}, 
-          {title: "Kitchen Sink (TBD)", path: "/forms/kitchen-sink"}, 
         ]} />
         <main className="w-full overflow-y-scroll pt-1">
          <div className="block max-w-4xl px-6 py-3">{children}</div>

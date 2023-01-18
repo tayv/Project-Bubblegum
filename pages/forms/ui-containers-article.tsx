@@ -4,7 +4,7 @@ import Heading from '@components/layout/Heading'
 import Paragraph from '@components/layout/Paragraph'
 import { FC } from 'react'
 import Section from '@components/layout/Section'
-
+import Divider from '@components/layout/Divider'
 
 // data for Breadcrumbs
 const crumbs = [
@@ -28,9 +28,6 @@ const UIContainersArticle: FC = () => {
       <Heading text="UI Cards" size="h1" type="primary"/>
       <Paragraph text="On this page you'll find UI container components." size="standard" type="primary" />
 
-      <br />
-      <hr />
-
       <Section id="intro" style="standard">
         <Heading text="Section Container" size="h3" type="primary"/>
           <Paragraph 
@@ -43,6 +40,8 @@ const UIContainersArticle: FC = () => {
           />
       </Section>
 
+      <Divider padding="large" />
+      
       <Section id="example-standard" style="standard">
         <Heading text="Example: Standard Section Container" size="h3" type="primary"/>
           <Paragraph 

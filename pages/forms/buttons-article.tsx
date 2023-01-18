@@ -28,9 +28,6 @@ const ButtonsArticle: FC = () => {
       <Heading text="Buttons" size="h1" type="primary"/>
       <Paragraph text="On this page you'll find button components." size="standard" type="primary" />
 
-      <br />
-      <hr />
-
       <Section id="header" style="standard">
         <Heading text="Primary Button" size="h3" type="primary"/>
           <Paragraph 

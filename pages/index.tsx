@@ -19,14 +19,18 @@ export default function Home() {
               size="standard" 
               type="primary" 
             />
-          <br />
+        </Section>
+
+        <Section id="Navigate" style="standard">
           <Heading text="How to view" size="h3" type="primary"/>
           <Paragraph 
             text="The side navigation to the left shows a list of reusable react components. Most of the components are form inputs but there's also some to help with UI layout. " 
             size="standard" 
             type="primary" 
           />
-          <br />
+          
+        </Section>
+        <Section id="techstack" style="standard">
           <Heading text="How components are built" size="h3" type="primary"/>
           <Paragraph 
             text="Form components consist of a stateless atomic component (e.g. 'Input.tsx') with a wrapper component that handles state (e.g. 'WrapperInput.tsx). Project Bubblegum uses react-hook-form to handle form state, Radix UI Primitives for accessible atomic components (not all components have been swapped yet), and tailwind css utility classes." 

@@ -5,6 +5,7 @@ import Paragraph from '@components/layout/Paragraph'
 import { FC } from 'react'
 import Section from '@components/layout/Section'
 import WrapperSelect from '@components/controlled-wrappers/WrapperSelect'
+import Divider from '@components/layout/Divider'
 import { useForm } from 'react-hook-form'
 
 
@@ -32,9 +33,6 @@ const SelectArticle: FC = () => {
       <Heading text="Select" size="h1" type="primary"/>
       <Paragraph text="On this page you'll find Select components." size="standard" type="primary" />
 
-      <br />
-      <hr />
-
       <Section id="header" style="standard">
         <Heading text="Select" size="h3" type="primary"/>
           <Paragraph 
@@ -45,9 +43,9 @@ const SelectArticle: FC = () => {
             size="standard" 
             type="primary" 
           />
-          <br />
-          <hr />  
-          <br />
+          
+          <Divider padding="xl" />
+
           <Heading text="Example: No Label/Tip" size="h4" type="primary"/>
           <WrapperSelect 
               name="flatselect" 
@@ -63,10 +61,9 @@ const SelectArticle: FC = () => {
                     {value:"fourth", labelText:"fourthText", separator: true},
               ] }
             />
-          <br />
+
           <br/>
-          <hr />  
-          <br />
+          <br/>
           <Heading text="Example: Flat List Select" size="h4" type="primary"/>
           <WrapperSelect 
             name="flatselect" 
@@ -82,10 +79,9 @@ const SelectArticle: FC = () => {
                   {value:"fourth", labelText:"fourthText", separator: true},
             ] }
           />
+
           <br/>
-          <br />
-          <hr/>
-          <br />
+          <br/>
           <Heading text="Example: Grouped List Select" size="h4" type="primary"/>
           <WrapperSelect 
             name="groupselect" 

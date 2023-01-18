@@ -4,7 +4,7 @@ import Heading from '@components/layout/Heading'
 import Paragraph from '@components/layout/Paragraph'
 import { FC } from 'react'
 import Section from '@components/layout/Section'
-
+import Divider from '@components/layout/Divider'
 
 // data for Breadcrumbs
 const crumbs = [
@@ -28,9 +28,6 @@ const TextStylesArticle: FC = () => {
       <Heading text="Text Styles" size="h1" type="primary"/>
       <Paragraph text="On this page you'll find text components." size="standard" type="primary" />
 
-      <br />
-      <hr />
-
       <Section id="header" style="standard">
         <Heading text="Heading Component" size="h3" type="primary"/>
           <Paragraph 
@@ -41,7 +38,8 @@ const TextStylesArticle: FC = () => {
             type="primary" 
           />
 
-          <br/>
+          <Divider padding="xl" />
+
           <Heading text="Example: Size Prop Variations" size="h4" type="primary"/>
           <Heading text="This is an h1 heading" size="h1" type="primary"/>
           <Heading text="This is an h2 heading" size="h2" type="primary"/>
@@ -65,7 +63,9 @@ const TextStylesArticle: FC = () => {
             type="primary" 
           />
 
-          <br/>
+        
+          <Divider padding="xl" />
+          
           <Heading text="Example: Size Prop Variations" size="h4" type="primary"/>
           <Paragraph 
             text="This is a small size paragraph."
