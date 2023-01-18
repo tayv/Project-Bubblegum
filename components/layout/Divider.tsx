@@ -9,11 +9,13 @@ export type DividerProps = {
   className?: string
 }
 
-type DividerPadding = "small" | "standard" | "large" | "none"
+type DividerPadding = "standard" | "medium" | "large" | "xl" | "xxl" | "none"
 const dividerPaddingMap: {[key in DividerPadding]: string} = {
-  small: "py-px", // prop specific css styles go here
-  standard: "py-2",
+  standard: "py-px", // prop specific css styles go here
+  medium: "py-2",
   large: "py-4",
+  xl: "py-6",
+  xxl: "py-8",
   none: "py-0" 
 }  
 
@@ -26,12 +28,12 @@ const dividerColorMap: {[key in DividerColor]: string} = {
   black: "bg-black"
 }
 
-type DividerSize = "small" | "standard" | "large" | "xlarge"
+type DividerSize = "standard" | "medium" | "large" | "xl"
 const dividerSizeMap: {[key in DividerSize]: string} = {
-  small: "h-px",
-  standard: "h-0.5",
+  standard: "h-px",
+  medium: "h-0.5",
   large: "h-1",
-  xlarge: "h-2"
+  xl: "h-2"
 }
 
 const Divider: FC<DividerProps> = ({

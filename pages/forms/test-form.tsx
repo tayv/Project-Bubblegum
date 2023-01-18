@@ -143,7 +143,7 @@ const QuizTemplate: FC = () => {
       <Breadcrumbs crumbs={crumbs} />
       <Heading text="Quiz Template" size="h1" type="primary"/>
       <Paragraph text="This is a template to test form layout and start building out state and database behavior." size="standard" type="primary" />
-      <Divider />
+
       <form className="py-3 px-8 my-8 rounded-3xl bg-white/90 drop-shadow-sm " onSubmit={ onSubmit }>
         <Section id="intro" style="blank">
           <Heading text="Test Form 1" size="h2" type="primary"/>

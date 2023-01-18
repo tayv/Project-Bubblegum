@@ -6,6 +6,7 @@ import { FC } from 'react'
 import { useForm } from 'react-hook-form'
 import Section from '@components/layout/Section'
 import DatePick from '@atoms/DatePick'
+import Divider from '@components/layout/Divider'
 
 // data for Breadcrumbs
 const crumbs = [
@@ -28,8 +29,6 @@ const DatePickerPage: FC = () => {
       <Breadcrumbs crumbs={crumbs} />
       <Heading text="Date Picker" size="h1" type="primary"/>
       <Paragraph text="On this page you'll find a calendar date picker." size="standard" type="primary" />
-      <br />
-      <hr />
 
       <Section id="SingleDatePickExample" style="standard">
         <Heading text="Example 1: Single Date Picker" size="h2" type="primary"/>
@@ -38,9 +37,7 @@ const DatePickerPage: FC = () => {
           size="standard" 
           type="primary" 
         />
-        <br />
-        <hr/>
-        <br/>
+        <Divider padding="xl" />
         <DatePick 
           name="exampleSingleDatePick" 
           label={"Pick a date (still uncontrolled):" }
@@ -58,9 +55,9 @@ const DatePickerPage: FC = () => {
           size="standard" 
           type="primary" 
         />
-        <br />
-        <hr/>
-        <br/>
+        
+        <Divider padding="xl" />
+        
         <div className="inline-flex flex-wrap gap-4">
           <DatePick 
             name="exampleStartDatePick" 

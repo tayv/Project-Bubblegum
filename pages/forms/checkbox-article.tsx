@@ -5,6 +5,7 @@ import Paragraph from '@components/layout/Paragraph'
 import { FC } from 'react'
 import Section from '@components/layout/Section'
 import Checkbox from '@components/atoms/Checkbox'
+import Divider from '@components/layout/Divider'
 
 
 // data for Breadcrumbs
@@ -29,9 +30,6 @@ const CheckboxArticle: FC = () => {
       <Heading text="Checkbox" size="h1" type="primary"/>
       <Paragraph text="On this page you'll find checkbox components." size="standard" type="primary" />
 
-      <br />
-      <hr />
-
       <Section id="header" style="standard">
         <Heading text="Checkbox" size="h3" type="primary"/>
           <Paragraph 
@@ -39,9 +37,8 @@ const CheckboxArticle: FC = () => {
             size="standard" 
             type="primary" 
           />
-          <br/>
-          <hr/>
-          <br/>
+          <Divider padding="xl" />
+
           <Heading text="Example:" size="h4" type="primary"/>
           <Checkbox 
             id="checkboxInput" 
@@ -57,9 +54,7 @@ const CheckboxArticle: FC = () => {
             size="standard" 
             type="primary" 
           />
-          <br/>
-          <hr/>
-          <br/>
+          <Divider padding="xl" />
           <Heading text="Example: WIP" size="h4" type="primary"/>
           
       </Section>

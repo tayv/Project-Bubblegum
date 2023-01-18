@@ -26,7 +26,7 @@ const DividersArticle: FC = () => {
     <LayoutContainerSide>
       <Breadcrumbs crumbs={crumbs} />
       <Heading text="Dividers" size="h1" type="primary"/>
-      <Paragraph text="On this page you'll find divider components." size="standard" type="primary" />
+      <Paragraph text="Visually separate content with the Divider component" size="standard" type="primary" />
 
       <Section id="dividers" style="standard">
         <Heading text="Divider Component" size="h3" type="primary"/>
@@ -55,24 +55,28 @@ const DividersArticle: FC = () => {
           <br/>
 
           <Heading text="Size prop:" size="h3" type="secondary"/>
-          <Heading text="Example: small" size="h4" type="primary"/>
-          <Divider size="small" />
           <Heading text="Example: standard" size="h4" type="primary"/>
           <Divider size="standard" />
+          <Heading text="Example: medium" size="h4" type="primary"/>
+          <Divider size="medium" />
           <Heading text="Example: large" size="h4" type="primary"/>
           <Divider size="large" />
           <Heading text="Example: xlarge" size="h4" type="primary"/>
-          <Divider size="xlarge" />
+          <Divider size="xl" />
           
           <br/>
 
           <Heading text="Padding prop:" size="h3" type="secondary"/>
-          <Heading text="Example: small" size="h4" type="primary"/>
-          <Divider padding="small" />
           <Heading text="Example: standard" size="h4" type="primary"/>
           <Divider padding="standard" />
+          <Heading text="Example: medium" size="h4" type="primary"/>
+          <Divider padding="medium" />
           <Heading text="Example: large" size="h4" type="primary"/>
           <Divider padding="large" />
+          <Heading text="Example: xl" size="h4" type="primary"/>
+          <Divider padding="xl" />
+          <Heading text="Example: xxl" size="h4" type="primary"/>
+          <Divider padding="xxl" />
           <Heading text="Example: none" size="h4" type="primary"/>
           <Divider padding="none" />
 

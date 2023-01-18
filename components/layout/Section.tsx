@@ -37,7 +37,7 @@ const Section = (
     <section id={id} 
       className={
         classNames([
-          "py-4 px-5 mt-4 rounded-3xl", // standard css styles go here. Peer is always required for label styling to work
+          "py-4 px-5 my-4 rounded-3xl", // standard css styles go here. Peer is always required for label styling to work
           sectionStyleMap[style], // to dynamically set styling for different radio types
           className, // custom styling
         ])

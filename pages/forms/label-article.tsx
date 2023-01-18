@@ -5,7 +5,7 @@ import Paragraph from '@components/layout/Paragraph'
 import { FC } from 'react'
 import Section from '@components/layout/Section'
 import InputLabel from '@components/atoms/InputLabelRadix'
-
+import Divider from '@components/layout/Divider'
 
 // data for Breadcrumbs
 const crumbs = [
@@ -28,8 +28,7 @@ const LabelArticle: FC = () => {
       <Breadcrumbs crumbs={crumbs} />
       <Heading text="Label" size="h1" type="primary"/>
       <Paragraph text="On this page you'll find label components." size="standard" type="primary" />
-      <br />
-      <hr />
+
       <Section id="header" style="standard">
         <Heading text="Input Label" size="h3" type="primary"/>
           <Paragraph 
@@ -45,9 +44,9 @@ const LabelArticle: FC = () => {
             size="standard" 
             type="primary" 
           />
-         <br/>
-         <hr/>
-         <br/>
+         
+          <Divider padding="xl" />
+
          <Heading text="Example: Standard Label" size="h4" type="primary"/>
          <InputLabel type="standard" label="This is a standard label" htmlFor="" />
       </Section>
