@@ -23,7 +23,7 @@ const LayoutContainerSide = ({children}: any) => {
           {title: "Text Styles", path: "/forms/text-styles-article"}, 
         ]} />
         <main className="w-full overflow-y-scroll pt-1">
-         <div className="block max-w-4xl px-6 py-3">{children}</div>
+         <div className="block px-6 py-3">{children}</div>
         </main>
      </div>
     </div>
