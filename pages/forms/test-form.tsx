@@ -144,8 +144,8 @@ const TestForm: FC = () => {
       <Heading text="Test Form" size="h1" type="primary"/>
       <Paragraph text="This is a template to test form layout and start building out state and database behavior." size="standard" type="primary" />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full xl:max-w-1400">
-        <form className="py-3 px-8 my-8 rounded-3xl bg-white/90 drop-shadow-sm " onSubmit={ onSubmit }>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 w-full xl:max-w-1400">
+        <form className="col-span-2 py-3 px-8 my-8 rounded-3xl bg-white/90 drop-shadow-sm " onSubmit={ onSubmit }>
           <Section id="intro" style="blank">
             <Heading text="Test Form 1" size="h2" type="primary"/>
             <Paragraph text="This form is used to show default styling for text, radio button, checkbox, and multi-line input components. Also used to test Controlled inputs" size="standard" type="primary" />
@@ -392,13 +392,16 @@ const TestForm: FC = () => {
         </form>
     
 
-      { /*TEMPLATE TEST SECTION START --------------------------------------------- */}
-      <Section id="templateTest" style="standard">
-        <Heading text="Section Title: Template Test" size="h3" type="primary"/>
-        <TemplateGeneric location="b" docID={2} formData={ { input1: "some data", input2: "this is the dynamic data", input3: 100 } } />
-      </Section>
-
+      { /*TEMPLATE SECTION START --------------------------------------------- */}
+      <div className="overflow-visible my-4"> {/* div needed for sticky to work. Cannot use overflow: scroll/hidden/auto with sticky https://www.digitalocean.com/community/tutorials/css-position-sticky */}
+        <div className="sticky top-0 overflow-y-auto">
+          <Section id="templateTest" style="standard">
+            <Heading text="Section Title: Template Test" size="h3" type="primary"/>
+            <TemplateGeneric location="b" docID={2} formData={ { input1: "some data", input2: "this is the dynamic data", input3: 100 } } />
+          </Section>
+        </div>
       </div>
+     </div>
       { /*TEMPLATE TEST SECTION END --------------------------------------------- */}
 
 
