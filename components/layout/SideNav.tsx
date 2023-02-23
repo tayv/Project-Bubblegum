@@ -20,7 +20,7 @@ const SideNav: FC<SideNavProps> = ({
   } 
 
   return (
-    <nav className="flex flex-col w-64 min-w-fit m-4 px-4 pt-3 rounded-3xl backdrop-blur-lg bg-sky-200/50 drop-shadow-sm" aria-label="Sidebar">
+    <nav className="flex flex-col w-64 min-w-fit m-4 px-4 pt-3 rounded-3xl bg-lime-200 drop-shadow-sm" aria-label="Sidebar">
       <div>
         <a href="/" className={classNames("flex items-center p-1 text-base font-semibold text-gray-900 hover:text-gray-600 ")}>
           <span className="flex-1 ml-3 text-xl whitespace-nowrap">🏠  Home</span> 
