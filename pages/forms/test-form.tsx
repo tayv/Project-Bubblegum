@@ -395,9 +395,9 @@ const TestForm: FC = () => {
       { /*TEMPLATE SECTION START --------------------------------------------- */}
       <div className="overflow-visible my-4"> {/* div needed for sticky to work. Cannot use overflow: scroll/hidden/auto with sticky https://www.digitalocean.com/community/tutorials/css-position-sticky */}
         <div className="sticky top-0 overflow-y-auto">
-          <Section id="templateTest" style="standard">
-            <Heading text="Section Title: Template Test" size="h3" type="primary"/>
-            <TemplateGeneric location="b" docID={2} formData={ { input1: "some data", input2: "this is the dynamic data", input3: 100 } } />
+          <Section id="templateTest" style="blank">
+            <Heading text="Template Test: Form Values" size="h3" type="primary"/>
+            <TemplateGeneric location="c" docID={2} formData={ { input1: "some data", input2: "this is the dynamic data", input3: 100 } } />
           </Section>
         </div>
       </div>
