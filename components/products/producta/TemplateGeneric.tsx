@@ -28,19 +28,19 @@ let renderTable = ({docID, formData}: Omit<TemplateProps, "location">) => {
           <th className="p-2">Input Value</th>
         </tr>
       </thead> 
+      <tbody>
     { 
      Object.entries(formData).map(([key, value], index) => {
       return (
-  
-            <tbody>
-              <tr className="border border-2 p-2">
+
+              <tr key={index} className="border border-2 p-2">
                 <td className="border border-2 p-2">{key}</td>
                 <td className="border border-2 p-2">{value}</td>
               </tr>
-            </tbody>
       )
      }) 
     }
+    </tbody>
     </table>
   ) 
   

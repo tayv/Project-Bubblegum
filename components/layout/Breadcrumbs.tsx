@@ -22,7 +22,7 @@ const Breadcrumbs = ({crumbs}: any) => {
             : (
               // else render breadcrumb with a link
               <Link href={crumb.path}>
-                <a className="inline underline no-underline text-sm text-blue-500 hover:decoration-dashed underline-offset-4 hover:text-blue-600 focus:text-blue-600">
+                <a className="inline underline no-underline text-sm text-pink-500 hover:decoration-dashed underline-offset-4 hover:text-pink-600 focus:text-pink-600">
                   {crumb.text}
                 </a>
             </Link>
