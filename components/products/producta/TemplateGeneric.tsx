@@ -29,17 +29,17 @@ let renderTable = ({docID, formData}: Omit<TemplateProps, "location">) => {
         </tr>
       </thead> 
       <tbody>
-    { 
-     Object.entries(formData).map(([key, value], index) => {
-      return (
+      { 
+      Object.entries(formData).map(([key, value], index) => {
+        return (
 
-              <tr key={index} className="border border-2 p-2">
-                <td className="border border-2 p-2">{key}</td>
-                <td className="border border-2 p-2">{value}</td>
-              </tr>
-      )
-     }) 
-    }
+                <tr key={index} className="border border-2 p-2">
+                  <td className="border border-2 p-2">{key}</td>
+                  <td className="border border-2 p-2">{value}</td>
+                </tr>
+        )
+      }) 
+      }
     </tbody>
     </table>
   ) 
@@ -76,6 +76,14 @@ const TemplateGeneric: FC<TemplateProps> = (
   return (
     <>
       <Paragraph size="standard" text="The form values (TBD currently static values) will be used to create a document template. Document ID functionality is TBD — will be use to organize multiple instances of form submissions in the database." />
+      <Divider padding="large"/>
+      <button 
+        form="test-form"
+        type="submit"
+        className="block border-sky-500 bg-sky-300 border rounded px-3 py-1"
+        >
+        📫  Submit Form
+      </button>
       <Divider padding="large"/>
       { renderTemplate({docID, location, formData}) }
     </>
