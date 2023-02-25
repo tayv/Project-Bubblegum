@@ -360,25 +360,11 @@ const TestForm: FC = () => {
           }
 
             {/* VISIBILITY TEST SECTION END --------------------------------------------- */}
-
+    
           <br />
           <button 
             type="button" 
-            className="block border-gray-900 bg-gray-300 border px-2 py-1" 
-            onClick={ () => { 
-
-              UpdateDocState(getValues, setDocValue, docValue)
-            
-            // const testGetVal = getValues("regcheck") 
-            // console.log(testGetVal)
-            } }>
-            Update Form State
-          </button>
-          
-          <br />
-          <button 
-            type="button" 
-            className="block border-gray-900 bg-pink-300 border px-2 py-1" 
+            className="block border-gray-900 bg-pink-300 border rounded-md px-2 py-1" 
             onClick={ () => { 
               const testGetVal = getValues("wrapperselect") 
               console.log(testGetVal)
