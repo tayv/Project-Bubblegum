@@ -3,19 +3,17 @@ import Paragraph from '@components/layout/Paragraph'
 import Divider from '@components/layout/Divider'
 
 export type FormDataObj = {
-  input1: string
-  input2: string
-  input3: number
+  docID: Number
+  formData: { key: string, value: string }
 }
 
 export type TemplateProps = {
-  docID: Number
-  formData: FormDataObj 
+  docData: FormDataObj 
   location: string
 }
 
 // Helper functions ----------------------------
-let renderTable = ({docID, formData}: Omit<TemplateProps, "location">) => {
+let renderTable = ({docID, formData}: FormDataObj) => {
     
   return (
     <table className="table-fixed w-full border border-2 p-2">
@@ -24,7 +22,7 @@ let renderTable = ({docID, formData}: Omit<TemplateProps, "location">) => {
           <th colSpan={2} className="p-2">Document ID: {docID}</th>
         </tr>
         <tr>
-          <th className="p-2">Input Name</th>
+          <th className="p-2">Input ID</th>
           <th className="p-2">Input Value</th>
         </tr>
       </thead> 
@@ -33,10 +31,10 @@ let renderTable = ({docID, formData}: Omit<TemplateProps, "location">) => {
       Object.entries(formData).map(([key, value], index) => {
         return (
 
-                <tr key={index} className="border border-2 p-2">
-                  <td className="border border-2 p-2">{key}</td>
-                  <td className="border border-2 p-2">{value}</td>
-                </tr>
+          <tr key={index} className="border border-2 p-2">
+            <td className="border border-2 p-2">{key}</td>
+            <td className="border border-2 p-2">{value}</td>
+          </tr>
         )
       }) 
       }
@@ -46,7 +44,7 @@ let renderTable = ({docID, formData}: Omit<TemplateProps, "location">) => {
   
 }
 
-const renderTemplate = ({location, docID, formData}: TemplateProps) => {
+const renderTemplate = ({location, docID, formData}: FormDataObj & TemplateProps) => {
   switch (location) {
     case "a":
       return <Paragraph size="small" text="Here's boilerplate text plus some dynamic content based on the form values 👉 "> <strong>{ formData.input1 }</strong></Paragraph>
@@ -65,13 +63,14 @@ const renderTemplate = ({location, docID, formData}: TemplateProps) => {
 // Component Function Starts Here ----------------------------
 const TemplateGeneric: FC<TemplateProps> = ( 
   {
-    docID,
-    formData,
+    docData,
     location,
     ...props
   }
 ) => {  
 
+  let docID = docData.docID
+  let formData = docData.formData
 
   return (
     <>
