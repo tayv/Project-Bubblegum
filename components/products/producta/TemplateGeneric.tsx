@@ -4,7 +4,7 @@ import Divider from '@components/layout/Divider'
 
 export type FormDataObj = {
   docID: Number
-  formData: { key: string, value: string }
+  formData: {} | { key: string, value: string } // Will typecheck specific key/value pairs in actual implementation 
 }
 
 export type TemplateProps = {
@@ -44,13 +44,15 @@ let renderTable = ({docID, formData}: FormDataObj) => {
   
 }
 
-const renderTemplate = ({location, docID, formData}: FormDataObj & TemplateProps) => {
+const renderTemplate = ({location, docData}: TemplateProps) => {
+  let {docID, formData} = docData
+
   switch (location) {
     case "a":
-      return <Paragraph size="small" text="Here's boilerplate text plus some dynamic content based on the form values 👉 "> <strong>{ formData.input1 }</strong></Paragraph>
+      return <Paragraph size="small" text="Here's boilerplate text plus some dynamic content based on the form values 👉 "> <strong>{ docID }</strong></Paragraph>
       
     case "b":
-      return (formData.input1 === "some data") && <Paragraph size="large" text="This is boilerplate text. The following is dynamic content 👉 " > <strong>{ formData.input2 }</strong></Paragraph> 
+      return // (formData.input1 === "some data") && <Paragraph size="large" text="This is boilerplate text. The following is dynamic content 👉 " > <strong>{ formData.input2 }</strong></Paragraph> 
       
     case "c":
       return renderTable({docID, formData})
@@ -84,7 +86,7 @@ const TemplateGeneric: FC<TemplateProps> = (
         📫  Submit Form
       </button>
       <Divider padding="large"/>
-      { renderTemplate({docID, location, formData}) }
+      { renderTemplate({location, docData}) }
     </>
   )
 }
