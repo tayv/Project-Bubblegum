@@ -296,7 +296,18 @@ const TestForm: FC = () => {
 
               
         {/* VISIBILITY CONDITION TEST SECTION --------------------------------------------- */}
-
+          <Divider padding="large" />      
+          <Heading text="Visibility Condition Test Section" size="h2" type="primary"/>
+          <div className="flex flex-col items-end">
+            <button 
+              type="button" 
+              className="mt-4 block border-slate-500 bg-slate-200 hover:bg-slate-300 border rounded-md px-2 py-1 align-right w-max" 
+              onClick={ () => {
+                setSectionVis({ ...sectionVis, rhfradios: !sectionVis.rhfradios })
+              }} 
+              >🪄 Toggle Section Visiblity
+            </button>
+          </div>
             { 
               sectionVis.rhfradios && <Section id="rhf-radios" style="standard">
                 <Heading text="Section Title: RHF register radios" size="h3" type="primary"/>
@@ -347,15 +358,6 @@ const TestForm: FC = () => {
               }
             </Section>
           }
-
-            <button 
-              type="button" 
-              className="mt-4 block border-gray-900 bg-blue-300 border px-2 py-1" 
-              onClick={ () => {
-                setSectionVis({ ...sectionVis, rhfradios: !sectionVis.rhfradios })
-              }} 
-              >Toggle Visiblity
-            </button>
 
             {/* VISIBILITY TEST SECTION END --------------------------------------------- */}
 

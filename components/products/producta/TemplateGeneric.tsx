@@ -81,7 +81,7 @@ const TemplateGeneric: FC<TemplateProps> = (
       <button 
         form="test-form"
         type="submit"
-        className="block border-sky-500 bg-sky-300 border rounded px-3 py-1"
+        className="block border-slate-500 bg-slate-200 hover:bg-slate-300 border rounded-md px-3 py-1"
         >
         📫  Submit Form
       </button>
