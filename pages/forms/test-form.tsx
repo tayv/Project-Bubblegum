@@ -36,7 +36,7 @@ const TestForm: FC = () => {
   // Setup initial state
   const [docValue, setDocValue] = useState({docID: 1, formData: {}})
 
-  // React hook form
+  // Prepare RHF methods
   const { register, getFieldState, reset, handleSubmit, control, getValues, setValue, watch, formState: { errors }} = useForm()
 
   // Sample onSubmit form handler
@@ -68,6 +68,30 @@ const TestForm: FC = () => {
     
   })
 
+  // Printing an input's value used for debugging
+  let renderPrintValueButton = (inputID: string) => { 
+    const [rhfGetVal, setRHFGetVal] = useState("");
+    
+    const handlePrintValue = () => {
+      const inputValue = getValues(inputID);
+      setRHFGetVal(inputValue);
+      console.log("input's value:", inputValue);
+    };
+  
+    return (
+      <div className="flex flex-row items-center gap-3">
+        <button 
+          type="button" 
+          className="block border-slate-900 bg-slate-100 hover:bg-slate-200 border rounded-md px-2 py-1 text-xs font-medium" 
+          onClick={handlePrintValue}
+        >
+          Print Input Value
+        </button>
+        { rhfGetVal && ( <Paragraph size="small" text={rhfGetVal} /> ) }
+      </div>
+    );
+  }
+
   const messageSchema = {
     m1: {
       type: "warn",
@@ -81,8 +105,8 @@ const TestForm: FC = () => {
     }
   }
 
-  // VISIBILITY TESTING START ------------------------------------------------------------------------------------
 
+  // Set up form sections to show/hide
   const [sectionVis, setSectionVis] = useState(
     {
       // Format { sectionID: showSectionBoolean }
@@ -172,6 +196,8 @@ const TestForm: FC = () => {
                 customRegEx={null} 
               />
             </WrapperInput>
+            <Divider padding="large" />
+            {renderPrintValueButton("singleInput")}
             
           </Section>
   
@@ -360,20 +386,17 @@ const TestForm: FC = () => {
           }
 
             {/* VISIBILITY TEST SECTION END --------------------------------------------- */}
-    
-          <br />
+          {renderPrintValueButton("standardRadio")}
           <button 
-            type="button" 
-            className="block border-gray-900 bg-pink-300 border rounded-md px-2 py-1" 
-            onClick={ () => { 
-              const testGetVal = getValues("wrapperselect") 
-              console.log(testGetVal)
-            } }>
-            Print Input Value
-          </button>
-
+        type="button" 
+        className="block border-gray-900 bg-pink-300 border rounded-md px-2 py-1" 
+        onClick={ () => { 
+          let rhfGetVal = getValues("standardRadio") 
+          console.log(rhfGetVal)
+        } }>
+        Print Input Value 2
+      </button>
           
-          <br/>
         </form>
     
 
