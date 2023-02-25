@@ -43,27 +43,28 @@ const TestForm: FC = () => {
     // NOTES: Don't need to  e.preventDefault() since rhf's handleSubmit() automatically prevents page reloads 
     // and handles errors for you https://www.react-hook-form.com/api/useform/handlesubmit/
   const onSubmit = handleSubmit( async (data, event) => {
+    setDocValue({docID: 1, formData: data}) // Save form values to state so the test template table can show the values
     console.log("Form submitted. data:", data, "Submit form - errors", Error)
     console.log("event:", event)
-      const body = data
-      try {
-        const response = await fetch("/api/inquiry", {
-          method: "POST",
-          headers: {"Content-Type": "application/json"},
-          body: JSON.stringify(body),
-      })
-      if (response.status !== 200){
-        console.log("something went wrong oops")
-        //set an error banner here
-      } else {
-       // resetForm();
-        console.log("form submitted successfully !!!")
-        //set a success banner here
-      }
-      //check response, if success is false, dont take them to success page
-      } catch (error) {
-        console.log("there was an error submitting", error)
-      }
+    const body = data
+    try {
+      const response = await fetch("/api/inquiry", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(body),
+    })
+    if (response.status !== 200){
+      console.log("something went wrong oops")
+      //set an error banner here
+    } else {
+      // resetForm();
+      console.log("form submitted successfully !!!")
+      //set a success banner here
+    }
+    //check response, if success is false, dont take them to success page
+    } catch (error) {
+      console.log("there was an error submitting", error)
+    }
     
   })
 
@@ -393,7 +394,7 @@ const TestForm: FC = () => {
         <div className="sticky top-0 overflow-y-auto">
           <Section id="templateTest" style="blank">
             <Heading text="Template Test: Form Values" size="h3" type="primary"/>
-            <TemplateGeneric location="c" docID={2} formData={ { input1: "some data", input2: "this is the dynamic data", input3: 100 } } />
+            <TemplateGeneric location="c" docData={ docValue } />
           </Section>
         </div>
       </div>
