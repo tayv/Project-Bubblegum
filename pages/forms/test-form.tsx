@@ -85,7 +85,7 @@ const TestForm: FC = () => {
           className="block border-slate-900 bg-slate-100 hover:bg-slate-200 border rounded-md my-1 px-2 py-1 text-xs font-medium" 
           onClick={handlePrintValue}
         >
-          Print {inputID} Value
+          🖨️ Print {inputID} Value
         </button>
         {rhfGetVal === undefined ? (
         <Paragraph size="small" text="Value is undefined" />
@@ -144,6 +144,7 @@ const TestForm: FC = () => {
       groupSelect: "third",
       // Have visibility conditions
       visRacingRadio: "moto-gp",
+      visCheckbox: true,
       bikeBrandRadio: "suzuki",
       motoTeamRadio: "honda",
     }
@@ -169,7 +170,8 @@ const TestForm: FC = () => {
       flatSelect: getValues("flatSelect"),
       groupSelect: getValues("groupSelect"),
       // Visibliity Conditions
-      visRacingRadio: watch("visRacingRadio")
+      visRacingRadio: watch("visRacingRadio"),
+      visCheckbox: watch("visCheckbox")
     }
 
 
@@ -198,14 +200,14 @@ const TestForm: FC = () => {
               control={control}
               rules={{ required: "You must enter something" }}
             >
-              <HelpMessage 
-                inputName="firstName" 
-                messageType="warn" 
-                control={control} 
-                checkFor="a" 
-                message="This is the help message" 
-                customRegEx={null} 
-              />
+            <HelpMessage 
+              inputName="firstName" 
+              messageType="warn" 
+              control={control} 
+              checkFor="a" 
+              message="This is the help message" 
+              customRegEx={null} 
+            />
             </WrapperInput>
 
             <Divider padding="large" />
@@ -307,12 +309,12 @@ const TestForm: FC = () => {
               name="flatselect" 
               control={control} 
               placeholder="Select an option"
-              defaultValue=""
+              defaultValue={defaultValues.flatSelect}
               itemOptions={ [
-                    {value:"first", labelText:"firstText", separator: false}, 
-                    {value:"second", labelText:"secondText", separator: true},
-                    {value:"third", labelText:"thirdText", separator: false}, 
-                    {value:"fourth", labelText:"fourthText", separator: true},
+                {value:"first", labelText:"firstText", separator: false}, 
+                {value:"second", labelText:"secondText", separator: true},
+                {value:"third", labelText:"thirdText", separator: false}, 
+                {value:"fourth", labelText:"fourthText", separator: true},
               ] }
             />
             <br />
@@ -384,12 +386,10 @@ const TestForm: FC = () => {
                     {value: "supercross", label: "Supercross"}, 
                     {value: "f1", label: "F1"}] }
                 />
-              </Section>
-
-            
+              </Section>            
             }
            
-            {  renderPrintValueButton("visRacingRadio") }
+            { renderPrintValueButton("visRacingRadio") }
             <Divider padding="large" />
 
             { 
@@ -398,7 +398,7 @@ const TestForm: FC = () => {
               {/* Heading text changes based on answer to previous radio group */}
               <Heading text="Toggle Words + Questions" size="h3" type="primary"/>
               {/* Checkbox conditionally toggles wording and radio options */}
-              <Label type="standard" htmlFor="visCheckbox" label={(fieldValues.visRacingRadio === "f1") ? "Variation A" : "Variation B"} />
+              <Label type="standard" htmlFor="visCheckbox" label={(fieldValues.visRacingRadio === "f1") ? "You chose F1" : "You didn't choose F1"} />
               <WrapperCheckbox 
                 id="visCheckbox" 
                 style="standard" 
@@ -408,7 +408,7 @@ const TestForm: FC = () => {
               <Divider padding="large" />
               { 
                 // Set visibility of radio group based on prev checkbox answer
-                (watch("visCheckbox") ) ?
+                ( fieldValues.visCheckbox ) ?
                   <WrapperRadioGroup
                     name="bikeBrandRadio"
                     groupLabel="Pick your favorite brand"
@@ -440,7 +440,7 @@ const TestForm: FC = () => {
             </Section>
           }
           
-          {renderPrintValueButton("viCheckbox")}
+          {renderPrintValueButton("visCheckbox")}
           {renderPrintValueButton("bikeBrandRadio")}
           {renderPrintValueButton("motoTeamRadio")} 
           <Divider padding="large" />
@@ -448,7 +448,6 @@ const TestForm: FC = () => {
           
         </form>
     
-
       { /*TEMPLATE SECTION START --------------------------------------------- */}
       <div className="overflow-visible my-4"> {/* div needed for sticky to work. Cannot use overflow: scroll/hidden/auto with sticky https://www.digitalocean.com/community/tutorials/css-position-sticky */}
         <div className="sticky top-0 overflow-y-auto">
@@ -460,7 +459,6 @@ const TestForm: FC = () => {
       </div>
      </div>
       { /*TEMPLATE TEST SECTION END --------------------------------------------- */}
-
 
     </LayoutContainerSide>
 
