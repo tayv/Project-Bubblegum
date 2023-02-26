@@ -82,12 +82,12 @@ const TestForm: FC = () => {
       <div className="flex flex-row items-center gap-3">
         <button 
           type="button" 
-          className="block border-slate-900 bg-slate-100 hover:bg-slate-200 border rounded-md px-2 py-1 text-xs font-medium" 
+          className="block border-slate-900 bg-slate-100 hover:bg-slate-200 border rounded-md my-1 px-2 py-1 text-xs font-medium" 
           onClick={handlePrintValue}
         >
-          Print Input Value
+          Print {inputID} Value
         </button>
-        { rhfGetVal && ( <Paragraph size="small" text={rhfGetVal} /> ) }
+        { rhfGetVal && ( <Paragraph size="small" text={`Value: ${rhfGetVal}`} /> ) }
       </div>
     );
   }
@@ -113,8 +113,9 @@ const TestForm: FC = () => {
       textInput: true,
       radioInput: false,
       checkboxInput: true,
-      rhfradios: true,
       moto: true,
+      visCondition1: true,
+      visCondition2: true,
     }
   )
 
@@ -129,17 +130,18 @@ const TestForm: FC = () => {
       standardRadio: "mint",
       horizontalRadio: "no",
       buttonRadio: "orange-button",
-      bikeBrandRadio: "suzuki",
-      motoTeamRadio: "honda",
-      registerradio: "supercross", // works
       // Checkbox Input Section
       checkboxInput: true,
       // Select Input Section
       flatSelect: "third",
       groupSelect: "third",
-
+      // Have visibility conditions
+      visRacingRadio: "moto-gp",
+      bikeBrandRadio: "suzuki",
+      motoTeamRadio: "honda",
     }
 
+    // Set up form default values with rhf 
     useEffect(() => {
       reset({ ...defaultValues }) 
     }, [])
@@ -158,7 +160,9 @@ const TestForm: FC = () => {
       checkboxInput: watch("checkboxInput"), 
       // Select Input Section
       flatSelect: getValues("flatSelect"),
-      groupSelect: getValues("groupSelect")
+      groupSelect: getValues("groupSelect"),
+      // Visibliity Conditions
+      visRacingRadio: watch("visRacingRadio")
     }
 
 
@@ -196,6 +200,7 @@ const TestForm: FC = () => {
                 customRegEx={null} 
               />
             </WrapperInput>
+
             <Divider padding="large" />
             {renderPrintValueButton("singleInput")}
             
@@ -240,6 +245,12 @@ const TestForm: FC = () => {
                 {value: "chocolate-button", label: "Chocolate ice cream"}, 
                 {value: "vanilla-button", label: "Vanilla ice cream"}] }
             />
+
+            <Divider padding="large" />
+            {renderPrintValueButton("standardRadio")}
+            {renderPrintValueButton("horizontalRadio")}
+            {renderPrintValueButton("buttonRadio")}
+
           </Section>
           
           <Section id="checkboxInput" style="standard">
@@ -252,6 +263,10 @@ const TestForm: FC = () => {
               label="This is a checkbox label" 
               control={control} 
             />
+
+            <Divider padding="large" />
+            {renderPrintValueButton("checkboxInput")}
+
           </Section>
 
           <Section id="textArea" style="standard">
@@ -272,6 +287,11 @@ const TestForm: FC = () => {
               exampleText="e.g. Example goes here."
               control={control}
             />
+
+            <Divider padding="large" />
+            {renderPrintValueButton("standardTextArea")}
+            {renderPrintValueButton("largeTextArea")}
+
           </Section>
 
           <Section id="radixWrapperSelect" style="standard">
@@ -313,11 +333,19 @@ const TestForm: FC = () => {
                   }
                 ] }
             />
+
+            <Divider padding="large" />
+            {renderPrintValueButton("flatselect")}
+            {renderPrintValueButton("groupselect")}
+
           </Section>
 
           <Section id="datepick" style="standard">
             <Heading text="Section Title: Date Picker" size="h3" type="primary"/>
             <DatePick name="datepicktest" label="This is a date picker (currently uncontrolled)" startYearRange={1990} endYearRange={2030} />
+         
+            <Divider padding="large" />
+            {renderPrintValueButton("datepicktest")}
           </Section>
 
               
@@ -329,35 +357,50 @@ const TestForm: FC = () => {
               type="button" 
               className="mt-4 block border-slate-500 bg-slate-200 hover:bg-slate-300 border rounded-md px-2 py-1 align-right w-max" 
               onClick={ () => {
-                setSectionVis({ ...sectionVis, rhfradios: !sectionVis.rhfradios })
+                setSectionVis({ ...sectionVis, visCondition1: !sectionVis.visCondition1 })
               }} 
               >🪄 Toggle Section Visiblity
             </button>
           </div>
-            { 
-              sectionVis.rhfradios && <Section id="rhf-radios" style="standard">
-                <Heading text="Section Title: RHF register radios" size="h3" type="primary"/>
-                <Label type="standard" htmlFor="registerradio" label="These use rhf's register" />
-                <Tip text="Tip: pick your favorite type of racing" type="standard" />
-                <input {...register("registerradio")} id="registerradio1" type="radio" value="motogp" />
-                <label htmlFor="registerradio1">Moto GP</label> 
-                <input {...register("registerradio")} id="registerradio2" type="radio" value="worldsbk" />
-                <label htmlFor="registerradio2">World Superbike</label>
-                <input {...register("registerradio")} id="registerradio3" type="radio" value="supercross" />
-                <label htmlFor="registerradio3">Supercross</label> 
-                <input {...register("registerradio")} id="registerradio4" type="radio" value="islemantt" />
-                <label htmlFor="registerradio4">Isle of Man TT</label> 
+
+            {
+              sectionVis.visCondition1 && <Section id="rhf-radios" style="standard">
+                <WrapperRadioGroup
+                  name="visRacingRadio"
+                  groupLabel="This is a radio group label"
+                  tipText="Tip: These radios are styled as buttons"
+                  control={control}
+                  style="button"
+                  options={ [
+                    {value: "moto-gp", label: "Moto GP"}, 
+                    {value: "work-superbike", label: "World Superbike"}, 
+                    {value: "supercross", label: "Supercross"}, 
+                    {value: "f1", label: "F1"}] }
+                />
               </Section>
             }
 
-            { (fieldValues.registerradio === "supercross") && <Section id="moto" style="standard">
-              <Heading text={(fieldValues.registerradio === "motogp") ? "Who's your favorite team?" : "What's your favorite bike brand?"} size="h3" type="primary"/>
-              {
-                (getValues("checkboxInput") ) ?
+            { 
+              // Conditionally toggle visibility of section based on prev radio group answer 
+              (fieldValues.visRacingRadio === "supercross" || "moto-gp") && <Section id="moto" style="standard">
+              {/* Heading text changes based on answer to previous radio group */}
+              <Heading text="Toggle Words + Questions" size="h3" type="primary"/>
+              {/* Checkbox conditionally toggles wording and radio options */}
+              <Label type="standard" htmlFor="visCheckbox" label={(fieldValues.visRacingRadio === "f1") ? "Variation A" : "Variation B"} />
+              <WrapperCheckbox 
+                id="visCheckbox" 
+                style="standard" 
+                label="Toggle next question" 
+                control={control} 
+              />
+              <Divider padding="large" />
+              { 
+                // Set visibility of radio group based on prev checkbox answer
+                (watch("visCheckbox") ) ?
                   <WrapperRadioGroup
                     name="bikeBrandRadio"
-                    groupLabel="Pick your favorite bike brand"
-                    tipText="Tip: These are standard radio buttons"
+                    groupLabel="Pick your favorite brand"
+                    tipText="You should only see this if checkbox is selected"
                     control={control}
                     style="standard"
                     defaultValue="yamaha"
@@ -371,31 +414,31 @@ const TestForm: FC = () => {
                     <WrapperRadioGroup
                       name="motoTeamRadio"
                       groupLabel="Pick your favorite racing team"
-                      tipText="Tip: These are standard radio buttons"
+                      tipText="You should only see this if the checkbox is NOT selected"
                       control={control}
                       style="standard"
                       options={ [
                         {value: "yamaha", label: "Monster Energy Yamaha"}, 
                         {value: "honda", label: "Repsol Honda"}, 
                         {value: "ducati", label: "Factory Ducati"}, 
-                        {value: "vr46", label: "VR 46 Ducati"}
+                        {value: "ferrari", label: "Ferrari"}
                       ] }
                     /> 
               }
+
+              {/* <Divider padding="large" />
+              {renderPrintValueButton("bikeBrandRadio")}
+              {renderPrintValueButton("motoTeamRadio")} */}
+
             </Section>
           }
 
             {/* VISIBILITY TEST SECTION END --------------------------------------------- */}
-          {renderPrintValueButton("standardRadio")}
-          <button 
-        type="button" 
-        className="block border-gray-900 bg-pink-300 border rounded-md px-2 py-1" 
-        onClick={ () => { 
-          let rhfGetVal = getValues("standardRadio") 
-          console.log(rhfGetVal)
-        } }>
-        Print Input Value 2
-      </button>
+         
+           <Divider padding="large" />
+              {renderPrintValueButton("bikeBrandRadio")}
+              {renderPrintValueButton("motoTeamRadio")}
+              {renderPrintValueButton("visRacingRadio")}
           
         </form>
     
