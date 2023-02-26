@@ -87,7 +87,14 @@ const TestForm: FC = () => {
         >
           Print {inputID} Value
         </button>
-        { rhfGetVal && ( <Paragraph size="small" text={`Value: ${rhfGetVal}`} /> ) }
+        {rhfGetVal === undefined ? (
+        <Paragraph size="small" text="Value is undefined" />
+      ) : (
+        <Paragraph
+          size="small"
+          text={`Value: ${rhfGetVal}`}
+        />
+      )}
       </div>
     );
   }
@@ -364,7 +371,7 @@ const TestForm: FC = () => {
           </div>
 
             {
-              sectionVis.visCondition1 && <Section id="rhf-radios" style="standard">
+              sectionVis.visCondition1 && <Section id="testvis-radios" style="standard">
                 <WrapperRadioGroup
                   name="visRacingRadio"
                   groupLabel="This is a radio group label"
@@ -378,11 +385,16 @@ const TestForm: FC = () => {
                     {value: "f1", label: "F1"}] }
                 />
               </Section>
+
+            
             }
+           
+            {  renderPrintValueButton("visRacingRadio") }
+            <Divider padding="large" />
 
             { 
               // Conditionally toggle visibility of section based on prev radio group answer 
-              (fieldValues.visRacingRadio === "supercross" || "moto-gp") && <Section id="moto" style="standard">
+              sectionVis.visCondition1 && (fieldValues.visRacingRadio === "supercross" || "moto-gp") && <Section id="moto" style="standard">
               {/* Heading text changes based on answer to previous radio group */}
               <Heading text="Toggle Words + Questions" size="h3" type="primary"/>
               {/* Checkbox conditionally toggles wording and radio options */}
@@ -425,20 +437,14 @@ const TestForm: FC = () => {
                       ] }
                     /> 
               }
-
-              {/* <Divider padding="large" />
-              {renderPrintValueButton("bikeBrandRadio")}
-              {renderPrintValueButton("motoTeamRadio")} */}
-
             </Section>
           }
-
-            {/* VISIBILITY TEST SECTION END --------------------------------------------- */}
-         
-           <Divider padding="large" />
-              {renderPrintValueButton("bikeBrandRadio")}
-              {renderPrintValueButton("motoTeamRadio")}
-              {renderPrintValueButton("visRacingRadio")}
+          
+          {renderPrintValueButton("viCheckbox")}
+          {renderPrintValueButton("bikeBrandRadio")}
+          {renderPrintValueButton("motoTeamRadio")} 
+          <Divider padding="large" />
+        {/* VISIBILITY TEST SECTION END --------------------------------------------- */}
           
         </form>
     
