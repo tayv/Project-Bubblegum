@@ -2,6 +2,8 @@ import Breadcrumbs from '@components/layout/Breadcrumbs'
 import Heading from '@components/layout/Heading'
 import DoDont from '@components/layout/DoDont'
 import LayoutContainerSide from '@components/layout/LayoutContainerSide'
+import BlankSpace from '@components/layout/BlankSpace'
+import Divider from '@components/layout/Divider'
 
 export default function MyRadioGroup() {
   // data for Breadcrumbs
@@ -25,8 +27,8 @@ export default function MyRadioGroup() {
           <Heading text="Containers" size="h1" type="primary"/> 
           <p>Containers that hold content and providing a consistent spacing.</p>
 
-          <br />
-          <hr />
+          <BlankSpace />
+          <Divider />
 
           <Heading text="Page Containers" size="h2" type="primary" />
           <p>A page content container that provides consistent spacing and allows children to use css flex.</p>
@@ -45,8 +47,8 @@ export default function MyRadioGroup() {
           <Heading text="How to implement" size="h3" type="primary" />
           <p>Code details go here</p>
 
-          <br />
-          <hr />
+          <BlankSpace />
+          <Divider />
 
           <Heading text="Content Cards" size="h2" type="primary" />
           <p>Containers for organizing individual pieces of content such as specific groups of form inputs.</p>

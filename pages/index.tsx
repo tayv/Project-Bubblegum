@@ -3,15 +3,16 @@ import Breadcrumbs from '@components/layout/Breadcrumbs'
 import Heading from '@components/layout/Heading'
 import Paragraph from '@components/layout/Paragraph'
 import Section from '@components/layout/Section'
+import BlankSpace from '@components/layout/BlankSpace'
 
 export default function Home() {
   return (
     <>
       <LayoutContainerSide>
-        <br />
+        <BlankSpace />
         <Heading text="🏠 Project Bubblegum" size="h1" type="primary"/>
         <Paragraph text="Bite-size react form components" size="standard" type="primary" />
-        <br />
+        <BlankSpace />
         <Section id="intro" style="standard">
           <Heading text="Technologies" size="h3" type="primary"/>
             <Paragraph 
