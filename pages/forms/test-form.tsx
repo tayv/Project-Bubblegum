@@ -89,12 +89,9 @@ const TestForm: FC = () => {
           🖨️ Print {inputID} Value
         </button>
         {rhfGetVal === undefined ? (
-        <Paragraph size="small" text="Value is undefined" />
+        <Paragraph size="small"> Value is undefined </Paragraph>
       ) : (
-        <Paragraph
-          size="small"
-          text={`Value: ${rhfGetVal}`}
-        />
+        <Paragraph size="small">{`Value: ${rhfGetVal}`}</Paragraph>
       )}
       </div>
     );
