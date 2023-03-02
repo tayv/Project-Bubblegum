@@ -17,6 +17,7 @@ import WrapperTextArea from '@components/controlled-wrappers/WrapperTextArea'
 import WrapperSelect from '@components/controlled-wrappers/WrapperSelect'
 import DatePick from '@atoms/DatePick'
 import Divider from '@components/layout/Divider'
+import BlankSpace from '@components/layout/BlankSpace'
 
 // data for Breadcrumbs
 const crumbs = [
@@ -189,6 +190,7 @@ const TestForm: FC = () => {
             <Paragraph text="This form is used to show default styling for text, radio button, checkbox, and multi-line input components. Also used to test Controlled inputs" size="standard" type="primary" />
           </Section>
           <Section id="textInput" style="standard">
+            <BlankSpace size="large" />
             <Heading text="Section Title: Single Line Input" size="h3" type="primary"/>
             <WrapperInput
               name="singleInput"

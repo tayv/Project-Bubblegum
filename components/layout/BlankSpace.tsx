@@ -2,33 +2,32 @@ import { FC } from 'react'
 import classNames from 'classnames'
 
 export type BlankSpaceProps = {
-  size: "small" | "medium" | "large" | "xl" | "xxl"
+  size?: BlankSpaceSize
   className?: string
 }
 
-type DividerPadding = "standard" | "medium" | "large" | "xl" | "xxl" | "none"
-const dividerPaddingMap: {[key in DividerPadding]: string} = {
-  standard: "py-px", // prop specific css styles go here
+type BlankSpaceSize = "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge" | "none"
+const blankSpaceSizeMap: {[key in BlankSpaceSize]: string} = {
+  xsmall: "py-px", // prop specific css styles go here
+  small: "py-1",
   medium: "py-2",
   large: "py-4",
-  xl: "py-6",
-  xxl: "py-8",
+  xlarge: "py-6",
+  xxlarge: "py-8",
   none: "py-0" 
 }  
 
-type DividerSize = "standard" | "medium" | "large" | "xl"
-const dividerSizeMap: {[key in DividerSize]: string} = {
-  standard: "h-px",
-  medium: "h-0.5",
-  large: "h-1",
-  xl: "h-2"
-}
-
-export default function BlankSpace(): FC<BlankSpaceProps> {
+const BlankSpace: FC<BlankSpaceProps> = ({size = "medium", className}) => {
 
   return (
-    
+    <div className={
+      classNames([
+        "py-8", // standard css styles 
+     //   blankSpaceSizeMap[size], // dynamically set styling based on padding prop
+      ])
+    }>
+    </div>
   )
 }
   
-
+export default BlankSpace
