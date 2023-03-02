@@ -48,7 +48,7 @@ export default function MyRadioGroup() {
           <p>Code details go here</p>
 
           <BlankSpace />
-          <hr />
+          <Divider />
 
           <Heading text="Content Cards" size="h2" type="primary" />
           <p>Containers for organizing individual pieces of content such as specific groups of form inputs.</p>
