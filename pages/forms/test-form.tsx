@@ -190,7 +190,7 @@ const TestForm: FC = () => {
             <Paragraph text="This form is used to show default styling for text, radio button, checkbox, and multi-line input components. Also used to test Controlled inputs" size="standard" type="primary" />
           </Section>
           <Section id="textInput" style="standard">
-            <BlankSpace size="large" />
+            <BlankSpace xSize="small" />
             <Heading text="Section Title: Single Line Input" size="h3" type="primary"/>
             <WrapperInput
               name="singleInput"
