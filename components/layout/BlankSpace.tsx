@@ -8,11 +8,12 @@ export type BlankSpaceProps = {
 }
 
 // Override prop adds flexibility by allowing custom padding size to be passed in
-type BlankSpaceSize = "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge" | "none" | "override" 
+type BlankSpaceSize = "xsmall" | "small" | "standard" | "medium" | "large" | "xlarge" | "xxlarge" | "none" | "override" 
 const yBlankSpaceSizeMap: {[key in BlankSpaceSize]: string} = {
   xsmall: "py-px", // prop specific css styles go here
   small: "py-1",
-  medium: "py-2",
+  standard: "py-2",
+  medium: "py-3",
   large: "py-4",
   xlarge: "py-6",
   xxlarge: "py-8",
@@ -22,7 +23,8 @@ const yBlankSpaceSizeMap: {[key in BlankSpaceSize]: string} = {
 const xBlankSpaceSizeMap: {[key in BlankSpaceSize]: string} = {
   xsmall: "px-px", // prop specific css styles go here
   small: "px-1",
-  medium: "px-2",
+  standard: "px-2",
+  medium: "px-3",
   large: "px-4",
   xlarge: "px-6",
   xxlarge: "px-8",
@@ -32,7 +34,7 @@ const xBlankSpaceSizeMap: {[key in BlankSpaceSize]: string} = {
 
 const BlankSpace: FC<BlankSpaceProps> = ({
   xSize = "none", 
-  ySize = "small", 
+  ySize = "standard", 
   className = ""
 }) => {
 

@@ -5,6 +5,7 @@ import Paragraph from '@components/layout/Paragraph'
 import { FC } from 'react'
 import Section from '@components/layout/Section'
 import Divider from '@components/layout/Divider'
+import BlankSpace from '@components/layout/BlankSpace'
 
 // data for Breadcrumbs
 const crumbs = [
@@ -26,7 +27,7 @@ const DividersArticle: FC = () => {
     <LayoutContainerSide>
       <Breadcrumbs crumbs={crumbs} />
       <Heading text="Dividers" size="h1" type="primary"/>
-      <Paragraph text="Visually separate content with the Divider component" size="standard" type="primary" />
+      <Paragraph text="Visually separate content with divider and spacing components" size="standard" type="primary" />
 
       <Section id="dividers" style="standard">
         <Heading text="Divider Component" size="h3" type="primary"/>
@@ -39,7 +40,9 @@ const DividersArticle: FC = () => {
             size="standard" 
             type="primary" 
           />
-          <br/>
+
+          <BlankSpace />
+
           <Heading text="Color prop:" size="h3" type="secondary"/>
           <Heading text="Example: standard" size="h4" type="primary"/>
           <Divider color="standard" />
@@ -52,7 +55,7 @@ const DividersArticle: FC = () => {
           <Heading text="Example: highlight" size="h4" type="primary"/>
           <Divider color="highlight" />
 
-          <br/>
+          <BlankSpace ySize="medium"/>
 
           <Heading text="Size prop:" size="h3" type="secondary"/>
           <Heading text="Example: standard" size="h4" type="primary"/>
@@ -64,7 +67,7 @@ const DividersArticle: FC = () => {
           <Heading text="Example: xlarge" size="h4" type="primary"/>
           <Divider size="xl" />
           
-          <br/>
+          <BlankSpace ySize="medium" />
 
           <Heading text="Padding prop:" size="h3" type="secondary"/>
           <Heading text="Example: standard" size="h4" type="primary"/>
@@ -80,7 +83,7 @@ const DividersArticle: FC = () => {
           <Heading text="Example: none" size="h4" type="primary"/>
           <Divider padding="none" />
 
-          <br/>
+          <BlankSpace ySize="medium" />
 
           <Heading text="className prop:" size="h3" type="secondary"/>
           <Heading text="Example: className (custom css)" size="h4" type="primary"/>
@@ -88,6 +91,45 @@ const DividersArticle: FC = () => {
 
       </Section>
 
+      <Section id="blank-space" style="standard">
+        <Heading text="Blank Space Component" size="h3" type="primary"/>
+          <Paragraph 
+            text="
+              The Blank Space component is used in place of a <br> tag. It's a blank div that can be used to add vertical and horizontal padding.
+              The Blank Space component has several optional props for styling: ySize, xSize, and className.
+              ySize and xSize are used to set the height and width of the blank space. The className prop allows flexiblity with custom css.
+              className is intended only for fine tuning spacing, the example below only uses a background color to make it easier to view. 
+              NOTE: You should set xSize and ySize to override when using the className prop to avoid unexpected results with conflicting css padding.
+            " 
+            size="standard" 
+            type="primary" 
+          />
+
+          <BlankSpace />
+
+          <Heading text="xSize ySize props:" size="h3" type="secondary"/>
+          <Heading text="Example: xsmall" size="h4" type="primary"/>
+          <BlankSpace ySize="xsmall" xSize="medium" className="bg-sky-100"/>
+          <Heading text="Example: small" size="h4" type="primary"/>
+          <BlankSpace ySize="small" xSize="medium" className="bg-sky-100"/>
+          <Heading text="Example: standard" size="h4" type="primary"/>
+          <BlankSpace ySize="standard" xSize="standard" className="bg-sky-100"/>
+          <Heading text="Example: medium" size="h4" type="primary"/>
+          <BlankSpace ySize="medium" xSize="medium" className="bg-sky-100"/>
+          <Heading text="Example: large" size="h4" type="primary"/>
+          <BlankSpace ySize="large" xSize="medium" className="bg-sky-100"/>
+          <Heading text="Example: xlarge" size="h4" type="primary"/>
+          <BlankSpace ySize="xlarge" xSize="medium" className="bg-sky-100"/>
+          <Heading text="Example: xxlarge" size="h4" type="primary"/>
+          <BlankSpace ySize="xxlarge" xSize="medium" className="bg-sky-100"/>
+          <Heading text="Example: none" size="h4" type="primary"/>
+          <BlankSpace ySize="none" xSize="medium" className="bg-sky-100"/>
+
+          <BlankSpace />
+          <Heading text="xSize/ySize override + className prop:" size="h3" type="secondary"/>
+          <Heading text="Example: override (custom css)" size="h4" type="primary"/>
+          <BlankSpace ySize="override" xSize="override" className="bg-sky-100 py-3"/>
+      </Section>
     </LayoutContainerSide>
 
   </>
