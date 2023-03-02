@@ -231,7 +231,7 @@ const TestForm: FC = () => {
                 {value: "chocolate", label: "Chocolate ice cream"}, 
                 {value: "vanilla", label: "Vanilla ice cream"}] }
             />
-            <br />
+            <BlankSpace />
             <WrapperRadioGroup
               name="horizontalRadio"
               groupLabel="This is a radio group label"
@@ -243,7 +243,7 @@ const TestForm: FC = () => {
                   {value: "no", label: "No"}, 
                 ] }
             />
-            <br />
+            <BlankSpace />
             <WrapperRadioGroup
               name="buttonRadio"
               groupLabel="This is a radio group label"
@@ -289,7 +289,7 @@ const TestForm: FC = () => {
               exampleText="e.g. Example goes here."
               control={control}
             />
-            <br />
+            <BlankSpace />
             <WrapperTextArea 
               name="largeTextArea"
               label="This is a large wrapper text area"
@@ -319,8 +319,7 @@ const TestForm: FC = () => {
                 {value:"fourth", labelText:"fourthText", separator: true},
               ] }
             />
-            <br />
-            <br />
+            <BlankSpace />
             <WrapperSelect 
               name="groupselect" 
               control={control} 
