@@ -18,9 +18,9 @@ const LayoutContainerSide = ({children}: any) => {
           {title: "Messages (Help)", path: "/forms/messages-help-article"}, 
           {title: "Messages (System)", path: "/forms/messages-system-article"}, 
           {title: "Radio Buttons", path: "/forms/radio-buttons-article"}, 
-          {title: "UI Containers", path: "/forms/ui-containers-article"}, 
           {title: "Select/DropDown", path: "/forms/select-article"}, 
           {title: "Text Styles", path: "/forms/text-styles-article"}, 
+          {title: "UI Containers", path: "/forms/ui-containers-article"}, 
         ]} />
         <main className="w-full overflow-y-scroll pt-1">
          <div className="block px-6 py-3">{children}</div>
