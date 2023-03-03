@@ -6,18 +6,19 @@ export type HeadingProps = {
     size: HeadingSize
     type?: HeadingType
     weight?: HeadingWeight
+    padding?: HeadingPadding
     id?: string // Optionally used for anchor links
     className?: string // For custom styling
 }
 
 type HeadingSize = "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "override"
 const headingSizeMap: {[key in HeadingSize]: string} = {
-  h1: "text-4xl pb-2", 
-  h2: "text-3xl pb-2",
-  h3: "text-2xl pb-2",
-  h4: "text-xl pb-2",
-  h5: "text-lg pb-2",
-  h6: "text-base pb-2",
+  h1: "text-4xl", 
+  h2: "text-3xl",
+  h3: "text-2xl",
+  h4: "text-xl",
+  h5: "text-lg",
+  h6: "text-base",
   override: "" 
 } 
 
@@ -39,10 +40,20 @@ const headingWeightMap: {[key in HeadingWeight]: string} = {
   override: ""
 }
 
+type HeadingPadding = "none" | "small" | "standard" | "large" | "override"
+const headingPaddingMap: {[key in HeadingPadding]: string} = {
+  "none": "p-0",
+  "small": "p-1",
+  "standard": "p-2",
+  "large": "p-4",
+  "override": ""
+}
+
 const Heading: FC<HeadingProps> = ({
     size, 
     type = "primary",
     weight = "normal",
+    padding = "standard",
     className = "",
     children,
     ...props
@@ -59,6 +70,7 @@ const Heading: FC<HeadingProps> = ({
         headingSizeMap[size], 
         headingTypeMap[type],
         headingWeightMap[weight],
+        headingPaddingMap[padding],
         className // custom styling passed as prop
       ])
     }>
