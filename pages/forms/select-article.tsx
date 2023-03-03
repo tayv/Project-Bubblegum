@@ -31,18 +31,13 @@ const SelectArticle: FC = () => {
     <LayoutContainerSide>
       <Breadcrumbs crumbs={crumbs} />
       <Heading text="Select" size="h1" type="primary"/>
-      <Paragraph text="On this page you'll find Select components." size="standard" type="primary" />
+      <Paragraph> {`On this page you'll find Select components." size="standard" type="primary`} </Paragraph>
 
       <Section id="header" style="standard">
         <Heading text="Select" size="h3" type="primary"/>
-          <Paragraph 
-            text="
-              Uses Radix's Select primitive and is controlled via react-hook-form. Have two variations: flat and grouped.
-              The label and tip props are optional. Leave out or pass null to hide them.
-              " 
-            size="standard" 
-            type="primary" 
-          />
+          <Paragraph>
+{` Uses Radix's Select primitive and is controlled via react-hook-form. Have two variations: flat and grouped. The label and tip props are optional. Leave out or pass null to hide them.`}
+          </Paragraph>
           
           <Divider padding="xl" />
 

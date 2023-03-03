@@ -89,12 +89,9 @@ const TestForm: FC = () => {
           🖨️ Print {inputID} Value
         </button>
         {rhfGetVal === undefined ? (
-        <Paragraph size="small" text="Value is undefined" />
+        <Paragraph size="small"> Value is undefined </Paragraph>
       ) : (
-        <Paragraph
-          size="small"
-          text={`Value: ${rhfGetVal}`}
-        />
+        <Paragraph size="small">{`Value: ${rhfGetVal}`}</Paragraph>
       )}
       </div>
     );
@@ -181,13 +178,13 @@ const TestForm: FC = () => {
     <LayoutContainerSide>
       <Breadcrumbs crumbs={crumbs} />
       <Heading text="Test Form" size="h1" type="primary"/>
-      <Paragraph text="This is a template to test form layout and start building out state and database behavior." size="standard" type="primary" />
+      <Paragraph>This is a template to test form layout and start building out state and database behavior.</Paragraph>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 w-full xl:max-w-1400">
         <form id="test-form" className="col-span-2 py-3 px-8 my-8 rounded-3xl bg-zinc-200/10 border" onSubmit={ onSubmit }>
           <Section id="intro" style="blank">
             <Heading text="Test Form 1" size="h2" type="primary"/>
-            <Paragraph text="This form is used to show default styling for text, radio button, checkbox, and multi-line input components. Also used to test Controlled inputs" size="standard" type="primary" />
+            <Paragraph>This form is used to show default styling for text, radio button, checkbox, and multi-line input components. Also used to test Controlled inputs. </Paragraph>
           </Section>
           <Section id="textInput" style="standard">
             <BlankSpace xSize="small" />

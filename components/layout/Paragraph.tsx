@@ -1,46 +1,66 @@
 import { FC, ReactNode } from 'react'
+import classNames from 'classnames'
 
 export type ParagraphProps = {
-    size: "small" | "standard" | "large",
-    text: string | number,
-    type?: "primary" | "secondary", 
-    id?: string
-    children?: ReactNode
+  children: ReactNode
+  size?: ParagraphSize
+  style?: ParagraphStyle
+  space?: ParagraphSpace
+  className?: string
+}
+
+type ParagraphSize = "xsmall" | "small" | "standard" | "large" | "xlarge" | "xxlarge" | "xxxlarge" | "override"
+const paragraphSizeMap: {[key in ParagraphSize]: string} = {
+  xsmall: "text-xs", // prop specific css styles go here
+  small: "text-sm",
+  standard: "text-base",
+  large: "text-lg",
+  xlarge: "text-xl",
+  xxlarge: "text-2xl",
+  xxxlarge: "text-3xl",
+  override: "" 
+}  
+
+type ParagraphStyle = "primary" | "secondary" | "override"
+const paragraphStyleMap: {[key in ParagraphStyle]: string} = {
+  primary: "text-gray-900", // prop specific css styles go here
+  secondary: "text-gray-300",
+  override: "" 
+}  
+
+type ParagraphSpace = "tight" | "snug" | "normal" | "relaxed" | "loose" | "none" | "override"
+const paragraphSpaceMap: {[key in ParagraphSpace]: string} = {
+  tight: "leading-tight",
+  snug: "leading-snug",
+  normal: "leading-normal",
+  relaxed: "leading-relaxed",
+  loose: "leading-loose",
+  none: "leading-none",
+  override: "" 
 }
 
 const Paragraph: FC<ParagraphProps> = ({
-    text,
-    size, 
-    type = "primary",
-    ...props
+  size = "standard", 
+  space = "normal", 
+  style = "primary",
+  className = "",
+  children
 }) => {
 
-    const renderParagraph = ({size, text, type, ...props}: ParagraphProps) => {
-
-      switch (size) {
-        case "small":
-          return (type==="primary") && <p className="text-sm text-gray-900">{text}{props.children}</p> || (type==="secondary") && <p className="text-sm text-gray-300">{text}{props.children}</p>
-          
-        case "standard":
-          return (type==="primary") && <p className= "text-lg text-gray-900">{text}{props.children}</p> || (type==="secondary") && <p className="text-gray-300">{text}{props.children}</p> 
-          
-        case "large":
-          return (type==="primary") && <p className="text-xl text-gray-900">{text}{props.children}</p> || (type==="secondary") && <p className="text-lg text-gray-300">{text}{props.children}</p>
-        
-        default:
-          return null
-    }
-  }
-
   return (
-    <>
-      { renderParagraph({size, text, type, ...props}) }
-    </>
+    <div className={
+      classNames([
+        "whitespace-pre-wrap", // standard css styles (pre-wrap allows for line breaks in template literals)
+        paragraphSizeMap[size], // dynamically set styling based on padding prop
+        paragraphSpaceMap[space],
+        paragraphStyleMap[style],
+        className // custom styling passed as prop
+      ])
+    }>
+      {children}
+    </div>
   )
 }
 
 export default Paragraph
 
-
-// Need to use function expression to render a switch statement in react. 
-  // See https://stackoverflow.com/questions/55237619/expression-expected-in-react-using-switch-statement  

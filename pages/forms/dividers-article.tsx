@@ -27,19 +27,17 @@ const DividersArticle: FC = () => {
     <LayoutContainerSide>
       <Breadcrumbs crumbs={crumbs} />
       <Heading text="Dividers" size="h1" type="primary"/>
-      <Paragraph text="Visually separate content with divider and spacing components" size="standard" type="primary" />
+      <Paragraph>Visually separate content with divider and spacing components</Paragraph>
 
       <Section id="dividers" style="standard">
         <Heading text="Divider Component" size="h3" type="primary"/>
-          <Paragraph 
-            text="
-              The Divider component is a horizontal line that can be used to separate content. It replaces the <hr> tag
-              and is typically used to split related content. For example, within a section or a group of fields.
-              The Divider component has several optional props for styling:
-            " 
-            size="standard" 
-            type="primary" 
-          />
+          <Paragraph>
+{`
+The Divider component is a horizontal line that can be used to separate content. It replaces the <hr> tag and is typically used to split related content. For example, within a section or a group of fields.
+
+The Divider component has several optional props for styling:
+`}
+          </Paragraph>
 
           <BlankSpace />
 
@@ -93,17 +91,15 @@ const DividersArticle: FC = () => {
 
       <Section id="blank-space" style="standard">
         <Heading text="Blank Space Component" size="h3" type="primary"/>
-          <Paragraph 
-            text="
-              The Blank Space component is used in place of a <br> tag. It's a blank div that can be used to add vertical and horizontal padding.
-              The Blank Space component has several optional props for styling: ySize, xSize, and className.
-              ySize and xSize are used to set the height and width of the blank space. The className prop allows flexiblity with custom css.
-              className is intended only for fine tuning spacing, the example below only uses a background color to make it easier to view. 
-              NOTE: You should set xSize and ySize to override when using the className prop to avoid unexpected results with conflicting css padding.
-            " 
-            size="standard" 
-            type="primary" 
-          />
+          <Paragraph>
+{`
+The Blank Space component is used in place of a <br> tag. It's a blank div that can be used to add vertical and horizontal padding. The Blank Space component has several optional props for styling: ySize, xSize, and className.
+
+ySize and xSize are used to set the height and width of the blank space. The className prop allows flexiblity with custom css. className is intended only for fine tuning spacing, the example below only uses a background color to make it easier to view. 
+
+NOTE: You should set xSize and ySize to override when using the className prop to avoid unexpected results with conflicting css padding.
+`}
+          </Paragraph>
 
           <BlankSpace />
 

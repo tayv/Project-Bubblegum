@@ -12,7 +12,7 @@ const Heading: FC<HeadingProps> = ({
     size, 
     ...props
 }) => {
-
+  // TO DO: Refactor this to use classnames and maps to clenn it up
     const renderHeading = ({size, text, type, id}: HeadingProps) => {
       switch (size) {
         case "h1":

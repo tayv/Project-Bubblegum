@@ -28,15 +28,15 @@ const DatePickerPage: FC = () => {
     <LayoutContainerSide>
       <Breadcrumbs crumbs={crumbs} />
       <Heading text="Date Picker" size="h1" type="primary"/>
-      <Paragraph text="On this page you'll find a calendar date picker." size="standard" type="primary" />
+      <Paragraph>On this page you'll find a calendar date picker</Paragraph>
 
       <Section id="SingleDatePickExample" style="standard">
         <Heading text="Example 1: Single Date Picker" size="h2" type="primary"/>
-        <Paragraph 
-          text="Custom Date Picker using Radix UI's Accordion primitive. The Accordion's header holds a read only text input. When expanded, an interactive tailwind-styled calendar allows the user to choose a custom date." 
-          size="standard" 
-          type="primary" 
-        />
+        <Paragraph>
+          Custom Date Picker using Radix UI's Accordion primitive. 
+          The Accordion's header holds a read only text input. 
+          When expanded, an interactive tailwind-styled calendar allows the user to choose a custom date.
+        </Paragraph>
         <Divider padding="xl" />
         <DatePick 
           name="exampleSingleDatePick" 
@@ -50,11 +50,7 @@ const DatePickerPage: FC = () => {
 
       <Section id="multiDatePickExample" style="standard">
         <Heading text="Example 2: Start + End Dates Picker" size="h2" type="primary"/>
-        <Paragraph 
-          text="You can also combine date picks to create a start and end date picker." 
-          size="standard" 
-          type="primary" 
-        />
+        <Paragraph>You can also combine date picks to create a start and end date picker.</Paragraph>
         
         <Divider padding="xl" />
         
@@ -80,17 +76,13 @@ const DatePickerPage: FC = () => {
 
       <Section id="datePickDetails" style="standard">
         <Heading text="More Details" size="h3" type="primary"/>
-          <Paragraph 
-            text={"Turning the Date Pick into a controlled component is a work in progress. See issue #21 on GitHub."} 
-            size="standard" 
-            type="primary" 
-          />
-          <br/>
-          <Paragraph 
-            text="Can have start/end date components be vertically or horizontally aligned by using a parent div with flexbox."
-            size="standard" 
-            type="primary" 
-          />
+          <Paragraph>
+{`
+Turning the Date Pick into a controlled component is a work in progress. See issue #21 on GitHub.
+
+You can have start/end date components be vertically or horizontally aligned by using a parent div with flexbox.
+`}
+          </Paragraph>
       </Section>
 
     </LayoutContainerSide>

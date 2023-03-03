@@ -43,19 +43,18 @@ const RadioButtonsArticle: FC = () => {
     <LayoutContainerSide>
       <Breadcrumbs crumbs={crumbs} />
       <Heading text="Radio Buttons" size="h1" type="primary"/>
-      <Paragraph text="On this page you'll find radio button components." size="standard" type="primary" />
+      <Paragraph>
+        {`On this page you'll find radio button components`}
+      </Paragraph>
 
       <Section id="header" style="standard">
         <Heading text="Radio Button Group" size="h3" type="primary"/>
-          <Paragraph 
-            text="
-              The Radio Button Group component is a wrapper for the atomic RadioButton component. 
-              It's build using Radix UI's Radio Group primitive and there are three styles to choose from: Standard, Horizontal, and Button style.
-              You can set the default value for the radios by saving the values to a variable then passing it to react hook form's reset() inside a useEffect hook.
-            " 
-            size="standard" 
-            type="primary" 
-          />
+          <Paragraph>
+{`The Radio Button Group component is a wrapper for the atomic RadioButton component. It's build using Radix UI's Radio Group primitive and there are three styles to choose from: Standard, Horizontal, and Button style.
+
+You can set the default value for the radios by saving the values to a variable then passing it to react hook form's reset() inside a useEffect hook.
+`}
+          </Paragraph>
           
           <Divider padding="xl" />
 
