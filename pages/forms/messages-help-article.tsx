@@ -27,20 +27,16 @@ const MessagesHelpArticle: FC = () => {
     <LayoutContainerSide>
       <Breadcrumbs crumbs={crumbs} />
       <Heading text="Messages" size="h1" type="primary"/>
-      <Paragraph text="On this page you'll find help message components." size="standard" type="primary" />
+      <Paragraph>On this page you'll find help message components</Paragraph>
 
       <Section id="tipMessage" style="standard">
         <Heading text="Tip Messages" size="h3" type="primary"/>
-          <Paragraph 
-            text="
-            There are two prop variations of the Tip component: tip and example. 
-            The tip prop is for proactive help and context for a specific field. It should appear below the input's label.
-            The example prop is for providing context for a specific field. It should appear below the field.
-            " 
-            size="standard" 
-            type="primary" 
-          />
-          
+          <Paragraph>
+{`There are two prop variations of the Tip component: tip and example. 
+The tip prop is for proactive help and context for a specific field. It should appear below the input's label.
+The example prop is for providing context for a specific field. It should appear below the field.
+`}
+          </Paragraph>
           <Divider padding="xl" />
 
           <Heading text="Example: Tip Message" size="h4" type="primary"/>
