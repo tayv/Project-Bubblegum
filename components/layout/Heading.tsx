@@ -44,7 +44,7 @@ type HeadingPadding = "none" | "small" | "standard" | "large" | "override"
 const headingPaddingMap: {[key in HeadingPadding]: string} = {
   "none": "pb-0",
   "small": "pb-1",
-  "standard": "pb-4",
+  "standard": "pb-2",
   "large": "pb-4",
   "override": ""
 }
@@ -60,7 +60,7 @@ const Heading: FC<HeadingProps> = ({
 }) => {
 
   // Dynamically set the heading tag based on the size prop. Use TS casting for type checking. See: https://stackoverflow.com/questions/33471880/dynamic-tag-name-in-react-jsx
-  const CustomHTag = `h${size}` as keyof JSX.IntrinsicElements
+  const CustomHTag = `${size}` as keyof JSX.IntrinsicElements
 
   return (
 
