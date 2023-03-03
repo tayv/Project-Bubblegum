@@ -49,7 +49,7 @@ const DatePickerPage: FC = () => {
       </Section>
 
       <Section id="multiDatePickExample" style="standard">
-        <Heading text="Example 2: Start + End Dates Picker" size="h2" type="primary"/>
+        <Heading size="h2">Example 2: Start + End Dates Picker</Heading>
         <Paragraph>You can also combine date picks to create a start and end date picker.</Paragraph>
         
         <Divider padding="xl" />
@@ -75,14 +75,9 @@ const DatePickerPage: FC = () => {
       </Section>
 
       <Section id="datePickDetails" style="standard">
-        <Heading text="More Details" size="h3" type="primary"/>
-          <Paragraph>
-{`
-Turning the Date Pick into a controlled component is a work in progress. See issue #21 on GitHub.
-
-You can have start/end date components be vertically or horizontally aligned by using a parent div with flexbox.
-`}
-          </Paragraph>
+        <Heading size="h3" type="primary">More Details:</Heading>
+          <Paragraph>Turning the Date Pick into a controlled component is a work in progress. See issue #21 on GitHub.</Paragraph>
+          <Paragraph>You can have start/end date components be vertically or horizontally aligned by using a parent div with flexbox.</Paragraph>
       </Section>
 
     </LayoutContainerSide>

@@ -25,63 +25,63 @@ const UIContainersArticle: FC = () => {
   <>
     <LayoutContainerSide>
       <Breadcrumbs crumbs={crumbs} />
-      <Heading text="UI Cards" size="h1" type="primary"/>
+      <Heading size="h1">UI Cards</Heading>
       <Paragraph>On this page you'll find UI container components</Paragraph>
 
       <Section id="intro" style="standard">
-        <Heading text="Section Container" size="h3" type="primary"/>
-          <Paragraph>
+        <Heading size="h3">Section Container</Heading>
+        <Paragraph>
 {`Each section should be in its own UI container. Containers are used to group related content like input fields.
 
 There's four props available: Standard, Blank, and Color. Standard is the default style. Blank has a transparent background. Color has a background color.
 `}
-          </Paragraph>
+        </Paragraph>
       </Section>
 
       <Divider padding="large" />
       
       <Section id="example-standard" style="standard">
-        <Heading text="Example: Standard Section Container" size="h3" type="primary"/>
-          <Paragraph>This is an example of a standard section container. It has a white background.</Paragraph>
+        <Heading size="h3">Example: Standard Section Container"</Heading>
+        <Paragraph>This is an example of a standard section container. It has a white background.</Paragraph>
       </Section>
 
       <Section id="example-blank" style="blank">
-        <Heading text="Example: Blank Section Container" size="h3" type="primary"/>
-          <Paragraph>This is an example of a blank section container. It has a no background.</Paragraph>
+        <Heading size="h3">Example: Blank Section Container</Heading>
+        <Paragraph>This is an example of a blank section container. It has a no background.</Paragraph>
       </Section>
 
       <Section id="example-color" style="colorRed">
-        <Heading text="Example: Color Section Container" size="h3" type="primary"/>
-          <Paragraph>This is an example of a styled section container. It has a colored background.</Paragraph>
+        <Heading size="h3">Example: Color Section Container</Heading>
+        <Paragraph>This is an example of a styled section container. It has a colored background.</Paragraph>
       </Section>
 
       <Section id="example-color" style="colorBlue">
-        <Heading text="Example: Color Section Container" size="h3" type="primary"/>
+        <Heading size="h3">Example: Color Section Container</Heading> 
         <Paragraph>This is an example of a styled section container. It has a colored background.</Paragraph>
       </Section>
 
       <Section id="example-color" style="colorGreen">
-        <Heading text="Example: Color Section Container" size="h3" type="primary"/>
+       <Heading size="h3">Example: Color Section Container</Heading>
         <Paragraph>This is an example of a styled section container. It has a colored background.</Paragraph>
       </Section>
 
       <Section id="example-color" style="colorYellow">
-        <Heading text="Example: Color Section Container" size="h3" type="primary"/>
+       <Heading size="h3">Example: Color Section Container</Heading>
         <Paragraph>This is an example of a styled section container. It has a colored background.</Paragraph>
       </Section>
 
       <Section id="example-color" style="colorPink">
-        <Heading text="Example: Color Section Container" size="h3" type="primary"/>
+        <Heading size="h3">Example: Color Section Container</Heading>
         <Paragraph>This is an example of a styled section container. It has a colored background.</Paragraph>
       </Section>
 
       <Section id="example-color" style="colorPurple">
-        <Heading text="Example: Color Section Container" size="h3" type="primary"/>
+        <Heading size="h3">Example: Color Section Container</Heading>
         <Paragraph>This is an example of a styled section container. It has a colored background.</Paragraph>
       </Section>
 
       <Section id="example-color" style="colorBlack">
-        <Heading text="Example: Color Section Container" size="h3" type="primary"/>
+        <Heading size="h3">Example: Color Section Container</Heading>
         <Paragraph>This is an example of a styled section container. It has a colored background.</Paragraph>
       </Section>
 

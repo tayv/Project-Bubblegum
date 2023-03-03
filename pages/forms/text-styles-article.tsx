@@ -26,11 +26,11 @@ const TextStylesArticle: FC = () => {
   <>
     <LayoutContainerSide>
       <Breadcrumbs crumbs={crumbs} />
-      <Heading text="Text Styles" size="h1" type="primary"/>
+      <Heading size="h1">Text Styles</Heading>
       <Paragraph>On this page you'll find text components.</Paragraph>
 
       <Section id="header" style="standard">
-        <Heading text="Heading Component" size="h3" type="primary"/>
+        <Heading size="h3">Heading Component</Heading>
           <Paragraph>
 {`The Heading component is used to standardize header text in the app. It has two props: size and type. 
 
@@ -39,16 +39,18 @@ The size prop has four variations: h1, h2, h3 and h4 as well as two type props: 
 
           <Divider padding="xl" />
 
-          <Heading text="Example: Size Prop Variations" size="h4" type="primary"/>
-          <Heading text="This is an h1 heading" size="h1" type="primary"/>
-          <Heading text="This is an h2 heading" size="h2" type="primary"/>
-          <Heading text="This is an h3 heading" size="h3" type="primary"/>
-          <Heading text="This is an h4 heading" size="h4" type="primary"/>
+          <Heading size="h4">Example: Size Prop Variations</Heading>
+          <Heading size="h1">This is an h1 heading</Heading>
+          <Heading size="h2">This is an h2 heading</Heading>
+          <Heading size="h3">This is an h3 heading</Heading>
+          <Heading size="h4">This is an h4 heading</Heading>
+          <Heading size="h5">This is an h5 heading</Heading>
+          <Heading size="h6">This is an h6 heading</Heading>
 
-          <br/>
-          <Heading text="Example: Style Prop Variations" size="h4" type="primary"/>
-          <Heading text="This is a primary style heading" size="h4" type="primary"/>
-          <Heading text="This is a secondary style heading" size="h4" type="secondary"/>
+          <BlankSpace />
+          <Heading size="h4">Example: Style Prop Variations</Heading>
+          <Heading size="h4" type="primary">This is a primary type heading</Heading>
+          <Heading size="h4" type="secondary">This is a secondary type heading</Heading>
 
       </Section>
 

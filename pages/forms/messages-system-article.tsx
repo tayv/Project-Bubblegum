@@ -25,11 +25,11 @@ const MessagesSystemArticle: FC = () => {
   <>
     <LayoutContainerSide>
       <Breadcrumbs crumbs={crumbs} />
-      <Heading text="Messages (System)" size="h1" type="primary"/>
+      <Heading size="h1">Messages (Systm)</Heading>
       <Paragraph>On this page you'll find system message components</Paragraph>
 
       <Section id="header" style="standard">
-        <Heading text="Info Message" size="h3" type="primary"/>
+        <Heading size="h3">Info Messages</Heading>
           <Paragraph>🚧 Work in progress</Paragraph>
       </Section>
 

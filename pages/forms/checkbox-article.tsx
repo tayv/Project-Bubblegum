@@ -27,15 +27,15 @@ const CheckboxArticle: FC = () => {
   <>
     <LayoutContainerSide>
       <Breadcrumbs crumbs={crumbs} />
-      <Heading text="Checkbox" size="h1" type="primary"/>
+      <Heading size="h1">Checkboxes</Heading>
       <Paragraph>On this page you'll find checkbox components.</Paragraph>
 
       <Section id="header" style="standard">
-        <Heading text="Checkbox" size="h3" type="primary"/>
+        <Heading size="h3">Checkbox</Heading>
           <Paragraph>This is a standard checkbox. It's used for binary choices.</Paragraph>
           <Divider padding="xl" />
 
-          <Heading text="Example:" size="h4" type="primary"/>
+          <Heading size="h4" type="secondary">Example:</Heading>
           <Checkbox 
             id="checkboxInput" 
             style="standard" 
@@ -44,10 +44,10 @@ const CheckboxArticle: FC = () => {
       </Section>
 
       <Section id="header" style="standard">
-        <Heading text="Checkbox List" size="h3" type="primary"/>
+        <Heading size="h3">Checkbox List</Heading>
           <Paragraph>This is a list of checkboxes. It's used for multi-select choices.</Paragraph>
           <Divider padding="xl" />
-          <Heading text="Example: WIP" size="h4" type="primary"/>
+          <Heading size="h4" type="secondary">Example: WIP</Heading>
           
       </Section>
 
