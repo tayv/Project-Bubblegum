@@ -27,11 +27,11 @@ const DatePickerPage: FC = () => {
   <>
     <LayoutContainerSide>
       <Breadcrumbs crumbs={crumbs} />
-      <Heading text="Date Picker" size="h1" type="primary"/>
+      <Heading id="date-picker" size="h1">Date Picker</Heading>
       <Paragraph>On this page you'll find a calendar date picker</Paragraph>
 
       <Section id="SingleDatePickExample" style="standard">
-        <Heading text="Example 1: Single Date Picker" size="h2" type="primary"/>
+        <Heading size="h2">Example 1: Single Date Picker</Heading>
         <Paragraph>
           Custom Date Picker using Radix UI's Accordion primitive. 
           The Accordion's header holds a read only text input. 

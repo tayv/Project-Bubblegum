@@ -14,18 +14,18 @@ export type HeadingProps = {
 type HeadingSize = "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "override"
 const headingSizeMap: {[key in HeadingSize]: string} = {
   h1: "text-4xl", 
-  h2: "text-3xl",
-  h3: "text-2xl",
-  h4: "text-xl",
-  h5: "text-lg",
-  h6: "text-base",
+  h2: "text-2xl",
+  h3: "text-xl",
+  h4: "text-lg",
+  h5: "text-base",
+  h6: "text-sm",
   override: "" 
 } 
 
 type HeadingType = "primary" | "secondary" | "override"
 const headingTypeMap: {[key in HeadingType]: string} = {
   primary: "text-gray-900",
-  secondary: "text-gray-300",
+  secondary: "text-gray-500",
   override: ""
 }
 
@@ -42,10 +42,10 @@ const headingWeightMap: {[key in HeadingWeight]: string} = {
 
 type HeadingPadding = "none" | "small" | "standard" | "large" | "override"
 const headingPaddingMap: {[key in HeadingPadding]: string} = {
-  "none": "p-0",
-  "small": "p-1",
-  "standard": "p-2",
-  "large": "p-4",
+  "none": "pb-0",
+  "small": "pb-1",
+  "standard": "pb-4",
+  "large": "pb-4",
   "override": ""
 }
 
@@ -64,7 +64,7 @@ const Heading: FC<HeadingProps> = ({
 
   return (
 
-    <CustomHTag className={
+    <CustomHTag id={props.id} className={
       classNames([
         "", // standard css styles (pre-wrap allows for line breaks in template literals)
         headingSizeMap[size], 
