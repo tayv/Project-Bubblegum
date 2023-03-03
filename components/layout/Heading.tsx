@@ -48,9 +48,12 @@ const Heading: FC<HeadingProps> = ({
     ...props
 }) => {
 
+  // Dynamically set the heading tag based on the size prop. Use TS casting for type checking. See: https://stackoverflow.com/questions/33471880/dynamic-tag-name-in-react-jsx
+  const CustomHTag = `h${size}` as keyof JSX.IntrinsicElements
+
   return (
 
-    <div className={
+    <CustomHTag className={
       classNames([
         "", // standard css styles (pre-wrap allows for line breaks in template literals)
         headingSizeMap[size], 
@@ -60,8 +63,8 @@ const Heading: FC<HeadingProps> = ({
       ])
     }>
       {children}
-    </div>
-    
+    </CustomHTag>
+
   )
 }
 

@@ -10,7 +10,7 @@ export default function Home() {
     <>
       <LayoutContainerSide>
         <BlankSpace />
-        <Heading text="🏠 Project Bubblegum" size="h1" type="primary"/>
+        <Heading size="h1">🏠 Project Bubblegum</Heading>
         <Paragraph>Bite-size react form components</Paragraph>
         <BlankSpace />
         <Section id="intro" style="standard">
