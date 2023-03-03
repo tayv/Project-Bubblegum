@@ -50,7 +50,7 @@ const Paragraph: FC<ParagraphProps> = ({
   return (
     <div className={
       classNames([
-        "", // standard css styles 
+        "whitespace-pre-wrap", // standard css styles (pre-wrap allows for line breaks in template literals)
         paragraphSizeMap[size], // dynamically set styling based on padding prop
         paragraphSpaceMap[space],
         paragraphStyleMap[style],

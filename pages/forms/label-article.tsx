@@ -27,24 +27,18 @@ const LabelArticle: FC = () => {
     <LayoutContainerSide>
       <Breadcrumbs crumbs={crumbs} />
       <Heading text="Label" size="h1" type="primary"/>
-      <Paragraph text="On this page you'll find label components." size="standard" type="primary" />
+      <Paragraph>On this page you'll find label components</Paragraph>
 
       <Section id="header" style="standard">
         <Heading text="Input Label" size="h3" type="primary"/>
-          <Paragraph 
-            text="
-              The label component should be used with every input component (or input group). It's build using Radix UI's label primitive.
-              The intent is to have each input component have the label component built in so you just need to pass a label prop.         " 
-            size="standard" 
-            type="primary" 
-          />
-          <br/>
-          <Paragraph 
-            text="The label component supports two styles: 'standard' and 'inline'. The inline style is used in the Checkbox component." 
-            size="standard" 
-            type="primary" 
-          />
-         
+          <Paragraph>
+{`
+The label component should be used with every input component (or input group). It's build using Radix UI's label primitive.
+The intent is to have each input component have the label component built in so you just need to pass a label prop.
+
+The label component supports two styles: 'standard' and 'inline'. The inline style is used in the Checkbox component.
+`}
+          </Paragraph>
           <Divider padding="xl" />
 
          <Heading text="Example: Standard Label" size="h4" type="primary"/>
