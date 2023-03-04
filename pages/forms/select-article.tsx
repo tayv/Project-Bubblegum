@@ -30,18 +30,18 @@ const SelectArticle: FC = () => {
   <>
     <LayoutContainerSide>
       <Breadcrumbs crumbs={crumbs} />
-      <Heading text="Select" size="h1" type="primary"/>
+      <Heading size="h1">Select from a list</Heading>
       <Paragraph> {`On this page you'll find Select components." size="standard" type="primary`} </Paragraph>
 
       <Section id="header" style="standard">
-        <Heading text="Select" size="h3" type="primary"/>
+        <Heading size="h3">Select</Heading>
           <Paragraph>
 {` Uses Radix's Select primitive and is controlled via react-hook-form. Have two variations: flat and grouped. The label and tip props are optional. Leave out or pass null to hide them.`}
           </Paragraph>
           
           <Divider padding="xl" />
 
-          <Heading text="Example: No Label/Tip" size="h4" type="primary"/>
+          <Heading size="h4">Example: No Label/Tip</Heading>
           <WrapperSelect 
               name="flatselect" 
               control={control} 
@@ -59,7 +59,7 @@ const SelectArticle: FC = () => {
 
           <br/>
           <br/>
-          <Heading text="Example: Flat List Select" size="h4" type="primary"/>
+          <Heading size="h4">Example: Flat List Select</Heading>
           <WrapperSelect 
             name="flatselect" 
             control={control} 
@@ -77,7 +77,7 @@ const SelectArticle: FC = () => {
 
           <br/>
           <br/>
-          <Heading text="Example: Grouped List Select" size="h4" type="primary"/>
+          <Heading size="h4">Exmaple: Grouped List Select</Heading>
           <WrapperSelect 
             name="groupselect" 
             control={control} 

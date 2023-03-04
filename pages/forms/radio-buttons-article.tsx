@@ -42,13 +42,13 @@ const RadioButtonsArticle: FC = () => {
   <>
     <LayoutContainerSide>
       <Breadcrumbs crumbs={crumbs} />
-      <Heading text="Radio Buttons" size="h1" type="primary"/>
+      <Heading size="h1">Radio Buttons</Heading>
       <Paragraph>
         {`On this page you'll find radio button components`}
       </Paragraph>
 
       <Section id="header" style="standard">
-        <Heading text="Radio Button Group" size="h3" type="primary"/>
+        <Heading size="h3">Radio Button Group</Heading>
           <Paragraph>
 {`The Radio Button Group component is a wrapper for the atomic RadioButton component. It's build using Radix UI's Radio Group primitive and there are three styles to choose from: Standard, Horizontal, and Button style.
 

@@ -25,21 +25,21 @@ const ButtonsArticle: FC = () => {
   <>
     <LayoutContainerSide>
       <Breadcrumbs crumbs={crumbs} />
-      <Heading text="Buttons" size="h1" type="primary"/>
+      <Heading size="h1">Buttons</Heading>
       <Paragraph>On this page you'll find button components.</Paragraph>
 
       <Section id="header" style="standard">
-        <Heading text="Primary Button" size="h3" type="primary"/>
+        <Heading size="h3">Primary Button</Heading>
           <Paragraph>🚧 Work in progress</Paragraph>
       </Section>
 
       <Section id="header" style="standard">
-        <Heading text="Secondary Button" size="h3" type="primary"/>
+        <Heading size="h3">Secondary Button</Heading>
           <Paragraph>🚧 Work in progress</Paragraph>
       </Section>
 
       <Section id="header" style="standard">
-        <Heading text="Submit Button" size="h3" type="primary"/>
+        <Heading size="h3">Submit Button</Heading>
           <Paragraph>🚧 Work in progress</Paragraph>
       </Section>
 

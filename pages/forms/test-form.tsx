@@ -177,18 +177,17 @@ const TestForm: FC = () => {
   <>
     <LayoutContainerSide>
       <Breadcrumbs crumbs={crumbs} />
-      <Heading text="Test Form" size="h1" type="primary"/>
+      <Heading size="h1">Test Form</Heading>
       <Paragraph>This is a template to test form layout and start building out state and database behavior.</Paragraph>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 w-full xl:max-w-1400">
         <form id="test-form" className="col-span-2 py-3 px-8 my-8 rounded-3xl bg-zinc-200/10 border" onSubmit={ onSubmit }>
           <Section id="intro" style="blank">
-            <Heading text="Test Form 1" size="h2" type="primary"/>
+            <Heading size="h2">Test Form 1</Heading>
             <Paragraph>This form is used to show default styling for text, radio button, checkbox, and multi-line input components. Also used to test Controlled inputs. </Paragraph>
           </Section>
           <Section id="textInput" style="standard">
-            <BlankSpace xSize="small" />
-            <Heading text="Section Title: Single Line Input" size="h3" type="primary"/>
+            <Heading size="h3">Single Line Input</Heading>
             <WrapperInput
               name="singleInput"
               label="This is a label"
@@ -215,7 +214,7 @@ const TestForm: FC = () => {
           </Section>
   
           <Section id="radioInput" style="standard">
-            <Heading text="Section Title: Radio Groups" size="h3" type="primary"/>
+            <Heading size="h3" type="primary">Radio Groups</Heading>
             <WrapperRadioGroup
               name="standardRadio"
               groupLabel="This is a radio group label"
@@ -262,7 +261,7 @@ const TestForm: FC = () => {
           </Section>
           
           <Section id="checkboxInput" style="standard">
-            <Heading text="Section Title: Checkboxes" size="h3" type="primary"/>
+            <Heading size="h3" type="primary">Checkboxes</Heading>
             <Label type="standard" htmlFor="checkboxInput" label="This is a checkbox label" />
             <Tip text="Tip: These are standard checkboxes" type="standard" />
             <WrapperCheckbox 
@@ -278,7 +277,7 @@ const TestForm: FC = () => {
           </Section>
 
           <Section id="textArea" style="standard">
-            <Heading text="Section Title: Text Areas" size="h3" type="primary"/>
+            <Heading size="h3" type="primary">Text Areas</Heading>
             <WrapperTextArea 
               name="standardTextArea"
               label="This is a standard wrapper text area"
@@ -303,7 +302,7 @@ const TestForm: FC = () => {
           </Section>
 
           <Section id="radixWrapperSelect" style="standard">
-            <Heading text="Section Title: Wrapper Radix Select" size="h3" type="primary"/>
+            <Heading size="h3" type="primary">Wrapper Select (Radix)</Heading>
             <WrapperSelect 
               name="flatselect" 
               control={control} 
@@ -348,7 +347,7 @@ const TestForm: FC = () => {
           </Section>
 
           <Section id="datepick" style="standard">
-            <Heading text="Section Title: Date Picker" size="h3" type="primary"/>
+            <Heading size="h3" type="primary">Date Picker</Heading>
             <DatePick name="datepicktest" label="This is a date picker (currently uncontrolled)" startYearRange={1990} endYearRange={2030} />
          
             <Divider padding="large" />
@@ -358,7 +357,7 @@ const TestForm: FC = () => {
               
         {/* VISIBILITY CONDITION TEST SECTION --------------------------------------------- */}
           <Divider padding="large" />      
-          <Heading text="Visibility Condition Test Section" size="h2" type="primary"/>
+          <Heading size="h2" type="primary">Visibility Condition Test Section</Heading>
           <div className="flex flex-col items-end">
             <button 
               type="button" 
@@ -394,7 +393,7 @@ const TestForm: FC = () => {
               // Conditionally toggle visibility of section based on prev radio group answer 
               sectionVis.visCondition1 && (fieldValues.visRacingRadio === "supercross" || "moto-gp") && <Section id="moto" style="standard">
               {/* Heading text changes based on answer to previous radio group */}
-              <Heading text="Toggle Words + Questions" size="h3" type="primary"/>
+              <Heading size="h3">Toggle Words + Questions</Heading>
               {/* Checkbox conditionally toggles wording and radio options */}
               <Label type="standard" htmlFor="visCheckbox" label={(fieldValues.visRacingRadio === "f1") ? "You chose F1" : "You didn't choose F1"} />
               <WrapperCheckbox 
@@ -450,7 +449,7 @@ const TestForm: FC = () => {
       <div className="overflow-visible my-4"> {/* div needed for sticky to work. Cannot use overflow: scroll/hidden/auto with sticky https://www.digitalocean.com/community/tutorials/css-position-sticky */}
         <div className="sticky top-0 overflow-y-auto">
           <Section id="templateTest" style="blank">
-            <Heading text="Template Test: Form Values" size="h3" type="primary"/>
+            <Heading size="h3">Template Test: Form Values</Heading>
             <TemplateGeneric location="c" docData={ docValue } />
           </Section>
         </div>

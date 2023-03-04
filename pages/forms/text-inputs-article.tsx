@@ -31,7 +31,7 @@ const TestForm: FC = () => {
   <> 
     <LayoutContainerSide>
       <Breadcrumbs crumbs={crumbs} />
-      <Heading text="Text Input" size="h1" type="primary"/>
+      <Heading size="h1">Text Input</Heading>
       <form onSubmit={onSubmit}>
     
       <WrapperInput
