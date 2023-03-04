@@ -32,9 +32,10 @@ const TextStylesArticle: FC = () => {
       <Section id="header" style="standard">
         <Heading size="h3">Heading Component</Heading>
           <Paragraph>
-{`The Heading component is used to standardize header text in the app. It has two props: size and type. 
-
-The size prop has four variations: h1, h2, h3 and h4 as well as two type props: primary and secondary. It currently requires special characters to be escaped and cannot be passed links.`}
+            The Heading component is used to standardize header text in the app. 
+            It has four props: size, weight, type, padding, and className. 
+            There is also an override prop that can be used to override any of the other props 
+            (useful to avoid css conflicts when using className).
           </Paragraph>
 
           <Divider padding="xl" />
@@ -47,10 +48,29 @@ The size prop has four variations: h1, h2, h3 and h4 as well as two type props: 
           <Heading size="h5">This is an h5 heading</Heading>
           <Heading size="h6">This is an h6 heading</Heading>
 
-          <BlankSpace />
+          <Divider padding="xl" />
+
+          <Heading size="h4">Examples: Weight Prop Variations</Heading>
+          <Heading size="h4" weight="xlight">weight = xlight</Heading>
+          <Heading size="h4" weight="light">weight = light</Heading>
+          <Heading size="h4" weight="normal">weight = normal</Heading>
+          <Heading size="h4" weight="semibold">weight = semibold</Heading>
+          <Heading size="h4" weight="bold">weight = bold</Heading>
+          <Heading size="h4" weight="black">weight = black</Heading>
+
+          <Divider padding="xl" />
+
           <Heading size="h4">Example: Style Prop Variations</Heading>
           <Heading size="h4" type="primary">This is a primary type heading</Heading>
           <Heading size="h4" type="secondary">This is a secondary type heading</Heading>
+
+          <Divider padding="xl" />
+
+          <Heading size="h4">Example: Padding Prop Variations</Heading>
+          <Heading size="h4" type="primary" padding="none" className="bg-sky-50">This heading has no padding</Heading>
+          <Heading size="h4" type="primary" padding="small" className="bg-sky-50">This heading has small padding</Heading>
+          <Heading size="h4" type="primary" padding="standard" className="bg-sky-50">This heading has standard padding</Heading>
+          <Heading size="h4" type="primary" padding="large" className="bg-sky-50">This heading has large padding</Heading>
 
       </Section>
 
