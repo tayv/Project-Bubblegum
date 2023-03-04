@@ -52,7 +52,7 @@ const headingPaddingMap: {[key in HeadingPadding]: string} = {
 const Heading: FC<HeadingProps> = ({
     size, 
     type = "primary",
-    weight = "normal",
+    weight = "semibold",
     padding = "standard",
     className = "",
     children,
