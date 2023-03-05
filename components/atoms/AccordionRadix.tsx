@@ -1,7 +1,7 @@
 import React, { FC, forwardRef } from 'react'
 import classNames from 'classnames'
 import * as Accordion from '@radix-ui/react-accordion'
-import { ChevronDownIcon } from '@radix-ui/react-icons'
+import { PlusIcon, MinusIcon } from '@heroicons/react/24/solid'
 
 type AccordionProps = {
   children: React.ReactNode
@@ -24,17 +24,25 @@ type AccordionProps = {
 
 const AccordionRadix = () => (
   <Accordion.Root
-    className="flex shrink w-64rounded-md shadow-[0_2px_10px] shadow-black/5"
+    className="flex shrink rounded-md"
     type="single"
    // defaultValue="item-1"
     collapsible
   >
     
     <Accordion.Item value="item-1" className="mt-1">
-    <Accordion.Header className="group flex shadow data-[state=closed]:w-48 data-[state=open]:w-full bg-neutral-200 data-[state=closed]:rounded-md data-[state=open]:rounded-tl-lg data-[state=open]:rounded-tr-lg">
-      <Accordion.Trigger className="inline-flex justify-between items-center px-3 py-2 w-full text-left">Is it accessible?</Accordion.Trigger>
+    <Accordion.Header className="group flex shadow data-[state=closed]:w-48 data-[state=open]:w-full bg-neutral-300 data-[state=closed]:rounded-md data-[state=open]:rounded-tl-lg data-[state=open]:rounded-tr-lg">
+     
+      <Accordion.Trigger className="inline-flex justify-between items-center px-3 py-2 w-full text-left">
+        Is it accessible?
+        <PlusIcon className="group-data-[state=open]:hidden h-4 w-4 text-neutral-500 " />
+        <MinusIcon className="group-data-[state=closed]:hidden h-4 w-4 text-neutral-500 " />
+      </Accordion.Trigger>
       </Accordion.Header>
-      <Accordion.Content className="data-[state=closed]:w-60 data-[state=open]:w-full bg-neutral-100">Yes. It adheres to the WAI-ARIA design pattern.</Accordion.Content>
+     
+      <Accordion.Content className="data-[state=closed]:w-60 data-[state=open]:w-full bg-neutral-200 px-3 py-2 rounded-br-lg rounded-bl-lg">
+        Yes. It adheres to the WAI-ARIA design pattern.
+      </Accordion.Content>
     </Accordion.Item>
   
 
