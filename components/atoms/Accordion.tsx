@@ -4,20 +4,26 @@ import * as AccordionRadix from '@radix-ui/react-accordion'
 import { PlusIcon, MinusIcon } from '@heroicons/react/24/solid'
 
 type AccordionProps = {
-  type?: "single" | "multiple"
-  defaultValue?: string
+  items: AccordionItems[]
+  typeRadix?: "single" | "multiple"
+  defaultValue?: string | string[] | undefined
   collapsible?: boolean
   className?: string
-  items: AccordionItem[]
 }
 
-type AccordionItem = {
+// Tried using an enum for typeRadix instead of union type, but it didn't work either
+enum AccordionType {
+  "single",
+  "multiple"
+}
+
+type AccordionItems = {
   value: string
   headerText: string
   contentText: string
 }
 
-const renderAccordionItems = (accordionItems: AccordionItem[]) => {
+const renderAccordionItems = (accordionItems: AccordionItems[]) => {
 
   return accordionItems.map((item: {value: string, headerText: string, contentText: string}) => (
     
@@ -40,13 +46,14 @@ const renderAccordionItems = (accordionItems: AccordionItem[]) => {
 }
 
 const Accordion:FC<AccordionProps> = ({
-  type = "single",
+  items,
+  typeRadix = "single",
   defaultValue,
   collapsible = false,
   className = "",
 }) => (
   <AccordionRadix.Root
-    type={type}
+    type={typeRadix}
     defaultValue={defaultValue}
     collapsible={collapsible}
     className={ 
@@ -56,17 +63,7 @@ const Accordion:FC<AccordionProps> = ({
       ]) }
   >
     
-    { renderAccordionItems([
-      { 
-        value: "item-1", 
-        headerText: "Is it accessible lol?", 
-        contentText: "Yes. It adheres to the WAI-ARIA design pattern."
-      }, 
-      { value: "item-2", 
-        headerText: "Is it pretty lol?", 
-        contentText: "Not yet"
-      }
-    ]) }
+    { renderAccordionItems(items) }
     
   </AccordionRadix.Root>
 
