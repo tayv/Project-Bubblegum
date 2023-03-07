@@ -4,25 +4,20 @@ import * as AccordionRadix from '@radix-ui/react-accordion'
 import { PlusIcon, MinusIcon } from '@heroicons/react/24/solid'
 
 type AccordionProps = {
-  children: React.ReactNode
+  type?: "single" | "multiple"
+  defaultValue?: string
+  collapsible?: boolean
   className?: string
+  items: AccordionItem[]
 }
 
-// const AccordionRadix: FC<AccordionProps> = forwardRef<HTMLDivElement, AccordionProps>( (
-//   {
-//     children,
-//     className = "",
-//   },
-//   forwardRef
-// ) => {
-//   return (
-//     <div ref={forwardRef} className={classNames("accordion", className)}>
-//       {children}
-//     </div>
-//   )
-// })
+type AccordionItem = {
+  value: string
+  headerText: string
+  contentText: string
+}
 
-const renderAccordionItems = (accordionItems) => {
+const renderAccordionItems = (accordionItems: AccordionItem[]) => {
 
   return accordionItems.map((item: {value: string, headerText: string, contentText: string}) => (
     
@@ -44,15 +39,25 @@ const renderAccordionItems = (accordionItems) => {
   ))
 }
 
-const Accordion:FC<AccordionProps> = () => (
+const Accordion:FC<AccordionProps> = ({
+  type = "single",
+  defaultValue,
+  collapsible = false,
+  className = "",
+}) => (
   <AccordionRadix.Root
-    className="flex flex-col shrink rounded-md"
-    type="single"
-    defaultValue="item-1"
-    collapsible
+    type={type}
+    defaultValue={defaultValue}
+    collapsible={collapsible}
+    className={ 
+      classNames([
+        "flex flex-col shrink rounded-md", // standard css styles go here. 
+      //  accordionStyleMap[style], 
+      ]) }
   >
     
-    { renderAccordionItems([{ 
+    { renderAccordionItems([
+      { 
         value: "item-1", 
         headerText: "Is it accessible lol?", 
         contentText: "Yes. It adheres to the WAI-ARIA design pattern."
