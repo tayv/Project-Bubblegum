@@ -1,6 +1,6 @@
 import React, { FC, forwardRef } from 'react'
 import classNames from 'classnames'
-import * as Accordion from '@radix-ui/react-accordion'
+import * as AccordionRadix from '@radix-ui/react-accordion'
 import { PlusIcon, MinusIcon } from '@heroicons/react/24/solid'
 
 type AccordionProps = {
@@ -22,31 +22,31 @@ type AccordionProps = {
 //   )
 // })
 
-const AccordionRadix = () => (
-  <Accordion.Root
-    className="flex shrink rounded-md"
+const Accordion = () => (
+  <AccordionRadix.Root
+    className="flex flex-col shrink rounded-md"
     type="single"
    // defaultValue="item-1"
     collapsible
   >
     
-    <Accordion.Item value="item-1" className="mt-1">
-    <Accordion.Header className="group flex shadow data-[state=closed]:w-48 data-[state=open]:w-full bg-neutral-300 data-[state=closed]:rounded-md data-[state=open]:rounded-tl-lg data-[state=open]:rounded-tr-lg">
+    <AccordionRadix.Item value="item-1" className="mt-1">
+    <AccordionRadix.Header className="group flex shadow bg-neutral-300 data-[state=closed]:rounded-md data-[state=open]:rounded-tl-lg data-[state=open]:rounded-tr-lg">
      
-      <Accordion.Trigger className="inline-flex justify-between items-center px-3 py-2 w-full text-left">
+      <AccordionRadix.Trigger className="inline-flex justify-between items-center px-3 py-2 w-full text-left">
         Is it accessible?
         <PlusIcon className="group-data-[state=open]:hidden h-4 w-4 text-neutral-500 " />
         <MinusIcon className="group-data-[state=closed]:hidden h-4 w-4 text-neutral-500 " />
-      </Accordion.Trigger>
-      </Accordion.Header>
+      </AccordionRadix.Trigger>
+      </AccordionRadix.Header>
      
-      <Accordion.Content className="data-[state=closed]:w-60 data-[state=open]:w-full bg-neutral-200 px-3 py-2 rounded-br-lg rounded-bl-lg">
+      <AccordionRadix.Content className="data-[state=closed]:w-60 data-[state=open]:w-full bg-neutral-200 px-3 py-2 rounded-br-lg rounded-bl-lg">
         Yes. It adheres to the WAI-ARIA design pattern.
-      </Accordion.Content>
-    </Accordion.Item>
-  
+      </AccordionRadix.Content>
+    </AccordionRadix.Item>
 
-  </Accordion.Root>
+
+  </AccordionRadix.Root>
 
 
 //   <Accordion.Root type="single" collapsible className="flex shrink" > {/* Flex shrink used since can't change Root styles like width using Data Attributes */}
@@ -77,22 +77,11 @@ const AccordionRadix = () => (
 // </Accordion.Root>  
  )
 
-export default AccordionRadix
+export default Accordion
 
 
-// const AccordionRadix = () => (
-//   <Accordion.Root
-//     className="bg-mauve6 w-[300px] rounded-md shadow-[0_2px_10px] shadow-black/5"
-//     type="single"
-//     defaultValue="item-1"
-//     collapsible
-//   >
-//     <Accordion.Item value="item-1" className="focus-within:shadow-mauve12 mt-px overflow-hidden first:mt-0 first:rounded-t last:rounded-b focus-within:relative focus-within:z-10 focus-within:shadow-[0_0_0_2px]">
-//       <Accordion.Trigger className="text-violet11 shadow-mauve6 hover:bg-mauve2 group flex h-[45px] flex-1 cursor-default items-center justify-between bg-white px-5 text-[15px] leading-none shadow-[0_1px_0] outline-none">Is it accessible?</Accordion.Trigger>
-//       <Accordion.Content className="text-mauve11 bg-mauve2 data-[state=open]:animate-slideDown data-[state=closed]:animate-slideUp overflow-hidden text-[15px]">Yes. It adheres to the WAI-ARIA design pattern.</Accordion.Content>
-//     </Accordion.Item>
-
-//   </Accordion.Root>
-// )
+// NOTES
+  // Radix documentation: https://www.radix-ui.com/docs/primitives/components/accordion
+  // Use data-[state=closed] or data-[state=open] to target open/closed states. For example: data-[state=closed]:w-48 data-[state=open]:w-full
 
 

@@ -18,7 +18,7 @@ import WrapperSelect from '@components/controlled-wrappers/WrapperSelect'
 import DatePick from '@atoms/DatePick'
 import Divider from '@components/layout/Divider'
 import BlankSpace from '@components/layout/BlankSpace'
-import AccordionRadix from '@components/atoms/AccordionRadix'
+import Accordion from '@components/atoms/Accordion'
 
 // data for Breadcrumbs
 const crumbs = [
@@ -188,7 +188,7 @@ const TestForm: FC = () => {
             <Paragraph>This form is used to show default styling for text, radio button, checkbox, and multi-line input components. Also used to test Controlled inputs. </Paragraph>
           </Section>
           <Section id="accordion-test" style="standard">
-            <AccordionRadix />
+            <Accordion />
           </Section>
           <Section id="textInput" style="standard">
             <Heading size="h3">Single Line Input</Heading>
