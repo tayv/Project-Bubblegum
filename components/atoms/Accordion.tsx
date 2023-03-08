@@ -1,8 +1,9 @@
 import React, { FC, forwardRef } from 'react'
 import classNames from 'classnames'
 import * as AccordionRadix from '@radix-ui/react-accordion'
-import { Minus, Plus } from 'lucide-react'
+import { Minus, Plus, Lightbulb, AlertCircle } from 'lucide-react'
 
+// Types
 type AccordionItems = {
   value: string
   headerText: string
@@ -19,6 +20,21 @@ type MyAccordionProps = {
   accordionStyle?: AccordionStyle 
 }
 
+// Conditional Styles
+type RootStyle = "standard" | "shrink"
+const rootStyleMap: {[key in RootStyle]: string} = {
+  standard: "",
+  shrink: "flex flex-col shrink",
+}  
+
+type AccordionStyle = "standard" | "warning" | "tip"
+const accordionStyleMap: {[key in AccordionStyle]: string} = {
+  standard: "bg-neutral-300",
+  warning: "bg-red-300",
+  tip: "bg-blue-300"
+} 
+
+// Helper Functions
 const renderAccordionItems = (accordionItems: AccordionItems[], accordionStyle: AccordionStyle ) => {
 
   return accordionItems.map((item: {value: string, headerText: string, contentText: string}) => (
@@ -57,25 +73,13 @@ const renderAccordionItems = (accordionItems: AccordionItems[], accordionStyle: 
     </AccordionRadix.Item>
     
   ))
-}
+} 
 
-type RootStyle = "standard" | "shrink"
-const rootStyleMap: {[key in RootStyle]: string} = {
-  standard: "",
-  shrink: "flex flex-col shrink",
-}  
-
-type AccordionStyle = "standard" | "warning" | "tip"
-const accordionStyleMap: {[key in AccordionStyle]: string} = {
-  standard: "bg-neutral-300",
-  warning: "bg-red-300",
-  tip: "bg-blue-300"
-}  
-
+// Component
 const Accordion:FC<MyAccordionProps> = ({
-  items,
   type,
-  defaultValue = undefined,
+  items,
+  defaultValue,
   collapsible = true,
   rootStyle = "standard",
   accordionStyle = "standard",
