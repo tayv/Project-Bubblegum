@@ -188,7 +188,10 @@ const TestForm: FC = () => {
             <Paragraph>This form is used to show default styling for text, radio button, checkbox, and multi-line input components. Also used to test Controlled inputs. </Paragraph>
           </Section>
           <Section id="accordion-test" style="standard">
-            <Accordion type="single" items={[
+            <Accordion 
+              type="single" 
+              accordionStyle="standard"
+              items={[
               { 
                 value: "item-1", 
                 headerText: "Is it accessible lol?", 

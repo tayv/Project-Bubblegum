@@ -15,38 +15,69 @@ type MyAccordionProps = {
   type: "single" | "multiple" // Determines whether one or multiple items can be opened at the same time.
   defaultValue?: any // this is a workaround for the Radix type and defaultValue prop not working together. Should be string | string[] | undefined.
   collapsible?: boolean // When type is "single", allows closing content when clicking trigger for an open item.
-  className?: string
+
+  rootStyle?: RootStyle
+  accordionStyle?: AccordionStyle 
 }
 
-const renderAccordionItems = (accordionItems: AccordionItems[]) => {
+const renderAccordionItems = (accordionItems: AccordionItems[], accordionStyle: AccordionStyle ) => {
 
   return accordionItems.map((item: {value: string, headerText: string, contentText: string}) => (
     
-      <AccordionRadix.Item value={item.value} className="mt-1">
-      <AccordionRadix.Header className="group flex shadow bg-neutral-300 data-[state=closed]:rounded-md data-[state=open]:rounded-tl-lg data-[state=open]:rounded-tr-lg">
-      
-        <AccordionRadix.Trigger className="inline-flex justify-between items-center px-3 py-2 w-full text-left">
-          <Minus />
-          {item.headerText}
-          <PlusIcon className="group-data-[state=open]:hidden h-4 w-4 text-neutral-500 " />
-          <Minus className="group-data-[state=closed]:hidden " />
-        </AccordionRadix.Trigger>
-        </AccordionRadix.Header>
-      
-        <AccordionRadix.Content className="data-[state=closed]:w-60 data-[state=open]:w-full bg-neutral-200 px-3 py-2 rounded-br-lg rounded-bl-lg">
-          {item.contentText}
-        </AccordionRadix.Content>
-      </AccordionRadix.Item>
+    <AccordionRadix.Item value={item.value} className="mt-1">
+    <AccordionRadix.Header 
+      className={ 
+        classNames([
+          "group flex shadow data-[state=closed]:rounded-md data-[state=open]:rounded-tl-lg data-[state=open]:rounded-tr-lg font-normal", // standard css styles go here. 
+          accordionStyleMap[accordionStyle], 
+          // className
+        ]) 
+      }  
+    >
+    
+      <AccordionRadix.Trigger className="inline-flex justify-between items-center px-3 py-2 w-full text-left">
+        {item.headerText}
+        <PlusIcon className="group-data-[state=open]:hidden h-4 w-4 text-neutral-500 " />
+        <Minus className="group-data-[state=closed]:hidden " />
+      </AccordionRadix.Trigger>
+      </AccordionRadix.Header>
+    
+      <AccordionRadix.Content 
+         className={ 
+          classNames([
+            "data-[state=closed]:w-60 data-[state=open]:w-full px-3 py-2 rounded-br-lg rounded-bl-lg opacity-70",
+            accordionStyleMap[accordionStyle], 
+            // className
+          ]) 
+        }  
+      >
+        {item.contentText}
+      </AccordionRadix.Content>
+    </AccordionRadix.Item>
     
   ))
 }
+
+type RootStyle = "standard" | "shrink"
+const rootStyleMap: {[key in RootStyle]: string} = {
+  standard: "",
+  shrink: "flex flex-col shrink",
+}  
+
+type AccordionStyle = "standard" | "warning" | "tip"
+const accordionStyleMap: {[key in AccordionStyle]: string} = {
+  standard: "bg-neutral-300",
+  warning: "bg-red-300",
+  tip: "bg-blue-300"
+}  
 
 const Accordion:FC<MyAccordionProps> = ({
   items,
   type,
   defaultValue = undefined,
   collapsible = true,
-  className = "",
+  rootStyle = "standard",
+  accordionStyle = "standard",
 }) => (
   <AccordionRadix.Root
     type={type}
@@ -54,13 +85,13 @@ const Accordion:FC<MyAccordionProps> = ({
     collapsible={collapsible}
     className={ 
       classNames([
-        "flex flex-col shrink rounded-md", // standard css styles go here. 
-      //  accordionStyleMap[style], 
-        className
+        "max-w-lg", // standard css styles go here. 
+        rootStyleMap[rootStyle], 
+        // className
       ]) }
   >
     
-    { renderAccordionItems(items) }
+    { renderAccordionItems(items, accordionStyle) }
     
   </AccordionRadix.Root>
 
