@@ -1,7 +1,6 @@
 import React, { FC, useState } from 'react'
 import classNames from 'classnames'
-import { ChevronDownIcon, ChevronUpDownIcon, ChevronUpIcon } from '@heroicons/react/20/solid'
-import { CalendarIcon, MinusIcon, ArrowRightIcon, ArrowLeftIcon } from '@heroicons/react/24/solid'
+import { ChevronDown, ChevronUp, ChevronsUpDown, CalendarDays, Minus, Plus, ArrowLeft, ArrowRight } from 'lucide-react'
 import { InputProps } from '@components/atoms/Input'
 import InputLabel from '@atoms/InputLabelRadix'
 import Tip, { TipProps } from '@helpers/Tip'
@@ -105,7 +104,7 @@ const DatePick: FC<DatePickProps & InputProps> = ( { name , label = null, tipTex
            
           { /* Integrated an input field into Accordian Header so that the form has an input value to submit */}
             <div className="inline-flex align-left">
-              <CalendarIcon className="h-7 w-7 mr-2 text-black" />  
+              <CalendarDays className="h-7 w-7 mr-2 text-black" />  
               <input 
                 name={name} 
                 readOnly 
@@ -115,7 +114,7 @@ const DatePick: FC<DatePickProps & InputProps> = ( { name , label = null, tipTex
               />
             </div>
 
-            <MinusIcon className="group-data-[state=closed]:hidden h-4 w-4 text-neutral-500 " /> {/* Hiding minus icon when calendar is closed via tailwind's group to avoid cluttering the starting state with icons */}
+            <Minus className="group-data-[state=closed]:hidden h-4 w-4 text-neutral-500 " /> {/* Hiding minus icon when calendar is closed via tailwind's group to avoid cluttering the starting state with icons */}
           </Accordion.Trigger>
         </Accordion.Header>
 
@@ -133,19 +132,19 @@ const DatePick: FC<DatePickProps & InputProps> = ( { name , label = null, tipTex
                       <Select.Trigger className="inline-flex items-center outline-none rounded-md text-md ml-1 pl-1.5 pr-0.5 bg-indigo-100 hover:bg-indigo-200">
                         <Select.Value placeholder="Year" />
                         <Select.Icon>
-                          <ChevronUpDownIcon className="h-4 w-4 pl-px text-indigo-500" />
+                          <ChevronsUpDown className="h-4 w-4 pl-px text-indigo-500" />
                         </Select.Icon>
                       </Select.Trigger>
                       <Select.Portal>
                         <Select.Content className="outline-none border-solid border border-slate-200 rounded-md bg-white py-1 px-2">
                           <Select.ScrollUpButton className="flex justify-center">
-                            <ChevronUpIcon className="h-4 w-4 text-neutral-800" />
+                            <ChevronUp className="h-4 w-4 text-neutral-800" />
                           </Select.ScrollUpButton>
                           <Select.Viewport>
                             { setYearRange(startYearRange, endYearRange) }
                           </Select.Viewport>
                           <Select.ScrollDownButton className="flex justify-center"> 
-                            <ChevronDownIcon className="h-4 w-4 mr-2 text-neutral-800" />  
+                            <ChevronDown className="h-4 w-4 mr-2 text-neutral-800" />  
                           </Select.ScrollDownButton>
                         </Select.Content>
                       </Select.Portal>
@@ -153,11 +152,11 @@ const DatePick: FC<DatePickProps & InputProps> = ( { name , label = null, tipTex
                   </h2>
                   <button type="button" onClick={prevMonth} className="-my-1.5 flex flex-none items-center justify-center p-1 text-gray-400 hover:text-gray-500" >
                     <span className="sr-only">Previous month</span>
-                    <ArrowLeftIcon className="w-5 h-5 text-indigo-500" aria-hidden="true" />
+                    <ArrowLeft className="w-5 h-5 text-indigo-500" aria-hidden="true" />
                   </button>
                   <button onClick={nextMonth} type="button" className="-my-1.5 -mr-1.5 ml-2 flex flex-none items-center justify-center p-1 text-gray-400 hover:text-gray-500" >
                     <span className="sr-only">Next month</span>
-                    <ArrowRightIcon className="w-5 h-5 text-indigo-500" aria-hidden="true" />
+                    <ArrowRight className="w-5 h-5 text-indigo-500" aria-hidden="true" />
                   </button>
                 </div>
                 <div className="grid grid-cols-7 mt-10 text-xs leading-6 text-center text-gray-500">

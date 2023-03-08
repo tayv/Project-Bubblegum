@@ -18,6 +18,7 @@ import WrapperSelect from '@components/controlled-wrappers/WrapperSelect'
 import DatePick from '@atoms/DatePick'
 import Divider from '@components/layout/Divider'
 import BlankSpace from '@components/layout/BlankSpace'
+import Accordion from '@components/atoms/Accordion'
 
 // data for Breadcrumbs
 const crumbs = [
@@ -185,6 +186,22 @@ const TestForm: FC = () => {
           <Section id="intro" style="blank">
             <Heading size="h2">Test Form 1</Heading>
             <Paragraph>This form is used to show default styling for text, radio button, checkbox, and multi-line input components. Also used to test Controlled inputs. </Paragraph>
+          </Section>
+          <Section id="accordion-test" style="standard">
+            <Accordion 
+              type="single" 
+              accordionStyle="standard"
+              items={[
+              { 
+                value: "item-1", 
+                headerText: "Is it accessible lol?", 
+                contentText: "Yes. It adheres to the WAI-ARIA design pattern."
+              }, 
+              { value: "item-2", 
+                headerText: "Is it pretty lol?", 
+                contentText: "Not yet"
+              }
+            ]}/>
           </Section>
           <Section id="textInput" style="standard">
             <Heading size="h3">Single Line Input</Heading>
