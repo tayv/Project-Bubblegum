@@ -1,10 +1,16 @@
 🚧 WORK IN PROGRESS 🚧
 
-- Project is very rough. Ignore for now.
+- Project is very rough, esp the design.
 
 # About
 
 This project will build out a basic design library for form components using react-hook-form, tailwind css, and NextJs.
+
+## Useful Links:
+
+- [Tailwind Documentation](https://tailwindcss.com/docs/)
+- [Radix UI Primitives](https://www.radix-ui.com/docs/primitives/)
+- [Lucide Icons](https://lucide.dev/)
 
 # Setup
 
