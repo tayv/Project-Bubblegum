@@ -1,8 +1,7 @@
 import React, { FC, forwardRef } from 'react'
 import classNames from 'classnames'
 import * as AccordionRadix from '@radix-ui/react-accordion'
-import { PlusIcon, MinusIcon } from '@heroicons/react/24/solid'
-import { Minus } from 'lucide-react'
+import { Minus, Plus } from 'lucide-react'
 
 type AccordionItems = {
   value: string
@@ -37,8 +36,10 @@ const renderAccordionItems = (accordionItems: AccordionItems[], accordionStyle: 
     
       <AccordionRadix.Trigger className="inline-flex justify-between items-center px-3 py-2 w-full text-left">
         {item.headerText}
-        <PlusIcon className="group-data-[state=open]:hidden h-4 w-4 text-neutral-500 " />
-        <Minus className="group-data-[state=closed]:hidden " />
+       
+        <Minus className="group-data-[state=closed]:hidden h-4 w-4 text-neutral-500" />
+        <Plus className="group-data-[state=open]:hidden h-4 w-4 text-neutral-500" />
+       
       </AccordionRadix.Trigger>
       </AccordionRadix.Header>
     
