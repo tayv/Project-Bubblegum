@@ -183,26 +183,12 @@ const TestForm: FC = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 w-full xl:max-w-1400">
         <form id="test-form" className="col-span-2 py-3 px-8 my-8 rounded-3xl bg-zinc-200/10 border" onSubmit={ onSubmit }>
+         
           <Section id="intro" style="blank">
             <Heading size="h2">Test Form 1</Heading>
             <Paragraph>This form is used to show default styling for text, radio button, checkbox, and multi-line input components. Also used to test Controlled inputs. </Paragraph>
           </Section>
-          <Section id="accordion-test" style="standard">
-            <Accordion 
-              type="single" 
-              accordionStyle="standard"
-              items={[
-              { 
-                value: "item-1", 
-                headerText: "Is it accessible lol?", 
-                contentText: "Yes. It adheres to the WAI-ARIA design pattern."
-              }, 
-              { value: "item-2", 
-                headerText: "Is it pretty lol?", 
-                contentText: "Not yet"
-              }
-            ]}/>
-          </Section>
+
           <Section id="textInput" style="standard">
             <Heading size="h3">Single Line Input</Heading>
             <WrapperInput
