@@ -16,6 +16,7 @@ https://user-images.githubusercontent.com/48400779/225039494-23e9b897-6849-4f57-
 - [Lucide Icons](https://lucide.dev/)
 - [React Hook Form](https://react-hook-form.com/) (Form handling)
 - [Prisma](https://www.prisma.io/docs) (Database ORM)
+- [Clerk Auth](https://clerk.com/docs/nextjs/overview)
 
 # Setup
 
