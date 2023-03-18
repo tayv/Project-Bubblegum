@@ -9,6 +9,7 @@ const LayoutContainerSide = ({children}: any) => {
       <div className="flex flex-1 overflow-hidden">
         <SideNav articleList={[
           {title: "Test Form", path: "/forms/test-form"},
+          {title: "Sign In", path: "/auth/sign-in"},
           {title: "Navigation", path: "/forms/navigation-article"}, 
           {title: "Buttons", path: "/forms/buttons-article"}, 
           {title: "Checkbox", path: "/forms/checkbox-article"}, 
