@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import classNames from 'classnames'
 
 type SideNavStyle = "selected" | "notSelected"
-type ArticleList = {title: string, path: string}[] // This is the list of articles that will be displayed in the side nav
+type ArticleList = {title: string, path?: string, groupTitle?: boolean}[] // This is the list of articles that will be displayed in the side nav
 export type SideNavProps = { articleList: ArticleList }
 
 const SideNav: FC<SideNavProps> = ({
@@ -32,19 +32,28 @@ const SideNav: FC<SideNavProps> = ({
         { 
           // The side nav is made up of these list items
           articleList.map((article) => {
+
+            
+
             // Used by classnames to set the correct css style
             let isSelected: SideNavStyle = (asPath === article.path) ? "selected" : "notSelected"
+
+            
             return (
               <li key={article.title.toString()}>
-                <a 
-                  href={article.path}  
-                  className={classNames([
-                    "cursor-pointer flex items-center p-1", // standard css styles go here
-                    sideNavStyleMap[isSelected] 
-                  ]) } 
-                >
-                  <span className="flex-1 ml-2 whitespace-nowrap">{article.title}</span>
-                </a>
+              { 
+                !article.groupTitle ?
+                  <a 
+                    href={article.path}  
+                    className={classNames([
+                      "cursor-pointer flex items-center p-1", // standard css styles go here
+                      sideNavStyleMap[isSelected] 
+                    ]) } 
+                  >
+                    <span className="flex-1 ml-2 whitespace-nowrap">{article.title}</span>
+                  </a> 
+                : <span className="flex-1  whitespace-nowrap uppercase text-xs opacity-50 ">{article.title}</span> // Group title styling
+              }
               </li>  
             ) 
           } )
