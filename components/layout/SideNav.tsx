@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import { useRouter } from 'next/router'
 import classNames from 'classnames'
+import { UserButton } from '@clerk/nextjs'
 
 type SideNavStyle = "selected" | "notSelected"
 type ArticleList = {title: string, path?: string, groupTitle?: boolean}[] // This is the list of articles that will be displayed in the side nav
@@ -29,12 +30,12 @@ const SideNav: FC<SideNavProps> = ({
       
       <div className="flex overflow-scroll py-2 px-1">
         <ul className="grow space-y-1">
+
+          <span className="flex-1 whitespace-nowrap uppercase text-xs opacity-50 ">Authentication</span> 
+          <UserButton userProfileMode="modal" showName={true} />
         { 
           // The side nav is made up of these list items
           articleList.map((article) => {
-
-            
-
             // Used by classnames to set the correct css style
             let isSelected: SideNavStyle = (asPath === article.path) ? "selected" : "notSelected"
 
