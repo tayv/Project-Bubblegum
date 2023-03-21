@@ -3,6 +3,7 @@ import Breadcrumbs from '@components/layout/Breadcrumbs'
 import Heading from '@components/layout/Heading'
 import Paragraph from '@components/layout/Paragraph'
 import Section from "@components/layout/Section"
+import { SignIn } from '@clerk/nextjs'
 
 // data for Breadcrumbs
 const crumbs = [
@@ -17,14 +18,14 @@ const crumbs = [
   }
 ]
 
-const DocumentBuilder = () => (
+const SignInPage = () => (
   <>
     <LayoutContainerSide>
       <Breadcrumbs crumbs={crumbs} />
-      <Heading size="h1">Test Document Builder</Heading>
-      <Paragraph>This page will show an MDX document builder using saved answers from the test form.</Paragraph>
-      <Section id="test-doc-builder" style="standard">
-        <Paragraph>🚧 Under Construction</Paragraph>
+      <Heading size="h1">Sign In Page</Heading>
+      <Paragraph>You need to sign in before viewing this page.</Paragraph>
+      <Section id="sign-in" style="standard">
+        <SignIn />
       </Section>
     </LayoutContainerSide>
 
@@ -32,4 +33,6 @@ const DocumentBuilder = () => (
   
   )
 
-export default DocumentBuilder
+export default SignInPage
+
+// Set up redirects for Clerk Auth (https://dashboard.clerk.com/) on the dashboard in Develoers > Paths > Sign-In

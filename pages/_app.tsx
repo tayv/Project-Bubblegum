@@ -8,7 +8,7 @@ import { useRouter } from 'next/router'
   //   "/foo"           for pages/foo/index.js
   //   "/foo/bar"       for pages/foo/bar.js
   //   "/foo/[...bar]"  for pages/foo/[...bar].js
-const publicPages = ["/", "/sign-up/[[...index]]"]
+const publicPages = ["/[[...index]]", "/sign-in/[[...index]]", "/sign-up/[[...index]]"]
 
 function MyApp({ Component, pageProps }: AppProps) {
 
@@ -16,10 +16,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     const { pathname } = useRouter()
 
      // Check if the current route matches a public page or if it starts with the restricted folder
-     const isPublicPage = publicPages.includes(pathname) || pathname.startsWith("/restricted")
+     const isPublicPage = publicPages.includes(pathname) || !pathname.startsWith("/restricted")
   
     // If the current route is listed as public, render it directly. Otherwise, use Clerk to require authentication
-
   return (
     <ClerkProvider {...pageProps}>
       { isPublicPage ? (
@@ -30,7 +29,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             <Component {...pageProps} />
           </SignedIn>
           <SignedOut>
-            <SignIn />
+            <RedirectToSignIn />
           </SignedOut>
         </>
       ) }
