@@ -8,7 +8,10 @@ const LayoutContainerSide = ({children}: any) => {
     <div className="flex flex-col h-screen bg-zinc-100">
       <div className="flex flex-1 overflow-hidden">
         <SideNav articleList={[
+          {title: "Testing", groupTitle: true},
           {title: "Test Form", path: "/forms/test-form"},
+          {title: "🧰 Test Document Builder", path: "/restricted/test-document-builder"},
+          {title: "Components", groupTitle: true},
           {title: "Navigation", path: "/forms/navigation-article"}, 
           {title: "Buttons", path: "/forms/buttons-article"}, 
           {title: "Checkbox", path: "/forms/checkbox-article"}, 

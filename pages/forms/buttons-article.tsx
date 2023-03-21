@@ -5,7 +5,6 @@ import Paragraph from '@components/layout/Paragraph'
 import { FC } from 'react'
 import Section from '@components/layout/Section'
 
-
 // data for Breadcrumbs
 const crumbs = [
   {
