@@ -1,16 +1,17 @@
 import { FC } from 'react'
 import { useRouter } from 'next/router'
 import classNames from 'classnames'
-import { UserButton } from '@clerk/nextjs'
+import { UserButton, SignedIn, SignedOut, SignInButton } from '@clerk/nextjs'
+import { LogIn } from 'lucide-react'
 
 type SideNavStyle = "selected" | "notSelected"
 type ArticleList = {title: string, path?: string, groupTitle?: boolean}[] // This is the list of articles that will be displayed in the side nav
 export type SideNavProps = { articleList: ArticleList }
 
 const SideNav: FC<SideNavProps> = ({
-  articleList,
-  ...props
-}) => {
+    articleList,
+    ...props
+  }) => {
 
   const { asPath } = useRouter() // This hook returns the current url path
 
@@ -32,7 +33,19 @@ const SideNav: FC<SideNavProps> = ({
         <ul className="grow space-y-1">
 
           <span className="flex-1 whitespace-nowrap uppercase text-xs opacity-50 ">Authentication</span> 
-          <UserButton userProfileMode="modal" showName={true} />
+          <div className="grow space-y-1">
+            <SignedIn>
+              <UserButton showName={true} />
+            </SignedIn>
+            <SignedOut>
+              {/* Signed out users get sign in button */}
+              <div className="flex gap-1 pl-2 text-gray-900 hover:text-gray-600">
+                <LogIn />
+                <SignInButton mode="modal" /> 
+              </div>
+            </SignedOut>
+          </div>
+        
         { 
           // The side nav is made up of these list items
           articleList.map((article) => {
