@@ -1,4 +1,3 @@
-import { SignIn } from "@clerk/nextjs"
 import LayoutContainerSide from '@components/layout/LayoutContainerSide'
 import Breadcrumbs from '@components/layout/Breadcrumbs'
 import Heading from '@components/layout/Heading'
@@ -12,20 +11,20 @@ const crumbs = [
     path: "/",
     currentPg: false,
   }, {
-    text: "Sign In", 
+    text: "Test Document Builder", 
     path: "/",
     currentPg: true,
   }
 ]
 
-const SignInPage = () => (
+const DocumentBuilder = () => (
   <>
     <LayoutContainerSide>
       <Breadcrumbs crumbs={crumbs} />
-      <Heading size="h1">Authentication</Heading>
-      <Paragraph>On this page you'll find Clerk's Sign In components.</Paragraph>
-      <Section id="sign-in-test" style="blank">
-        <SignIn  />
+      <Heading size="h1">Test Document Builder</Heading>
+      <Paragraph>This page will show an MDX document builder using saved answers from the test form.</Paragraph>
+      <Section id="test-doc-builder" style="standard">
+        <Paragraph>🚧 Under Construction</Paragraph>
       </Section>
     </LayoutContainerSide>
 
@@ -33,4 +32,4 @@ const SignInPage = () => (
   
   )
 
-export default SignInPage;
+export default DocumentBuilder;
