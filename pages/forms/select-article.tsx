@@ -43,7 +43,7 @@ const SelectArticle: FC = () => {
 
           <Heading size="h4">Example: No Label/Tip</Heading>
           <WrapperSelect 
-              name="flatselect" 
+              name="nolabelselect" 
               control={control} 
               label={null}
               tip={null}
