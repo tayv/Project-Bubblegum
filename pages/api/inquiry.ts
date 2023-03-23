@@ -16,7 +16,8 @@ async function createInquiry(req: any, res: any) {
     try {
         const newEntry = await prisma.inquiry.create({
             data: {
-                name: "This is a hardcoded test string. Need to update schema to capture form input data"
+                name: "This is a hardcoded test string. Need to update schema to capture form input data",
+                formData: body
             }
         })
         return res.status(200).json(newEntry, {success: true})
