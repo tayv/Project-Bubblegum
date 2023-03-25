@@ -1,13 +1,13 @@
-import LayoutContainerSide from 'designSystem/layout/LayoutContainerSide'
-import Breadcrumbs from 'designSystem/layout/Breadcrumbs'
-import Heading from 'designSystem/layout/Heading'
-import Paragraph from 'designSystem/layout/Paragraph'
+import LayoutContainerSide from '@designSystem/layouts/LayoutContainerSide'
+import Breadcrumbs from '@designSystem/layouts/Breadcrumbs'
+import Heading from '@designSystem/layouts/Heading'
+import Paragraph from '@designSystem/layouts/Paragraph'
 import { FC } from 'react'
-import Section from 'designSystem/layout/Section'
+import Section from '@designSystem/layouts/Section'
 import Input from 'designSystem/atoms/Input'
-import Divider from 'designSystem/layout/Divider'
+import Divider from '@designSystem/layouts/Divider'
 import Accordion from 'designSystem/atoms/Accordion'
-import BlankSpace from 'designSystem/layout/BlankSpace'
+import BlankSpace from '@designSystem/layouts/BlankSpace'
 
 // data for Breadcrumbs
 const crumbs = [

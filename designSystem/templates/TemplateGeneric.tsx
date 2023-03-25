@@ -1,6 +1,6 @@
 import React, { FC, JSXElementConstructor } from 'react'
-import Paragraph from 'designSystem/layout/Paragraph'
-import Divider from 'designSystem/layout/Divider'
+import Paragraph from '@designSystem/layouts/Paragraph'
+import Divider from '@designSystem/layouts/Divider'
 
 export type FormDataObj = {
   docID: Number
@@ -16,7 +16,7 @@ export type TemplateProps = {
 let renderTable = ({docID, formData}: FormDataObj) => {
     
   return (
-    <table className="table-fixed w-full border border-2 p-2">
+    <table className="table-fixed w-full border-2 p-2">
       <thead className="text-left bg-sky-100">
         <tr>
           <th colSpan={2} className="p-2">Document ID: {docID}</th>
@@ -31,9 +31,9 @@ let renderTable = ({docID, formData}: FormDataObj) => {
       Object.entries(formData).map(([key, value], index) => {
         return (
 
-          <tr key={index} className="border border-2 p-2">
-            <td className="border border-2 p-2">{key}</td>
-            <td className="border border-2 p-2">{value}</td>
+          <tr key={index} className="border-2 p-2">
+            <td className="border-2 p-2">{key}</td>
+            <td className="border-2 p-2">{value}</td>
           </tr>
         )
       }) 
@@ -49,7 +49,7 @@ const renderTemplate = ({location, docData}: TemplateProps) => {
 
   switch (location) {
     case "a":
-      return <Paragraph size="small" text="Here's boilerplate text plus some dynamic content based on the form values 👉 "> <strong>{ docID }</strong></Paragraph>
+      return <Paragraph size="small">Here's boilerplate text plus some dynamic content based on the form values 👉 <strong>{ docID }</strong></Paragraph>
       
     case "b":
       return // (formData.input1 === "some data") && <Paragraph size="large" text="This is boilerplate text. The following is dynamic content 👉 " > <strong>{ formData.input2 }</strong></Paragraph> 
@@ -76,7 +76,7 @@ const TemplateGeneric: FC<TemplateProps> = (
 
   return (
     <>
-      <Paragraph size="standard" text="The form values (TBD currently static values) will be used to create a document template. Document ID functionality is TBD — will be use to organize multiple instances of form submissions in the database." />
+      <Paragraph size="standard">The form values (TBD currently static values) will be used to create a document template. Document ID functionality is TBD — will be use to organize multiple instances of form submissions in the database.</Paragraph>
       <Divider padding="large"/>
       <button 
         form="test-form"

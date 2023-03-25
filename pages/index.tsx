@@ -1,9 +1,9 @@
-import LayoutContainerSide from 'designSystem/layout/LayoutContainerSide'
-import Breadcrumbs from 'designSystem/layout/Breadcrumbs'
-import Heading from 'designSystem/layout/Heading'
-import Paragraph from 'designSystem/layout/Paragraph'
-import Section from 'designSystem/layout/Section'
-import BlankSpace from 'designSystem/layout/BlankSpace'
+import LayoutContainerSide from '@designSystem/layouts/LayoutContainerSide'
+import Breadcrumbs from '@designSystem/layouts/Breadcrumbs'
+import Heading from '@designSystem/layouts/Heading'
+import Paragraph from '@designSystem/layouts/Paragraph'
+import Section from '@designSystem/layouts/Section'
+import BlankSpace from '@designSystem/layouts/BlankSpace'
 
 export default function Home() {
   return (

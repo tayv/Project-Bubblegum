@@ -1,9 +1,9 @@
 import React, { useState, FC } from 'react'
-import Breadcrumbs from 'designSystem/layout/Breadcrumbs'
+import Breadcrumbs from '@designSystem/layouts/Breadcrumbs'
 import { useForm } from 'react-hook-form'
-import WrapperInput from '@components/forms/WrapperInput'
-import LayoutContainerSide from 'designSystem/layout/LayoutContainerSide'
-import Heading from 'designSystem/layout/Heading'
+import WrapperInput from '@forms/WrapperInput'
+import LayoutContainerSide from '@designSystem/layouts/LayoutContainerSide'
+import Heading from '@designSystem/layouts/Heading'
 
 const TestForm: FC = () => {
   

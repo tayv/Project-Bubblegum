@@ -1,9 +1,9 @@
-import Breadcrumbs from 'designSystem/layout/Breadcrumbs'
-import Heading from 'designSystem/layout/Heading'
-import DoDont from 'designSystem/layout/DoDont'
-import LayoutContainerSide from 'designSystem/layout/LayoutContainerSide'
-import BlankSpace from 'designSystem/layout/BlankSpace'
-import Divider from 'designSystem/layout/Divider'
+import Breadcrumbs from '@designSystem/layouts/Breadcrumbs'
+import Heading from '@designSystem/layouts/Heading'
+import DoDont from '@designSystem/layouts/DoDont'
+import LayoutContainerSide from '@designSystem/layouts/LayoutContainerSide'
+import BlankSpace from '@designSystem/layouts/BlankSpace'
+import Divider from '@designSystem/layouts/Divider'
 
 export default function MyRadioGroup() {
   // data for Breadcrumbs
@@ -24,16 +24,16 @@ export default function MyRadioGroup() {
       <LayoutContainerSide>
           <Breadcrumbs crumbs={crumbs} />
 
-          <Heading text="Containers" size="h1" type="primary"/> 
+          <Heading size="h1" type="primary">Containers</Heading> 
           <p>Containers that hold content and providing a consistent spacing.</p>
 
           <BlankSpace />
           <Divider />
 
-          <Heading text="Page Containers" size="h2" type="primary" />
+          <Heading size="h2" type="primary">Page Containers</Heading>
           <p>A page content container that provides consistent spacing and allows children to use css flex.</p>
 
-          <Heading text="Example" size="h3" type="primary" />
+          <Heading size="h3" type="primary">Example</Heading>
           {/* Example components  */}
           <div className="space-y-4 shadow overflow-hidden border-solid border border-slate-300 py-2 px-4">
             <div className="flex items-center">
@@ -41,19 +41,19 @@ export default function MyRadioGroup() {
             </div>
           </div>
 
-          <Heading text="Best Practices" size="h3" type="primary" />
+          <Heading size="h3" type="primary">Best Practices</Heading>
           <DoDont />
 
-          <Heading text="How to implement" size="h3" type="primary" />
+          <Heading size="h3" type="primary">How to implement</Heading>
           <p>Code details go here</p>
 
           <BlankSpace />
           <Divider />
 
-          <Heading text="Content Cards" size="h2" type="primary" />
+          <Heading size="h2" type="primary">Content Cards</Heading>
           <p>Containers for organizing individual pieces of content such as specific groups of form inputs.</p>
 
-          <Heading text="Related links" size="h3" type="secondary" />
+          <Heading size="h3" type="secondary">Related Links</Heading>
           <ul>
             <li>- Link 1</li>
             <li>- Link 2</li>
