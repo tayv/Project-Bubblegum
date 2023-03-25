@@ -1,5 +1,5 @@
 import { FC, ReactNode } from 'react'
-import SideNav from '@components/layout/SideNav'
+import SideNav from 'designSystem/layout/SideNav'
 
 
 const LayoutContainerSide = ({children}: any) => {

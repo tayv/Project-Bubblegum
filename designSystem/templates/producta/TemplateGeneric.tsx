@@ -1,6 +1,6 @@
 import React, { FC, JSXElementConstructor } from 'react'
-import Paragraph from '@components/layout/Paragraph'
-import Divider from '@components/layout/Divider'
+import Paragraph from 'designSystem/layout/Paragraph'
+import Divider from 'designSystem/layout/Divider'
 
 export type FormDataObj = {
   docID: Number

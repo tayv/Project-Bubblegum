@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { useWatch, Control } from 'react-hook-form'
-import setRegEx from '@components/utils/setRegEx'
+import setRegEx from 'designSystem/utils/setRegEx'
 
 export type customRegEx = RegExp | null | undefined 
 export type checkFor = string | number

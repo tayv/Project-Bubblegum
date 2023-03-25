@@ -1,8 +1,8 @@
-import LayoutContainerSide from '@components/layout/LayoutContainerSide'
-import Breadcrumbs from '@components/layout/Breadcrumbs'
-import Heading from '@components/layout/Heading'
-import Paragraph from '@components/layout/Paragraph'
-import Section from "@components/layout/Section"
+import LayoutContainerSide from 'designSystem/layout/LayoutContainerSide'
+import Breadcrumbs from 'designSystem/layout/Breadcrumbs'
+import Heading from 'designSystem/layout/Heading'
+import Paragraph from 'designSystem/layout/Paragraph'
+import Section from "designSystem/layout/Section"
 
 // data for Breadcrumbs
 const crumbs = [

@@ -1,9 +1,9 @@
 import React, { FC, useState } from 'react'
 import classNames from 'classnames'
 import { ChevronDown, ChevronUp, ChevronsUpDown, CalendarDays, Minus, Plus, ArrowLeft, ArrowRight } from 'lucide-react'
-import { InputProps } from '@components/atoms/Input'
-import InputLabel from '@atoms/InputLabelRadix'
-import Tip, { TipProps } from '@helpers/Tip'
+import { InputProps } from 'designSystem/atoms/Input'
+import InputLabel from 'designSystem/atoms/InputLabelRadix'
+import Tip, { TipProps } from '@components/molecules/Tip'
 import * as Select from '@radix-ui/react-select'
 import * as Accordion from '@radix-ui/react-accordion'
 import {

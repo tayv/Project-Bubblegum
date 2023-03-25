@@ -1,9 +1,9 @@
-import Breadcrumbs from '@components/layout/Breadcrumbs'
-import Heading from '@components/layout/Heading'
-import DoDont from '@components/layout/DoDont'
-import LayoutContainerSide from '@components/layout/LayoutContainerSide'
-import BlankSpace from '@components/layout/BlankSpace'
-import Divider from '@components/layout/Divider'
+import Breadcrumbs from 'designSystem/layout/Breadcrumbs'
+import Heading from 'designSystem/layout/Heading'
+import DoDont from 'designSystem/layout/DoDont'
+import LayoutContainerSide from 'designSystem/layout/LayoutContainerSide'
+import BlankSpace from 'designSystem/layout/BlankSpace'
+import Divider from 'designSystem/layout/Divider'
 
 export default function MyRadioGroup() {
   // data for Breadcrumbs

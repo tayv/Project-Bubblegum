@@ -1,4 +1,4 @@
-import {checkFor, customRegEx} from '@helpers/HelpMessage'
+import {checkFor, customRegEx} from '@components/molecules/HelpMessage'
 
 export type setRegEx = ( checkFor: checkFor, customRegEx: customRegEx ) =>  customRegEx
 

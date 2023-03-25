@@ -1,13 +1,13 @@
-import LayoutContainerSide from '@components/layout/LayoutContainerSide'
-import Breadcrumbs from '@components/layout/Breadcrumbs'
-import Heading from '@components/layout/Heading'
-import Paragraph from '@components/layout/Paragraph'
+import LayoutContainerSide from 'designSystem/layout/LayoutContainerSide'
+import Breadcrumbs from 'designSystem/layout/Breadcrumbs'
+import Heading from 'designSystem/layout/Heading'
+import Paragraph from 'designSystem/layout/Paragraph'
 import { FC } from 'react'
-import Section from '@components/layout/Section'
-import WrapperRadioGroup from '@components/controlled-wrappers/WrapperRadioGroup'
+import Section from 'designSystem/layout/Section'
+import WrapperRadioGroup from '@components/forms/WrapperRadioGroup'
 import { useForm } from 'react-hook-form'
 import { useEffect } from 'react'
-import Divider from '@components/layout/Divider'
+import Divider from 'designSystem/layout/Divider'
 
 // data for Breadcrumbs
 const crumbs = [

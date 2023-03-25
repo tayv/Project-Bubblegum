@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import Input, { InputProps } from '@components/atoms/Input'
+import Input, { InputProps } from 'designSystem/atoms/Input'
 import { Controller } from 'react-hook-form'
 
 const WrapperInput: FC<InputProps> = ({
