@@ -3,16 +3,17 @@
 
 generator client {
   provider = "prisma-client-js"
-  previewFeatures = ["referentialIntegrity"]
+ // previewFeatures = ["referentialIntegrity"]
 }
 
 datasource db {
   provider = "mysql"
   url = env("DATABASE_URL")
-  referentialIntegrity = "prisma"
+  relationMode = "prisma"
 }
 
 model Inquiry {
   id      Int   @default(autoincrement()) @id
   name    String
+  formData Json? @default("{}") 
 }
