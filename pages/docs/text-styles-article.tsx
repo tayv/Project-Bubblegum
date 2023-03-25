@@ -1,11 +1,11 @@
 import LayoutContainerSide from '@designSystem/layouts/LayoutContainerSide'
 import Breadcrumbs from '@designSystem/layouts/Breadcrumbs'
-import Heading from '@designSystem/layouts/Heading'
-import Paragraph from '@designSystem/layouts/Paragraph'
+import Heading from '@designSystem/atoms/Heading'
+import Paragraph from '@designSystem/atoms/Paragraph'
 import { FC } from 'react'
-import Section from '@designSystem/layouts/Section'
-import Divider from '@designSystem/layouts/Divider'
-import BlankSpace from '@designSystem/layouts/BlankSpace'
+import SectionCard from '@designSystem/molecules/SectionCard'
+import Divider from '@designSystem/atoms/Divider'
+import BlankSpace from '@designSystem/atoms/BlankSpace'
 
 // data for Breadcrumbs
 const crumbs = [
@@ -29,7 +29,7 @@ const TextStylesArticle: FC = () => {
       <Heading size="h1">Text Styles</Heading>
       <Paragraph>On this page you'll find text components.</Paragraph>
 
-      <Section id="header" style="standard">
+      <SectionCard id="header" style="standard">
         <Heading size="h3">Heading Component</Heading>
           <Paragraph>
             The Heading component is used to standardize header text in the app. 
@@ -72,9 +72,9 @@ const TextStylesArticle: FC = () => {
           <Heading size="h4" type="primary" padding="standard" className="bg-sky-50">This heading has standard padding</Heading>
           <Heading size="h4" type="primary" padding="large" className="bg-sky-50">This heading has large padding</Heading>
 
-      </Section>
+      </SectionCard>
 
-      <Section id="header" style="standard">
+      <SectionCard id="header" style="standard">
         <Heading size="h3">Paragraph Component</Heading>
           <Paragraph>
 {`The Paragraph component is used to standardize body text in the app. Currently it has four optional props: size, style, space, and className. 
@@ -178,7 +178,7 @@ If you pass custom css via the className prop you can pass override to size, sty
           <BlankSpace ySize="standard" />
 
       
-      </Section>
+      </SectionCard>
 
     </LayoutContainerSide>
 

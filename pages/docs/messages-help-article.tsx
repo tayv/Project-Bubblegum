@@ -1,13 +1,13 @@
 import LayoutContainerSide from '@designSystem/layouts/LayoutContainerSide'
 import Breadcrumbs from '@designSystem/layouts/Breadcrumbs'
-import Heading from '@designSystem/layouts/Heading'
-import Paragraph from '@designSystem/layouts/Paragraph'
+import Heading from '@designSystem/atoms/Heading'
+import Paragraph from '@designSystem/atoms/Paragraph'
 import { FC } from 'react'
-import Section from '@designSystem/layouts/Section'
+import SectionCard from '@designSystem/molecules/SectionCard'
 import Input from 'designSystem/atoms/Input'
-import Divider from '@designSystem/layouts/Divider'
+import Divider from '@designSystem/atoms/Divider'
 import Accordion from 'designSystem/atoms/Accordion'
-import BlankSpace from '@designSystem/layouts/BlankSpace'
+import BlankSpace from '@designSystem/atoms/BlankSpace'
 
 // data for Breadcrumbs
 const crumbs = [
@@ -31,7 +31,7 @@ const MessagesHelpArticle: FC = () => {
       <Heading size="h1">Messages</Heading>
       <Paragraph>On this page you'll find help message components</Paragraph>
 
-      <Section id="tipMessage" style="standard">
+      <SectionCard id="tipMessage" style="standard">
         <Heading size="h3">Tip Messages</Heading>
           <Paragraph> 
             There are two prop variations of the Tip component: tip and example. 
@@ -48,9 +48,9 @@ const MessagesHelpArticle: FC = () => {
           <Heading size="h4">Example: Example Message</Heading>
           <Input name="exampleMessage" label="This is a label:" exampleText="This is an example messsage." />
 
-      </Section>
+      </SectionCard>
 
-      <Section id="accordionMessage" style="standard">
+      <SectionCard id="accordionMessage" style="standard">
         <Heading size="h3">Accordion Messages</Heading>
         <Paragraph>
           Typically used for longer messages. Gives a way to present information without overwhelming the user. 
@@ -232,7 +232,7 @@ const MessagesHelpArticle: FC = () => {
       />
       <BlankSpace />
 
-      </Section>
+      </SectionCard>
 
     </LayoutContainerSide>
 

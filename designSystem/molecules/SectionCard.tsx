@@ -1,18 +1,18 @@
 import { FC, ReactNode } from 'react'
 import classNames from 'classnames'
 
-export type SectionProps = {
+export type SectionCardProps = {
   id: string
-  style: SectionStyle
+  style: SectionCardStyle
   customColor?: customColor
   children: ReactNode
   className?: string
 }
 
-export type SectionStyle = "standard" | "blank" | "colorBlue" | "colorRed" | "colorGreen" | "colorYellow" | "colorPurple" | "colorPink" | "colorBlack" | "colorCustom"
+export type SectionCardStyle = "standard" | "blank" | "colorBlue" | "colorRed" | "colorGreen" | "colorYellow" | "colorPurple" | "colorPink" | "colorBlack" | "colorCustom"
 export type customColor = string
 
-const sectionStyleMap: {[key in SectionStyle]: string} = {
+const sectionStyleMap: {[key in SectionCardStyle]: string} = {
   standard: "bg-white drop-shadow-sm", // css styles go here
   blank: "bg-transparent",
   colorBlue: "bg-gradient-to-b from-blue-400 to-blue-300 drop-shadow-sm",
@@ -25,13 +25,13 @@ const sectionStyleMap: {[key in SectionStyle]: string} = {
   colorCustom: "",
 }   
 
-const Section = (
+const SectionCard = (
   {
     id, 
     style = "standard",
     className = "", // to pass custom one-off styling
     children
-  }: SectionProps ) => {
+  }: SectionCardProps ) => {
 
   return (
     <section id={id} 
@@ -47,6 +47,6 @@ const Section = (
   )
 }
 
-export default Section
+export default SectionCard
 
 

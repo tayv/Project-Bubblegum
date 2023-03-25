@@ -1,11 +1,11 @@
 import LayoutContainerSide from '@designSystem/layouts/LayoutContainerSide'
 import Breadcrumbs from '@designSystem/layouts/Breadcrumbs'
-import Heading from '@designSystem/layouts/Heading'
-import Paragraph from '@designSystem/layouts/Paragraph'
+import Heading from '@designSystem/atoms/Heading'
+import Paragraph from '@designSystem/atoms/Paragraph'
 import { FC } from 'react'
-import Section from '@designSystem/layouts/Section'
+import SectionCard from '@designSystem/molecules/SectionCard'
 import WrapperSelect from '@forms/WrapperSelect'
-import Divider from '@designSystem/layouts/Divider'
+import Divider from '@designSystem/atoms/Divider'
 import { useForm } from 'react-hook-form'
 
 
@@ -33,7 +33,7 @@ const SelectArticle: FC = () => {
       <Heading size="h1">Select from a list</Heading>
       <Paragraph> {`On this page you'll find Select components." size="standard" type="primary`} </Paragraph>
 
-      <Section id="header" style="standard">
+      <SectionCard id="header" style="standard">
         <Heading size="h3">Select</Heading>
           <Paragraph>
 {` Uses Radix's Select primitive and is controlled via react-hook-form. Have two variations: flat and grouped. The label and tip props are optional. Leave out or pass null to hide them.`}
@@ -100,7 +100,7 @@ const SelectArticle: FC = () => {
                 }
               ] }
           />
-      </Section>
+      </SectionCard>
 
     </LayoutContainerSide>
 

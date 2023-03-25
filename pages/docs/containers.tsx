@@ -1,9 +1,9 @@
 import Breadcrumbs from '@designSystem/layouts/Breadcrumbs'
-import Heading from '@designSystem/layouts/Heading'
-import DoDont from '@designSystem/layouts/DoDont'
+import Heading from '@designSystem/atoms/Heading'
+import DoDont from '@designSystem/atoms/DoDont'
 import LayoutContainerSide from '@designSystem/layouts/LayoutContainerSide'
-import BlankSpace from '@designSystem/layouts/BlankSpace'
-import Divider from '@designSystem/layouts/Divider'
+import BlankSpace from '@designSystem/atoms/BlankSpace'
+import Divider from '@designSystem/atoms/Divider'
 
 export default function MyRadioGroup() {
   // data for Breadcrumbs

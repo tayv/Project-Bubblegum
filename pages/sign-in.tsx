@@ -1,8 +1,8 @@
 import LayoutContainerSide from '@designSystem/layouts/LayoutContainerSide'
 import Breadcrumbs from '@designSystem/layouts/Breadcrumbs'
-import Heading from '@designSystem/layouts/Heading'
-import Paragraph from '@designSystem/layouts/Paragraph'
-import Section from "@designSystem/layouts/Section"
+import Heading from '@designSystem/atoms/Heading'
+import Paragraph from '@designSystem/atoms/Paragraph'
+import SectionCard from "@designSystem/molecules/SectionCard"
 import { SignIn } from '@clerk/nextjs'
 
 // data for Breadcrumbs
@@ -24,9 +24,9 @@ const SignInPage = () => (
       <Breadcrumbs crumbs={crumbs} />
       <Heading size="h1">Sign In Page</Heading>
       <Paragraph>You need to sign in before viewing this page.</Paragraph>
-      <Section id="sign-in" style="standard">
+      <SectionCard id="sign-in" style="standard">
         <SignIn />
-      </Section>
+      </SectionCard>
     </LayoutContainerSide>
 
   </>

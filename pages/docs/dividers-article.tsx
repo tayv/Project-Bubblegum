@@ -1,11 +1,11 @@
 import LayoutContainerSide from '@designSystem/layouts/LayoutContainerSide'
 import Breadcrumbs from '@designSystem/layouts/Breadcrumbs'
-import Heading from '@designSystem/layouts/Heading'
-import Paragraph from '@designSystem/layouts/Paragraph'
+import Heading from '@designSystem/atoms/Heading'
+import Paragraph from '@designSystem/atoms/Paragraph'
 import { FC } from 'react'
-import Section from '@designSystem/layouts/Section'
-import Divider from '@designSystem/layouts/Divider'
-import BlankSpace from '@designSystem/layouts/BlankSpace'
+import SectionCard from '@designSystem/molecules/SectionCard'
+import Divider from '@designSystem/atoms/Divider'
+import BlankSpace from '@designSystem/atoms/BlankSpace'
 
 // data for Breadcrumbs
 const crumbs = [
@@ -29,7 +29,7 @@ const DividersArticle: FC = () => {
       <Heading size="h1">Dividing Content</Heading>
       <Paragraph>Visually separate content with divider and spacing components</Paragraph>
 
-      <Section id="dividers" style="standard">
+      <SectionCard id="dividers" style="standard">
         <Heading size="h3">Divider Component</Heading>
           <Paragraph>
 {`
@@ -87,9 +87,9 @@ The Divider component has several optional props for styling:
           <Heading size="h4">Example: className (custom css)</Heading>
           <Divider className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500" />
 
-      </Section>
+      </SectionCard>
 
-      <Section id="blank-space" style="standard">
+      <SectionCard id="blank-space" style="standard">
         <Heading size="h3">Blank Space Component</Heading>
           <Paragraph>
 {`
@@ -125,7 +125,7 @@ NOTE: You should set xSize and ySize to override when using the className prop t
           <Heading size="h3" type="secondary">xSize/ySize override + className prop:</Heading>
           <Heading size="h4">Example: override (custom css)</Heading>
           <BlankSpace ySize="override" xSize="override" className="bg-sky-100 py-3"/>
-      </Section>
+      </SectionCard>
     </LayoutContainerSide>
 
   </>

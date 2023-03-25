@@ -1,13 +1,13 @@
 import LayoutContainerSide from '@designSystem/layouts/LayoutContainerSide'
 import Breadcrumbs from '@designSystem/layouts/Breadcrumbs'
-import Heading from '@designSystem/layouts/Heading'
-import Paragraph from '@designSystem/layouts/Paragraph'
+import Heading from '@designSystem/atoms/Heading'
+import Paragraph from '@designSystem/atoms/Paragraph'
 import { FC } from 'react'
-import Section from '@designSystem/layouts/Section'
+import SectionCard from '@designSystem/molecules/SectionCard'
 import WrapperRadioGroup from '@forms/WrapperRadioGroup'
 import { useForm } from 'react-hook-form'
 import { useEffect } from 'react'
-import Divider from '@designSystem/layouts/Divider'
+import Divider from '@designSystem/atoms/Divider'
 
 // data for Breadcrumbs
 const crumbs = [
@@ -28,7 +28,7 @@ const RadioButtonsArticle: FC = () => {
 
   // set up form default values
   const defaultValues = {
-    // Radio Input Section
+    // Radio Input SectionCard
     standardRadioGroup: "mint",
     horizontalRadioGroup: "no",
     buttonRadioGroup: "orange-button",
@@ -47,7 +47,7 @@ const RadioButtonsArticle: FC = () => {
         {`On this page you'll find radio button components`}
       </Paragraph>
 
-      <Section id="header" style="standard">
+      <SectionCard id="header" style="standard">
         <Heading size="h3">Radio Button Group</Heading>
           <Paragraph>
 {`The Radio Button Group component is a wrapper for the atomic RadioButton component. It's build using Radix UI's Radio Group primitive and there are three styles to choose from: Standard, Horizontal, and Button style.
@@ -99,7 +99,7 @@ You can set the default value for the radios by saving the values to a variable 
               {value: "chocolate-button", label: "Chocolate ice cream"}, 
               {value: "vanilla-button", label: "Vanilla ice cream"}] }
           />
-      </Section>
+      </SectionCard>
 
     </LayoutContainerSide>
 

@@ -1,12 +1,12 @@
 import LayoutContainerSide from '@designSystem/layouts/LayoutContainerSide'
 import Breadcrumbs from '@designSystem/layouts/Breadcrumbs'
-import Heading from '@designSystem/layouts/Heading'
-import Paragraph from '@designSystem/layouts/Paragraph'
+import Heading from '@designSystem/atoms/Heading'
+import Paragraph from '@designSystem/atoms/Paragraph'
 import { FC } from 'react'
 import { useForm } from 'react-hook-form'
-import Section from '@designSystem/layouts/Section'
+import SectionCard from '@designSystem/molecules/SectionCard'
 import DatePick from 'designSystem/atoms/DatePick'
-import Divider from '@designSystem/layouts/Divider'
+import Divider from '@designSystem/atoms/Divider'
 
 // data for Breadcrumbs
 const crumbs = [
@@ -30,7 +30,7 @@ const DatePickerPage: FC = () => {
       <Heading id="date-picker" size="h1">Date Picker</Heading>
       <Paragraph>On this page you'll find a calendar date picker</Paragraph>
 
-      <Section id="SingleDatePickExample" style="standard">
+      <SectionCard id="SingleDatePickExample" style="standard">
         <Heading size="h2">Example 1: Single Date Picker</Heading>
         <Paragraph>
           Custom Date Picker using Radix UI's Accordion primitive. 
@@ -46,9 +46,9 @@ const DatePickerPage: FC = () => {
           startYearRange={1992} 
           endYearRange={2025} 
         />
-      </Section>
+      </SectionCard>
 
-      <Section id="multiDatePickExample" style="standard">
+      <SectionCard id="multiDatePickExample" style="standard">
         <Heading size="h2">Example 2: Start + End Dates Picker</Heading>
         <Paragraph>You can also combine date picks to create a start and end date picker.</Paragraph>
         
@@ -72,13 +72,13 @@ const DatePickerPage: FC = () => {
             endYearRange={2025} 
           />
         </div>
-      </Section>
+      </SectionCard>
 
-      <Section id="datePickDetails" style="standard">
+      <SectionCard id="datePickDetails" style="standard">
         <Heading size="h3" type="primary">More Details:</Heading>
           <Paragraph>Turning the Date Pick into a controlled component is a work in progress. See issue #21 on GitHub.</Paragraph>
           <Paragraph>You can have start/end date components be vertically or horizontally aligned by using a parent div with flexbox.</Paragraph>
-      </Section>
+      </SectionCard>
 
     </LayoutContainerSide>
 
