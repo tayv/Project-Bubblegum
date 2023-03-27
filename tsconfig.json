@@ -17,16 +17,20 @@
 
     "baseUrl": "./",
     "paths": {
-      "@components/*": ["components/*"],
-      "@atoms/*": ["components/atoms/*"],
-      "@molecules/*": ["components/molecules/*"],
-      "@layouts/*": ["layouts/*"],
+      "@designSystem/*": ["designSystem/*"],
+      "@atoms/*": ["designSystem/atoms/*"],
+      "@molecules/*": ["designSystem/molecules/*"],
+      "@organisms/*": ["designSystem/organisms/*"],
+      "@forms/*": ["designSystem/forms/*"],
+      "@layouts/*": ["designSystem/layouts/*"],
       "@styles/*": ["styles/*"],
-      "@helpers/*": ["components/helpers/*"],
-      "@forms/*": ["pages/forms/*"]
+      "@helpers/*": ["designSystem/molecules/*"],
+      "@templates/*": ["designSystem/templates/*"],
 
+      "@docs/*": ["pages/docs/*"],
+      "@restricted/*": ["pages/restricted/*"], // private pages for authenticated users
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/layout/Breadcrumbs.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "designSystem/layouts/Breadcrumbs.tsx"],
   "exclude": ["node_modules"]
 }

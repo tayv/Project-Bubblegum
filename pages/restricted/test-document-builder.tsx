@@ -1,8 +1,8 @@
-import LayoutContainerSide from '@components/layout/LayoutContainerSide'
-import Breadcrumbs from '@components/layout/Breadcrumbs'
-import Heading from '@components/layout/Heading'
-import Paragraph from '@components/layout/Paragraph'
-import Section from "@components/layout/Section"
+import LayoutContainerSide from '@designSystem/layouts/LayoutContainerSide'
+import Breadcrumbs from '@designSystem/layouts/Breadcrumbs'
+import Heading from '@designSystem/atoms/Heading'
+import Paragraph from '@designSystem/atoms/Paragraph'
+import SectionCard from "@designSystem/molecules/SectionCard"
 
 // data for Breadcrumbs
 const crumbs = [
@@ -23,9 +23,9 @@ const DocumentBuilder = () => (
       <Breadcrumbs crumbs={crumbs} />
       <Heading size="h1">Test Document Builder</Heading>
       <Paragraph>This page will show an MDX document builder using saved answers from the test form.</Paragraph>
-      <Section id="test-doc-builder" style="standard">
+      <SectionCard id="test-doc-builder" style="standard">
         <Paragraph>🚧 Under Construction</Paragraph>
-      </Section>
+      </SectionCard>
     </LayoutContainerSide>
 
   </>
