@@ -1,11 +1,13 @@
-import React, { FC } from 'react'
-import { Controller, Control } from 'react-hook-form'
-import Checkbox, { CheckboxProps, CheckboxStyle } from 'designSystem/atoms/Checkbox'
-import classNames from 'classnames'
-
+import React, { FC } from "react"
+import { Controller, Control } from "react-hook-form"
+import Checkbox, {
+  CheckboxProps,
+  CheckboxStyle,
+} from "designSystem/atoms/Checkbox"
+import classNames from "classnames"
 
 export type CheckboxWrapperProps = {
-  control: Control 
+  control: Control
 }
 
 const WrapperCheckbox: FC<CheckboxWrapperProps & CheckboxProps> = ({
@@ -13,27 +15,26 @@ const WrapperCheckbox: FC<CheckboxWrapperProps & CheckboxProps> = ({
 
   id,
   label,
-}) => {  
-
+}) => {
   // stylemap used for future styling flexibility of the Checkbox component
-    // const CheckboxStyleMap: {[key in CheckboxStyle]: string} = { 
-    //   single: "", // css styles go here
-    //   toggle: "",
-    // }  
+  // const CheckboxStyleMap: {[key in CheckboxStyle]: string} = {
+  //   single: "", // css styles go here
+  //   toggle: "",
+  // }
 
   return (
-   <>
+    <>
       <Controller
         control={control}
         name={id}
-      //  defaultValue={defaultChecked}
-   
-        render={({ field: {onChange, value, ...props}  }) => (
+        //  defaultValue={defaultChecked}
+
+        render={({ field: { onChange, value, ...props } }) => (
           <>
             <Checkbox
               id={id}
               label={label}
-             // onChange={(e: Event) => onChange(value = e)} // unnecessary for current setup
+              // onChange={(e: Event) => onChange(value = e)} // unnecessary for current setup
               onChange={onChange}
               defaultChecked={value}
               {...props}
@@ -41,9 +42,8 @@ const WrapperCheckbox: FC<CheckboxWrapperProps & CheckboxProps> = ({
           </>
         )}
       />
-    </>  
+    </>
   )
 }
 
 export default WrapperCheckbox
-

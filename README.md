@@ -4,10 +4,9 @@
 
 # About
 
-Building a design library of reusable, flexible, and accessible React form and UI components. The form components will be largely unstyled out of the box and intended to be easily adapted on the fly using customizable variations. 
+Building a design library of reusable, flexible, and accessible React form and UI components. The form components will be largely unstyled out of the box and intended to be easily adapted on the fly using customizable variations.
 
 https://user-images.githubusercontent.com/48400779/225039494-23e9b897-6849-4f57-a57d-60759d38bf17.mov
-
 
 ## Useful Links:
 

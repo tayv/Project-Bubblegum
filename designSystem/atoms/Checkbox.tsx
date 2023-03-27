@@ -1,6 +1,6 @@
-import React, { FC, forwardRef, HTMLAttributes } from 'react'
-import classNames from 'classnames'
-import InputLabel from 'designSystem/atoms/InputLabelRadix'
+import React, { FC, forwardRef, HTMLAttributes } from "react"
+import classNames from "classnames"
+import InputLabel from "designSystem/atoms/InputLabelRadix"
 
 export type CheckboxStyle = "standard" | "toggle"
 export type CheckboxProps = {
@@ -16,41 +16,40 @@ export type CheckboxProps = {
   // RHF prop types
   register?: any // react-hook-form: to register an input (not needed if using Controller)
   rules?: Record<string, any> // react-hook-form: validation rules. Any object so used generic Record type.
-  
-} & Omit <HTMLAttributes<HTMLInputElement>, "defaultValues"> // omit used to prevent type error on input element
+} & Omit<HTMLAttributes<HTMLInputElement>, "defaultValues"> // omit used to prevent type error on input element
 
-const Checkbox: FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>( (
-  {
-    id,
-    style = "standard",
-    label,
-    onChange,
-    value,
-    defaultChecked,
-    ...props
-  }, 
-  ref 
-) => {
-  return (
-    
-    <div>
-       <InputLabel htmlFor={id} type="checkbox" label={label}>
-      {/* <label className="inline-flex items-center"> */}
-        <input 
-          type="checkbox"
-          id={id} 
-          name={id} 
-          defaultChecked={defaultChecked}
-         // defaultValue={defaultChecked} // not necessary for single checkbox
-          className="form-checkbox"  
-          onChange={ (e) => onChange(value = e.target.checked) }
-          value={value}
-          {...props} />
-        <span className="ml-2">{label}</span>
-      </InputLabel>
-    </div>
-    
-   )
+const Checkbox: FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>(
+  (
+    {
+      id,
+      style = "standard",
+      label,
+      onChange,
+      value,
+      defaultChecked,
+      ...props
+    },
+    ref
+  ) => {
+    return (
+      <div>
+        <InputLabel htmlFor={id} type="checkbox" label={label}>
+          {/* <label className="inline-flex items-center"> */}
+          <input
+            type="checkbox"
+            id={id}
+            name={id}
+            defaultChecked={defaultChecked}
+            // defaultValue={defaultChecked} // not necessary for single checkbox
+            className="form-checkbox"
+            onChange={(e) => onChange((value = e.target.checked))}
+            value={value}
+            {...props}
+          />
+          <span className="ml-2">{label}</span>
+        </InputLabel>
+      </div>
+    )
   }
 )
 
