@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import { ChevronDown, ChevronUp, ChevronsUpDown, CalendarDays, Minus, Plus, ArrowLeft, ArrowRight } from 'lucide-react'
 import { InputProps } from 'designSystem/atoms/Input'
 import InputLabel from 'designSystem/atoms/InputLabelRadix'
-import Tip, { TipProps } from '@components/molecules/Tip'
+import Tip, { TipProps } from '@molecules/Tip'
 import * as Select from '@radix-ui/react-select'
 import * as Accordion from '@radix-ui/react-accordion'
 import {

@@ -2,7 +2,7 @@ import React, { FC, JSXElementConstructor } from 'react'
 import { Controller, Control } from 'react-hook-form'
 import { RadioButton, RadioProps, RadioStyle } from 'designSystem/atoms/RadioButton'
 import classNames from 'classnames'
-import Tip, { TipProps } from '@components/molecules/Tip'
+import Tip, { TipProps } from '@molecules/Tip'
 import InputLabel from 'designSystem/atoms/InputLabelRadix'
 
 

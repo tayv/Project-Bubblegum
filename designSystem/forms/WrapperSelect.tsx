@@ -2,7 +2,7 @@ import React, { FC, JSXElementConstructor } from 'react'
 import { Controller, Control } from 'react-hook-form'
 import SelectRadix, {SelectRadixProps} from 'designSystem/atoms/SelectRadix'
 import InputLabel from 'designSystem/atoms/InputLabelRadix'
-import Tip from '@components/molecules/Tip'
+import Tip from '@molecules/Tip'
 
 export type WrapperSelectProps = {
   label?: string | null
