@@ -47,7 +47,7 @@ export const TextArea: FC<TextAreaProps> = forwardRef<
   HTMLTextAreaElement,
   TextAreaProps
 >(
-  function refTextArea(
+  function setRefTextArea(
     {
       name,
       label,

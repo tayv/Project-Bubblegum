@@ -48,7 +48,7 @@ const inputSizeMap: { [key in InputSize]: string } = {
 
 // forwardRef so RHF can work properly in WrapperInput
 const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
-  function refInput(
+  function setRefInput(
     {
       name,
       label = null,

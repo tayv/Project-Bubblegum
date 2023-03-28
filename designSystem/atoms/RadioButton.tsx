@@ -49,7 +49,7 @@ export const RadioButton: FC<RadioProps> = forwardRef<
   HTMLInputElement,
   RadioProps
 >(
-  (
+  function setRefRadioButton(
     {
       name,
       label,
@@ -60,7 +60,7 @@ export const RadioButton: FC<RadioProps> = forwardRef<
       ...props
     },
     ref
-  ) => {
+  ) {
     return (
       <div className="group flex max-w-sm mt-1 items-center">
         {" "}

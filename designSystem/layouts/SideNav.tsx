@@ -3,6 +3,7 @@ import { useRouter } from "next/router"
 import classNames from "classnames"
 import { UserButton, SignedIn, SignedOut, SignInButton } from "@clerk/nextjs"
 import { LogIn } from "lucide-react"
+import Link from "next/link"
 
 type SideNavStyle = "selected" | "notSelected"
 type ArticleList = { title: string; path?: string; groupTitle?: boolean }[] // This is the list of articles that will be displayed in the side nav
@@ -24,14 +25,14 @@ const SideNav: FC<SideNavProps> = ({ articleList, ...props }) => {
       aria-label="Sidebar"
     >
       <div>
-        <a
+        <Link
           href="/"
           className={classNames(
             "flex items-center p-1 text-base font-semibold text-gray-900 hover:text-gray-600 "
           )}
         >
           <span className="flex-1 ml-3 text-xl whitespace-nowrap">🏠 Home</span>
-        </a>
+        </Link>
       </div>
 
       <div className="flex overflow-scroll py-2 px-1">

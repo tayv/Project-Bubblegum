@@ -2,7 +2,7 @@ import LayoutContainerSide from "@designSystem/layouts/LayoutContainerSide"
 import Breadcrumbs from "@designSystem/layouts/Breadcrumbs"
 import Heading from "@designSystem/atoms/Heading"
 import Paragraph from "@designSystem/atoms/Paragraph"
-import { FC, useEffect, useState } from "react"
+import { FC, useEffect, useState, useMemo} from "react"
 import { useForm } from "react-hook-form"
 import WrapperInput from "@forms/WrapperInput"
 import HelpMessage from "@molecules/HelpMessage"
@@ -80,7 +80,7 @@ const TestForm: FC = () => {
   })
 
   // Printing an input's value used for debugging
-  let renderPrintValueButton = (inputID: string) => {
+  let PrintInputValueButton = (inputID: string) => {
     const [rhfGetVal, setRHFGetVal] = useState("")
 
     const handlePrintValue = () => {
@@ -132,7 +132,8 @@ const TestForm: FC = () => {
   })
 
   // set up form default values
-  const defaultValues = {
+  // useMemo needed to prevent infinite loop due to reset() being a useEffect depenedency in reset()
+  const defaultValues = useMemo( () => ({
     // Text Input SectionCard
     singleInput: "",
     // Text Area SectionCard
@@ -152,12 +153,12 @@ const TestForm: FC = () => {
     visCheckbox: true,
     bikeBrandRadio: "suzuki",
     motoTeamRadio: "honda",
-  }
+    }), [] )
 
   // Set up form default values with rhf
   useEffect(() => {
     reset({ ...defaultValues })
-  }, [])
+  }, [defaultValues, reset])
 
   const fieldValues = {
     // Text Input SectionCard
@@ -227,7 +228,7 @@ const TestForm: FC = () => {
               </WrapperInput>
 
               <Divider padding="large" />
-              {renderPrintValueButton("singleInput")}
+              {PrintInputValueButton("singleInput")}
             </SectionCard>
 
             <SectionCard id="radioInput" style="standard">
@@ -275,9 +276,9 @@ const TestForm: FC = () => {
               />
 
               <Divider padding="large" />
-              {renderPrintValueButton("standardRadio")}
-              {renderPrintValueButton("horizontalRadio")}
-              {renderPrintValueButton("buttonRadio")}
+              {PrintInputValueButton("standardRadio")}
+              {PrintInputValueButton("horizontalRadio")}
+              {PrintInputValueButton("buttonRadio")}
             </SectionCard>
 
             <SectionCard id="checkboxInput" style="standard">
@@ -298,7 +299,7 @@ const TestForm: FC = () => {
               />
 
               <Divider padding="large" />
-              {renderPrintValueButton("checkboxInput")}
+              {PrintInputValueButton("checkboxInput")}
             </SectionCard>
 
             <SectionCard id="textArea" style="standard">
@@ -323,8 +324,8 @@ const TestForm: FC = () => {
               />
 
               <Divider padding="large" />
-              {renderPrintValueButton("standardTextArea")}
-              {renderPrintValueButton("largeTextArea")}
+              {PrintInputValueButton("standardTextArea")}
+              {PrintInputValueButton("largeTextArea")}
             </SectionCard>
 
             <SectionCard id="radixWrapperSelect" style="standard">
@@ -386,8 +387,8 @@ const TestForm: FC = () => {
               />
 
               <Divider padding="large" />
-              {renderPrintValueButton("flatselect")}
-              {renderPrintValueButton("groupselect")}
+              {PrintInputValueButton("flatselect")}
+              {PrintInputValueButton("groupselect")}
             </SectionCard>
 
             <SectionCard id="datepick" style="standard">
@@ -402,7 +403,7 @@ const TestForm: FC = () => {
               />
 
               <Divider padding="large" />
-              {renderPrintValueButton("datepicktest")}
+              {PrintInputValueButton("datepicktest")}
             </SectionCard>
 
             {/* VISIBILITY CONDITION TEST SECTION --------------------------------------------- */}
@@ -443,7 +444,7 @@ const TestForm: FC = () => {
               </SectionCard>
             )}
 
-            {renderPrintValueButton("visRacingRadio")}
+            {PrintInputValueButton("visRacingRadio")}
             <Divider padding="large" />
 
             {
@@ -507,9 +508,9 @@ const TestForm: FC = () => {
                 )
             }
 
-            {renderPrintValueButton("visCheckbox")}
-            {renderPrintValueButton("bikeBrandRadio")}
-            {renderPrintValueButton("motoTeamRadio")}
+            {PrintInputValueButton("visCheckbox")}
+            {PrintInputValueButton("bikeBrandRadio")}
+            {PrintInputValueButton("motoTeamRadio")}
             <Divider padding="large" />
             {/* VISIBILITY TEST SECTION END --------------------------------------------- */}
           </form>

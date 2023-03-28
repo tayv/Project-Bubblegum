@@ -16,8 +16,8 @@ const DoDont: FC<DoDontProps> = ({ type, text, ...props }) => {
           <div className="pb-1">And this</div>
         </div>
         <div>
-          <div className="font-bold text-lg pt-2 pb-4">🙅‍♀️ Don't</div>
-          <div className="pb-1">Don't do this</div>
+          <div className="font-bold text-lg pt-2 pb-4">🙅‍♀️ Don&apos;t</div>
+          <div className="pb-1">Don&apos;t do this</div>
           <div className="pb-1">Or this</div>
         </div>
       </div>

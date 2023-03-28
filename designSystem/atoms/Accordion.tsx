@@ -47,8 +47,8 @@ const renderAccordionItems = (
   accordionStyle: AccordionStyle
 ) => {
   return accordionItems.map(
-    (item: { value: string; headerText: string; contentText: string }) => (
-      <AccordionRadix.Item value={item.value} className="mt-1">
+    (item: { value: string; headerText: string; contentText: string }, index) => (
+      <AccordionRadix.Item key={index} value={item.value} className="mt-1">
         <AccordionRadix.Header
           className={classNames([
             "group flex shadow data-[state=closed]:rounded-md data-[state=open]:rounded-tl-lg data-[state=open]:rounded-tr-lg font-normal", // standard css styles go here.

@@ -19,7 +19,7 @@ export type CheckboxProps = {
 } & Omit<HTMLAttributes<HTMLInputElement>, "defaultValues"> // omit used to prevent type error on input element
 
 const Checkbox: FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>(
-  (
+  function setRefCheckbox(
     {
       id,
       style = "standard",
@@ -30,7 +30,7 @@ const Checkbox: FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>(
       ...props
     },
     ref
-  ) => {
+  ) {
     return (
       <div>
         <InputLabel htmlFor={id} type="checkbox" label={label}>
