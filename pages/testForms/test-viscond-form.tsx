@@ -114,7 +114,7 @@ const TestVisForm: FC = () => {
     // Format { sectionID: showSectionCardBoolean }
     textInput: true,
     radioInput: false,
-    checkboxInput: true,
+    checkboxInput: true, 
     moto: true,
     visCondition1: true,
     visCondition2: true,
@@ -125,7 +125,7 @@ const TestVisForm: FC = () => {
   const defaultValues = useMemo(
     () => ({
       visOptionAB: "option1a",
-      visCheckbox: true,
+      visCheckbox: false, // must be opposite the jsx test condition to work on first click/render 
       bikeBrandRadio: "suzuki",
       motoTeamRadio: "honda",
     }),
@@ -137,7 +137,7 @@ const TestVisForm: FC = () => {
     reset({ ...defaultValues })
   }, [defaultValues, reset])
 
-  // To provide a quick summmary of all form inputs with visibility conditions
+  // To provide a quick summmary of all form inputs with visibility conditions and their current values
   const fieldValues = {
     bikeBrandRadio: watch("bikeBrandRadio"),
     motoTeamRadio: watch("motoTeamRadio"),
@@ -184,8 +184,8 @@ const TestVisForm: FC = () => {
               <SectionCard id="testvis-radios" style="standard">
                 <WrapperRadioGroup
                   name="visOptionAB"
-                  groupLabel="This is a radio group label"
-                  tipText="Tip: These radios are styled as buttons"
+                  groupLabel="Choose which label to show in the next section"
+                  tipText="Tip: N/A"
                   control={control}
                   style="button"
                   options={[
@@ -227,7 +227,7 @@ const TestVisForm: FC = () => {
                     <Divider padding="large" />
                     {
                       // Set visibility of radio group based on prev checkbox answer
-                      fieldValues.visCheckbox ? (
+                      !fieldValues.visCheckbox ? (
                         <WrapperRadioGroup
                           name="bikeBrandRadio"
                           groupLabel="Pick your favorite brand"
