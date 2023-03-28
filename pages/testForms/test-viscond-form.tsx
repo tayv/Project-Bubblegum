@@ -34,7 +34,7 @@ const crumbs = [
   },
 ]
 
-const TestForm: FC = () => {
+const TestVisForm: FC = () => {
   // Setup initial state
   const [docValue, setDocValue] = useState({ docID: 1, formData: {} })
 
@@ -108,6 +108,8 @@ const TestForm: FC = () => {
   }
 
   // Set up form sections to show/hide
+  // These are used to provide a single source of truth for the form sections. 
+  // Could be used by form inputs as well as page navigation
   const [sectionVis, setSectionCardVis] = useState({
     // Format { sectionID: showSectionCardBoolean }
     textInput: true,
@@ -118,26 +120,11 @@ const TestForm: FC = () => {
     visCondition2: true,
   })
 
-  // set up form default values
+  // set up form's default values (required by rhf)
   // useMemo needed to prevent infinite loop due to reset() being a useEffect depenedency in reset()
   const defaultValues = useMemo(
     () => ({
-      // Text Input SectionCard
-      singleInput: "",
-      // Text Area SectionCard
-      standardTextArea: "",
-      largeTextArea: "",
-      // Radio Input SectionCard
-      standardRadio: "mint",
-      horizontalRadio: "no",
-      buttonRadio: "orange-button",
-      // Checkbox Input SectionCard
-      checkboxInput: true,
-      // Select Input SectionCard
-      flatSelect: "third",
-      groupSelect: "third",
-      // Have visibility conditions
-      visRacingRadio: "moto-gp",
+      visOptionAB: "option1a",
       visCheckbox: true,
       bikeBrandRadio: "suzuki",
       motoTeamRadio: "honda",
@@ -150,23 +137,11 @@ const TestForm: FC = () => {
     reset({ ...defaultValues })
   }, [defaultValues, reset])
 
+  // To provide a quick summmary of all form inputs with visibility conditions
   const fieldValues = {
-    // Text Input SectionCard
-    singleInput: getValues("singleInput"),
-    // Radio Input SectionCard
-    standardRadio: getValues("standardRadio"),
-    horizontalRadio: getValues("horizontalRadio"),
-    buttonRadio: getValues("buttonRadio"),
-    registerradio: watch("registerradio"),
     bikeBrandRadio: watch("bikeBrandRadio"),
     motoTeamRadio: watch("motoTeamRadio"),
-    // Checkbox Input SectionCard
-    checkboxInput: watch("checkboxInput"),
-    // Select Input SectionCard
-    flatSelect: getValues("flatSelect"),
-    groupSelect: getValues("groupSelect"),
-    // Visibliity Conditions
-    visRacingRadio: watch("visRacingRadio"),
+    visOptionAB: watch("visOptionAB"),
     visCheckbox: watch("visCheckbox"),
   }
 
@@ -188,7 +163,7 @@ const TestForm: FC = () => {
     
             {/* VISIBILITY CONDITION TEST SECTION --------------------------------------------- */}
             <Heading size="h2" type="primary">
-              Visibility Condition Test SectionCard
+              Visibility Condition Test Section Card
             </Heading>
             <div className="flex flex-col items-end">
               <button
@@ -208,28 +183,28 @@ const TestForm: FC = () => {
             {sectionVis.visCondition1 && (
               <SectionCard id="testvis-radios" style="standard">
                 <WrapperRadioGroup
-                  name="visRacingRadio"
+                  name="visOptionAB"
                   groupLabel="This is a radio group label"
                   tipText="Tip: These radios are styled as buttons"
                   control={control}
                   style="button"
                   options={[
-                    { value: "moto-gp", label: "Moto GP" },
-                    { value: "work-superbike", label: "World Superbike" },
-                    { value: "supercross", label: "Supercross" },
-                    { value: "f1", label: "F1" },
+                    { value: "option1a", label: "Checkbox label A" },
+                    { value: "option2a", label: "Checkbox label A" },
+                    { value: "option3a", label: "Checkbox label A" },
+                    { value: "optionb", label: "Checkbox label B" },
                   ]}
                 />
               </SectionCard>
             )}
 
-            {PrintInputValueButton("visRacingRadio")}
+            {PrintInputValueButton("visOptionAB")}
             <Divider padding="large" />
 
             {
               // Conditionally toggle visibility of section based on prev radio group answer
               sectionVis.visCondition1 &&
-                (fieldValues.visRacingRadio === "supercross" || "moto-gp") && (
+                (fieldValues.visOptionAB === "option1a" || "option2a || option3a") && (
                   <SectionCard id="moto" style="standard">
                     {/* Heading text changes based on answer to previous radio group */}
                     <Heading size="h3">Toggle Words + Questions</Heading>
@@ -238,9 +213,9 @@ const TestForm: FC = () => {
                       type="standard"
                       htmlFor="visCheckbox"
                       label={
-                        fieldValues.visRacingRadio === "f1"
-                          ? "You chose F1"
-                          : "You didn't choose F1"
+                        fieldValues.visOptionAB === "optionb"
+                          ? "You chose B"
+                          : "You chose A"
                       }
                     />
                     <WrapperCheckbox
@@ -300,7 +275,7 @@ const TestForm: FC = () => {
             {/* div needed for sticky to work. Cannot use overflow: scroll/hidden/auto with sticky https://www.digitalocean.com/community/tutorials/css-position-sticky */}
             <div className="sticky top-0 overflow-y-auto">
               <SectionCard id="templateTest" style="blank">
-                <Heading size="h3">Template Test: Form Values</Heading>
+                <Heading size="h3">Form Submission Test</Heading>
                 <TemplateGeneric location="c" docData={docValue} />
               </SectionCard>
             </div>
@@ -311,4 +286,4 @@ const TestForm: FC = () => {
     </>
   )
 }
-export default TestForm
+export default TestVisForm
