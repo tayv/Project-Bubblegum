@@ -47,7 +47,7 @@ export const TextArea: FC<TextAreaProps> = forwardRef<
   HTMLTextAreaElement,
   TextAreaProps
 >(
-  (
+  function refTextArea(
     {
       name,
       label,
@@ -59,7 +59,7 @@ export const TextArea: FC<TextAreaProps> = forwardRef<
       ...props
     },
     ref
-  ) => {
+  ) {
     return (
       <div className="max-w-sm">
         <InputLabel htmlFor={name} type="standard" label={label} />
