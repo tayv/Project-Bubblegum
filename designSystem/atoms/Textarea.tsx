@@ -46,42 +46,40 @@ const textAreaSizeMap: { [key in TextAreaSize]: string } = {
 export const TextArea: FC<TextAreaProps> = forwardRef<
   HTMLTextAreaElement,
   TextAreaProps
->(
-  function setRefTextArea(
-    {
-      name,
-      label,
-      size = "standard",
-      className = "", // to pass custom one-off styling
-      tipText = null,
-      exampleText = null,
-      children,
-      ...props
-    },
-    ref
-  ) {
-    return (
-      <div className="max-w-sm">
-        <InputLabel htmlFor={name} type="standard" label={label} />
-        <Tip text={tipText} type="standard" />
-        <textarea
-          ref={ref}
-          id={name}
-          name={name}
-          // aria-label={label}
-          className={classNames([
-            "mt-1 block border border-gray-900 bg-white shadow-sm",
-            textAreaSizeMap[size], // to dynamically set styling for different sizes
-            className,
-          ])}
-          {...props}
-        />
-        <Tip text={exampleText} type="example" />
-        {children} {/* For displaying warning message components, etc. */}
-      </div>
-    )
-  }
-)
+>(function setRefTextArea(
+  {
+    name,
+    label,
+    size = "standard",
+    className = "", // to pass custom one-off styling
+    tipText = null,
+    exampleText = null,
+    children,
+    ...props
+  },
+  ref
+) {
+  return (
+    <div className="max-w-sm">
+      <InputLabel htmlFor={name} type="standard" label={label} />
+      <Tip text={tipText} type="standard" />
+      <textarea
+        ref={ref}
+        id={name}
+        name={name}
+        // aria-label={label}
+        className={classNames([
+          "mt-1 block border border-gray-900 bg-white shadow-sm",
+          textAreaSizeMap[size], // to dynamically set styling for different sizes
+          className,
+        ])}
+        {...props}
+      />
+      <Tip text={exampleText} type="example" />
+      {children} {/* For displaying warning message components, etc. */}
+    </div>
+  )
+})
 
 // HELPFUL SOURCES
 

@@ -2,7 +2,7 @@ import LayoutContainerSide from "@designSystem/layouts/LayoutContainerSide"
 import Breadcrumbs from "@designSystem/layouts/Breadcrumbs"
 import Heading from "@designSystem/atoms/Heading"
 import Paragraph from "@designSystem/atoms/Paragraph"
-import { FC, useEffect, useState, useMemo} from "react"
+import { FC, useEffect, useState, useMemo } from "react"
 import { useForm } from "react-hook-form"
 import WrapperInput from "@forms/WrapperInput"
 import HelpMessage from "@molecules/HelpMessage"
@@ -133,27 +133,30 @@ const TestForm: FC = () => {
 
   // set up form default values
   // useMemo needed to prevent infinite loop due to reset() being a useEffect depenedency in reset()
-  const defaultValues = useMemo( () => ({
-    // Text Input SectionCard
-    singleInput: "",
-    // Text Area SectionCard
-    standardTextArea: "",
-    largeTextArea: "",
-    // Radio Input SectionCard
-    standardRadio: "mint",
-    horizontalRadio: "no",
-    buttonRadio: "orange-button",
-    // Checkbox Input SectionCard
-    checkboxInput: true,
-    // Select Input SectionCard
-    flatSelect: "third",
-    groupSelect: "third",
-    // Have visibility conditions
-    visRacingRadio: "moto-gp",
-    visCheckbox: true,
-    bikeBrandRadio: "suzuki",
-    motoTeamRadio: "honda",
-    }), [] )
+  const defaultValues = useMemo(
+    () => ({
+      // Text Input SectionCard
+      singleInput: "",
+      // Text Area SectionCard
+      standardTextArea: "",
+      largeTextArea: "",
+      // Radio Input SectionCard
+      standardRadio: "mint",
+      horizontalRadio: "no",
+      buttonRadio: "orange-button",
+      // Checkbox Input SectionCard
+      checkboxInput: true,
+      // Select Input SectionCard
+      flatSelect: "third",
+      groupSelect: "third",
+      // Have visibility conditions
+      visRacingRadio: "moto-gp",
+      visCheckbox: true,
+      bikeBrandRadio: "suzuki",
+      motoTeamRadio: "honda",
+    }),
+    []
+  )
 
   // Set up form default values with rhf
   useEffect(() => {

@@ -47,7 +47,10 @@ const renderAccordionItems = (
   accordionStyle: AccordionStyle
 ) => {
   return accordionItems.map(
-    (item: { value: string; headerText: string; contentText: string }, index) => (
+    (
+      item: { value: string; headerText: string; contentText: string },
+      index
+    ) => (
       <AccordionRadix.Item key={index} value={item.value} className="mt-1">
         <AccordionRadix.Header
           className={classNames([

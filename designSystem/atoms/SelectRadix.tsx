@@ -84,16 +84,10 @@ const renderGroupedItems = (itemOptions: Array<GroupItemOptions>) => {
 const SelectRadix: FC<SelectRadixProps> = forwardRef<
   HTMLButtonElement,
   SelectRadixProps
->(
-  function setRefSelect(
-    { 
-      placeholder, 
-      itemOptions, 
-      children, 
-      ...props 
-    }, 
-      forwardedRef
-    ) {
+>(function setRefSelect(
+  { placeholder, itemOptions, children, ...props },
+  forwardedRef
+) {
   return (
     <Select.Root {...props}>
       <Select.Trigger
