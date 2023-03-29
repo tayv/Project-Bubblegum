@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react'
-import Checkbox from '../../../designSystem/atoms/Checkbox'
+import Checkbox from '@atoms/Checkbox.tsx'
 
 describe('Test Checkbox', () => {
   it('renders with label', () => {

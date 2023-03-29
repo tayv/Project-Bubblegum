@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from '@testing-library/react'
-import SelectRadix from '../../../designSystem/atoms/SelectRadix' // why doesn't @atoms/SelectRadix work here?
+import SelectRadix from '@atoms/SelectRadix' // why doesn't @atoms/SelectRadix work here?
 
 describe('SelectRadix component', () => {
  
