@@ -1,4 +1,5 @@
-import { render } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import '@testing-library/jest-dom/extend-expect'
 import Checkbox from '@atoms/Checkbox.tsx'
 
 describe('Test Checkbox', () => {
@@ -12,6 +13,6 @@ describe('Test Checkbox', () => {
       />
     )
 
-    expect(getByLabelText(labelText)).toBeInTheDocument()
+    expect(screen.getByLabelText(labelText)).toBeInTheDocument()
   })
 })

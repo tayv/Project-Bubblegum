@@ -1,5 +1,6 @@
 import React from 'react'
 import { render } from '@testing-library/react'
+import '@testing-library/jest-dom/extend-expect'
 import SelectRadix from '@atoms/SelectRadix' // why doesn't @atoms/SelectRadix work here?
 
 describe('SelectRadix component', () => {
@@ -7,7 +8,7 @@ describe('SelectRadix component', () => {
   test('renders only once', () => {
     const selectRef = React.createRef()
 
-    const { getByTestId } = render(
+    const { getByRole } = render(
     
       <SelectRadix 
        // onValueChange={onChange}
@@ -18,18 +19,15 @@ describe('SelectRadix component', () => {
             {value:"first", labelText:"firstText", separator: false}, 
             {value:"second", labelText:"secondText", separator: true}
           ] }
-       // data-testid="test-select"
+        data-testid="select-test"
       />
       
     )
     
-    // Verify that the SelectRadix component renders properly
+    // Check that it rendered 
+    expect(getByRole("combobox")).toBeInTheDocument()
+    
 
-      // Attempt 1:
-    expect(selectRef.current).toBe(true) // this fails, returns null
-
-     // Attempt 2:
-   // expect(getByTestId('test-select')).toBeInTheDocument() // this fails, unable to find an element by: [data-testid="test-select"]
 
   })
 })
