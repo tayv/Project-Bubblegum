@@ -1,7 +1,7 @@
 import React, { FC, ChangeEvent, forwardRef, InputHTMLAttributes, DetailedHTMLProps} from 'react'
 import classNames from 'classnames'
 import { Control } from 'react-hook-form'
-import Tip, { TipProps } from '@components/molecules/Tip'
+import Tip, { TipProps } from '@molecules/Tip'
 import InputLabel, { InputLabelProps } from 'designSystem/atoms/InputLabelRadix'
 
 // OVERVIEW
