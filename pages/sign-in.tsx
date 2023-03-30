@@ -1,21 +1,22 @@
-import LayoutContainerSide from '@designSystem/layouts/LayoutContainerSide'
-import Breadcrumbs from '@designSystem/layouts/Breadcrumbs'
-import Heading from '@designSystem/atoms/Heading'
-import Paragraph from '@designSystem/atoms/Paragraph'
+import LayoutContainerSide from "@designSystem/layouts/LayoutContainerSide"
+import Breadcrumbs from "@designSystem/layouts/Breadcrumbs"
+import Heading from "@designSystem/atoms/Heading"
+import Paragraph from "@designSystem/atoms/Paragraph"
 import SectionCard from "@designSystem/molecules/SectionCard"
-import { SignIn } from '@clerk/nextjs'
+import { SignIn } from "@clerk/nextjs"
 
 // data for Breadcrumbs
 const crumbs = [
   {
-    text: "Home", 
+    text: "Home",
     path: "/",
     currentPg: false,
-  }, {
-    text: "Test Document Builder", 
+  },
+  {
+    text: "Test Document Builder",
     path: "/",
     currentPg: true,
-  }
+  },
 ]
 
 const SignInPage = () => (
@@ -28,10 +29,8 @@ const SignInPage = () => (
         <SignIn />
       </SectionCard>
     </LayoutContainerSide>
-
   </>
-  
-  )
+)
 
 export default SignInPage
 

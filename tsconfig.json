@@ -28,9 +28,14 @@
       "@templates/*": ["designSystem/templates/*"],
 
       "@docs/*": ["pages/docs/*"],
-      "@restricted/*": ["pages/restricted/*"], // private pages for authenticated users
+      "@restricted/*": ["pages/restricted/*"] // private pages for authenticated users
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "designSystem/layouts/Breadcrumbs.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "designSystem/layouts/Breadcrumbs.tsx"
+  ],
   "exclude": ["node_modules"]
 }

@@ -1,6 +1,6 @@
-import React, { FC } from 'react'
-import { TextArea, TextAreaProps } from 'designSystem/atoms/Textarea'
-import { Controller } from 'react-hook-form'
+import React, { FC } from "react"
+import { TextArea, TextAreaProps } from "designSystem/atoms/Textarea"
+import { Controller } from "react-hook-form"
 
 const WrapperTextArea: FC<TextAreaProps> = ({
   name,
@@ -13,31 +13,29 @@ const WrapperTextArea: FC<TextAreaProps> = ({
   exampleText,
   children,
   ...props
-}) => {  
-
+}) => {
   return (
     <div>
-
       <Controller
         control={control}
         name={name}
         render={({ field }) => (
-          <TextArea {...field} // Need to place ...field above custom event handlers so that the built in handlers are overridden
-            label={label} 
+          <TextArea
+            {...field} // Need to place ...field above custom event handlers so that the built in handlers are overridden
+            label={label}
             size={size}
-            tipText={tipText} 
-            exampleText={exampleText} 
+            tipText={tipText}
+            exampleText={exampleText}
           />
         )}
       />
       {children} {/* Children here will be warning message components, etc. */}
-    </div>  
+    </div>
   )
 }
 
 export default WrapperTextArea
 
 // Controller documentation
-  // Controller supports custom onChange and onBlur. 
-    // See https://stackoverflow.com/questions/67917480/onchange-input-in-react-hook-form 
-  
+// Controller supports custom onChange and onBlur.
+// See https://stackoverflow.com/questions/67917480/onchange-input-in-react-hook-form
