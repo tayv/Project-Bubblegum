@@ -8,11 +8,9 @@ const LayoutContainerSide = ({ children }: any) => {
         <SideNav
           articleList={[
             { title: "Testing", groupTitle: true },
-            { title: "Test Form", path: "/docs/test-form" },
-            {
-              title: "🧰 Test Document Builder",
-              path: "/restricted/test-document-builder",
-            },
+            { title: "Test Form", path: "/testForms/test-form" },
+            { title: "Test Vis Conditions Form", path: "/testForms/test-viscond-form" },
+            { title: "🧰 Test Document Builder", path: "/restricted/test-document-builder"},
             { title: "Components", groupTitle: true },
             { title: "Navigation", path: "/docs/navigation-article" },
             { title: "Buttons", path: "/docs/buttons-article" },
