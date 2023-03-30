@@ -39,11 +39,11 @@ const Checkbox: FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>(
             type="checkbox"
             id={id}
             name={id}
-            defaultChecked={defaultChecked}
+           // defaultChecked={defaultChecked}
             // defaultValue={defaultChecked} // not necessary for single checkbox
             className="form-checkbox"
-            onChange={(e) => onChange((value = e.target.checked))}
-            value={value}
+            onChange={(e) => onChange(e.target.checked)}
+            checked={value}
             {...props}
           />
           <span className="ml-2">{label}</span>

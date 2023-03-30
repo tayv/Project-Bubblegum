@@ -19,6 +19,10 @@ import DatePick from "designSystem/atoms/DatePick"
 import Divider from "@designSystem/atoms/Divider"
 import BlankSpace from "@designSystem/atoms/BlankSpace"
 import Accordion from "designSystem/atoms/Accordion"
+import Field from "@designSystem/forms/FieldTest"
+import Checkbox from "@designSystem/atoms/Checkbox"
+import Input from "@designSystem/atoms/Input"
+import WatchField from "@designSystem/forms/FieldTestConditional"
 
 // data for Breadcrumbs
 const crumbs = [
@@ -160,6 +164,38 @@ const TestVisForm: FC = () => {
             className="col-span-2 py-3 px-8 my-8 rounded-3xl bg-zinc-200/10 border"
             onSubmit={onSubmit}
           >
+
+            {/* TEXT FIELD SECTION --------------------------------------------- */}
+            <SectionCard id="test-field" style="standard">
+              <Field
+                name="field-test-checkbox"
+                defaultValue={false}
+                control={control}
+                >
+                  <Checkbox label="test-checkbox" />
+                </Field>
+
+              <Field
+                name="field-test-input"
+                defaultValue="Text Input"
+                control={control}
+                >
+                  <Input label="test-input" />
+              </Field>
+                
+            </SectionCard>
+
+            <SectionCard id="text-conditional-field" style="standard">
+              <WatchField
+                name="watchfield-test-checkbox"
+                defaultValue={true}
+                control={control}
+                watch={watch}
+                conditional={ { name: 'field-test-checkbox', value: false } }
+                >
+                  <Checkbox label="watchfield-test-checkbox" />
+                </WatchField>
+            </SectionCard>
     
             {/* VISIBILITY CONDITION TEST SECTION --------------------------------------------- */}
             <Heading size="h2" type="primary">
