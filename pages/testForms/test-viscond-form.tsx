@@ -167,25 +167,26 @@ const TestVisForm: FC = () => {
 
             {/* TEXT FIELD SECTION --------------------------------------------- */}
             <SectionCard id="test-field" style="standard">
+              <Heading size="h2" type="primary">Field Components</Heading>
+              <Paragraph>These atomic components are rendered as children using the Field component</Paragraph>
+              <BlankSpace xSize="small" />
               <Field
                 name="field-test-checkbox"
                 defaultValue={false}
                 control={control}
                 >
-                  <Checkbox label="test-checkbox" />
+                  <Checkbox label="This is being watched and toggles the next section" />
                 </Field>
-
+              <BlankSpace xSize="small" />
               <Field
                 name="field-test-input"
                 defaultValue="Text Input"
                 control={control}
                 >
-                  <Input label="test-input" />
-              </Field>
-                
+                  <Input label="This uses the Field component" />
+              </Field>    
             </SectionCard>
 
-            <SectionCard id="text-conditional-field" style="standard">
               <WatchField
                 name="watchfield-test-checkbox"
                 defaultValue={true}
@@ -193,9 +194,12 @@ const TestVisForm: FC = () => {
                 watch={watch}
                 conditional={ { name: 'field-test-checkbox', value: false } }
                 >
-                  <Checkbox label="watchfield-test-checkbox" />
+                  <SectionCard id="text-conditional-field" style="standard">
+                    <Heading size="h2" type="primary">WatchField Components</Heading>
+                    <Checkbox label="This watches the previous section" />
+                  </SectionCard>
                 </WatchField>
-            </SectionCard>
+         
     
             {/* VISIBILITY CONDITION TEST SECTION --------------------------------------------- */}
             <Heading size="h2" type="primary">
