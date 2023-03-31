@@ -5,6 +5,7 @@ import InputLabel from '@atoms/InputLabelRadix'
 export type CheckboxStyle = "standard" | "toggle"
 export type CheckboxProps = {
   id: string
+  name: string
   label: string
   value?: any // HTMLInputElement type doesn't like use of boolean so switched to any
   style?: CheckboxStyle
@@ -22,6 +23,7 @@ const Checkbox: FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>(
   function setRefCheckbox(
     {
       id,
+      name,
       style = "standard",
       label,
       onChange,
@@ -37,13 +39,11 @@ const Checkbox: FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>(
           {/* <label className="inline-flex items-center"> */}
           <input
             type="checkbox"
-            id={id}
-            name={id}
-            defaultChecked={defaultChecked}
-            // defaultValue={defaultChecked} // not necessary for single checkbox
+            id={name}
+            name={name}
             className="form-checkbox"
-            onChange={(e) => onChange((value = e.target.checked))}
-            value={value}
+            onChange={(e) => onChange(e.target.checked)}
+            checked={value}
             {...props}
           />
           <span className="ml-2">{label}</span>
