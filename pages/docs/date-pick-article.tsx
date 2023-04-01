@@ -7,7 +7,9 @@ import { useForm } from "react-hook-form"
 import SectionCard from "@designSystem/molecules/SectionCard"
 import DatePick from "designSystem/atoms/DatePick"
 import Divider from "@designSystem/atoms/Divider"
-import TemplateGeneric from "@designSystem/templates/TemplateGeneric"
+
+import PrintInputValueButton from "testComponents/PrintValueButton"
+import SubmitButton from "testComponents/SubmitButton"
 
 // data for Breadcrumbs
 const crumbs = [
@@ -23,66 +25,14 @@ const crumbs = [
   },
 ]
 
-
-
 const DatePickerPage: FC = () => {
-  // Setup initial state
-  const [docValue, setDocValue] = useState({ docID: 1, formData: {} })
-
+  // Used by the test section to show the form data
+  const [formData, setFormData] = useState( {} )
   const { control, getValues, handleSubmit } = useForm() // needed to remove the RHF prop type error and testin form submission
-  
   const onSubmit = handleSubmit(async (data, event) => {
-    setDocValue({ docID: 1, formData: data }) // Save form values to state so the test template table can show the values
+    setFormData(data) // Save form values to state so the test template table can show the values
     console.log("Form submitted. data:", data, "Submit form - errors", Error)
-    console.log("event:", event)
-    const body = data
-    try {
-      const response = await fetch("/api/inquiry", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      })
-      if (response.status !== 200) {
-        console.log("something went wrong oops")
-        //set an error banner here
-      } else {
-        // resetForm();
-        console.log("form submitted successfully !!!")
-        //set a success banner here
-      }
-      //check response, if success is false, dont take them to success page
-    } catch (error) {
-      console.log("there was an error submitting", error)
-    }
   })
-  
-    // Printing an input's value used for debugging
-    let PrintInputValueButton = (inputID: string) => {
-      const [rhfGetVal, setRHFGetVal] = useState("")
-  
-      const handlePrintValue = () => {
-        const inputValue = getValues(inputID)
-        setRHFGetVal(inputValue)
-        console.log("input's value:", inputValue)
-      }
-  
-      return (
-        <div className="flex flex-row items-center gap-3">
-          <button
-            type="button"
-            className="block border-slate-900 bg-slate-100 hover:bg-slate-200 border rounded-md my-1 px-2 py-1 text-xs font-medium"
-            onClick={handlePrintValue}
-          >
-            🖨️ Print {inputID} Value
-          </button>
-          {rhfGetVal === undefined ? (
-            <Paragraph size="small"> Value is undefined </Paragraph>
-          ) : (
-            <Paragraph size="small">{`Value: ${rhfGetVal}`}</Paragraph>
-          )}
-        </div>
-      )
-    }
   
   return (
     <>
@@ -157,7 +107,7 @@ const DatePickerPage: FC = () => {
 
 {/* ------------------------ Test Section ------------------------*/}
       <form
-        id="test-form"
+        id="test-datepick-form"
         className="col-span-2 py-3 px-8 my-8 rounded-3xl bg-zinc-200/10 border"
         onSubmit={onSubmit}
       >   
@@ -165,6 +115,7 @@ const DatePickerPage: FC = () => {
           <Heading size="h3" type="primary">
             Date Picker
           </Heading>
+
           <DatePick
             name="datePickTest"
             label="datePickTest"
@@ -172,23 +123,15 @@ const DatePickerPage: FC = () => {
             endYearRange={2030}
           />
 
+<Divider padding="large" />
+          <PrintInputValueButton inputID="datePickTest" getValues={getValues}/>
+
           <Divider padding="large" />
-          {PrintInputValueButton("datePickTest")}
-          <TemplateGeneric location="c" docData={docValue} />
+
+          <SubmitButton onSubmit={onSubmit} formData={formData} /> 
+      
         </SectionCard>
       </form>
-
-         {/*TEMPLATE SECTION START --------------------------------------------- */}
-         <div className="overflow-visible my-4">
-            {" "}
-            {/* div needed for sticky to work. Cannot use overflow: scroll/hidden/auto with sticky https://www.digitalocean.com/community/tutorials/css-position-sticky */}
-            <div className="sticky top-0 overflow-y-auto">
-              <SectionCard id="templateTest" style="blank">
-                <Heading size="h3">Template Test: Form Values</Heading>
-                <TemplateGeneric location="c" docData={docValue} />
-              </SectionCard>
-            </div>
-          </div>
 
       </LayoutContainerSide>
     </>
