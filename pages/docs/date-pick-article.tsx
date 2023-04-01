@@ -2,11 +2,14 @@ import LayoutContainerSide from "@designSystem/layouts/LayoutContainerSide"
 import Breadcrumbs from "@designSystem/layouts/Breadcrumbs"
 import Heading from "@designSystem/atoms/Heading"
 import Paragraph from "@designSystem/atoms/Paragraph"
-import { FC } from "react"
+import { FC, useState } from "react"
 import { useForm } from "react-hook-form"
 import SectionCard from "@designSystem/molecules/SectionCard"
 import DatePick from "designSystem/atoms/DatePick"
 import Divider from "@designSystem/atoms/Divider"
+
+import PrintInputValueButton from "testComponents/PrintValueButton"
+import SubmitButton from "testComponents/SubmitButton"
 
 // data for Breadcrumbs
 const crumbs = [
@@ -23,7 +26,14 @@ const crumbs = [
 ]
 
 const DatePickerPage: FC = () => {
-  const { control } = useForm() // needed to remove the RHF prop type error
+  // Used by the test section to show the form data
+  const [formData, setFormData] = useState( {} )
+  const { control, getValues, handleSubmit } = useForm() // needed to remove the RHF prop type error and testin form submission
+  const onSubmit = handleSubmit(async (data, event) => {
+    setFormData(data) // Save form values to state so the test template table can show the values
+    console.log("Form submitted. data:", data, "Submit form - errors", Error)
+  })
+  
   return (
     <>
       <LayoutContainerSide>
@@ -94,6 +104,35 @@ const DatePickerPage: FC = () => {
             aligned by using a parent div with flexbox.
           </Paragraph>
         </SectionCard>
+
+{/* ------------------------ Test Section ------------------------*/}
+      <form
+        id="test-datepick-form"
+        className="col-span-2 py-3 px-8 my-8 rounded-3xl bg-zinc-200/10 border"
+        onSubmit={onSubmit}
+      >   
+        <SectionCard id="datepick" style="standard">
+          <Heading size="h3" type="primary">
+            Date Picker
+          </Heading>
+
+          <DatePick
+            name="datePickTest"
+            label="datePickTest"
+            startYearRange={1990}
+            endYearRange={2030}
+          />
+
+<Divider padding="large" />
+          <PrintInputValueButton inputID="datePickTest" getValues={getValues}/>
+
+          <Divider padding="large" />
+
+          <SubmitButton onSubmit={onSubmit} formData={formData} /> 
+      
+        </SectionCard>
+      </form>
+
       </LayoutContainerSide>
     </>
   )
