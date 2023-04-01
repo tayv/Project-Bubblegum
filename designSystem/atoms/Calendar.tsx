@@ -41,12 +41,16 @@ const Calendar: FC<DatePickProps & InputProps> = ({
   tipText = null,
   startYearRange,
   endYearRange,
+  setShowCalendar,
+  //today,
+  selectedDay,
+  setSelectedDay
 }) => {
+//  console.log("today:", today)
   let today = startOfToday() // a date-fns function that gets current date on user's machine
-  let [selectedDay, setSelectedDay] = useState(today) // the day current selected by user
+ // let [selectedDay, setSelectedDay] = useState(today) // the day currently selected by user
   let [currentMonth, setCurrentMonth] = useState(format(today, "MMM-yyyy")) // format is a date-fns function
   let firstDaySelectedMonth = parse(currentMonth, "MMM-yyyy", new Date()) // From date-fns. Returns the date parsed from string using the given format string
-  let [showCalendar, setShowCalendar] = useState("CalendarClosed") // used to show/hide the calendar
 
   // store the days of the month in an array. This will be mapped through in order to create the calendar
   let daysInMonth = eachDayOfInterval({
@@ -100,14 +104,6 @@ const Calendar: FC<DatePickProps & InputProps> = ({
         </Select.Item>
       )
     })
-  }
-
-  const toggleCalendar = () => {
-    // Used by Radix UI's Accordion to open/close the Accordian. Not using Boolean because the Radix API requires a string value.
-    // https://www.radix-ui.com/docs/primitives/components/accordion
-    showCalendar === "CalendarOpen"
-      ? setShowCalendar("CalendarClosed")
-      : setShowCalendar("CalendarOpen")
   }
 
   return (
