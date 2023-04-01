@@ -5,11 +5,13 @@ import Paragraph from "@designSystem/atoms/Paragraph"
 import { FC, useState } from "react"
 import { useForm } from "react-hook-form"
 import SectionCard from "@designSystem/molecules/SectionCard"
-import DatePick from "designSystem/atoms/DatePick"
+import DatePick from "@designSystem/molecules/DatePick"
 import Divider from "@designSystem/atoms/Divider"
 
 import PrintInputValueButton from "testComponents/PrintValueButton"
 import SubmitButton from "testComponents/SubmitButton"
+import Field from "@designSystem/forms/FieldTest"
+import Calendar from "@atoms/Calendar"
 
 // data for Breadcrumbs
 const crumbs = [
@@ -52,6 +54,19 @@ const DatePickerPage: FC = () => {
             custom date.
           </Paragraph>
           <Divider padding="xl" />
+          
+          <div className="max-w-lg">
+          <Calendar
+            name="exampleCalendar"
+            label="Calendar:"
+            tipText="Tip: This calendar is an atomic component that's intended to used as a child of the DatePick component. It expands to fill its parent container."
+            startYearRange={1992}
+            endYearRange={2025}
+          />
+          </div>
+
+          <Divider padding="xl" />
+
           <DatePick
             name="exampleSingleDatePick"
             label={"Pick a date (still uncontrolled):"}
@@ -123,7 +138,22 @@ const DatePickerPage: FC = () => {
             endYearRange={2030}
           />
 
-<Divider padding="large" />
+          <Field
+            name="datePickField"
+            label="datePickField"
+            control={control}
+            startYearRange={1990}
+            endYearRange={2030}
+          >
+            <DatePick
+              name="datePickField"
+              label="datePickField"
+              startYearRange={1990}
+              endYearRange={2030}
+            />
+          </Field>
+
+          <Divider padding="large" />
           <PrintInputValueButton inputID="datePickTest" getValues={getValues}/>
 
           <Divider padding="large" />
