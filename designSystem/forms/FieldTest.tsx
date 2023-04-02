@@ -1,6 +1,6 @@
-import Checkbox from '@designSystem/atoms/Checkbox'
-import React, { FC, ReactElement } from 'react'
-import { Controller, Control } from 'react-hook-form'
+import Checkbox from "@designSystem/atoms/Checkbox"
+import React, { FC, ReactElement } from "react"
+import { Controller, Control } from "react-hook-form"
 
 type FieldProps = {
   name: string
@@ -24,15 +24,13 @@ const Field: FC<FieldProps> = ({
       defaultValue={defaultValue}
       control={control}
       rules={validationRules}
-      render={ ({ field: {...props } }) => (
+      render={({ field: { ...props } }) =>
         React.cloneElement(children, {
           ...props,
-          ...children.props
-        })    
-      ) }
-      
-   />
-
+          ...children.props,
+        })
+      }
+    />
   )
 }
 

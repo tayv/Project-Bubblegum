@@ -112,13 +112,13 @@ const TestVisForm: FC = () => {
   }
 
   // Set up form sections to show/hide
-  // These are used to provide a single source of truth for the form sections. 
+  // These are used to provide a single source of truth for the form sections.
   // Could be used by form inputs as well as page navigation
   const [sectionVis, setSectionCardVis] = useState({
     // Format { sectionID: showSectionCardBoolean }
     textInput: true,
     radioInput: false,
-    checkboxInput: true, 
+    checkboxInput: true,
     moto: true,
     visCondition1: true,
     visCondition2: true,
@@ -129,7 +129,7 @@ const TestVisForm: FC = () => {
   const defaultValues = useMemo(
     () => ({
       visOptionAB: "option1a",
-      visCheckbox: false, // must be opposite the jsx test condition to work on first click/render 
+      visCheckbox: false, // must be opposite the jsx test condition to work on first click/render
       bikeBrandRadio: "suzuki",
       motoTeamRadio: "honda",
     }),
@@ -154,9 +154,7 @@ const TestVisForm: FC = () => {
       <LayoutContainerSide>
         <Breadcrumbs crumbs={crumbs} />
         <Heading size="h1">Test Visibility Conditions Form</Heading>
-        <Paragraph>
-          This is a template to test visibility conditions.
-        </Paragraph>
+        <Paragraph>This is a template to test visibility conditions.</Paragraph>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 w-full xl:max-w-1400">
           <form
@@ -164,43 +162,48 @@ const TestVisForm: FC = () => {
             className="col-span-2 py-3 px-8 my-8 rounded-3xl bg-zinc-200/10 border"
             onSubmit={onSubmit}
           >
-
             {/* TEXT FIELD SECTION --------------------------------------------- */}
             <SectionCard id="test-field" style="standard">
-              <Heading size="h2" type="primary">Field Components</Heading>
-              <Paragraph>These atomic components are rendered as children using the Field component</Paragraph>
+              <Heading size="h2" type="primary">
+                Field Components
+              </Heading>
+              <Paragraph>
+                These atomic components are rendered as children using the Field
+                component
+              </Paragraph>
               <BlankSpace xSize="small" />
               <Field
                 name="field-test-checkbox"
                 defaultValue={false}
                 control={control}
-                >
-                  <Checkbox label="This is being watched and toggles the next section" />
-                </Field>
+              >
+                <Checkbox label="This is being watched and toggles the next section" />
+              </Field>
               <BlankSpace xSize="small" />
               <Field
                 name="field-test-input"
                 defaultValue="Text Input"
                 control={control}
-                >
-                  <Input label="This uses the Field component" />
-              </Field>    
+              >
+                <Input label="This uses the Field component" />
+              </Field>
             </SectionCard>
 
-              <WatchField
-                name="watchfield-test-checkbox"
-                defaultValue={true}
-                control={control}
-                watch={watch}
-                conditional={ { name: 'field-test-checkbox', value: false } }
-                >
-                  <SectionCard id="text-conditional-field" style="standard">
-                    <Heading size="h2" type="primary">WatchField Components</Heading>
-                    <Checkbox label="This watches the previous section" />
-                  </SectionCard>
-                </WatchField>
-         
-    
+            <WatchField
+              name="watchfield-test-checkbox"
+              defaultValue={true}
+              control={control}
+              watch={watch}
+              conditional={{ name: "field-test-checkbox", value: false }}
+            >
+              <SectionCard id="text-conditional-field" style="standard">
+                <Heading size="h2" type="primary">
+                  WatchField Components
+                </Heading>
+                <Checkbox label="This watches the previous section" />
+              </SectionCard>
+            </WatchField>
+
             {/* VISIBILITY CONDITION TEST SECTION --------------------------------------------- */}
             <Heading size="h2" type="primary">
               Visibility Condition Test Section Card
@@ -244,7 +247,8 @@ const TestVisForm: FC = () => {
             {
               // Conditionally toggle visibility of section based on prev radio group answer
               sectionVis.visCondition1 &&
-                (fieldValues.visOptionAB === "option1a" || "option2a || option3a") && (
+                (fieldValues.visOptionAB === "option1a" ||
+                  "option2a || option3a") && (
                   <SectionCard id="moto" style="standard">
                     {/* Heading text changes based on answer to previous radio group */}
                     <Heading size="h3">Toggle Words + Questions</Heading>

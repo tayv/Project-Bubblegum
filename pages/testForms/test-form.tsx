@@ -295,6 +295,7 @@ const TestForm: FC = () => {
               />
               <Tip text="Tip: These are standard checkboxes" type="standard" />
               <WrapperCheckbox
+                name="checkboxInput"
                 id="checkboxInput"
                 style="standard"
                 label="This is a checkbox label"
@@ -469,6 +470,7 @@ const TestForm: FC = () => {
                     />
                     <WrapperCheckbox
                       id="visCheckbox"
+                      name="visCheckbox"
                       style="standard"
                       label="Toggle next question"
                       control={control}
