@@ -15,7 +15,7 @@ import TemplateGeneric from "@templates/TemplateGeneric"
 import UpdateDocState from "utils/UpdateDocState"
 import WrapperTextArea from "@forms/WrapperTextArea"
 import WrapperSelect from "@forms/WrapperSelect"
-import DatePick from "designSystem/atoms/DatePick"
+import DatePick from "@designSystem/molecules/DatePick"
 import Divider from "@designSystem/atoms/Divider"
 import BlankSpace from "@designSystem/atoms/BlankSpace"
 import Accordion from "designSystem/atoms/Accordion"
@@ -295,6 +295,7 @@ const TestForm: FC = () => {
               />
               <Tip text="Tip: These are standard checkboxes" type="standard" />
               <WrapperCheckbox
+                name="checkboxInput"
                 id="checkboxInput"
                 style="standard"
                 label="This is a checkbox label"
@@ -469,6 +470,7 @@ const TestForm: FC = () => {
                     />
                     <WrapperCheckbox
                       id="visCheckbox"
+                      name="visCheckbox"
                       style="standard"
                       label="Toggle next question"
                       control={control}
