@@ -1,14 +1,7 @@
-import React, { FC, useState } from "react"
-import classNames from "classnames"
+import { FC, useState } from "react"
 import {
-  ChevronDown,
-  ChevronUp,
-  ChevronsUpDown,
   CalendarDays,
   Minus,
-  Plus,
-  ArrowLeft,
-  ArrowRight,
 } from "lucide-react"
 import { InputProps } from "designSystem/atoms/Input"
 import InputLabel from "designSystem/atoms/InputLabelRadix"
@@ -16,42 +9,33 @@ import Tip, { TipProps } from "@molecules/Tip"
 import * as Select from "@radix-ui/react-select"
 import * as Accordion from "@radix-ui/react-accordion"
 import {
-  add,
-  eachDayOfInterval,
-  endOfMonth,
   format,
-  getDay,
-  isEqual,
-  isSameMonth,
-  isToday,
-  parse,
-  setYear,
   startOfToday,
-  eachYearOfInterval,
 } from "date-fns"
-import Calendar from "@designSystem/atoms/Calendar"
+import Calendar, { CalendarProps } from "@designSystem/atoms/Calendar"
 
 export type DatePickProps = {
-  startYearRange: number // Range determines the years used by the Select in the calendar
-  endYearRange: number
+  name: string
+  label?: string | null
+  tipText?: string | null
+  defaultDate?: string | Date // should add a type guard function to validate format in future 
 }
 
-const DatePick: FC<DatePickProps & InputProps> = ({
+const DatePick: FC<DatePickProps & CalendarProps & InputProps> = ({
   name,
   label = null,
   tipText = null,
   startYearRange,
   endYearRange,
-  defaultValue = startOfToday() 
+  defaultDate = startOfToday() // Want the calendar to open to today's date by default unless a custom value is passed
 }) => {
-  const defaultDateString = "2022-01-11"
-  const parsedDefaultDate = new Date(defaultDateString)
-  
-  let today = startOfToday() // a date-fns function that gets current date on user's machine
-  let [selectedDay, setSelectedDay] = useState(parsedDefaultDate) // the day currently selected by user
 
+  // ------------- These are needed by the Calendar component ------------- 
+  const parsedDefaultValue = new Date(defaultDate) // Needed to get convert the prop to a valid date. BUG: This displays as one day behind. TBD
+  let [selectedDay, setSelectedDay] = useState(parsedDefaultValue) // the day currently selected by user
   let [showCalendar, setShowCalendar] = useState("CalendarClosed") // used to show/hide the calendar
-
+  // ----------------------------------------------------------------------   
+  
   const toggleCalendar = () => {
     // Used by Radix UI's Accordion to open/close the Accordian. Not using Boolean because the Radix API requires a string value.
     // https://www.radix-ui.com/docs/primitives/components/accordion
@@ -77,9 +61,11 @@ const DatePick: FC<DatePickProps & InputProps> = ({
         <Accordion.Item value={"CalendarOpen"} className="mt-1 ">
           <Accordion.Header className="group flex shadow data-[state=closed]:w-48 data-[state=open]:w-full bg-neutral-200 data-[state=closed]:rounded-md data-[state=open]:rounded-tl-lg data-[state=open]:rounded-tr-lg">
             <Accordion.Trigger className="inline-flex justify-between items-center px-3 py-2 w-full text-left ">
+             
               {/* Integrated an input field into Accordian Header so that the form has an input value to submit */}
               <div className="inline-flex align-left">
                 <CalendarDays className="h-7 w-7 mr-2 text-black" />
+
                 <input
                   name={name}
                   readOnly
@@ -88,6 +74,7 @@ const DatePick: FC<DatePickProps & InputProps> = ({
                   value={format(selectedDay, "MMM-dd-yyyy")}
                 />
               </div>
+
               <Minus className="group-data-[state=closed]:hidden h-4 w-4 text-neutral-500 " />{" "}
               {/* Hiding minus icon when calendar is closed via tailwind's group to avoid cluttering the starting state with icons */}
             </Accordion.Trigger>
@@ -96,15 +83,12 @@ const DatePick: FC<DatePickProps & InputProps> = ({
           <Accordion.Content className="data-[state=closed]:w-60 data-[state=open]:w-full">
             {/* Calendar */}
            <Calendar
-            name={name}
             startYearRange={startYearRange}
             endYearRange={endYearRange}
-            label={label}
-            tipText={tipText}
             selectedDay={selectedDay}
             setShowCalendar={setShowCalendar}
             setSelectedDay={setSelectedDay}
-            today={parsedDefaultDate}
+            defaultDate={parsedDefaultValue}
            />
            
           </Accordion.Content>

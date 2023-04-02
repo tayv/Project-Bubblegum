@@ -30,23 +30,26 @@ import {
   eachYearOfInterval,
 } from "date-fns"
 
-export type DatePickProps = {
+export type CalendarProps = {
   startYearRange: number // Range determines the years used by the Select in the calendar
   endYearRange: number
+  defaultDate?: Date
 }
 
-const Calendar: FC<DatePickProps & InputProps> = ({
-  name,
-  label = null,
-  tipText = null,
+type CalendarStateProps = {
+  selectedDay: Date
+  setSelectedDay: (value: Date) => void
+  setShowCalendar: (value: "CalendarClosed" | "CalendarOpen") => void
+}
+
+const Calendar: FC<CalendarProps & CalendarStateProps> = ({
   startYearRange,
   endYearRange,
   setShowCalendar,
-  //today,
+  defaultDate,
   selectedDay,
   setSelectedDay
 }) => {
-//  console.log("today:", today)
   let today = startOfToday() // a date-fns function that gets current date on user's machine
  // let [selectedDay, setSelectedDay] = useState(today) // the day currently selected by user
   let [currentMonth, setCurrentMonth] = useState(format(today, "MMM-yyyy")) // format is a date-fns function
@@ -108,9 +111,6 @@ const Calendar: FC<DatePickProps & InputProps> = ({
 
   return (
     <div>
-      {!!label && <InputLabel type="standard" label={label} htmlFor={name} />}
-      {!!tipText && <Tip type="standard" text={tipText} />}
-      {/* Value and OnValueChange are required to toggle the open/close state of the Accordian when users clicks the header */}
       {/* Calendar */}
       <div className="bg-neutral-50 rounded-bl-lg rounded-br-lg border-solid border-2 shadow w-full p-3 py-6 md:p-0">
               <div className="max-w-md mx-auto sm:px-7 md:max-w-4xl md:px-2">

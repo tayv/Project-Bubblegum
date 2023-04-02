@@ -56,13 +56,11 @@ const DatePickerPage: FC = () => {
           <Divider padding="xl" />
           
           <div className="max-w-lg">
-          <Calendar
-            name="exampleCalendar"
-            label="Calendar:"
-            tipText="Tip: This calendar is an atomic component that's intended to used as a child of the DatePick component. It expands to fill its parent container."
-            startYearRange={1992}
-            endYearRange={2025}
-          />
+            {// @ts-ignore
+            <Calendar
+              startYearRange={1992}
+              endYearRange={2025}
+            />}
           </div>
 
           <Divider padding="xl" />
@@ -90,6 +88,7 @@ const DatePickerPage: FC = () => {
             <DatePick
               name="exampleStartDatePick"
               label={"Start Date:"}
+              defaultValue="2022-12-10"
               tipText={null}
               control={control} // doesn't do anything yet
               startYearRange={1992}
