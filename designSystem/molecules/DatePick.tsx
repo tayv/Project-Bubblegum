@@ -7,18 +7,25 @@ import * as Select from "@radix-ui/react-select"
 import * as Accordion from "@radix-ui/react-accordion"
 import { format, startOfToday } from "date-fns"
 import Calendar, { CalendarProps } from "@designSystem/atoms/Calendar"
+import { useForm } from "react-hook-form"
 
 export type DatePickProps = {
   name: string
   label?: string | null
+  value: string | number
   tipText?: string | null
   defaultDate?: string | Date // should add a type guard function to validate format in future
 }
 
+
+
+// Component ----------------------------------------------------------------------
 const DatePick: FC<DatePickProps & CalendarProps & InputProps> = forwardRef<HTMLInputElement, DatePickProps & CalendarProps & InputProps>(
   function SetRefDatePick (
     {
       name,
+      value,
+      onChange,
       label = null,
       tipText = null,
       startYearRange,
@@ -31,14 +38,25 @@ const DatePick: FC<DatePickProps & CalendarProps & InputProps> = forwardRef<HTML
     const parsedDefaultValue = new Date(defaultDate) // Needed to get convert the prop to a valid date. BUG: This displays as one day behind. TBD
     let [selectedDay, setSelectedDay] = useState(parsedDefaultValue) // the day currently selected by user
     let [showCalendar, setShowCalendar] = useState("CalendarClosed") // used to show/hide the calendar
-    // --------------------------------------------------------------------------------------
-
+    
+    // ------------- These are needed by the DatePick component to handle state -------------
     const toggleCalendar = () => {
       // Used by Radix UI's Accordion to open/close the Accordian. Not using Boolean because the Radix API requires a string value.
       // https://www.radix-ui.com/docs/primitives/components/accordion
       showCalendar === "CalendarOpen"
         ? setShowCalendar("CalendarClosed")
         : setShowCalendar("CalendarOpen")
+    }
+
+    // ------------- Used to sync Calendar selection with the DatePick input's value -------------
+    const { setValue } = useForm() // used by Calendar component to set the value of the input field
+    const handleSelectedDayChange = (name: string, selectedDay: number | Date ) => {
+      setSelectedDay(selectedDay) // update the selected day
+      const formattedDate = format(selectedDay, 'MMM-dd-yyyy') // normalize the date
+      setValue(name, formattedDate) // set the value of the input field
+      if (onChange) { // if onChange prop is passed, call it
+        onChange(formattedDate) 
+      }
     }
 
     return (
@@ -62,14 +80,16 @@ const DatePick: FC<DatePickProps & CalendarProps & InputProps> = forwardRef<HTML
                 <div className="inline-flex align-left">
                   <CalendarDays className="h-7 w-7 mr-2 text-black" />
 
+                  {/* The controlled date input value for the form */}
                   <input
                     name={name}
                     ref={ref}
                     readOnly
                     type="text"
                     className="shrink w-full p-0 m-0 bg-transparent border-none focus:ring-0 text-black cursor-pointer"
-                    value={format(selectedDay, "MMM-dd-yyyy")}
+                    value={value}
                   />
+
                 </div>
                 <Minus className="group-data-[state=closed]:hidden h-4 w-4 text-neutral-500 " />{" "}
                 {/* Hiding minus icon when calendar is closed via tailwind's group to avoid cluttering the starting state with icons */}
@@ -85,6 +105,8 @@ const DatePick: FC<DatePickProps & CalendarProps & InputProps> = forwardRef<HTML
                 setShowCalendar={setShowCalendar}
                 setSelectedDay={setSelectedDay}
                 defaultDate={parsedDefaultValue}
+                handleSelectedDayChange={handleSelectedDayChange}
+                name={name}
               />
             </Accordion.Content>
           </Accordion.Item>

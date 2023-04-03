@@ -49,6 +49,8 @@ const Calendar: FC<CalendarProps & CalendarStateProps> = ({
   defaultDate,
   selectedDay,
   setSelectedDay,
+  handleSelectedDayChange,
+  name
 }) => {
   let today = startOfToday() // a date-fns function that gets current date on user's machine
   // let [selectedDay, setSelectedDay] = useState(today) // the day currently selected by user
@@ -196,6 +198,7 @@ const Calendar: FC<CalendarProps & CalendarStateProps> = ({
                       type="button"
                       onClick={() => {
                         setSelectedDay(day)
+                        handleSelectedDayChange(name, day)
                         setShowCalendar("CalendarClosed") // Remove if don't want calendar to close after selecting a day
                       }} // when user clicks on a day, set that day as the selected day
                       className={classNames(
