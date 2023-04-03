@@ -10,9 +10,9 @@ import Calendar, { CalendarProps } from "@designSystem/atoms/Calendar"
 import { useForm } from "react-hook-form"
 
 export type DatePickProps = {
-  name: string
+  name?: string // Optional because wrapper Field component will require and pass it in
   label?: string | null
-  value: string | number
+  value?: string | number
   tipText?: string | null
   defaultDate?: string | Date // should add a type guard function to validate format in future
 }
@@ -50,10 +50,11 @@ const DatePick: FC<DatePickProps & CalendarProps & InputProps> = forwardRef<HTML
 
     // ------------- Used to sync Calendar selection with the DatePick input's value -------------
     const { setValue } = useForm() // used by Calendar component to set the value of the input field
-    const handleSelectedDayChange = (name: string, selectedDay: number | Date ) => {
+    const handleSelectedDayChange = (name: string, selectedDay: Date ) => {
       setSelectedDay(selectedDay) // update the selected day
       const formattedDate = format(selectedDay, 'MMM-dd-yyyy') // normalize the date
       setValue(name, formattedDate) // set the value of the input field
+      setShowCalendar("CalendarClosed") // Remove if don't want calendar to close after selecting a day
       if (onChange) { // if onChange prop is passed, call it
         onChange(formattedDate) 
       }
@@ -132,5 +133,3 @@ let firstDayStartingCol = [
 
 export default DatePick
 
-// Calendar based on this tutorial
-// https://www.youtube.com/watch?v=9ySmMd5Cjc0

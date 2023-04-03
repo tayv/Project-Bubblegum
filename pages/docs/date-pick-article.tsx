@@ -131,7 +131,7 @@ const DatePickerPage: FC = () => {
 
             <Field name="datePickField" control={control} defaultValue="Default">
               <DatePick
-               // name="datePickField"
+                name="datePickField"
                 label="datePickField"
                 startYearRange={1990}
                 endYearRange={2030}
