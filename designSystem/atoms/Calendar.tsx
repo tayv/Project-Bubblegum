@@ -31,15 +31,18 @@ import {
 } from "date-fns"
 
 export type CalendarProps = {
+  name: string
   startYearRange: number // Range determines the years used by the Select in the calendar
   endYearRange: number
   defaultDate?: Date
+
 }
 
 type CalendarStateProps = {
   selectedDay: Date
   setSelectedDay: (value: Date) => void
   setShowCalendar: (value: "CalendarClosed" | "CalendarOpen") => void
+  handleSelectedDayChange: (name: string, selectedDay: Date) => void
 }
 
 const Calendar: FC<CalendarProps & CalendarStateProps> = ({
@@ -49,6 +52,8 @@ const Calendar: FC<CalendarProps & CalendarStateProps> = ({
   defaultDate,
   selectedDay,
   setSelectedDay,
+  handleSelectedDayChange,
+  name
 }) => {
   let today = startOfToday() // a date-fns function that gets current date on user's machine
   // let [selectedDay, setSelectedDay] = useState(today) // the day currently selected by user
@@ -194,10 +199,7 @@ const Calendar: FC<CalendarProps & CalendarStateProps> = ({
                   >
                     <button
                       type="button"
-                      onClick={() => {
-                        setSelectedDay(day)
-                        setShowCalendar("CalendarClosed") // Remove if don't want calendar to close after selecting a day
-                      }} // when user clicks on a day, set that day as the selected day
+                      onClick={() => { handleSelectedDayChange(name, day) }} // when user clicks on a day, update the state and input in DatePick with the selected day
                       className={classNames(
                         // current day selected?
                         isEqual(day, selectedDay) && "text-white",

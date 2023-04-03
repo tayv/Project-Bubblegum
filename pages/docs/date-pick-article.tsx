@@ -129,9 +129,9 @@ const DatePickerPage: FC = () => {
               Date Picker
             </Heading>
 
-            <Field name="datePickField" control={control} defaultValue="">
+            <Field name="datePickField" control={control} defaultValue="Default">
               <DatePick
-               // name="datePickField"
+                name="datePickField"
                 label="datePickField"
                 startYearRange={1990}
                 endYearRange={2030}
@@ -140,7 +140,7 @@ const DatePickerPage: FC = () => {
 
             <Divider padding="large" />
             <PrintInputValueButton
-              inputID="datePickTest"
+              inputID="datePickField"
               getValues={getValues}
             />
 
