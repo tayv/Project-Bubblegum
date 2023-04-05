@@ -3,7 +3,7 @@ import Breadcrumbs from "@designSystem/layouts/Breadcrumbs"
 import Heading from "@designSystem/atoms/Heading"
 import Paragraph from "@designSystem/atoms/Paragraph"
 import { FC, useState } from "react"
-import { useForm } from "react-hook-form"
+import { useForm, FormProvider, FieldValues } from "react-hook-form"
 import SectionCard from "@designSystem/molecules/SectionCard"
 import DatePick from "@designSystem/molecules/DatePick"
 import Divider from "@designSystem/atoms/Divider"
@@ -13,9 +13,7 @@ import SubmitButton from "testComponents/SubmitButton"
 import Field from "@designSystem/forms/FieldTest"
 import Calendar from "@atoms/Calendar"
 import { format, startOfToday } from "date-fns"
-import useFieldValue from "utils/useFieldValue"
-import { useMemo, useEffect } from "react"
-
+import useSyncInputDefaultValues from "utils/useSyncInputDefaultValues"
 
 // data for Breadcrumbs
 const crumbs = [
@@ -32,19 +30,20 @@ const crumbs = [
 ]
 
 const DatePickerPage: FC = () => {
-  
   const defaultValues = {
     //  "exampleSingleDatePick": format(startOfToday(), 'MMM-dd-yyyy'),
-      //"exampleStartDatePick": format(startOfToday(), 'MMM-dd-yyyy'),
-      //"exampleEndDatePick": format(startOfToday(), 'MMM-dd-yyyy'),
-      "datePickField": format(startOfToday(), 'MMM-dd-yyyy'),
-    //  "datePickField2": datePickFieldValue // handled at the component level since relies on rhf methods 
-    }
+    //"exampleStartDatePick": format(startOfToday(), 'MMM-dd-yyyy'),
+    //"exampleEndDatePick": format(startOfToday(), 'MMM-dd-yyyy'),
+    datePickField: format(startOfToday(), "MMM-dd-yyyy"),
+    //  "datePickField2": datePickFieldValue // handled at the component level since relies on rhf methods
+  }
   // Used by the test section to show the form data
   const [formData, setFormData] = useState({})
-  const { control, getValues, handleSubmit, watch, setValue } = useForm({defaultValues,
-  }) // needed to remove the RHF prop type error and testin form submission
-  const onSubmit = handleSubmit(async (data, event) => {
+  // const { control, getValues, handleSubmit, watch, setValue } = useForm({defaultValues,
+  // }) // needed to remove the RHF prop type error and testin form submission
+  const methods = useForm({ defaultValues })<FieldValues>
+
+  const onSubmit = methods.handleSubmit(async (data, event) => {
     setFormData(data) // Save form values to state so the test template table can show the values
     console.log("Form submitted. data:", data, "Submit form - errors", Error)
   })
@@ -54,10 +53,6 @@ const DatePickerPage: FC = () => {
   // useEffect(() => {
   //   setValue('datePickField2', datePickFieldValue);
   // }, [datePickFieldValue, setValue])
-
- 
-
-  
 
   // // Set up form default values with rhf
   // useEffect(() => {
@@ -71,14 +66,16 @@ const DatePickerPage: FC = () => {
         <Heading id="date-picker" size="h1">
           Date Picker
         </Heading>
-        <Paragraph>On this page you&apos;ll find a calendar date picker</Paragraph>
+        <Paragraph>
+          On this page you&apos;ll find a calendar date picker
+        </Paragraph>
 
         <SectionCard id="SingleDatePickExample" style="standard">
           <Heading size="h2">Example 1: Single Date Picker</Heading>
           <Paragraph>
             Custom Date Picker using Radix UI&apos;s Accordion primitive. The
-            Accordion&apos;s header holds a read only text input. When expanded, an
-            interactive tailwind-styled calendar allows the user to choose a
+            Accordion&apos;s header holds a read only text input. When expanded,
+            an interactive tailwind-styled calendar allows the user to choose a
             custom date.
           </Paragraph>
           <Divider padding="xl" />
@@ -96,7 +93,7 @@ const DatePickerPage: FC = () => {
             name="exampleSingleDatePick"
             label={"Pick a date (still uncontrolled):"}
             tipText="Optional tip to help the user to pick the right date. Set as null or leave out to hide it."
-            control={control} // doesn't do anything yet
+            control={methods.control} // doesn't do anything yet
             startYearRange={1992}
             endYearRange={2025}
           />
@@ -117,7 +114,7 @@ const DatePickerPage: FC = () => {
               label={"Start Date:"}
               defaultValue="2022-12-10"
               tipText={null}
-              control={control} // doesn't do anything yet
+              control={methods.control} // doesn't do anything yet
               startYearRange={1992}
               endYearRange={2025}
             />
@@ -125,7 +122,7 @@ const DatePickerPage: FC = () => {
               name="exampleEndDatePick"
               label={"End Date:"}
               tipText={null}
-              control={control} // doesn't do anything yet
+              control={methods.control} // doesn't do anything yet
               startYearRange={1992}
               endYearRange={2025}
             />
@@ -147,51 +144,64 @@ const DatePickerPage: FC = () => {
         </SectionCard>
 
         {/* ------------------------ Test Section ------------------------*/}
-        <form
-          id="test-datepick-form"
-          className="col-span-2 py-3 px-8 my-8 rounded-3xl bg-zinc-200/10 border"
-          onSubmit={onSubmit}
-        >
-          <SectionCard id="datepick" style="standard">
-            <Heading size="h3" type="primary">
-              Date Picker
-            </Heading>
+        <FormProvider {...methods}>
+          <form
+            id="test-datepick-form"
+            className="col-span-2 py-3 px-8 my-8 rounded-3xl bg-zinc-200/10 border"
+            onSubmit={onSubmit}
+          >
+            <SectionCard id="datepick" style="standard">
+              <Heading size="h3" type="primary">
+                Date Picker
+              </Heading>
 
-            <Field name="datePickField" control={control}  defaultValue={format(startOfToday(), 'MMM-dd-yyyy')}>
-              <DatePick
+              <Field
                 name="datePickField"
-                label="datePickField"
-                startYearRange={1990}
-                endYearRange={2030}
-               
-              />
-            </Field>
+                control={methods.control}
+                defaultValue={format(startOfToday(), "MMM-dd-yyyy")}
+              >
+                <DatePick
+                  name="datePickField"
+                  label="datePickField"
+                  startYearRange={1990}
+                  endYearRange={2030}
+                />
+              </Field>
 
-            <Field name="datePickField2" control={control} defaultValue={useFieldValue(watch, setValue, defaultValues.datePickField, "datePickField", "datePickField2")}>
-              <DatePick
+              <Field
                 name="datePickField2"
-                label="datePickField2"
-                startYearRange={1990}
-                endYearRange={2030}
-                
+                control={methods.control}
+                defaultValue={useSyncInputDefaultValues(
+                  methods,
+                  defaultValues.datePickField,
+                  "datePickField",
+                  "datePickField2"
+                )}
+              >
+                <DatePick
+                  name="datePickField2"
+                  label="datePickField2"
+                  startYearRange={1990}
+                  endYearRange={2030}
+                />
+              </Field>
+
+              <Divider padding="large" />
+              <PrintInputValueButton
+                inputID="datePickField"
+                getValues={methods.getValues}
               />
-            </Field>
+              <PrintInputValueButton
+                inputID="datePickField2"
+                getValues={methods.getValues}
+              />
 
-            <Divider padding="large" />
-            <PrintInputValueButton
-              inputID="datePickField"
-              getValues={getValues}
-            />
-             <PrintInputValueButton
-              inputID="datePickField2"
-              getValues={getValues}
-            />
+              <Divider padding="large" />
 
-            <Divider padding="large" />
-
-            <SubmitButton onSubmit={onSubmit} formData={formData} />
-          </SectionCard>
-        </form>
+              <SubmitButton onSubmit={onSubmit} formData={formData} />
+            </SectionCard>
+          </form>
+        </FormProvider>
       </LayoutContainerSide>
     </>
   )
