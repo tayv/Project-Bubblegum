@@ -12,6 +12,10 @@ import PrintInputValueButton from "testComponents/PrintValueButton"
 import SubmitButton from "testComponents/SubmitButton"
 import Field from "@designSystem/forms/FieldTest"
 import Calendar from "@atoms/Calendar"
+import { format, startOfToday } from "date-fns"
+import useFieldValue from "utils/useFieldValue"
+import { useMemo, useEffect } from "react"
+
 
 // data for Breadcrumbs
 const crumbs = [
@@ -28,13 +32,45 @@ const crumbs = [
 ]
 
 const DatePickerPage: FC = () => {
+  
+  const defaultValues = {
+    //  "exampleSingleDatePick": format(startOfToday(), 'MMM-dd-yyyy'),
+      //"exampleStartDatePick": format(startOfToday(), 'MMM-dd-yyyy'),
+      //"exampleEndDatePick": format(startOfToday(), 'MMM-dd-yyyy'),
+      "datePickField": format(startOfToday(), 'MMM-dd-yyyy'),
+    //  "datePickField2": datePickFieldValue // handled at the component level since relies on rhf methods 
+    }
   // Used by the test section to show the form data
   const [formData, setFormData] = useState({})
-  const { control, getValues, handleSubmit } = useForm() // needed to remove the RHF prop type error and testin form submission
+  const { control, getValues, handleSubmit, watch, setValue } = useForm({defaultValues,
+  }) // needed to remove the RHF prop type error and testin form submission
   const onSubmit = handleSubmit(async (data, event) => {
     setFormData(data) // Save form values to state so the test template table can show the values
     console.log("Form submitted. data:", data, "Submit form - errors", Error)
   })
+
+   let datePickFieldValue = watch('datePickField', format(startOfToday(), 'MMM-dd-yyyy'))
+  // const defaultValues = {
+  //   //  "exampleSingleDatePick": format(startOfToday(), 'MMM-dd-yyyy'),
+  //     //"exampleStartDatePick": format(startOfToday(), 'MMM-dd-yyyy'),
+  //     //"exampleEndDatePick": format(startOfToday(), 'MMM-dd-yyyy'),
+  //     "datePickField": format(startOfToday(), 'MMM-dd-yyyy'),
+  //     "datePickField2": datePickFieldValue
+  //   }
+
+
+  useEffect(() => {
+    setValue('datePickField2', datePickFieldValue);
+  }, [datePickFieldValue, setValue])
+
+ 
+
+  
+
+  // // Set up form default values with rhf
+  // useEffect(() => {
+  //   reset({ ...defaultValues })
+  // }, [defaultValues, reset])
 
   return (
     <>
@@ -129,18 +165,33 @@ const DatePickerPage: FC = () => {
               Date Picker
             </Heading>
 
-            <Field name="datePickField" control={control} defaultValue="Default">
+            <Field name="datePickField" control={control}  defaultValue={format(startOfToday(), 'MMM-dd-yyyy')}>
               <DatePick
                 name="datePickField"
                 label="datePickField"
                 startYearRange={1990}
                 endYearRange={2030}
+               
+              />
+            </Field>
+
+            <Field name="datePickField2" control={control} defaultValue={datePickFieldValue}>
+              <DatePick
+                name="datePickField2"
+                label="datePickField2"
+                startYearRange={1990}
+                endYearRange={2030}
+                
               />
             </Field>
 
             <Divider padding="large" />
             <PrintInputValueButton
               inputID="datePickField"
+              getValues={getValues}
+            />
+             <PrintInputValueButton
+              inputID="datePickField2"
               getValues={getValues}
             />
 

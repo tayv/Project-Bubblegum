@@ -34,7 +34,7 @@ export type CalendarProps = {
   name: string
   startYearRange: number // Range determines the years used by the Select in the calendar
   endYearRange: number
-  defaultDate?: Date
+  defaultValue?: Date
 
 }
 
@@ -49,7 +49,7 @@ const Calendar: FC<CalendarProps & CalendarStateProps> = ({
   startYearRange,
   endYearRange,
   setShowCalendar,
-  defaultDate,
+  defaultValue,
   selectedDay,
   setSelectedDay,
   handleSelectedDayChange,

@@ -14,10 +14,8 @@ export type DatePickProps = {
   label?: string | null
   value?: string | number
   tipText?: string | null
-  defaultDate?: string | Date // should add a type guard function to validate format in future
+  defaultValue?: string | Date // should add a type guard function to validate format in future
 }
-
-
 
 // Component ----------------------------------------------------------------------
 const DatePick: FC<DatePickProps & CalendarProps & InputProps> = forwardRef<HTMLInputElement, DatePickProps & CalendarProps & InputProps>(
@@ -30,12 +28,12 @@ const DatePick: FC<DatePickProps & CalendarProps & InputProps> = forwardRef<HTML
       tipText = null,
       startYearRange,
       endYearRange,
-      defaultDate = startOfToday(), // Want the calendar to open to today's date by default unless a custom value is passed
+      defaultValue = format(startOfToday(), 'MMM-dd-yyyy'), // Want the calendar to open to today's date by default unless a custom value is passed
     },
     ref
   ) {
     // ------------- These are needed by the Calendar component to handle state -------------
-    const parsedDefaultValue = new Date(defaultDate) // Needed to get convert the prop to a valid date. BUG: This displays as one day behind. TBD
+    const parsedDefaultValue = new Date(defaultValue) // Needed to get convert the prop to a valid date. BUG: This displays as one day behind. TBD
     let [selectedDay, setSelectedDay] = useState(parsedDefaultValue) // the day currently selected by user
     let [showCalendar, setShowCalendar] = useState("CalendarClosed") // used to show/hide the calendar
     
@@ -105,7 +103,7 @@ const DatePick: FC<DatePickProps & CalendarProps & InputProps> = forwardRef<HTML
                 selectedDay={selectedDay}
                 setShowCalendar={setShowCalendar}
                 setSelectedDay={setSelectedDay}
-                defaultDate={parsedDefaultValue}
+                defaultValue={parsedDefaultValue}
                 handleSelectedDayChange={handleSelectedDayChange}
                 name={name}
               />
