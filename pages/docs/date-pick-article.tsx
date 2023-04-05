@@ -167,7 +167,7 @@ const DatePickerPage: FC = () => {
               />
             </Field>
 
-            <Field name="datePickField2" control={control} defaultValue={useFieldValue(watch, setValue, "datePickField", "datePickField2")}>
+            <Field name="datePickField2" control={control} defaultValue={useFieldValue(watch, setValue, defaultValues.datePickField, "datePickField", "datePickField2")}>
               <DatePick
                 name="datePickField2"
                 label="datePickField2"
