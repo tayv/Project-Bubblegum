@@ -49,19 +49,11 @@ const DatePickerPage: FC = () => {
     console.log("Form submitted. data:", data, "Submit form - errors", Error)
   })
 
-   let datePickFieldValue = watch('datePickField', format(startOfToday(), 'MMM-dd-yyyy'))
-  // const defaultValues = {
-  //   //  "exampleSingleDatePick": format(startOfToday(), 'MMM-dd-yyyy'),
-  //     //"exampleStartDatePick": format(startOfToday(), 'MMM-dd-yyyy'),
-  //     //"exampleEndDatePick": format(startOfToday(), 'MMM-dd-yyyy'),
-  //     "datePickField": format(startOfToday(), 'MMM-dd-yyyy'),
-  //     "datePickField2": datePickFieldValue
-  //   }
-
-
-  useEffect(() => {
-    setValue('datePickField2', datePickFieldValue);
-  }, [datePickFieldValue, setValue])
+  // Synced DatePick values
+  // let datePickFieldValue = watch('datePickField', format(startOfToday(), 'MMM-dd-yyyy'))
+  // useEffect(() => {
+  //   setValue('datePickField2', datePickFieldValue);
+  // }, [datePickFieldValue, setValue])
 
  
 
@@ -175,7 +167,7 @@ const DatePickerPage: FC = () => {
               />
             </Field>
 
-            <Field name="datePickField2" control={control} defaultValue={datePickFieldValue}>
+            <Field name="datePickField2" control={control} defaultValue={useFieldValue(watch, setValue, "datePickField", "datePickField2")}>
               <DatePick
                 name="datePickField2"
                 label="datePickField2"
