@@ -25,6 +25,7 @@ const customJestConfig = {
     "^@styles/(.*)$": "<rootDir>/styles/$1",
     "^@helpers/(.*)$": "<rootDir>/designSystem/molecules/$1",
     "^@templates/(.*)$": "<rootDir>/designSystem/templates/$1",
+    "^@utils/(.*)$": "<rootDir>/utils/$1",
     "^@docs/(.*)$": "<rootDir>/pages/docs/$1",
     "^@restricted/(.*)$": "<rootDir>/pages/restricted/$1",
   },

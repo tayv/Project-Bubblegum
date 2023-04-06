@@ -26,6 +26,7 @@
       "@styles/*": ["styles/*"],
       "@helpers/*": ["designSystem/molecules/*"],
       "@templates/*": ["designSystem/templates/*"],
+      "@utils/*": ["utils/*"],
 
       "@docs/*": ["pages/docs/*"],
       "@restricted/*": ["pages/restricted/*"] // private pages for authenticated users

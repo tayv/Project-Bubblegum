@@ -13,7 +13,7 @@ import SubmitButton from "testComponents/SubmitButton"
 import Field from "@designSystem/forms/FieldTest"
 import Calendar from "@atoms/Calendar"
 import { format, startOfToday } from "date-fns"
-import useSyncInputDefaultValues from "utils/useSyncDefaultValues"
+import useSyncDefaultValues from "@utils/useSyncDefaultValues"
 
 // data for Breadcrumbs
 const crumbs = [
@@ -153,7 +153,7 @@ const DatePickerPage: FC = () => {
 
               <Field
                 name="datePickField2"
-                defaultValue={useSyncInputDefaultValues(
+                defaultValue={useSyncDefaultValues(
                   methods,
                   defaultValues.datePickField,
                   "datePickField",
