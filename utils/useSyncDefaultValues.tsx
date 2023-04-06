@@ -3,7 +3,7 @@ import { useWatch } from "react-hook-form"
 
 // This custom hook is used to sync the defaultValue of one input with the value of another input. Typically used for DatePick when two dates are closely related. For example, a lease end date should not be before the lease start date.
 function useSyncDefaultValues(
-  methods: any, 
+  methods: any,
   defaultValue: string | number | Date,
   inputNameWatch: string,
   inputNameSync: string

@@ -6,7 +6,7 @@ type FieldProps = {
   name: string
   defaultValue: any
   validationRules?: any
- // control: Control // this is not needed since we are using useFormContext
+  // control: Control // this is not needed since we are using useFormContext
   children: ReactElement
 }
 
@@ -14,13 +14,12 @@ const Field: FC<FieldProps> = ({
   name,
   defaultValue,
   validationRules,
- // control,
+  // control,
   children,
   ...props
 }) => {
-
   const { control } = useFormContext()
-  
+
   return (
     <Controller
       name={name}

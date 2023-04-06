@@ -31,9 +31,9 @@ const crumbs = [
 
 const DatePickerPage: FC = () => {
   const defaultValues = {
-    exampleSingleDatePick: format(startOfToday(), 'MMM-dd-yyyy'),
-    exampleStartDatePick: format(startOfToday(), 'MMM-dd-yyyy'),
-    exampleEndDatePick: format(startOfToday(), 'MMM-dd-yyyy'),
+    exampleSingleDatePick: format(startOfToday(), "MMM-dd-yyyy"),
+    exampleStartDatePick: format(startOfToday(), "MMM-dd-yyyy"),
+    exampleEndDatePick: format(startOfToday(), "MMM-dd-yyyy"),
     datePickField: format(startOfToday(), "MMM-dd-yyyy"),
     // "datePickField2": datePickFieldValue // handled at the component level since need to pass rhf method prop with useSyncInputDefaultValues custom hook
   }
@@ -139,10 +139,7 @@ const DatePickerPage: FC = () => {
                 Date Picker
               </Heading>
 
-              <Field
-                name="datePickField"
-                defaultValue=""
-              >
+              <Field name="datePickField" defaultValue="">
                 <DatePick
                   name="datePickField"
                   label="datePickField"
