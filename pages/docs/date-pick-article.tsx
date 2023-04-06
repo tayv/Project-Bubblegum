@@ -3,7 +3,7 @@ import Breadcrumbs from "@designSystem/layouts/Breadcrumbs"
 import Heading from "@designSystem/atoms/Heading"
 import Paragraph from "@designSystem/atoms/Paragraph"
 import { FC, useState } from "react"
-import { useForm, FormProvider, FieldValues } from "react-hook-form"
+import { useForm, FormProvider } from "react-hook-form"
 import SectionCard from "@designSystem/molecules/SectionCard"
 import DatePick from "@designSystem/molecules/DatePick"
 import Divider from "@designSystem/atoms/Divider"
@@ -13,7 +13,7 @@ import SubmitButton from "testComponents/SubmitButton"
 import Field from "@designSystem/forms/FieldTest"
 import Calendar from "@atoms/Calendar"
 import { format, startOfToday } from "date-fns"
-import useSyncInputDefaultValues from "utils/useSyncInputDefaultValues"
+import useSyncInputDefaultValues from "utils/useSyncDefaultValues"
 
 // data for Breadcrumbs
 const crumbs = [
@@ -31,33 +31,21 @@ const crumbs = [
 
 const DatePickerPage: FC = () => {
   const defaultValues = {
-    //  "exampleSingleDatePick": format(startOfToday(), 'MMM-dd-yyyy'),
-    //"exampleStartDatePick": format(startOfToday(), 'MMM-dd-yyyy'),
-    //"exampleEndDatePick": format(startOfToday(), 'MMM-dd-yyyy'),
+    exampleSingleDatePick: format(startOfToday(), 'MMM-dd-yyyy'),
+    exampleStartDatePick: format(startOfToday(), 'MMM-dd-yyyy'),
+    exampleEndDatePick: format(startOfToday(), 'MMM-dd-yyyy'),
     datePickField: format(startOfToday(), "MMM-dd-yyyy"),
-    //  "datePickField2": datePickFieldValue // handled at the component level since relies on rhf methods
+    // "datePickField2": datePickFieldValue // handled at the component level since need to pass rhf method prop with useSyncInputDefaultValues custom hook
   }
-  // Used by the test section to show the form data
+  // Used by the test section to show the form data in the UI
   const [formData, setFormData] = useState({})
-  // const { control, getValues, handleSubmit, watch, setValue } = useForm({defaultValues,
-  // }) // needed to remove the RHF prop type error and testin form submission
-  const methods = useForm({ defaultValues })<FieldValues>
+
+  const methods = useForm({ defaultValues })
 
   const onSubmit = methods.handleSubmit(async (data, event) => {
     setFormData(data) // Save form values to state so the test template table can show the values
     console.log("Form submitted. data:", data, "Submit form - errors", Error)
   })
-
-  // Synced DatePick values
-  // let datePickFieldValue = watch('datePickField', format(startOfToday(), 'MMM-dd-yyyy'))
-  // useEffect(() => {
-  //   setValue('datePickField2', datePickFieldValue);
-  // }, [datePickFieldValue, setValue])
-
-  // // Set up form default values with rhf
-  // useEffect(() => {
-  //   reset({ ...defaultValues })
-  // }, [defaultValues, reset])
 
   return (
     <>
@@ -76,7 +64,7 @@ const DatePickerPage: FC = () => {
             Custom Date Picker using Radix UI&apos;s Accordion primitive. The
             Accordion&apos;s header holds a read only text input. When expanded,
             an interactive tailwind-styled calendar allows the user to choose a
-            custom date.
+            custom date. DefaultValue prop requires controlled components.
           </Paragraph>
           <Divider padding="xl" />
 
@@ -93,7 +81,6 @@ const DatePickerPage: FC = () => {
             name="exampleSingleDatePick"
             label={"Pick a date (still uncontrolled):"}
             tipText="Optional tip to help the user to pick the right date. Set as null or leave out to hide it."
-            control={methods.control} // doesn't do anything yet
             startYearRange={1992}
             endYearRange={2025}
           />
@@ -112,9 +99,7 @@ const DatePickerPage: FC = () => {
             <DatePick
               name="exampleStartDatePick"
               label={"Start Date:"}
-              defaultValue="2022-12-10"
               tipText={null}
-              control={methods.control} // doesn't do anything yet
               startYearRange={1992}
               endYearRange={2025}
             />
@@ -122,7 +107,6 @@ const DatePickerPage: FC = () => {
               name="exampleEndDatePick"
               label={"End Date:"}
               tipText={null}
-              control={methods.control} // doesn't do anything yet
               startYearRange={1992}
               endYearRange={2025}
             />
@@ -157,8 +141,7 @@ const DatePickerPage: FC = () => {
 
               <Field
                 name="datePickField"
-                control={methods.control}
-                defaultValue={format(startOfToday(), "MMM-dd-yyyy")}
+                defaultValue=""
               >
                 <DatePick
                   name="datePickField"
@@ -170,7 +153,6 @@ const DatePickerPage: FC = () => {
 
               <Field
                 name="datePickField2"
-                control={methods.control}
                 defaultValue={useSyncInputDefaultValues(
                   methods,
                   defaultValues.datePickField,
