@@ -1,5 +1,5 @@
 import LayoutContainerSide from "@designSystem/layouts/LayoutContainerSide"
-import Breadcrumbs from "@designSystem/layouts/Breadcrumbs"
+import Breadcrumbs from "@designSystem/molecules/Breadcrumbs"
 import Heading from "@designSystem/atoms/Heading"
 import Paragraph from "@designSystem/atoms/Paragraph"
 import { FC } from "react"
@@ -13,12 +13,10 @@ const crumbs = [
   {
     text: "Home",
     path: "/",
-    currentPg: false,
   },
   {
     text: "Select",
     path: "/",
-    currentPg: true,
   },
 ]
 

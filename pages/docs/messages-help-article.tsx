@@ -1,5 +1,5 @@
 import LayoutContainerSide from "@designSystem/layouts/LayoutContainerSide"
-import Breadcrumbs from "@designSystem/layouts/Breadcrumbs"
+import Breadcrumbs from "@designSystem/molecules/Breadcrumbs"
 import Heading from "@designSystem/atoms/Heading"
 import Paragraph from "@designSystem/atoms/Paragraph"
 import { FC } from "react"
@@ -14,12 +14,10 @@ const crumbs = [
   {
     text: "Home",
     path: "/",
-    currentPg: false,
   },
   {
     text: "Messages (Help)",
     path: "/",
-    currentPg: true,
   },
 ]
 
@@ -29,16 +27,18 @@ const MessagesHelpArticle: FC = () => {
       <LayoutContainerSide>
         <Breadcrumbs crumbs={crumbs} />
         <Heading size="h1">Messages</Heading>
-        <Paragraph>On this page you'll find help message components</Paragraph>
+        <Paragraph>
+          On this page you&apos;ll find help message components
+        </Paragraph>
 
         <SectionCard id="tipMessage" style="standard">
           <Heading size="h3">Tip Messages</Heading>
           <Paragraph>
             There are two prop variations of the Tip component: tip and example.
             The tip prop is for proactive help and context for a specific field.
-            It should appear below the input's label. The example prop is for
-            providing context for a specific field. It should appear below the
-            field.
+            It should appear below the input&apos;s label. The example prop is
+            for providing context for a specific field. It should appear below
+            the field.
           </Paragraph>
           <Divider padding="xl" />
 
@@ -63,12 +63,12 @@ const MessagesHelpArticle: FC = () => {
           <Heading size="h3">Accordion Messages</Heading>
           <Paragraph>
             Typically used for longer messages. Gives a way to present
-            information without overwhelming the user. It's built using{" "}
+            information without overwhelming the user. It&apos;s built using{" "}
             <a
               href="https://www.radix-ui.com/docs/primitives/components/accordion"
               target="blank"
             >
-              Radix UI's Accordion
+              Radix UI&apos;s Accordion
             </a>{" "}
             primitive for accessibility.
           </Paragraph>
@@ -82,7 +82,7 @@ const MessagesHelpArticle: FC = () => {
           <Divider padding="xl" />
           <Heading size="h4">Type Prop (Required)</Heading>
           <Heading size="h5" type="secondary">
-            type="single"
+            type=&quot;single&quot;
           </Heading>
           <Paragraph>Only one item can open at a time.</Paragraph>
           <Accordion
@@ -102,7 +102,7 @@ const MessagesHelpArticle: FC = () => {
           />
           <BlankSpace />
           <Heading size="h5" type="secondary">
-            type="multiple"
+            type=&quot;multiple&quot;
           </Heading>
           <Paragraph>Multiple items can be open at the same time.</Paragraph>
           <Accordion
@@ -124,8 +124,8 @@ const MessagesHelpArticle: FC = () => {
           <Divider padding="xl" />
           <Heading size="h4">Item Prop (Required)</Heading>
           <Heading size="h5" type="secondary">
-            item=[&#123;"value: string, headerText: string, contentText:
-            string"&#125;]
+            item=[&#123;&quot;value: string, headerText: string, contentText:
+            string&quot;&#125;]
           </Heading>
           <Paragraph>
             An array of objects. Each object creates an Accordion.
@@ -145,7 +145,7 @@ const MessagesHelpArticle: FC = () => {
           <Divider padding="xl" />
           <Heading size="h4">DefaultValue Prop (Optional)</Heading>
           <Heading size="h5" type="secondary">
-            defaultValue="itemValue"
+            defaultValue&quot;itemValue&quot;
           </Heading>
           <Paragraph>
             Opens an Accordion by default. Use the value from the items object.
@@ -172,12 +172,12 @@ const MessagesHelpArticle: FC = () => {
           <Divider padding="xl" />
           <Heading size="h4">Collapsible Prop (Optional)</Heading>
           <Heading size="h5" type="secondary">
-            collapsible="true"
+            collapsible=&quot;true&quot;
           </Heading>
           <Paragraph>
-            Accordion will collapse when clicking the open Accordion's header.
-            Note that this behavior requires the type prop to be set to
-            "single".
+            Accordion will collapse when clicking the open Accordion&apos;s
+            header. Note that this behavior requires the type prop to be set to
+            &quot;single&quot;.
           </Paragraph>
           <Accordion
             type="single"
@@ -197,10 +197,11 @@ const MessagesHelpArticle: FC = () => {
           />
           <BlankSpace />
           <Heading size="h5" type="secondary">
-            collapsible="false"
+            collapsible=&quot;false&quot;
           </Heading>
           <Paragraph>
-            Accordion won't collapse when clicking the open Accordion's header.
+            Accordion won&apos;t collapse when clicking the open
+            Accordion&apos;s header.
           </Paragraph>
           <Accordion
             type="single"
@@ -222,9 +223,9 @@ const MessagesHelpArticle: FC = () => {
           <Divider padding="xl" />
           <Heading size="h4">RootStyle Prop (Optional)</Heading>
           <Heading size="h5" type="secondary">
-            rootStyle="standard"
+            rootStyle=&quot;standard&quot;
           </Heading>
-          <Paragraph> Accordion doesn't change size.</Paragraph>
+          <Paragraph> Accordion doesn&apos;t change size.</Paragraph>
           <Accordion
             type="single"
             rootStyle="standard"
@@ -238,7 +239,7 @@ const MessagesHelpArticle: FC = () => {
           />
           <BlankSpace />
           <Heading size="h5" type="secondary">
-            rootStyle="shrink"
+            rootStyle=&quot;shrink&quot;
           </Heading>
           <Paragraph> Accordion will shrink/expand.</Paragraph>
           <Accordion
@@ -257,10 +258,11 @@ const MessagesHelpArticle: FC = () => {
           <Divider padding="xl" />
           <Heading size="h4">AccordionStyle Prop (Optional)</Heading>
           <Heading size="h5" type="secondary">
-            accordionStyle="standard"
+            accordionStyle=&quot;standard&quot;
           </Heading>
           <Paragraph>
-            Standard styling. Used for anything that isn't a special situation.
+            Standard styling. Used for anything that isn&apos;t a special
+            situation.
           </Paragraph>
           <Accordion
             type="single"
@@ -275,7 +277,7 @@ const MessagesHelpArticle: FC = () => {
           />
           <BlankSpace />
           <Heading size="h5" type="secondary">
-            accordionStyle="warning"
+            accordionStyle=&quot;warning&quot;
           </Heading>
           <Paragraph>
             Used for warning the user. Try to reserve for urgent information.
@@ -293,7 +295,7 @@ const MessagesHelpArticle: FC = () => {
           />
           <BlankSpace />
           <Heading size="h5" type="secondary">
-            accordionStyle="tip"
+            accordionStyle=&quot;tip&quot;
           </Heading>
           <Paragraph>
             Used to provide useful tips that the user should be aware of. Try to

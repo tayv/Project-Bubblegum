@@ -1,5 +1,5 @@
 import LayoutContainerSide from "@designSystem/layouts/LayoutContainerSide"
-import Breadcrumbs from "@designSystem/layouts/Breadcrumbs"
+import Breadcrumbs from "@designSystem/molecules/Breadcrumbs"
 import Heading from "@designSystem/atoms/Heading"
 import Paragraph from "@designSystem/atoms/Paragraph"
 import { FC } from "react"
@@ -11,12 +11,10 @@ const crumbs = [
   {
     text: "Home",
     path: "/",
-    currentPg: false,
   },
   {
     text: "UI Cards",
     path: "/",
-    currentPg: true,
   },
 ]
 
@@ -26,7 +24,9 @@ const UIContainersArticle: FC = () => {
       <LayoutContainerSide>
         <Breadcrumbs crumbs={crumbs} />
         <Heading size="h1">UI Cards</Heading>
-        <Paragraph>On this page you'll find UI container components</Paragraph>
+        <Paragraph>
+          On this page you&apos;ll find UI container components
+        </Paragraph>
 
         <SectionCard id="intro" style="standard">
           <Heading size="h3">SectionCard Container</Heading>
@@ -41,7 +41,7 @@ There's four props available: Standard, Blank, and Color. Standard is the defaul
         <Divider padding="large" />
 
         <SectionCard id="example-standard" style="standard">
-          <Heading size="h3">Example: Standard SectionCard Container"</Heading>
+          <Heading size="h3">Example: Standard SectionCard Container</Heading>
           <Paragraph>
             This is an example of a standard section container. It has a white
             background.

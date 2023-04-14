@@ -1,5 +1,5 @@
 import React, { useState, FC } from "react"
-import Breadcrumbs from "@designSystem/layouts/Breadcrumbs"
+import Breadcrumbs from "@designSystem/molecules/Breadcrumbs"
 import { useForm } from "react-hook-form"
 import WrapperInput from "@forms/WrapperInput"
 import LayoutContainerSide from "@designSystem/layouts/LayoutContainerSide"
@@ -22,12 +22,10 @@ const TestForm: FC = () => {
     {
       text: "Home",
       path: "/",
-      currentPg: false,
     },
     {
       text: "Text Inputs",
       path: "/",
-      currentPg: true,
     },
   ]
 

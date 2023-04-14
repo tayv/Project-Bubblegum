@@ -1,4 +1,4 @@
-import Breadcrumbs from "@designSystem/layouts/Breadcrumbs"
+import Breadcrumbs from "@designSystem/molecules/Breadcrumbs"
 import Heading from "@designSystem/atoms/Heading"
 import DoDont from "@designSystem/atoms/DoDont"
 import LayoutContainerSide from "@designSystem/layouts/LayoutContainerSide"
@@ -11,12 +11,10 @@ export default function MyRadioGroup() {
     {
       text: "Home",
       path: "/",
-      currentPg: false,
     },
     {
       text: "Containers",
       path: "/",
-      currentPg: true,
     },
   ]
 

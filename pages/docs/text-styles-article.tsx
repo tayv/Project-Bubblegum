@@ -1,5 +1,5 @@
 import LayoutContainerSide from "@designSystem/layouts/LayoutContainerSide"
-import Breadcrumbs from "@designSystem/layouts/Breadcrumbs"
+import Breadcrumbs from "@designSystem/molecules/Breadcrumbs"
 import Heading from "@designSystem/atoms/Heading"
 import Paragraph from "@designSystem/atoms/Paragraph"
 import { FC } from "react"
@@ -12,12 +12,10 @@ const crumbs = [
   {
     text: "Home",
     path: "/",
-    currentPg: false,
   },
   {
     text: "Text Styles",
     path: "/",
-    currentPg: true,
   },
 ]
 
@@ -27,7 +25,7 @@ const TextStylesArticle: FC = () => {
       <LayoutContainerSide>
         <Breadcrumbs crumbs={crumbs} />
         <Heading size="h1">Text Styles</Heading>
-        <Paragraph>On this page you'll find text components.</Paragraph>
+        <Paragraph>On this page you&apos;ll find text components.</Paragraph>
 
         <SectionCard id="header" style="standard">
           <Heading size="h3">Heading Component</Heading>
@@ -130,7 +128,7 @@ If you pass custom css via the className prop you can pass override to size, sty
 
           <Divider padding="xl" />
 
-          <Heading size="h4">Examples: Style Prop Variations"</Heading>
+          <Heading size="h4">Examples: Style Prop Variations</Heading>
           <Paragraph style="primary">
             This paragraph uses the primary style.
           </Paragraph>

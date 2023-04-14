@@ -1,5 +1,5 @@
 import LayoutContainerSide from "@designSystem/layouts/LayoutContainerSide"
-import Breadcrumbs from "@designSystem/layouts/Breadcrumbs"
+import Breadcrumbs from "@designSystem/molecules/Breadcrumbs"
 import Heading from "@designSystem/atoms/Heading"
 import Paragraph from "@designSystem/atoms/Paragraph"
 import { FC } from "react"
@@ -12,12 +12,10 @@ const crumbs = [
   {
     text: "Home",
     path: "/",
-    currentPg: false,
   },
   {
     text: "Checkbox",
     path: "/",
-    currentPg: true,
   },
 ]
 
@@ -27,12 +25,14 @@ const CheckboxArticle: FC = () => {
       <LayoutContainerSide>
         <Breadcrumbs crumbs={crumbs} />
         <Heading size="h1">Checkboxes</Heading>
-        <Paragraph>On this page you'll find checkbox components.</Paragraph>
+        <Paragraph>
+          On this page you&apos;ll find checkbox components.
+        </Paragraph>
 
         <SectionCard id="header" style="standard">
           <Heading size="h3">Checkbox</Heading>
           <Paragraph>
-            This is a standard checkbox. It's used for binary choices.
+            This is a standard checkbox. It&apos;s used for binary choices.
           </Paragraph>
           <Divider padding="xl" />
 
@@ -40,6 +40,7 @@ const CheckboxArticle: FC = () => {
             Example:
           </Heading>
           <Checkbox
+            name="checkboxInput"
             id="checkboxInput"
             style="standard"
             label="This is a checkbox label"
@@ -49,7 +50,8 @@ const CheckboxArticle: FC = () => {
         <SectionCard id="header" style="standard">
           <Heading size="h3">Checkbox List</Heading>
           <Paragraph>
-            This is a list of checkboxes. It's used for multi-select choices.
+            This is a list of checkboxes. It&apos;s used for multi-select
+            choices.
           </Paragraph>
           <Divider padding="xl" />
           <Heading size="h4" type="secondary">
