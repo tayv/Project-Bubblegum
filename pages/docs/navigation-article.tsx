@@ -11,12 +11,10 @@ const crumbs = [
   {
     text: "Home",
     path: "/",
-    currentPg: false,
   },
   {
     text: "Navigation",
     path: "/",
-    currentPg: true,
   },
 ]
 

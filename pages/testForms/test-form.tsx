@@ -25,12 +25,10 @@ const crumbs = [
   {
     text: "Home",
     path: "/",
-    currentPg: false,
   },
   {
     text: "Test Form",
     path: "/",
-    currentPg: true,
   },
 ]
 

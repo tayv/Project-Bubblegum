@@ -10,12 +10,10 @@ const crumbs = [
   {
     text: "Home",
     path: "/",
-    currentPg: false,
   },
   {
     text: "Buttons",
     path: "/",
-    currentPg: true,
   },
 ]
 
@@ -25,7 +23,7 @@ const ButtonsArticle: FC = () => {
       <LayoutContainerSide>
         <Breadcrumbs crumbs={crumbs} />
         <Heading size="h1">Buttons</Heading>
-        <Paragraph>On this page you'll find button components.</Paragraph>
+        <Paragraph>On this page you&apos;ll find button components.</Paragraph>
 
         <SectionCard id="header" style="standard">
           <Heading size="h3">Primary Button</Heading>

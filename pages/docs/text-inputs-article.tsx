@@ -22,12 +22,10 @@ const TestForm: FC = () => {
     {
       text: "Home",
       path: "/",
-      currentPg: false,
     },
     {
       text: "Text Inputs",
       path: "/",
-      currentPg: true,
     },
   ]
 

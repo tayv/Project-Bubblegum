@@ -12,12 +12,10 @@ const crumbs = [
   {
     text: "Home",
     path: "/",
-    currentPg: false,
   },
   {
     text: "Label",
     path: "/",
-    currentPg: true,
   },
 ]
 
@@ -27,7 +25,7 @@ const LabelArticle: FC = () => {
       <LayoutContainerSide>
         <Breadcrumbs crumbs={crumbs} />
         <Heading size="h1">Labels</Heading>
-        <Paragraph>On this page you'll find label components</Paragraph>
+        <Paragraph>On this page you&apos;ll find label components</Paragraph>
 
         <SectionCard id="header" style="standard">
           <Heading size="h3">Input Label</Heading>

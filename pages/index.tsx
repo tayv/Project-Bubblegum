@@ -25,7 +25,7 @@ export default function Home() {
           <Heading size="h3">How to view</Heading>
           <Paragraph>
             The side navigation to the left shows a list of reusable react
-            components. Most of the components are form inputs but there's also
+            components. Most of the components are form inputs but there&apos;s also
             some to help with UI layout.
           </Paragraph>
         </SectionCard>

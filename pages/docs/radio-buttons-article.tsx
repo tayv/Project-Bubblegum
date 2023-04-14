@@ -14,12 +14,10 @@ const crumbs = [
   {
     text: "Home",
     path: "/",
-    currentPg: false,
   },
   {
     text: "Radion Buttons",
     path: "/",
-    currentPg: true,
   },
 ]
 
