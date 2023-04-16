@@ -74,14 +74,15 @@ const FieldPage: FC = () => {
               </Heading>
 
               <Field
-              name="fielddatepicktest"
-              defaultValue=""
-              validationRules={{ required: true }}
+                name="fielddatepicktest"
+                defaultValue=""
+                validationRules={{ required: true }}
               >
-                <Field.Label htmlFor="compoundtest">First Name</Field.Label>
+                {/* <Field.Label>First Name</Field.Label> */}
+                <Field.Tip>This is a tip</Field.Tip>
                 <Field.Control>
                   <DatePick
-                    name="fielddatepicktest"
+                    // name="fielddatepicktest"
                     label="fielddatepicktest"
                     startYearRange={1990}
                     endYearRange={2030}
