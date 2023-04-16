@@ -18,7 +18,7 @@ const renderCrumbs = ({ crumbs }: BreadcrumbProps) => {
       ) : (
         // else the breadcrumb text should link to a parent pg
         <Link
-          href={`/${crumb.path.toLowerCase().replace(/ /g, "-")}`} // url best practice: insert leading / + convert path to lowercase + replace spaces with dashes
+          href={`${crumb.path.toLowerCase().replace(/ /g, "-")}`} // url best practice: insert leading / + convert path to lowercase + replace spaces with dashes
           className="inline no-underline text-sm text-pink-500 hover:decoration-dashed underline-offset-4 hover:text-pink-600 focus:text-pink-600"
         >
           {crumb.text}
