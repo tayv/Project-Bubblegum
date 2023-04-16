@@ -29,6 +29,7 @@ const crumbs = [
 
 const DatePickerPage: FC = () => {
   const defaultValues = {
+    compoundtest: format(startOfToday(), "MMM-dd-yyyy"),
     exampleSingleDatePick: format(startOfToday(), "MMM-dd-yyyy"),
     exampleStartDatePick: format(startOfToday(), "MMM-dd-yyyy"),
     exampleEndDatePick: format(startOfToday(), "MMM-dd-yyyy"),
@@ -134,10 +135,10 @@ const DatePickerPage: FC = () => {
           >
             <Field
               name="compoundtest"
-              defaultValue="hello"
+              defaultValue=""
               validationRules={{ required: true }}
             >
-              <Field.Label htmlFor="firstName">First Name</Field.Label>
+              <Field.Label htmlFor="compoundtest">First Name</Field.Label>
               <Field.Control>
                 <DatePick
                   name="compoundtest"
