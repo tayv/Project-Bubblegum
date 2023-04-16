@@ -13,14 +13,13 @@ const Field = ({ children, control, name, defaultValue, validationRules }) => {
     <FieldContext.Provider value={contextValue}>
       <Field.Label />    
       <Field.Tip />
-      <>{children}</>
+      {children}
     </FieldContext.Provider>
   )
 }
 
 Field.Control = function FieldControl({ children }) {
-  const { control, name, defaultValue, validationRules } =
-    useContext(FieldContext)
+  const { control, name, defaultValue, validationRules } = useContext(FieldContext)
 
   return (
 

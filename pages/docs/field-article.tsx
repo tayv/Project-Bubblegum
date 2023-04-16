@@ -51,7 +51,7 @@ const FieldPage: FC = () => {
         </Paragraph>
 
         <SectionCard id="FieldExample" style="standard">
-          <Heading size="h2">Fied Component Example</Heading>
+          <Heading size="h2">Field Component Example</Heading>
           <Paragraph>
             Field component used the compound component pattern and looks like this:
           </Paragraph>
@@ -67,6 +67,9 @@ const FieldPage: FC = () => {
             className="col-span-2 py-3 px-8 my-8 rounded-3xl bg-zinc-200/10 border"
             onSubmit={onSubmit}
           >
+            <Heading size="h5" type="secondary">
+                TEST FORM
+              </Heading>
 
             <SectionCard id="field-datepick" style="standard">
               <Heading size="h3" type="primary">
@@ -78,7 +81,7 @@ const FieldPage: FC = () => {
                 defaultValue=""
                 validationRules={{ required: true }}
               >
-                {/* <Field.Label>First Name</Field.Label> */}
+                <Field.Label>First Name</Field.Label>
                 <Field.Tip>This is a tip</Field.Tip>
                 <Field.Control>
                   <DatePick
