@@ -132,6 +132,24 @@ const DatePickerPage: FC = () => {
             className="col-span-2 py-3 px-8 my-8 rounded-3xl bg-zinc-200/10 border"
             onSubmit={onSubmit}
           >
+            <Field
+              name="compoundtest"
+              defaultValue="hello"
+              validationRules={{ required: true }}
+            >
+              <Field.Label htmlFor="firstName">First Name</Field.Label>
+              <Field.Control>
+                <DatePick
+                  name="compoundtest"
+                  label="compoundtest"
+                  startYearRange={1990}
+                  endYearRange={2030}
+                />
+              </Field.Control>
+              {/* <Field.Message>First Name is required</Field.Message>
+              <Field.ValidityState>Valid</Field.ValidityState> */}
+            </Field>
+
             <SectionCard id="datepick" style="standard">
               <Heading size="h3" type="primary">
                 Date Picker

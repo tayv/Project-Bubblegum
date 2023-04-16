@@ -20,7 +20,6 @@ import Divider from "@designSystem/atoms/Divider"
 import BlankSpace from "@designSystem/atoms/BlankSpace"
 import Accordion from "designSystem/atoms/Accordion"
 
-
 // data for Breadcrumbs
 const crumbs = [
   {

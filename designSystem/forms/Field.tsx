@@ -5,9 +5,19 @@ import InputLabel from "@designSystem/atoms/InputLabelRadix"
 
 const FieldContext = createContext()
 
-function Field({ children, name, defaultValue, validationRules }) {
-  const [isShown, setIsShown] = useState(true)
-  const { control } = useFormContext()
+const Field = ({ children, control, name, defaultValue, validationRules }) => {
+  const contextValue = { control, name, defaultValue, validationRules }
+
+  return (
+    <FieldContext.Provider value={contextValue}>
+      <div>{children}</div>
+    </FieldContext.Provider>
+  )
+}
+
+Field.Control = function FieldControl({ children }) {
+  const { control, name, defaultValue, validationRules } =
+    useContext(FieldContext)
 
   return (
     <Controller
@@ -15,12 +25,7 @@ function Field({ children, name, defaultValue, validationRules }) {
       defaultValue={defaultValue}
       control={control}
       rules={validationRules}
-      render={({ field }) => (
-        <FieldContext.Provider value={{ isShown, setIsShown }}>
-          <Field.Label name={name} />
-          {isShown && <Slot {...field}>{children}</Slot>}
-        </FieldContext.Provider>
-      )}
+      render={({ field }) => <Slot {...field}>{children}</Slot>}
     />
   )
 }
