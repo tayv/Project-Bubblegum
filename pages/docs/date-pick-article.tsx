@@ -10,7 +10,7 @@ import Divider from "@designSystem/atoms/Divider"
 
 import PrintInputValueButton from "testComponents/PrintValueButton"
 import SubmitButton from "testComponents/SubmitButton"
-import Field from "@designSystem/forms/FieldTest"
+import Field from "@designSystem/forms/Field"
 import Calendar from "@atoms/Calendar"
 import { format, startOfToday } from "date-fns"
 import useSyncDefaultValues from "@utils/useSyncDefaultValues"
