@@ -1,6 +1,8 @@
 import React, { FC, forwardRef, HTMLAttributes } from "react"
 import classNames from "classnames"
 import InputLabel from "@atoms/InputLabelRadix"
+import * as Checkbox from '@radix-ui/react-checkbox'
+import { CheckIcon } from "lucide-react"
 
 export type CheckboxStyle = "standard" | "toggle"
 export type CheckboxProps = {
@@ -19,7 +21,7 @@ export type CheckboxProps = {
   rules?: Record<string, any> // react-hook-form: validation rules. Any object so used generic Record type.
 } & Omit<HTMLAttributes<HTMLInputElement>, "defaultValues"> // omit used to prevent type error on input element
 
-const Checkbox: FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>(
+const CheckboxRadix: FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>(
   function setRefCheckbox(
     {
       id,
@@ -34,23 +36,13 @@ const Checkbox: FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>(
     ref
   ) {
     return (
-      <div>
-        <InputLabel htmlFor={id} type="checkbox" label={label}>
-          {/* <label className="inline-flex items-center"> */}
-          <input
-            type="checkbox"
-            id={name}
-            name={name}
-            className="form-checkbox"
-            onChange={(e) => onChange(e.target.checked)}
-            checked={value}
-            {...props}
-          />
-          <span className="ml-2">{props.children}</span>
-        </InputLabel>
-      </div>
+      <Checkbox.Root ref={ref} onCheckedChange={onChange} id={id} name={name} className="form-checkbox">
+        <Checkbox.Indicator className="block text-md font-bold text-gray-900">
+        <CheckIcon />
+        </Checkbox.Indicator>
+      </Checkbox.Root>
     )
   }
 )
 
-export default Checkbox
+export default CheckboxRadix

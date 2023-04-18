@@ -12,6 +12,9 @@ import PrintInputValueButton from "testComponents/PrintValueButton"
 import SubmitButton from "testComponents/SubmitButton"
 import Field from "@designSystem/forms/Field"
 import { format, startOfToday } from "date-fns"
+import Checkbox from "@designSystem/atoms/Checkbox"
+import CheckboxRadix from "@designSystem/atoms/CheckboxRadix"
+import Input from "@designSystem/atoms/Input"
 
 // data for Breadcrumbs
 const crumbs = [
@@ -79,9 +82,9 @@ const FieldPage: FC = () => {
               <Field
                 name="fielddatepicktest"
                 defaultValue=""
-                validationRules={{ required: true }}
+                validationRules={{ required: "This field is required" }}
               >
-                <Field.Label>First Name</Field.Label>
+                <Field.GroupLabel type="standard">First Name</Field.GroupLabel>
                 <Field.Tip>This is a tip</Field.Tip>
                 <Field.Control>
                   <DatePick
@@ -91,15 +94,53 @@ const FieldPage: FC = () => {
                     endYearRange={2030}
                   />
                 </Field.Control>
+                <Field.Message>Pick a date that makes sense</Field.Message>
+                <Field.Valid>Valid</Field.Valid> 
+              </Field>
+
+              <PrintInputValueButton
+                inputID="fielddatepicktest"
+                getValues={methods.getValues}
+              />
+
+              <Divider padding="large" />
+              
+              <Field
+                name="checkboxfieldtest"
+                defaultValue={true}
+                validationRules={{ required: true }}
+              >
+               
+                <Field.Tip>This is a tip</Field.Tip>
+                <Field.Control>
+                  <CheckboxRadix />
+
+                </Field.Control>
+                <Field.GroupLabel type="checkbox">Toggle me</Field.GroupLabel>
                 {/* <Field.Message>First Name is required</Field.Message>
                 <Field.ValidityState>Valid</Field.ValidityState> */}
               </Field>
         
               <Divider padding="large" />
-              <PrintInputValueButton
-                inputID="fielddatepicktest"
-                getValues={methods.getValues}
-              />
+
+              <Field
+                name="inputfieldtest"
+                defaultValue={""}
+                validationRules={{
+                  required: "This field is required",
+                  minLength: { value: 5, message: "Minimum length is 5 characters" },
+                  maxLength: { value: 10, message: "Maximum length is 10 characters" },
+                }}
+              >
+                <Field.GroupLabel type="standard">Enter something:</Field.GroupLabel>
+                <Field.Tip>This is a tip</Field.Tip>
+                <Field.Control>
+                  <Input type="text" />
+                </Field.Control>
+                <Field.Message>{methods.formState.errors.inputfieldtest && methods.formState.errors.inputfieldtest.message}</Field.Message>
+                {/* <Field.ValidityState>Valid</Field.ValidityState> */}
+              </Field>
+              
              
               <Divider padding="large" />
 
@@ -112,3 +153,23 @@ const FieldPage: FC = () => {
   )
 }
 export default FieldPage
+
+
+// Documentation
+// https://react-hook-form.com/api#Controller
+// https://react-hook-form.com/api#useForm
+// https://react-hook-form.com/api#FormProvider
+// Validation examples:
+
+// validationRules={{
+//   validate: (value) => {
+//     if (value.startsWith("A")) {
+//       return "Value cannot start with the letter A";
+//     }
+//     return true;
+//   },
+// }}
+
+
+// Zod
+// Potential RHF bug with Zod Optional validation. Make sure to pass defaultValues to useForm. See: https://stackoverflow.com/questions/73715295/react-hook-form-with-zod-resolver-optional-field
