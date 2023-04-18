@@ -73,3 +73,23 @@ Field.Valid = function FieldValid({ children, type = "valid" }) {
 
 
 export default Field
+
+// Documentation
+// https://react-hook-form.com/api#Controller
+// https://react-hook-form.com/api#useForm
+// https://react-hook-form.com/api#FormProvider
+// Validation examples:
+
+// validationRules={{
+//   validate: (value) => {
+//     if (value.startsWith("A")) {
+//       return "Value cannot start with the letter A";
+//     }
+//     return true;
+//   },
+// }}
+
+
+// Zod
+// Potential RHF bug with Zod Optional validation. Make sure to pass defaultValues to useForm. See: https://stackoverflow.com/questions/73715295/react-hook-form-with-zod-resolver-optional-field
+// Need to also install a resolver to use with RHF. See: https://www.react-hook-form.com/api/useform/

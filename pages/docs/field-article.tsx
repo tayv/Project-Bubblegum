@@ -15,6 +15,8 @@ import { format, startOfToday } from "date-fns"
 import Checkbox from "@designSystem/atoms/Checkbox"
 import CheckboxRadix from "@designSystem/atoms/CheckboxRadix"
 import Input from "@designSystem/atoms/Input"
+import { zodResolver } from '@hookform/resolvers/zod'
+import * as z from 'zod'
 
 // data for Breadcrumbs
 const crumbs = [
@@ -35,7 +37,15 @@ const FieldPage: FC = () => {
   // Used by the test section to show the form data in the UI
   const [formData, setFormData] = useState({})
 
-  const methods = useForm({ defaultValues })
+  const zodSchema = z.object({ 
+    inputfieldtest: z.string().min(3, "Must be at least 3 characters").optional(),
+    // inputfieldtestzod: z.string().nonempty("This field is required!!!"),
+    inputfieldtestzod: z.string()
+    .refine(value => value.length >= 3, "It's recommended to have at least 3 characters")
+    .optional(),
+  })
+
+  const methods = useForm({ resolver: zodResolver(zodSchema), defaultValues })
 
   const onSubmit = methods.handleSubmit(async (data, event) => {
     setFormData(data) // Save form values to state so the test template table can show the values
@@ -140,6 +150,20 @@ const FieldPage: FC = () => {
                 <Field.Message>{methods.formState.errors.inputfieldtest && methods.formState.errors.inputfieldtest.message}</Field.Message>
                 {/* <Field.ValidityState>Valid</Field.ValidityState> */}
               </Field>
+
+              <Field
+                name="inputfieldtestzod"
+                defaultValue={""}
+                //validationRules={}
+              >
+                <Field.GroupLabel type="standard">Enter something:</Field.GroupLabel>
+                <Field.Tip>This is a tip</Field.Tip>
+                <Field.Control>
+                  <Input type="text" />
+                </Field.Control>
+                <Field.Message>{methods.formState.errors.inputfieldtestzod && methods.formState.errors.inputfieldtestzod.message}</Field.Message>
+                {/* <Field.ValidityState>Valid</Field.ValidityState> */}
+              </Field>
               
              
               <Divider padding="large" />
@@ -155,21 +179,3 @@ const FieldPage: FC = () => {
 export default FieldPage
 
 
-// Documentation
-// https://react-hook-form.com/api#Controller
-// https://react-hook-form.com/api#useForm
-// https://react-hook-form.com/api#FormProvider
-// Validation examples:
-
-// validationRules={{
-//   validate: (value) => {
-//     if (value.startsWith("A")) {
-//       return "Value cannot start with the letter A";
-//     }
-//     return true;
-//   },
-// }}
-
-
-// Zod
-// Potential RHF bug with Zod Optional validation. Make sure to pass defaultValues to useForm. See: https://stackoverflow.com/questions/73715295/react-hook-form-with-zod-resolver-optional-field
