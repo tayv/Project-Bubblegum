@@ -8,8 +8,8 @@ import * as Label from "@radix-ui/react-label"
 
 const FieldContext = createContext()
 
-const Field = ({ children, control, name, defaultValue, validationRules }) => {
-  const contextValue = { control, name, defaultValue, validationRules }
+const Field = ({ children, control, name, defaultValue, validationRules, validateOnBlur}) => {
+  const contextValue = { control, name, defaultValue, validationRules, validateOnBlur }
 
   return (
     <FieldContext.Provider value={contextValue}>
@@ -19,7 +19,13 @@ const Field = ({ children, control, name, defaultValue, validationRules }) => {
 }
 
 Field.Control = function FieldControl({ children }) {
-  const { control, name, defaultValue, validationRules } = useContext(FieldContext)
+  const { control, name, defaultValue, validationRules, validateOnBlur } = useContext(FieldContext)
+  const methods = useFormContext() // Needed so we can access formState and trigger validation
+  
+  const customOnBlur = (event, defaultOnBlur) => { // Custom onBlur for displaying errors and warning messages when user leaves input
+    methods.trigger(name) // Trigger validation using RHF trigger method
+    defaultOnBlur(event) // To ensure RHF standard behavior is maintained
+  }
 
   return (
 
@@ -28,9 +34,12 @@ Field.Control = function FieldControl({ children }) {
       defaultValue={defaultValue}
       control={control}
       rules={validationRules}
-      render={({ field }) => ( // Field contains { name, value, onChange, onBlur }. See https://www.react-hook-form.com/api/usecontroller/controller/
-        <Slot {...field}>{children}</Slot>
-       ) }
+      render={({ field: {onBlur: defaultOnBlur, ...field} }) => { // Field contains { name, value, onChange, onBlur }. See https://www.react-hook-form.com/api/usecontroller/controller/
+        const handleOnBlur = validateOnBlur ? (event) => customOnBlur(event, defaultOnBlur) : defaultOnBlur // This check is used to prevent running customOnBlur each time user leaves input. Only run if validateOnBlur prop is true
+        return( 
+          <Slot {...field} onBlur={handleOnBlur}>{children}</Slot>
+        )
+       } }
     />
   )
 }

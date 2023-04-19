@@ -138,6 +138,7 @@ const FieldPage: FC = () => {
               <Field
                 name="inputfieldtest"
                 defaultValue={""}
+                validateOnBlur={true}
                 validationRules={{
                   required: "This field is required",
                   minLength: { value: 5, message: "Minimum length is 5 characters" },
@@ -147,7 +148,7 @@ const FieldPage: FC = () => {
                 <Field.GroupLabel type="standard">Enter something:</Field.GroupLabel>
                 <Field.Tip>This is a tip</Field.Tip>
                 <Field.Control>
-                  <Input type="text" onBlur={() => methods.trigger('inputfieldtest')} />
+                  <Input type="text" />
                 </Field.Control>
                 <Field.Message>{methods.formState.errors.inputfieldtest && methods.formState.errors.inputfieldtest.message}</Field.Message>
                 {/* <Field.ValidityState>Valid</Field.ValidityState> */}
@@ -157,6 +158,7 @@ const FieldPage: FC = () => {
                 name="inputfieldtestzod"
                 defaultValue={""}
                 //validationRules={}
+                validateOnBlur={true}
               >
                 <Field.GroupLabel type="standard">Enter something:</Field.GroupLabel>
                 <Field.Tip>This is a tip</Field.Tip>
