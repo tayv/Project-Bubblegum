@@ -33,6 +33,8 @@ const crumbs = [
 const FieldPage: FC = () => {
   const defaultValues = {
     fielddatepicktest: format(startOfToday(), "MMM-dd-yyyy"),
+    inputfieldtest: "",
+    inputfieldtestzod: "",
   }
   // Used by the test section to show the form data in the UI
   const [formData, setFormData] = useState({})
@@ -145,7 +147,7 @@ const FieldPage: FC = () => {
                 <Field.GroupLabel type="standard">Enter something:</Field.GroupLabel>
                 <Field.Tip>This is a tip</Field.Tip>
                 <Field.Control>
-                  <Input type="text" />
+                  <Input type="text" onBlur={() => methods.trigger('inputfieldtest')} />
                 </Field.Control>
                 <Field.Message>{methods.formState.errors.inputfieldtest && methods.formState.errors.inputfieldtest.message}</Field.Message>
                 {/* <Field.ValidityState>Valid</Field.ValidityState> */}
