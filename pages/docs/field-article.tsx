@@ -117,41 +117,19 @@ const FieldPage: FC = () => {
 
               <Divider padding="large" />
               
-              <Field
-                name="checkboxfieldtest"
-                defaultValue={true}
-                validationRules={{ required: true }}
-              >
-               
-                <Field.Tip>This is a tip</Field.Tip>
-                <Field.Control>
-                  <CheckboxRadix />
 
-                </Field.Control>
-                <Field.GroupLabel type="checkbox">Toggle me</Field.GroupLabel>
-                {/* <Field.Message>First Name is required</Field.Message>
-                <Field.ValidityState>Valid</Field.ValidityState> */}
-              </Field>
-        
-              <Divider padding="large" />
 
               <Field
                 name="inputfieldtest"
                 defaultValue={""}
                 validateOnBlur={true}
-                validationRules={{
-                  required: "This field is required",
-                  minLength: { value: 5, message: "Minimum length is 5 characters" },
-                  maxLength: { value: 10, message: "Maximum length is 10 characters" },
-                }}
               >
                 <Field.GroupLabel type="standard">Enter something:</Field.GroupLabel>
                 <Field.Tip>This is a tip</Field.Tip>
                 <Field.Control>
                   <Input type="text" />
                 </Field.Control>
-                <Field.Message>{methods.formState.errors.inputfieldtest && methods.formState.errors.inputfieldtest.message}</Field.Message>
-                {/* <Field.ValidityState>Valid</Field.ValidityState> */}
+                <Field.Valid>{methods.formState.errors.inputfieldtest && methods.formState.errors.inputfieldtest.message}</Field.Valid>
               </Field>
 
               <Field
@@ -166,7 +144,6 @@ const FieldPage: FC = () => {
                   <Input type="text" />
                 </Field.Control>
                 <Field.Message>{methods.formState.errors.inputfieldtestzod && methods.formState.errors.inputfieldtestzod.message}</Field.Message>
-                {/* <Field.ValidityState>Valid</Field.ValidityState> */}
               </Field>
               
              

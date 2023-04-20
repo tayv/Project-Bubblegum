@@ -46,9 +46,7 @@ Field.Control = function FieldControl({ children }) {
 
 Field.GroupLabel = function FieldGroupLabel({ name, children, type }) {
   return (
-    // <InputLabel htmlFor={name} type={type}>
-    //   {children}
-    // </InputLabel>
+
     <Label.Root
       htmlFor={name}
       className="inline text-md font-bold text-gray-900"
@@ -59,6 +57,7 @@ Field.GroupLabel = function FieldGroupLabel({ name, children, type }) {
   )
 }
 
+// Type prop is hardcoded for now. Will be removed or made dynamic in future
 Field.Tip = function FieldTip({ children, type="standard" }) {
   return (
     <Tip text={children} type={type} />
@@ -71,14 +70,27 @@ Field.Message = function FieldMessage({ children, type="example" }) {
   )
 }
 
-Field.Valid = function FieldValid({ children, type = "valid" }) {
+Field.Valid = function FieldValid({ children, type="valid" }) {
   return (
-    <span>
-     
-      <Tip text={children} type={type} />
-    </span>
-  );
-};
+      <Tip text={children} type={"valid"} />
+  )
+}
+
+// WIP... attempting to switch styles depending if error present or not
+    // Field.Valid = function FieldValid({ children }) {
+    //   const methods = useFormContext() 
+    //   const { name }= useContext(FieldContext)
+
+    //   methods.formState.errors[name] ? (
+    //       <span>
+    //         <Tip text={children} type={"standard"} />
+    //       </span>
+    //   ) : (
+    //     <span>
+    //     <Tip text={children} type={"valid"} />
+    //   </span>
+    //   )
+    // }
 
 
 export default Field
