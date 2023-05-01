@@ -18,7 +18,12 @@ const Tip: FC<TipProps> = ({ type = "standard", text, ...props }) => {
         return <p className="text-sm font-light text-gray-500 mb-2">{text} </p>
 
       case "valid":
-      return <span className="flex items-center gap-1 mb-2"><Check className="text-green-600"/><p className="block text-sm font-light text-green-600">{text} </p></span>
+        return (
+          <span className="flex items-center gap-1 mb-2">
+            <Check className="text-green-600" />
+            <p className="block text-sm font-light text-green-600">{text} </p>
+          </span>
+        )
 
       default:
         return null

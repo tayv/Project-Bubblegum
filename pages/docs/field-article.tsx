@@ -15,8 +15,8 @@ import { format, startOfToday } from "date-fns"
 import Checkbox from "@designSystem/atoms/Checkbox"
 import CheckboxRadix from "@designSystem/atoms/CheckboxRadix"
 import Input from "@designSystem/atoms/Input"
-import { zodResolver } from '@hookform/resolvers/zod'
-import * as z from 'zod'
+import { zodResolver } from "@hookform/resolvers/zod"
+import * as z from "zod"
 
 // data for Breadcrumbs
 const crumbs = [
@@ -39,12 +39,19 @@ const FieldPage: FC = () => {
   // Used by the test section to show the form data in the UI
   const [formData, setFormData] = useState({})
 
-  const zodSchema = z.object({ 
-    inputfieldtest: z.string().min(3, "Must be at least 3 characters").optional(),
+  const zodSchema = z.object({
+    inputfieldtest: z
+      .string()
+      .min(3, "Must be at least 3 characters")
+      .optional(),
     // inputfieldtestzod: z.string().nonempty("This field is required!!!"),
-    inputfieldtestzod: z.string()
-    .refine(value => value.length >= 3, "It's recommended to have at least 3 characters")
-    .optional(),
+    inputfieldtestzod: z
+      .string()
+      .refine(
+        (value) => value.length >= 3,
+        "It's recommended to have at least 3 characters"
+      )
+      .optional(),
   })
 
   const methods = useForm({ resolver: zodResolver(zodSchema), defaultValues })
@@ -62,16 +69,17 @@ const FieldPage: FC = () => {
           Field Component
         </Heading>
         <Paragraph>
-          On this page you&apos;ll find a generic Field component that&apos;s used as a wrapper to make child form components contrtollable.
+          On this page you&apos;ll find a generic Field component that&apos;s
+          used as a wrapper to make child form components contrtollable.
         </Paragraph>
 
         <SectionCard id="FieldExample" style="standard">
           <Heading size="h2">Field Component Example</Heading>
           <Paragraph>
-            Field component used the compound component pattern and looks like this:
+            Field component used the compound component pattern and looks like
+            this:
           </Paragraph>
           <Divider padding="xl" />
-
           TBD
         </SectionCard>
 
@@ -83,8 +91,8 @@ const FieldPage: FC = () => {
             onSubmit={onSubmit}
           >
             <Heading size="h5" type="secondary">
-                TEST FORM
-              </Heading>
+              TEST FORM
+            </Heading>
 
             <SectionCard id="field-datepick" style="standard">
               <Heading size="h3" type="primary">
@@ -107,7 +115,7 @@ const FieldPage: FC = () => {
                   />
                 </Field.Control>
                 <Field.Message>Pick a date that makes sense</Field.Message>
-                <Field.Valid>Valid</Field.Valid> 
+                <Field.Valid>Valid</Field.Valid>
               </Field>
 
               <PrintInputValueButton
@@ -116,20 +124,23 @@ const FieldPage: FC = () => {
               />
 
               <Divider padding="large" />
-              
-
 
               <Field
                 name="inputfieldtest"
                 defaultValue={""}
                 validateOnBlur={true}
               >
-                <Field.GroupLabel type="standard">Enter something:</Field.GroupLabel>
+                <Field.GroupLabel type="standard">
+                  Enter something:
+                </Field.GroupLabel>
                 <Field.Tip>This is a tip</Field.Tip>
                 <Field.Control>
                   <Input type="text" />
                 </Field.Control>
-                <Field.Valid>{methods.formState.errors.inputfieldtest && methods.formState.errors.inputfieldtest.message}</Field.Valid>
+                <Field.Valid>
+                  {methods.formState.errors.inputfieldtest &&
+                    methods.formState.errors.inputfieldtest.message}
+                </Field.Valid>
               </Field>
 
               <Field
@@ -138,15 +149,19 @@ const FieldPage: FC = () => {
                 //validationRules={}
                 validateOnBlur={true}
               >
-                <Field.GroupLabel type="standard">Enter something:</Field.GroupLabel>
+                <Field.GroupLabel type="standard">
+                  Enter something:
+                </Field.GroupLabel>
                 <Field.Tip>This is a tip</Field.Tip>
                 <Field.Control>
                   <Input type="text" />
                 </Field.Control>
-                <Field.Message>{methods.formState.errors.inputfieldtestzod && methods.formState.errors.inputfieldtestzod.message}</Field.Message>
+                <Field.Message>
+                  {methods.formState.errors.inputfieldtestzod &&
+                    methods.formState.errors.inputfieldtestzod.message}
+                </Field.Message>
               </Field>
-              
-             
+
               <Divider padding="large" />
 
               <SubmitButton onSubmit={onSubmit} formData={formData} />
@@ -158,5 +173,3 @@ const FieldPage: FC = () => {
   )
 }
 export default FieldPage
-
-

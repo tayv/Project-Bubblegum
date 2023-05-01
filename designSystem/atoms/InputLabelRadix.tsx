@@ -24,8 +24,8 @@ const InputLabel: FC<InputLabelProps> = ({
               className="block text-md font-bold text-gray-900"
             >
               {label}
-           
-            {props.children} 
+
+              {props.children}
             </Label.Root>
           </div>
         )
@@ -33,7 +33,8 @@ const InputLabel: FC<InputLabelProps> = ({
       case "checkbox":
         return (
           <label className="inline-flex items-center text-md text-gray-900">
-            {props.children} {/* want to wrap the checkbox in the label so it's all clickable */}
+            {props.children}{" "}
+            {/* want to wrap the checkbox in the label so it's all clickable */}
           </label>
         )
 
