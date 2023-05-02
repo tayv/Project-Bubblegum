@@ -2,15 +2,14 @@ import React, {
   FC,
   ReactNode,
   FocusEvent,
-  useState,
   createContext,
   useContext,
 } from "react"
 import { Controller, Control, useFormContext } from "react-hook-form"
 import { Slot } from "@radix-ui/react-slot"
-import InputLabel from "@designSystem/atoms/InputLabelRadix"
-import Tip from "@designSystem/molecules/Tip"
+import InputLabel from "@designSystem/atoms/InputLabel"
 import * as Label from "@radix-ui/react-label"
+import InputMessage, { InputMessageProps, InputMessageType} from "@designSystem/molecules/InputMessage"
 
 type FieldContextProps = {
   control: Control
@@ -18,21 +17,21 @@ type FieldContextProps = {
   defaultValue: any
   validationRules?: any
   validateOnBlur?: boolean
+  methods: any
 }
 
 interface FieldComponent extends FC<FieldContextProps> {
   Control: FC<FieldControlProps>
   GroupLabel: FC<FieldGroupLabelProps>
-  Tip: FC<FieldTipProps>
-  Message: FC<FieldMessageProps>
-  Valid: FC<FieldValidProps>
+  Tip: FC<InputMessageProps>
+  Example: FC<InputMessageProps>
+  Message: FC<InputMessageProps>
+  Validate: FC<FieldValidateProps>
 }
 
 type FieldControlProps = { children: ReactNode }
 type FieldGroupLabelProps = { name: string; children: ReactNode }
-type FieldTipProps = { children: ReactNode; type?: string }
-type FieldMessageProps = { children: ReactNode; type?: string }
-type FieldValidProps = { children: ReactNode; type?: string }
+type FieldValidateProps = Omit<InputMessageProps, "children">
 
 const FieldContext = createContext<FieldContextProps | undefined>(undefined) // Passing undefined ensures if called outside of a FieldContext.Provider, it will return undefined
 
@@ -44,17 +43,21 @@ const Field: FieldComponent = ({
   validationRules,
   validateOnBlur,
 }) => {
+  const methods = useFormContext(); // Needed so we can access formState and trigger validation in Field.Validate
   const contextValue = {
     control,
     name,
     defaultValue,
     validationRules,
     validateOnBlur,
+    methods,
   }
 
   return (
     <FieldContext.Provider value={contextValue}>
-      {children}
+      <div className="mb-2">
+        {children}
+      </div>
     </FieldContext.Provider>
   )
 }
@@ -85,16 +88,19 @@ Field.Control = function FieldControl({ children }: FieldControlProps) {
           ? (event: FocusEvent) => customOnBlur(event, defaultOnBlur)
           : defaultOnBlur // This check is used to prevent running customOnBlur each time user leaves input. Only run if validateOnBlur prop is true
         return (
-          <Slot {...field} onBlur={handleOnBlur}>
-            {children}
-          </Slot>
+          <>
+            <Slot {...field} onBlur={handleOnBlur}>
+              {children}
+            </Slot>
+            <Field.Validate /> {/* Placing here to avoid having to manually use Field.Validate in every Field.Control */}
+          </>
         )
       }}
     />
   )
 }
 
-Field.GroupLabel = function FieldGroupLabel({ name, children, type }) {
+Field.GroupLabel = function FieldGroupLabel({ name, children }) {
   return (
     <Label.Root
       htmlFor={name}
@@ -105,17 +111,26 @@ Field.GroupLabel = function FieldGroupLabel({ name, children, type }) {
   )
 }
 
-// Type prop is hardcoded for now. Will be removed or made dynamic in future
-Field.Tip = function FieldTip({ children, type = "standard" }) {
-  return <Tip text={children} type={type} />
+Field.Tip = function FieldTip({ children, type = "tip" }) {
+  return <InputMessage type={type as InputMessageType}>{children}</InputMessage>
 }
 
-Field.Message = function FieldMessage({ children, type = "example" }) {
-  return <Tip text={children} type={type} />
+Field.Example = function FieldMessage({ children, type = "example" }) {
+  return <InputMessage type={type as InputMessageType}>{children}</InputMessage>
 }
 
-Field.Valid = function FieldValid({ children, type = "valid" }) {
-  return <Tip text={children} type={"valid"} />
+Field.Message = function FieldMessage({ children, type }) {
+  return <InputMessage type={type as InputMessageType}>{children}</InputMessage>
+}
+
+// Automatically validates errors onSubmit based on the zod schema passed to RHF's useForm() in the parent form component
+Field.Validate = function FieldValid({ type = "error" }) {
+  const { name, methods } = useContext(FieldContext) as FieldContextProps;
+  return (
+    <InputMessage type={type as InputMessageType}>
+      {methods.formState.errors[name] && methods.formState.errors[name].message} {/* RHF automatically adds a message property to the error object based on zod Schema */}
+    </InputMessage>
+  )
 }
 
 // WIP... attempting to switch styles depending if error present or not
