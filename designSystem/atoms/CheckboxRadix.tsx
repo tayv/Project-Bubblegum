@@ -1,6 +1,6 @@
 import React, { FC, forwardRef, HTMLAttributes } from "react"
 import classNames from "classnames"
-import InputLabel from "@designSystem/atoms/InputLabel"
+import InputLabel from "@designSystem/atoms/InputGroupLabel"
 import * as Checkbox from "@radix-ui/react-checkbox"
 import { CheckIcon } from "lucide-react"
 

@@ -8,8 +8,8 @@ import React, {
 import classNames from "classnames"
 import { Control } from "react-hook-form"
 import Tip, { TipProps } from "@molecules/Tip"
-import InputLabel, { InputLabelProps } from "@designSystem/atoms/InputLabel"
-import InputLabelRadix from "@designSystem/atoms/InputLabel"
+import InputLabel, { InputLabelProps } from "@designSystem/atoms/InputGroupLabel"
+import InputLabelRadix from "@designSystem/atoms/InputGroupLabel"
 
 // OVERVIEW
 // This atom form component provides styling and accessibility requirements. Validation, event handlers, etc.

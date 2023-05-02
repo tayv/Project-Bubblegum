@@ -1,12 +1,11 @@
 import React, { FC, forwardRef, HTMLAttributes } from "react"
 import classNames from "classnames"
-import InputLabel from "@designSystem/atoms/InputLabel"
 
 export type CheckboxStyle = "standard" | "toggle"
 export type CheckboxProps = {
-  id: string
-  name: string
-  label: string
+  id?: string
+  name?: string
+  label?: string
   value?: any // HTMLInputElement type doesn't like use of boolean so switched to any
   style?: CheckboxStyle
   className?: string
@@ -28,6 +27,7 @@ const Checkbox: FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>(
       label,
       onChange,
       value,
+      children,
       defaultChecked,
       ...props
     },
@@ -35,19 +35,18 @@ const Checkbox: FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>(
   ) {
     return (
       <div>
-        <InputLabel htmlFor={id} type="checkbox" label={label}>
-          {/* <label className="inline-flex items-center"> */}
+          <label className="inline-flex items-center"> 
           <input
             type="checkbox"
             id={name}
             name={name}
             className="form-checkbox"
-            onChange={(e) => onChange(e.target.checked)}
+            onChange={onChange}
             checked={value}
             {...props}
           />
-          <span className="ml-2">{props.children}</span>
-        </InputLabel>
+          <span className="ml-2">{children}</span>
+        </label>
       </div>
     )
   }

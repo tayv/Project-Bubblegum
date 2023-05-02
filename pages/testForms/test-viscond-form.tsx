@@ -10,7 +10,7 @@ import WrapperRadioGroup from "@forms/WrapperRadioGroup"
 import SectionCard from "@designSystem/molecules/SectionCard"
 import WrapperCheckbox from "@forms/WrapperCheckbox"
 import Tip from "@molecules/Tip"
-import Label from "@designSystem/atoms/InputLabel"
+import Label from "@designSystem/atoms/InputGroupLabel"
 import TemplateGeneric from "@templates/TemplateGeneric"
 import UpdateDocState from "utils/UpdateDocState"
 import WrapperTextArea from "@forms/WrapperTextArea"
@@ -176,7 +176,7 @@ const TestVisForm: FC = () => {
                 defaultValue={false}
                 control={control}
               >
-                <Checkbox label="This is being watched and toggles the next section" />
+                <Checkbox>This is being watched and toggles the next section</Checkbox>
               </Field>
               <BlankSpace xSize="small" />
               <Field
@@ -199,7 +199,7 @@ const TestVisForm: FC = () => {
                 <Heading size="h2" type="primary">
                   WatchField Components
                 </Heading>
-                <Checkbox label="This watches the previous section" />
+                <Checkbox>This watches the previous section</Checkbox>
               </SectionCard>
             </WatchField>
 

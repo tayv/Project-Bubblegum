@@ -144,8 +144,8 @@ const FieldPage: FC = () => {
                 //validationRules={}
                 validateOnBlur={true}
               >
-                <Field.GroupLabel type="standard">
-                  Enter something:
+                <Field.GroupLabel>
+                  Enter something with 3 letters:
                 </Field.GroupLabel>
                 <Field.Tip>This is a tip</Field.Tip>
                 <Field.Control>
