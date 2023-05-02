@@ -26,21 +26,24 @@ const iconMap: { [key in InputMessageType]: JSX.Element | null } = {
   error: <AlertTriangle className="w-4 text-red-600" />,
 }
 
-const InputMessage: FC<InputMessageProps> = ({ type = "tip", children, ...props }) => {
+const InputMessage: FC<InputMessageProps> = ({
+  type = "tip",
+  children,
+  ...props
+}) => {
   return (
     <span
       className={classNames([
-        "flex gap-1 items-center", // standard css styles go here. 
+        "flex gap-1 items-center", // standard css styles go here.
         inputMessageTypeMap[type], // to dynamically set styling for different radio types
         props.className, // custom styling passed from parent
       ])}
     >
-      { children && iconMap[type]} {/* only render icon if a message is displayed */}
+      {children && iconMap[type]}{" "}
+      {/* only render icon if a message is displayed */}
       {children}
     </span>
   )
 }
 
 export default InputMessage
-
-

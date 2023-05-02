@@ -9,7 +9,7 @@ export type InputGroupLabelProps = {
   className?: string
 }
 
-export type InputGroupLabelType = "standard" | "secondary" 
+export type InputGroupLabelType = "standard" | "secondary"
 
 const inputGroupLabelTypeMap: { [key in InputGroupLabelType]: string } = {
   standard: "block text-md font-bold text-gray-900",
@@ -22,21 +22,19 @@ const InputGroupLabel: FC<InputGroupLabelProps> = ({
   children,
   ...props
 }) => {
-    return (
-      <Label.Root
-        htmlFor={htmlFor}
-        className={classNames([
-          "", // standard css styles go here. 
-          inputGroupLabelTypeMap[type], // dynamically set styling 
-          props.className, // custom styling passed from parent
-        ])}
-        {...props}
-      >
-        {children}
-      </Label.Root>
-    )
+  return (
+    <Label.Root
+      htmlFor={htmlFor}
+      className={classNames([
+        "", // standard css styles go here.
+        inputGroupLabelTypeMap[type], // dynamically set styling
+        props.className, // custom styling passed from parent
+      ])}
+      {...props}
+    >
+      {children}
+    </Label.Root>
+  )
 }
 
 export default InputGroupLabel
-
-

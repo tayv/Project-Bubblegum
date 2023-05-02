@@ -176,7 +176,9 @@ const TestVisForm: FC = () => {
                 defaultValue={false}
                 control={control}
               >
-                <Checkbox>This is being watched and toggles the next section</Checkbox>
+                <Checkbox>
+                  This is being watched and toggles the next section
+                </Checkbox>
               </Field>
               <BlankSpace xSize="small" />
               <Field

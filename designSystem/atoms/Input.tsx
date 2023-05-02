@@ -8,7 +8,9 @@ import React, {
 import classNames from "classnames"
 import { Control } from "react-hook-form"
 import Tip, { TipProps } from "@molecules/Tip"
-import InputLabel, { InputLabelProps } from "@designSystem/atoms/InputGroupLabel"
+import InputLabel, {
+  InputGroupLabelProps,
+} from "@designSystem/atoms/InputGroupLabel"
 import InputLabelRadix from "@designSystem/atoms/InputGroupLabel"
 
 // OVERVIEW
@@ -18,10 +20,11 @@ import InputLabelRadix from "@designSystem/atoms/InputGroupLabel"
 // TYPES
 // This input component is intended to be used for all single line inputs (phone, numbers, text input)
 export type InputSize = "standard" | "large"
+export type InputState = "standard" | "error"
 export type InputType = "text" | "email" | "tel" | "number"
 export type InputProps = {
   name?: string
-  label?: InputLabelProps["label"]
+  label?: InputGroupLabelProps["children"]
   type?: InputType
   size?: InputSize
   tipText?: TipProps["text"]
@@ -32,6 +35,7 @@ export type InputProps = {
   onChange?: any
   warnChange?: any
   children?: React.ReactElement
+  hasError?: boolean
 
   // RHF prop types
   register?: any // react-hook-form: to register an input (not needed if using Controller)
@@ -46,6 +50,11 @@ const inputSizeMap: { [key in InputSize]: string } = {
   large: "w-full py-3 px-4",
 }
 
+const inputFocusStyleMap: { [key in InputState]: string } = {
+  standard: "focus:ring-green-400",
+  error: "focus:ring-red-300",
+}
+
 // forwardRef so RHF can work properly in WrapperInput
 const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
   function setRefInput(
@@ -58,14 +67,14 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
       tipText = null,
       exampleText = null,
       children = null,
+      hasError = false,
       ...props
     },
     ref
   ) {
+    console.log("error:", hasError)
     return (
       <div className="max-w-sm">
-        <InputLabel type="standard" label={label} htmlFor={name} />
-        <Tip text={tipText} type="standard" />
         <input
           ref={ref}
           id={name}
@@ -74,6 +83,7 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
           className={classNames([
             "mt-1 block border border-gray-900 bg-white shadow-sm",
             inputSizeMap[size], // to dynamically set styling for different input sizes
+            inputFocusStyleMap[hasError ? "error" : "standard"], 
             className,
           ])}
           {...props}

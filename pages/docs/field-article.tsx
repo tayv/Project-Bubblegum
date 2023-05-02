@@ -104,12 +104,14 @@ const FieldPage: FC = () => {
                 defaultValue=""
                 validationRules={{ required: "This field is required" }}
               >
-                <Field.GroupLabel type="standard">Pick a date:</Field.GroupLabel>
+                <Field.GroupLabel type="standard">
+                  Pick a date:
+                </Field.GroupLabel>
                 <Field.Tip>This is a tip</Field.Tip>
                 <Field.Control>
                   <DatePick
                     // name="fielddatepicktest"
-                   // label="fielddatepicktest"
+                    // label="fielddatepicktest"
                     startYearRange={1990}
                     endYearRange={2030}
                   />
@@ -135,7 +137,6 @@ const FieldPage: FC = () => {
                 <Field.Control>
                   <Input type="text" />
                 </Field.Control>
-           
               </Field>
 
               <Field

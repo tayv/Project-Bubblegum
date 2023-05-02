@@ -35,7 +35,7 @@ const Checkbox: FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>(
   ) {
     return (
       <div>
-          <label className="inline-flex items-center"> 
+        <label className="inline-flex items-center">
           <input
             type="checkbox"
             id={name}

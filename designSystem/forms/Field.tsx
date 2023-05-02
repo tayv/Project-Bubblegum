@@ -6,10 +6,16 @@ import React, {
   useContext,
 } from "react"
 import { Controller, Control, useFormContext } from "react-hook-form"
+import classNames from "classnames"
 import { Slot } from "@radix-ui/react-slot"
-import InputGroupLabel, {InputGroupLabelProps} from "@designSystem/atoms/InputGroupLabel"
+import InputGroupLabel, {
+  InputGroupLabelProps,
+} from "@designSystem/atoms/InputGroupLabel"
 import * as Label from "@radix-ui/react-label"
-import InputMessage, { InputMessageProps, InputMessageType} from "@designSystem/molecules/InputMessage"
+import InputMessage, {
+  InputMessageProps,
+  InputMessageType,
+} from "@designSystem/molecules/InputMessage"
 
 type FieldContextProps = {
   control: Control
@@ -29,7 +35,7 @@ interface FieldComponent extends FC<FieldContextProps> {
   Validate: FC<FieldValidateProps>
 }
 
-type FieldControlProps = { children: ReactNode }
+type FieldControlProps = { children: ReactNode, hasError?: boolean }
 type FieldValidateProps = Omit<InputMessageProps, "children">
 
 const FieldContext = createContext<FieldContextProps | undefined>(undefined) // Passing undefined ensures if called outside of a FieldContext.Provider, it will return undefined
@@ -42,7 +48,7 @@ const Field: FieldComponent = ({
   validationRules,
   validateOnBlur,
 }) => {
-  const methods = useFormContext(); // Needed so we can access formState and trigger validation in Field.Validate
+  const methods = useFormContext() // Needed so we can access formState and trigger validation in Field.Validate
   const contextValue = {
     control,
     name,
@@ -54,9 +60,7 @@ const Field: FieldComponent = ({
 
   return (
     <FieldContext.Provider value={contextValue}>
-      <div className="mb-2">
-        {children}
-      </div>
+      <div className="mb-2">{children}</div>
     </FieldContext.Provider>
   )
 }
@@ -75,6 +79,10 @@ Field.Control = function FieldControl({ children }: FieldControlProps) {
     defaultOnBlur(event) // To ensure RHF standard behavior is maintained
   }
 
+  const hasError = !!methods.formState.errors[name] // Pass as a prop to children so they know to use error styling
+  const FieldErrorContext = createContext<boolean | undefined>(undefined) // Setup a context so I can pass hasError to child component (aka Input)
+
+
   return (
     <Controller
       name={name}
@@ -86,13 +94,14 @@ Field.Control = function FieldControl({ children }: FieldControlProps) {
         const handleOnBlur = validateOnBlur
           ? (event: FocusEvent) => customOnBlur(event, defaultOnBlur)
           : defaultOnBlur // This check is used to prevent running customOnBlur each time user leaves input. Only run if validateOnBlur prop is true
-        return (
-          <>
+
+          return (
+          <FieldErrorContext.Provider value={hasError}>
             <Slot {...field} onBlur={handleOnBlur}>
               {children}
             </Slot>
-            <Field.Validate /> {/* Placing here to avoid having to manually use Field.Validate in every Field.Control */}
-          </>
+            <Field.Validate /> {/* Placing here to avoid manually place Field.Validate in every Field.Control */}
+          </FieldErrorContext.Provider>
         )
       }}
     />
@@ -102,7 +111,9 @@ Field.Control = function FieldControl({ children }: FieldControlProps) {
 Field.GroupLabel = function FieldGroupLabel({ type, children }) {
   const { name } = useContext(FieldContext) as FieldContextProps
   return (
-    <InputGroupLabel type={type} htmlFor={name}>{children}</InputGroupLabel>
+    <InputGroupLabel type={type} htmlFor={name}>
+      {children}
+    </InputGroupLabel>
   )
 }
 
@@ -118,13 +129,20 @@ Field.Message = function FieldMessage({ children, type }) {
   return <InputMessage type={type as InputMessageType}>{children}</InputMessage>
 }
 
-
-Field.Validate = function FieldValid({ type = "error" }) { // Automatically validates errors onSubmit based on the zod schema passed to RHF's useForm() in the parent form component
+Field.Validate = function FieldValid({ type = "error" }) {
+  // Automatically validates errors onSubmit based on the zod schema passed to RHF's useForm() in the parent form component
   const { name, methods } = useContext(FieldContext) as FieldContextProps
+  const errorMessage = methods.formState.errors[name]
+
   return (
-    <InputMessage type={type as InputMessageType}>
-      {methods.formState.errors[name] && methods.formState.errors[name].message} {/* RHF automatically adds a message property to the error object based on zod Schema */}
-    </InputMessage>
+    <>
+      {errorMessage && ( // Gate needed here to prevent displaying icon on initial render
+        <InputMessage type={type as InputMessageType}>
+          {methods.formState.errors[name].message}{" "}
+          {/* RHF automatically adds a message property to the error object based on zod Schema */}
+        </InputMessage>
+      )}
+    </>
   )
 }
 
