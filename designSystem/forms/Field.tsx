@@ -4,6 +4,7 @@ import React, {
   FocusEvent,
   createContext,
   useContext,
+  HTMLAttributes,
 } from "react"
 import { Controller, Control, useFormContext } from "react-hook-form"
 import classNames from "classnames"
@@ -35,7 +36,7 @@ interface FieldComponent extends FC<FieldContextProps> {
   Validate: FC<FieldValidateProps>
 }
 
-type FieldControlProps = { children: ReactNode, hasError?: boolean }
+type FieldControlProps = { children: ReactNode; hasError?: boolean }
 type FieldValidateProps = Omit<InputMessageProps, "children">
 
 const FieldContext = createContext<FieldContextProps | undefined>(undefined) // Passing undefined ensures if called outside of a FieldContext.Provider, it will return undefined
@@ -80,8 +81,6 @@ Field.Control = function FieldControl({ children }: FieldControlProps) {
   }
 
   const hasError = !!methods.formState.errors[name] // Pass as a prop to children so they know to use error styling
-  const FieldErrorContext = createContext<boolean | undefined>(undefined) // Setup a context so I can pass hasError to child component (aka Input)
-
 
   return (
     <Controller
@@ -95,13 +94,16 @@ Field.Control = function FieldControl({ children }: FieldControlProps) {
           ? (event: FocusEvent) => customOnBlur(event, defaultOnBlur)
           : defaultOnBlur // This check is used to prevent running customOnBlur each time user leaves input. Only run if validateOnBlur prop is true
 
-          return (
-          <FieldErrorContext.Provider value={hasError}>
-            <Slot {...field} onBlur={handleOnBlur}>
+        return (
+          <>
+            {" "}
+            {/* Unable to pass custom type to Slot so type assertion used on field to supress hasError TS error */}
+            <Slot {...(field as any)} onBlur={handleOnBlur} hasError={hasError}>
               {children}
             </Slot>
-            <Field.Validate /> {/* Placing here to avoid manually place Field.Validate in every Field.Control */}
-          </FieldErrorContext.Provider>
+            <Field.Validate />{" "}
+            {/* Placing here to avoid manually place Field.Validate in every Field.Control */}
+          </>
         )
       }}
     />

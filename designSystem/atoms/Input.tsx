@@ -51,8 +51,8 @@ const inputSizeMap: { [key in InputSize]: string } = {
 }
 
 const inputFocusStyleMap: { [key in InputState]: string } = {
-  standard: "focus:ring-green-400",
-  error: "focus:ring-red-300",
+  standard: "focus:ring focus:ring-green-400",
+  error: "ring-2 ring-inset ring-red-400 focus:ring-red-400 focus:ring",
 }
 
 // forwardRef so RHF can work properly in WrapperInput
@@ -81,9 +81,9 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
           name={name}
           type={type}
           className={classNames([
-            "mt-1 block border border-gray-900 bg-white shadow-sm",
+            "mt-1 block border border-gray-900 rounded-lg bg-white shadow-sm",
             inputSizeMap[size], // to dynamically set styling for different input sizes
-            inputFocusStyleMap[hasError ? "error" : "standard"], 
+            inputFocusStyleMap[hasError ? "error" : "standard"],
             className,
           ])}
           {...props}
