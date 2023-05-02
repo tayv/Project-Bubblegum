@@ -72,7 +72,6 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
     },
     ref
   ) {
-    console.log("error:", hasError)
     return (
       <div className="max-w-sm">
         <input

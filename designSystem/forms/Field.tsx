@@ -4,32 +4,29 @@ import React, {
   FocusEvent,
   createContext,
   useContext,
-  HTMLAttributes,
 } from "react"
-import { Controller, Control, useFormContext } from "react-hook-form"
-import classNames from "classnames"
+import { Controller, useFormContext } from "react-hook-form"
 import { Slot } from "@radix-ui/react-slot"
 import InputGroupLabel, {
   InputGroupLabelProps,
 } from "@designSystem/atoms/InputGroupLabel"
-import * as Label from "@radix-ui/react-label"
 import InputMessage, {
   InputMessageProps,
   InputMessageType,
 } from "@designSystem/molecules/InputMessage"
 
 type FieldContextProps = {
-  control: Control
+ // control: Control
   name: string
   defaultValue: any
   validationRules?: any
   validateOnBlur?: boolean
-  methods: any
+  methods?: any
 }
 
 interface FieldComponent extends FC<FieldContextProps> {
   Control: FC<FieldControlProps>
-  GroupLabel: FC<InputGroupLabelProps>
+  GroupLabel: FC<FieldGroupLabelProps>
   Tip: FC<InputMessageProps>
   Example: FC<InputMessageProps>
   Message: FC<InputMessageProps>
@@ -37,13 +34,14 @@ interface FieldComponent extends FC<FieldContextProps> {
 }
 
 type FieldControlProps = { children: ReactNode; hasError?: boolean }
+type FieldGroupLabelProps = Omit<InputGroupLabelProps, "htmlFor">
 type FieldValidateProps = Omit<InputMessageProps, "children">
 
 const FieldContext = createContext<FieldContextProps | undefined>(undefined) // Passing undefined ensures if called outside of a FieldContext.Provider, it will return undefined
 
 const Field: FieldComponent = ({
   children,
-  control,
+ // control,
   name,
   defaultValue,
   validationRules,
@@ -51,7 +49,7 @@ const Field: FieldComponent = ({
 }) => {
   const methods = useFormContext() // Needed so we can access formState and trigger validation in Field.Validate
   const contextValue = {
-    control,
+  //  control,
     name,
     defaultValue,
     validationRules,
@@ -67,7 +65,7 @@ const Field: FieldComponent = ({
 }
 
 Field.Control = function FieldControl({ children }: FieldControlProps) {
-  const { control, name, defaultValue, validationRules, validateOnBlur } =
+  const { name, defaultValue, validationRules, validateOnBlur } =
     useContext(FieldContext) as FieldContextProps // Type assertion since we know this won't be undefined
   const methods = useFormContext() // Needed so we can access formState and trigger validation
 
@@ -86,7 +84,7 @@ Field.Control = function FieldControl({ children }: FieldControlProps) {
     <Controller
       name={name}
       defaultValue={defaultValue}
-      control={control}
+      control={methods.control}
       rules={validationRules}
       render={({ field: { onBlur: defaultOnBlur, ...field } }) => {
         // Field contains { name, value, onChange, onBlur }. See https://www.react-hook-form.com/api/usecontroller/controller/
@@ -96,12 +94,11 @@ Field.Control = function FieldControl({ children }: FieldControlProps) {
 
         return (
           <>
-            {" "}
             {/* Unable to pass custom type to Slot so type assertion used on field to supress hasError TS error */}
             <Slot {...(field as any)} onBlur={handleOnBlur} hasError={hasError}>
               {children}
             </Slot>
-            <Field.Validate />{" "}
+            <Field.Validate />
             {/* Placing here to avoid manually place Field.Validate in every Field.Control */}
           </>
         )
@@ -140,7 +137,7 @@ Field.Validate = function FieldValid({ type = "error" }) {
     <>
       {errorMessage && ( // Gate needed here to prevent displaying icon on initial render
         <InputMessage type={type as InputMessageType}>
-          {methods.formState.errors[name].message}{" "}
+          {methods.formState.errors[name].message}
           {/* RHF automatically adds a message property to the error object based on zod Schema */}
         </InputMessage>
       )}
