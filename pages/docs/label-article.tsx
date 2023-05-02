@@ -4,7 +4,7 @@ import Heading from "@designSystem/atoms/Heading"
 import Paragraph from "@designSystem/atoms/Paragraph"
 import { FC } from "react"
 import SectionCard from "@designSystem/molecules/SectionCard"
-import InputLabel from "designSystem/atoms/InputLabelRadix"
+import InputLabel from "@designSystem/atoms/InputLabel"
 import Divider from "@designSystem/atoms/Divider"
 
 // data for Breadcrumbs

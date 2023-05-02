@@ -1,7 +1,7 @@
 import { FC, forwardRef, useState } from "react"
 import { CalendarDays, Minus } from "lucide-react"
 import { InputProps } from "@atoms/Input"
-import InputLabel from "@atoms/InputLabelRadix"
+import InputLabel from "@designSystem/atoms/InputLabel"
 import Tip, { TipProps } from "@molecules/Tip"
 import * as Accordion from "@radix-ui/react-accordion"
 import { format, startOfToday } from "date-fns"

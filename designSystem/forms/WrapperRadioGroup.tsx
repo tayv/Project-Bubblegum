@@ -7,7 +7,7 @@ import {
 } from "designSystem/atoms/RadioButton"
 import classNames from "classnames"
 import Tip, { TipProps } from "@molecules/Tip"
-import InputLabel from "designSystem/atoms/InputLabelRadix"
+import InputLabel from "@designSystem/atoms/InputLabel"
 
 export type RadioGroupProps = {
   groupLabel: string

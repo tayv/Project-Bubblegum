@@ -1,4 +1,4 @@
-import { checkFor, customRegEx } from "@molecules/HelpMessage"
+import { checkFor, customRegEx } from "@designSystem/molecules/AlertMessage"
 
 export type setRegEx = (
   checkFor: checkFor,

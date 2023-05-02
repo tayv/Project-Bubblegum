@@ -5,12 +5,12 @@ import Paragraph from "@designSystem/atoms/Paragraph"
 import { FC, useEffect, useState, useMemo } from "react"
 import { useForm } from "react-hook-form"
 import WrapperInput from "@forms/WrapperInput"
-import HelpMessage from "@molecules/HelpMessage"
+import HelpMessage from "@designSystem/molecules/AlertMessage"
 import WrapperRadioGroup from "@forms/WrapperRadioGroup"
 import SectionCard from "@designSystem/molecules/SectionCard"
 import WrapperCheckbox from "@forms/WrapperCheckbox"
 import Tip from "@molecules/Tip"
-import Label from "designSystem/atoms/InputLabelRadix"
+import Label from "@designSystem/atoms/InputLabel"
 import TemplateGeneric from "@templates/TemplateGeneric"
 import UpdateDocState from "utils/UpdateDocState"
 import WrapperTextArea from "@forms/WrapperTextArea"
@@ -126,6 +126,7 @@ const TestVisForm: FC = () => {
   // useMemo needed to prevent infinite loop due to reset() being a useEffect depenedency in reset()
   const defaultValues = useMemo(
     () => ({
+      fieldtestinput: "default value",
       visOptionAB: "option1a",
       visCheckbox: false, // must be opposite the jsx test condition to work on first click/render
       bikeBrandRadio: "suzuki",
@@ -179,7 +180,7 @@ const TestVisForm: FC = () => {
               </Field>
               <BlankSpace xSize="small" />
               <Field
-                name="field-test-input"
+                name="fieldtestinput"
                 defaultValue="Text Input"
                 control={control}
               >

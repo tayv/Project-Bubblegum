@@ -104,18 +104,16 @@ const FieldPage: FC = () => {
                 defaultValue=""
                 validationRules={{ required: "This field is required" }}
               >
-                <Field.GroupLabel type="standard">First Name</Field.GroupLabel>
+                <Field.GroupLabel type="standard">Pick a date:</Field.GroupLabel>
                 <Field.Tip>This is a tip</Field.Tip>
                 <Field.Control>
                   <DatePick
                     // name="fielddatepicktest"
-                    label="fielddatepicktest"
+                   // label="fielddatepicktest"
                     startYearRange={1990}
                     endYearRange={2030}
                   />
                 </Field.Control>
-                <Field.Message>Pick a date that makes sense</Field.Message>
-                <Field.Valid>Valid</Field.Valid>
               </Field>
 
               <PrintInputValueButton
@@ -137,10 +135,7 @@ const FieldPage: FC = () => {
                 <Field.Control>
                   <Input type="text" />
                 </Field.Control>
-                <Field.Valid>
-                  {methods.formState.errors.inputfieldtest &&
-                    methods.formState.errors.inputfieldtest.message}
-                </Field.Valid>
+           
               </Field>
 
               <Field
@@ -156,7 +151,7 @@ const FieldPage: FC = () => {
                 <Field.Control>
                   <Input type="text" />
                 </Field.Control>
-                <Field.Message>
+                <Field.Message type="warn">
                   {methods.formState.errors.inputfieldtestzod &&
                     methods.formState.errors.inputfieldtestzod.message}
                 </Field.Message>

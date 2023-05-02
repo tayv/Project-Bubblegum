@@ -8,20 +8,20 @@ import React, {
 import classNames from "classnames"
 import { Control } from "react-hook-form"
 import Tip, { TipProps } from "@molecules/Tip"
-import InputLabel, { InputLabelProps } from "designSystem/atoms/InputLabelRadix"
-import InputLabelRadix from "designSystem/atoms/InputLabelRadix"
+import InputLabel, { InputLabelProps } from "@designSystem/atoms/InputLabel"
+import InputLabelRadix from "@designSystem/atoms/InputLabel"
 
 // OVERVIEW
 // This atom form component provides styling and accessibility requirements. Validation, event handlers, etc.
-// will use react-hook-form via a wrapper component to add interactivity
+// will use react-hook-form via a wrapper Field component to add interactivity
 
 // TYPES
 // This input component is intended to be used for all single line inputs (phone, numbers, text input)
 export type InputSize = "standard" | "large"
 export type InputType = "text" | "email" | "tel" | "number"
 export type InputProps = {
-  name: string
-  label: InputLabelProps["label"]
+  name?: string
+  label?: InputLabelProps["label"]
   type?: InputType
   size?: InputSize
   tipText?: TipProps["text"]

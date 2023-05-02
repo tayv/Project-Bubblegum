@@ -1,6 +1,6 @@
 import React, { FC, forwardRef, HTMLAttributes } from "react"
 import classNames from "classnames"
-import InputLabel from "@atoms/InputLabelRadix"
+import InputLabel from "@designSystem/atoms/InputLabel"
 
 export type CheckboxStyle = "standard" | "toggle"
 export type CheckboxProps = {
