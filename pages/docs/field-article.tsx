@@ -17,6 +17,7 @@ import CheckboxRadix from "@designSystem/atoms/CheckboxRadix"
 import Input from "@designSystem/atoms/Input"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
+import useMatchRegex from "@utils/useMatchRegex"
 
 // data for Breadcrumbs
 const crumbs = [
@@ -142,7 +143,6 @@ const FieldPage: FC = () => {
               <Field
                 name="inputfieldtestzod"
                 defaultValue={""}
-                //validationRules={}
                 validateOnBlur={true}
               >
                 <Field.GroupLabel>
@@ -153,8 +153,8 @@ const FieldPage: FC = () => {
                   <Input type="text" />
                 </Field.Control>
                 <Field.Message type="warn">
-                  {methods.formState.errors.inputfieldtestzod &&
-                    methods.formState.errors.inputfieldtestzod.message}
+                  {useMatchRegex("inputfieldtestzod", methods.control, "s") &&
+                    "This is a warning"}
                 </Field.Message>
               </Field>
 

@@ -14,9 +14,10 @@ import InputMessage, {
   InputMessageProps,
   InputMessageType,
 } from "@designSystem/molecules/InputMessage"
+import useMatchRegex from "@utils/useMatchRegex"
 
 type FieldContextProps = {
- // control: Control
+  // control: Control
   name: string
   defaultValue: any
   validationRules?: any
@@ -41,7 +42,7 @@ const FieldContext = createContext<FieldContextProps | undefined>(undefined) // 
 
 const Field: FieldComponent = ({
   children,
- // control,
+  // control,
   name,
   defaultValue,
   validationRules,
@@ -49,7 +50,7 @@ const Field: FieldComponent = ({
 }) => {
   const methods = useFormContext() // Needed so we can access formState and trigger validation in Field.Validate
   const contextValue = {
-  //  control,
+    //  control,
     name,
     defaultValue,
     validationRules,
@@ -65,11 +66,12 @@ const Field: FieldComponent = ({
 }
 
 Field.Control = function FieldControl({ children }: FieldControlProps) {
-  const { name, defaultValue, validationRules, validateOnBlur } =
-    useContext(FieldContext) as FieldContextProps // Type assertion since we know this won't be undefined
+  const { name, defaultValue, validationRules, validateOnBlur } = useContext(
+    FieldContext
+  ) as FieldContextProps // Type assertion since we know this won't be undefined
   const methods = useFormContext() // Needed so we can access formState and trigger validation
 
-  const customOnBlur = (
+  const usecustomOnBlur = (
     event: FocusEvent,
     defaultOnBlur: (event: FocusEvent) => void
   ) => {
@@ -89,7 +91,7 @@ Field.Control = function FieldControl({ children }: FieldControlProps) {
       render={({ field: { onBlur: defaultOnBlur, ...field } }) => {
         // Field contains { name, value, onChange, onBlur }. See https://www.react-hook-form.com/api/usecontroller/controller/
         const handleOnBlur = validateOnBlur
-          ? (event: FocusEvent) => customOnBlur(event, defaultOnBlur)
+          ? (event: FocusEvent) => usecustomOnBlur(event, defaultOnBlur)
           : defaultOnBlur // This check is used to prevent running customOnBlur each time user leaves input. Only run if validateOnBlur prop is true
 
         return (
@@ -125,6 +127,17 @@ Field.Example = function FieldMessage({ children, type = "example" }) {
 }
 
 Field.Message = function FieldMessage({ children, type }) {
+  const { name, methods } = useContext(FieldContext) as FieldContextProps
+  // const onMatchCallback = () => {
+  //   console.log("Input value matched the specified regex formula");
+  // };
+  // useMatchRegex("a", name, methods.getValues, onMatchCallback)
+  let checkForMatch = (name, regexFormula) => {
+    let watchInput = methods.watch(name)
+    return watchInput.match(regexFormula) !== null
+  }
+  const regexToMatch = /(a)/g
+
   return <InputMessage type={type as InputMessageType}>{children}</InputMessage>
 }
 
@@ -144,22 +157,6 @@ Field.Validate = function FieldValid({ type = "error" }) {
     </>
   )
 }
-
-// WIP... attempting to switch styles depending if error present or not
-// Field.Valid = function FieldValid({ children }) {
-//   const methods = useFormContext()
-//   const { name }= useContext(FieldContext)
-
-//   methods.formState.errors[name] ? (
-//       <span>
-//         <Tip text={children} type={"standard"} />
-//       </span>
-//   ) : (
-//     <span>
-//     <Tip text={children} type={"valid"} />
-//   </span>
-//   )
-// }
 
 export default Field
 

@@ -1,17 +1,6 @@
-import React, {
-  FC,
-  ChangeEvent,
-  forwardRef,
-  InputHTMLAttributes,
-  DetailedHTMLProps,
-} from "react"
+import React, { FC, forwardRef } from "react"
 import classNames from "classnames"
 import { Control } from "react-hook-form"
-import Tip, { TipProps } from "@molecules/Tip"
-import InputLabel, {
-  InputGroupLabelProps,
-} from "@designSystem/atoms/InputGroupLabel"
-import InputLabelRadix from "@designSystem/atoms/InputGroupLabel"
 
 // OVERVIEW
 // This atom form component provides styling and accessibility requirements. Validation, event handlers, etc.
@@ -24,23 +13,14 @@ export type InputState = "standard" | "error"
 export type InputType = "text" | "email" | "tel" | "number"
 export type InputProps = {
   name?: string
-  label?: InputGroupLabelProps["children"]
   type?: InputType
   size?: InputSize
-  tipText?: TipProps["text"]
-  exampleText?: TipProps["text"]
   className?: string
   placeholder?: string
   defaultValue?: string | number
   onChange?: any
-  warnChange?: any
   children?: React.ReactElement
   hasError?: boolean
-
-  // RHF prop types
-  register?: any // react-hook-form: to register an input (not needed if using Controller)
-  rules?: Record<string, any> // react-hook-form: validation rules. Any object so used generic Record type.
-  control?: Control // react-hook-form: used by Controller. https://react-hook-form.com/ts/#Control
 }
 
 // DYNAMIC STYLING
@@ -60,12 +40,9 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
   function setRefInput(
     {
       name,
-      label = null,
       type = "text",
       size = "standard",
       className = "", // to pass custom one-off styling
-      tipText = null,
-      exampleText = null,
       children = null,
       hasError = false,
       ...props
@@ -87,7 +64,6 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
           ])}
           {...props}
         />
-        <Tip text={exampleText} type="example" />
         {children} {/* For displaying warning message components, etc. */}
       </div>
     )
