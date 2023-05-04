@@ -18,6 +18,7 @@ import Input from "@designSystem/atoms/Input"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 import useMatchRegex from "@utils/useMatchRegex"
+import SelectRadix from "@designSystem/atoms/SelectRadix"
 
 // data for Breadcrumbs
 const crumbs = [
@@ -36,6 +37,7 @@ const FieldPage: FC = () => {
     fielddatepicktest: format(startOfToday(), "MMM-dd-yyyy"),
     inputfieldtest: "",
     inputfieldtestzod: "",
+    selectfieldtest: "first",
   }
   // Used by the test section to show the form data in the UI
   const [formData, setFormData] = useState({})
@@ -155,6 +157,26 @@ const FieldPage: FC = () => {
                 <Field.Message type="warn" formulaShortCode="1b">
                   This is a warning message
                 </Field.Message>
+              </Field>
+
+              <Field
+                name="selectfieldtest"
+                defaultValue={"first"}
+              >
+                <Field.GroupLabel>
+                  Select something:
+                </Field.GroupLabel>
+                <Field.Tip>This is a tip</Field.Tip>
+                <Field.Control>
+                  <SelectRadix 
+                    placeholder="Select an option"
+                    itemOptions={[
+                      { value: "first", labelText: "firstText", separator: false },
+                      { value: "second", labelText: "secondText", separator: true },
+                      { value: "third", labelText: "thirdText", separator: false },
+                      { value: "fourth", labelText: "fourthText", separator: true },
+                    ]}/>
+                </Field.Control>
               </Field>
 
               <Divider padding="large" />
