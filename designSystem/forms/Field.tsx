@@ -30,12 +30,13 @@ interface FieldComponent extends FC<FieldContextProps> {
   GroupLabel: FC<FieldGroupLabelProps>
   Tip: FC<InputMessageProps>
   Example: FC<InputMessageProps>
-  Message: FC<InputMessageProps>
+  Message: FC<FieldMessageProps>
   Validate: FC<FieldValidateProps>
 }
 
 type FieldControlProps = { children: ReactNode; hasError?: boolean }
 type FieldGroupLabelProps = Omit<InputGroupLabelProps, "htmlFor">
+type FieldMessageProps = InputMessageProps & { formulaShortCode: string }
 type FieldValidateProps = Omit<InputMessageProps, "children">
 
 const FieldContext = createContext<FieldContextProps | undefined>(undefined) // Passing undefined ensures if called outside of a FieldContext.Provider, it will return undefined
@@ -126,16 +127,25 @@ Field.Example = function FieldMessage({ children, type = "example" }) {
   return <InputMessage type={type as InputMessageType}>{children}</InputMessage>
 }
 
+// Message can be used for all messages except errors. Warnings are conditional based on regex match
 Field.Message = function FieldMessage({ children, type, ...props }) {
-  const { name, defaultValue, methods } = useContext(FieldContext) as FieldContextProps
-  console.log(props.formulaShortCode)
-  const isMatch = useMatchRegex(name, methods.control, defaultValue, props.formulaShortCode) // Only needed as logic gate for warning messages
+  const { name, defaultValue, methods } = useContext(
+    FieldContext
+  ) as FieldContextProps
 
-return (
-    (type !== "warn") ? (
-      <InputMessage type={type as InputMessageType}>{children}</InputMessage>
-    ) : <InputMessage type={type as InputMessageType}>{isMatch && children}</InputMessage>
-)
+  // Logic for conditional onChange warning messages
+  const isMatch = useMatchRegex({
+    name: name,
+    control: methods.control,
+    defaultValue: defaultValue,
+    formulaShortCode: props.formulaShortCode,
+  })
+
+  return type !== "warn" ? (
+    <InputMessage type={type as InputMessageType}>{children}</InputMessage>
+  ) : (
+    <InputMessage type={type as InputMessageType}>{isMatch}</InputMessage>
+  )
 }
 
 Field.Validate = function FieldValid({ type = "error" }) {
