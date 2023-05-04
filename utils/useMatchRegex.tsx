@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react"
 import { useWatch } from "react-hook-form"
 
 export type MatchRegExProps = {
@@ -6,38 +5,33 @@ export type MatchRegExProps = {
   checkFor: string | number
 }
 
+// HELPER FUNCTIONS
+const setRegEx = (formulaShortCode) => {
+  switch (formulaShortCode) {
+    case "1a":
+      return /(a)/g
+
+    case "1b":
+      return /(b)/g
+
+    case "2a":
+      return /(c)/g
+
+    default:
+      return null
+  }
+}
+
 const checkForMatch = (watchInput, regexFormula) => {
-  console.log(watchInput, watchInput.match(regexFormula) !== null)
+  console.log(regexFormula)
   return watchInput.match(regexFormula) !== null
 }
 
-const useMatchRegex = (name, control, defaultValue) => {
-  const [result, setResult] = useState<string | null>(null)
+// MAIN HOOK
+const useMatchRegex = (name, control, defaultValue, formulaShortCode) => {
 
   let watchInput = useWatch({ control, name: name, defaultValue: defaultValue })
-  let regexFormula = /(a)/g
-
-  // useEffect(() => {
-  //   const inputValue = getValues(name)
-  //   console.log("heres's the input value: ", inputValue)
-  //   switch (checkFor) {
-  //     case "a":
-  //       setResult(
-  //         inputValue.toString().match(/(a)/g) ? "it matches A" : null
-  //       );
-  //       break;
-
-  //     case "b":
-  //       setResult("message");
-  //       break;
-
-  //     default:
-  //       setResult(null);
-  //       break;
-  //   }
-  // }, [checkFor, name, getValues]);
-
-  // return result;
+  let regexFormula = setRegEx(formulaShortCode)
 
   return checkForMatch(watchInput, regexFormula)
 }

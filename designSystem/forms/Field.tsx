@@ -126,19 +126,16 @@ Field.Example = function FieldMessage({ children, type = "example" }) {
   return <InputMessage type={type as InputMessageType}>{children}</InputMessage>
 }
 
-Field.Message = function FieldMessage({ children, type }) {
-  const { name, methods } = useContext(FieldContext) as FieldContextProps
-  // const onMatchCallback = () => {
-  //   console.log("Input value matched the specified regex formula");
-  // };
-  // useMatchRegex("a", name, methods.getValues, onMatchCallback)
-  let checkForMatch = (name, regexFormula) => {
-    let watchInput = methods.watch(name)
-    return watchInput.match(regexFormula) !== null
-  }
-  const regexToMatch = /(a)/g
+Field.Message = function FieldMessage({ children, type, ...props }) {
+  const { name, defaultValue, methods } = useContext(FieldContext) as FieldContextProps
+  console.log(props.formulaShortCode)
+  const isMatch = useMatchRegex(name, methods.control, defaultValue, props.formulaShortCode) // Only needed as logic gate for warning messages
 
-  return <InputMessage type={type as InputMessageType}>{children}</InputMessage>
+return (
+    (type !== "warn") ? (
+      <InputMessage type={type as InputMessageType}>{children}</InputMessage>
+    ) : <InputMessage type={type as InputMessageType}>{isMatch && children}</InputMessage>
+)
 }
 
 Field.Validate = function FieldValid({ type = "error" }) {

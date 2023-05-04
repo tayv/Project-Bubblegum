@@ -152,9 +152,8 @@ const FieldPage: FC = () => {
                 <Field.Control>
                   <Input type="text" />
                 </Field.Control>
-                <Field.Message type="warn">
-                  {useMatchRegex("inputfieldtestzod", methods.control, "s") &&
-                    "This is a warning"}
+                <Field.Message type="warn" formulaShortCode="1b">
+                  This is a warning message
                 </Field.Message>
               </Field>
 
