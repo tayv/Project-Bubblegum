@@ -31,10 +31,10 @@ const checkForMatch = (
   message: string
 ): MatchReturnType => {
   // IMPORTANT: Logic gate needed. Otherwise conditional fields cause watchInput.match() to fail when toggled as watchInput becomes undefined
-  if (!watchInput) { 
-    return null 
+  if (!watchInput) {
+    return null
   } else {
-    return watchInput.match(regexFormula) !== null ? message : null  // conditional message used by Field.Message in Field component
+    return watchInput.match(regexFormula) !== null ? message : null // conditional message used by Field.Message in Field component
   }
 }
 

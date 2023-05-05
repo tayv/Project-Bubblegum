@@ -61,13 +61,13 @@ const FieldPage: FC = () => {
       .optional(),
     selectfieldtest: z.string().optional(),
     watchfieldtest: z.string().optional(),
-  //   watchfieldtest: z.string().refine((value, parent?) => {
-  //     if (parent?.selectfieldtest.equals("second")) {
-  //       return  null
-  //     }
-  //     return true
-  //   }, "This field is required when inputfieldtest is 't'").nullable(),
-   })
+    //   watchfieldtest: z.string().refine((value, parent?) => {
+    //     if (parent?.selectfieldtest.equals("second")) {
+    //       return  null
+    //     }
+    //     return true
+    //   }, "This field is required when inputfieldtest is 't'").nullable(),
+  })
 
   const methods = useForm({ resolver: zodResolver(zodSchema), defaultValues })
 
@@ -171,31 +171,41 @@ const FieldPage: FC = () => {
                 </Field.Message>
               </Field>
 
-              <Field
-                name="selectfieldtest"
-                defaultValue={"first"}
-              >
-                <Field.GroupLabel>
-                  Select something:
-                </Field.GroupLabel>
+              <Field name="selectfieldtest" defaultValue={"first"}>
+                <Field.GroupLabel>Select something:</Field.GroupLabel>
                 <Field.Tip>This is a tip</Field.Tip>
                 <Field.Control>
-                  <SelectRadix 
+                  <SelectRadix
                     placeholder="Select an option"
                     itemOptions={[
-                      { value: "first", labelText: "firstText", separator: false },
-                      { value: "second", labelText: "secondText", separator: true },
-                      { value: "third", labelText: "thirdText", separator: false },
-                      { value: "fourth", labelText: "fourthText", separator: true },
-                    ]}/>
+                      {
+                        value: "first",
+                        labelText: "firstText",
+                        separator: false,
+                      },
+                      {
+                        value: "second",
+                        labelText: "secondText",
+                        separator: true,
+                      },
+                      {
+                        value: "third",
+                        labelText: "thirdText",
+                        separator: false,
+                      },
+                      {
+                        value: "fourth",
+                        labelText: "fourthText",
+                        separator: true,
+                      },
+                    ]}
+                  />
                 </Field.Control>
               </Field>
 
-             
-                    
               <WatchField
                 name="watchfieldtest"
-               // defaultValue={""}
+                // defaultValue={""}
                 validateOnBlur={true}
                 conditional={{ name: "selectfieldtest", value: "second" }}
               >

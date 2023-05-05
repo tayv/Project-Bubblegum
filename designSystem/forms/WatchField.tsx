@@ -20,12 +20,11 @@ import useMatchRegex from "@utils/useMatchRegex"
 type WatchFieldContextProps = {
   // control: Control
   name: string
-  defaultValue: any
+  defaultValue?: any
   validationRules?: any
   validateOnBlur?: boolean
   methods?: any
-  conditional?: any
-  watch?: any
+  conditional: any
 }
 
 interface FieldComponent extends FC<WatchFieldContextProps> {
@@ -42,7 +41,9 @@ type FieldGroupLabelProps = Omit<InputGroupLabelProps, "htmlFor">
 type FieldMessageProps = InputMessageProps & { formulaShortCode: string }
 type FieldValidateProps = Omit<InputMessageProps, "children">
 
-const WatchFieldContext = createContext<WatchFieldContextProps | undefined>(undefined) // Passing undefined ensures if called outside of a FieldContext.Provider, it will return undefined
+const WatchFieldContext = createContext<WatchFieldContextProps | undefined>(
+  undefined
+) // Passing undefined ensures if called outside of a FieldContext.Provider, it will return undefined
 
 const WatchField: FieldComponent = ({
   children,
@@ -70,10 +71,9 @@ const WatchField: FieldComponent = ({
 
   useEffect(() => {
     if (otherFieldValue !== conditional.value) {
-      methods.unregister(name); // Need to unregister or else the input's value will still be submitted with the form
+      methods.unregister(name) // Need to unregister or else the input's value will still be submitted with the form
     }
-  }, [otherFieldValue, conditional.value, methods, name]);
-
+  }, [otherFieldValue, conditional.value, methods, name])
 
   if (otherFieldValue !== conditional.value) {
     return null
@@ -170,7 +170,9 @@ WatchField.Message = function FieldMessage({ children, type, ...props }) {
 
 WatchField.Validate = function FieldValid({ type = "error" }) {
   // Automatically validates errors onSubmit based on the zod schema passed to RHF's useForm() in the parent form component
-  const { name, methods } = useContext(WatchFieldContext) as WatchFieldContextProps
+  const { name, methods } = useContext(
+    WatchFieldContext
+  ) as WatchFieldContextProps
   const errorMessage = methods.formState.errors[name]
 
   return (
@@ -186,4 +188,3 @@ WatchField.Validate = function FieldValid({ type = "error" }) {
 }
 
 export default WatchField
-
