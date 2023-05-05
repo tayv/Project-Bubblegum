@@ -202,23 +202,24 @@ const FieldPage: FC = () => {
                   />
                 </Field.Control>
               </Field>
-
-              <WatchField
+            <WatchField name="watchfieldtest" conditional={{ name: "selectfieldtest", value: "second" }}>
+              {/* Passing a name and defaultValue are needed for the watchfield to work */}
+              <Field
                 name="watchfieldtest"
-                // defaultValue={""}
+                defaultValue={defaultValues.watchfieldtest}
                 validateOnBlur={true}
-                conditional={{ name: "selectfieldtest", value: "second" }}
               >
-                <WatchField.GroupLabel>
+                <Field.GroupLabel>
                   Enter something with 3 letters:
-                </WatchField.GroupLabel>
-                <WatchField.Tip>This is a tip</WatchField.Tip>
-                <WatchField.Control>
+                </Field.GroupLabel>
+                <Field.Tip>This is a tip</Field.Tip>
+                <Field.Control>
                   <Input type="text" />
-                </WatchField.Control>
-                <WatchField.Message type="warn" formulaShortCode="1b">
+                </Field.Control>
+                <Field.Message type="warn" formulaShortCode="1b">
                   This is a warning message
-                </WatchField.Message>
+                </Field.Message>
+              </Field>
               </WatchField>
 
               <Divider padding="large" />
