@@ -202,7 +202,7 @@ const FieldPage: FC = () => {
                   />
                 </Field.Control>
               </Field>
-            <WatchField name="watchfieldtest" conditional={{ name: "selectfieldtest", value: "second" }}>
+            <WatchField name="watchfieldtest" conditionObj={{ watchName: "selectfieldtest", watchValue: "second" }}>
               {/* Passing a name and defaultValue are needed for the watchfield to work */}
               <Field
                 name="watchfieldtest"

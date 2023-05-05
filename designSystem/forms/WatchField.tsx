@@ -24,7 +24,7 @@ type WatchFieldContextProps = {
   validationRules?: any
   validateOnBlur?: boolean
   methods?: any
-  conditional: any
+  conditionObj: { watchName: string, watchValue: string }
 }
 
 interface FieldComponent extends FC<WatchFieldContextProps> {
@@ -52,7 +52,7 @@ const WatchField: FieldComponent = ({
   // defaultValue,
   // validationRules,
   // validateOnBlur,
-  conditional,
+  conditionObj,
   //watch
 }) => {
   const methods = useFormContext() // Needed so we can access formState and trigger validation in Field.Validate
@@ -66,19 +66,18 @@ const WatchField: FieldComponent = ({
   }
 
   // The field to watch 
-  //const otherFieldValue = methods.watch(conditional.name)
-  const otherFieldValue = useWatch({ name: conditional.name, control: methods.control })
+  const otherFieldValue = useWatch({ name: conditionObj.watchName, control: methods.control })
 
 
   // Unregister field if conditional value is not met so the input's value is not submitted with the form
-  useEffect(() => {
-    if (otherFieldValue !== conditional.value) {
-      methods.unregister(name)
-    }
-  }, [otherFieldValue, conditional.value, methods, name])
+  // useEffect(() => {
+  //   if (otherFieldValue !== conditional.value) {
+  //     methods.unregister(name)
+  //   }
+  // }, [otherFieldValue, conditional.value, methods, name])
 
   // Hide the field if conditional value is not met
-  if (otherFieldValue !== conditional.value) {
+  if (otherFieldValue !== conditionObj.watchValue) {
     return null //
   } else {
     return (
