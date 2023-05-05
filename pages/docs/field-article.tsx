@@ -19,6 +19,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 import useMatchRegex from "@utils/useMatchRegex"
 import SelectRadix from "@designSystem/atoms/SelectRadix"
+import WatchField from "@designSystem/forms/WatchField"
 
 // data for Breadcrumbs
 const crumbs = [
@@ -38,11 +39,14 @@ const FieldPage: FC = () => {
     inputfieldtest: "",
     inputfieldtestzod: "",
     selectfieldtest: "first",
+    watchfieldtest: "",
   }
   // Used by the test section to show the form data in the UI
   const [formData, setFormData] = useState({})
 
+  // NOTE: Must include all fields in the zod schema, even if they're not required. The form only submits the included fields.
   const zodSchema = z.object({
+    fielddatepicktest: z.string().optional(),
     inputfieldtest: z
       .string()
       .min(3, "Must be at least 3 characters")
@@ -55,6 +59,8 @@ const FieldPage: FC = () => {
         "It's recommended to have at least 3 characters"
       )
       .optional(),
+    selectfieldtest: z.string().optional(),
+    watchfieldtest: z.string().optional(),
   })
 
   const methods = useForm({ resolver: zodResolver(zodSchema), defaultValues })
@@ -178,6 +184,39 @@ const FieldPage: FC = () => {
                     ]}/>
                 </Field.Control>
               </Field>
+
+             
+                    
+              <WatchField
+                name="watchfieldtest"
+                defaultValue={""}
+                validateOnBlur={true}
+                conditional={{ name: "inputfieldtest", value: "t" }}
+                watch={methods.watch}
+              >
+                <WatchField.GroupLabel>
+                  Enter something with 3 letters:
+                </WatchField.GroupLabel>
+                <WatchField.Tip>This is a tip</WatchField.Tip>
+                <WatchField.Control>
+                  <Input type="text" />
+                </WatchField.Control>
+                <WatchField.Message type="warn" formulaShortCode="1b">
+                  This is a warning message
+                </WatchField.Message>
+              </WatchField>
+
+              <Divider padding="large" />
+
+              <PrintInputValueButton
+                inputID="selectfieldtest"
+                getValues={methods.getValues}
+              />
+
+              <PrintInputValueButton
+                inputID="watchfieldtest"
+                getValues={methods.getValues}
+              />
 
               <Divider padding="large" />
 
