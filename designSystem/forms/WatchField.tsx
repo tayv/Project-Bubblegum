@@ -4,6 +4,7 @@ import React, {
   FocusEvent,
   createContext,
   useContext,
+  useEffect,
 } from "react"
 import { Controller, useFormContext } from "react-hook-form"
 import { Slot } from "@radix-ui/react-slot"
@@ -61,6 +62,20 @@ const WatchField: FieldComponent = ({
     validationRules,
     validateOnBlur,
     methods,
+  }
+
+  // Watch field and then check to if the field should be rendered
+  const otherFieldValue = watch(conditional.name)
+
+  useEffect(() => {
+    if (otherFieldValue !== conditional.value) {
+      methods.unregister(name); // Need to unregister or else the input's value will still be submitted with the form
+    }
+  }, [otherFieldValue, conditional.value, methods, name]);
+
+
+  if (otherFieldValue !== conditional.value) {
+    return null
   }
 
   return (

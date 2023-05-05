@@ -44,7 +44,7 @@ const FieldPage: FC = () => {
   // Used by the test section to show the form data in the UI
   const [formData, setFormData] = useState({})
 
-  // NOTE: Must include all fields in the zod schema, even if they're not required. The form only submits the included fields.
+  // NOTE: Must include all fields in the zod schema, even if they're not required. The form only submits the included inputs.
   const zodSchema = z.object({
     fielddatepicktest: z.string().optional(),
     inputfieldtest: z
@@ -61,7 +61,13 @@ const FieldPage: FC = () => {
       .optional(),
     selectfieldtest: z.string().optional(),
     watchfieldtest: z.string().optional(),
-  })
+  //   watchfieldtest: z.string().refine((value, parent?) => {
+  //     if (parent?.selectfieldtest.equals("second")) {
+  //       return  null
+  //     }
+  //     return true
+  //   }, "This field is required when inputfieldtest is 't'").nullable(),
+   })
 
   const methods = useForm({ resolver: zodResolver(zodSchema), defaultValues })
 
@@ -189,9 +195,9 @@ const FieldPage: FC = () => {
                     
               <WatchField
                 name="watchfieldtest"
-                defaultValue={""}
+               // defaultValue={""}
                 validateOnBlur={true}
-                conditional={{ name: "inputfieldtest", value: "t" }}
+                conditional={{ name: "selectfieldtest", value: "second" }}
                 watch={methods.watch}
               >
                 <WatchField.GroupLabel>
