@@ -30,8 +30,12 @@ const checkForMatch = (
   regexFormula: RegExp,
   message: string
 ): MatchReturnType => {
-  // This is used to return the warning message to Field.Message only if the regex matches
-  return watchInput.match(regexFormula) !== null ? message : null
+  // IMPORTANT: Logic gate needed. Otherwise conditional fields cause watchInput.match() to fail when toggled as watchInput becomes undefined
+  if (!watchInput) { 
+    return null 
+  } else {
+    return watchInput.match(regexFormula) !== null ? message : null  // conditional message used by Field.Message in Field component
+  }
 }
 
 // MAIN HOOK

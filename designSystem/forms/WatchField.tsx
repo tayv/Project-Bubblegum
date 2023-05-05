@@ -6,7 +6,7 @@ import React, {
   useContext,
   useEffect,
 } from "react"
-import { Controller, useFormContext } from "react-hook-form"
+import { Controller, useFormContext, useWatch } from "react-hook-form"
 import { Slot } from "@radix-ui/react-slot"
 import InputGroupLabel, {
   InputGroupLabelProps,
@@ -52,7 +52,7 @@ const WatchField: FieldComponent = ({
   validationRules,
   validateOnBlur,
   conditional,
-  watch
+  //watch
 }) => {
   const methods = useFormContext() // Needed so we can access formState and trigger validation in Field.Validate
   const contextValue = {
@@ -63,9 +63,10 @@ const WatchField: FieldComponent = ({
     validateOnBlur,
     methods,
   }
-
+  //const { watch } = useContext(WatchFieldContext)
   // Watch field and then check to if the field should be rendered
-  const otherFieldValue = watch(conditional.name)
+  const otherFieldValue = methods.watch(conditional.name)
+  //let otherFieldValue = useWatch({ control, name: name, defaultValue: defaultValue })
 
   useEffect(() => {
     if (otherFieldValue !== conditional.value) {

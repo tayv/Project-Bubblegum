@@ -198,7 +198,6 @@ const FieldPage: FC = () => {
                // defaultValue={""}
                 validateOnBlur={true}
                 conditional={{ name: "selectfieldtest", value: "second" }}
-                watch={methods.watch}
               >
                 <WatchField.GroupLabel>
                   Enter something with 3 letters:
