@@ -43,7 +43,6 @@ const FieldContext = createContext<FieldContextProps | undefined>(undefined) // 
 
 const Field: FieldComponent = ({
   children,
-  // control,
   name,
   defaultValue,
   validationRules,
@@ -51,7 +50,6 @@ const Field: FieldComponent = ({
 }) => {
   const methods = useFormContext() // Needed so we can access formState and trigger validation in Field.Validate
   const contextValue = {
-    //  control,
     name,
     defaultValue,
     validationRules,

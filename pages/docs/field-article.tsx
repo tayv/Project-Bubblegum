@@ -60,13 +60,15 @@ const FieldPage: FC = () => {
       )
       .optional(),
     selectfieldtest: z.string().optional(),
-    watchfieldtest: z.string().optional(),
-    //   watchfieldtest: z.string().refine((value, parent?) => {
-    //     if (parent?.selectfieldtest.equals("second")) {
-    //       return  null
-    //     }
-    //     return true
-    //   }, "This field is required when inputfieldtest is 't'").nullable(),
+    watchfieldtest: z
+      .string()
+      .min(1, "Must be at least 1 character"),
+   
+    // watchfieldtest: z.string().refine((value, parent?) => {
+    //   if (parent?.selectfieldtest === "second") {
+    //     return value.length > 0
+    //   } else return true
+    // }, "This field is required when selectfieldtest is 'second'"),
   })
 
   const methods = useForm({ resolver: zodResolver(zodSchema), defaultValues })
@@ -202,11 +204,12 @@ const FieldPage: FC = () => {
                   />
                 </Field.Control>
               </Field>
-            <WatchField name="watchfieldtest" conditionObj={{ watchName: "selectfieldtest", watchValue: "second" }}>
-              {/* Passing a name and defaultValue are needed for the watchfield to work */}
-              <Field
+              <WatchField
+                conditionLogic={{
+                  watchName: "selectfieldtest",
+                  watchValue: "second",
+                }}
                 name="watchfieldtest"
-                defaultValue={defaultValues.watchfieldtest}
                 validateOnBlur={true}
               >
                 <Field.GroupLabel>
@@ -219,7 +222,6 @@ const FieldPage: FC = () => {
                 <Field.Message type="warn" formulaShortCode="1b">
                   This is a warning message
                 </Field.Message>
-              </Field>
               </WatchField>
 
               <Divider padding="large" />
