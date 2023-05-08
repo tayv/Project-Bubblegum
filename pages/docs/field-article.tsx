@@ -20,6 +20,7 @@ import * as z from "zod"
 import useMatchRegex from "@utils/useMatchRegex"
 import SelectRadix from "@designSystem/atoms/SelectRadix"
 import WatchField from "@designSystem/forms/WatchField"
+import Form from "@designSystem/forms/Form"
 
 // data for Breadcrumbs
 const crumbs = [
@@ -69,12 +70,30 @@ const FieldPage: FC = () => {
     // }, "This field is required when selectfieldtest is 'second'"),
   })
 
-  const methods = useForm({ resolver: zodResolver(zodSchema), defaultValues })
-
-  const onSubmit = methods.handleSubmit(async (data, event) => {
-    setFormData(data) // Save form values to state so the test template table can show the values
-    console.log("Form submitted. data:", data, "Submit form - errors", Error)
-  })
+  const onSubmit = async ( data:Record<string, any>, event: React.FormEvent<HTMLFormElement> ) => {
+    //  setDocValue({ docID: 1, formData: data }) // Save form values to state so the test template table can show the values
+      console.log("Form submitted. data:", data, "Submit form - errors", Error)
+      console.log("event:", event)
+      const body = data
+      try {
+        const response = await fetch("/api/inquiry", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        })
+        if (response.status !== 200) {
+          console.log("something went wrong oops")
+          //set an error banner here
+        } else {
+          // resetForm();
+          console.log("form submitted successfully !!!")
+          //set a success banner here
+        }
+        //check response, if success is false, dont take them to success page
+      } catch (error) {
+        console.log("there was an error submitting", error)
+      }
+    }
 
   return (
     <>
@@ -99,10 +118,10 @@ const FieldPage: FC = () => {
         </SectionCard>
 
         {/* ------------------------ Form Test Section ------------------------*/}
-        <FormProvider {...methods}>
-          <form
+        <Form
             id="test-field-form"
-            className="col-span-2 py-3 px-8 my-8 rounded-3xl bg-zinc-200/10 border"
+            defaultValues={defaultValues}
+            zodSchema={zodSchema}
             onSubmit={onSubmit}
           >
             <Heading size="h5" type="secondary">
@@ -135,7 +154,6 @@ const FieldPage: FC = () => {
 
               <PrintInputValueButton
                 inputID="fielddatepicktest"
-                getValues={methods.getValues}
               />
 
               <Divider padding="large" />
@@ -227,20 +245,18 @@ const FieldPage: FC = () => {
 
               <PrintInputValueButton
                 inputID="selectfieldtest"
-                getValues={methods.getValues}
               />
 
               <PrintInputValueButton
                 inputID="watchfieldtest"
-                getValues={methods.getValues}
               />
 
               <Divider padding="large" />
 
-              <SubmitButton onSubmit={onSubmit} formData={formData} />
+              {/* <SubmitButton onSubmit={onSubmit} formData={formData} /> */}
             </SectionCard>
-          </form>
-        </FormProvider>
+
+        </Form>
       </LayoutContainerSide>
     </>
   )
