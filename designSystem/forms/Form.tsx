@@ -4,13 +4,19 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 import SubmitButton from "testComponents/SubmitButton"
 
+export type FormProps = {
+  id: string
+  defaultValues: Record<string, any>
+  zodSchema: z.ZodObject<any>
+  onSubmit: (data: any, event: any) => Promise<void>
+  children: any
+}
+
 // HELPER FUNCTIONS
-// const onSubmit = methods.handleSubmit(async (data, event) => {
-//   console.log("Form submitted. data:", data, "Submit form - errors", Error)
-// })
+
 
 // MAIN COMPONENT
-const Form: FC = ({
+const Form: FC<FormProps> = ({
   defaultValues,
   zodSchema,
   onSubmit,
