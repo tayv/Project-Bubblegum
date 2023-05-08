@@ -60,10 +60,8 @@ const FieldPage: FC = () => {
       )
       .optional(),
     selectfieldtest: z.string().optional(),
-    watchfieldtest: z
-      .string()
-      .min(1, "Must be at least 1 character"),
-   
+    watchfieldtest: z.string().min(1, "Must be at least 1 character"),
+
     // watchfieldtest: z.string().refine((value, parent?) => {
     //   if (parent?.selectfieldtest === "second") {
     //     return value.length > 0
@@ -204,6 +202,7 @@ const FieldPage: FC = () => {
                   />
                 </Field.Control>
               </Field>
+
               <WatchField
                 conditionLogic={{
                   watchName: "selectfieldtest",

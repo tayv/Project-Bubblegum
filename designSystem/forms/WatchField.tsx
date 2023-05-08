@@ -1,7 +1,4 @@
-import React, {
-  FC,
-  useEffect,
-} from "react"
+import React, { FC, useEffect } from "react"
 import { useFormContext, useWatch } from "react-hook-form"
 import Field from "@forms/Field"
 
