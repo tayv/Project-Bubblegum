@@ -19,12 +19,12 @@ export type GroupItemOptions = {
 }
 
 export type SelectRadixProps = {
-  value: string
-  name: string
+  value?: string
+  name?: string
   placeholder: string
   itemOptions: Array<ItemOptions | GroupItemOptions>
-  onValueChange: (value: string) => void
-  forwardedRef: Ref<HTMLFormElement>
+  onChange?: (value: string) => void
+  forwardedRef?: Ref<HTMLFormElement>
 }
 
 // HELPER FUNCTIONS
@@ -86,6 +86,7 @@ const SelectRadix: FC<SelectRadixProps> = forwardRef<
   HTMLButtonElement,
   SelectRadixProps
 >(function setRefSelect({ placeholder, itemOptions, children, ...props }, ref) {
+
   return (
     <Select.Root {...props} onValueChange={props.onChange}>
       <Select.Trigger

@@ -2,7 +2,7 @@ import React, { FC } from "react"
 import { Controller, Control } from "react-hook-form"
 import Checkbox, {
   CheckboxProps,
-  CheckboxStyle,
+  CheckboxType,
 } from "designSystem/atoms/Checkbox"
 import classNames from "classnames"
 
@@ -13,7 +13,7 @@ export type CheckboxWrapperProps = {
 const WrapperCheckbox: FC<CheckboxWrapperProps & CheckboxProps> = ({
   control,
 
-  id,
+  id = "checkboxID",
   label,
 }) => {
   // stylemap used for future styling flexibility of the Checkbox component

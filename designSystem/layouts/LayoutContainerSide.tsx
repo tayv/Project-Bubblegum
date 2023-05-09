@@ -10,10 +10,6 @@ const LayoutContainerSide = ({ children }: any) => {
             { title: "Testing", groupTitle: true },
             { title: "Test Form", path: "/testForms/test-form" },
             {
-              title: "Test Vis Conditions Form",
-              path: "/testForms/test-viscond-form",
-            },
-            {
               title: "🧰 Test Document Builder",
               path: "/restricted/test-document-builder",
             },

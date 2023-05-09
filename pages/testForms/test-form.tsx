@@ -5,7 +5,6 @@ import Paragraph from "@designSystem/atoms/Paragraph"
 import { FC, useEffect, useState, useMemo } from "react"
 import { useForm } from "react-hook-form"
 import WrapperInput from "@forms/WrapperInput"
-import HelpMessage from "@designSystem/molecules/AlertMessage"
 import WrapperRadioGroup from "@forms/WrapperRadioGroup"
 import SectionCard from "@designSystem/molecules/SectionCard"
 import WrapperCheckbox from "@forms/WrapperCheckbox"
@@ -19,6 +18,7 @@ import DatePick from "@designSystem/molecules/DatePick"
 import Divider from "@designSystem/atoms/Divider"
 import BlankSpace from "@designSystem/atoms/BlankSpace"
 import Accordion from "designSystem/atoms/Accordion"
+import InputGroupLabel from "@designSystem/atoms/InputGroupLabel"
 
 // data for Breadcrumbs
 const crumbs = [
@@ -208,25 +208,7 @@ const TestForm: FC = () => {
 
             <SectionCard id="textInput" style="standard">
               <Heading size="h3">Single Line Input</Heading>
-              <WrapperInput
-                name="singleInput"
-                label="This is a label"
-                type="text"
-                tipText="Tip: This is a single line input"
-                exampleText="e.g. Example goes here."
-                defaultValue=""
-                control={control}
-                rules={{ required: "You must enter something" }}
-              >
-                <HelpMessage
-                  inputName="firstName"
-                  messageType="warn"
-                  control={control}
-                  checkFor="a"
-                  message="This is the help message"
-                  customRegEx={null}
-                />
-              </WrapperInput>
+              
 
               <Divider padding="large" />
               {PrintInputValueButton("singleInput")}
@@ -289,13 +271,12 @@ const TestForm: FC = () => {
               <Label
                 type="standard"
                 htmlFor="checkboxInput"
-                label="This is a checkbox label"
               />
               <Tip text="Tip: These are standard checkboxes" type="standard" />
               <WrapperCheckbox
                 name="checkboxInput"
                 id="checkboxInput"
-                style="standard"
+                type="standard"
                 label="This is a checkbox label"
                 control={control}
               />
@@ -308,22 +289,7 @@ const TestForm: FC = () => {
               <Heading size="h3" type="primary">
                 Text Areas
               </Heading>
-              <WrapperTextArea
-                name="standardTextArea"
-                label="This is a standard wrapper text area"
-                tipText="Tip: This is a standard text area"
-                exampleText="e.g. Example goes here."
-                control={control}
-              />
-              <BlankSpace />
-              <WrapperTextArea
-                name="largeTextArea"
-                label="This is a large wrapper text area"
-                tipText="Tip: This is a large text area"
-                size="large"
-                exampleText="e.g. Example goes here."
-                control={control}
-              />
+             
 
               <Divider padding="large" />
               {PrintInputValueButton("standardTextArea")}
@@ -334,59 +300,6 @@ const TestForm: FC = () => {
               <Heading size="h3" type="primary">
                 Wrapper Select (Radix)
               </Heading>
-              <WrapperSelect
-                name="flatselect"
-                control={control}
-                placeholder="Select an option"
-                defaultValue={defaultValues.flatSelect}
-                itemOptions={[
-                  { value: "first", labelText: "firstText", separator: false },
-                  { value: "second", labelText: "secondText", separator: true },
-                  { value: "third", labelText: "thirdText", separator: false },
-                  { value: "fourth", labelText: "fourthText", separator: true },
-                ]}
-              />
-              <BlankSpace />
-              <WrapperSelect
-                name="groupselect"
-                control={control}
-                label="This is a grouped list Radix Select"
-                tip="Tip: This is a grouped list Radix Select"
-                placeholder="Select an option"
-                defaultValue={defaultValues.groupSelect}
-                itemOptions={[
-                  {
-                    groupLabel: "Group 1",
-                    items: [
-                      {
-                        value: "first",
-                        labelText: "firstText",
-                        separator: false,
-                      },
-                      {
-                        value: "second",
-                        labelText: "secondText",
-                        separator: true,
-                      },
-                    ],
-                  },
-                  {
-                    groupLabel: "Group 2",
-                    items: [
-                      {
-                        value: "third",
-                        labelText: "thirdText",
-                        separator: false,
-                      },
-                      {
-                        value: "fourth",
-                        labelText: "fourthText",
-                        separator: true,
-                      },
-                    ],
-                  },
-                ]}
-              />
 
               <Divider padding="large" />
               {PrintInputValueButton("flatselect")}
@@ -457,19 +370,19 @@ const TestForm: FC = () => {
                     {/* Heading text changes based on answer to previous radio group */}
                     <Heading size="h3">Toggle Words + Questions</Heading>
                     {/* Checkbox conditionally toggles wording and radio options */}
-                    <Label
+                    <InputGroupLabel
                       type="standard"
                       htmlFor="visCheckbox"
-                      label={
+                      >{
                         fieldValues.visRacingRadio === "f1"
                           ? "You chose F1"
                           : "You didn't choose F1"
                       }
-                    />
+                    </InputGroupLabel>
                     <WrapperCheckbox
                       id="visCheckbox"
                       name="visCheckbox"
-                      style="standard"
+                      type="standard"
                       label="Toggle next question"
                       control={control}
                     />

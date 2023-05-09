@@ -17,7 +17,7 @@ type LimitedSelectRadixProps = Omit<
 >
 
 const WrapperSelect: FC<LimitedSelectRadixProps & WrapperSelectProps> = ({
-  name,
+  name = "selectName",
   label = null,
   tip = null,
   placeholder,
@@ -33,12 +33,8 @@ const WrapperSelect: FC<LimitedSelectRadixProps & WrapperSelectProps> = ({
         defaultValue={defaultValue}
         render={({ field: { onChange, value, ref, ...props } }) => (
           <>
-            {!!label && (
-              <InputLabel type="standard" label={label} htmlFor={name} />
-            )}
-            {!!tip && <Tip text={tip} type="standard" />}
             <SelectRadix
-              onValueChange={onChange}
+              onChange={onChange}
               value={value}
               forwardedRef={ref}
               placeholder={placeholder}

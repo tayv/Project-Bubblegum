@@ -4,7 +4,7 @@ import Heading from "@designSystem/atoms/Heading"
 import Paragraph from "@designSystem/atoms/Paragraph"
 import { FC } from "react"
 import SectionCard from "@designSystem/molecules/SectionCard"
-import InputLabel from "@designSystem/atoms/InputGroupLabel"
+import InputGroupLabel from "@designSystem/atoms/InputGroupLabel"
 import Divider from "@designSystem/atoms/Divider"
 
 // data for Breadcrumbs
@@ -39,11 +39,10 @@ The label component supports two styles: 'standard' and 'inline'. The inline sty
           <Divider padding="xl" />
 
           <Heading size="h4">Example: Standard Label</Heading>
-          <InputLabel
+          <InputGroupLabel
             type="standard"
-            label="This is a standard label"
             htmlFor=""
-          />
+          >This is an example label</InputGroupLabel>
         </SectionCard>
       </LayoutContainerSide>
     </>
