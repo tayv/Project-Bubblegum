@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 import SubmitButton from "testComponents/SubmitButton"
 
+
 export type FormProps = {
   id: string
   defaultValues: Record<string, any>
@@ -26,6 +27,8 @@ const Form: FC<FormProps> = ({
 }) => {
   const [formData, setFormData] = useState({})
   const methods = useForm({ resolver: zodResolver(zodSchema), defaultValues })
+  const formHasErrors = Object.keys(methods.formState.errors).length > 0
+  console.log("formHasErrors:", !!formHasErrors)
 
   return (
     <FormProvider {...methods}>
@@ -42,6 +45,7 @@ const Form: FC<FormProps> = ({
         >
           Submit
         </button>
+        {!!formHasErrors ? <p className="text-red-600">The form can&apos;t be submitted until you fix the errors above.</p> : null}
       </form>
     </FormProvider>
   )
