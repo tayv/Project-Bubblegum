@@ -17,12 +17,12 @@ export type DatePickProps = {
 }
 
 // Component ----------------------------------------------------------------------
-const DatePick: FC<DatePickProps & CalendarProps & InputProps> = forwardRef<
+const DatePick: FC<DatePickProps & Omit<CalendarProps, "name"> & InputProps> = forwardRef<
   HTMLInputElement,
-  DatePickProps & CalendarProps & InputProps
+  DatePickProps & Omit<CalendarProps, "name"> & InputProps
 >(function SetRefDatePick(
   {
-    name,
+    name = "datePick",
     value,
     onChange,
     label = null,
@@ -62,8 +62,6 @@ const DatePick: FC<DatePickProps & CalendarProps & InputProps> = forwardRef<
 
   return (
     <div>
-      {!!label && <InputLabel type="standard" label={label} htmlFor={name} />}
-      {!!tipText && <Tip type="standard" text={tipText} />}
       {/* Value and OnValueChange are required to toggle the open/close state of the Accordian when users clicks the header */}
       <Accordion.Root
         type="single"

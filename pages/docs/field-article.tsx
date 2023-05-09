@@ -44,15 +44,16 @@ const FieldPage: FC = () => {
   }
   // Used by the test section to show the form data in the UI
   const [formData, setFormData] = useState({})
+  const [isFieldVisible, setFieldVisible] = useState(true)
 
   // NOTE: Must include all fields in the zod schema, even if they're not required. The form only submits the included inputs.
+  // NOTE: BUG if make a hidden field required. Unable to submit form. See https://github.com/tayv/Project-Bubblegum/issues/58
   const zodSchema = z.object({
     fielddatepicktest: z.string().optional(),
     inputfieldtest: z
       .string()
       .min(3, "Must be at least 3 characters")
       .optional(),
-    // inputfieldtestzod: z.string().nonempty("This field is required!!!"),
     inputfieldtestzod: z
       .string()
       .refine(
@@ -62,12 +63,6 @@ const FieldPage: FC = () => {
       .optional(),
     selectfieldtest: z.string().optional(),
     watchfieldtest: z.string().min(1, "Must be at least 1 character"),
-
-    // watchfieldtest: z.string().refine((value, parent?) => {
-    //   if (parent?.selectfieldtest === "second") {
-    //     return value.length > 0
-    //   } else return true
-    // }, "This field is required when selectfieldtest is 'second'"),
   })
 
   const onSubmit = async ( data:Record<string, any>, event: React.FormEvent<HTMLFormElement> ) => {
@@ -144,8 +139,6 @@ const FieldPage: FC = () => {
                 <Field.Tip>This is a tip</Field.Tip>
                 <Field.Control>
                   <DatePick
-                    // name="fielddatepicktest"
-                    // label="fielddatepicktest"
                     startYearRange={1990}
                     endYearRange={2030}
                   />

@@ -138,7 +138,7 @@ const DatePickerPage: FC = () => {
               defaultValue=""
               validationRules={{ required: true }}
             >
-              <Field.Label htmlFor="compoundtest">First Name</Field.Label>
+              <Field.GroupLabel>First Name</Field.GroupLabel>
               <Field.Control>
                 <DatePick
                   name="compoundtest"

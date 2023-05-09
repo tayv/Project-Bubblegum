@@ -22,7 +22,7 @@ export type CheckboxProps = {
 } & Omit<HTMLAttributes<HTMLInputElement>, "defaultValues"> // omit used to prevent type error on input element
 
 const CheckboxRadix: FC<CheckboxProps> = forwardRef<
-  HTMLInputElement,
+  HTMLButtonElement,
   CheckboxProps
 >(function setRefCheckbox(
   {
