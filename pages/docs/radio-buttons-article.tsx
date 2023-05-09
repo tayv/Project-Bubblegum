@@ -31,7 +31,7 @@ const RadioButtonsArticle: FC = () => {
     horizontalRadioGroup: "no",
     buttonRadioGroup: "orange-button",
   }
-
+  
   useEffect(() => {
     reset({ ...defaultValues })
   }, [])
