@@ -8,6 +8,7 @@ type FieldProps = {
   validationRules?: any
   // control: Control // this is not needed since we are using useFormContext
   children: ReactElement
+  control?: Control
 }
 
 const Field: FC<FieldProps> = ({

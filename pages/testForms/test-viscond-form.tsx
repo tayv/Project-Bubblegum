@@ -3,7 +3,7 @@ import Breadcrumbs from "@designSystem/molecules/Breadcrumbs"
 import Heading from "@designSystem/atoms/Heading"
 import Paragraph from "@designSystem/atoms/Paragraph"
 import { FC, useEffect, useState, useMemo } from "react"
-import { useForm } from "react-hook-form"
+import { FormProvider, useForm } from "react-hook-form"
 import WrapperInput from "@forms/WrapperInput"
 import HelpMessage from "@molecules/HelpMessage"
 import WrapperRadioGroup from "@forms/WrapperRadioGroup"
@@ -52,6 +52,8 @@ const TestVisForm: FC = () => {
     watch,
     formState: { errors },
   } = useForm()
+
+  const methods = useForm()
 
   // Sample onSubmit form handler
   // NOTES: Don't need to  e.preventDefault() since rhf's handleSubmit() automatically prevents page reloads
@@ -148,7 +150,7 @@ const TestVisForm: FC = () => {
   }
 
   return (
-    <>
+    <FormProvider {...methods}>
       <LayoutContainerSide>
         <Breadcrumbs crumbs={crumbs} />
         <Heading size="h1">Test Visibility Conditions Form</Heading>
@@ -175,7 +177,7 @@ const TestVisForm: FC = () => {
                 defaultValue={false}
                 control={control}
               >
-                <Checkbox label="This is being watched and toggles the next section" />
+                <Checkbox id="field-test-checkbox" name="field-test-checkbox" label="This is being watched and toggles the next section" />
               </Field>
               <BlankSpace xSize="small" />
               <Field
@@ -198,7 +200,7 @@ const TestVisForm: FC = () => {
                 <Heading size="h2" type="primary">
                   WatchField Components
                 </Heading>
-                <Checkbox label="This watches the previous section" />
+                <Checkbox id="watchfield-test-checkbox" name="watchfield-test-checkbox" label="This watches the previous section" />
               </SectionCard>
             </WatchField>
 
@@ -262,7 +264,7 @@ const TestVisForm: FC = () => {
                     />
                     <WrapperCheckbox
                       id="visCheckbox"
-                      style="standard"
+                      type="standard"
                       label="Toggle next question"
                       control={control}
                     />
@@ -325,7 +327,7 @@ const TestVisForm: FC = () => {
         </div>
         {/*TEMPLATE TEST SECTION END --------------------------------------------- */}
       </LayoutContainerSide>
-    </>
+    </FormProvider>
   )
 }
 export default TestVisForm

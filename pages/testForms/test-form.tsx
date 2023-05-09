@@ -295,7 +295,7 @@ const TestForm: FC = () => {
               <WrapperCheckbox
                 name="checkboxInput"
                 id="checkboxInput"
-                style="standard"
+               // style="standard"
                 label="This is a checkbox label"
                 control={control}
               />
@@ -469,7 +469,7 @@ const TestForm: FC = () => {
                     <WrapperCheckbox
                       id="visCheckbox"
                       name="visCheckbox"
-                      style="standard"
+                      //style="standard"
                       label="Toggle next question"
                       control={control}
                     />

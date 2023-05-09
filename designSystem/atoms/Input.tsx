@@ -20,7 +20,7 @@ import InputLabelRadix from "designSystem/atoms/InputLabelRadix"
 export type InputSize = "standard" | "large"
 export type InputType = "text" | "email" | "tel" | "number"
 export type InputProps = {
-  name: string
+  name?: string 
   label: InputLabelProps["label"]
   type?: InputType
   size?: InputSize
@@ -50,7 +50,7 @@ const inputSizeMap: { [key in InputSize]: string } = {
 const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
   function setRefInput(
     {
-      name,
+      name = "default-name",
       label = null,
       type = "text",
       size = "standard",

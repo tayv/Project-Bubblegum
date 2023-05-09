@@ -31,7 +31,7 @@ const RadioButtonsArticle: FC = () => {
     horizontalRadioGroup: "no",
     buttonRadioGroup: "orange-button",
   }
-
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     reset({ ...defaultValues })
   }, [])

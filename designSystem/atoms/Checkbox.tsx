@@ -2,13 +2,13 @@ import React, { FC, forwardRef, HTMLAttributes } from "react"
 import classNames from "classnames"
 import InputLabel from "@atoms/InputLabelRadix"
 
-export type CheckboxStyle = "standard" | "toggle"
+export type CheckboxType = "standard" | "toggle"
 export type CheckboxProps = {
   id: string
-  name: string
+  name?: string
   label: string
   value?: any // HTMLInputElement type doesn't like use of boolean so switched to any
-  style?: CheckboxStyle
+  type?: CheckboxType
   className?: string
   onChange?: any
   defaultChecked?: boolean
@@ -24,7 +24,7 @@ const Checkbox: FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>(
     {
       id,
       name,
-      style = "standard",
+      type = "standard",
       label,
       onChange,
       value,

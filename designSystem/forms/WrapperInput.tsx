@@ -3,7 +3,7 @@ import Input, { InputProps } from "@atoms/Input"
 import { Controller } from "react-hook-form"
 
 const WrapperInput: FC<InputProps> = ({
-  name,
+  name = "defaultName",
   rules,
   control,
   label,
