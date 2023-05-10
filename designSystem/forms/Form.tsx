@@ -28,7 +28,6 @@ const Form: FC<FormProps> = ({
   const [formData, setFormData] = useState({})
   const methods = useForm({ resolver: zodResolver(zodSchema), defaultValues })
   const formHasErrors = Object.keys(methods.formState.errors).length > 0
-  console.log("formHasErrors:", !!formHasErrors)
 
   return (
     <FormProvider {...methods}>
