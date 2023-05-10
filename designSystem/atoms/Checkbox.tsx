@@ -8,7 +8,6 @@ export type CheckboxProps = {
   label?: string
   value?: any // HTMLInputElement type doesn't like use of boolean so switched to any
   type?: CheckboxType
-  type?: CheckboxType
   className?: string
   onChange?: any
   defaultChecked?: boolean
