@@ -7,7 +7,7 @@ import {
 } from "designSystem/atoms/RadioButton"
 import classNames from "classnames"
 import Tip, { TipProps } from "@molecules/Tip"
-import InputLabel from "designSystem/atoms/InputLabelRadix"
+import InputGroupLabel from "@designSystem/atoms/InputGroupLabel"
 
 export type RadioGroupProps = {
   groupLabel: string
@@ -29,6 +29,7 @@ const WrapperRadioGroup: FC<LimitedRadioProps & RadioGroupProps> = ({
   defaultValue,
   style = "standard",
   tipText = null,
+  children,
   ...props
 }) => {
   const divStyleMap: { [key in RadioStyle]: string } = {
@@ -45,7 +46,7 @@ const WrapperRadioGroup: FC<LimitedRadioProps & RadioGroupProps> = ({
         render={({ field: { onChange, ...props } }) => (
           <>
             <fieldset>
-              <InputLabel htmlFor={name} label={groupLabel} type="standard" />
+              <InputGroupLabel htmlFor={name}type="standard">{children}</InputGroupLabel>
 
               <Tip text={tipText} type="standard" />
 

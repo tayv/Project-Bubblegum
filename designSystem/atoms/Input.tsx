@@ -1,42 +1,26 @@
-import React, {
-  FC,
-  ChangeEvent,
-  forwardRef,
-  InputHTMLAttributes,
-  DetailedHTMLProps,
-} from "react"
+import React, { FC, forwardRef } from "react"
 import classNames from "classnames"
 import { Control } from "react-hook-form"
-import Tip, { TipProps } from "@molecules/Tip"
-import InputLabel, { InputLabelProps } from "designSystem/atoms/InputLabelRadix"
-import InputLabelRadix from "designSystem/atoms/InputLabelRadix"
 
 // OVERVIEW
 // This atom form component provides styling and accessibility requirements. Validation, event handlers, etc.
-// will use react-hook-form via a wrapper component to add interactivity
+// will use react-hook-form via a wrapper Field component to add interactivity
 
 // TYPES
 // This input component is intended to be used for all single line inputs (phone, numbers, text input)
 export type InputSize = "standard" | "large"
+export type InputState = "standard" | "error"
 export type InputType = "text" | "email" | "tel" | "number"
 export type InputProps = {
-  name?: string 
-  label: InputLabelProps["label"]
+  name?: string
   type?: InputType
   size?: InputSize
-  tipText?: TipProps["text"]
-  exampleText?: TipProps["text"]
   className?: string
   placeholder?: string
   defaultValue?: string | number
   onChange?: any
-  warnChange?: any
   children?: React.ReactElement
-
-  // RHF prop types
-  register?: any // react-hook-form: to register an input (not needed if using Controller)
-  rules?: Record<string, any> // react-hook-form: validation rules. Any object so used generic Record type.
-  control?: Control // react-hook-form: used by Controller. https://react-hook-form.com/ts/#Control
+  hasError?: boolean
 }
 
 // DYNAMIC STYLING
@@ -46,39 +30,40 @@ const inputSizeMap: { [key in InputSize]: string } = {
   large: "w-full py-3 px-4",
 }
 
+const inputFocusStyleMap: { [key in InputState]: string } = {
+  standard: "focus:ring focus:ring-green-400",
+  error: "ring-2 ring-inset ring-red-400 focus:ring-red-400 focus:ring",
+}
+
 // forwardRef so RHF can work properly in WrapperInput
 const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
   function setRefInput(
     {
       name = "default-name",
-      label = null,
       type = "text",
       size = "standard",
       className = "", // to pass custom one-off styling
-      tipText = null,
-      exampleText = null,
       children = null,
+      hasError = false,
       ...props
     },
     ref
   ) {
     return (
       <div className="max-w-sm">
-        <InputLabel type="standard" label={label} htmlFor={name} />
-        <Tip text={tipText} type="standard" />
         <input
           ref={ref}
           id={name}
           name={name}
           type={type}
           className={classNames([
-            "mt-1 block border border-gray-900 bg-white shadow-sm",
+            "mt-1 block border border-gray-900 rounded-lg bg-white shadow-sm",
             inputSizeMap[size], // to dynamically set styling for different input sizes
+            inputFocusStyleMap[hasError ? "error" : "standard"],
             className,
           ])}
           {...props}
         />
-        <Tip text={exampleText} type="example" />
         {children} {/* For displaying warning message components, etc. */}
       </div>
     )

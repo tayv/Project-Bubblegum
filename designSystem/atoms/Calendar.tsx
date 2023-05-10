@@ -11,7 +11,7 @@ import {
   ArrowRight,
 } from "lucide-react"
 import { InputProps } from "designSystem/atoms/Input"
-import InputLabel from "designSystem/atoms/InputLabelRadix"
+import InputLabel from "@designSystem/atoms/InputGroupLabel"
 import Tip, { TipProps } from "@molecules/Tip"
 import * as Select from "@radix-ui/react-select"
 import * as Accordion from "@radix-ui/react-accordion"

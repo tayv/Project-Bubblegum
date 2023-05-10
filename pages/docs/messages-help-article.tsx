@@ -43,20 +43,11 @@ const MessagesHelpArticle: FC = () => {
           <Divider padding="xl" />
 
           <Heading size="h4">Example: Tip Message</Heading>
-          <Input
-            name="tipMessage"
-            label="This is a label:"
-            tipText="This is a tip messsage."
-          />
 
           <Divider padding="xl" />
 
           <Heading size="h4">Example: Example Message</Heading>
-          <Input
-            name="exampleMessage"
-            label="This is a label:"
-            exampleText="This is an example messsage."
-          />
+      
         </SectionCard>
 
         <SectionCard id="accordionMessage" style="standard">

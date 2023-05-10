@@ -42,7 +42,7 @@ const CheckboxArticle: FC = () => {
           <Checkbox
             name="checkboxInput"
             id="checkboxInput"
-           // style="standard"
+            type="standard"
             label="This is a checkbox label"
           />
         </SectionCard>

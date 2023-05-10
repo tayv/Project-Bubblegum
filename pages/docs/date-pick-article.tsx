@@ -10,7 +10,7 @@ import Divider from "@designSystem/atoms/Divider"
 
 import PrintInputValueButton from "testComponents/PrintValueButton"
 import SubmitButton from "testComponents/SubmitButton"
-import Field from "@designSystem/forms/FieldTest"
+import Field from "@designSystem/forms/Field"
 import Calendar from "@atoms/Calendar"
 import { format, startOfToday } from "date-fns"
 import useSyncDefaultValues from "@utils/useSyncDefaultValues"
@@ -29,6 +29,7 @@ const crumbs = [
 
 const DatePickerPage: FC = () => {
   const defaultValues = {
+    compoundtest: format(startOfToday(), "MMM-dd-yyyy"),
     exampleSingleDatePick: format(startOfToday(), "MMM-dd-yyyy"),
     exampleStartDatePick: format(startOfToday(), "MMM-dd-yyyy"),
     exampleEndDatePick: format(startOfToday(), "MMM-dd-yyyy"),
@@ -132,6 +133,24 @@ const DatePickerPage: FC = () => {
             className="col-span-2 py-3 px-8 my-8 rounded-3xl bg-zinc-200/10 border"
             onSubmit={onSubmit}
           >
+            <Field
+              name="compoundtest"
+              defaultValue=""
+              validationRules={{ required: true }}
+            >
+              <Field.GroupLabel>First Name</Field.GroupLabel>
+              <Field.Control>
+                <DatePick
+                  name="compoundtest"
+                  label="compoundtest"
+                  startYearRange={1990}
+                  endYearRange={2030}
+                />
+              </Field.Control>
+              {/* <Field.Message>First Name is required</Field.Message>
+              <Field.ValidityState>Valid</Field.ValidityState> */}
+            </Field>
+
             <SectionCard id="datepick" style="standard">
               <Heading size="h3" type="primary">
                 Date Picker

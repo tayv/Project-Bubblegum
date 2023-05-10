@@ -8,7 +8,9 @@ import React, {
 import classNames from "classnames"
 import { Control } from "react-hook-form"
 import Tip, { TipProps } from "@molecules/Tip"
-import InputLabel, { InputLabelProps } from "designSystem/atoms/InputLabelRadix"
+import InputLabel, {
+  InputGroupLabelProps,
+} from "@designSystem/atoms/InputGroupLabel"
 
 // OVERVIEW
 // This atom form component provides styling and accessibility requirements. Validation, event handlers, etc.
@@ -18,15 +20,11 @@ import InputLabel, { InputLabelProps } from "designSystem/atoms/InputLabelRadix"
 export type TextAreaSize = "standard" | "large"
 export type TextAreaProps = {
   name: string
-  label: InputLabelProps["label"]
   size?: TextAreaSize
-  tipText?: TipProps["text"]
-  exampleText?: TipProps["text"]
   className?: string
   placeholder?: string
   defaultValue?: string | number
   onChange?: any
-  warnChange?: any
   children?: React.ReactElement
 
   // RHF prop types
@@ -49,11 +47,8 @@ export const TextArea: FC<TextAreaProps> = forwardRef<
 >(function setRefTextArea(
   {
     name,
-    label,
     size = "standard",
     className = "", // to pass custom one-off styling
-    tipText = null,
-    exampleText = null,
     children,
     ...props
   },
@@ -61,8 +56,6 @@ export const TextArea: FC<TextAreaProps> = forwardRef<
 ) {
   return (
     <div className="max-w-sm">
-      <InputLabel htmlFor={name} type="standard" label={label} />
-      <Tip text={tipText} type="standard" />
       <textarea
         ref={ref}
         id={name}
@@ -75,7 +68,6 @@ export const TextArea: FC<TextAreaProps> = forwardRef<
         ])}
         {...props}
       />
-      <Tip text={exampleText} type="example" />
       {children} {/* For displaying warning message components, etc. */}
     </div>
   )

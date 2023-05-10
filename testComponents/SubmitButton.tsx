@@ -1,9 +1,15 @@
 import { useForm } from "react-hook-form"
+import { FC } from "react"
 import Paragraph from "@designSystem/atoms/Paragraph"
 
 // This component is only used for debbugging
 
-const SubmitButton = ({ onSubmit, formData }: any) => {
+type TestSubmitButtonProps = {
+  onSubmit: any
+  formData: any
+}
+
+const SubmitButton: FC<TestSubmitButtonProps> = ({ onSubmit, formData }) => {
   return (
     <div className="flex flex-1 flex-row items-center gap-3">
       <div className="flex-none">

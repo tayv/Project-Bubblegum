@@ -1,5 +1,6 @@
 import { useState } from "react"
 import Paragraph from "@designSystem/atoms/Paragraph"
+import { useFormContext } from "react-hook-form"
 
 // Used by PrintInputValueButton
 const RenderInputValue = ({ inputID, getValues, setInputValue }: any) => {
@@ -8,8 +9,9 @@ const RenderInputValue = ({ inputID, getValues, setInputValue }: any) => {
 }
 
 // // Printing an input's value used for debugging
-const PrintInputValueButton = ({ inputID, getValues }: any) => {
+const PrintInputValueButton = ({ inputID }: any) => {
   const [inputValue, setInputValue] = useState("")
+  const { getValues } = useFormContext()
   return (
     <div className="flex flex-row items-center gap-3">
       <button
