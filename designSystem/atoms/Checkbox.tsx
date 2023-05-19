@@ -23,7 +23,7 @@ const Checkbox: FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>(
     {
       id,
       name,
-      style = "standard",
+      type = "standard",
       label,
       onChange,
       value,

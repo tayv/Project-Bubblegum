@@ -4,7 +4,6 @@ import Heading from "@designSystem/atoms/Heading"
 import Paragraph from "@designSystem/atoms/Paragraph"
 import { FC } from "react"
 import SectionCard from "@designSystem/molecules/SectionCard"
-import WrapperRadioGroup from "@forms/WrapperRadioGroup"
 import { useForm } from "react-hook-form"
 import { useEffect } from "react"
 import Divider from "@designSystem/atoms/Divider"
@@ -16,7 +15,7 @@ const crumbs = [
     path: "/",
   },
   {
-    text: "Radion Buttons",
+    text: "Radio Buttons",
     path: "/",
   },
 ]
@@ -31,7 +30,7 @@ const RadioButtonsArticle: FC = () => {
     horizontalRadioGroup: "no",
     buttonRadioGroup: "orange-button",
   }
-  
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     reset({ ...defaultValues })
   }, [])
@@ -56,7 +55,7 @@ You can set the default value for the radios by saving the values to a variable 
 
           <Divider padding="xl" />
 
-          <WrapperRadioGroup
+          {/* <WrapperRadioGroup
             name="standardRadioGroup"
             groupLabel="Example: Standard Radio Group"
             tipText="Tip: These are standard radio buttons"
@@ -68,11 +67,11 @@ You can set the default value for the radios by saving the values to a variable 
               { value: "chocolate", label: "Chocolate ice cream" },
               { value: "vanilla", label: "Vanilla ice cream" },
             ]}
-          />
+          /> */}
 
           <Divider padding="xl" />
 
-          <WrapperRadioGroup
+          {/* <WrapperRadioGroup
             name="horizontalRadioGroup"
             groupLabel="Example: Horizontal Radio Group"
             tipText="Tip: These radios are styled horizontally. Typically used for yes/no questions."
@@ -82,11 +81,11 @@ You can set the default value for the radios by saving the values to a variable 
               { value: "yes", label: "Yes" },
               { value: "no", label: "No" },
             ]}
-          />
+          /> */}
 
           <Divider padding="xl" />
 
-          <WrapperRadioGroup
+          {/* <WrapperRadioGroup
             name="buttonRadioGroup"
             groupLabel="Example: Button Radio Group"
             tipText="Tip: These radios are styled as buttons"
@@ -98,7 +97,7 @@ You can set the default value for the radios by saving the values to a variable 
               { value: "chocolate-button", label: "Chocolate ice cream" },
               { value: "vanilla-button", label: "Vanilla ice cream" },
             ]}
-          />
+          /> */}
         </SectionCard>
       </LayoutContainerSide>
     </>

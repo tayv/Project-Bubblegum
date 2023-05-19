@@ -26,30 +26,33 @@ const crumbs = [
   },
 ]
 
-const onSubmit = async ( data:Record<string, any>, event: React.FormEvent<HTMLFormElement> ) => {
+const onSubmit = async (
+  data: Record<string, any>,
+  event: React.FormEvent<HTMLFormElement>
+) => {
   //  setDocValue({ docID: 1, formData: data }) // Save form values to state so the test template table can show the values
-    console.log("Form submitted. data:", data, "Submit form - errors", Error)
-    console.log("event:", event)
-    const body = data
-    try {
-      const response = await fetch("/api/inquiry", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      })
-      if (response.status !== 200) {
-        console.log("something went wrong oops")
-        //set an error banner here
-      } else {
-        // resetForm();
-        console.log("form submitted successfully !!!")
-        //set a success banner here
-      }
-      //check response, if success is false, dont take them to success page
-    } catch (error) {
-      console.log("there was an error submitting", error)
+  console.log("Form submitted. data:", data, "Submit form - errors", Error)
+  console.log("event:", event)
+  const body = data
+  try {
+    const response = await fetch("/api/inquiry", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    })
+    if (response.status !== 200) {
+      console.log("something went wrong oops")
+      //set an error banner here
+    } else {
+      // resetForm();
+      console.log("form submitted successfully !!!")
+      //set a success banner here
     }
+    //check response, if success is false, dont take them to success page
+  } catch (error) {
+    console.log("there was an error submitting", error)
   }
+}
 
 const FormPage: FC = () => {
   const defaultValues = {
@@ -60,8 +63,6 @@ const FormPage: FC = () => {
   const zodSchema = z.object({
     inputfield1: z.string().optional(),
   })
-
-
 
   return (
     <LayoutContainerSide>

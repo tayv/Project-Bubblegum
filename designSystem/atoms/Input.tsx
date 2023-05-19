@@ -39,7 +39,7 @@ const inputFocusStyleMap: { [key in InputState]: string } = {
 const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
   function setRefInput(
     {
-      name,
+      name = "default-name",
       type = "text",
       size = "standard",
       className = "", // to pass custom one-off styling

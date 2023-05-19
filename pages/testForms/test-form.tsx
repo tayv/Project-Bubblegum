@@ -4,8 +4,6 @@ import Heading from "@designSystem/atoms/Heading"
 import Paragraph from "@designSystem/atoms/Paragraph"
 import { FC, useEffect, useState, useMemo } from "react"
 import { useForm } from "react-hook-form"
-import WrapperInput from "@forms/WrapperInput"
-import WrapperRadioGroup from "@forms/WrapperRadioGroup"
 import SectionCard from "@designSystem/molecules/SectionCard"
 import WrapperCheckbox from "@forms/WrapperCheckbox"
 import Tip from "@molecules/Tip"
@@ -208,7 +206,6 @@ const TestForm: FC = () => {
 
             <SectionCard id="textInput" style="standard">
               <Heading size="h3">Single Line Input</Heading>
-              
 
               <Divider padding="large" />
               {PrintInputValueButton("singleInput")}
@@ -218,7 +215,7 @@ const TestForm: FC = () => {
               <Heading size="h3" type="primary">
                 Radio Groups
               </Heading>
-              <WrapperRadioGroup
+              {/* <WrapperRadioGroup
                 name="standardRadio"
                 groupLabel="This is a radio group label"
                 tipText="Tip: These are standard radio buttons"
@@ -230,9 +227,9 @@ const TestForm: FC = () => {
                   { value: "chocolate", label: "Chocolate ice cream" },
                   { value: "vanilla", label: "Vanilla ice cream" },
                 ]}
-              />
+              /> */}
               <BlankSpace />
-              <WrapperRadioGroup
+              {/* <WrapperRadioGroup
                 name="horizontalRadio"
                 groupLabel="This is a radio group label"
                 tipText="Tip: These radios are styled horizontally. Typically used for yes/no questions."
@@ -242,9 +239,9 @@ const TestForm: FC = () => {
                   { value: "yes", label: "Yes" },
                   { value: "no", label: "No" },
                 ]}
-              />
+              /> */}
               <BlankSpace />
-              <WrapperRadioGroup
+              {/* <WrapperRadioGroup
                 name="buttonRadio"
                 groupLabel="This is a radio group label"
                 tipText="Tip: These radios are styled as buttons"
@@ -256,7 +253,7 @@ const TestForm: FC = () => {
                   { value: "chocolate-button", label: "Chocolate ice cream" },
                   { value: "vanilla-button", label: "Vanilla ice cream" },
                 ]}
-              />
+              /> */}
 
               <Divider padding="large" />
               {PrintInputValueButton("standardRadio")}
@@ -268,10 +265,7 @@ const TestForm: FC = () => {
               <Heading size="h3" type="primary">
                 Checkboxes
               </Heading>
-              <Label
-                type="standard"
-                htmlFor="checkboxInput"
-              />
+              <Label type="standard" htmlFor="checkboxInput" />
               <Tip text="Tip: These are standard checkboxes" type="standard" />
               <WrapperCheckbox
                 name="checkboxInput"
@@ -289,7 +283,6 @@ const TestForm: FC = () => {
               <Heading size="h3" type="primary">
                 Text Areas
               </Heading>
-             
 
               <Divider padding="large" />
               {PrintInputValueButton("standardTextArea")}
@@ -343,7 +336,7 @@ const TestForm: FC = () => {
 
             {sectionVis.visCondition1 && (
               <SectionCard id="testvis-radios" style="standard">
-                <WrapperRadioGroup
+                {/* <WrapperRadioGroup
                   name="visRacingRadio"
                   groupLabel="This is a radio group label"
                   tipText="Tip: These radios are styled as buttons"
@@ -355,7 +348,7 @@ const TestForm: FC = () => {
                     { value: "supercross", label: "Supercross" },
                     { value: "f1", label: "F1" },
                   ]}
-                />
+                /> */}
               </SectionCard>
             )}
 
@@ -370,14 +363,10 @@ const TestForm: FC = () => {
                     {/* Heading text changes based on answer to previous radio group */}
                     <Heading size="h3">Toggle Words + Questions</Heading>
                     {/* Checkbox conditionally toggles wording and radio options */}
-                    <InputGroupLabel
-                      type="standard"
-                      htmlFor="visCheckbox"
-                      >{
-                        fieldValues.visRacingRadio === "f1"
-                          ? "You chose F1"
-                          : "You didn't choose F1"
-                      }
+                    <InputGroupLabel type="standard" htmlFor="visCheckbox">
+                      {fieldValues.visRacingRadio === "f1"
+                        ? "You chose F1"
+                        : "You didn't choose F1"}
                     </InputGroupLabel>
                     <WrapperCheckbox
                       id="visCheckbox"
@@ -389,36 +378,36 @@ const TestForm: FC = () => {
                     <Divider padding="large" />
                     {
                       // Set visibility of radio group based on prev checkbox answer
-                      fieldValues.visCheckbox ? (
-                        <WrapperRadioGroup
-                          name="bikeBrandRadio"
-                          groupLabel="Pick your favorite brand"
-                          tipText="You should only see this if checkbox is selected"
-                          control={control}
-                          style="standard"
-                          defaultValue="yamaha"
-                          options={[
-                            { value: "honda", label: "Honda" },
-                            { value: "yamaha", label: "Yamaha" },
-                            { value: "suzuki", label: "Suzuki" },
-                            { value: "kawasaki", label: "Kawasaki" },
-                          ]}
-                        />
-                      ) : (
-                        <WrapperRadioGroup
-                          name="motoTeamRadio"
-                          groupLabel="Pick your favorite racing team"
-                          tipText="You should only see this if the checkbox is NOT selected"
-                          control={control}
-                          style="standard"
-                          options={[
-                            { value: "yamaha", label: "Monster Energy Yamaha" },
-                            { value: "honda", label: "Repsol Honda" },
-                            { value: "ducati", label: "Factory Ducati" },
-                            { value: "ferrari", label: "Ferrari" },
-                          ]}
-                        />
-                      )
+                      // fieldValues.visCheckbox ? (
+                      //   <WrapperRadioGroup
+                      //     name="bikeBrandRadio"
+                      //     groupLabel="Pick your favorite brand"
+                      //     tipText="You should only see this if checkbox is selected"
+                      //     control={control}
+                      //     style="standard"
+                      //     defaultValue="yamaha"
+                      //     options={[
+                      //       { value: "honda", label: "Honda" },
+                      //       { value: "yamaha", label: "Yamaha" },
+                      //       { value: "suzuki", label: "Suzuki" },
+                      //       { value: "kawasaki", label: "Kawasaki" },
+                      //     ]}
+                      //   />
+                      // ) : (
+                      //   <WrapperRadioGroup
+                      //     name="motoTeamRadio"
+                      //     groupLabel="Pick your favorite racing team"
+                      //     tipText="You should only see this if the checkbox is NOT selected"
+                      //     control={control}
+                      //     style="standard"
+                      //     options={[
+                      //       { value: "yamaha", label: "Monster Energy Yamaha" },
+                      //       { value: "honda", label: "Repsol Honda" },
+                      //       { value: "ducati", label: "Factory Ducati" },
+                      //       { value: "ferrari", label: "Ferrari" },
+                      //     ]}
+                      //   />
+                      // )
                     }
                   </SectionCard>
                 )

@@ -47,7 +47,6 @@ const MessagesHelpArticle: FC = () => {
           <Divider padding="xl" />
 
           <Heading size="h4">Example: Example Message</Heading>
-      
         </SectionCard>
 
         <SectionCard id="accordionMessage" style="standard">
