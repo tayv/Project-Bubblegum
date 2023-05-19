@@ -39,10 +39,9 @@ The label component supports two styles: 'standard' and 'inline'. The inline sty
           <Divider padding="xl" />
 
           <Heading size="h4">Example: Standard Label</Heading>
-          <InputGroupLabel
-            type="standard"
-            htmlFor=""
-          >This is an example label</InputGroupLabel>
+          <InputGroupLabel type="standard" htmlFor="">
+            This is an example label
+          </InputGroupLabel>
         </SectionCard>
       </LayoutContainerSide>
     </>

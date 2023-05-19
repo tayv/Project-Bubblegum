@@ -64,8 +64,10 @@ export const HelpMessage: FC<HelpMessageProps> = ({
 
   return (
     <>
-      {// checkForMatch(checkFor, regExFormula) &&
-        renderMessage(messageType, message)}{" "}
+      {
+        // checkForMatch(checkFor, regExFormula) &&
+        renderMessage(messageType, message)
+      }{" "}
       {/* MUST use .match() instead of checkForMatch.test() */}
     </>
   )

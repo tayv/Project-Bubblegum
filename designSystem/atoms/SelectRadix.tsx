@@ -1,11 +1,4 @@
-import {
-  Ref,
-  forwardRef,
-  SelectHTMLAttributes,
-  FC,
-  ReactNode,
-  RefObject,
-} from "react"
+import { Ref, forwardRef, FC } from "react"
 import * as Select from "@radix-ui/react-select"
 
 export type ItemOptions = {
@@ -86,7 +79,6 @@ const SelectRadix: FC<SelectRadixProps> = forwardRef<
   HTMLButtonElement,
   SelectRadixProps
 >(function setRefSelect({ placeholder, itemOptions, children, ...props }, ref) {
-
   return (
     <Select.Root {...props} onValueChange={props.onChange}>
       <Select.Trigger

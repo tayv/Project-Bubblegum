@@ -4,7 +4,6 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 import SubmitButton from "testComponents/SubmitButton"
 
-
 export type FormProps = {
   id: string
   defaultValues: Record<string, any>
@@ -14,7 +13,6 @@ export type FormProps = {
 }
 
 // HELPER FUNCTIONS
-
 
 // MAIN COMPONENT
 const Form: FC<FormProps> = ({
@@ -44,7 +42,11 @@ const Form: FC<FormProps> = ({
         >
           Submit
         </button>
-        {!!formHasErrors ? <p className="text-red-600">The form can&apos;t be submitted until you fix the errors above.</p> : null}
+        {!!formHasErrors ? (
+          <p className="text-red-600">
+            The form can&apos;t be submitted until you fix the errors above.
+          </p>
+        ) : null}
       </form>
     </FormProvider>
   )
