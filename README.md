@@ -2,6 +2,10 @@
 
 - Keep in mind the project is still very rough, especially the design. Focusing on functionality and code quality first.
 
+# Documentation
+
+Bubblegum UI docs: https://bubblegumui.vercel.app/
+
 # About
 
 Building a design library of reusable, flexible, and accessible React form and UI components. The form components will be largely unstyled out of the box and intended to be easily adapted on the fly using customizable variations.
