@@ -10,28 +10,28 @@ type MyAccordionProps = {
   defaultValue?: any // this is a workaround for the Radix type and defaultValue prop not working together. Should be string | string[] | undefined.
   collapsible?: boolean // When type is "single", allows closing content when clicking trigger for an open item.
 
-  rootStyle?: RootStyle
+  ToggleStyle?: ToggleStyle
   accordionStyle?: AccordionStyle
 }
 
 // Conditional Styles
-type RootStyle = "standard" | "shrink"
-const rootStyleMap: { [key in RootStyle]: string } = {
+type ToggleStyle = "standard" | "shrink"
+const ToggleStyleMap: { [key in ToggleStyle]: string } = {
   standard: "",
   shrink: "flex flex-col shrink",
 }
 
 type AccordionStyle = "standard" | "warning" | "tip"
 const accordionStyleMap: { [key in AccordionStyle]: string } = {
-  standard: "bg-neutral-300",
-  warning: "bg-red-300",
-  tip: "bg-blue-300",
+  standard: "bg-neutral-400",
+  warning: "bg-red-400",
+  tip: "bg-blue-400",
 }
 
 // Sets the icon for each accordionStyle
 const iconTypeMap: { [key in AccordionStyle]: ReactElement | null } = {
   standard: null,
-  warning: <AlertCircle className=" h-5 w-5 text-red-600" />,
+  warning: <AlertCircle className=" h-5 w-5 text-red-700" />,
   tip: <Lightbulb className=" h-5 w-5 text-blue-600" />,
 }
 
@@ -85,7 +85,7 @@ const Accordion: FC<MyAccordionProps> = ({
   items,
   defaultValue,
   collapsible = true,
-  rootStyle = "standard",
+  ToggleStyle = "standard",
   accordionStyle = "standard",
 }) => (
   <AccordionRadix.Root
@@ -94,7 +94,7 @@ const Accordion: FC<MyAccordionProps> = ({
     collapsible={collapsible}
     className={classNames([
       "max-w-lg", // standard css styles go here.
-      rootStyleMap[rootStyle],
+      ToggleStyleMap[ToggleStyle],
       // className
     ])}
   >
