@@ -136,7 +136,7 @@ const Calendar: FC<CalendarProps & CalendarStateProps> = ({
                       </Select.Icon>
                     </Select.Trigger>
                     <Select.Portal>
-                      <Select.Content className="outline-none border-solid border border-slate-200 rounded-md bg-white py-1 px-2">
+                      <Select.Content className="outline-none border-solid border border-slate-200 rounded-md text-indigo-600 bg-white py-1 px-2">
                         <Select.ScrollUpButton className="flex justify-center">
                           <ChevronUp className="h-4 w-4 text-neutral-800" />
                         </Select.ScrollUpButton>
