@@ -65,7 +65,7 @@ const MessagesHelpArticle: FC = () => {
           <BlankSpace />
           <Paragraph>
             The Accordion component has 2 required props: type and items. It
-            also has 4 optional props: defaultValue, collapsible, rootStyle, and
+            also has 4 optional props: defaultValue, collapsible, ToggleStyle, and
             accordionStyle.
           </Paragraph>
 
@@ -211,14 +211,14 @@ const MessagesHelpArticle: FC = () => {
           />
 
           <Divider padding="xl" />
-          <Heading size="h4">RootStyle Prop (Optional)</Heading>
+          <Heading size="h4">ToggleStyle Prop (Optional)</Heading>
           <Heading size="h5" type="secondary">
-            rootStyle=&quot;standard&quot;
+            ToggleStyle=&quot;standard&quot;
           </Heading>
           <Paragraph> Accordion doesn&apos;t change size.</Paragraph>
           <Accordion
             type="single"
-            rootStyle="standard"
+            ToggleStyle="standard"
             items={[
               {
                 value: "item-1",
@@ -229,12 +229,12 @@ const MessagesHelpArticle: FC = () => {
           />
           <BlankSpace />
           <Heading size="h5" type="secondary">
-            rootStyle=&quot;shrink&quot;
+            ToggleStyle=&quot;shrink&quot;
           </Heading>
           <Paragraph> Accordion will shrink/expand.</Paragraph>
           <Accordion
             type="single"
-            rootStyle="shrink"
+            ToggleStyle="shrink"
             items={[
               {
                 value: "item-1",
