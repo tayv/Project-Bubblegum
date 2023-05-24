@@ -4,14 +4,8 @@ import * as AccordionRadix from "@radix-ui/react-accordion"
 import { Minus, Plus, Lightbulb, AlertCircle } from "lucide-react"
 
 // Types
-type AccordionItems = {
-  value: string
-  headerText: string
-  contentText: string
-}
-
 type MyAccordionProps = {
-  items: AccordionItems[]
+  items: Array<{ value: string, headerText: string, contentText: string }>
   type: "single" | "multiple" // Determines whether one or multiple items can be opened at the same time.
   defaultValue?: any // this is a workaround for the Radix type and defaultValue prop not working together. Should be string | string[] | undefined.
   collapsible?: boolean // When type is "single", allows closing content when clicking trigger for an open item.
@@ -43,7 +37,7 @@ const iconTypeMap: { [key in AccordionStyle]: ReactElement | null } = {
 
 // Helper Functions
 const renderAccordionItems = (
-  accordionItems: AccordionItems[],
+  accordionItems: MyAccordionProps["items"],
   accordionStyle: AccordionStyle
 ) => {
   return accordionItems.map(
