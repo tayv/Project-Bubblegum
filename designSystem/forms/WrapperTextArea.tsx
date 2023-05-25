@@ -3,7 +3,7 @@ import { TextArea, TextAreaProps } from "designSystem/atoms/Textarea"
 import { Controller } from "react-hook-form"
 
 const WrapperTextArea: FC<TextAreaProps> = ({
-  name,
+  name = "defaultName",
   size,
   rules,
   control,
