@@ -2,7 +2,7 @@ import Breadcrumbs from "@designSystem/molecules/Breadcrumbs"
 import Heading from "@designSystem/atoms/Heading"
 import DoDont from "@designSystem/atoms/DoDont"
 import LayoutContainerSide from "@designSystem/layouts/LayoutContainerSide"
-import BlankSpace from "@designSystem/atoms/BlankSpace"
+import Space from "@designSystem/atoms/Space"
 import Divider from "@designSystem/atoms/Divider"
 
 export default function MyRadioGroup() {
@@ -28,7 +28,7 @@ export default function MyRadioGroup() {
         </Heading>
         <p>Containers that hold content and providing a consistent spacing.</p>
 
-        <BlankSpace />
+        <Space />
         <Divider />
 
         <Heading size="h2" type="primary">
@@ -59,7 +59,7 @@ export default function MyRadioGroup() {
         </Heading>
         <p>Code details go here</p>
 
-        <BlankSpace />
+        <Space />
         <Divider />
 
         <Heading size="h2" type="primary">

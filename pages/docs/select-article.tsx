@@ -3,7 +3,7 @@ import Breadcrumbs from "@designSystem/molecules/Breadcrumbs"
 import Heading from "@designSystem/atoms/Heading"
 import Paragraph from "@designSystem/atoms/Paragraph"
 import { FC } from "react"
-import SectionCard from "@designSystem/molecules/SectionCard"
+import CardSection from "@designSystem/molecules/CardSection"
 import WrapperSelect from "@forms/WrapperSelect"
 import Divider from "@designSystem/atoms/Divider"
 import { useForm } from "react-hook-form"
@@ -33,7 +33,7 @@ const SelectArticle: FC = () => {
           {`On this page you'll find Select components." size="standard" type="primary`}{" "}
         </Paragraph>
 
-        <SectionCard id="header" style="standard">
+        <CardSection id="header" style="standard">
           <Heading size="h3">Select</Heading>
           <Paragraph>
             {` Uses Radix's Select primitive and is controlled via react-hook-form. Have two variations: flat and grouped. The label and tip props are optional. Leave out or pass null to hide them.`}
@@ -102,7 +102,7 @@ const SelectArticle: FC = () => {
               },
             ]}
           />
-        </SectionCard>
+        </CardSection>
       </LayoutContainerSide>
     </>
   )

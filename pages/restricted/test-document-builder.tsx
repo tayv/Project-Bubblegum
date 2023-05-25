@@ -2,7 +2,7 @@ import LayoutContainerSide from "@designSystem/layouts/LayoutContainerSide"
 import Breadcrumbs from "@designSystem/molecules/Breadcrumbs"
 import Heading from "@designSystem/atoms/Heading"
 import Paragraph from "@designSystem/atoms/Paragraph"
-import SectionCard from "@designSystem/molecules/SectionCard"
+import CardSection from "@designSystem/molecules/CardSection"
 
 // data for Breadcrumbs
 const crumbs = [
@@ -27,9 +27,9 @@ const DocumentBuilder = () => (
         This page will show an MDX document builder using saved answers from the
         test form.
       </Paragraph>
-      <SectionCard id="test-doc-builder" style="standard">
+      <CardSection id="test-doc-builder" style="standard">
         <Paragraph>🚧 Under Construction</Paragraph>
-      </SectionCard>
+      </CardSection>
     </LayoutContainerSide>
   </>
 )

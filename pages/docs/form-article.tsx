@@ -4,7 +4,7 @@ import Heading from "@designSystem/atoms/Heading"
 import Paragraph from "@designSystem/atoms/Paragraph"
 import { FC, useState } from "react"
 import { useForm, FormProvider } from "react-hook-form"
-import SectionCard from "@designSystem/molecules/SectionCard"
+import CardSection from "@designSystem/molecules/CardSection"
 import Divider from "@designSystem/atoms/Divider"
 
 import PrintInputValueButton from "testComponents/PrintValueButton"

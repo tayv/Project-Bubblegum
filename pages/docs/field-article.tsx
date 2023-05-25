@@ -4,7 +4,7 @@ import Heading from "@designSystem/atoms/Heading"
 import Paragraph from "@designSystem/atoms/Paragraph"
 import { FC, useState } from "react"
 import { useForm, FormProvider } from "react-hook-form"
-import SectionCard from "@designSystem/molecules/SectionCard"
+import CardSection from "@designSystem/molecules/CardSection"
 import DatePick from "@designSystem/molecules/DatePick"
 import Divider from "@designSystem/atoms/Divider"
 
@@ -108,7 +108,7 @@ const FieldPage: FC = () => {
           used as a wrapper to make child form components contrtollable.
         </Paragraph>
 
-        <SectionCard id="FieldExample" style="standard">
+        <CardSection id="FieldExample" style="standard">
           <Heading size="h2">Field Component Example</Heading>
           <Paragraph>
             Field component used the compound component pattern and looks like
@@ -116,7 +116,7 @@ const FieldPage: FC = () => {
           </Paragraph>
           <Divider padding="xl" />
           TBD
-        </SectionCard>
+        </CardSection>
 
         {/* ------------------------ Form Test Section ------------------------*/}
         <Form
@@ -129,7 +129,7 @@ const FieldPage: FC = () => {
             TEST FORM
           </Heading>
 
-          <SectionCard id="field-datepick" style="standard">
+          <CardSection id="field-datepick" style="standard">
             <Heading size="h3" type="primary">
               Field with a Date Picker
             </Heading>
@@ -288,7 +288,7 @@ const FieldPage: FC = () => {
             <Divider padding="large" />
 
             {/* <SubmitButton onSubmit={onSubmit} formData={formData} /> */}
-          </SectionCard>
+          </CardSection>
         </Form>
       </LayoutContainerSide>
     </>

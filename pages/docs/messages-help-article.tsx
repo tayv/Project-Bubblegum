@@ -3,11 +3,11 @@ import Breadcrumbs from "@designSystem/molecules/Breadcrumbs"
 import Heading from "@designSystem/atoms/Heading"
 import Paragraph from "@designSystem/atoms/Paragraph"
 import { FC } from "react"
-import SectionCard from "@designSystem/molecules/SectionCard"
+import CardSection from "@designSystem/molecules/CardSection"
 import Input from "designSystem/atoms/Input"
 import Divider from "@designSystem/atoms/Divider"
 import Accordion from "designSystem/atoms/Accordion"
-import BlankSpace from "@designSystem/atoms/BlankSpace"
+import Space from "@designSystem/atoms/Space"
 
 // data for Breadcrumbs
 const crumbs = [
@@ -31,7 +31,7 @@ const MessagesHelpArticle: FC = () => {
           On this page you&apos;ll find help message components
         </Paragraph>
 
-        <SectionCard id="tipMessage" style="standard">
+        <CardSection id="tipMessage" style="standard">
           <Heading size="h3">Tip Messages</Heading>
           <Paragraph>
             There are two prop variations of the Tip component: tip and example.
@@ -47,9 +47,9 @@ const MessagesHelpArticle: FC = () => {
           <Divider padding="xl" />
 
           <Heading size="h4">Example: Example Message</Heading>
-        </SectionCard>
+        </CardSection>
 
-        <SectionCard id="accordionMessage" style="standard">
+        <CardSection id="accordionMessage" style="standard">
           <Heading size="h3">Accordion Messages</Heading>
           <Paragraph>
             Typically used for longer messages. Gives a way to present
@@ -62,7 +62,7 @@ const MessagesHelpArticle: FC = () => {
             </a>{" "}
             primitive for accessibility.
           </Paragraph>
-          <BlankSpace />
+          <Space />
           <Paragraph>
             The Accordion component has 2 required props: type and items. It
             also has 4 optional props: defaultValue, collapsible, ToggleStyle, and
@@ -90,7 +90,7 @@ const MessagesHelpArticle: FC = () => {
               },
             ]}
           />
-          <BlankSpace />
+          <Space />
           <Heading size="h5" type="secondary">
             type=&quot;multiple&quot;
           </Heading>
@@ -130,7 +130,7 @@ const MessagesHelpArticle: FC = () => {
               },
             ]}
           />
-          <BlankSpace />
+          <Space />
 
           <Divider padding="xl" />
           <Heading size="h4">DefaultValue Prop (Optional)</Heading>
@@ -157,7 +157,7 @@ const MessagesHelpArticle: FC = () => {
               },
             ]}
           />
-          <BlankSpace />
+          <Space />
 
           <Divider padding="xl" />
           <Heading size="h4">Collapsible Prop (Optional)</Heading>
@@ -185,7 +185,7 @@ const MessagesHelpArticle: FC = () => {
               },
             ]}
           />
-          <BlankSpace />
+          <Space />
           <Heading size="h5" type="secondary">
             collapsible=&quot;false&quot;
           </Heading>
@@ -227,7 +227,7 @@ const MessagesHelpArticle: FC = () => {
               },
             ]}
           />
-          <BlankSpace />
+          <Space />
           <Heading size="h5" type="secondary">
             ToggleStyle=&quot;shrink&quot;
           </Heading>
@@ -243,7 +243,7 @@ const MessagesHelpArticle: FC = () => {
               },
             ]}
           />
-          <BlankSpace />
+          <Space />
 
           <Divider padding="xl" />
           <Heading size="h4">AccordionStyle Prop (Optional)</Heading>
@@ -265,7 +265,7 @@ const MessagesHelpArticle: FC = () => {
               },
             ]}
           />
-          <BlankSpace />
+          <Space />
           <Heading size="h5" type="secondary">
             accordionStyle=&quot;warning&quot;
           </Heading>
@@ -283,7 +283,7 @@ const MessagesHelpArticle: FC = () => {
               },
             ]}
           />
-          <BlankSpace />
+          <Space />
           <Heading size="h5" type="secondary">
             accordionStyle=&quot;tip&quot;
           </Heading>
@@ -302,8 +302,8 @@ const MessagesHelpArticle: FC = () => {
               },
             ]}
           />
-          <BlankSpace />
-        </SectionCard>
+          <Space />
+        </CardSection>
       </LayoutContainerSide>
     </>
   )

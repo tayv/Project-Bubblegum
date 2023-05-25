@@ -4,7 +4,7 @@ import Heading from "@designSystem/atoms/Heading"
 import Paragraph from "@designSystem/atoms/Paragraph"
 import { FC, useState } from "react"
 import { useForm, FormProvider } from "react-hook-form"
-import SectionCard from "@designSystem/molecules/SectionCard"
+import CardSection from "@designSystem/molecules/CardSection"
 import DatePick from "@designSystem/molecules/DatePick"
 import Divider from "@designSystem/atoms/Divider"
 
@@ -57,7 +57,7 @@ const DatePickerPage: FC = () => {
           On this page you&apos;ll find a calendar date picker
         </Paragraph>
 
-        <SectionCard id="SingleDatePickExample" style="standard">
+        <CardSection id="SingleDatePickExample" style="standard">
           <Heading size="h2">Example 1: Single Date Picker</Heading>
           <Paragraph>
             Custom Date Picker using Radix UI&apos;s Accordion primitive. The
@@ -83,9 +83,9 @@ const DatePickerPage: FC = () => {
             startYearRange={1992}
             endYearRange={2025}
           />
-        </SectionCard>
+        </CardSection>
 
-        <SectionCard id="multiDatePickExample" style="standard">
+        <CardSection id="multiDatePickExample" style="standard">
           <Heading size="h2">Example 2: Start + End Dates Picker</Heading>
           <Paragraph>
             You can also combine date picks to create a start and end date
@@ -110,9 +110,9 @@ const DatePickerPage: FC = () => {
               endYearRange={2025}
             />
           </div>
-        </SectionCard>
+        </CardSection>
 
-        <SectionCard id="datePickDetails" style="standard">
+        <CardSection id="datePickDetails" style="standard">
           <Heading size="h3" type="primary">
             More Details:
           </Heading>
@@ -124,7 +124,7 @@ const DatePickerPage: FC = () => {
             You can have start/end date components be vertically or horizontally
             aligned by using a parent div with flexbox.
           </Paragraph>
-        </SectionCard>
+        </CardSection>
 
         {/* ------------------------ Test Section ------------------------*/}
         <FormProvider {...methods}>
@@ -151,7 +151,7 @@ const DatePickerPage: FC = () => {
               <Field.ValidityState>Valid</Field.ValidityState> */}
             </Field>
 
-            <SectionCard id="datepick" style="standard">
+            <CardSection id="datepick" style="standard">
               <Heading size="h3" type="primary">
                 Date Picker
               </Heading>
@@ -195,7 +195,7 @@ const DatePickerPage: FC = () => {
               <Divider padding="large" />
 
               <SubmitButton onSubmit={onSubmit} formData={formData} />
-            </SectionCard>
+            </CardSection>
           </form>
         </FormProvider>
       </LayoutContainerSide>

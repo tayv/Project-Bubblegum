@@ -4,7 +4,7 @@ import Heading from "@designSystem/atoms/Heading"
 import Paragraph from "@designSystem/atoms/Paragraph"
 import { FC, useEffect, useState, useMemo } from "react"
 import { useForm } from "react-hook-form"
-import SectionCard from "@designSystem/molecules/SectionCard"
+import CardSection from "@designSystem/molecules/CardSection"
 import WrapperCheckbox from "@forms/WrapperCheckbox"
 import Tip from "@molecules/Tip"
 import Label from "@designSystem/atoms/InputGroupLabel"
@@ -14,7 +14,7 @@ import WrapperTextArea from "@forms/WrapperTextArea"
 import WrapperSelect from "@forms/WrapperSelect"
 import DatePick from "@designSystem/molecules/DatePick"
 import Divider from "@designSystem/atoms/Divider"
-import BlankSpace from "@designSystem/atoms/BlankSpace"
+import Space from "@designSystem/atoms/Space"
 import Accordion from "designSystem/atoms/Accordion"
 import InputGroupLabel from "@designSystem/atoms/InputGroupLabel"
 
@@ -131,18 +131,18 @@ const TestForm: FC = () => {
   // useMemo needed to prevent infinite loop due to reset() being a useEffect depenedency in reset()
   const defaultValues = useMemo(
     () => ({
-      // Text Input SectionCard
+      // Text Input CardSection
       singleInput: "",
-      // Text Area SectionCard
+      // Text Area CardSection
       standardTextArea: "",
       largeTextArea: "",
-      // Radio Input SectionCard
+      // Radio Input CardSection
       standardRadio: "mint",
       horizontalRadio: "no",
       buttonRadio: "orange-button",
-      // Checkbox Input SectionCard
+      // Checkbox Input CardSection
       checkboxInput: true,
-      // Select Input SectionCard
+      // Select Input CardSection
       flatSelect: "third",
       groupSelect: "third",
       // Have visibility conditions
@@ -160,18 +160,18 @@ const TestForm: FC = () => {
   }, [defaultValues, reset])
 
   const fieldValues = {
-    // Text Input SectionCard
+    // Text Input CardSection
     singleInput: getValues("singleInput"),
-    // Radio Input SectionCard
+    // Radio Input CardSection
     standardRadio: getValues("standardRadio"),
     horizontalRadio: getValues("horizontalRadio"),
     buttonRadio: getValues("buttonRadio"),
     registerradio: watch("registerradio"),
     bikeBrandRadio: watch("bikeBrandRadio"),
     motoTeamRadio: watch("motoTeamRadio"),
-    // Checkbox Input SectionCard
+    // Checkbox Input CardSection
     checkboxInput: watch("checkboxInput"),
-    // Select Input SectionCard
+    // Select Input CardSection
     flatSelect: getValues("flatSelect"),
     groupSelect: getValues("groupSelect"),
     // Visibliity Conditions
@@ -195,23 +195,23 @@ const TestForm: FC = () => {
             className="col-span-2 py-3 px-8 my-8 rounded-3xl bg-zinc-200/10 border"
             onSubmit={onSubmit}
           >
-            <SectionCard id="intro" style="blank">
+            <CardSection id="intro" style="blank">
               <Heading size="h2">Test Form 1</Heading>
               <Paragraph>
                 This form is used to show default styling for text, radio
                 button, checkbox, and multi-line input components. Also used to
                 test Controlled inputs.{" "}
               </Paragraph>
-            </SectionCard>
+            </CardSection>
 
-            <SectionCard id="textInput" style="standard">
+            <CardSection id="textInput" style="standard">
               <Heading size="h3">Single Line Input</Heading>
 
               <Divider padding="large" />
               {PrintInputValueButton("singleInput")}
-            </SectionCard>
+            </CardSection>
 
-            <SectionCard id="radioInput" style="standard">
+            <CardSection id="radioInput" style="standard">
               <Heading size="h3" type="primary">
                 Radio Groups
               </Heading>
@@ -228,7 +228,7 @@ const TestForm: FC = () => {
                   { value: "vanilla", label: "Vanilla ice cream" },
                 ]}
               /> */}
-              <BlankSpace />
+              <Space />
               {/* <WrapperRadioGroup
                 name="horizontalRadio"
                 groupLabel="This is a radio group label"
@@ -240,7 +240,7 @@ const TestForm: FC = () => {
                   { value: "no", label: "No" },
                 ]}
               /> */}
-              <BlankSpace />
+              <Space />
               {/* <WrapperRadioGroup
                 name="buttonRadio"
                 groupLabel="This is a radio group label"
@@ -259,9 +259,9 @@ const TestForm: FC = () => {
               {PrintInputValueButton("standardRadio")}
               {PrintInputValueButton("horizontalRadio")}
               {PrintInputValueButton("buttonRadio")}
-            </SectionCard>
+            </CardSection>
 
-            <SectionCard id="checkboxInput" style="standard">
+            <CardSection id="checkboxInput" style="standard">
               <Heading size="h3" type="primary">
                 Checkboxes
               </Heading>
@@ -277,9 +277,9 @@ const TestForm: FC = () => {
 
               <Divider padding="large" />
               {PrintInputValueButton("checkboxInput")}
-            </SectionCard>
+            </CardSection>
 
-            <SectionCard id="textArea" style="standard">
+            <CardSection id="textArea" style="standard">
               <Heading size="h3" type="primary">
                 Text Areas
               </Heading>
@@ -287,9 +287,9 @@ const TestForm: FC = () => {
               <Divider padding="large" />
               {PrintInputValueButton("standardTextArea")}
               {PrintInputValueButton("largeTextArea")}
-            </SectionCard>
+            </CardSection>
 
-            <SectionCard id="radixWrapperSelect" style="standard">
+            <CardSection id="radixWrapperSelect" style="standard">
               <Heading size="h3" type="primary">
                 Wrapper Select (Radix)
               </Heading>
@@ -297,9 +297,9 @@ const TestForm: FC = () => {
               <Divider padding="large" />
               {PrintInputValueButton("flatselect")}
               {PrintInputValueButton("groupselect")}
-            </SectionCard>
+            </CardSection>
 
-            <SectionCard id="datepick" style="standard">
+            <CardSection id="datepick" style="standard">
               <Heading size="h3" type="primary">
                 Date Picker
               </Heading>
@@ -312,12 +312,12 @@ const TestForm: FC = () => {
 
               <Divider padding="large" />
               {PrintInputValueButton("datepicktest")}
-            </SectionCard>
+            </CardSection>
 
             {/* VISIBILITY CONDITION TEST SECTION --------------------------------------------- */}
             <Divider padding="large" />
             <Heading size="h2" type="primary">
-              Visibility Condition Test SectionCard
+              Visibility Condition Test CardSection
             </Heading>
             <div className="flex flex-col items-end">
               <button
@@ -330,12 +330,12 @@ const TestForm: FC = () => {
                   })
                 }}
               >
-                🪄 Toggle SectionCard Visiblity
+                🪄 Toggle CardSection Visiblity
               </button>
             </div>
 
             {sectionVis.visCondition1 && (
-              <SectionCard id="testvis-radios" style="standard">
+              <CardSection id="testvis-radios" style="standard">
                 {/* <WrapperRadioGroup
                   name="visRacingRadio"
                   groupLabel="This is a radio group label"
@@ -349,7 +349,7 @@ const TestForm: FC = () => {
                     { value: "f1", label: "F1" },
                   ]}
                 /> */}
-              </SectionCard>
+              </CardSection>
             )}
 
             {PrintInputValueButton("visRacingRadio")}
@@ -359,7 +359,7 @@ const TestForm: FC = () => {
               // Conditionally toggle visibility of section based on prev radio group answer
               sectionVis.visCondition1 &&
                 (fieldValues.visRacingRadio === "supercross" || "moto-gp") && (
-                  <SectionCard id="moto" style="standard">
+                  <CardSection id="moto" style="standard">
                     {/* Heading text changes based on answer to previous radio group */}
                     <Heading size="h3">Toggle Words + Questions</Heading>
                     {/* Checkbox conditionally toggles wording and radio options */}
@@ -409,7 +409,7 @@ const TestForm: FC = () => {
                       //   />
                       // )
                     }
-                  </SectionCard>
+                  </CardSection>
                 )
             }
 
@@ -425,10 +425,10 @@ const TestForm: FC = () => {
             {" "}
             {/* div needed for sticky to work. Cannot use overflow: scroll/hidden/auto with sticky https://www.digitalocean.com/community/tutorials/css-position-sticky */}
             <div className="sticky top-0 overflow-y-auto">
-              <SectionCard id="templateTest" style="blank">
+              <CardSection id="templateTest" style="blank">
                 <Heading size="h3">Template Test: Form Values</Heading>
                 <TemplateGeneric location="c" docData={docValue} />
-              </SectionCard>
+              </CardSection>
             </div>
           </div>
         </div>

@@ -3,7 +3,7 @@ import classNames from "classnames"
 
 export type SectionCardProps = {
   id: string
-  style: SectionCardStyle
+  style?: SectionCardStyle
   customColor?: customColor
   children: ReactNode
   className?: string
@@ -36,7 +36,7 @@ const sectionStyleMap: { [key in SectionCardStyle]: string } = {
   colorCustom: "",
 }
 
-const SectionCard = ({
+const CardSection = ({
   id,
   style = "standard",
   className = "", // to pass custom one-off styling
@@ -56,4 +56,4 @@ const SectionCard = ({
   )
 }
 
-export default SectionCard
+export default CardSection

@@ -7,10 +7,7 @@ import React, {
 } from "react"
 import classNames from "classnames"
 import { Control } from "react-hook-form"
-import Tip, { TipProps } from "@molecules/Tip"
-import InputLabel, {
-  InputGroupLabelProps,
-} from "@designSystem/atoms/InputGroupLabel"
+import { InputState } from "@atoms/Input"
 
 // OVERVIEW
 // This atom form component provides styling and accessibility requirements. Validation, event handlers, etc.
@@ -19,13 +16,14 @@ import InputLabel, {
 // TYPES
 export type TextAreaSize = "standard" | "large"
 export type TextAreaProps = {
-  name: string
+  name?: string // Handed by Field component
   size?: TextAreaSize
   className?: string
   placeholder?: string
   defaultValue?: string | number
   onChange?: any
   children?: React.ReactElement
+  hasError?: boolean
 
   // RHF prop types
   register?: any // react-hook-form: to register an input (not needed if using Controller)
@@ -40,6 +38,11 @@ const textAreaSizeMap: { [key in TextAreaSize]: string } = {
   large: "w-full py-3 px-4",
 }
 
+const inputFocusStyleMap: { [key in InputState]: string } = {
+  standard: "focus:ring focus:ring-green-400",
+  error: "ring-2 ring-inset ring-red-400 focus:ring-red-400 focus:ring",
+}
+
 // forwardRef so RHF can work properly in WrapperInput
 export const TextArea: FC<TextAreaProps> = forwardRef<
   HTMLTextAreaElement,
@@ -50,6 +53,7 @@ export const TextArea: FC<TextAreaProps> = forwardRef<
     size = "standard",
     className = "", // to pass custom one-off styling
     children,
+    hasError = false,
     ...props
   },
   ref
@@ -62,8 +66,9 @@ export const TextArea: FC<TextAreaProps> = forwardRef<
         name={name}
         // aria-label={label}
         className={classNames([
-          "mt-1 block border border-gray-900 bg-white shadow-sm",
+          "mt-1 block border border-gray-900 rounded-lg bg-white shadow-sm",
           textAreaSizeMap[size], // to dynamically set styling for different sizes
+          inputFocusStyleMap[hasError ? "error" : "standard"],
           className,
         ])}
         {...props}
