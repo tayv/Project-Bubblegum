@@ -7,8 +7,7 @@ import React, {
 } from "react"
 import classNames from "classnames"
 import { Control } from "react-hook-form"
-import Tip, { TipProps } from "@molecules/Tip"
-import InputLabel, { InputLabelProps } from "designSystem/atoms/InputLabelRadix"
+import { InputState } from "@atoms/Input"
 
 // OVERVIEW
 // This atom form component provides styling and accessibility requirements. Validation, event handlers, etc.
@@ -17,17 +16,14 @@ import InputLabel, { InputLabelProps } from "designSystem/atoms/InputLabelRadix"
 // TYPES
 export type TextAreaSize = "standard" | "large"
 export type TextAreaProps = {
-  name: string
-  label: InputLabelProps["label"]
+  name?: string // Handed by Field component
   size?: TextAreaSize
-  tipText?: TipProps["text"]
-  exampleText?: TipProps["text"]
   className?: string
   placeholder?: string
   defaultValue?: string | number
   onChange?: any
-  warnChange?: any
   children?: React.ReactElement
+  hasError?: boolean
 
   // RHF prop types
   register?: any // react-hook-form: to register an input (not needed if using Controller)
@@ -42,6 +38,11 @@ const textAreaSizeMap: { [key in TextAreaSize]: string } = {
   large: "w-full py-3 px-4",
 }
 
+const inputFocusStyleMap: { [key in InputState]: string } = {
+  standard: "focus:ring focus:ring-green-400",
+  error: "ring-2 ring-inset ring-red-400 focus:ring-red-400 focus:ring",
+}
+
 // forwardRef so RHF can work properly in WrapperInput
 export const TextArea: FC<TextAreaProps> = forwardRef<
   HTMLTextAreaElement,
@@ -49,33 +50,29 @@ export const TextArea: FC<TextAreaProps> = forwardRef<
 >(function setRefTextArea(
   {
     name,
-    label,
     size = "standard",
     className = "", // to pass custom one-off styling
-    tipText = null,
-    exampleText = null,
     children,
+    hasError = false,
     ...props
   },
   ref
 ) {
   return (
     <div className="max-w-sm">
-      <InputLabel htmlFor={name} type="standard" label={label} />
-      <Tip text={tipText} type="standard" />
       <textarea
         ref={ref}
         id={name}
         name={name}
         // aria-label={label}
         className={classNames([
-          "mt-1 block border border-gray-900 bg-white shadow-sm",
+          "mt-1 block border border-gray-900 rounded-lg bg-white shadow-sm",
           textAreaSizeMap[size], // to dynamically set styling for different sizes
+          inputFocusStyleMap[hasError ? "error" : "standard"],
           className,
         ])}
         {...props}
       />
-      <Tip text={exampleText} type="example" />
       {children} {/* For displaying warning message components, etc. */}
     </div>
   )

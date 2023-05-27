@@ -11,7 +11,7 @@ import {
   ArrowRight,
 } from "lucide-react"
 import { InputProps } from "designSystem/atoms/Input"
-import InputLabel from "designSystem/atoms/InputLabelRadix"
+import InputLabel from "@designSystem/atoms/InputGroupLabel"
 import Tip, { TipProps } from "@molecules/Tip"
 import * as Select from "@radix-ui/react-select"
 import * as Accordion from "@radix-ui/react-accordion"
@@ -136,7 +136,7 @@ const Calendar: FC<CalendarProps & CalendarStateProps> = ({
                       </Select.Icon>
                     </Select.Trigger>
                     <Select.Portal>
-                      <Select.Content className="outline-none border-solid border border-slate-200 rounded-md bg-white py-1 px-2">
+                      <Select.Content className="outline-none border-solid border border-slate-200 rounded-md text-indigo-600 bg-white py-1 px-2">
                         <Select.ScrollUpButton className="flex justify-center">
                           <ChevronUp className="h-4 w-4 text-neutral-800" />
                         </Select.ScrollUpButton>
@@ -247,7 +247,7 @@ const Calendar: FC<CalendarProps & CalendarStateProps> = ({
               </div>
             </div>
 
-            {/* Quick Jump SectionCard */}
+            {/* Quick Jump CardSection */}
             <section className="border-t border-neutral-200 md:border-t-0 mt-4 md:mt-0 md:px-8 md:pt-4 sm:pt-2 sm:pl-0  ">
               <h2 className="pb-1 pt-4 md:pt-0 text-neutral-500 font-medium text-sm">
                 Quick Jump

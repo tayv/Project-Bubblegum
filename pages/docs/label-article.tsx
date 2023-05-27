@@ -3,8 +3,8 @@ import Breadcrumbs from "@designSystem/molecules/Breadcrumbs"
 import Heading from "@designSystem/atoms/Heading"
 import Paragraph from "@designSystem/atoms/Paragraph"
 import { FC } from "react"
-import SectionCard from "@designSystem/molecules/SectionCard"
-import InputLabel from "designSystem/atoms/InputLabelRadix"
+import CardSection from "@designSystem/molecules/CardSection"
+import InputGroupLabel from "@designSystem/atoms/InputGroupLabel"
 import Divider from "@designSystem/atoms/Divider"
 
 // data for Breadcrumbs
@@ -27,7 +27,7 @@ const LabelArticle: FC = () => {
         <Heading size="h1">Labels</Heading>
         <Paragraph>On this page you&apos;ll find label components</Paragraph>
 
-        <SectionCard id="header" style="standard">
+        <CardSection id="header" style="standard">
           <Heading size="h3">Input Label</Heading>
           <Paragraph>
             {`
@@ -39,12 +39,10 @@ The label component supports two styles: 'standard' and 'inline'. The inline sty
           <Divider padding="xl" />
 
           <Heading size="h4">Example: Standard Label</Heading>
-          <InputLabel
-            type="standard"
-            label="This is a standard label"
-            htmlFor=""
-          />
-        </SectionCard>
+          <InputGroupLabel type="standard" htmlFor="">
+            This is an example label
+          </InputGroupLabel>
+        </CardSection>
       </LayoutContainerSide>
     </>
   )

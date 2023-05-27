@@ -13,7 +13,7 @@ export type CheckboxWrapperProps = {
 const WrapperCheckbox: FC<CheckboxWrapperProps & CheckboxProps> = ({
   control,
 
-  id,
+  id = "checkboxID",
   label,
 }) => {
   // stylemap used for future styling flexibility of the Checkbox component

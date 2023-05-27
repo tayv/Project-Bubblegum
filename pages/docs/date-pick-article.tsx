@@ -4,13 +4,13 @@ import Heading from "@designSystem/atoms/Heading"
 import Paragraph from "@designSystem/atoms/Paragraph"
 import { FC, useState } from "react"
 import { useForm, FormProvider } from "react-hook-form"
-import SectionCard from "@designSystem/molecules/SectionCard"
+import CardSection from "@designSystem/molecules/CardSection"
 import DatePick from "@designSystem/molecules/DatePick"
 import Divider from "@designSystem/atoms/Divider"
 
 import PrintInputValueButton from "testComponents/PrintValueButton"
 import SubmitButton from "testComponents/SubmitButton"
-import Field from "@designSystem/forms/FieldTest"
+import Field from "@designSystem/forms/Field"
 import Calendar from "@atoms/Calendar"
 import { format, startOfToday } from "date-fns"
 import useSyncDefaultValues from "@utils/useSyncDefaultValues"
@@ -29,6 +29,7 @@ const crumbs = [
 
 const DatePickerPage: FC = () => {
   const defaultValues = {
+    compoundtest: format(startOfToday(), "MMM-dd-yyyy"),
     exampleSingleDatePick: format(startOfToday(), "MMM-dd-yyyy"),
     exampleStartDatePick: format(startOfToday(), "MMM-dd-yyyy"),
     exampleEndDatePick: format(startOfToday(), "MMM-dd-yyyy"),
@@ -56,7 +57,7 @@ const DatePickerPage: FC = () => {
           On this page you&apos;ll find a calendar date picker
         </Paragraph>
 
-        <SectionCard id="SingleDatePickExample" style="standard">
+        <CardSection id="SingleDatePickExample" style="standard">
           <Heading size="h2">Example 1: Single Date Picker</Heading>
           <Paragraph>
             Custom Date Picker using Radix UI&apos;s Accordion primitive. The
@@ -82,9 +83,9 @@ const DatePickerPage: FC = () => {
             startYearRange={1992}
             endYearRange={2025}
           />
-        </SectionCard>
+        </CardSection>
 
-        <SectionCard id="multiDatePickExample" style="standard">
+        <CardSection id="multiDatePickExample" style="standard">
           <Heading size="h2">Example 2: Start + End Dates Picker</Heading>
           <Paragraph>
             You can also combine date picks to create a start and end date
@@ -109,9 +110,9 @@ const DatePickerPage: FC = () => {
               endYearRange={2025}
             />
           </div>
-        </SectionCard>
+        </CardSection>
 
-        <SectionCard id="datePickDetails" style="standard">
+        <CardSection id="datePickDetails" style="standard">
           <Heading size="h3" type="primary">
             More Details:
           </Heading>
@@ -123,7 +124,7 @@ const DatePickerPage: FC = () => {
             You can have start/end date components be vertically or horizontally
             aligned by using a parent div with flexbox.
           </Paragraph>
-        </SectionCard>
+        </CardSection>
 
         {/* ------------------------ Test Section ------------------------*/}
         <FormProvider {...methods}>
@@ -132,7 +133,25 @@ const DatePickerPage: FC = () => {
             className="col-span-2 py-3 px-8 my-8 rounded-3xl bg-zinc-200/10 border"
             onSubmit={onSubmit}
           >
-            <SectionCard id="datepick" style="standard">
+            <Field
+              name="compoundtest"
+              defaultValue=""
+              validationRules={{ required: true }}
+            >
+              <Field.GroupLabel>First Name</Field.GroupLabel>
+              <Field.Control>
+                <DatePick
+                  name="compoundtest"
+                  label="compoundtest"
+                  startYearRange={1990}
+                  endYearRange={2030}
+                />
+              </Field.Control>
+              {/* <Field.Message>First Name is required</Field.Message>
+              <Field.ValidityState>Valid</Field.ValidityState> */}
+            </Field>
+
+            <CardSection id="datepick" style="standard">
               <Heading size="h3" type="primary">
                 Date Picker
               </Heading>
@@ -176,7 +195,7 @@ const DatePickerPage: FC = () => {
               <Divider padding="large" />
 
               <SubmitButton onSubmit={onSubmit} formData={formData} />
-            </SectionCard>
+            </CardSection>
           </form>
         </FormProvider>
       </LayoutContainerSide>

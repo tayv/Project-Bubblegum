@@ -10,10 +10,6 @@ const LayoutContainerSide = ({ children }: any) => {
             { title: "Testing", groupTitle: true },
             { title: "Test Form", path: "/testForms/test-form" },
             {
-              title: "Test Vis Conditions Form",
-              path: "/testForms/test-viscond-form",
-            },
-            {
               title: "🧰 Test Document Builder",
               path: "/restricted/test-document-builder",
             },
@@ -23,6 +19,7 @@ const LayoutContainerSide = ({ children }: any) => {
             { title: "Checkbox", path: "/docs/checkbox-article" },
             { title: "Date Pick", path: "/docs/date-pick-article" },
             { title: "Dividers", path: "/docs/dividers-article" },
+            { title: "Field", path: "/docs/field-article" },
             { title: "Label", path: "/docs/label-article" },
             { title: "Messages (Help)", path: "docs/messages-help-article" },
             {

@@ -3,14 +3,11 @@ import { TextArea, TextAreaProps } from "designSystem/atoms/Textarea"
 import { Controller } from "react-hook-form"
 
 const WrapperTextArea: FC<TextAreaProps> = ({
-  name,
+  name = "defaultName",
   size,
   rules,
   control,
-  label,
   onChange,
-  tipText,
-  exampleText,
   children,
   ...props
 }) => {
@@ -22,10 +19,7 @@ const WrapperTextArea: FC<TextAreaProps> = ({
         render={({ field }) => (
           <TextArea
             {...field} // Need to place ...field above custom event handlers so that the built in handlers are overridden
-            label={label}
             size={size}
-            tipText={tipText}
-            exampleText={exampleText}
           />
         )}
       />

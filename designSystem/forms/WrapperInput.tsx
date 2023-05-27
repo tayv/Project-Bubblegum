@@ -3,14 +3,13 @@ import Input, { InputProps } from "@atoms/Input"
 import { Controller } from "react-hook-form"
 
 const WrapperInput: FC<InputProps> = ({
-  name = "defaultName",
-  rules,
+  name = "inputName",
+  // rules,
+  // @ts-ignore
   control,
-  label,
+  // label,
   onChange,
   defaultValue,
-  tipText,
-  exampleText,
   children,
   ...props
 }) => {
@@ -23,9 +22,6 @@ const WrapperInput: FC<InputProps> = ({
         render={({ field }) => (
           <Input
             {...field} // Need to place ...field above custom event handlers so that the built in handlers are overridden
-            label={label}
-            tipText={tipText}
-            exampleText={exampleText}
           />
         )}
       />

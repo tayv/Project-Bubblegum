@@ -3,11 +3,11 @@ import Breadcrumbs from "@designSystem/molecules/Breadcrumbs"
 import Heading from "@designSystem/atoms/Heading"
 import Paragraph from "@designSystem/atoms/Paragraph"
 import { FC } from "react"
-import SectionCard from "@designSystem/molecules/SectionCard"
+import CardSection from "@designSystem/molecules/CardSection"
 import Input from "designSystem/atoms/Input"
 import Divider from "@designSystem/atoms/Divider"
 import Accordion from "designSystem/atoms/Accordion"
-import BlankSpace from "@designSystem/atoms/BlankSpace"
+import Space from "@designSystem/atoms/Space"
 
 // data for Breadcrumbs
 const crumbs = [
@@ -31,7 +31,7 @@ const MessagesHelpArticle: FC = () => {
           On this page you&apos;ll find help message components
         </Paragraph>
 
-        <SectionCard id="tipMessage" style="standard">
+        <CardSection id="tipMessage" style="standard">
           <Heading size="h3">Tip Messages</Heading>
           <Paragraph>
             There are two prop variations of the Tip component: tip and example.
@@ -43,23 +43,13 @@ const MessagesHelpArticle: FC = () => {
           <Divider padding="xl" />
 
           <Heading size="h4">Example: Tip Message</Heading>
-          <Input
-            name="tipMessage"
-            label="This is a label:"
-            tipText="This is a tip messsage."
-          />
 
           <Divider padding="xl" />
 
           <Heading size="h4">Example: Example Message</Heading>
-          <Input
-            name="exampleMessage"
-            label="This is a label:"
-            exampleText="This is an example messsage."
-          />
-        </SectionCard>
+        </CardSection>
 
-        <SectionCard id="accordionMessage" style="standard">
+        <CardSection id="accordionMessage" style="standard">
           <Heading size="h3">Accordion Messages</Heading>
           <Paragraph>
             Typically used for longer messages. Gives a way to present
@@ -72,10 +62,10 @@ const MessagesHelpArticle: FC = () => {
             </a>{" "}
             primitive for accessibility.
           </Paragraph>
-          <BlankSpace />
+          <Space />
           <Paragraph>
             The Accordion component has 2 required props: type and items. It
-            also has 4 optional props: defaultValue, collapsible, rootStyle, and
+            also has 4 optional props: defaultValue, collapsible, ToggleStyle, and
             accordionStyle.
           </Paragraph>
 
@@ -100,7 +90,7 @@ const MessagesHelpArticle: FC = () => {
               },
             ]}
           />
-          <BlankSpace />
+          <Space />
           <Heading size="h5" type="secondary">
             type=&quot;multiple&quot;
           </Heading>
@@ -140,7 +130,7 @@ const MessagesHelpArticle: FC = () => {
               },
             ]}
           />
-          <BlankSpace />
+          <Space />
 
           <Divider padding="xl" />
           <Heading size="h4">DefaultValue Prop (Optional)</Heading>
@@ -167,7 +157,7 @@ const MessagesHelpArticle: FC = () => {
               },
             ]}
           />
-          <BlankSpace />
+          <Space />
 
           <Divider padding="xl" />
           <Heading size="h4">Collapsible Prop (Optional)</Heading>
@@ -195,7 +185,7 @@ const MessagesHelpArticle: FC = () => {
               },
             ]}
           />
-          <BlankSpace />
+          <Space />
           <Heading size="h5" type="secondary">
             collapsible=&quot;false&quot;
           </Heading>
@@ -221,14 +211,14 @@ const MessagesHelpArticle: FC = () => {
           />
 
           <Divider padding="xl" />
-          <Heading size="h4">RootStyle Prop (Optional)</Heading>
+          <Heading size="h4">ToggleStyle Prop (Optional)</Heading>
           <Heading size="h5" type="secondary">
-            rootStyle=&quot;standard&quot;
+            ToggleStyle=&quot;standard&quot;
           </Heading>
           <Paragraph> Accordion doesn&apos;t change size.</Paragraph>
           <Accordion
             type="single"
-            rootStyle="standard"
+            ToggleStyle="standard"
             items={[
               {
                 value: "item-1",
@@ -237,14 +227,14 @@ const MessagesHelpArticle: FC = () => {
               },
             ]}
           />
-          <BlankSpace />
+          <Space />
           <Heading size="h5" type="secondary">
-            rootStyle=&quot;shrink&quot;
+            ToggleStyle=&quot;shrink&quot;
           </Heading>
           <Paragraph> Accordion will shrink/expand.</Paragraph>
           <Accordion
             type="single"
-            rootStyle="shrink"
+            ToggleStyle="shrink"
             items={[
               {
                 value: "item-1",
@@ -253,7 +243,7 @@ const MessagesHelpArticle: FC = () => {
               },
             ]}
           />
-          <BlankSpace />
+          <Space />
 
           <Divider padding="xl" />
           <Heading size="h4">AccordionStyle Prop (Optional)</Heading>
@@ -275,7 +265,7 @@ const MessagesHelpArticle: FC = () => {
               },
             ]}
           />
-          <BlankSpace />
+          <Space />
           <Heading size="h5" type="secondary">
             accordionStyle=&quot;warning&quot;
           </Heading>
@@ -293,7 +283,7 @@ const MessagesHelpArticle: FC = () => {
               },
             ]}
           />
-          <BlankSpace />
+          <Space />
           <Heading size="h5" type="secondary">
             accordionStyle=&quot;tip&quot;
           </Heading>
@@ -312,8 +302,8 @@ const MessagesHelpArticle: FC = () => {
               },
             ]}
           />
-          <BlankSpace />
-        </SectionCard>
+          <Space />
+        </CardSection>
       </LayoutContainerSide>
     </>
   )

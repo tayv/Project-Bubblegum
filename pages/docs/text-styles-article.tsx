@@ -3,9 +3,9 @@ import Breadcrumbs from "@designSystem/molecules/Breadcrumbs"
 import Heading from "@designSystem/atoms/Heading"
 import Paragraph from "@designSystem/atoms/Paragraph"
 import { FC } from "react"
-import SectionCard from "@designSystem/molecules/SectionCard"
+import CardSection from "@designSystem/molecules/CardSection"
 import Divider from "@designSystem/atoms/Divider"
-import BlankSpace from "@designSystem/atoms/BlankSpace"
+import Space from "@designSystem/atoms/Space"
 
 // data for Breadcrumbs
 const crumbs = [
@@ -27,7 +27,7 @@ const TextStylesArticle: FC = () => {
         <Heading size="h1">Text Styles</Heading>
         <Paragraph>On this page you&apos;ll find text components.</Paragraph>
 
-        <SectionCard id="header" style="standard">
+        <CardSection id="header" style="standard">
           <Heading size="h3">Heading Component</Heading>
           <Paragraph>
             The Heading component is used to standardize header text in the app.
@@ -113,9 +113,9 @@ const TextStylesArticle: FC = () => {
           >
             This heading has large padding
           </Heading>
-        </SectionCard>
+        </CardSection>
 
-        <SectionCard id="header" style="standard">
+        <CardSection id="header" style="standard">
           <Heading size="h3">Paragraph Component</Heading>
           <Paragraph>
             {`The Paragraph component is used to standardize body text in the app. Currently it has four optional props: size, style, space, and className. 
@@ -146,7 +146,7 @@ If you pass custom css via the className prop you can pass override to size, sty
           <Paragraph size="xsmall">
             {`Topping liquorice bear claw cake cake dessert sweet. Macaroon jujubes marshmallow tart lollipop oat cake cotton candy. Candy gingerbread topping cake wafer chupa chups chocolate cake icing bonbon. Brownie danish powder macaroon brownie toffee chocolate. Cupcake macaroon dessert tart jujubes powder. Fruitcake chocolate bar tiramisu wafer soufflé pie dessert jelly beans bear claw.`}
           </Paragraph>
-          <BlankSpace ySize="standard" />
+          <Space ySize="standard" />
 
           <Heading size="h4" type="secondary">
             size = small
@@ -154,7 +154,7 @@ If you pass custom css via the className prop you can pass override to size, sty
           <Paragraph size="small">
             {`Topping liquorice bear claw cake cake dessert sweet. Macaroon jujubes marshmallow tart lollipop oat cake cotton candy. Candy gingerbread topping cake wafer chupa chups chocolate cake icing bonbon. Brownie danish powder macaroon brownie toffee chocolate. Cupcake macaroon dessert tart jujubes powder. Fruitcake chocolate bar tiramisu wafer soufflé pie dessert jelly beans bear claw.`}
           </Paragraph>
-          <BlankSpace ySize="standard" />
+          <Space ySize="standard" />
 
           <Heading size="h4" type="secondary">
             size = standard
@@ -163,14 +163,14 @@ If you pass custom css via the className prop you can pass override to size, sty
             {`Topping liquorice bear claw cake cake dessert sweet. Macaroon jujubes marshmallow tart lollipop oat cake cotton candy. Candy gingerbread topping cake wafer chupa chups chocolate cake icing bonbon. Brownie danish powder macaroon brownie toffee chocolate. Cupcake macaroon dessert tart jujubes powder. Fruitcake chocolate bar tiramisu wafer soufflé pie dessert jelly beans bear claw.`}
           </Paragraph>
 
-          <BlankSpace ySize="standard" />
+          <Space ySize="standard" />
           <Heading size="h4" type="secondary">
             size = large
           </Heading>
           <Paragraph size="large">
             {`Topping liquorice bear claw cake cake dessert sweet. Macaroon jujubes marshmallow tart lollipop oat cake cotton candy. Candy gingerbread topping cake wafer chupa chups chocolate cake icing bonbon. Brownie danish powder macaroon brownie toffee chocolate. Cupcake macaroon dessert tart jujubes powder. Fruitcake chocolate bar tiramisu wafer soufflé pie dessert jelly beans bear claw.`}
           </Paragraph>
-          <BlankSpace ySize="standard" />
+          <Space ySize="standard" />
 
           <Heading size="h4" type="secondary">
             size = xlarge
@@ -178,7 +178,7 @@ If you pass custom css via the className prop you can pass override to size, sty
           <Paragraph size="xlarge">
             {`Topping liquorice bear claw cake cake dessert sweet. Macaroon jujubes marshmallow tart lollipop oat cake cotton candy. Candy gingerbread topping cake wafer chupa chups chocolate cake icing bonbon. Brownie danish powder macaroon brownie toffee chocolate. Cupcake macaroon dessert tart jujubes powder. Fruitcake chocolate bar tiramisu wafer soufflé pie dessert jelly beans bear claw.`}
           </Paragraph>
-          <BlankSpace ySize="standard" />
+          <Space ySize="standard" />
 
           <Heading size="h4" type="secondary">
             size = xxlarge
@@ -186,7 +186,7 @@ If you pass custom css via the className prop you can pass override to size, sty
           <Paragraph size="xxlarge">
             {`Topping liquorice bear claw cake cake dessert sweet. Macaroon jujubes marshmallow tart lollipop oat cake cotton candy. Candy gingerbread topping cake wafer chupa chups chocolate cake icing bonbon. Brownie danish powder macaroon brownie toffee chocolate. Cupcake macaroon dessert tart jujubes powder. Fruitcake chocolate bar tiramisu wafer soufflé pie dessert jelly beans bear claw.`}
           </Paragraph>
-          <BlankSpace ySize="standard" />
+          <Space ySize="standard" />
 
           <Heading size="h4" type="secondary">
             size = xxxlarge
@@ -194,7 +194,7 @@ If you pass custom css via the className prop you can pass override to size, sty
           <Paragraph size="xxxlarge">
             {`Topping liquorice bear claw cake cake dessert sweet. Macaroon jujubes marshmallow tart lollipop oat cake cotton candy. Candy gingerbread topping cake wafer chupa chups chocolate cake icing bonbon. Brownie danish powder macaroon brownie toffee chocolate. Cupcake macaroon dessert tart jujubes powder. Fruitcake chocolate bar tiramisu wafer soufflé pie dessert jelly beans bear claw.`}
           </Paragraph>
-          <BlankSpace ySize="standard" />
+          <Space ySize="standard" />
 
           <Divider padding="xl" />
 
@@ -208,7 +208,7 @@ If you pass custom css via the className prop you can pass override to size, sty
           <Paragraph space="tight">
             {`Topping liquorice bear claw cake cake dessert sweet. Macaroon jujubes marshmallow tart lollipop oat cake cotton candy. Candy gingerbread topping cake wafer chupa chups chocolate cake icing bonbon. Brownie danish powder macaroon brownie toffee chocolate. Cupcake macaroon dessert tart jujubes powder. Fruitcake chocolate bar tiramisu wafer soufflé pie dessert jelly beans bear claw.`}
           </Paragraph>
-          <BlankSpace ySize="standard" />
+          <Space ySize="standard" />
 
           <Heading size="h4" type="secondary">
             space = snug
@@ -216,7 +216,7 @@ If you pass custom css via the className prop you can pass override to size, sty
           <Paragraph space="snug">
             {`Topping liquorice bear claw cake cake dessert sweet. Macaroon jujubes marshmallow tart lollipop oat cake cotton candy. Candy gingerbread topping cake wafer chupa chups chocolate cake icing bonbon. Brownie danish powder macaroon brownie toffee chocolate. Cupcake macaroon dessert tart jujubes powder. Fruitcake chocolate bar tiramisu wafer soufflé pie dessert jelly beans bear claw.`}
           </Paragraph>
-          <BlankSpace ySize="standard" />
+          <Space ySize="standard" />
 
           <Heading size="h4" type="secondary">
             space = normal
@@ -224,7 +224,7 @@ If you pass custom css via the className prop you can pass override to size, sty
           <Paragraph space="normal">
             {`Topping liquorice bear claw cake cake dessert sweet. Macaroon jujubes marshmallow tart lollipop oat cake cotton candy. Candy gingerbread topping cake wafer chupa chups chocolate cake icing bonbon. Brownie danish powder macaroon brownie toffee chocolate. Cupcake macaroon dessert tart jujubes powder. Fruitcake chocolate bar tiramisu wafer soufflé pie dessert jelly beans bear claw.`}
           </Paragraph>
-          <BlankSpace ySize="standard" />
+          <Space ySize="standard" />
 
           <Heading size="h4" type="secondary">
             space = relaxed
@@ -232,7 +232,7 @@ If you pass custom css via the className prop you can pass override to size, sty
           <Paragraph space="relaxed">
             {`Topping liquorice bear claw cake cake dessert sweet. Macaroon jujubes marshmallow tart lollipop oat cake cotton candy. Candy gingerbread topping cake wafer chupa chups chocolate cake icing bonbon. Brownie danish powder macaroon brownie toffee chocolate. Cupcake macaroon dessert tart jujubes powder. Fruitcake chocolate bar tiramisu wafer soufflé pie dessert jelly beans bear claw.`}
           </Paragraph>
-          <BlankSpace ySize="standard" />
+          <Space ySize="standard" />
 
           <Heading size="h4" type="secondary">
             space = loose
@@ -240,7 +240,7 @@ If you pass custom css via the className prop you can pass override to size, sty
           <Paragraph space="loose">
             {`Topping liquorice bear claw cake cake dessert sweet. Macaroon jujubes marshmallow tart lollipop oat cake cotton candy. Candy gingerbread topping cake wafer chupa chups chocolate cake icing bonbon. Brownie danish powder macaroon brownie toffee chocolate. Cupcake macaroon dessert tart jujubes powder. Fruitcake chocolate bar tiramisu wafer soufflé pie dessert jelly beans bear claw.`}
           </Paragraph>
-          <BlankSpace ySize="standard" />
+          <Space ySize="standard" />
 
           <Heading size="h4" type="secondary">
             space = none
@@ -248,8 +248,8 @@ If you pass custom css via the className prop you can pass override to size, sty
           <Paragraph space="none">
             {`Topping liquorice bear claw cake cake dessert sweet. Macaroon jujubes marshmallow tart lollipop oat cake cotton candy. Candy gingerbread topping cake wafer chupa chups chocolate cake icing bonbon. Brownie danish powder macaroon brownie toffee chocolate. Cupcake macaroon dessert tart jujubes powder. Fruitcake chocolate bar tiramisu wafer soufflé pie dessert jelly beans bear claw.`}
           </Paragraph>
-          <BlankSpace ySize="standard" />
-        </SectionCard>
+          <Space ySize="standard" />
+        </CardSection>
       </LayoutContainerSide>
     </>
   )

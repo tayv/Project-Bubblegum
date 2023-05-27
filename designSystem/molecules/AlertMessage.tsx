@@ -1,6 +1,6 @@
 import React, { FC } from "react"
 import { useWatch, Control } from "react-hook-form"
-import setRegEx from "utils/setRegEx"
+import setRegEx from "@utils/useMatchRegex"
 
 export type customRegEx = RegExp | null | undefined
 export type checkFor = string | number
@@ -32,6 +32,7 @@ export const HelpMessage: FC<HelpMessageProps> = ({
   })
 
   // Hold the regex formula that will be used to match input results from useWatch()
+  // @ts-ignore
   let regExFormula = setRegEx(checkFor, customRegEx)
 
   // Boolean regex result. Used as gatekeeper for displaying the warning message in UI in renderMessage()
@@ -63,8 +64,10 @@ export const HelpMessage: FC<HelpMessageProps> = ({
 
   return (
     <>
-      {checkForMatch(checkFor, regExFormula) &&
-        renderMessage(messageType, message)}{" "}
+      {
+        // checkForMatch(checkFor, regExFormula) &&
+        renderMessage(messageType, message)
+      }{" "}
       {/* MUST use .match() instead of checkForMatch.test() */}
     </>
   )

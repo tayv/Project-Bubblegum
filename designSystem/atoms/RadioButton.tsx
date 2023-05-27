@@ -16,13 +16,14 @@ import classNames from "classnames"
 // This input component is intended to be used for all radio button inputs (yes/no, lists, with standard radio and button styles
 export type RadioStyle = "standard" | "horizontal" | "button"
 export type RadioProps = {
-  name: string
-  label: string
-  value: string
+  name?: string
+  children: string
+  value?: string
   style?: RadioStyle
   className?: string
-  onChange: any
+  onChange?: any
   defaultChecked?: boolean
+  hasError?: boolean
 
   // RHF prop types
   register?: any // react-hook-form: to register an input (not needed if using Controller)
@@ -45,53 +46,54 @@ const labelStyleMap: { [key in RadioStyle]: string } = {
 }
 
 // forwardRef so RHF can work properly in WrapperInput
-export const RadioButton: FC<RadioProps> = forwardRef<
-  HTMLInputElement,
-  RadioProps
->(function setRefRadioButton(
-  {
-    name,
-    label,
-    value,
-    style = "standard",
-    className = "", // to pass custom one-off styling
-    onChange,
-    ...props
-  },
-  ref
-) {
-  return (
-    <div className="group flex max-w-sm mt-1 items-center">
-      {" "}
-      {/* flex is important to make full label width is clickable */}
-      <input
-        ref={ref}
-        name={name}
-        type="radio"
-        aria-label={label}
-        value={value}
-        id={value} // this is used so the label is clickable/associated with the input
-        className={classNames([
-          "peer cursor-pointer", // standard css styles go here. Peer is always required for label styling to work
-          radioStyleMap[style], // to dynamically set styling for different radio types
-          className, // prop
-        ])}
-        onChange={() => onChange(value)}
-        {...props}
-      />
-      <label
-        className={classNames([
-          "cursor-pointer peer-checked:cursor-default", // standard css styles go here
-          labelStyleMap[style], // to dynamically set styling for different radio types
-          className,
-        ])}
-        htmlFor={value}
-      >
-        {label}
-      </label>
-    </div>
-  )
-})
+const RadioButton: FC<RadioProps> = forwardRef<HTMLInputElement, RadioProps>(
+  function setRefRadioButton(
+    {
+      name,
+      children,
+      value,
+      style = "standard",
+      className = "", // to pass custom one-off styling
+      onChange,
+      hasError,
+      ...props
+    },
+    ref
+  ) {
+    return (
+      <div className="group flex max-w-sm mt-1 items-center">
+        {/* flex is important to make full label width is clickable */}
+        <input
+          ref={ref}
+          name={name}
+          type="radio"
+          // aria-label={label}
+          value={value}
+          id={value} // this is used so the label is clickable/associated with the input
+          className={classNames([
+            "peer cursor-pointer", // standard css styles go here. Peer is always required for label styling to work
+            radioStyleMap[style], // to dynamically set styling for different radio types
+            className, // prop
+          ])}
+          onChange={() => onChange(value)}
+          {...props}
+        />
+        <label
+          className={classNames([
+            "cursor-pointer peer-checked:cursor-default", // standard css styles go here
+            labelStyleMap[style], // to dynamically set styling for different radio types
+            className,
+          ])}
+          htmlFor={value}
+        >
+          {children}
+        </label>
+      </div>
+    )
+  }
+)
+
+export default RadioButton
 
 // HELPFUL SOURCES
 

@@ -3,7 +3,7 @@ import Breadcrumbs from "@designSystem/molecules/Breadcrumbs"
 import Heading from "@designSystem/atoms/Heading"
 import Paragraph from "@designSystem/atoms/Paragraph"
 import { FC } from "react"
-import SectionCard from "@designSystem/molecules/SectionCard"
+import CardSection from "@designSystem/molecules/CardSection"
 import Checkbox from "designSystem/atoms/Checkbox"
 import Divider from "@designSystem/atoms/Divider"
 
@@ -29,7 +29,7 @@ const CheckboxArticle: FC = () => {
           On this page you&apos;ll find checkbox components.
         </Paragraph>
 
-        <SectionCard id="header" style="standard">
+        <CardSection id="header" style="standard">
           <Heading size="h3">Checkbox</Heading>
           <Paragraph>
             This is a standard checkbox. It&apos;s used for binary choices.
@@ -42,12 +42,12 @@ const CheckboxArticle: FC = () => {
           <Checkbox
             name="checkboxInput"
             id="checkboxInput"
-           // style="standard"
+            type="standard"
             label="This is a checkbox label"
           />
-        </SectionCard>
+        </CardSection>
 
-        <SectionCard id="header" style="standard">
+        <CardSection id="header" style="standard">
           <Heading size="h3">Checkbox List</Heading>
           <Paragraph>
             This is a list of checkboxes. It&apos;s used for multi-select
@@ -57,7 +57,7 @@ const CheckboxArticle: FC = () => {
           <Heading size="h4" type="secondary">
             Example: WIP
           </Heading>
-        </SectionCard>
+        </CardSection>
       </LayoutContainerSide>
     </>
   )

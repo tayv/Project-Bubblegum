@@ -35,14 +35,6 @@ const TestForm: FC = () => {
         <Breadcrumbs crumbs={crumbs} />
         <Heading size="h1">Text Input</Heading>
         <form onSubmit={onSubmit}>
-          <WrapperInput
-            name="controllerInput"
-            label="This input uses Controller:"
-            type="text"
-            control={control}
-            rules={{ required: "You must enter something" }}
-            defaultValue=""
-          />
           <button
             className="my-4 block border-gray-900 bg-gray-300 border px-2 py-1"
             type="button"

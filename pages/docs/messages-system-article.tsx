@@ -3,7 +3,7 @@ import Breadcrumbs from "@designSystem/molecules/Breadcrumbs"
 import Heading from "@designSystem/atoms/Heading"
 import Paragraph from "@designSystem/atoms/Paragraph"
 import { FC } from "react"
-import SectionCard from "@designSystem/molecules/SectionCard"
+import CardSection from "@designSystem/molecules/CardSection"
 import Divider from "@designSystem/atoms/Divider"
 
 // data for Breadcrumbs
@@ -28,10 +28,10 @@ const MessagesSystemArticle: FC = () => {
           On this page you&apos;ll find system message components
         </Paragraph>
 
-        <SectionCard id="header" style="standard">
+        <CardSection id="header" style="standard">
           <Heading size="h3">Info Messages</Heading>
           <Paragraph>🚧 Work in progress</Paragraph>
-        </SectionCard>
+        </CardSection>
       </LayoutContainerSide>
     </>
   )

@@ -41,7 +41,7 @@ const xBlankSpaceSizeMap: { [key in BlankSpaceSize]: string } = {
   override: "",
 }
 
-const BlankSpace: FC<BlankSpaceProps> = ({
+const Space: FC<BlankSpaceProps> = ({
   xSize = "none",
   ySize = "standard",
   className = "",
@@ -58,4 +58,4 @@ const BlankSpace: FC<BlankSpaceProps> = ({
   )
 }
 
-export default BlankSpace
+export default Space

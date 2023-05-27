@@ -4,21 +4,19 @@ import Heading from "@designSystem/atoms/Heading"
 import Paragraph from "@designSystem/atoms/Paragraph"
 import { FC, useEffect, useState, useMemo } from "react"
 import { useForm } from "react-hook-form"
-import WrapperInput from "@forms/WrapperInput"
-import HelpMessage from "@molecules/HelpMessage"
-import WrapperRadioGroup from "@forms/WrapperRadioGroup"
-import SectionCard from "@designSystem/molecules/SectionCard"
+import CardSection from "@designSystem/molecules/CardSection"
 import WrapperCheckbox from "@forms/WrapperCheckbox"
 import Tip from "@molecules/Tip"
-import Label from "designSystem/atoms/InputLabelRadix"
+import Label from "@designSystem/atoms/InputGroupLabel"
 import TemplateGeneric from "@templates/TemplateGeneric"
 import UpdateDocState from "utils/UpdateDocState"
 import WrapperTextArea from "@forms/WrapperTextArea"
 import WrapperSelect from "@forms/WrapperSelect"
 import DatePick from "@designSystem/molecules/DatePick"
 import Divider from "@designSystem/atoms/Divider"
-import BlankSpace from "@designSystem/atoms/BlankSpace"
+import Space from "@designSystem/atoms/Space"
 import Accordion from "designSystem/atoms/Accordion"
+import InputGroupLabel from "@designSystem/atoms/InputGroupLabel"
 
 // data for Breadcrumbs
 const crumbs = [
@@ -133,18 +131,18 @@ const TestForm: FC = () => {
   // useMemo needed to prevent infinite loop due to reset() being a useEffect depenedency in reset()
   const defaultValues = useMemo(
     () => ({
-      // Text Input SectionCard
+      // Text Input CardSection
       singleInput: "",
-      // Text Area SectionCard
+      // Text Area CardSection
       standardTextArea: "",
       largeTextArea: "",
-      // Radio Input SectionCard
+      // Radio Input CardSection
       standardRadio: "mint",
       horizontalRadio: "no",
       buttonRadio: "orange-button",
-      // Checkbox Input SectionCard
+      // Checkbox Input CardSection
       checkboxInput: true,
-      // Select Input SectionCard
+      // Select Input CardSection
       flatSelect: "third",
       groupSelect: "third",
       // Have visibility conditions
@@ -162,18 +160,18 @@ const TestForm: FC = () => {
   }, [defaultValues, reset])
 
   const fieldValues = {
-    // Text Input SectionCard
+    // Text Input CardSection
     singleInput: getValues("singleInput"),
-    // Radio Input SectionCard
+    // Radio Input CardSection
     standardRadio: getValues("standardRadio"),
     horizontalRadio: getValues("horizontalRadio"),
     buttonRadio: getValues("buttonRadio"),
     registerradio: watch("registerradio"),
     bikeBrandRadio: watch("bikeBrandRadio"),
     motoTeamRadio: watch("motoTeamRadio"),
-    // Checkbox Input SectionCard
+    // Checkbox Input CardSection
     checkboxInput: watch("checkboxInput"),
-    // Select Input SectionCard
+    // Select Input CardSection
     flatSelect: getValues("flatSelect"),
     groupSelect: getValues("groupSelect"),
     // Visibliity Conditions
@@ -197,46 +195,27 @@ const TestForm: FC = () => {
             className="col-span-2 py-3 px-8 my-8 rounded-3xl bg-zinc-200/10 border"
             onSubmit={onSubmit}
           >
-            <SectionCard id="intro" style="blank">
+            <CardSection id="intro" style="blank">
               <Heading size="h2">Test Form 1</Heading>
               <Paragraph>
                 This form is used to show default styling for text, radio
                 button, checkbox, and multi-line input components. Also used to
                 test Controlled inputs.{" "}
               </Paragraph>
-            </SectionCard>
+            </CardSection>
 
-            <SectionCard id="textInput" style="standard">
+            <CardSection id="textInput" style="standard">
               <Heading size="h3">Single Line Input</Heading>
-              <WrapperInput
-                name="singleInput"
-                label="This is a label"
-                type="text"
-                tipText="Tip: This is a single line input"
-                exampleText="e.g. Example goes here."
-                defaultValue=""
-                control={control}
-                rules={{ required: "You must enter something" }}
-              >
-                <HelpMessage
-                  inputName="firstName"
-                  messageType="warn"
-                  control={control}
-                  checkFor="a"
-                  message="This is the help message"
-                  customRegEx={null}
-                />
-              </WrapperInput>
 
               <Divider padding="large" />
               {PrintInputValueButton("singleInput")}
-            </SectionCard>
+            </CardSection>
 
-            <SectionCard id="radioInput" style="standard">
+            <CardSection id="radioInput" style="standard">
               <Heading size="h3" type="primary">
                 Radio Groups
               </Heading>
-              <WrapperRadioGroup
+              {/* <WrapperRadioGroup
                 name="standardRadio"
                 groupLabel="This is a radio group label"
                 tipText="Tip: These are standard radio buttons"
@@ -248,9 +227,9 @@ const TestForm: FC = () => {
                   { value: "chocolate", label: "Chocolate ice cream" },
                   { value: "vanilla", label: "Vanilla ice cream" },
                 ]}
-              />
-              <BlankSpace />
-              <WrapperRadioGroup
+              /> */}
+              <Space />
+              {/* <WrapperRadioGroup
                 name="horizontalRadio"
                 groupLabel="This is a radio group label"
                 tipText="Tip: These radios are styled horizontally. Typically used for yes/no questions."
@@ -260,9 +239,9 @@ const TestForm: FC = () => {
                   { value: "yes", label: "Yes" },
                   { value: "no", label: "No" },
                 ]}
-              />
-              <BlankSpace />
-              <WrapperRadioGroup
+              /> */}
+              <Space />
+              {/* <WrapperRadioGroup
                 name="buttonRadio"
                 groupLabel="This is a radio group label"
                 tipText="Tip: These radios are styled as buttons"
@@ -274,126 +253,53 @@ const TestForm: FC = () => {
                   { value: "chocolate-button", label: "Chocolate ice cream" },
                   { value: "vanilla-button", label: "Vanilla ice cream" },
                 ]}
-              />
+              /> */}
 
               <Divider padding="large" />
               {PrintInputValueButton("standardRadio")}
               {PrintInputValueButton("horizontalRadio")}
               {PrintInputValueButton("buttonRadio")}
-            </SectionCard>
+            </CardSection>
 
-            <SectionCard id="checkboxInput" style="standard">
+            <CardSection id="checkboxInput" style="standard">
               <Heading size="h3" type="primary">
                 Checkboxes
               </Heading>
-              <Label
-                type="standard"
-                htmlFor="checkboxInput"
-                label="This is a checkbox label"
-              />
+              <Label type="standard" htmlFor="checkboxInput" />
               <Tip text="Tip: These are standard checkboxes" type="standard" />
               <WrapperCheckbox
                 name="checkboxInput"
                 id="checkboxInput"
-               // style="standard"
+                type="standard"
                 label="This is a checkbox label"
                 control={control}
               />
 
               <Divider padding="large" />
               {PrintInputValueButton("checkboxInput")}
-            </SectionCard>
+            </CardSection>
 
-            <SectionCard id="textArea" style="standard">
+            <CardSection id="textArea" style="standard">
               <Heading size="h3" type="primary">
                 Text Areas
               </Heading>
-              <WrapperTextArea
-                name="standardTextArea"
-                label="This is a standard wrapper text area"
-                tipText="Tip: This is a standard text area"
-                exampleText="e.g. Example goes here."
-                control={control}
-              />
-              <BlankSpace />
-              <WrapperTextArea
-                name="largeTextArea"
-                label="This is a large wrapper text area"
-                tipText="Tip: This is a large text area"
-                size="large"
-                exampleText="e.g. Example goes here."
-                control={control}
-              />
 
               <Divider padding="large" />
               {PrintInputValueButton("standardTextArea")}
               {PrintInputValueButton("largeTextArea")}
-            </SectionCard>
+            </CardSection>
 
-            <SectionCard id="radixWrapperSelect" style="standard">
+            <CardSection id="radixWrapperSelect" style="standard">
               <Heading size="h3" type="primary">
                 Wrapper Select (Radix)
               </Heading>
-              <WrapperSelect
-                name="flatselect"
-                control={control}
-                placeholder="Select an option"
-                defaultValue={defaultValues.flatSelect}
-                itemOptions={[
-                  { value: "first", labelText: "firstText", separator: false },
-                  { value: "second", labelText: "secondText", separator: true },
-                  { value: "third", labelText: "thirdText", separator: false },
-                  { value: "fourth", labelText: "fourthText", separator: true },
-                ]}
-              />
-              <BlankSpace />
-              <WrapperSelect
-                name="groupselect"
-                control={control}
-                label="This is a grouped list Radix Select"
-                tip="Tip: This is a grouped list Radix Select"
-                placeholder="Select an option"
-                defaultValue={defaultValues.groupSelect}
-                itemOptions={[
-                  {
-                    groupLabel: "Group 1",
-                    items: [
-                      {
-                        value: "first",
-                        labelText: "firstText",
-                        separator: false,
-                      },
-                      {
-                        value: "second",
-                        labelText: "secondText",
-                        separator: true,
-                      },
-                    ],
-                  },
-                  {
-                    groupLabel: "Group 2",
-                    items: [
-                      {
-                        value: "third",
-                        labelText: "thirdText",
-                        separator: false,
-                      },
-                      {
-                        value: "fourth",
-                        labelText: "fourthText",
-                        separator: true,
-                      },
-                    ],
-                  },
-                ]}
-              />
 
               <Divider padding="large" />
               {PrintInputValueButton("flatselect")}
               {PrintInputValueButton("groupselect")}
-            </SectionCard>
+            </CardSection>
 
-            <SectionCard id="datepick" style="standard">
+            <CardSection id="datepick" style="standard">
               <Heading size="h3" type="primary">
                 Date Picker
               </Heading>
@@ -406,12 +312,12 @@ const TestForm: FC = () => {
 
               <Divider padding="large" />
               {PrintInputValueButton("datepicktest")}
-            </SectionCard>
+            </CardSection>
 
             {/* VISIBILITY CONDITION TEST SECTION --------------------------------------------- */}
             <Divider padding="large" />
             <Heading size="h2" type="primary">
-              Visibility Condition Test SectionCard
+              Visibility Condition Test CardSection
             </Heading>
             <div className="flex flex-col items-end">
               <button
@@ -424,13 +330,13 @@ const TestForm: FC = () => {
                   })
                 }}
               >
-                🪄 Toggle SectionCard Visiblity
+                🪄 Toggle CardSection Visiblity
               </button>
             </div>
 
             {sectionVis.visCondition1 && (
-              <SectionCard id="testvis-radios" style="standard">
-                <WrapperRadioGroup
+              <CardSection id="testvis-radios" style="standard">
+                {/* <WrapperRadioGroup
                   name="visRacingRadio"
                   groupLabel="This is a radio group label"
                   tipText="Tip: These radios are styled as buttons"
@@ -442,8 +348,8 @@ const TestForm: FC = () => {
                     { value: "supercross", label: "Supercross" },
                     { value: "f1", label: "F1" },
                   ]}
-                />
-              </SectionCard>
+                /> */}
+              </CardSection>
             )}
 
             {PrintInputValueButton("visRacingRadio")}
@@ -453,61 +359,57 @@ const TestForm: FC = () => {
               // Conditionally toggle visibility of section based on prev radio group answer
               sectionVis.visCondition1 &&
                 (fieldValues.visRacingRadio === "supercross" || "moto-gp") && (
-                  <SectionCard id="moto" style="standard">
+                  <CardSection id="moto" style="standard">
                     {/* Heading text changes based on answer to previous radio group */}
                     <Heading size="h3">Toggle Words + Questions</Heading>
                     {/* Checkbox conditionally toggles wording and radio options */}
-                    <Label
-                      type="standard"
-                      htmlFor="visCheckbox"
-                      label={
-                        fieldValues.visRacingRadio === "f1"
-                          ? "You chose F1"
-                          : "You didn't choose F1"
-                      }
-                    />
+                    <InputGroupLabel type="standard" htmlFor="visCheckbox">
+                      {fieldValues.visRacingRadio === "f1"
+                        ? "You chose F1"
+                        : "You didn't choose F1"}
+                    </InputGroupLabel>
                     <WrapperCheckbox
                       id="visCheckbox"
                       name="visCheckbox"
-                      //style="standard"
+                      type="standard"
                       label="Toggle next question"
                       control={control}
                     />
                     <Divider padding="large" />
                     {
                       // Set visibility of radio group based on prev checkbox answer
-                      fieldValues.visCheckbox ? (
-                        <WrapperRadioGroup
-                          name="bikeBrandRadio"
-                          groupLabel="Pick your favorite brand"
-                          tipText="You should only see this if checkbox is selected"
-                          control={control}
-                          style="standard"
-                          defaultValue="yamaha"
-                          options={[
-                            { value: "honda", label: "Honda" },
-                            { value: "yamaha", label: "Yamaha" },
-                            { value: "suzuki", label: "Suzuki" },
-                            { value: "kawasaki", label: "Kawasaki" },
-                          ]}
-                        />
-                      ) : (
-                        <WrapperRadioGroup
-                          name="motoTeamRadio"
-                          groupLabel="Pick your favorite racing team"
-                          tipText="You should only see this if the checkbox is NOT selected"
-                          control={control}
-                          style="standard"
-                          options={[
-                            { value: "yamaha", label: "Monster Energy Yamaha" },
-                            { value: "honda", label: "Repsol Honda" },
-                            { value: "ducati", label: "Factory Ducati" },
-                            { value: "ferrari", label: "Ferrari" },
-                          ]}
-                        />
-                      )
+                      // fieldValues.visCheckbox ? (
+                      //   <WrapperRadioGroup
+                      //     name="bikeBrandRadio"
+                      //     groupLabel="Pick your favorite brand"
+                      //     tipText="You should only see this if checkbox is selected"
+                      //     control={control}
+                      //     style="standard"
+                      //     defaultValue="yamaha"
+                      //     options={[
+                      //       { value: "honda", label: "Honda" },
+                      //       { value: "yamaha", label: "Yamaha" },
+                      //       { value: "suzuki", label: "Suzuki" },
+                      //       { value: "kawasaki", label: "Kawasaki" },
+                      //     ]}
+                      //   />
+                      // ) : (
+                      //   <WrapperRadioGroup
+                      //     name="motoTeamRadio"
+                      //     groupLabel="Pick your favorite racing team"
+                      //     tipText="You should only see this if the checkbox is NOT selected"
+                      //     control={control}
+                      //     style="standard"
+                      //     options={[
+                      //       { value: "yamaha", label: "Monster Energy Yamaha" },
+                      //       { value: "honda", label: "Repsol Honda" },
+                      //       { value: "ducati", label: "Factory Ducati" },
+                      //       { value: "ferrari", label: "Ferrari" },
+                      //     ]}
+                      //   />
+                      // )
                     }
-                  </SectionCard>
+                  </CardSection>
                 )
             }
 
@@ -523,10 +425,10 @@ const TestForm: FC = () => {
             {" "}
             {/* div needed for sticky to work. Cannot use overflow: scroll/hidden/auto with sticky https://www.digitalocean.com/community/tutorials/css-position-sticky */}
             <div className="sticky top-0 overflow-y-auto">
-              <SectionCard id="templateTest" style="blank">
+              <CardSection id="templateTest" style="blank">
                 <Heading size="h3">Template Test: Form Values</Heading>
                 <TemplateGeneric location="c" docData={docValue} />
-              </SectionCard>
+              </CardSection>
             </div>
           </div>
         </div>
