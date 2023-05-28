@@ -8,6 +8,7 @@ type WatchFieldProps = {
   validationRules?: any
   validateOnBlur?: boolean
   conditionLogic: { watchName: string; watchValue: string }
+  children: React.ReactNode
 }
 
 const WatchField: FC<WatchFieldProps> = ({

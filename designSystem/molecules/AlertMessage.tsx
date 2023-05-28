@@ -40,9 +40,9 @@ export const HelpMessage: FC<HelpMessageProps> = ({
     inputWatch.match(regExFormula)
 
   // Message style logic
-  const renderMessage = <HelpMessageProps,>(
+  const renderMessage = (
     messageType: messageType,
-    message: HelpMessageProps
+    message: HelpMessageProps["message"]
   ) => {
     switch (messageType) {
       case "warn":

@@ -56,7 +56,7 @@ const onSubmit = async (
 
 const FormPage: FC = () => {
   const defaultValues = {
-    inputfield: "",
+    inputfield1: "",
   }
 
   // NOTE: Must include all fields in the zod schema, even if they're not required. The form only submits the included inputs.
