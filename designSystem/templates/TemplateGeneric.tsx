@@ -3,7 +3,7 @@ import Paragraph from "@designSystem/atoms/Paragraph"
 import Divider from "@designSystem/atoms/Divider"
 
 export type FormDataObj = {
-  docID: Number
+  docID: number
   formData: {} | { key: string; value: string } // Will typecheck specific key/value pairs in actual implementation
 }
 
@@ -48,7 +48,7 @@ const renderTemplate = ({ location, docData }: TemplateProps) => {
     case "a":
       return (
         <Paragraph size="small">
-          Here's boilerplate text plus some dynamic content based on the form
+          Here&apos;s boilerplate text plus some dynamic content based on the form
           values 👉 <strong>{docID}</strong>
         </Paragraph>
       )
