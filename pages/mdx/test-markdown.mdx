@@ -1,0 +1,47 @@
+import LayoutMDX from "@designSystem/mdx/LayoutMDX"
+import Heading from "@designSystem/atoms/Heading"
+
+export const meta = {
+  author: 'Alien',
+  title: 'Introduction to Being an Alien',
+  slug: 'introduction-to-being-an-alien',
+  topics: [
+    'alien language',
+    'ufos',
+    'alien basics',
+  ],
+}
+
+export const crumbs = [
+  {
+    text: "Home",
+    path: "/",
+    currentPg: false,
+  },
+  {
+    text: "Test-MDX",
+    path: "/",
+    currentPg: true,
+  },
+]
+
+<Heading size="h2">My MDX page h2</Heading>
+
+# My MDX page h1
+
+## My MDX page h2
+
+This is a list in markdown:
+
+- One
+- Two
+- Three
+
+export default function ({ children }) {
+  return (
+    <LayoutMDX crumbs={crumbs} meta={meta}>{children}</LayoutMDX>
+  )}
+
+
+
+

@@ -9,6 +9,7 @@ const LayoutContainerSide = ({ children }: any) => {
           articleList={[
             { title: "Testing", groupTitle: true },
             { title: "Test Form", path: "/testForms/test-form" },
+            { title: "Test Markdown", path: "/mdx/test-markdown" },
             {
               title: "🧰 Test Document Builder",
               path: "/restricted/test-document-builder",
