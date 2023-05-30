@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -14,29 +18,59 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-
     "baseUrl": "./",
     "paths": {
-      "@designSystem/*": ["designSystem/*"],
-      "@atoms/*": ["designSystem/atoms/*"],
-      "@molecules/*": ["designSystem/molecules/*"],
-      "@organisms/*": ["designSystem/organisms/*"],
-      "@forms/*": ["designSystem/forms/*"],
-      "@layouts/*": ["designSystem/layouts/*"],
-      "@styles/*": ["styles/*"],
-      "@helpers/*": ["designSystem/molecules/*"],
-      "@templates/*": ["designSystem/templates/*"],
-      "@utils/*": ["utils/*"],
-
-      "@docs/*": ["pages/docs/*"],
-      "@restricted/*": ["pages/restricted/*"] // private pages for authenticated users
-    }
+      "@designSystem/*": [
+        "designSystem/*"
+      ],
+      "@atoms/*": [
+        "designSystem/atoms/*"
+      ],
+      "@molecules/*": [
+        "designSystem/molecules/*"
+      ],
+      "@organisms/*": [
+        "designSystem/organisms/*"
+      ],
+      "@forms/*": [
+        "designSystem/forms/*"
+      ],
+      "@layouts/*": [
+        "designSystem/layouts/*"
+      ],
+      "@styles/*": [
+        "styles/*"
+      ],
+      "@helpers/*": [
+        "designSystem/molecules/*"
+      ],
+      "@templates/*": [
+        "designSystem/templates/*"
+      ],
+      "@utils/*": [
+        "utils/*"
+      ],
+      "@docs/*": [
+        "pages/docs/*"
+      ],
+      "@restricted/*": [
+        "pages/restricted/*"
+      ] // private pages for authenticated users
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "designSystem/molecules/Breadcrumbs.tsx"
+    "designSystem/molecules/Breadcrumbs.tsx",
+    ".next/types/**/*.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }
