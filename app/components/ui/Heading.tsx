@@ -6,7 +6,7 @@ import classNames from "classnames"
 export type HeadingProps = {
   children: ReactNode
   size: HeadingSize
-  type?: HeadingType
+  variant?: HeadingVariant
   weight?: HeadingWeight
   padding?: HeadingPadding
   id?: string // Optionally used for anchor links
@@ -24,8 +24,8 @@ const headingSizeMap: { [key in HeadingSize]: string } = {
   override: "",
 }
 
-type HeadingType = "primary" | "secondary" | "override"
-const headingTypeMap: { [key in HeadingType]: string } = {
+type HeadingVariant = "primary" | "secondary" | "override"
+const headingVariantMap: { [key in HeadingVariant]: string } = {
   primary: "text-gray-900",
   secondary: "text-gray-500",
   override: "",
@@ -60,7 +60,7 @@ const headingPaddingMap: { [key in HeadingPadding]: string } = {
 
 const Heading: FC<HeadingProps> = ({
   size,
-  type = "primary",
+  variant = "primary",
   weight = "semibold",
   padding = "standard",
   className = "",
@@ -76,7 +76,7 @@ const Heading: FC<HeadingProps> = ({
       className={classNames([
         "", // standard css styles (pre-wrap allows for line breaks in template literals)
         headingSizeMap[size],
-        headingTypeMap[type],
+        headingVariantMap[variant],
         headingWeightMap[weight],
         headingPaddingMap[padding],
         className, // custom styling passed as prop

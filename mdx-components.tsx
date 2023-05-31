@@ -1,5 +1,7 @@
 import type { MDXComponents } from 'mdx/types'
 import Heading from "@components/ui/Heading"
+import Paragraph from '@components/ui/Paragraph'
+import Divider from '@components/ui/Divider'
  
 // This file allows you to provide custom React components
 // to be used in MDX files. You can import and use any
@@ -13,6 +15,13 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     // h1: ({ children }) => <h1 style={{ fontSize: "100px" }}>{children}</h1>,
     h1: ({ children }: { children?: React.ReactNode }) => <Heading size="h1">{children}</Heading>,
     h2: ({ children }: { children?: React.ReactNode }) => <Heading size="h2">{children}</Heading>,
+    h3: ({ children }: { children?: React.ReactNode }) => <Heading size="h3">{children}</Heading>,
+    h4: ({ children }: { children?: React.ReactNode }) => <Heading size="h4">{children}</Heading>,
+    h5: ({ children }: { children?: React.ReactNode }) => <Heading size="h5">{children}</Heading>,
+    h6: ({ children }: { children?: React.ReactNode }) => <Heading size="h6">{children}</Heading>,
+    p: ({ children }: { children?: React.ReactNode }) => <Paragraph variant='primary' size="large" space="standard">{children}</Paragraph>,
+    hr: ({ children }: { children?: React.ReactNode }) => <Divider variant="horizontal" color="standard" size="standard" padding="large"/>,
     ...components,
   };
 }
+

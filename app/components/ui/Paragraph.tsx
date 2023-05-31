@@ -6,7 +6,7 @@ import classNames from "classnames"
 export type ParagraphProps = {
   children: ReactNode
   size?: ParagraphSize
-  style?: ParagraphStyle
+  variant?: ParagraphVariant
   space?: ParagraphSpace
   className?: string
 }
@@ -32,8 +32,8 @@ const paragraphSizeMap: { [key in ParagraphSize]: string } = {
   override: "",
 }
 
-type ParagraphStyle = "primary" | "secondary" | "override"
-const paragraphStyleMap: { [key in ParagraphStyle]: string } = {
+type ParagraphVariant = "primary" | "secondary" | "override"
+const paragraphVariantMap: { [key in ParagraphVariant]: string } = {
   primary: "text-gray-900", // prop specific css styles go here
   secondary: "text-gray-300",
   override: "",
@@ -42,7 +42,7 @@ const paragraphStyleMap: { [key in ParagraphStyle]: string } = {
 type ParagraphSpace =
   | "tight"
   | "snug"
-  | "normal"
+  | "standard"
   | "relaxed"
   | "loose"
   | "none"
@@ -50,7 +50,7 @@ type ParagraphSpace =
 const paragraphSpaceMap: { [key in ParagraphSpace]: string } = {
   tight: "leading-tight",
   snug: "leading-snug",
-  normal: "leading-normal",
+  standard: "leading-normal",
   relaxed: "leading-relaxed",
   loose: "leading-loose",
   none: "leading-none",
@@ -59,8 +59,8 @@ const paragraphSpaceMap: { [key in ParagraphSpace]: string } = {
 
 const Paragraph: FC<ParagraphProps> = ({
   size = "standard",
-  space = "normal",
-  style = "primary",
+  space = "standard",
+  variant = "primary",
   className = "",
   children,
 }) => {
@@ -68,10 +68,10 @@ const Paragraph: FC<ParagraphProps> = ({
   return (
     <div
       className={classNames([
-        "whitespace-pre-wrap", // standard css styles (pre-wrap allows for line breaks in template literals)
+        "whitespace-pre-wrap", // standard css Variants (pre-wrap allows for line breaks in template literals)
         paragraphSizeMap[size], // dynamically set styling based on padding prop
         paragraphSpaceMap[space],
-        paragraphStyleMap[style],
+        paragraphVariantMap[variant],
         className, // custom styling passed as prop
       ])}
     >
