@@ -1,6 +1,6 @@
 
 const withMDX = require('@next/mdx')({
-  extension: /\.mdx?$/,
+ // extension: /\.mdx?$/,
   options: {
     // If you use remark-gfm, you'll need to use next.config.mjs
     // as the package is ESM only
@@ -8,16 +8,21 @@ const withMDX = require('@next/mdx')({
     remarkPlugins: [],
     rehypePlugins: [],
     // If you use `MDXProvider`, uncomment the following line.
-    providerImportSource: "@mdx-js/react",
+   // providerImportSource: "@mdx-js/react",
   },
 })
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // App router needs mdxRs to be enabled:
+  experimental: {
+    mdxRs: true,
+  },
+
   // Configure pageExtensions to include md and mdx
-  pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
+//  pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   // Optionally, add any other Next.js config below
-  reactStrictMode: true,
+//  reactStrictMode: true,
 }
 
 // Merge MDX config with Next.js config
