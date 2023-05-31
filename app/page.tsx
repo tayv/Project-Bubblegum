@@ -1,14 +1,11 @@
-//import LayoutContainerSide from "@designSystem/layouts/LayoutContainerSide"
-import Breadcrumbs from "@designSystem/molecules/Breadcrumbs"
-import Heading from "@designSystem/atoms/Heading"
-import Paragraph from "@designSystem/atoms/Paragraph"
-import CardSection from "@designSystem/molecules/CardSection"
-import Space from "@designSystem/atoms/Space"
+import Heading from "./components/ui/Heading"
+import Paragraph from "app/components/ui/Paragraph"
 
 export default function Home() {
   return (
     <>
-     <p>This is a test home page with app router.</p>
+     <Heading size="h1" weight="bold" padding="none">Home</Heading>
+     <Paragraph>This is a test home page with app router.</Paragraph>
     </>
   )
 }

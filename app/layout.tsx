@@ -28,6 +28,8 @@ export default function RootLayout({
               title: "🧰 Test Document Builder",
               path: "/restricted/test-document-builder",
             },
+            { title: "Products", groupTitle: true },
+            { title: "Product 1", path: "/product1" },
           ]}
         />
         <main className="w-full overflow-y-scroll pt-1">
