@@ -1,5 +1,4 @@
-import Heading from "@designSystem/atoms/Heading"
-import React from "react"
+import Heading from "../components/ui/Heading"
 
 const HeadingMDX = {
  // H1: ({ children }) => <h1 className="text-2xl font-bold">{children}</h1>,

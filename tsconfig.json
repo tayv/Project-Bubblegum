@@ -20,6 +20,32 @@
     "incremental": true,
     "baseUrl": "./",
     "paths": {
+      "@components/*": [
+        "app/components/*"
+      ],
+      "@form/*": [
+        "app/components/form/*"
+      ],
+      "@formControl/*": [
+        "app/components/form/formControl/*"
+      ],
+      "@formActions/*": [
+        "app/components/form/formActions/*"
+      ],
+      "@ui/*": [
+        "app/components/ui/*"
+      ],
+      "@hooks/*": [
+        "app/hooks/*"
+      ],
+      "@utilities/*": [
+        "app/utils/*"
+      ],
+      "@product1/*": [
+        "app/product1/*"
+      ],
+
+      // Page Router
       "@designSystem/*": [
         "designSystem/*"
       ],

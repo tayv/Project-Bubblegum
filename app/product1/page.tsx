@@ -1,5 +1,5 @@
-import Heading from "../components/ui/Heading"
-import Paragraph from "app/components/ui/Paragraph"
+import Heading from "@ui/Heading"
+import Paragraph from "@ui/Paragraph"
 
 const Product1 = () => {
   return (
