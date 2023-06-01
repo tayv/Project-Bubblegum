@@ -2,7 +2,7 @@
 
 import * as z from "zod"
 
-import Test from "./test.mdx"
+import Product1Template from "./product1Template.mdx"
 import Heading from "@ui/Heading"
 import Paragraph from "@ui/Paragraph"
 import Form from "@formControl/Form"
@@ -58,7 +58,6 @@ const Product1 = () => {
         Product 1
       </Heading>
       <Paragraph>This is a test form page with app router.</Paragraph>
-      <Test />
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 w-full xl:max-w-1400">
         <Form
           id="product1Form"
@@ -82,10 +81,12 @@ const Product1 = () => {
         <div className="overflow-visible my-4">
           {/* div needed for sticky to work. Cannot use overflow: scroll/hidden/auto with sticky https://www.digitalocean.com/community/tutorials/css-position-sticky */}
           <div className="sticky top-0 overflow-y-auto">
-            <CardSection id="templateTest" variant="secondary">
+            <Product1Template />
+            
+            {/* <CardSection id="templateTest" variant="secondary">
               <Heading size="h3">Template Test: Form Values</Heading>
               <TemplateGeneric location="c" docData={docValue} />
-            </CardSection>
+            </CardSection> */}
           </div>
         </div>
       </div>
