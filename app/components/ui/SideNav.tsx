@@ -22,7 +22,7 @@ const SideNav: FC<SideNavProps> = ({ articleList, ...props }) => {
 
   return (
     <nav
-      className="flex flex-col w-64 min-w-fit m-4 px-4 pt-3 rounded-3xl bg-sky-200 drop-shadow-sm"
+      className="flex flex-col w-64 min-w-fit m-4 px-4 pt-3 rounded-3xl bg-sky-200 drop-shadow-sm border border-white/60"
       aria-label="Sidebar"
     >
       <div>

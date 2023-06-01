@@ -21,7 +21,7 @@ import useMatchRegex from "@hooks/useMatchRegex";
 type FieldContextProps = {
   // control: Control
   name: string;
-  defaultValue: any;
+  defaultValue?: any;
   validationRules?: any;
   validateOnBlur?: boolean;
   methods?: any;

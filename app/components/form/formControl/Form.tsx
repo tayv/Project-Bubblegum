@@ -10,6 +10,7 @@ export type FormProps = {
   defaultValues: Record<string, any>
   zodSchema: z.ZodObject<any>
   onSubmit: (data: any, event: any) => Promise<void>
+  buttonLabel?: string
   children: any
 }
 
@@ -21,6 +22,7 @@ const Form: FC<FormProps> = ({
   zodSchema,
   onSubmit,
   id,
+  buttonLabel = "Submit Form",
   children,
   ...props
 }) => {
@@ -41,7 +43,7 @@ const Form: FC<FormProps> = ({
           type="submit"
           className="block border-slate-900 bg-slate-100 hover:bg-slate-200 border rounded-md my-1 px-2 py-1 text-xs font-medium"
         >
-          Submit
+          {buttonLabel}
         </button>
         {!!formHasErrors ? (
           <p className="text-red-600">
