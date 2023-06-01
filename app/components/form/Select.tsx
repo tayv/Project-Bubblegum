@@ -1,27 +1,27 @@
-"use client";
+"use client"
 
-import { Ref, forwardRef, FC } from "react";
-import * as SelectRadix from "@radix-ui/react-select";
+import { Ref, forwardRef, FC } from "react"
+import * as SelectRadix from "@radix-ui/react-select"
 
 export type FlatListItems = {
-  value: string;
-  labelText: string;
-  separator: Boolean;
-};
+  value: string
+  labelText: string
+  separator: Boolean
+}
 export type GroupListItems = {
-  groupLabel: string | null;
-  items: Array<FlatListItems>;
-};
+  groupLabel: string | null
+  items: Array<FlatListItems>
+}
 
 export type SelectProps = {
-  value?: string;
-  name?: string;
-  placeholder: string;
-  itemOptions: Array<FlatListItems | GroupListItems>;
-  onChange?: (value: string) => void;
-  forwardedRef?: Ref<HTMLFormElement>;
-  className?: string;
-};
+  value?: string
+  name?: string
+  placeholder: string
+  itemOptions: Array<FlatListItems | GroupListItems>
+  onChange?: (value: string) => void
+  forwardedRef?: Ref<HTMLFormElement>
+  className?: string
+}
 
 // HELPER FUNCTIONS
 const renderItems = (itemOptions: Array<FlatListItems>) => {
@@ -40,20 +40,20 @@ const renderItems = (itemOptions: Array<FlatListItems>) => {
               <SelectRadix.SelectSeparator className="h-px my-px bg-slate-300" />
             )}
           </SelectRadix.Item>
-        );
+        )
       })}
     </>
-  );
-};
+  )
+}
 
 // Check if the itemOptions object has grouped items
 const checkForGroupedItems = (itemOptions: any) => {
   // If the itemOptions object is missing a "groupLabel" property, then it's NOT a grouped item list
   let renderList = !!itemOptions[0].groupLabel
     ? renderGroupedItems(itemOptions)
-    : renderItems(itemOptions);
-  return renderList;
-};
+    : renderItems(itemOptions)
+  return renderList
+}
 
 const renderGroupedItems = (itemOptions: Array<GroupListItems>) => {
   return (
@@ -71,17 +71,17 @@ const renderGroupedItems = (itemOptions: Array<GroupListItems>) => {
 
             {renderItems(itemOption.items)}
           </SelectRadix.Group>
-        );
+        )
       })}
     </>
-  );
-};
+  )
+}
 
 // MAIN COMPONENT
 const Select: FC<SelectProps> = forwardRef<HTMLButtonElement, SelectProps>(
   function setRefSelect({ placeholder, itemOptions, ...props }, ref) {
     return (
-      <SelectRadix.Root {...props} onValueChange={props.onChange} >
+      <SelectRadix.Root {...props} onValueChange={props.onChange}>
         <SelectRadix.Trigger
           ref={ref}
           className="px-3 py-2 bg-slate-100 hover:bg-white outline-none text-md border-solid border-2 border-slate-500 rounded-lg font-medium "
@@ -101,11 +101,11 @@ const Select: FC<SelectProps> = forwardRef<HTMLButtonElement, SelectProps>(
           </SelectRadix.Content>
         </SelectRadix.Portal>
       </SelectRadix.Root>
-    );
+    )
   }
-);
+)
 
-export default Select;
+export default Select
 
 // Usage
 // Schema will change whether the select is grouped or not

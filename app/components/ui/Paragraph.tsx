@@ -64,7 +64,6 @@ const Paragraph: FC<ParagraphProps> = ({
   className = "",
   children,
 }) => {
-  
   return (
     <div
       className={classNames([

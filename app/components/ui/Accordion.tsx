@@ -1,47 +1,47 @@
-"use client";
+"use client"
 
-import React, { FC, forwardRef, ReactElement } from "react";
-import classNames from "classnames";
-import * as AccordionRadix from "@radix-ui/react-accordion";
-import { Minus, Plus, Lightbulb, AlertCircle } from "lucide-react";
+import React, { FC, forwardRef, ReactElement } from "react"
+import classNames from "classnames"
+import * as AccordionRadix from "@radix-ui/react-accordion"
+import { Minus, Plus, Lightbulb, AlertCircle } from "lucide-react"
 
 // Types
 type AccordionItems = {
-  value: string;
-  headerText: string;
-  contentText: string;
-};
+  value: string
+  headerText: string
+  contentText: string
+}
 
 type MyAccordionProps = {
-  items: AccordionItems[];
-  type: "single" | "multiple"; // Determines whether one or multiple items can be opened at the same time.
-  defaultValue?: any; // this is a workaround for the Radix type and defaultValue prop not working together. Should be string | string[] | undefined.
-  collapsible?: boolean; // When type is "single", allows closing content when clicking trigger for an open item.
+  items: AccordionItems[]
+  type: "single" | "multiple" // Determines whether one or multiple items can be opened at the same time.
+  defaultValue?: any // this is a workaround for the Radix type and defaultValue prop not working together. Should be string | string[] | undefined.
+  collapsible?: boolean // When type is "single", allows closing content when clicking trigger for an open item.
 
-  rootStyle?: RootStyle;
-  accordionStyle?: AccordionStyle;
-};
+  rootStyle?: RootStyle
+  accordionStyle?: AccordionStyle
+}
 
 // Conditional Styles
-type RootStyle = "standard" | "shrink";
+type RootStyle = "standard" | "shrink"
 const rootStyleMap: { [key in RootStyle]: string } = {
   standard: "",
   shrink: "flex flex-col shrink",
-};
+}
 
-type AccordionStyle = "standard" | "warning" | "tip";
+type AccordionStyle = "standard" | "warning" | "tip"
 const accordionStyleMap: { [key in AccordionStyle]: string } = {
   standard: "bg-neutral-300",
   warning: "bg-red-300",
   tip: "bg-blue-300",
-};
+}
 
 // Sets the icon for each accordionStyle
 const iconTypeMap: { [key in AccordionStyle]: ReactElement | null } = {
   standard: null,
   warning: <AlertCircle className=" h-5 w-5 text-red-600" />,
   tip: <Lightbulb className=" h-5 w-5 text-blue-600" />,
-};
+}
 
 // Helper Functions
 const renderAccordionItems = (
@@ -84,8 +84,8 @@ const renderAccordionItems = (
         </AccordionRadix.Content>
       </AccordionRadix.Item>
     )
-  );
-};
+  )
+}
 
 // Component
 const Accordion: FC<MyAccordionProps> = ({
@@ -108,6 +108,6 @@ const Accordion: FC<MyAccordionProps> = ({
   >
     {renderAccordionItems(items, accordionStyle)}
   </AccordionRadix.Root>
-);
+)
 
-export default Accordion;
+export default Accordion

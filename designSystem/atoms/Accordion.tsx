@@ -5,7 +5,7 @@ import { Minus, Plus, Lightbulb, AlertCircle } from "lucide-react"
 
 // Types
 type MyAccordionProps = {
-  items: Array<{ value: string, headerText: string, contentText: string }>
+  items: Array<{ value: string; headerText: string; contentText: string }>
   type?: "single" | "multiple" // Determines whether one or multiple items can be opened at the same time.
   defaultValue?: any // this is a workaround for the Radix type and defaultValue prop not working together. Should be string | string[] | undefined.
   collapsible?: boolean // When type is "single", allows closing content when clicking trigger for an open item.

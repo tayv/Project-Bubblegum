@@ -48,8 +48,8 @@ const renderTemplate = ({ location, docData }: TemplateProps) => {
     case "a":
       return (
         <Paragraph size="small">
-          Here&apos;s boilerplate text plus some dynamic content based on the form
-          values 👉 <strong>{docID}</strong>
+          Here&apos;s boilerplate text plus some dynamic content based on the
+          form values 👉 <strong>{docID}</strong>
         </Paragraph>
       )
 

@@ -1,7 +1,7 @@
-"use client";
+"use client"
 
-import { FC, useState } from "react";
-import classNames from "classnames";
+import { FC, useState } from "react"
+import classNames from "classnames"
 import {
   ChevronDown,
   ChevronUp,
@@ -11,8 +11,8 @@ import {
   Plus,
   ArrowLeft,
   ArrowRight,
-} from "lucide-react";
-import * as Select from "@radix-ui/react-select";
+} from "lucide-react"
+import * as Select from "@radix-ui/react-select"
 import {
   add,
   eachDayOfInterval,
@@ -26,21 +26,21 @@ import {
   setYear,
   startOfToday,
   eachYearOfInterval,
-} from "date-fns";
+} from "date-fns"
 
 export type CalendarProps = {
-  name: string;
-  startYearRange: number; // Range determines the years used by the Select in the calendar
-  endYearRange: number;
-  defaultValue?: Date;
-};
+  name: string
+  startYearRange: number // Range determines the years used by the Select in the calendar
+  endYearRange: number
+  defaultValue?: Date
+}
 
 type CalendarStateProps = {
-  selectedDay: Date;
-  setSelectedDay: (value: Date) => void;
-  setShowCalendar: (value: "CalendarClosed" | "CalendarOpen") => void;
-  handleSelectedDayChange: (name: string, selectedDay: Date) => void;
-};
+  selectedDay: Date
+  setSelectedDay: (value: Date) => void
+  setShowCalendar: (value: "CalendarClosed" | "CalendarOpen") => void
+  handleSelectedDayChange: (name: string, selectedDay: Date) => void
+}
 
 const Calendar: FC<CalendarProps & CalendarStateProps> = ({
   startYearRange,
@@ -52,51 +52,51 @@ const Calendar: FC<CalendarProps & CalendarStateProps> = ({
   handleSelectedDayChange,
   name,
 }) => {
-  let today = startOfToday(); // a date-fns function that gets current date on user's machine
+  let today = startOfToday() // a date-fns function that gets current date on user's machine
   // let [selectedDay, setSelectedDay] = useState(today) // the day currently selected by user
-  let [currentMonth, setCurrentMonth] = useState(format(today, "MMM-yyyy")); // format is a date-fns function
-  let firstDaySelectedMonth = parse(currentMonth, "MMM-yyyy", new Date()); // From date-fns. Returns the date parsed from string using the given format string
+  let [currentMonth, setCurrentMonth] = useState(format(today, "MMM-yyyy")) // format is a date-fns function
+  let firstDaySelectedMonth = parse(currentMonth, "MMM-yyyy", new Date()) // From date-fns. Returns the date parsed from string using the given format string
 
   // store the days of the month in an array. This will be mapped through in order to create the calendar
   let daysInMonth = eachDayOfInterval({
     start: firstDaySelectedMonth,
     end: endOfMonth(firstDaySelectedMonth),
-  });
+  })
 
   // Used by stepper buttons to go back one month
   const prevMonth = () => {
-    let firstDayNextMonth = add(firstDaySelectedMonth, { months: -1 });
-    setCurrentMonth(format(firstDayNextMonth, "MMM-yyyy"));
-  };
+    let firstDayNextMonth = add(firstDaySelectedMonth, { months: -1 })
+    setCurrentMonth(format(firstDayNextMonth, "MMM-yyyy"))
+  }
   // Used by stepper buttons to add one month
   const nextMonth = () => {
-    let firstDayNextMonth = add(firstDaySelectedMonth, { months: 1 });
-    setCurrentMonth(format(firstDayNextMonth, "MMM-yyyy"));
-  };
+    let firstDayNextMonth = add(firstDaySelectedMonth, { months: 1 })
+    setCurrentMonth(format(firstDayNextMonth, "MMM-yyyy"))
+  }
 
   // Used to jump multiple months/years at a time
   const jumpToDate = (monthsToJump: number) => {
-    let jumpDate = add(firstDaySelectedMonth, { months: monthsToJump });
-    setCurrentMonth(format(jumpDate, "MMM-yyyy"));
-  };
+    let jumpDate = add(firstDaySelectedMonth, { months: monthsToJump })
+    setCurrentMonth(format(jumpDate, "MMM-yyyy"))
+  }
 
   // Updates the calendar to a new year but keeps the same month
   const setNewYear = (yearToSet: string) => {
-    let yearToSetAsNumber = +yearToSet;
-    let yearResult = setYear(firstDaySelectedMonth, yearToSetAsNumber);
-    setCurrentMonth(format(yearResult, "MMM-yyyy"));
-  };
+    let yearToSetAsNumber = +yearToSet
+    let yearResult = setYear(firstDaySelectedMonth, yearToSetAsNumber)
+    setCurrentMonth(format(yearResult, "MMM-yyyy"))
+  }
 
   const setYearRange = (startYearRange: number, endYearRange: number) => {
     // takes a year as start/end date and returns an array of years in between in a full date format
     let yearRangeUnformatted = eachYearOfInterval({
       start: new Date(startYearRange, 1, 1), // add the 1, 1 to it fits the date-fns format
       end: new Date(endYearRange, 1, 1),
-    });
+    })
     // Next, format the year then return a select item for each year in range array
     return yearRangeUnformatted.map((year, yearID) => {
       // Need to first format the year so that it can be used as the value for each select item
-      let yearFormatted = format(year, "yyyy");
+      let yearFormatted = format(year, "yyyy")
       return (
         // Use Radix UI's Select Component for accessibility. Hardcoded since it's unique to this component
         <Select.Item
@@ -107,9 +107,9 @@ const Calendar: FC<CalendarProps & CalendarStateProps> = ({
           <Select.ItemText>{yearFormatted}</Select.ItemText>
           <Select.ItemIndicator />
         </Select.Item>
-      );
-    });
-  };
+      )
+    })
+  }
 
   return (
     <div>
@@ -197,7 +197,7 @@ const Calendar: FC<CalendarProps & CalendarStateProps> = ({
                     <button
                       type="button"
                       onClick={() => {
-                        handleSelectedDayChange(name, day);
+                        handleSelectedDayChange(name, day)
                       }} // when user clicks on a day, update the state and input in DatePick with the selected day
                       className={classNames(
                         // current day selected?
@@ -280,8 +280,8 @@ const Calendar: FC<CalendarProps & CalendarStateProps> = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 // Calendar is set up for a 7 day week so use a grid with 7 columns.
 // The first day of the month is always on a different column depending on the day of the week
@@ -295,6 +295,6 @@ let firstDayStartingCol = [
   "col-start-5",
   "col-start-6",
   "col-start-7",
-];
+]
 
-export default Calendar;
+export default Calendar

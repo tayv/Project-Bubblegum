@@ -27,7 +27,7 @@ export type customColor = string
 
 const sectionVariantMap: { [key in SectionCardVariant]: string } = {
   standard: "bg-white drop-shadow-sm",
-  secondary: "bg-white/50 drop-shadow-sm border border-white/60", 
+  secondary: "bg-white/50 drop-shadow-sm border border-white/60",
   blank: "bg-transparent",
   colorBlue: "bg-gradient-to-b from-blue-400 to-blue-300 drop-shadow-sm",
   colorRed: "bg-gradient-to-b from-red-400 to-red-300 drop-shadow-sm",

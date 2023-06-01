@@ -1,27 +1,27 @@
-"use client";
+"use client"
 
-import React, { FC, forwardRef } from "react";
-import classNames from "classnames";
-import * as RadixRadioGroup from "@radix-ui/react-radio-group";
+import React, { FC, forwardRef } from "react"
+import classNames from "classnames"
+import * as RadixRadioGroup from "@radix-ui/react-radio-group"
 
 export type RadioGroupProps = {
-  options: Array<{ value: string; label: string }>;
-  type?: RadioGroupType;
-  name?: string;
-  value?: string;
-  defaultValue?: string;
-  className?: string;
-  hasError?: boolean;
-  onChange?: (value: string) => void;
-};
-type RadioGroupType = "standard" | "horizontal" | "button";
+  options: Array<{ value: string; label: string }>
+  type?: RadioGroupType
+  name?: string
+  value?: string
+  defaultValue?: string
+  className?: string
+  hasError?: boolean
+  onChange?: (value: string) => void
+}
+type RadioGroupType = "standard" | "horizontal" | "button"
 
 // DYNAMIC STYLING
 const radioGroupRootMap: { [key in RadioGroupType]: string } = {
   standard: "",
   horizontal: "grid-flow-col justify-start gap-20",
   button: "",
-};
+}
 const radioGroupItemMap: { [key in RadioGroupType]: string } = {
   standard: [
     "flex items-center relative w-6 h-6 border-2 border-slate-300 rounded-full data-[state=checked]:border-sky-400 ",
@@ -36,19 +36,19 @@ const radioGroupItemMap: { [key in RadioGroupType]: string } = {
     "text-slate-500 data-[state=checked]:text-sky-500 data-[state=checked]:font-semibold",
   ].join(" "),
   button: "",
-};
+}
 const radioGroupIndicatorMap: { [key in RadioGroupType]: string } = {
   standard:
     "absolute inset-0 flex items-center justify-center leading-0 bg-neutral-100 data-[state=checked]:bg-transparent rounded-full",
   horizontal:
     "absolute inset-0 flex items-center justify-center leading-0 bg-neutral-100 data-[state=checked]:bg-transparent rounded-full",
   button: "",
-};
+}
 const radioGroupLabelMap: { [key in RadioGroupType]: string } = {
   standard: "ml-8 block text-md",
   horizontal: "ml-8 block text-md",
   button: "",
-};
+}
 
 // MAIN COMPONENT
 const RadioGroup: FC<RadioGroupProps> = forwardRef<
@@ -117,11 +117,11 @@ const RadioGroup: FC<RadioGroupProps> = forwardRef<
               {/* </div> */}
             </RadixRadioGroup.Item>
             // </div>
-          );
+          )
         }
       )}
     </RadixRadioGroup.Root>
-  );
-});
+  )
+})
 
-export default RadioGroup;
+export default RadioGroup

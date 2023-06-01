@@ -11,7 +11,7 @@ type ArticleList = { title: string; path?: string; groupTitle?: boolean }[] // T
 export type SideNavProps = { articleList: ArticleList }
 
 const SideNav: FC<SideNavProps> = ({ articleList, ...props }) => {
- // const { asPath } = useRouter() // This hook returns the current url path
+  // const { asPath } = useRouter() // This hook returns the current url path
 
   // The styles for the side nav are set here
   const sideNavStyleMap: { [key in SideNavStyle]: string } = {
@@ -41,14 +41,13 @@ const SideNav: FC<SideNavProps> = ({ articleList, ...props }) => {
           <span className="flex-1 whitespace-nowrap uppercase text-xs opacity-50 ">
             Authentication
           </span>
- 
 
           {
             // The side nav is made up of these list items
             articleList.map((article) => {
               // Used by classnames to set the correct css style
-             // let isSelected: SideNavStyle =
-               // asPath === article.path ? "selected" : "notSelected"
+              // let isSelected: SideNavStyle =
+              // asPath === article.path ? "selected" : "notSelected"
 
               return (
                 <li key={article.title.toString()}>
@@ -58,7 +57,7 @@ const SideNav: FC<SideNavProps> = ({ articleList, ...props }) => {
                         href={article.path}
                         className={classNames([
                           "cursor-pointer flex items-center p-1", // standard css styles go here
-                         // sideNavStyleMap[isSelected],
+                          // sideNavStyleMap[isSelected],
                         ])}
                       >
                         <span className="flex-1 ml-2 whitespace-nowrap">

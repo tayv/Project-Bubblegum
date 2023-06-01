@@ -23,7 +23,7 @@ type FieldContextProps = {
   validationRules?: any
   validateOnBlur?: boolean
   methods?: any
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 
 interface FieldComponent extends FC<FieldContextProps> {

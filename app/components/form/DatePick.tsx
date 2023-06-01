@@ -1,20 +1,20 @@
-"use client";
+"use client"
 
-import { FC, forwardRef, useState } from "react";
-import { CalendarDays, Minus } from "lucide-react";
-import { InputProps } from "@form/Input";
-import * as Accordion from "@radix-ui/react-accordion";
-import { format, startOfToday } from "date-fns";
-import Calendar, { CalendarProps } from "@form/Calendar";
-import { useForm } from "react-hook-form";
+import { FC, forwardRef, useState } from "react"
+import { CalendarDays, Minus } from "lucide-react"
+import { InputProps } from "@form/Input"
+import * as Accordion from "@radix-ui/react-accordion"
+import { format, startOfToday } from "date-fns"
+import Calendar, { CalendarProps } from "@form/Calendar"
+import { useForm } from "react-hook-form"
 
 export type DatePickProps = {
-  name?: string; // Optional because wrapper Field component will require and pass it in
-  label?: string | null;
-  value?: string | number;
-  tipText?: string | null;
-  defaultValue?: string | Date; // should add a type guard function to validate format in future
-};
+  name?: string // Optional because wrapper Field component will require and pass it in
+  label?: string | null
+  value?: string | number
+  tipText?: string | null
+  defaultValue?: string | Date // should add a type guard function to validate format in future
+}
 
 // Component ----------------------------------------------------------------------
 const DatePick: FC<DatePickProps & Omit<CalendarProps, "name"> & InputProps> =
@@ -33,9 +33,9 @@ const DatePick: FC<DatePickProps & Omit<CalendarProps, "name"> & InputProps> =
     ref
   ) {
     // ------------- These are needed by the Calendar component to handle state -------------
-    const parsedDefaultValue = new Date(defaultValue); // Needed to get convert the prop to a valid date. BUG: This displays as one day behind. TBD
-    let [selectedDay, setSelectedDay] = useState(parsedDefaultValue); // the day currently selected by user
-    let [showCalendar, setShowCalendar] = useState("CalendarClosed"); // used to show/hide the calendar
+    const parsedDefaultValue = new Date(defaultValue) // Needed to get convert the prop to a valid date. BUG: This displays as one day behind. TBD
+    let [selectedDay, setSelectedDay] = useState(parsedDefaultValue) // the day currently selected by user
+    let [showCalendar, setShowCalendar] = useState("CalendarClosed") // used to show/hide the calendar
 
     // ------------- These are needed by the DatePick component to handle state -------------
     const toggleCalendar = () => {
@@ -43,21 +43,21 @@ const DatePick: FC<DatePickProps & Omit<CalendarProps, "name"> & InputProps> =
       // https://www.radix-ui.com/docs/primitives/components/accordion
       showCalendar === "CalendarOpen"
         ? setShowCalendar("CalendarClosed")
-        : setShowCalendar("CalendarOpen");
-    };
+        : setShowCalendar("CalendarOpen")
+    }
 
     // ------------- Used to sync Calendar selection with the DatePick input's value -------------
-    const { setValue } = useForm(); // used by Calendar component to set the value of the input field
+    const { setValue } = useForm() // used by Calendar component to set the value of the input field
     const handleSelectedDayChange = (name: string, selectedDay: Date) => {
-      setSelectedDay(selectedDay); // update the selected day
-      const formattedDate = format(selectedDay, "MMM-dd-yyyy"); // normalize the date
-      setValue(name, formattedDate); // set the value of the input field
-      setShowCalendar("CalendarClosed"); // Remove if don't want calendar to close after selecting a day
+      setSelectedDay(selectedDay) // update the selected day
+      const formattedDate = format(selectedDay, "MMM-dd-yyyy") // normalize the date
+      setValue(name, formattedDate) // set the value of the input field
+      setShowCalendar("CalendarClosed") // Remove if don't want calendar to close after selecting a day
       if (onChange) {
         // if onChange prop is passed, call it
-        onChange(formattedDate);
+        onChange(formattedDate)
       }
-    };
+    }
 
     return (
       <div>
@@ -109,8 +109,8 @@ const DatePick: FC<DatePickProps & Omit<CalendarProps, "name"> & InputProps> =
           </Accordion.Item>
         </Accordion.Root>
       </div>
-    );
-  });
+    )
+  })
 
 // Calendar is set up for a 7 day week so use a grid with 7 columns.
 // The first day of the month is always on a different column depending on the day of the week
@@ -124,6 +124,6 @@ let firstDayStartingCol = [
   "col-start-5",
   "col-start-6",
   "col-start-7",
-];
+]
 
-export default DatePick;
+export default DatePick

@@ -1,35 +1,27 @@
-"use client";
+"use client"
 
-import { FC, forwardRef, HTMLAttributes } from "react";
-import classNames from "classnames";
-import * as RadixCheckbox from "@radix-ui/react-checkbox";
-import { CheckIcon } from "lucide-react";
+import { FC, forwardRef, HTMLAttributes } from "react"
+import classNames from "classnames"
+import * as RadixCheckbox from "@radix-ui/react-checkbox"
+import { CheckIcon } from "lucide-react"
 
-export type CheckboxType = "standard" | "toggle";
+export type CheckboxType = "standard" | "toggle"
 export type CheckboxProps = {
-  name?: string; // Optional as handled by Field
-  id?: string; // used for multi checkboxes and htmlFor label
-  children: string;
-  value?: any; // HTMLInputElement type doesn't like use of boolean so switched to any
-  type?: CheckboxType;
-  className?: string;
-  onChange?: any;
-  defaultChecked?: boolean;
-};
+  name?: string // Optional as handled by Field
+  id?: string // used for multi checkboxes and htmlFor label
+  children: string
+  value?: any // HTMLInputElement type doesn't like use of boolean so switched to any
+  type?: CheckboxType
+  className?: string
+  onChange?: any
+  defaultChecked?: boolean
+}
 
 const Checkbox: FC<CheckboxProps> = forwardRef<
   HTMLButtonElement,
   CheckboxProps
 >(function setRefCheckbox(
-  {
-    children,
-    name,
-    type = "standard",
-    onChange,
-    value,
-    id = name,
-    ...props
-  },
+  { children, name, type = "standard", onChange, value, id = name, ...props },
   ref
 ) {
   return (
@@ -54,7 +46,7 @@ const Checkbox: FC<CheckboxProps> = forwardRef<
         {children}
       </label>
     </div>
-  );
-});
+  )
+})
 
 export default Checkbox

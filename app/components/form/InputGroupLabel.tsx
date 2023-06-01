@@ -1,22 +1,22 @@
-"use client";
+"use client"
 
-import { FC, ReactNode } from "react";
-import * as Label from "@radix-ui/react-label";
-import classNames from "classnames";
+import { FC, ReactNode } from "react"
+import * as Label from "@radix-ui/react-label"
+import classNames from "classnames"
 
 export type InputGroupLabelProps = {
-  htmlFor: string;
-  type?: InputGroupLabelType;
-  children?: ReactNode;
-  className?: string;
-};
+  htmlFor: string
+  type?: InputGroupLabelType
+  children?: ReactNode
+  className?: string
+}
 
-export type InputGroupLabelType = "standard" | "secondary";
+export type InputGroupLabelType = "standard" | "secondary"
 
 const inputGroupLabelTypeMap: { [key in InputGroupLabelType]: string } = {
   standard: "block text-md font-bold text-gray-900",
   secondary: "block text-sm font-light text-gray-500 mb-2",
-};
+}
 
 const InputGroupLabel: FC<InputGroupLabelProps> = ({
   type = "standard",
@@ -36,7 +36,7 @@ const InputGroupLabel: FC<InputGroupLabelProps> = ({
     >
       {children}
     </Label.Root>
-  );
-};
+  )
+}
 
-export default InputGroupLabel;
+export default InputGroupLabel
