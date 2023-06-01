@@ -118,11 +118,7 @@ NOTE: You should set xSize and ySize to override when using the className prop t
           <Heading size="h4">Example: small</Heading>
           <Space ySize="small" xSize="medium" className="bg-sky-100" />
           <Heading size="h4">Example: standard</Heading>
-          <Space
-            ySize="standard"
-            xSize="standard"
-            className="bg-sky-100"
-          />
+          <Space ySize="standard" xSize="standard" className="bg-sky-100" />
           <Heading size="h4">Example: medium</Heading>
           <Space ySize="medium" xSize="medium" className="bg-sky-100" />
           <Heading size="h4">Example: large</Heading>

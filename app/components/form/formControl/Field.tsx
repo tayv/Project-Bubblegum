@@ -1,3 +1,5 @@
+"use client"
+
 import React, {
   FC,
   ReactNode,
@@ -7,19 +9,16 @@ import React, {
 } from "react"
 import { Controller, useFormContext } from "react-hook-form"
 import { Slot } from "@radix-ui/react-slot"
-import InputGroupLabel, {
-  InputGroupLabelProps,
-} from "@designSystem/atoms/InputGroupLabel"
+import InputGroupLabel, { InputGroupLabelProps } from "@form/InputGroupLabel"
 import InputMessage, {
   InputMessageProps,
   InputMessageType,
-} from "@designSystem/molecules/InputMessage"
-import useMatchRegex from "@utils/useMatchRegex"
+} from "@form/InputMessage"
+import useMatchRegex from "@hooks/useMatchRegex"
 
 type FieldContextProps = {
-  // control: Control
   name: string
-  defaultValue: any
+  defaultValue?: any // Handled by defaultValues object passed to Form so not passed at field level
   validationRules?: any
   validateOnBlur?: boolean
   methods?: any
@@ -166,22 +165,3 @@ Field.Validate = function FieldValid({ type = "error" }) {
 }
 
 export default Field
-
-// Documentation
-// https://react-hook-form.com/api#Controller
-// https://react-hook-form.com/api#useForm
-// https://react-hook-form.com/api#FormProvider
-// Validation examples:
-
-// validationRules={{
-//   validate: (value) => {
-//     if (value.startsWith("A")) {
-//       return "Value cannot start with the letter A";
-//     }
-//     return true;
-//   },
-// }}
-
-// Zod
-// Potential RHF bug with Zod Optional validation. Make sure to pass defaultValues to useForm. See: https://stackoverflow.com/questions/73715295/react-hook-form-with-zod-resolver-optional-field
-// Need to also install a resolver to use with RHF. See: https://www.react-hook-form.com/api/useform/

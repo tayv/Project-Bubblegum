@@ -65,8 +65,8 @@ const MessagesHelpArticle: FC = () => {
           <Space />
           <Paragraph>
             The Accordion component has 2 required props: type and items. It
-            also has 4 optional props: defaultValue, collapsible, ToggleStyle, and
-            accordionStyle.
+            also has 4 optional props: defaultValue, collapsible, ToggleStyle,
+            and accordionStyle.
           </Paragraph>
 
           <Divider padding="xl" />
