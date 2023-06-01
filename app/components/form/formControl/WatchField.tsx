@@ -1,17 +1,17 @@
-"use client"
+"use client";
 
-import React, { FC, useEffect } from "react"
-import { useFormContext, useWatch } from "react-hook-form"
-import Field from "@formControl/Field"
+import React, { FC, useEffect } from "react";
+import { useFormContext, useWatch } from "react-hook-form";
+import Field from "@formControl/Field";
 
 type WatchFieldProps = {
-  name: string
-  conditionLogic: { watchName: string; watchValue: string }
-  children: React.ReactNode
-  defaultValue?: any
-  validationRules?: any
-  validateOnBlur?: boolean
-}
+  name: string;
+  defaultValue?: any // Handled by defaultValues object passed to Form so not passed at field level
+  validationRules?: any;
+  validateOnBlur?: boolean;
+  conditionLogic: { watchName: string; watchValue: string };
+  children: React.ReactNode;
+};
 
 const WatchField: FC<WatchFieldProps> = ({
   children,
@@ -21,20 +21,20 @@ const WatchField: FC<WatchFieldProps> = ({
   validateOnBlur,
   conditionLogic,
 }) => {
-  const methods = useFormContext()
+  const methods = useFormContext();
   // Start watching the other field
   const otherFieldValue = useWatch({
     name: conditionLogic.watchName,
     control: methods.control,
-  })
+  });
 
   // ------------------  Unregister Conditional Field Logic ------------------ //
-  const errorMessage = methods.formState.errors[name]?.message
+  const errorMessage = methods.formState.errors[name]?.message;
   // NOTE: If you don't want a hidden fields value to submit with form then use the following to unregister field
   useEffect(() => {
     if (otherFieldValue !== conditionLogic.watchValue && errorMessage) {
       //  methods.unregister(name)
-      methods.clearErrors(name)
+      methods.clearErrors(name);
     } else {
       // Re-register when it's visible again
       // methods.register(name, defaultValue) // This doesn't work. Probably need useRef
@@ -46,13 +46,13 @@ const WatchField: FC<WatchFieldProps> = ({
     errorMessage,
     methods,
     name,
-  ])
+  ]);
 
   // ------------------------------------------------------------------------ //
 
   // Hide the field if conditional value isn't met
   if (otherFieldValue !== conditionLogic.watchValue) {
-    return null //
+    return null; //
   } else {
     return (
       // Must pass name or it won't register
@@ -66,8 +66,8 @@ const WatchField: FC<WatchFieldProps> = ({
       >
         {children}
       </Field>
-    )
+    );
   }
-}
+};
 
-export default WatchField
+export default WatchField;

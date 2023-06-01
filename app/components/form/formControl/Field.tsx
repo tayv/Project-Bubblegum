@@ -19,9 +19,8 @@ import InputMessage, {
 import useMatchRegex from "@hooks/useMatchRegex";
 
 type FieldContextProps = {
-  // control: Control
   name: string;
-  defaultValue?: any;
+  defaultValue?: any // Handled by defaultValues object passed to Form so not passed at field level
   validationRules?: any;
   validateOnBlur?: boolean;
   methods?: any;
