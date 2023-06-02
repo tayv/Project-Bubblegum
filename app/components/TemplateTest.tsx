@@ -6,7 +6,7 @@ import Divider from "@designSystem/atoms/Divider"
 
 export type FormDataObj = {
   docID: number
-  formData: {} | { key: string; value: string } // Will typecheck specific key/value pairs in actual implementation
+  formData: {} | { key: string; value: string } // Will typecheck specific key/value pairs from Form in actual implementation as this will be prone to errors as product library grows
 }
 
 export type TemplateProps = {
