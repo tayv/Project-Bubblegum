@@ -11,6 +11,7 @@ import Checkbox from "@components/form/Checkbox"
 import CardSection from "@components/ui/CardSection"
 import TemplateGeneric from "@components/TemplateGeneric"
 import { useState } from "react"
+import useInsertDynamicContent from "@hooks/useInsertDynamicContent"
 
 const Product1 = () => {
   const defaultValues = {
@@ -22,13 +23,13 @@ const Product1 = () => {
   })
 
   // Setup initial state
-  const [docValue, setDocValue] = useState({ docID: 1, formData: {} })
+  const [docValue, setDocValue] = useState({})
 
   // Sample onSubmit form handler
   // NOTES: Don't need to  e.preventDefault() since rhf's handleSubmit() automatically prevents page reloads
   // and handles errors for you https://www.react-hook-form.com/api/useform/handlesubmit/
   const onSubmit = async (data: any, event: any) => {
-    setDocValue({ docID: 1, formData: data }) // Save form values to state so the test template table can show the values
+    setDocValue(data ) // Save form values to state so the test template table can show the values
     console.log("Form submitted. data:", data, "Submit form - errors", Error)
     console.log("event:", event)
     const body = data
@@ -81,12 +82,13 @@ const Product1 = () => {
         <div className="overflow-visible my-4">
           {/* div needed for sticky to work. Cannot use overflow: scroll/hidden/auto with sticky https://www.digitalocean.com/community/tutorials/css-position-sticky */}
           <div className="sticky top-0 overflow-y-auto">
-            <Product1Template />
+            <Product1Template formData={docValue} />
             
             {/* <CardSection id="templateTest" variant="secondary">
               <Heading size="h3">Template Test: Form Values</Heading>
               <TemplateGeneric location="c" docData={docValue} />
             </CardSection> */}
+   
           </div>
         </div>
       </div>
