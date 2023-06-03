@@ -1,0 +1,10 @@
+{
+  "checkboxExample": {
+    "true": "never",
+    "false": "ever"
+  },
+  "input2": {
+    "true": "hello",
+    "false": "world"
+  }
+}

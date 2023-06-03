@@ -8,6 +8,7 @@ import Divider from "@designSystem/atoms/Divider"
 export type InsertInlineContentProps = {
   formData: {} | { key: string; value: string } // Will typecheck specific key/value pairs from Form in actual implementation as this will be prone to errors as product library grows  
   inputName: string
+  schema: {}
 }
 
 // Helper functions ----------------------------
@@ -17,12 +18,13 @@ export type InsertInlineContentProps = {
 const InsertInlineContent: FC<InsertInlineContentProps> = ({
   formData,
   inputName,
+  schema,
   ...props
 }) => {
 
   return (
     <>
-      {useInsertDynamicContent({ formData, inputName })}
+      {useInsertDynamicContent({ formData, inputName, schema })}
     </>
   )
 }
