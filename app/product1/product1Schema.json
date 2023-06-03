@@ -3,8 +3,9 @@
     "true": "never",
     "false": "ever"
   },
-  "input2": {
-    "true": "hello",
-    "false": "world"
+  "radioExample": {
+    "option1": "hello",
+    "option2": "world",
+    "option3": "universe"
   }
 }
