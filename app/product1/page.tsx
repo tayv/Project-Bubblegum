@@ -12,14 +12,17 @@ import CardSection from "@components/ui/CardSection"
 import TemplateGeneric from "@components/TemplateGeneric"
 import { useState } from "react"
 import useInsertDynamicContent from "@hooks/useInsertDynamicContent"
+import RadioGroup from "@components/form/RadioGroup"
 
 const Product1 = () => {
   const defaultValues = {
     checkboxExample: true,
+    radioExample: "option1",
   }
 
   const zodSchema = z.object({
     checkboxExample: z.boolean().optional(),
+    radioExample: z.enum(["option1", "option2", "option3"]).optional(),
   })
 
   // Setup initial state
@@ -76,6 +79,24 @@ const Product1 = () => {
               <Checkbox>This is a label</Checkbox>
             </Field.Control>
           </Field>
+
+          <Field
+            name="radioExample"
+            //validateOnBlur={false}
+          >
+            <Field.GroupLabel>Standard radio:</Field.GroupLabel>
+            <Field.Control>
+              <RadioGroup
+                variant="button"
+                options={[
+                  { value: "option1", label: "Option 1" },
+                  { value: "option2", label: "Option 2" },
+                  { value: "option3", label: "Option 3" },
+                ]}
+              />
+            </Field.Control>
+          </Field>
+
         </Form>
 
         {/*TEMPLATE SECTION START --------------------------------------------- */}
@@ -83,12 +104,6 @@ const Product1 = () => {
           {/* div needed for sticky to work. Cannot use overflow: scroll/hidden/auto with sticky https://www.digitalocean.com/community/tutorials/css-position-sticky */}
           <div className="sticky top-0 overflow-y-auto">
             <Product1Template formData={docValue} />
-            
-            {/* <CardSection id="templateTest" variant="secondary">
-              <Heading size="h3">Template Test: Form Values</Heading>
-              <TemplateGeneric location="c" docData={docValue} />
-            </CardSection> */}
-   
           </div>
         </div>
       </div>

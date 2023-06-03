@@ -2,9 +2,9 @@
 import Paragraph from "@components/ui/Paragraph"
 
 export type InsertDynamicContentProps = {
-  formData: {} | { key: string; value: string } // May need to imoprt in future. Will typecheck specific key/value pairs from Form in actual implementation as this will be prone to errors as product library grows
+  formData: Record<string, string | undefined> // May need to imoprt in future. Will typecheck specific key/value pairs from Form in actual implementation as this will be prone to errors as product library grows
   inputName: string
-  schema: {}
+  schema: Record<string, Record<string, string>>
 }
 
 // HELPER FUNCTIONS
@@ -22,8 +22,8 @@ const useInsertDynamicContent = ({ formData, schema, inputName }: InsertDynamicC
           
           Object.entries(subSchema).map(([key, value], index) => {
             console.log(key, currentInputValue)
-            console.log("is equal", key === JSON.stringify(currentInputValue)) // Need to normalize data 
-            if (key === JSON.stringify(currentInputValue)) {
+            console.log("is equal", key === JSON.stringify(currentInputValue)) 
+            if (key === JSON.stringify(currentInputValue)) { // Need to normalize data 
             return (
               
               <span key={index} className="bg-yellow-100">
