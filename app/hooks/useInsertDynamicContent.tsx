@@ -11,8 +11,8 @@ export type InsertDynamicContentProps = {
 
 // MAIN HOOK
 const useInsertDynamicContent = ({ formData, schema, inputName }: InsertDynamicContentProps) => {
-    const subSchema = schema[inputName]
-    const currentInputValue = formData[inputName]
+    const inputSchema = schema[inputName]
+    const currentInputValue = String(formData[inputName]) // Need to normalize data. NOTE: JS comparison requires String() not JSON.stringify 
 
   return (
       // Step 1: Map through formData and find the key that matches inputName. This mapping might not be needed if already pass the inputName as prop.
@@ -20,14 +20,14 @@ const useInsertDynamicContent = ({ formData, schema, inputName }: InsertDynamicC
         
       //  return (
           
-          Object.entries(subSchema).map(([key, value], index) => {
+          Object.entries(inputSchema).map(([key, value], index) => {
             console.log(key, currentInputValue)
-            console.log("is equal", key === String(currentInputValue)) 
-            if (key === String(currentInputValue)) { // Need to normalize data. NOTE: JS comparison requires String() not JSON.stringify 
+            console.log("is equal", key === currentInputValue) 
+            if (key === currentInputValue) { 
             return (
               
               <span key={index} className="bg-yellow-100">
-                <Paragraph className="inline bg-yellow-100">{subSchema[key]}</Paragraph>
+                <Paragraph className="inline bg-yellow-100">{inputSchema[key]}</Paragraph>
               </span>
             )
           } }
