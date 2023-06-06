@@ -1,6 +1,7 @@
 import CardSection from "@ui/CardSection"
 import TemplateTest from "@components/TemplateTest"
 import InsertInlineContentTest from "@components/InsertInlineContentTest"
+import InsertInlineContentTest2 from "@components/InsertInlineContentTest2"
 import product1SchemaTest from "./product1SchemaTest"
 
 <CardSection id="product1TemplateTest">
@@ -17,10 +18,12 @@ This is some text about product 1. It gives context and introduces the parties i
 
 This is a test of
 
-- Party 1: <InsertInlineContentTest inputName="checkboxExample"/> is this.
+- Party 1: <InsertInlineContentTest2 inputName="checkboxExample" condition="a_body" /> is this.
 - Party 2:
 
-## <InsertInlineContentTest inputName="radioExample"/>
+{/* ## <InsertInlineContentTest2 inputName="radioExample" condition="a_header"/> */}
+
+# <InsertInlineContentTest2 inputName="checkboxExample" condition="b_header" />
 
 ### Body
 

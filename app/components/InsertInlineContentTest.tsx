@@ -37,9 +37,9 @@ const RenderDynamicContentTest = ({
           // And return the elements in the object (e.g. header, body, etc.). Each object is a separate chunk of related content
           // IDEA: Use a switch statement here
           return inputSchema[key].map((obj, idx) => (
-            <>
+            <React.Fragment key={idx}>
               {obj.header && (
-                <span key={idx + "header"} className="">
+                <span className="">
                   <Heading size="h2" className="bg-yellow-100">
                     {obj.header}
                   </Heading>
@@ -47,18 +47,18 @@ const RenderDynamicContentTest = ({
               )}
 
               {obj.body && (
-                <span key={idx + "body"} className="">
+                <span className="">
                   <Paragraph className="inline bg-yellow-100">
                     {obj.body}
                   </Paragraph>
                 </span>
               )}
-            </>
+            </ React.Fragment>
           ))
         } else {
           // If it's not an array then it's a single inline paragraph content
           return (
-            <span key={index} className="">
+            <span key={index + "test"} className="">
               <Paragraph className="inline bg-yellow-100">
                 {inputSchema[key]}
               </Paragraph>
