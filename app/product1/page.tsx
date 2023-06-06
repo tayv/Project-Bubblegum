@@ -3,6 +3,7 @@
 import * as z from "zod"
 
 import Product1Template from "./product1Template.mdx"
+import Product1TemplateTest from "./product1TemplateTest.mdx"
 import Heading from "@ui/Heading"
 import Paragraph from "@ui/Paragraph"
 import Form from "@formControl/Form"
@@ -10,9 +11,13 @@ import Field from "@formControl/Field"
 import Checkbox from "@components/form/Checkbox"
 import CardSection from "@components/ui/CardSection"
 import TemplateGeneric from "@components/TemplateGeneric"
-import { useState } from "react"
+import { useState, createContext } from "react"
 import useInsertDynamicContent from "@hooks/useInsertDynamicContent"
 import RadioGroup from "@components/form/RadioGroup"
+import product1SchemaTest from "./product1SchemaTest.json"
+
+// Create FormContext
+export const PageContext = createContext(undefined)
 
 const Product1 = () => {
   const defaultValues = {
@@ -28,11 +33,17 @@ const Product1 = () => {
   // Setup initial state
   const [docValue, setDocValue] = useState({})
 
+  // Setup pg context values to pass to template
+  const pageContextValue = {
+    docValue: docValue,
+    schema: product1SchemaTest,
+  }
+
   // Sample onSubmit form handler
   // NOTES: Don't need to  e.preventDefault() since rhf's handleSubmit() automatically prevents page reloads
   // and handles errors for you https://www.react-hook-form.com/api/useform/handlesubmit/
   const onSubmit = async (data: any, event: any) => {
-    setDocValue(data ) // Save form values to state so the test template table can show the values
+    setDocValue(data) // Save form values to state so the test template table can show the values
     console.log("Form submitted. data:", data, "Submit form - errors", Error)
     console.log("event:", event)
     const body = data
@@ -57,7 +68,7 @@ const Product1 = () => {
   }
 
   return (
-    <>
+    <PageContext.Provider value={pageContextValue}>
       <Heading size="h1" weight="bold" padding="none">
         Product 1
       </Heading>
@@ -96,18 +107,18 @@ const Product1 = () => {
               />
             </Field.Control>
           </Field>
-
         </Form>
 
         {/*TEMPLATE SECTION START --------------------------------------------- */}
         <div className="overflow-visible my-4">
           {/* div needed for sticky to work. Cannot use overflow: scroll/hidden/auto with sticky https://www.digitalocean.com/community/tutorials/css-position-sticky */}
           <div className="sticky top-0 overflow-y-auto">
-            <Product1Template formData={docValue} />
+            {/* <Product1TemplateTest formData={docValue} /> */}
+            <Product1TemplateTest />
           </div>
         </div>
       </div>
-    </>
+    </PageContext.Provider>
   )
 }
 

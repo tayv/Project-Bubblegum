@@ -22,7 +22,7 @@ export default function RootLayout({
             <SideNav
               articleList={[
                 { title: "Testing", groupTitle: true },
-              
+
                 { title: "Products", groupTitle: true },
                 { title: "Product 1", path: "/product1" },
               ]}

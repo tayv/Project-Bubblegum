@@ -1,21 +1,21 @@
-"use client";
+"use client"
 
-import React, { FC, forwardRef, ReactElement } from "react";
-import classNames from "classnames";
-import * as RadixRadioGroup from "@radix-ui/react-radio-group";
-import { Check } from "lucide-react";
+import React, { FC, forwardRef, ReactElement } from "react"
+import classNames from "classnames"
+import * as RadixRadioGroup from "@radix-ui/react-radio-group"
+import { Check } from "lucide-react"
 
 export type RadioGroupProps = {
-  options: Array<{ value: string; label: string; icon?: ReactElement }>;
-  variant?: RadioGroupVariant;
-  name?: string;
-  value?: string;
-  defaultValue?: string;
-  className?: string;
-  hasError?: boolean;
-  onChange?: (value: string) => void;
-};
-type RadioGroupVariant = "standard" | "horizontal" | "button" | "buttonLarge";
+  options: Array<{ value: string; label: string; icon?: ReactElement }>
+  variant?: RadioGroupVariant
+  name?: string
+  value?: string
+  defaultValue?: string
+  className?: string
+  hasError?: boolean
+  onChange?: (value: string) => void
+}
+type RadioGroupVariant = "standard" | "horizontal" | "button" | "buttonLarge"
 
 // DYNAMIC STYLING
 const radioGroupRootMap: { [key in RadioGroupVariant]: string } = {
@@ -23,7 +23,7 @@ const radioGroupRootMap: { [key in RadioGroupVariant]: string } = {
   horizontal: "flex justify-start gap-14",
   button: "grid gap-2",
   buttonLarge: "flex flex-wrap gap-2 max-w-lg",
-};
+}
 const radioGroupItemMap: { [key in RadioGroupVariant]: string } = {
   standard:
     "flex items-center relative w-6 h-6 rounded-full data-[state=checked]:text-sky-500",
@@ -43,26 +43,26 @@ const radioGroupItemMap: { [key in RadioGroupVariant]: string } = {
     "shadow-md data-[state=checked]:shadow-lg data-[state=checked]:shadow-sky-500/50 shadow-slate-400 ",
     "data-[state=checked]:bg-sky-500 data-[state=unchecked]:hover:bg-slate-200 ",
   ].join(" "),
-};
+}
 const radioGroupIndicatorMap: { [key in RadioGroupVariant]: string } = {
   standard: "",
   horizontal: "",
   button: "hidden",
   buttonLarge: "hidden",
-};
+}
 const radioGroupLabelMap: { [key in RadioGroupVariant]: string } = {
   standard: "ml-8 block text-md",
   horizontal: "ml-8 block text-md ",
   button: "pl-2",
   buttonLarge: "",
-};
+}
 
 const radioGroupIconMap: { [key in RadioGroupVariant]: string } = {
   standard: "hidden",
   horizontal: "hidden",
   button: "",
   buttonLarge: "w-10 h-10",
-};
+}
 
 // MAIN COMPONENT
 const RadioGroup: FC<RadioGroupProps> = forwardRef<
@@ -148,11 +148,11 @@ const RadioGroup: FC<RadioGroupProps> = forwardRef<
                 {option.label}
               </label>
             </RadixRadioGroup.Item>
-          );
+          )
         }
       )}
     </RadixRadioGroup.Root>
-  );
-});
+  )
+})
 
-export default RadioGroup;
+export default RadioGroup

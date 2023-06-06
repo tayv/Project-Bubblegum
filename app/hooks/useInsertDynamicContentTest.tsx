@@ -13,7 +13,7 @@ export type InsertDynamicContentProps = {
 // HELPER FUNCTIONS
 
 // MAIN HOOK
-const useInsertDynamicContent = ({
+const useInsertDynamicContentTest = ({
   formData,
   schema,
   inputName,
@@ -58,4 +58,4 @@ const useInsertDynamicContent = ({
   )
 }
 
-export default useInsertDynamicContent
+export default useInsertDynamicContentTest

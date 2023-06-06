@@ -16,17 +16,15 @@ export type TemplateProps = {
 
 // Helper functions ----------------------------
 let renderTable = ({ docID, formData }: FormDataObj) => {
-  return (
-  
-        Object.entries(formData).map(([key, value], index) => {
-          return (
-            <span key={index} className="bg-yellow-100">
-             <Paragraph className="inline bg-yellow-100">{key}, {value}</Paragraph>
-            </span>
-          )
-        })
-
-  )
+  return Object.entries(formData).map(([key, value], index) => {
+    return (
+      <span key={index} className="bg-yellow-100">
+        <Paragraph className="inline bg-yellow-100">
+          {key}, {value}
+        </Paragraph>
+      </span>
+    )
+  })
 }
 
 const renderTemplate = ({ location, docData }: TemplateProps) => {
@@ -53,19 +51,11 @@ const renderTemplate = ({ location, docData }: TemplateProps) => {
 }
 
 // Component Function Starts Here ----------------------------
-const TemplateTest: FC<TemplateProps> = ({
-  docData,
-  location,
-  ...props
-}) => {
+const TemplateTest: FC<TemplateProps> = ({ docData, location, ...props }) => {
   let docID = docData.docID
   let formData = docData.formData
 
-  return (
-    <>
-      {renderTemplate({ location, docData })}
-    </>
-  )
+  return <>{renderTemplate({ location, docData })}</>
 }
 
 export default TemplateTest
