@@ -18,9 +18,12 @@ const RenderDynamicContent = ({
   condition,
 }: DynamicContentProps) => {
 
-    // Need to check if undefined to avoid errors
-    // Need to set default to empty space
-
+    // Check if inputName exists in schema. Can't checl for formData since it's unavailable at initial render (requires form submission)
+    if (!(inputName in schema)) {
+      throw new Error(
+        `inputName "${inputName}" doesn't exist in schema. Please check the inputName prop passed to DynamicContent component`
+      )
+    }
     // 1. Narrow down schema for specific inputName
     const subSchema = schema[inputName]
     // 2. Get current value of inputName from formData. NOTE: Need to normalize data since JS comparison requires String() not JSON.stringify
@@ -37,11 +40,11 @@ const DynamicContent: FC<DynamicContentProps> = ({
   ...props
 }) => {
 
-    // Get context from Page
+  // Get context from Page
   const contextValue = useContext(PageContext)
   if (!contextValue) {
     throw new Error(
-      "RenderDynamicContent() must be used within a PageContext provider"
+      "DynamicContent must be used within a PageContext provider"
     )
   }
   const { formData, schema } = contextValue
