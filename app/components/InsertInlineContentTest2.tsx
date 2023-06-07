@@ -16,7 +16,7 @@ export type DynamicContentProps = {
 }
 
 // Helper functions ----------------------------
-const RenderDynamicContentTest = ({
+const RenderDynamicContent = ({
   docValue,
   schema,
   inputName,
@@ -115,7 +115,7 @@ const InsertInlineContentTest2: FC<DynamicContentProps> = ({ inputName, conditio
   }
   const { docValue, schema } = contextValue
 
-  return <>{RenderDynamicContentTest({ docValue, inputName, schema, condition })}</>
+  return <>{RenderDynamicContent({ docValue, inputName, schema, condition })}</>
 }
 
 export default InsertInlineContentTest2
