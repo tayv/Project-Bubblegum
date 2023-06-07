@@ -3,6 +3,7 @@ import TemplateTest from "@components/TemplateTest"
 import InsertInlineContentTest from "@components/InsertInlineContentTest"
 import InsertInlineContentTest2 from "@components/InsertInlineContentTest2"
 import product1SchemaTest from "./product1SchemaTest"
+import DynamicContent from "@components/DynamicContent"
 
 <CardSection id="product1TemplateTest">
 
@@ -14,16 +15,13 @@ This is some text about product 1. It gives context and introduces the parties i
 
 ### Parties
 
-{/* hello <TemplateTest location="c" docData={{docID: 1, formData: {"docValue": "testValue"}}} /> there */}
-
 This is a test of
 
-- Party 1: <InsertInlineContentTest2 inputName="checkboxExample" condition="a_body" /> is this.
+- Party 1: <DynamicContent inputName="checkboxExample" condition="a_body" /> is this.
 - Party 2:
 
-{/* ## <InsertInlineContentTest2 inputName="radioExample" condition="a_header"/> */}
-
-# <InsertInlineContentTest2 inputName="checkboxExample" condition="b_header" />
+<br />
+# <DynamicContent inputName="checkboxExample" condition="b_header" />
 
 ### Body
 

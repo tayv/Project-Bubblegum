@@ -7,8 +7,8 @@
     },
     "false": {
       "a_body": "Never",
-      "b_body": "Never Ever",
-      "b_header": "This is also a header"
+      "b_body": "Never Ever"
+      
     }
   },
   "radioExample": {

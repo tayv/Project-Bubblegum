@@ -31,11 +31,11 @@ const Product1 = () => {
   })
 
   // Setup initial state
-  const [docValue, setDocValue] = useState({})
+  const [formData, setformData] = useState({})
 
   // Setup pg context values to pass to template
   const pageContextValue = {
-    docValue: docValue,
+    formData: formData,
     schema: product1SchemaTest,
   }
 
@@ -43,7 +43,7 @@ const Product1 = () => {
   // NOTES: Don't need to  e.preventDefault() since rhf's handleSubmit() automatically prevents page reloads
   // and handles errors for you https://www.react-hook-form.com/api/useform/handlesubmit/
   const onSubmit = async (data: any, event: any) => {
-    setDocValue(data) // Save form values to state so the test template table can show the values
+    setformData(data) // Save form values to state so the test template table can show the values
     console.log("Form submitted. data:", data, "Submit form - errors", Error)
     console.log("event:", event)
     const body = data
@@ -113,7 +113,7 @@ const Product1 = () => {
         <div className="overflow-visible my-4">
           {/* div needed for sticky to work. Cannot use overflow: scroll/hidden/auto with sticky https://www.digitalocean.com/community/tutorials/css-position-sticky */}
           <div className="sticky top-0 overflow-y-auto">
-            {/* <Product1TemplateTest formData={docValue} /> */}
+            {/* <Product1TemplateTest formData={formData} /> */}
             <Product1TemplateTest />
           </div>
         </div>
