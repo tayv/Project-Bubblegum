@@ -2,9 +2,10 @@
 
 import React, { FC, useContext } from "react"
 import { PageContext } from "@product1/page"
+import { PageContextType } from "@template/templateTypes"
 
 export type DynamicUserContentProps = {
-  formData: { [key: string]: string | number | boolean | Date  } // Will typecheck specific key/value pairs from Form in actual implementation as this will be prone to errors as product library grows
+  formData: PageContextType["formData"]
   inputName: string
   emptySize: "standard" | "large" | "xlarge" | "xxlarge"
 }

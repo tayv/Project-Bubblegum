@@ -3,6 +3,7 @@
 import * as z from "zod"
 
 import Product1Template from "./product1Template.mdx"
+import { PageContextType } from "@template/templateTypes"
 import Heading from "@ui/Heading"
 import Paragraph from "@ui/Paragraph"
 import Form from "@formControl/Form"
@@ -12,22 +13,25 @@ import Input from "@components/form/Input"
 import CardSection from "@components/ui/CardSection"
 import { useState, createContext } from "react"
 import RadioGroup from "@components/form/RadioGroup"
+import Select from "@components/form/Select"
 import product1SchemaTest from "./product1SchemaTest.json"
 
-// Create FormContext
-export const PageContext = createContext(undefined)
+// Create context for this page to pass needed values to template
+export const PageContext = createContext<PageContextType | undefined>(undefined)
 
 const Product1 = () => {
   const defaultValues = {
     checkboxExample: true,
     radioExample: "option1",
     textExample: "",
+    selectExample: "location1",
   }
 
   const zodSchema = z.object({
     checkboxExample: z.boolean().optional(),
     radioExample: z.enum(["option1", "option2", "option3"]).optional(),
     textExample: z.string().optional(),
+    selectExample: z.enum(["location1", "location2", "location3"]).optional(),
   })
 
   // Setup initial state
@@ -81,6 +85,39 @@ const Product1 = () => {
           onSubmit={onSubmit}
           buttonLabel="Submit Form"
         >
+
+          <Field
+            name="selectExample"
+            validateOnBlur={false}
+          >
+              <Field.GroupLabel>Location Select:</Field.GroupLabel>
+              <Field.Tip>
+                The template and template content can be customized by location.
+              </Field.Tip>
+              <Field.Control>
+                <Select
+                  placeholder="Select an option"
+                  itemOptions={[
+                    {
+                      value: "location1",
+                      labelText: "Location 1",
+                      separator: false,
+                    },
+                    {
+                      value: "location2",
+                      labelText: "Location 2",
+                      separator: false,
+                    },
+                    {
+                      value: "location3",
+                      labelText: "Location 3",
+                      separator: false,
+                    },
+                  ]}
+                />
+              </Field.Control>
+            </Field>
+
           <Field
             name="checkboxExample"
             //validateOnBlur={false}
@@ -136,3 +173,6 @@ const Product1 = () => {
 }
 
 export default Product1
+
+
+// Need a useEffect for loading correct template. Want it to load dynamic values on first load based on location answer which should default based on estimated location.

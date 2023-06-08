@@ -3,6 +3,7 @@ import TemplateTest from "@template/TemplateTest"
 import product1SchemaTest from "./product1SchemaTest"
 import DynamicTemplateContent from "@template/DynamicTemplateContent"
 import DynamicUserContent from "@template/DynamicUserContent"
+import HideContent from "@template/HideContent"
 
 <CardSection id="product1TemplateTest">
 
@@ -25,7 +26,8 @@ This is a test of
 <DynamicUserContent inputName="textExample" emptySize="xxlarge" />
 
 ### Body
-
+<HideContent inputName="selectExample" hideFor={["location1"]} >
 - Here's some body content
+</HideContent>
 
 </CardSection>

@@ -2,10 +2,11 @@
 
 import React, { FC, useContext } from "react"
 import { PageContext } from "@product1/page"
+import { PageContextType } from "@template/templateTypes"
 
 export type DynamicTemplateContentProps = {
-  formData: { [key: string]: string | number | boolean | Date  } // Will typecheck specific key/value pairs from Form in actual implementation as this will be prone to errors as product library grows
-  schema: { [key: string]: { [key: string]: { [key: string]: string } } } // 2 level deep nested object with key/value pairs
+  formData: PageContextType["formData"]
+  schema: PageContextType["schema"]
   inputName: string
   condition: string
 }
