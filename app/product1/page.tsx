@@ -3,7 +3,6 @@
 import * as z from "zod"
 
 import Product1Template from "./product1Template.mdx"
-import Product1TemplateTest from "./product1TemplateTest.mdx"
 import Heading from "@ui/Heading"
 import Paragraph from "@ui/Paragraph"
 import Form from "@formControl/Form"
@@ -11,9 +10,7 @@ import Field from "@formControl/Field"
 import Checkbox from "@components/form/Checkbox"
 import Input from "@components/form/Input"
 import CardSection from "@components/ui/CardSection"
-import TemplateGeneric from "@components/TemplateGeneric"
 import { useState, createContext } from "react"
-import useInsertDynamicContent from "@hooks/useInsertDynamicContent"
 import RadioGroup from "@components/form/RadioGroup"
 import product1SchemaTest from "./product1SchemaTest.json"
 
@@ -130,7 +127,7 @@ const Product1 = () => {
           {/* div needed for sticky to work. Cannot use overflow: scroll/hidden/auto with sticky https://www.digitalocean.com/community/tutorials/css-position-sticky */}
           <div className="sticky top-0 overflow-y-auto">
             {/* <Product1TemplateTest formData={formData} /> */}
-            <Product1TemplateTest />
+            <Product1Template />
           </div>
         </div>
       </div>

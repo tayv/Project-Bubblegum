@@ -1,9 +1,10 @@
 import CardSection from "@ui/CardSection"
-import TemplateTest from "@components/TemplateTest"
-import InsertInlineContent from "@components/InsertInlineContent"
-import product1Schema from "./product1Schema"
+import TemplateTest from "@template/TemplateTest"
+import product1SchemaTest from "./product1SchemaTest"
+import DynamicTemplateContent from "@template/DynamicTemplateContent"
+import DynamicUserContent from "@template/DynamicUserContent"
 
-<CardSection id="product1Template">
+<CardSection id="product1TemplateTest">
 
 ## Product 1
 
@@ -13,14 +14,15 @@ This is some text about product 1. It gives context and introduces the parties i
 
 ### Parties
 
-{/* hello <TemplateTest location="c" docData={{docID: 1, formData: {"docValue": "testValue"}}} /> there */}
-
 This is a test of
 
-- Party 1: <InsertInlineContent formData={props.formData} schema={product1Schema} inputName="checkboxExample"/> is this.
-- Party 2:
+- Party 1: <DynamicTemplateContent inputName="checkboxExample" condition="a_body" /> is this.
+- Party 2: <DynamicUserContent inputName="textExample" />
 
-## <InsertInlineContent formData={props.formData} schema={product1Schema} inputName="radioExample"/>
+<br />
+
+# <DynamicTemplateContent inputName="checkboxExample" condition="b_header" />
+<DynamicUserContent inputName="textExample" emptySize="xxlarge" />
 
 ### Body
 

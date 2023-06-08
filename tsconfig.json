@@ -21,6 +21,8 @@
       "@formControl/*": ["app/components/form/formControl/*"],
       "@formActions/*": ["app/components/form/formActions/*"],
       "@ui/*": ["app/components/ui/*"],
+      "@template/*": ["app/components/template/*"],
+
       "@hooks/*": ["app/hooks/*"],
       "@utilities/*": ["app/utils/*"],
       "@product1/*": ["app/product1/*"],
