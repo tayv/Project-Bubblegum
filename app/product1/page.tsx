@@ -9,6 +9,7 @@ import Paragraph from "@ui/Paragraph"
 import Form from "@formControl/Form"
 import Field from "@formControl/Field"
 import Checkbox from "@components/form/Checkbox"
+import Input from "@components/form/Input"
 import CardSection from "@components/ui/CardSection"
 import TemplateGeneric from "@components/TemplateGeneric"
 import { useState, createContext } from "react"
@@ -23,11 +24,13 @@ const Product1 = () => {
   const defaultValues = {
     checkboxExample: true,
     radioExample: "option1",
+    textExample: "",
   }
 
   const zodSchema = z.object({
     checkboxExample: z.boolean().optional(),
     radioExample: z.enum(["option1", "option2", "option3"]).optional(),
+    textExample: z.string().optional(),
   })
 
   // Setup initial state
@@ -107,6 +110,19 @@ const Product1 = () => {
               />
             </Field.Control>
           </Field>
+
+          <Field
+            name="textExample"
+            //validateOnBlur={false}
+          >
+            <Field.GroupLabel>Standard text input:</Field.GroupLabel>
+            <Field.Control>
+              <Input
+                type="text"
+              />
+            </Field.Control>
+          </Field>
+
         </Form>
 
         {/*TEMPLATE SECTION START --------------------------------------------- */}

@@ -3,7 +3,7 @@
 import React, { FC, useContext } from "react"
 import { PageContext } from "@product1/page"
 
-export type DynamicContentProps = {
+export type DynamicTemplateContentProps = {
   formData: { [key: string]: string | number | boolean | Date  } // Will typecheck specific key/value pairs from Form in actual implementation as this will be prone to errors as product library grows
   schema: { [key: string]: { [key: string]: { [key: string]: string } } } // 2 level deep nested object with key/value pairs
   inputName: string
@@ -11,17 +11,17 @@ export type DynamicContentProps = {
 }
 
 // Helper functions ----------------------------
-const RenderDynamicContent = ({
+const RenderDynamicTemplateContent = ({
   formData,
   schema,
   inputName,
   condition,
-}: DynamicContentProps) => {
+}: DynamicTemplateContentProps) => {
 
     // Check if inputName exists in schema. Can't checl for formData since it's unavailable at initial render (requires form submission)
     if (!(inputName in schema)) {
       throw new Error(
-        `inputName "${inputName}" doesn't exist in schema. Please check the inputName prop passed to DynamicContent component`
+        `inputName "${inputName}" doesn't exist in schema. Please check the inputName prop passed to DynamicTemplateContent component`
       )
     }
     // 1. Narrow down schema for specific inputName
@@ -34,7 +34,7 @@ const RenderDynamicContent = ({
   }
 
 // Component Function Starts Here ----------------------------
-const DynamicContent: FC<DynamicContentProps> = ({
+const DynamicTemplateContent: FC<DynamicTemplateContentProps> = ({
   inputName,
   condition,
   ...props
@@ -44,15 +44,15 @@ const DynamicContent: FC<DynamicContentProps> = ({
   const contextValue = useContext(PageContext)
   if (!contextValue) {
     throw new Error(
-      "DynamicContent must be used within a PageContext provider"
+      "DynamicTemplateContent must be used within a PageContext provider"
     )
   }
   const { formData, schema } = contextValue
 
-  return <>{RenderDynamicContent({ formData, inputName, schema, condition })}</>
+  return <>{RenderDynamicTemplateContent({ formData, inputName, schema, condition })}</>
 }
 
-export default DynamicContent
+export default DynamicTemplateContent
 
 
  
