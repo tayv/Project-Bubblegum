@@ -15,9 +15,8 @@ import { useState, createContext } from "react"
 import RadioGroup from "@components/form/RadioGroup"
 import Select from "@components/form/Select"
 import product1SchemaTest from "./product1SchemaTest.json"
+import { PageContext } from "@template/context"
 
-// Create context for this page to pass needed values to template
-export const PageContext = createContext<PageContextType | undefined>(undefined)
 
 const Product1 = () => {
   const defaultValues = {
@@ -85,38 +84,34 @@ const Product1 = () => {
           onSubmit={onSubmit}
           buttonLabel="Submit Form"
         >
-
-          <Field
-            name="selectExample"
-            validateOnBlur={false}
-          >
-              <Field.GroupLabel>Location Select:</Field.GroupLabel>
-              <Field.Tip>
-                The template and template content can be customized by location.
-              </Field.Tip>
-              <Field.Control>
-                <Select
-                  placeholder="Select an option"
-                  itemOptions={[
-                    {
-                      value: "location1",
-                      labelText: "Location 1",
-                      separator: false,
-                    },
-                    {
-                      value: "location2",
-                      labelText: "Location 2",
-                      separator: false,
-                    },
-                    {
-                      value: "location3",
-                      labelText: "Location 3",
-                      separator: false,
-                    },
-                  ]}
-                />
-              </Field.Control>
-            </Field>
+          <Field name="selectExample" validateOnBlur={false}>
+            <Field.GroupLabel>Location Select:</Field.GroupLabel>
+            <Field.Tip>
+              The template and template content can be customized by location.
+            </Field.Tip>
+            <Field.Control>
+              <Select
+                placeholder="Select an option"
+                itemOptions={[
+                  {
+                    value: "location1",
+                    labelText: "Location 1",
+                    separator: false,
+                  },
+                  {
+                    value: "location2",
+                    labelText: "Location 2",
+                    separator: false,
+                  },
+                  {
+                    value: "location3",
+                    labelText: "Location 3",
+                    separator: false,
+                  },
+                ]}
+              />
+            </Field.Control>
+          </Field>
 
           <Field
             name="checkboxExample"
@@ -151,12 +146,9 @@ const Product1 = () => {
           >
             <Field.GroupLabel>Standard text input:</Field.GroupLabel>
             <Field.Control>
-              <Input
-                type="text"
-              />
+              <Input type="text" />
             </Field.Control>
           </Field>
-
         </Form>
 
         {/*TEMPLATE SECTION START --------------------------------------------- */}
@@ -173,6 +165,5 @@ const Product1 = () => {
 }
 
 export default Product1
-
 
 // Need a useEffect for loading correct template. Want it to load dynamic values on first load based on location answer which should default based on estimated location.
