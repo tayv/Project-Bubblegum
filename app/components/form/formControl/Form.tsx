@@ -4,6 +4,7 @@ import { FC, useState } from "react"
 import { useForm, FormProvider } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
+import LoadTemplate from "@template/LoadTemplate"
 
 export type FormProps = {
   id: string
@@ -51,6 +52,18 @@ const Form: FC<FormProps> = ({
           </p>
         ) : null}
       </form>
+
+      {/* Template styles ---------------------------------------------- */}
+      <div className="overflow-visible my-4">
+          {/* div needed for sticky to work. Cannot use overflow: scroll/hidden/auto with sticky https://www.digitalocean.com/community/tutorials/css-position-sticky */}
+          <div className="sticky top-0 overflow-y-auto">
+            {/* <Product1TemplateTest formData={formData} /> */}
+            {/* <Product1Template /> */}
+            <LoadTemplate productName="product1" />
+          </div>
+        </div>
+      { /* Template ends ---------------------------------------------- */}
+      
     </FormProvider>
   )
 }

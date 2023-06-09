@@ -2,7 +2,7 @@
 
 import * as z from "zod"
 
-import Product1Template from "./product1Template.mdx"
+import Product1Template from "@product1/product1Template.mdx"
 import { PageContextType } from "@template/templateTypes"
 import Heading from "@ui/Heading"
 import Paragraph from "@ui/Paragraph"
@@ -16,6 +16,7 @@ import RadioGroup from "@components/form/RadioGroup"
 import Select from "@components/form/Select"
 import product1SchemaTest from "./product1SchemaTest.json"
 import { PageContext } from "@template/context"
+import LoadTemplate from "@template/LoadTemplate"
 
 
 const Product1 = () => {
@@ -23,14 +24,14 @@ const Product1 = () => {
     checkboxExample: true,
     radioExample: "option1",
     textExample: "",
-    selectExample: "location1",
+    jurisdiction: "location1",
   }
 
   const zodSchema = z.object({
     checkboxExample: z.boolean().optional(),
     radioExample: z.enum(["option1", "option2", "option3"]).optional(),
     textExample: z.string().optional(),
-    selectExample: z.enum(["location1", "location2", "location3"]).optional(),
+    jurisdiction: z.enum(["location1", "location2", "location3"]).optional(),
   })
 
   // Setup initial state
@@ -60,13 +61,13 @@ const Product1 = () => {
         console.log("something went wrong oops")
         //set an error banner here
       } else {
-        // resetForm();
-        console.log("form submitted successfully !!!")
-        //set a success banner here
+          // resetForm();
+          console.log("form submitted successfully !!!")
+          //set a success banner here
       }
       //check response, if success is false, dont take them to success page
     } catch (error) {
-      console.log("there was an error submitting", error)
+        console.log("there was an error submitting", error)
     }
   }
 
@@ -84,7 +85,7 @@ const Product1 = () => {
           onSubmit={onSubmit}
           buttonLabel="Submit Form"
         >
-          <Field name="selectExample" validateOnBlur={false}>
+          <Field name="jurisdiction" validateOnBlur={false}>
             <Field.GroupLabel>Location Select:</Field.GroupLabel>
             <Field.Tip>
               The template and template content can be customized by location.
@@ -152,13 +153,7 @@ const Product1 = () => {
         </Form>
 
         {/*TEMPLATE SECTION START --------------------------------------------- */}
-        <div className="overflow-visible my-4">
-          {/* div needed for sticky to work. Cannot use overflow: scroll/hidden/auto with sticky https://www.digitalocean.com/community/tutorials/css-position-sticky */}
-          <div className="sticky top-0 overflow-y-auto">
-            {/* <Product1TemplateTest formData={formData} /> */}
-            <Product1Template />
-          </div>
-        </div>
+       
       </div>
     </PageContext.Provider>
   )
@@ -167,3 +162,4 @@ const Product1 = () => {
 export default Product1
 
 // Need a useEffect for loading correct template. Want it to load dynamic values on first load based on location answer which should default based on estimated location.
+// Need a way to hide/show premium content based on license and auth state

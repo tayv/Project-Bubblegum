@@ -18,7 +18,7 @@ const HideContent: FC<HideContentProps> = ({
   const contextValue = useContext(PageContext)
   if (!contextValue) {
     throw new Error(
-      "DynamicUserContent must be used within a PageContext provider"
+      "HideContent must be used within a PageContext provider"
     )
   }
   const { formData } = contextValue
