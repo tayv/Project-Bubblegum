@@ -3,9 +3,10 @@
 import React, { FC, useContext } from "react"
 import { useFormContext, useWatch } from "react-hook-form"
 import { PageContext } from "@template/context"
-import { DynamicContentProps } from "@template/templateTypes"
+import { DynamicContentProps, Schema } from "@template/templateTypes"
 
 export type DynamicTemplateContentProps = DynamicContentProps & {
+  schema: Schema
   condition: string
 }
 
@@ -39,6 +40,7 @@ const DynamicTemplateContent: FC<DynamicTemplateContentProps> = ({
   condition,
   ...props
 }) => {
+
   // Get context from Page
   const contextValue = useContext(PageContext)
   if (!contextValue) {
@@ -47,13 +49,22 @@ const DynamicTemplateContent: FC<DynamicTemplateContentProps> = ({
     )
   }
 
-  const { schema } = contextValue // Needs to be child of PageContext.Provider
-  const { control } = useFormContext() // Needs to be child of RHF FormContext.Provider
+  // Schema holds all the conditions for the template. 
+   // It matches the formData structure and must be a child of PageContext.Provider
+  const { schema } = contextValue 
 
-  // Watch input value using useWatch
+  // Check as useWatch won't work if watchedInputName is undefined
+  if (!watchedInputName === undefined) {
+    throw new Error(
+      `watchedInputName is ${watchedInputName}. Check the watchedInputName prop passed to DynamicTemplateContent component`
+    )
+  }
+  
+  // Use RHF to watch input value so don't need to pass formData via PageContext and manually handle defaultValues
+  const { control } = useFormContext() // Must be child of RHF FormContext.Provider
   const watchedInputValue = useWatch({
     control, 
-    name: watchedInputName, // the name of the field to watch
+    name: watchedInputName, 
     // defaultValue: // keep this disabled or the defaultValues won't auto load on initial render. Will have to manually pass defaultValues via PageContext
   })
 

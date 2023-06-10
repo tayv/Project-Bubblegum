@@ -57,6 +57,7 @@ const LoadTemplate: FC<LoadTemplateProps> = ({
   const selectedJurisdiction = useWatch({
     control, 
     name: inputName, // almost always will be watching jursidiction input field
+    // Look into using RHF useWatch so default Value isn't needed
     defaultValue: "location1" // the default value if this field isn't available in the form or is undefined
   })
 

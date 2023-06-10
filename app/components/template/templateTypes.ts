@@ -12,7 +12,6 @@ export type PageContextType = {
 }
 
 export type DynamicContentProps = {
-  schema: Schema
   watchedInputName: string
-  watchedInputValue: string
+  watchedInputValue: string | number | boolean | Date
 }
