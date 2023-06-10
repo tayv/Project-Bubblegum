@@ -5,6 +5,7 @@ import { useForm, FormProvider } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 import LoadTemplate from "@template/LoadTemplate"
+import { ProductNameProps } from "@template/templateTypes"
 
 export type FormProps = {
   id: string
@@ -12,7 +13,8 @@ export type FormProps = {
   zodSchema: z.ZodObject<any>
   onSubmit: (data: any, event: any) => Promise<void>
   buttonLabel?: string
-  children: any
+  children: React.ReactElement | React.ReactElement[] // Expects one or more Field components
+  productName: ProductNameProps["productName"]
 }
 
 // HELPER FUNCTIONS
@@ -25,6 +27,7 @@ const Form: FC<FormProps> = ({
   id,
   buttonLabel = "Submit Form",
   children,
+  productName,
   ...props
 }) => {
   const [formData, setFormData] = useState({})
@@ -59,7 +62,7 @@ const Form: FC<FormProps> = ({
         <div className="sticky top-0 overflow-y-auto">
           {/* <Product1TemplateTest formData={formData} /> */}
           {/* <Product1Template /> */}
-          <LoadTemplate productName="product1" />
+          <LoadTemplate productName={productName} />
         </div>
       </div>
       {/* Template ends ---------------------------------------------- */}

@@ -15,3 +15,7 @@ export type DynamicContentProps = {
   watchedInputName: string
   watchedInputValue: string | number | boolean | Date
 }
+
+export type ProductNameProps = {
+  productName: "product1" | "product2" | "product3"
+}

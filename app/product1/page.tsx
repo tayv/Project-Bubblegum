@@ -83,6 +83,7 @@ const Product1 = () => {
           zodSchema={zodSchema}
           onSubmit={onSubmit}
           buttonLabel="Submit Form"
+          productName="product1"
         >
           <Field name="jurisdiction" validateOnBlur={false}>
             <Field.GroupLabel>Location Select:</Field.GroupLabel>

@@ -1,18 +1,18 @@
 "use client"
 
-import { FC, useContext } from "react"
-import { PageContext } from "@template/context"
+import { FC } from "react"
 import Product1Template from "@product1/product1Template.mdx"
 import Product1TemplateB from "@product1/product1TemplateB.mdx"
 import { useFormContext, useWatch } from "react-hook-form"
+import { ProductNameProps } from "@template/templateTypes"
 
 export type LoadTemplateProps = {
-  inputName?: "jurisdiction"
-  productName: "product1" | "product2" | "product3"
+  watchedInputName?: "jurisdiction"
+  productName: ProductNameProps["productName"]
 }
 
 export type RenderTemplateProps = {
-  selectedJurisdiction: string
+  selectedJurisdiction: string // Could make this a specific list in future and move to templateTypes
   productName: LoadTemplateProps["productName"]
 }
 
@@ -40,30 +40,33 @@ const renderTemplate = ({
 
 // MAIN COMOPNENT ----------------------------
 const LoadTemplate: FC<LoadTemplateProps> = ({
-  inputName = "jurisdiction",
+  watchedInputName = "jurisdiction",
   productName,
 }) => {
-  // Get context from Page
-  const contextValue = useContext(PageContext)
-  if (!contextValue) {
-    throw new Error("LoadTemplate must be used within a PageContext provider")
-  }
-  const { formData } = contextValue
+  // RHF Setup ----------------------------
+  // Watch input value with RHF so don't need to pass formData via PageContext and manually handle defaultValues
   const { control } = useFormContext()
-
+  // Check as must be child of RHF FormContext.Provider to use useFormContext()
+  if (!control) {
+    throw new Error("LoadTemplate must be used within a RHF FormProvider")
+  }
+  // Check as useWatch won't work if watchedInputName is undefined
+  if (!watchedInputName === undefined) {
+    throw new Error(
+      `watchedInputName is ${watchedInputName}. Check the watchedInputName prop passed to LoadTemplate component. Typically it should watch an input field named: "jurisdiction"`
+    )
+  }
   const selectedJurisdiction = useWatch({
     control,
-    name: inputName, // almost always will be watching jursidiction input field
-    // Look into using RHF useWatch so default Value isn't needed
-    defaultValue: "location1", // the default value if this field isn't available in the form or is undefined
+    name: watchedInputName, // almost always will be watching jursidiction input field
+    // defaultValue: // keep this disabled or the defaultValues won't auto load on initial render and will have to manually pass defaultValues via PageContext
   })
+  // End RHF Setup -------------------------------------
 
-  // 1. formData typically undefined on first render. Only convert to string if it exists or logic gate will fail
-  // NOTE: Need to normalize data since JS includes() requires String() not JSON.stringify
-  //const selectedJurisdiction = formData[inputName] !== undefined ? String(formData[inputName]) : "location1"
-
-  // If formData[inputName] isn't in hideFor array or undefined, display children
   return <>{renderTemplate({ selectedJurisdiction, productName })}</>
 }
 
 export default LoadTemplate
+
+// NOTES
+// This component is intended to load product templates based on the selected jurisdiction. This is why watchedInputName defaults to "jurisdiction"

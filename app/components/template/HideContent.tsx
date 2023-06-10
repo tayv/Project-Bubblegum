@@ -24,13 +24,13 @@ const HideContent: FC<HideContentProps> = ({
   // Check as useWatch won't work if watchedInputName is undefined
   if (!watchedInputName === undefined) {
     throw new Error(
-      `watchedInputName is ${watchedInputName}. Check the watchedInputName prop passed to DynamicUserContent component`
+      `watchedInputName is ${watchedInputName}. Check the watchedInputName prop passed to HideContent component`
     )
   }
   const watchedInputValue = useWatch({
     control,
     name: watchedInputName,
-    // defaultValue: // keep this disabled or the defaultValues won't auto load on initial render. Will have to manually pass defaultValues via PageContext
+    // defaultValue: // keep this disabled or the defaultValues won't auto load on initial render and will have to manually pass defaultValues via PageContext
   })
   // End RHF Setup -------------------------------------
 
