@@ -18,7 +18,6 @@ import product1SchemaTest from "./product1SchemaTest.json"
 import { PageContext } from "@template/context"
 import LoadTemplate from "@template/LoadTemplate"
 
-
 const Product1 = () => {
   const defaultValues = {
     checkboxExample: true,
@@ -61,13 +60,13 @@ const Product1 = () => {
         console.log("something went wrong oops")
         //set an error banner here
       } else {
-          // resetForm();
-          console.log("form submitted successfully !!!")
-          //set a success banner here
+        // resetForm();
+        console.log("form submitted successfully !!!")
+        //set a success banner here
       }
       //check response, if success is false, dont take them to success page
     } catch (error) {
-        console.log("there was an error submitting", error)
+      console.log("there was an error submitting", error)
     }
   }
 
@@ -153,7 +152,6 @@ const Product1 = () => {
         </Form>
 
         {/*TEMPLATE SECTION START --------------------------------------------- */}
-       
       </div>
     </PageContext.Provider>
   )

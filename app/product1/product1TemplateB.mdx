@@ -5,22 +5,9 @@ import DynamicTemplateContent from "@template/DynamicTemplateContent"
 import DynamicUserContent from "@template/DynamicUserContent"
 import HideContent from "@template/HideContent"
 
-<CardSection id="product1TemplateTest">
+<CardSection id="product1TemplateTestB">
 
-## Product 1
-
-### Introduction
-
-This is some text about product 1. It gives context and introduces the parties involved.
-
-### Parties
-
-This is a test of
-
-- Party 1: <DynamicTemplateContent watchedInputName="checkboxExample" condition="a_body" /> is this.
-- Party 2: <DynamicUserContent watchedInputName="textExample" />
-
-<br />
+## Product Template B
 
 # <DynamicTemplateContent watchedInputName="checkboxExample" condition="b_header" />
 
@@ -28,8 +15,12 @@ This is a test of
 
 ### Body
 
-<HideContent watchedInputName="jurisdiction" hideFor={["location1"]}>
+<HideContent
+  watchedInputName="jurisdiction"
+  hideFor={["location1", "location2"]}
+>
   - Here's some body content
 </HideContent>
+- Blah blah blah{" "}
 
 </CardSection>

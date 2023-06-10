@@ -3,11 +3,11 @@
 import { FC, useContext } from "react"
 import { PageContext } from "@template/context"
 import Product1Template from "@product1/product1Template.mdx"
+import Product1TemplateB from "@product1/product1TemplateB.mdx"
 import { useFormContext, useWatch } from "react-hook-form"
 
-
 export type LoadTemplateProps = {
-  inputName?: "jurisdiction" 
+  inputName?: "jurisdiction"
   productName: "product1" | "product2" | "product3"
 }
 
@@ -21,16 +21,15 @@ const renderTemplate = ({
   selectedJurisdiction,
   productName,
 }: RenderTemplateProps) => {
-  console.log("swotch fired selectedJurisdiction", selectedJurisdiction)
   switch (productName) {
     case "product1":
       switch (selectedJurisdiction) {
         case "location1":
           return <Product1Template />
         case "location2":
-          return <> Product 2 Location </>
+          return <Product1TemplateB />
         case "location3":
-          return <> Product 3 Location </>
+          return <Product1Template />
         default:
           return <>Please choose a valid location</>
       }
@@ -47,18 +46,16 @@ const LoadTemplate: FC<LoadTemplateProps> = ({
   // Get context from Page
   const contextValue = useContext(PageContext)
   if (!contextValue) {
-    throw new Error(
-      "LoadTemplate must be used within a PageContext provider"
-    )
+    throw new Error("LoadTemplate must be used within a PageContext provider")
   }
   const { formData } = contextValue
   const { control } = useFormContext()
 
   const selectedJurisdiction = useWatch({
-    control, 
+    control,
     name: inputName, // almost always will be watching jursidiction input field
     // Look into using RHF useWatch so default Value isn't needed
-    defaultValue: "location1" // the default value if this field isn't available in the form or is undefined
+    defaultValue: "location1", // the default value if this field isn't available in the form or is undefined
   })
 
   // 1. formData typically undefined on first render. Only convert to string if it exists or logic gate will fail
@@ -66,7 +63,7 @@ const LoadTemplate: FC<LoadTemplateProps> = ({
   //const selectedJurisdiction = formData[inputName] !== undefined ? String(formData[inputName]) : "location1"
 
   // If formData[inputName] isn't in hideFor array or undefined, display children
-  return <>{ renderTemplate({selectedJurisdiction, productName}) }</>
+  return <>{renderTemplate({ selectedJurisdiction, productName })}</>
 }
 
 export default LoadTemplate

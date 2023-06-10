@@ -4,8 +4,10 @@ import React, { FC, useContext } from "react"
 import { PageContext } from "@template/context"
 import { PageContextType, DynamicContentProps } from "@template/templateTypes"
 
-export type DynamicUserContentProps = DynamicContentProps & {
+export type DynamicUserContentProps = {
+  formData: PageContextType["formData"]
   emptySize: "standard" | "large" | "xlarge" | "xxlarge"
+  inputName: string
 }
 
 // DYNAMIC STYLES
@@ -45,7 +47,7 @@ const RenderDynamicUserContent = ({
 
 // Component Function Starts Here ----------------------------
 const DynamicUserContent: FC<DynamicUserContentProps> = ({
-  watchedInputName,
+  inputName,
   emptySize = "standard",
 }) => {
   // Get context from Page
@@ -57,7 +59,7 @@ const DynamicUserContent: FC<DynamicUserContentProps> = ({
   }
   const { formData } = contextValue
 
-  return <>{RenderDynamicUserContent({ formData, watchedInputName, emptySize })}</>
+  return <>{RenderDynamicUserContent({ formData, inputName, emptySize })}</>
 }
 
 export default DynamicUserContent
