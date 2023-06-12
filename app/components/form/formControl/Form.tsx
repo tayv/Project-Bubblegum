@@ -54,14 +54,21 @@ const Form: FC<FormProps> = ({
             The form can&apos;t be submitted until you fix the errors above.
           </p>
         ) : null}
+
+        <button
+          type="button"
+          onClick={() => methods.reset(defaultValues) }
+          className="block border-slate-900 bg-slate-100 hover:bg-slate-200 border rounded-md my-1 px-2 py-1 text-xs font-medium"
+        >
+          ↩️ Reset Form
+        </button>
+
       </form>
 
-      {/* Template styles ---------------------------------------------- */}
+      {/* Template starts ---------------------------------------------- */}
       <div className="overflow-visible my-4">
         {/* div needed for sticky to work. Cannot use overflow: scroll/hidden/auto with sticky https://www.digitalocean.com/community/tutorials/css-position-sticky */}
         <div className="sticky top-0 overflow-y-auto">
-          {/* <Product1TemplateTest formData={formData} /> */}
-          {/* <Product1Template /> */}
           <LoadTemplate productName={productName} />
         </div>
       </div>
