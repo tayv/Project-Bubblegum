@@ -30,7 +30,7 @@ const WatchField: FC<WatchFieldProps> = ({
 
   // ------------------  Unregister Conditional Field Logic ------------------ //
   const errorMessage = methods.formState.errors[name]?.message
-  // NOTE: If you don't want a hidden fields value to submit with form then use the following to unregister field
+  // NOTE: If you don't want a hidden fields value to submit with form then use methods.unregister() to unregister field
   useEffect(() => {
     if (otherFieldValue !== conditionLogic.watchValue && errorMessage) {
       //  methods.unregister(name)

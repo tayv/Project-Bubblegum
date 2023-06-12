@@ -4,6 +4,8 @@ import { FC, useState } from "react"
 import { useForm, FormProvider } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
+import LoadTemplate from "@template/LoadTemplate"
+import { ProductNameProps } from "@template/templateTypes"
 
 export type FormProps = {
   id: string
@@ -11,7 +13,8 @@ export type FormProps = {
   zodSchema: z.ZodObject<any>
   onSubmit: (data: any, event: any) => Promise<void>
   buttonLabel?: string
-  children: any
+  children: React.ReactElement | React.ReactElement[] // Expects one or more Field components
+  productName: ProductNameProps["productName"]
 }
 
 // HELPER FUNCTIONS
@@ -24,6 +27,7 @@ const Form: FC<FormProps> = ({
   id,
   buttonLabel = "Submit Form",
   children,
+  productName,
   ...props
 }) => {
   const [formData, setFormData] = useState({})
@@ -51,6 +55,17 @@ const Form: FC<FormProps> = ({
           </p>
         ) : null}
       </form>
+
+      {/* Template styles ---------------------------------------------- */}
+      <div className="overflow-visible my-4">
+        {/* div needed for sticky to work. Cannot use overflow: scroll/hidden/auto with sticky https://www.digitalocean.com/community/tutorials/css-position-sticky */}
+        <div className="sticky top-0 overflow-y-auto">
+          {/* <Product1TemplateTest formData={formData} /> */}
+          {/* <Product1Template /> */}
+          <LoadTemplate productName={productName} />
+        </div>
+      </div>
+      {/* Template ends ---------------------------------------------- */}
     </FormProvider>
   )
 }

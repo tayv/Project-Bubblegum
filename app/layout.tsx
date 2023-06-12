@@ -22,12 +22,7 @@ export default function RootLayout({
             <SideNav
               articleList={[
                 { title: "Testing", groupTitle: true },
-                { title: "Test Form", path: "/testForms/test-form" },
-                { title: "Test Markdown", path: "/mdx/test-markdown" },
-                {
-                  title: "🧰 Test Document Builder",
-                  path: "/restricted/test-document-builder",
-                },
+
                 { title: "Products", groupTitle: true },
                 { title: "Product 1", path: "/product1" },
               ]}
