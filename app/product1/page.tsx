@@ -151,8 +151,6 @@ const Product1 = () => {
             </Field.Control>
           </Field>
         </Form>
-
-        {/*TEMPLATE SECTION START --------------------------------------------- */}
       </div>
     </PageContext.Provider>
   )
