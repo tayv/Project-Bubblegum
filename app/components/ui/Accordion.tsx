@@ -1,43 +1,51 @@
+"use client"
+
 import React, { FC, forwardRef, ReactElement } from "react"
 import classNames from "classnames"
 import * as AccordionRadix from "@radix-ui/react-accordion"
 import { Minus, Plus, Lightbulb, AlertCircle } from "lucide-react"
 
 // Types
+type AccordionItems = {
+  value: string
+  headerText: string
+  contentText: string
+}
+
 type MyAccordionProps = {
-  items: Array<{ value: string; headerText: string; contentText: string }>
-  type?: "single" | "multiple" // Determines whether one or multiple items can be opened at the same time.
+  items: AccordionItems[]
+  type: "single" | "multiple" // Determines whether one or multiple items can be opened at the same time.
   defaultValue?: any // this is a workaround for the Radix type and defaultValue prop not working together. Should be string | string[] | undefined.
   collapsible?: boolean // When type is "single", allows closing content when clicking trigger for an open item.
 
-  ToggleStyle?: ToggleStyle
+  rootStyle?: RootStyle
   accordionStyle?: AccordionStyle
 }
 
 // Conditional Styles
-type ToggleStyle = "standard" | "shrink"
-const ToggleStyleMap: { [key in ToggleStyle]: string } = {
+type RootStyle = "standard" | "shrink"
+const rootStyleMap: { [key in RootStyle]: string } = {
   standard: "",
   shrink: "flex flex-col shrink",
 }
 
 type AccordionStyle = "standard" | "warning" | "tip"
 const accordionStyleMap: { [key in AccordionStyle]: string } = {
-  standard: "bg-neutral-400",
-  warning: "bg-red-400",
-  tip: "bg-blue-400",
+  standard: "bg-neutral-300",
+  warning: "bg-red-300",
+  tip: "bg-blue-300",
 }
 
 // Sets the icon for each accordionStyle
 const iconTypeMap: { [key in AccordionStyle]: ReactElement | null } = {
   standard: null,
-  warning: <AlertCircle className=" h-5 w-5 text-red-700" />,
+  warning: <AlertCircle className=" h-5 w-5 text-red-600" />,
   tip: <Lightbulb className=" h-5 w-5 text-blue-600" />,
 }
 
 // Helper Functions
 const renderAccordionItems = (
-  accordionItems: MyAccordionProps["items"],
+  accordionItems: AccordionItems[],
   accordionStyle: AccordionStyle
 ) => {
   return accordionItems.map(
@@ -81,11 +89,11 @@ const renderAccordionItems = (
 
 // Component
 const Accordion: FC<MyAccordionProps> = ({
-  type = "single",
+  type,
   items,
   defaultValue,
   collapsible = true,
-  ToggleStyle = "standard",
+  rootStyle = "standard",
   accordionStyle = "standard",
 }) => (
   <AccordionRadix.Root
@@ -94,7 +102,7 @@ const Accordion: FC<MyAccordionProps> = ({
     collapsible={collapsible}
     className={classNames([
       "max-w-lg", // standard css styles go here.
-      ToggleStyleMap[ToggleStyle],
+      rootStyleMap[rootStyle],
       // className
     ])}
   >
@@ -103,7 +111,3 @@ const Accordion: FC<MyAccordionProps> = ({
 )
 
 export default Accordion
-
-// NOTES
-// Radix documentation: https://www.radix-ui.com/docs/primitives/components/accordion
-// Use data-[state=closed] or data-[state=open] to target open/closed states. For example: data-[state=closed]:w-48 data-[state=open]:w-full

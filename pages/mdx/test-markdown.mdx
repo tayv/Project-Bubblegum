@@ -2,14 +2,10 @@ import LayoutMDX from "@designSystem/mdx/LayoutMDX"
 import Heading from "@designSystem/atoms/Heading"
 
 export const meta = {
-  author: 'Alien',
-  title: 'Introduction to Being an Alien',
-  slug: 'introduction-to-being-an-alien',
-  topics: [
-    'alien language',
-    'ufos',
-    'alien basics',
-  ],
+  author: "Alien",
+  title: "Introduction to Being an Alien",
+  slug: "introduction-to-being-an-alien",
+  topics: ["alien language", "ufos", "alien basics"],
 }
 
 export const crumbs = [
@@ -39,9 +35,8 @@ This is a list in markdown:
 
 export default function ({ children }) {
   return (
-    <LayoutMDX crumbs={crumbs} meta={meta}>{children}</LayoutMDX>
-  )}
-
-
-
-
+    <LayoutMDX crumbs={crumbs} meta={meta}>
+      {children}
+    </LayoutMDX>
+  )
+}

@@ -1,3 +1,5 @@
+"use client"
+
 import React, { FC, JSXElementConstructor } from "react"
 import Paragraph from "@designSystem/atoms/Paragraph"
 import Divider from "@designSystem/atoms/Divider"
