@@ -16,7 +16,6 @@ import RadioGroup from "@components/form/RadioGroup"
 import Select from "@components/form/Select"
 import product1SchemaTest from "./product1SchemaTest.json"
 import { PageContext } from "@template/context"
-import LoadTemplate from "@template/LoadTemplate"
 
 const Product1 = () => {
   const defaultValues = {
