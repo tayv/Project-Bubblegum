@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 import LoadTemplate from "@template/LoadTemplate"
 import { ProductNameProps } from "@template/templateTypes"
+import ModalAlert from "@components/ui/ModalAlert"
 
 export type FormProps = {
   id: string
@@ -43,25 +44,37 @@ const Form: FC<FormProps> = ({
       >
         {children}
         {/* <SubmitButton onSubmit={onSubmit} formData={formData}/> */}
-        <button
-          type="submit"
-          className="block border-slate-900 bg-slate-100 hover:bg-slate-200 border rounded-md my-1 px-2 py-1 text-xs font-medium"
-        >
-          {buttonLabel}
-        </button>
-        {!!formHasErrors ? (
-          <p className="text-red-600">
-            The form can&apos;t be submitted until you fix the errors above.
-          </p>
-        ) : null}
+
+        <div className="flex justify-start gap-[25px] mt-10">
+          <button
+            type="submit"
+            className="items-center justify-center inline-flex h-10 px-4 font-medium text-slate-500 bg-sky-200 hover:bg-white rounded-lg leading-none outline-none focus:shadow-[0_0_0_2px] shadow focus:shadow-sky-400"
+          >
+            {buttonLabel}
+          </button>
+          {!!formHasErrors ? (
+            <p className="text-red-600">
+              The form can&apos;t be submitted until you fix the errors above.
+            </p>
+          ) : null}
+
+          <ModalAlert
+            onConfirmClick={() => methods.reset(defaultValues)}
+            title="Are you sure you want to reset the form?"
+            description="This action can't be undone. Any unsaved values will be lost."
+            confirmText="Reset Form"
+          >
+            <button className="items-center justify-center inline-flex h-10 px-4 font-medium text-slate-500 hover:bg-white rounded-lg leading-none outline-none focus:shadow-[0_0_0_2px] shadow focus:shadow-sky-400">
+              ↩️ Reset Form
+            </button>
+          </ModalAlert>
+        </div>
       </form>
 
-      {/* Template styles ---------------------------------------------- */}
+      {/* Template starts ---------------------------------------------- */}
       <div className="overflow-visible my-4">
         {/* div needed for sticky to work. Cannot use overflow: scroll/hidden/auto with sticky https://www.digitalocean.com/community/tutorials/css-position-sticky */}
         <div className="sticky top-0 overflow-y-auto">
-          {/* <Product1TemplateTest formData={formData} /> */}
-          {/* <Product1Template /> */}
           <LoadTemplate productName={productName} />
         </div>
       </div>
