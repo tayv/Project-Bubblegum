@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 import LoadTemplate from "@template/LoadTemplate"
 import { ProductNameProps } from "@template/templateTypes"
+import ModalAlert from "@components/ui/ModalAlert"
 
 export type FormProps = {
   id: string
@@ -55,14 +56,16 @@ const Form: FC<FormProps> = ({
           </p>
         ) : null}
 
-        <button
-          type="button"
-          onClick={() => methods.reset(defaultValues) }
-          className="block border-slate-900 bg-slate-100 hover:bg-slate-200 border rounded-md my-1 px-2 py-1 text-xs font-medium"
+        <ModalAlert
+          onConfirmClick={() => methods.reset(defaultValues)}
+          title="Are you sure you want to reset the form?"
+          description="This action can't be undone. Any unsaved values will be lost."
+          confirmText="Reset Form"
         >
-          ↩️ Reset Form
-        </button>
-
+          <button className="items-center justify-center inline-flex h-10 px-4 font-medium text-slate-500 bg-red-200 hover:bg-white rounded-lg leading-none outline-none focus:shadow-[0_0_0_2px] shadow focus:shadow-sky-400">
+            ↩️ Reset Form
+          </button>
+        </ModalAlert>
       </form>
 
       {/* Template starts ---------------------------------------------- */}
