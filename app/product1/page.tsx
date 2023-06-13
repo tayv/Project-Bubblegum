@@ -16,6 +16,7 @@ import RadioGroup from "@components/form/RadioGroup"
 import Select from "@components/form/Select"
 import product1SchemaTest from "./product1SchemaTest.json"
 import { PageContext } from "@template/context"
+import ModalStandard from "@components/ui/ModalStandard"
 
 const Product1 = () => {
   const defaultValues = {
@@ -75,6 +76,13 @@ const Product1 = () => {
         Product 1
       </Heading>
       <Paragraph>This is a test form page with app router.</Paragraph>
+      <ModalStandard
+          triggerText="Edit Profile"
+          title="Your profile details"
+          description="Changing your email will require you to re-verify your account."
+          cancelText={null}
+          onConfirmClick={() => alert("Do the thing")}
+        />
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 w-full xl:max-w-1400">
         <Form
           id="product1Form"
