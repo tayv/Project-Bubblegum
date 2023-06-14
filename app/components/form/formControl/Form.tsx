@@ -7,6 +7,7 @@ import * as z from "zod"
 import LoadTemplate from "@template/LoadTemplate"
 import { ProductNameProps } from "@template/templateTypes"
 import ModalAlert from "@components/ui/ModalAlert"
+import ModalViewDoc from "@components/ui/ModalViewDoc"
 
 export type FormProps = {
   id: string
@@ -68,6 +69,12 @@ const Form: FC<FormProps> = ({
               ↩️ Reset Form
             </button>
           </ModalAlert>
+
+
+        <ModalViewDoc triggerText="View Doc" title="Document Title" description="This is a description">
+         <LoadTemplate productName={productName} />
+        </ModalViewDoc>
+
         </div>
       </form>
 
