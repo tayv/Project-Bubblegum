@@ -38,7 +38,7 @@ const ModalStandard: FC<ModalStandardProps> = ({
     </DialogRadix.Trigger>
     <DialogRadix.Portal>
       <DialogRadix.Overlay className="bg-black data-[state=open]:animate-overlayShow fixed inset-0" />
-      <DialogRadix.Content className="data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] max-h-[85vh] w-[90vw] max-w-[450px] translate-x-[-50%] translate-y-[-50%] rounded-[6px] bg-white p-[25px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none">
+      <DialogRadix.Content className="select-none data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] max-h-[85vh] w-[90vw] max-w-[450px] translate-x-[-50%] translate-y-[-50%] rounded-[6px] bg-white p-[25px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none">
         <DialogRadix.Title className="text-slate-500 m-0 text-[17px] font-medium">
           {title}
         </DialogRadix.Title>

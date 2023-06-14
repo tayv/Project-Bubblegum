@@ -74,7 +74,8 @@ const Form: FC<FormProps> = ({
       {/* Template starts ---------------------------------------------- */}
       <div className="overflow-visible my-4">
         {/* div needed for sticky to work. Cannot use overflow: scroll/hidden/auto with sticky https://www.digitalocean.com/community/tutorials/css-position-sticky */}
-        <div className="sticky top-0 overflow-y-auto">
+        {/* select-none needed to prevent user from copying text from preview */}
+        <div className="sticky top-0 overflow-y-auto select-none"> 
           <LoadTemplate productName={productName} />
         </div>
       </div>
