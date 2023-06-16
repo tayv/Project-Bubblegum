@@ -1,18 +1,18 @@
-"use client";
-import React, { FC } from "react";
-import * as DialogRadix from "@radix-ui/react-dialog";
-import { X } from "lucide-react";
+"use client"
+import React, { FC } from "react"
+import * as DialogRadix from "@radix-ui/react-dialog"
+import { X } from "lucide-react"
 
 export type ModalStandardProps = {
-  triggerText: string;
-  triggerType?: "button" | "text";
-  title: string;
-  description: string;
-  confirmText?: string;
-  cancelText?: string | null; // Pass null when only want to render one button such as a single "Close"
-  onConfirmClick?: (event: React.SyntheticEvent) => void;
-  children?: React.ReactElement | React.ReactElement[];
-};
+  triggerText: string
+  triggerType?: "button" | "text"
+  title: string
+  description: string
+  confirmText?: string
+  cancelText?: string | null // Pass null when only want to render one button such as a single "Close"
+  handleConfirmClick?: (event: React.SyntheticEvent) => void
+  children?: React.ReactElement | React.ReactElement[]
+}
 
 const ModalStandard: FC<ModalStandardProps> = ({
   triggerText,
@@ -21,7 +21,7 @@ const ModalStandard: FC<ModalStandardProps> = ({
   description,
   confirmText = "Close",
   cancelText = "Cancel",
-  onConfirmClick,
+  handleConfirmClick,
   children,
 }) => (
   <DialogRadix.Root>
@@ -56,7 +56,7 @@ const ModalStandard: FC<ModalStandardProps> = ({
           </DialogRadix.Close>
           <DialogRadix.Close asChild>
             <button
-              onClick={onConfirmClick}
+              onClick={handleConfirmClick}
               className="bg-green-200 text-green-700 hover:bg-green-300 focus:shadow-green-700 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none"
             >
               {confirmText}
@@ -74,6 +74,6 @@ const ModalStandard: FC<ModalStandardProps> = ({
       </DialogRadix.Content>
     </DialogRadix.Portal>
   </DialogRadix.Root>
-);
+)
 
-export default ModalStandard;
+export default ModalStandard

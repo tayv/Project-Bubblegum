@@ -60,7 +60,7 @@ const Form: FC<FormProps> = ({
           ) : null}
 
           <ModalAlert
-            onConfirmClick={() => methods.reset(defaultValues)}
+            handleConfirmClick={() => methods.reset(defaultValues)}
             title="Are you sure you want to reset the form?"
             description="This action can't be undone. Any unsaved values will be lost."
             confirmText="Reset Form"
@@ -70,11 +70,13 @@ const Form: FC<FormProps> = ({
             </button>
           </ModalAlert>
 
-
-        <ModalViewDoc triggerText="View Doc" title="Document Title" description="This is a description">
-         <LoadTemplate productName={productName} />
-        </ModalViewDoc>
-
+          <ModalViewDoc
+            triggerText="View Doc"
+            title="Document Title"
+            description="This is a description"
+          >
+            <LoadTemplate productName={productName} />
+          </ModalViewDoc>
         </div>
       </form>
 
@@ -82,7 +84,7 @@ const Form: FC<FormProps> = ({
       <div className="overflow-visible my-4">
         {/* div needed for sticky to work. Cannot use overflow: scroll/hidden/auto with sticky https://www.digitalocean.com/community/tutorials/css-position-sticky */}
         {/* select-none needed to prevent user from copying text from preview */}
-        <div className="sticky top-0 overflow-y-auto select-none"> 
+        <div className="sticky top-0 overflow-y-auto select-none">
           <LoadTemplate productName={productName} />
         </div>
       </div>

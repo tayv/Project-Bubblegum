@@ -1,18 +1,18 @@
-"use client";
-import React, { FC, useRef } from "react";
-import * as DialogRadix from "@radix-ui/react-dialog";
-import { X, Lock, ArrowDownToLine, Send, Pencil, Printer } from "lucide-react";
+"use client"
+import React, { FC, useRef } from "react"
+import * as DialogRadix from "@radix-ui/react-dialog"
+import { X, Lock, ArrowDownToLine, Send, Pencil, Printer } from "lucide-react"
 
 export type ModalViewDocProps = {
-  triggerText: string;
-  triggerType?: "button" | "text";
-  title: string;
-  description: string;
-  confirmText?: string;
-  cancelText?: string | null; // Pass null when only want to render one button such as a single "Close"
-  onConfirmClick?: (event: React.SyntheticEvent) => void;
-  children?: React.ReactElement | React.ReactElement[];
-};
+  triggerText: string
+  triggerType?: "button" | "text"
+  title: string
+  description: string
+  confirmText?: string
+  cancelText?: string | null // Pass null when only want to render one button such as a single "Close"
+  onConfirmClick?: (event: React.SyntheticEvent) => void
+  children?: React.ReactElement | React.ReactElement[]
+}
 
 const ModalViewDoc: FC<ModalViewDocProps> = ({
   triggerText,
@@ -22,11 +22,11 @@ const ModalViewDoc: FC<ModalViewDocProps> = ({
   children,
 }) => {
   // Want focus to initially be on Print button. This allows secondary buttons to be ordered according to what's easiest to style
-  const printButtonRef = useRef<HTMLButtonElement>(null);
+  const printButtonRef = useRef<HTMLButtonElement>(null)
   const handleInitialFocus = (event: Event) => {
-    event.preventDefault();
-    printButtonRef.current?.focus();
-  };
+    event.preventDefault()
+    printButtonRef.current?.focus()
+  }
   return (
     <DialogRadix.Root>
       <DialogRadix.Trigger asChild>
@@ -55,18 +55,18 @@ const ModalViewDoc: FC<ModalViewDocProps> = ({
               </button>
             </div>
 
-            <DialogRadix.Description className="text-slate-400 italic mt-px mb-4 text-sm leading-normal ">
+            <DialogRadix.Description className="text-slate-400 italic mt-px mb-1 text-sm leading-normal ">
               {description}
             </DialogRadix.Description>
 
             {/* -------- Document container starts here -------- */}
-            <div className="relative overflow-y-auto max-h-[70vh] rounded-lg shadow-lg bg-transparent">
+            <div className="relative overflow-y-auto max-h-[70vh] rounded-xl bg-transparent">
               {/* <div className=" flex justify-end"> */}
-                <DialogRadix.Close asChild>
-                  <button className="z-50 absolute top-10 right-8 items-center justify-center gap-1 text-sky-500 hover:text-slate-400 focus:shadow-green-700 inline-flex  rounded-[4px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none">
-                    <Pencil className="w-4" /> Edit
-                  </button>
-                </DialogRadix.Close>
+              <DialogRadix.Close asChild>
+                <button className="z-50 absolute top-10 right-8 items-center justify-center gap-1 text-sky-500 hover:text-slate-400 focus:shadow-green-700 inline-flex  rounded-[4px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none">
+                  <Pencil className="w-4" /> Edit
+                </button>
+              </DialogRadix.Close>
               {/* </div> */}
               {children}
             </div>
@@ -117,7 +117,7 @@ const ModalViewDoc: FC<ModalViewDocProps> = ({
         </DialogRadix.Overlay>
       </DialogRadix.Portal>
     </DialogRadix.Root>
-  );
-};
+  )
+}
 
-export default ModalViewDoc;
+export default ModalViewDoc
