@@ -2,6 +2,7 @@
 import React, { FC, useRef } from "react"
 import * as DialogRadix from "@radix-ui/react-dialog"
 import { X, Lock, ArrowDownToLine, Send, Pencil, Printer } from "lucide-react"
+import PrintButton from "@ui/PrintButton"
 
 export type ModalViewDocProps = {
   triggerText: string
@@ -75,14 +76,20 @@ const ModalViewDoc: FC<ModalViewDocProps> = ({
             {/* flex-row-reverse needed so that focus is on the print button when re-opening */}
             <div className="flex flex-row-reverse justify-start items-center gap-2 sticky bottom-0 bg-white p-4 rounded-xl drop-shadow">
               {/* Not wrapped in DialogRadix.Close because we want the preview to stay open unless user specially chooses to close or edit */}
-              <button
+              <PrintButton
+                ref={printButtonRef}
+              >
+                <Printer className="w-4" />
+                Print
+              </PrintButton>
+              {/* <button
                 ref={printButtonRef}
                 onClick={() => alert("Print the doc")}
                 className="inline-flex items-center justify-center gap-1 bg-sky-200 text-sky-700 hover:bg-sky-300 focus:shadow-sky-700  h-[35px] rounded-lg px-4 py-5 font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none"
               >
                 <Printer className="w-4" />
                 Print
-              </button>
+              </button> */}
 
               <div className="flex max-w-full w-full flex-nowrap overflow-x-auto bg-slate-100 rounded-full py-1">
                 <button className="items-center justify-center gap-1 text-slate-500 hover:text-slate-400 focus:shadow-green-700 inline-flex h-[35px] rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none">
