@@ -3,6 +3,8 @@ import React, { FC, useRef } from "react"
 import * as DialogRadix from "@radix-ui/react-dialog"
 import { X, Lock, ArrowDownToLine, Send, Pencil, Printer } from "lucide-react"
 import PrintButton from "@ui/PrintButton"
+import { useReactToPrint } from "react-to-print"
+import LoadTemplate from "@product1/product1Template.mdx"
 
 export type ModalViewDocProps = {
   triggerText: string
@@ -22,12 +24,19 @@ const ModalViewDoc: FC<ModalViewDocProps> = ({
   description,
   children,
 }) => {
+
   // Want focus to initially be on Print button. This allows secondary buttons to be ordered according to what's easiest to style
   const printButtonRef = useRef<HTMLButtonElement>(null)
   const handleInitialFocus = (event: Event) => {
     event.preventDefault()
     printButtonRef.current?.focus()
   }
+   // Setup ref for react-to-print
+   const componentToPrintRef = useRef<HTMLDivElement>(null)
+   const handlePrint = useReactToPrint({
+     content: () => componentToPrintRef.current,
+   })
+
   return (
     <DialogRadix.Root>
       <DialogRadix.Trigger asChild>
@@ -68,20 +77,27 @@ const ModalViewDoc: FC<ModalViewDocProps> = ({
                   <Pencil className="w-4" /> Edit
                 </button>
               </DialogRadix.Close>
-              {/* </div> */}
-              {children}
+             
+             <div ref={componentToPrintRef}> <LoadTemplate productName="product1" /> </div>
+            
             </div>
 
             {/* -------- Sticky bottom section starts here -------- */}
             {/* flex-row-reverse needed so that focus is on the print button when re-opening */}
             <div className="flex flex-row-reverse justify-start items-center gap-2 sticky bottom-0 bg-white p-4 rounded-xl drop-shadow">
               {/* Not wrapped in DialogRadix.Close because we want the preview to stay open unless user specially chooses to close or edit */}
-              <PrintButton
+              
+                {/* Relies on react-to-print library*/}
+                <PrintButton onClick={handlePrint}>
+                  <Printer className="w-4" />
+                  Print
+                </PrintButton>
+              {/* <PrintButton
                 ref={printButtonRef}
               >
                 <Printer className="w-4" />
                 Print
-              </PrintButton>
+              </PrintButton> */}
               {/* <button
                 ref={printButtonRef}
                 onClick={() => alert("Print the doc")}
