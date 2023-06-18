@@ -6,8 +6,9 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 import LoadTemplate from "@template/LoadTemplate"
 import { ProductNameProps } from "@template/templateTypes"
-import ModalAlert from "@components/ui/ModalAlert"
-import ModalViewDoc from "@components/ui/ModalViewDoc"
+import ModalAlert from "@ui/ModalAlert"
+import ModalViewDoc from "@ui/ModalViewDoc"
+import CardSection from "@ui/CardSection"
 
 export type FormProps = {
   id: string
@@ -85,7 +86,9 @@ const Form: FC<FormProps> = ({
         {/* div needed for sticky to work. Cannot use overflow: scroll/hidden/auto with sticky https://www.digitalocean.com/community/tutorials/css-position-sticky */}
         {/* select-none needed to prevent user from copying text from preview */}
         <div className="sticky top-0 overflow-y-auto select-none">
-          <LoadTemplate productName={productName} />
+          <CardSection id="loadTemplatePreviewSection">
+            <LoadTemplate productName={productName} />
+          </CardSection>
         </div>
       </div>
       {/* Template ends ---------------------------------------------- */}

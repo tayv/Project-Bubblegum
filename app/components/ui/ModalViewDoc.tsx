@@ -24,18 +24,19 @@ const ModalViewDoc: FC<ModalViewDocProps> = ({
   description,
   children,
 }) => {
-
   // Want focus to initially be on Print button. This allows secondary buttons to be ordered according to what's easiest to style
   const printButtonRef = useRef<HTMLButtonElement>(null)
   const handleInitialFocus = (event: Event) => {
     event.preventDefault()
     printButtonRef.current?.focus()
   }
-   // Setup ref for react-to-print
-   const componentToPrintRef = useRef<HTMLDivElement>(null)
-   const handlePrint = useReactToPrint({
-     content: () => componentToPrintRef.current,
-   })
+  // Setup ref for react-to-print
+  const componentToPrintRef = useRef<HTMLDivElement>(null)
+  const handlePrint = useReactToPrint({
+    content: () => componentToPrintRef.current,
+  })
+  // NOTE: Printing whole dialog. This is likely cause of special behavior when printing elements outside the regular document flow
+  // Look into either applying print styles to hide dialog (might not work as ref is a child) or a function that removes excess elements on print or trying to print just standalone mdx page??
 
   return (
     <DialogRadix.Root>
@@ -70,28 +71,30 @@ const ModalViewDoc: FC<ModalViewDocProps> = ({
             </DialogRadix.Description>
 
             {/* -------- Document container starts here -------- */}
-            <div className="relative overflow-y-auto max-h-[70vh] rounded-xl bg-transparent">
+            <div className="relative overflow-y-auto max-h-[70vh] rounded-xl bg-white py-4 px-6 text-xl font-light">
               {/* <div className=" flex justify-end"> */}
               <DialogRadix.Close asChild>
-                <button className="z-50 absolute top-10 right-8 items-center justify-center gap-1 text-sky-500 hover:text-slate-400 focus:shadow-green-700 inline-flex  rounded-[4px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none">
-                  <Pencil className="w-4" /> Edit
+                <button className="z-50 absolute top-5 right-6 items-center justify-center gap-1 text-sky-500 hover:text-slate-400 focus:shadow-green-700 inline-flex  rounded-[4px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none">
+                  <Pencil className="w-5" /> Edit
                 </button>
               </DialogRadix.Close>
-             
-             <div ref={componentToPrintRef}> <LoadTemplate productName="product1" /> </div>
-            
+
+              <div ref={componentToPrintRef}>
+                {" "}
+                <LoadTemplate productName="product1" />{" "}
+              </div>
             </div>
 
             {/* -------- Sticky bottom section starts here -------- */}
             {/* flex-row-reverse needed so that focus is on the print button when re-opening */}
             <div className="flex flex-row-reverse justify-start items-center gap-2 sticky bottom-0 bg-white p-4 rounded-xl drop-shadow">
               {/* Not wrapped in DialogRadix.Close because we want the preview to stay open unless user specially chooses to close or edit */}
-              
-                {/* Relies on react-to-print library*/}
-                <PrintButton onClick={handlePrint}>
-                  <Printer className="w-4" />
-                  Print
-                </PrintButton>
+
+              {/* Relies on react-to-print library*/}
+              <PrintButton onClick={handlePrint}>
+                <Printer className="w-4" />
+                Print
+              </PrintButton>
               {/* <PrintButton
                 ref={printButtonRef}
               >
@@ -109,7 +112,8 @@ const ModalViewDoc: FC<ModalViewDocProps> = ({
 
               <div className="flex max-w-full w-full flex-nowrap overflow-x-auto bg-slate-100 rounded-full py-1">
                 <button className="items-center justify-center gap-1 text-slate-500 hover:text-slate-400 focus:shadow-green-700 inline-flex h-[35px] rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none">
-                  <ArrowDownToLine className="w-4" /> PDF Download
+                  <ArrowDownToLine className="w-4" />
+                  Download PDF
                 </button>
 
                 <button className="items-center justify-center gap-1 text-slate-500 hover:text-slate-400 focus:shadow-green-700 inline-flex h-[35px] rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none">
