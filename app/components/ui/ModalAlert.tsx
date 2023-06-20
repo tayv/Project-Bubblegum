@@ -10,7 +10,7 @@ export type ModalAlertProps = {
   description?: string
   confirmText?: string
   cancelText?: string
-  onConfirmClick?: (event: React.SyntheticEvent) => void
+  handleConfirmClick?: (event: React.SyntheticEvent) => void
   className?: string
 }
 
@@ -19,7 +19,7 @@ const ModalAlert: FC<ModalAlertProps> = ({
   description = "This action can't be undone.",
   confirmText = "Continue",
   cancelText = "Cancel",
-  onConfirmClick,
+  handleConfirmClick,
   children,
   ...props
 }) => {
@@ -47,7 +47,7 @@ const ModalAlert: FC<ModalAlertProps> = ({
             </AlertDialogRadix.Cancel>
             <AlertDialogRadix.Action asChild>
               <button
-                onClick={onConfirmClick}
+                onClick={handleConfirmClick}
                 className="text-red-800 bg-red-300 hover:bg-red-200 focus:shadow-red-300 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none outline-none focus:shadow-[0_0_0_2px]"
               >
                 {confirmText}
