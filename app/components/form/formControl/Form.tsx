@@ -6,7 +6,9 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 import LoadTemplate from "@template/LoadTemplate"
 import { ProductNameProps } from "@template/templateTypes"
-import ModalAlert from "@components/ui/ModalAlert"
+import ModalAlert from "@ui/ModalAlert"
+import ModalViewDoc from "@ui/ModalViewDoc"
+import CardSection from "@ui/CardSection"
 
 export type FormProps = {
   id: string
@@ -59,7 +61,7 @@ const Form: FC<FormProps> = ({
           ) : null}
 
           <ModalAlert
-            onConfirmClick={() => methods.reset(defaultValues)}
+            handleConfirmClick={() => methods.reset(defaultValues)}
             title="Are you sure you want to reset the form?"
             description="This action can't be undone. Any unsaved values will be lost."
             confirmText="Reset Form"
@@ -68,14 +70,25 @@ const Form: FC<FormProps> = ({
               ↩️ Reset Form
             </button>
           </ModalAlert>
+
+          <ModalViewDoc
+            triggerText="View Doc"
+            title="Document Title"
+            description="This is a description"
+          >
+            <LoadTemplate productName={productName} />
+          </ModalViewDoc>
         </div>
       </form>
 
       {/* Template starts ---------------------------------------------- */}
       <div className="overflow-visible my-4">
         {/* div needed for sticky to work. Cannot use overflow: scroll/hidden/auto with sticky https://www.digitalocean.com/community/tutorials/css-position-sticky */}
-        <div className="sticky top-0 overflow-y-auto">
-          <LoadTemplate productName={productName} />
+        {/* select-none needed to prevent user from copying text from preview */}
+        <div className="sticky top-0 overflow-y-auto select-none">
+          <CardSection id="loadTemplatePreviewSection">
+            <LoadTemplate productName={productName} />
+          </CardSection>
         </div>
       </div>
       {/* Template ends ---------------------------------------------- */}
