@@ -4,6 +4,7 @@ import pdfMake from "pdfmake/build/pdfmake"
 import pdfFonts from "pdfmake/build/vfs_fonts"
 import { blob } from "stream/consumers"
 import { set } from "date-fns"
+import Product1Template from "@product1/product1Template.mdx"
 
 // pdfMake fonts setup
 pdfMake.vfs = pdfFonts.pdfMake.vfs
