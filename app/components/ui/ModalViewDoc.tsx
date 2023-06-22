@@ -83,7 +83,6 @@ const ModalViewDoc: FC<ModalViewDocProps> = ({
                 {" "}
                 <LoadTemplate productName="product1" />
                 {children}
-             
               </div>
               {/* <PrintButton onClick={handlePrint}>
                 <Printer className="w-4" />

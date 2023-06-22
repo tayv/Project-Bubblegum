@@ -49,9 +49,8 @@ const FormTest: FC<FormProps> = ({
   //   iframeContentWindow.focus()
   //   iframeContentWindow.print()
   //   }
-    
-  // }
 
+  // }
 
   const componentToPrintRef = React.useRef<HTMLDivElement>(null)
   const handlePrint = useReactToPrint({
@@ -59,7 +58,6 @@ const FormTest: FC<FormProps> = ({
   })
 
   // ------------------------
-
 
   return (
     <FormProvider {...methods}>
@@ -94,8 +92,6 @@ const FormTest: FC<FormProps> = ({
               ↩️ Reset Form
             </button>
           </ModalAlert>
-    
-        
 
           <ModalViewDoc
             triggerText="View Doc"
@@ -106,8 +102,8 @@ const FormTest: FC<FormProps> = ({
             <div ref={componentToPrintRef}>
             <LoadTemplate productName={productName} />
             </div> */}
-             {/* <div ref={componentToPrintRef}>some stuff to print </div> */}
-             {/* <button onClick={handlePrint}>Print this out!</button>
+            {/* <div ref={componentToPrintRef}>some stuff to print </div> */}
+            {/* <button onClick={handlePrint}>Print this out!</button>
              </> */}
           </ModalViewDoc>
         </div>
@@ -128,7 +124,6 @@ const FormTest: FC<FormProps> = ({
         {/* <button onClick={handlePrint} className="items-center justify-center inline-flex h-10 px-4 font-medium text-slate-500 hover:bg-white rounded-lg leading-none outline-none focus:shadow-[0_0_0_2px] shadow focus:shadow-sky-400">
           Test iframe
         </button> */}
-
       </div>
       {/* Template ends ---------------------------------------------- */}
     </FormProvider>
