@@ -18,7 +18,9 @@ const styles = StyleSheet.create({
 // Create Document Component
 const MyDocument = () => {
   //const DynamicText = () => "testme" // `${lastname}`;
-  const DynamicText = ({ children }) => <Text>{children}</Text>
+  const DynamicText = ({ children }: { children: React.ReactNode }) => (
+    <Text>{children}</Text>
+  )
 
   return (
     <Document>
