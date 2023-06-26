@@ -13,7 +13,63 @@ const styles = StyleSheet.create({
     padding: 10,
     flexGrow: 1,
   },
+  h1: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 10,
+  },
 })
+
+const testSchema = [
+  {
+    input1: {
+      true: {
+        heading: "This is a FIRST heading",
+        text: "This is some text",
+      },
+      false: {
+        heading: "This is a SECOND heading",
+        text: "This is some more text",
+      },
+    },
+    input2: {
+      true: {
+        heading: "This is a THIRD heading",
+        text: "This is some text",
+      },
+      false: {
+        heading: "This is a FOURTH heading",
+        text: "This is some more text",
+      },
+    },
+  },
+]
+
+const testValues = {
+  input1: true,
+  input2: false,
+}
+
+const testMapper = (testSchema, testValues) => {
+  return testSchema.map((item, index) => {
+    if (item.input1 && item.input1[testValues.input1]) {
+      return (
+        <Document key={index}>
+          <Page size="A4" style={styles.page}>
+            <Text style={styles.h1}>
+              {item.input1[testValues.input1].heading}
+            </Text>
+            <View style={styles.section}>
+              <Text key={index}>{item.input1[testValues.input1].text}</Text>
+            </View>
+          </Page>
+        </Document>
+      )
+    } else {
+      return null
+    }
+  })
+}
 
 // Create Document Component
 const MyDocument = () => {
@@ -22,18 +78,7 @@ const MyDocument = () => {
     <Text>{children}</Text>
   )
 
-  return (
-    <Document>
-      <Page size="A4" style={styles.page}>
-        <View style={styles.section}>
-          <Text>Section #1</Text>
-        </View>
-        <View style={styles.section}>
-          <DynamicText>Hello World</DynamicText>
-        </View>
-      </Page>
-    </Document>
-  )
+  return <>{testMapper(testSchema, testValues)}</>
 }
 
 export default MyDocument
