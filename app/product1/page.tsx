@@ -18,8 +18,26 @@ import product1SchemaTest from "./product1SchemaTest.json"
 import { PageContext } from "@template/context"
 import ModalStandard from "@components/ui/ModalStandard"
 import ModalViewDoc from "@components/ui/ModalViewDoc"
+import { PDFViewer, StyleSheet } from "@react-pdf/renderer"
+import dynamic from "next/dynamic"
+import MyDocument from "../product2/MyDocument"
+
+// Create PDF styles
+const styles = StyleSheet.create({
+  page: {
+    width: "100%",
+    height: "100vh",
+    backgroundColor: "#E4E4E4",
+  },
+})
 
 const Product1 = () => {
+  // Dynamically import PDFViewer to fix build bug since Next uses SSR
+  const PDFViewer = dynamic(
+    () => import("@react-pdf/renderer").then((mod) => mod.PDFViewer),
+    { ssr: false }
+  )
+
   const defaultValues = {
     checkboxExample: true,
     radioExample: "option1",
@@ -154,6 +172,9 @@ const Product1 = () => {
           </Field>
         </Form>
       </div>
+      <PDFViewer style={styles.page}>
+        <MyDocument />
+      </PDFViewer>
     </PageContext.Provider>
   )
 }

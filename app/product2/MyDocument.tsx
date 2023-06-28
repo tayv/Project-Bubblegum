@@ -1,6 +1,7 @@
 "use client"
 import React from "react"
 import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer"
+import DynamicTemplateContent from "@components/template/DynamicTemplateContent"
 
 // Create styles
 const styles = StyleSheet.create({
@@ -60,7 +61,7 @@ const testMapper = (testSchema, testValues) => {
               {item.input1[testValues.input1].heading}
             </Text>
             <View style={styles.section}>
-              <Text key={index}>{item.input1[testValues.input1].text}</Text>
+              <Text key={index}>Dynamic content should go here</Text>
             </View>
           </Page>
         </Document>
