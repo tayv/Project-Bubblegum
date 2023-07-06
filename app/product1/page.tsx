@@ -14,7 +14,7 @@ import CardSection from "@components/ui/CardSection"
 import { useState, createContext } from "react"
 import RadioGroup from "@components/form/RadioGroup"
 import Select from "@components/form/Select"
-import product1SchemaTest from "./product1SchemaTest.json"
+import product1SchemaTest from "./product1SchemaTest"
 import { PageContext } from "@template/context"
 import ModalStandard from "@components/ui/ModalStandard"
 import ModalViewDoc from "@components/ui/ModalViewDoc"
@@ -172,9 +172,16 @@ const Product1 = () => {
           </Field>
         </Form>
       </div>
-      <PDFViewer style={styles.page}>
-        <MyDocument />
-      </PDFViewer>
+
+      <ModalViewDoc
+        triggerText="Load PDF"
+        title="PDF Title"
+        description="This is a description"
+      >
+        <PDFViewer style={styles.page}>
+          <MyDocument />
+        </PDFViewer>
+      </ModalViewDoc>
     </PageContext.Provider>
   )
 }
