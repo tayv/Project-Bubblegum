@@ -95,7 +95,23 @@ export const getSchemas = ({ formData }) => {
 // build doc template
 // Need to fill the schema with correct formData values
 
-export const fillDocTemplate = ({ formData }) => {}
+export const fillDocTemplate = ({ docTemplate }) => {
+  // Map through the docTemplate
+  return docTemplate.map((section) => {
+    // get the location array inside each section
+    const sectionLocationArray = section.location
+    // get location array so we can see if at least one location matches
+    const hasCorrectLocation = sectionLocationArray.some(
+      (location) => location === "all" || location === "location3"
+    )
+    // and only return section values that match the location
+    if (hasCorrectLocation) {
+      return "hello"
+    } else {
+      return "failed"
+    }
+  })
+}
 
 // render final doc
 
@@ -105,22 +121,22 @@ const buildFinalDoc = (formData) => {
   const { locationSchema, genericSchema } = getSchemas({ formData })
 
   // set up doc template
-  const docTemplate = {
-    section1: [
-      {
-        location: ["all"],
-        type: "header",
-        value: genericSchema.checkboxExample.true.bodyA,
-      },
-      {
-        location: ["locationA", "locationB"],
-        type: "body",
-        value: locationSchema.radioExample.option2.bodyA,
-      },
-    ],
-  }
+  const docTemplate = [
+    {
+      location: ["all"],
+      type: "header",
+      value: genericSchema.checkboxExample.true.bodyA,
+    },
+    {
+      location: ["location1", "location2"],
+      type: "body",
+      value: locationSchema.radioExample.option2.bodyA,
+    },
+  ]
 
-  return alert(JSON.stringify(docTemplate))
+  const testDocResult = fillDocTemplate({ docTemplate })
+
+  return alert(JSON.stringify(testDocResult))
 }
 
 export default buildFinalDoc
