@@ -22,6 +22,7 @@ import dynamic from "next/dynamic"
 import MyDocument from "../product2/MyDocument"
 
 import buildFinalDoc from "./product1SchemaTestRefactor"
+import TestPDFDoc from "./TestPDFDoc"
 
 // Create PDF styles
 const styles = StyleSheet.create({
@@ -30,9 +31,14 @@ const styles = StyleSheet.create({
     height: "100vh",
     backgroundColor: "#E4E4E4",
   },
+  h1: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 10,
+  },
 })
 
-const Product1 = () => {
+const Product3 = () => {
   // Dynamically import PDFViewer to fix build bug since Next uses SSR
   const PDFViewer = dynamic(
     () => import("@react-pdf/renderer").then((mod) => mod.PDFViewer),
@@ -62,6 +68,10 @@ const Product1 = () => {
     schema: product1SchemaTest,
   }
 
+  // TEST initial PDF doc state
+  const [finalDoc, setFinalDoc] = useState([])
+  const [isSubmitted, setIsSubmitted] = useState(false) // ONLY RENDER IF FORM IS SUBMITTED
+
   // Sample onSubmit form handler
   // NOTES: Don't need to  e.preventDefault() since rhf's handleSubmit() automatically prevents page reloads
   // and handles errors for you https://www.react-hook-form.com/api/useform/handlesubmit/
@@ -73,7 +83,9 @@ const Product1 = () => {
 
     // test buildFinalDoc -------------------------
     const finalDoc = await buildFinalDoc(data)
+    setFinalDoc(finalDoc)
     console.log("finalDoc", finalDoc)
+    setIsSubmitted(true)
     // --------------------------------------------
 
     try {
@@ -112,6 +124,12 @@ const Product1 = () => {
           buttonLabel="Submit Form"
           productName="product1"
         >
+          {isSubmitted ? (
+            <PDFViewer style={styles.page}>
+              <TestPDFDoc formData={formData} />
+            </PDFViewer>
+          ) : null}
+
           <Field name="jurisdiction" validateOnBlur={false}>
             <Field.GroupLabel>Location Select:</Field.GroupLabel>
             <Field.Tip>
@@ -183,7 +201,7 @@ const Product1 = () => {
   )
 }
 
-export default Product1
+export default Product3
 
 // Need a useEffect for loading correct template. Want it to load dynamic values on first load based on location answer which should default based on estimated location.
 // Need a way to hide/show premium content based on license and auth state

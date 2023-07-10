@@ -1,3 +1,5 @@
+import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer"
+
 // base schemas
 const genericSchemaA = {
   checkboxExample: {
@@ -84,8 +86,8 @@ const getLocationSchema = ({ selectedLocation }) => {
 export const getSchemas = ({ formData }) => {
   // The schemas are specific to the location so need to be fetched dynamically
   const selectedLocation = formData.jurisdiction
-  const locationSchema = getLocationSchema(selectedLocation)
-  const genericSchema = getGenericSchema(selectedLocation)
+  const locationSchema = getLocationSchema({ selectedLocation })
+  const genericSchema = getGenericSchema({ selectedLocation })
 
   console.log("locationSchema", locationSchema, "genericSchema", genericSchema)
 
@@ -94,27 +96,56 @@ export const getSchemas = ({ formData }) => {
 
 // build doc template
 // Need to fill the schema with correct formData values
+// Create PDF styles
+const testStyles = StyleSheet.create({
+  h1: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 10,
+  },
+})
+// set PDF component type
+const setPDFSectionType = ({ section }) => {
+  switch (section.type) {
+    case "header":
+      return <Text style={testStyles.h1}>{section.value}</Text>
+    case "text":
+      return <Text>{section.value}</Text>
+    default:
+      return genericSchemaA
+  }
+}
 
 export const fillDocTemplate = ({ docTemplate }) => {
   // Map through the docTemplate
   return docTemplate.map((section) => {
     // get the location array inside each section
     const sectionLocationArray = section.location
+
+    // Check if sectionLocationArray is defined before calling some
+    if (!sectionLocationArray) {
+      console.error(
+        `Jurisdiction not defined for section: ${JSON.stringify(section)}`
+      )
+      return "Jurisdiction not defined"
+    }
+
     // get location array so we can see if at least one location matches
     const hasCorrectLocation = sectionLocationArray.some(
       (location) => location === "all" || location === "location3"
     )
     // and only return section values that match the location
     if (hasCorrectLocation) {
-      return "hello"
+      // TO DO: Need to generate the correct PDF component based on the type property
+
+      return setPDFSectionType({ section })
     } else {
-      return "failed"
+      return <Text>Failed</Text>
     }
   })
 }
 
 // render final doc
-
 const buildFinalDoc = (formData) => {
   console.log("data chekc for jurisdiction", formData)
   // get schemas
@@ -135,8 +166,8 @@ const buildFinalDoc = (formData) => {
   ]
 
   const testDocResult = fillDocTemplate({ docTemplate })
-
-  return alert(JSON.stringify(testDocResult))
+  return testDocResult
+  //return alert(JSON.stringify(testDocResult))
 }
 
 export default buildFinalDoc
