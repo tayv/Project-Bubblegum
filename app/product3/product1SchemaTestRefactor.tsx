@@ -7,6 +7,7 @@ const genericSchemaA = {
       bodyA: "TRUE: Generic schema body A",
       headerB: "TRUE: Generic schema header B",
       bodyB: "TRUE: Generic schema body B",
+      listA: ["item a", "item b", "item c"],
     },
     false: {
       bodyA: "FALSE: Generic schema body A",
@@ -109,8 +110,16 @@ const setPDFSectionType = ({ section }) => {
   switch (section.type) {
     case "header":
       return <Text style={testStyles.h1}>{section.value}</Text>
-    case "text":
+    case "body":
       return <Text>{section.value}</Text>
+    case "list":
+      return section.value.map((item, index) => {
+        return (
+          <Text key={index} style={{ textIndent: "10px" }}>
+            - {item}
+          </Text>
+        )
+      })
     default:
       return genericSchemaA
   }
@@ -129,16 +138,16 @@ export const fillDocTemplate = ({ docTemplate }) => {
       )
       return "Jurisdiction not defined"
     }
-
+    console.log("TEST SECTION:", section)
     // get location array so we can see if at least one location matches
     const hasCorrectLocation = sectionLocationArray.some(
-      (location) => location === "all" || location === "location3"
+      (location) => location === "all" || location === "location2"
     )
     // and only return section values that match the location
     if (hasCorrectLocation) {
       // TO DO: Need to generate the correct PDF component based on the type property
 
-      return setPDFSectionType({ section })
+      return setPDFSectionType({ section }) // This could potentially just be a condition to render a style. Need to figure out how to handle lists though
     } else {
       return <Text>Failed</Text>
     }
@@ -147,7 +156,6 @@ export const fillDocTemplate = ({ docTemplate }) => {
 
 // render final doc
 const buildFinalDoc = (formData) => {
-  console.log("data chekc for jurisdiction", formData)
   // get schemas
   const { locationSchema, genericSchema } = getSchemas({ formData })
 
@@ -162,6 +170,11 @@ const buildFinalDoc = (formData) => {
       location: ["location1", "location2"],
       type: "body",
       value: locationSchema.radioExample.option2.bodyA,
+    },
+    {
+      location: ["all"],
+      type: "list",
+      value: genericSchema.checkboxExample.true.listA,
     },
   ]
 
