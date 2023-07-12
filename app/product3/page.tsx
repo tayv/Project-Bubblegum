@@ -31,11 +31,6 @@ const styles = StyleSheet.create({
     height: "100vh",
     backgroundColor: "#E4E4E4",
   },
-  h1: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 10,
-  },
 })
 
 const Product3 = () => {

@@ -4,13 +4,13 @@ import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer"
 const genericSchemaA = {
   checkboxExample: {
     true: {
-      bodyA: "TRUE: Generic schema body A",
-      headerB: "TRUE: Generic schema header B",
-      bodyB: "TRUE: Generic schema body B",
+      bodyA: ["TRUE: Generic schema body A", "second paragraph starts here"],
+      headerA: "TRUE: Generic schema header B",
+      bodyB: ["TRUE: Generic schema body B"],
       listA: ["item a", "item b", "item c"],
     },
     false: {
-      bodyA: "FALSE: Generic schema body A",
+      bodyA: ["FALSE: Generic schema body A"],
     },
   },
 }
@@ -18,10 +18,10 @@ const genericSchemaA = {
 const genericSchemaB = {
   checkboxExample: {
     true: {
-      bodyA: "TRUE: Generic schema body A",
+      bodyA: ["TRUE: Generic schema body A"],
     },
     false: {
-      bodyA: "FALSE: Generic schema body A",
+      bodyA: ["FALSE: Generic schema body A"],
     },
   },
 }
@@ -30,17 +30,17 @@ const genericSchemaB = {
 const schemaLocationA = {
   radioExample: {
     option1: {
-      bodyA: "Schema location A was selected",
+      bodyA: ["Schema location A was selected"],
     },
     option2: {
-      bodyA: "hello",
+      bodyA: ["hello"],
     },
     option3: {
       headerA: "This is a header",
-      bodyA: "This is a body",
+      bodyA: ["This is a body"],
       headerB: "This is a second Header",
-      bodyB: "Second body text here",
-      bodyC: "This is a body",
+      bodyB: ["Second body text here"],
+      bodyC: ["This is a body"],
     },
   },
 }
@@ -48,11 +48,12 @@ const schemaLocationA = {
 const schemaLocationB = {
   radioExample: {
     option1: {
-      bodyA:
+      bodyA: [
         "hello It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+      ],
     },
     option2: {
-      bodyA: "Schema Location B",
+      bodyA: ["Schema Location B"],
     },
   },
 }
@@ -104,22 +105,73 @@ const testStyles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 10,
   },
+  body: {
+    fontSize: 16,
+    marginTop: 10,
+    marginBottom: 10,
+    padding: 10,
+  },
+  section: {
+    fontSize: 16,
+    marginTop: 10,
+    marginBottom: 10,
+    padding: 10,
+  },
+  paragraph: {
+    marginBottom: 8,
+  },
+  listUnordered: {
+    textIndent: 10,
+  },
+  listOrdered: {
+    textIndent: 10,
+  },
+  sectionStart: {
+    fontSize: 20,
+    borderBottom: "2 solid #ccc",
+    paddingTop: 5,
+    paddingBottom: 5,
+  },
 })
 // set PDF component type
-const setPDFSectionType = ({ section }) => {
-  switch (section.type) {
+const styleSchemaContent = ({ schemaSection }) => {
+  switch (schemaSection.type) {
     case "header":
-      return <Text style={testStyles.h1}>{section.value}</Text>
+      return <Text style={testStyles.h1}>{schemaSection.value}</Text>
     case "body":
-      return <Text>{section.value}</Text>
-    case "list":
-      return section.value.map((item, index) => {
+      return (
+        <View style={testStyles.section}>
+          {schemaSection.value.map((item, index) => {
+            {
+              console.log("this the one:", item)
+            }
+            return (
+              <Text key={index} style={testStyles.paragraph}>
+                {item}
+              </Text>
+            )
+          })}
+        </View>
+      )
+
+    case "listUnordered":
+      return schemaSection.value.map((item, index) => {
         return (
-          <Text key={index} style={{ textIndent: "10px" }}>
+          <Text key={index} style={testStyles.listUnordered}>
             - {item}
           </Text>
         )
       })
+    case "listOrdered":
+      return schemaSection.value.map((item, index) => {
+        return (
+          <Text key={index} style={testStyles.listOrdered}>
+            {index + 1}. {item}
+          </Text>
+        )
+      })
+    case "sectionStart":
+      return <Text style={testStyles.sectionStart}>{schemaSection.value}</Text>
     default:
       return genericSchemaA
   }
@@ -127,18 +179,18 @@ const setPDFSectionType = ({ section }) => {
 
 export const fillDocTemplate = ({ docTemplate }) => {
   // Map through the docTemplate
-  return docTemplate.map((section) => {
+  return docTemplate.map((schemaSection, index) => {
     // get the location array inside each section
-    const sectionLocationArray = section.location
+    const sectionLocationArray = schemaSection.location
 
     // Check if sectionLocationArray is defined before calling some
     if (!sectionLocationArray) {
       console.error(
-        `Jurisdiction not defined for section: ${JSON.stringify(section)}`
+        `Jurisdiction not defined for section: ${JSON.stringify(schemaSection)}`
       )
       return "Jurisdiction not defined"
     }
-    console.log("TEST SECTION:", section)
+    console.log("TEST SECTION:", schemaSection)
     // get location array so we can see if at least one location matches
     const hasCorrectLocation = sectionLocationArray.some(
       (location) => location === "all" || location === "location2"
@@ -147,9 +199,9 @@ export const fillDocTemplate = ({ docTemplate }) => {
     if (hasCorrectLocation) {
       // TO DO: Need to generate the correct PDF component based on the type property
 
-      return setPDFSectionType({ section }) // This could potentially just be a condition to render a style. Need to figure out how to handle lists though
+      return styleSchemaContent({ schemaSection }) // This could potentially just be a condition to render a style. Need to figure out how to handle lists though
     } else {
-      return <Text>Failed</Text>
+      return <Text key={index}>Failed</Text>
     }
   })
 }
@@ -164,6 +216,11 @@ const buildFinalDoc = (formData) => {
     {
       location: ["all"],
       type: "header",
+      value: genericSchema.checkboxExample.true.headerA,
+    },
+    {
+      location: ["all"],
+      type: "body",
       value: genericSchema.checkboxExample.true.bodyA,
     },
     {
@@ -173,8 +230,18 @@ const buildFinalDoc = (formData) => {
     },
     {
       location: ["all"],
-      type: "list",
+      type: "listUnordered",
       value: genericSchema.checkboxExample.true.listA,
+    },
+    {
+      location: ["all"],
+      type: "listOrdered",
+      value: genericSchema.checkboxExample.true.listA,
+    },
+    {
+      location: ["all"],
+      type: "sectionStart",
+      value: "A New Section Starts Here",
     },
   ]
 
