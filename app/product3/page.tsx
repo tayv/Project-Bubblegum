@@ -55,7 +55,7 @@ const Product3 = () => {
   })
 
   // Setup initial state
-  const [formData, setformData] = useState({})
+  const [formData, setFormData] = useState({})
 
   // Setup pg context values to pass to template
   const pageContextValue = {
@@ -71,7 +71,7 @@ const Product3 = () => {
   // NOTES: Don't need to  e.preventDefault() since rhf's handleSubmit() automatically prevents page reloads
   // and handles errors for you https://www.react-hook-form.com/api/useform/handlesubmit/
   const onSubmit = async (data: any, event: any) => {
-    setformData(data) // Save form values to state so the test template table can show the values
+    setFormData(data) // Save form values to state so the test template table can show the values
     console.log("Form submitted. data:", data, "Submit form - errors", Error)
     console.log("event:", event)
     const body = data

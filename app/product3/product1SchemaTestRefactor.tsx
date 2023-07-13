@@ -1,11 +1,24 @@
 import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer"
+import { doc } from "prettier"
 
-// base schemas
+// suppported location groups
+// Used to build docTemplate from correct schemas
+// Intended to be used to batch closely related locations/countries so the number of genericSchemas can be limited
+const locationGroups = {
+  locationGroupA: ["location1", "location3"],
+  locationGroupB: ["location2"],
+}
+const allLocations = [
+  ...locationGroups.locationGroupA,
+  ...locationGroups.locationGroupB,
+]
+
+// generic schemas
 const genericSchemaA = {
   checkboxExample: {
     true: {
       bodyA: ["TRUE: Generic schema body A", "second paragraph starts here"],
-      headerA: "TRUE: Generic schema header B",
+      headerA: "TRUE: Generic schema header location 2",
       bodyB: ["TRUE: Generic schema body B"],
       listA: ["item a", "item b", "item c"],
     },
@@ -18,6 +31,7 @@ const genericSchemaA = {
 const genericSchemaB = {
   checkboxExample: {
     true: {
+      headerA: "Using generic schema B",
       bodyA: ["TRUE: Generic schema body A"],
     },
     false: {
@@ -62,6 +76,7 @@ const schemaLocationB = {
 
 // get generic schema
 const getGenericSchema = ({ selectedLocation }) => {
+  // NOTE: Should create a separate docTemplate for each genericSchema otherwise can't use location "all" since changing genericSchema will result in undefined values
   switch (selectedLocation) {
     case "location1":
       return genericSchemaA
@@ -85,13 +100,10 @@ const getLocationSchema = ({ selectedLocation }) => {
 }
 
 // export from separate file
-export const getSchemas = ({ formData }) => {
+export const getSchemas = ({ selectedLocation }) => {
   // The schemas are specific to the location so need to be fetched dynamically
-  const selectedLocation = formData.jurisdiction
   const locationSchema = getLocationSchema({ selectedLocation })
   const genericSchema = getGenericSchema({ selectedLocation })
-
-  console.log("locationSchema", locationSchema, "genericSchema", genericSchema)
 
   return { locationSchema, genericSchema } // destructure these and use in the next function. Didn't spread into a single object since the template needs to handle logic from many different locations.
 }
@@ -133,8 +145,8 @@ const testStyles = StyleSheet.create({
     paddingBottom: 5,
   },
 })
-// set PDF component type
-const styleSchemaContent = ({ schemaSection }) => {
+
+const renderPDFComponent = ({ schemaSection }) => {
   switch (schemaSection.type) {
     case "header":
       return <Text style={testStyles.h1}>{schemaSection.value}</Text>
@@ -142,9 +154,6 @@ const styleSchemaContent = ({ schemaSection }) => {
       return (
         <View style={testStyles.section}>
           {schemaSection.value.map((item, index) => {
-            {
-              console.log("this the one:", item)
-            }
             return (
               <Text key={index} style={testStyles.paragraph}>
                 {item}
@@ -177,77 +186,109 @@ const styleSchemaContent = ({ schemaSection }) => {
   }
 }
 
-export const fillDocTemplate = ({ docTemplate }) => {
-  // Map through the docTemplate
-  return docTemplate.map((schemaSection, index) => {
+export const fillDocTemplate = ({ docTemplate, selectedLocation }) => {
+  // Render PDF according to docTemplate layout
+  return docTemplate.map((schemaSection, sectionIndex) => {
     // get the location array inside each section
-    const sectionLocationArray = schemaSection.location
+    const sectionValidLocations = schemaSection.location
 
-    // Check if sectionLocationArray is defined before calling some
-    if (!sectionLocationArray) {
-      console.error(
-        `Jurisdiction not defined for section: ${JSON.stringify(schemaSection)}`
+    // CATCH ERRORS -----------------
+    // Check if sectionValidLocations is defined since everything breaks if we don't have this info
+    if (!sectionValidLocations) {
+      throw new Error(
+        `Jurisdiction isn't defined for section: ${JSON.stringify(
+          sectionIndex
+        )} at index: ${JSON.stringify(sectionIndex)}`
       )
-      return "Jurisdiction not defined"
     }
-    console.log("TEST SECTION:", schemaSection)
-    // get location array so we can see if at least one location matches
-    const hasCorrectLocation = sectionLocationArray.some(
-      (location) => location === "all" || location === "location2"
+    // Check if the value field exists since template is incorrect if this is missing
+    if (schemaSection.value === undefined) {
+      throw new Error(
+        `The following section is trying to access a non-existent value in your schema: ${JSON.stringify(
+          schemaSection,
+          null,
+          2
+        )} at index: ${JSON.stringify(sectionIndex)} 
+         \n Troubleshooting: Review the following docTempate schema and also check that genericSchema and locationSchema are correct as they can lead to undefined values. => ${JSON.stringify(
+           docTemplate,
+           null,
+           2
+         )}.`
+      )
+    }
+    // End catch errors ----------------
+
+    // See if at least one location matches
+    const hasCorrectLocation = sectionValidLocations.some(
+      (location: string) => {
+        return location === "all" || location === selectedLocation
+      }
     )
     // and only return section values that match the location
     if (hasCorrectLocation) {
-      // TO DO: Need to generate the correct PDF component based on the type property
-
-      return styleSchemaContent({ schemaSection }) // This could potentially just be a condition to render a style. Need to figure out how to handle lists though
+      return renderPDFComponent({ schemaSection }) // This could potentially just be a condition to render a style. Need to figure out how to handle lists though
     } else {
-      return <Text key={index}>Failed</Text>
+      return <Text key={sectionIndex}>Failed</Text>
     }
   })
 }
 
 // render final doc
-const buildFinalDoc = (formData) => {
+const buildFinalDoc = ({ formData }) => {
+  console.log("buildFinalDoc formData", formData)
+  // get the user's selected location since this determines which parts of docTemplate to use
+  const selectedLocation = formData.jurisdiction
   // get schemas
-  const { locationSchema, genericSchema } = getSchemas({ formData })
+  const { locationSchema, genericSchema } = getSchemas({
+    selectedLocation: selectedLocation,
+  })
 
   // set up doc template
+  // NOTE: Be careful using "all" since it can break if the genericSchema changes
   const docTemplate = [
     {
       location: ["all"],
       type: "header",
-      value: genericSchema.checkboxExample.true.headerA,
+      value:
+        genericSchema.checkboxExample.true.headerA ||
+        genericSchemaB.checkboxExample.true.headerA,
     },
     {
-      location: ["all"],
+      location: [
+        ...locationGroups.locationGroupA,
+        ...locationGroups.locationGroupB,
+      ],
       type: "body",
       value: genericSchema.checkboxExample.true.bodyA,
     },
     {
-      location: ["location1", "location2"],
+      location: [...locationGroups.locationGroupB],
       type: "body",
       value: locationSchema.radioExample.option2.bodyA,
     },
     {
-      location: ["all"],
+      location: [...locationGroups.locationGroupA],
       type: "listUnordered",
       value: genericSchema.checkboxExample.true.listA,
     },
     {
-      location: ["all"],
+      location: [...locationGroups.locationGroupA],
       type: "listOrdered",
       value: genericSchema.checkboxExample.true.listA,
     },
     {
-      location: ["all"],
+      location: [...locationGroups.locationGroupA],
       type: "sectionStart",
       value: "A New Section Starts Here",
     },
   ]
 
-  const testDocResult = fillDocTemplate({ docTemplate })
-  return testDocResult
-  //return alert(JSON.stringify(testDocResult))
+  const generatedDoc = fillDocTemplate({
+    docTemplate: docTemplate,
+    selectedLocation: selectedLocation,
+  })
+
+  return generatedDoc
 }
 
 export default buildFinalDoc

@@ -32,12 +32,13 @@ const pdfStyles = StyleSheet.create({
 // Helper functions
 
 const TestPDFDoc = ({ docTemplate, formData }) => {
+  console.log("TestPDFDoc formData", formData)
   return (
     <Document>
       <Page size="A4" style={pdfStyles.page}>
         <Text>PDF Fixed Heading</Text>
         {/* <View>{generateSections()}</View> */}
-        <View>{buildFinalDoc({ formData })}</View>
+        <View>{formData && buildFinalDoc({ formData: formData })}</View>
       </Page>
     </Document>
   )
