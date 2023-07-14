@@ -31,11 +31,11 @@ const genericSchemaA = {
 const genericSchemaB = {
   checkboxExample: {
     true: {
-      headerA: "Using generic schema B",
-      bodyA: ["TRUE: Generic schema body A"],
+      headerA: "1. GB: checkbox is true. ",
+      bodyA: ["2. GB: checkbox is true"],
     },
     false: {
-      bodyA: ["FALSE: Generic schema body A"],
+      bodyA: ["3. GB: checkbox is false"],
     },
   },
 }
@@ -44,17 +44,17 @@ const genericSchemaB = {
 const schemaLocationA = {
   radioExample: {
     option1: {
-      bodyA: ["Schema location A was selected"],
+      bodyA: ["LA: Radio option 1"],
     },
     option2: {
-      bodyA: ["hello"],
+      bodyA: ["LA: Radio option 2"],
     },
     option3: {
-      headerA: "This is a header",
-      bodyA: ["This is a body"],
-      headerB: "This is a second Header",
-      bodyB: ["Second body text here"],
-      bodyC: ["This is a body"],
+      headerA: "LA: Radio option 3 header",
+      bodyA: ["LA: Radio option 3 body"],
+      headerB: "LA: Radio option 3 header B",
+      bodyB: ["LA: Radio option 3 body B"],
+      bodyC: ["LA: Radio option 3 body C"],
     },
   },
 }
@@ -62,12 +62,10 @@ const schemaLocationA = {
 const schemaLocationB = {
   radioExample: {
     option1: {
-      bodyA: [
-        "hello It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-      ],
+      bodyA: ["LB: Radio option 1"],
     },
     option2: {
-      bodyA: ["Schema Location B"],
+      bodyA: ["LB: Radio option 2"],
     },
   },
 }
@@ -115,22 +113,22 @@ const testStyles = StyleSheet.create({
   h1: {
     fontSize: 24,
     fontWeight: "bold",
-    marginBottom: 10,
+    marginBottom: 0,
   },
   body: {
     fontSize: 16,
-    marginTop: 10,
-    marginBottom: 10,
-    padding: 10,
+    marginTop: 0,
+    marginBottom: 0,
+    padding: 0,
   },
   section: {
     fontSize: 16,
-    marginTop: 10,
-    marginBottom: 10,
-    padding: 10,
+    marginTop: 0,
+    marginBottom: 0,
+    padding: 0,
   },
   paragraph: {
-    marginBottom: 8,
+    marginBottom: 2,
   },
   listUnordered: {
     textIndent: 10,
@@ -192,32 +190,6 @@ export const fillDocTemplate = ({ docTemplate, selectedLocation }) => {
     // get the location array inside each section
     const sectionValidLocations = schemaSection.location
 
-    // CATCH ERRORS -----------------
-    // Check if sectionValidLocations is defined since everything breaks if we don't have this info
-    if (!sectionValidLocations) {
-      throw new Error(
-        `Jurisdiction isn't defined for section: ${JSON.stringify(
-          sectionIndex
-        )} at index: ${JSON.stringify(sectionIndex)}`
-      )
-    }
-    // Check if the value field exists since template is incorrect if this is missing
-    if (schemaSection.value === undefined) {
-      throw new Error(
-        `The following section is trying to access a non-existent value in your schema: ${JSON.stringify(
-          schemaSection,
-          null,
-          2
-        )} at index: ${JSON.stringify(sectionIndex)} 
-         \n Troubleshooting: Review the following docTempate schema and also check that genericSchema and locationSchema are correct as they can lead to undefined values. => ${JSON.stringify(
-           docTemplate,
-           null,
-           2
-         )}.`
-      )
-    }
-    // End catch errors ----------------
-
     // See if at least one location matches
     const hasCorrectLocation = sectionValidLocations.some(
       (location: string) => {
@@ -226,16 +198,39 @@ export const fillDocTemplate = ({ docTemplate, selectedLocation }) => {
     )
     // and only return section values that match the location
     if (hasCorrectLocation) {
+      // CATCH ERRORS -----------------
+      // Check if sectionValidLocations is defined since everything breaks if we don't have this info
+      if (!sectionValidLocations) {
+        throw new Error(
+          `Jurisdiction isn't defined for section: ${JSON.stringify(
+            sectionIndex
+          )} at index: ${JSON.stringify(sectionIndex)}`
+        )
+      }
+      // Check if the value field exists since template is incorrect if this is missing
+      if (schemaSection.value === undefined) {
+        //return <Text key={sectionIndex}>Nothing to see here</Text>
+        throw new Error(
+          `The following section is trying to access a non-existent value in your schema: ${JSON.stringify(
+            schemaSection.sectionID
+          )} at index: ${JSON.stringify(sectionIndex)} 
+         \n Troubleshooting: Review the following docTempate schema and also check that genericSchema and locationSchema are correct as they can lead to undefined values. => ${JSON.stringify(
+           docTemplate,
+           null,
+           2
+         )}.`
+        )
+      }
+      // End catch errors ----------------
       return renderPDFComponent({ schemaSection }) // This could potentially just be a condition to render a style. Need to figure out how to handle lists though
     } else {
-      return <Text key={sectionIndex}>Failed</Text>
+      return //<Text key={sectionIndex}>Failed</Text>
     }
   })
 }
 
 // render final doc
 const buildFinalDoc = ({ formData }) => {
-  console.log("buildFinalDoc formData", formData)
   // get the user's selected location since this determines which parts of docTemplate to use
   const selectedLocation = formData.jurisdiction
   // get schemas
@@ -247,6 +242,7 @@ const buildFinalDoc = ({ formData }) => {
   // NOTE: Be careful using "all" since it can break if the genericSchema changes
   const docTemplate = [
     {
+      sectionID: "s1",
       location: ["all"],
       type: "header",
       value:
@@ -254,6 +250,7 @@ const buildFinalDoc = ({ formData }) => {
         genericSchemaB.checkboxExample.true.headerA,
     },
     {
+      sectionID: "s2",
       location: [
         ...locationGroups.locationGroupA,
         ...locationGroups.locationGroupB,
@@ -262,21 +259,25 @@ const buildFinalDoc = ({ formData }) => {
       value: genericSchema.checkboxExample.true.bodyA,
     },
     {
+      sectionID: "s3",
       location: [...locationGroups.locationGroupB],
       type: "body",
       value: locationSchema.radioExample.option2.bodyA,
     },
     {
+      sectionID: "s4",
       location: [...locationGroups.locationGroupA],
       type: "listUnordered",
       value: genericSchema.checkboxExample.true.listA,
     },
     {
+      sectionID: "s5",
       location: [...locationGroups.locationGroupA],
       type: "listOrdered",
       value: genericSchema.checkboxExample.true.listA,
     },
     {
+      sectionID: "s6",
       location: [...locationGroups.locationGroupA],
       type: "sectionStart",
       value: "A New Section Starts Here",

@@ -77,9 +77,9 @@ const Product3 = () => {
     const body = data
 
     // test buildFinalDoc -------------------------
-    const finalDoc = await buildFinalDoc(data)
-    setFinalDoc(finalDoc)
-    console.log("finalDoc", finalDoc)
+    // const finalDoc = await buildFinalDoc(data)
+    // setFinalDoc(finalDoc)
+    // console.log("finalDoc", finalDoc)
     setIsSubmitted(true)
     // --------------------------------------------
 
@@ -119,11 +119,11 @@ const Product3 = () => {
           buttonLabel="Submit Form"
           productName="product1"
         >
-          {isSubmitted ? (
+          {isSubmitted && (
             <PDFViewer style={styles.page}>
               <TestPDFDoc formData={formData} />
             </PDFViewer>
-          ) : null}
+          )}
 
           <Field name="jurisdiction" validateOnBlur={false}>
             <Field.GroupLabel>Location Select:</Field.GroupLabel>
