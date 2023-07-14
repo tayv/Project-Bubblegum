@@ -74,7 +74,6 @@ const schemaLocationB = {
 
 // get generic schema
 const getGenericSchema = ({ selectedLocation }) => {
-  // NOTE: Should create a separate docTemplate for each genericSchema otherwise can't use location "all" since changing genericSchema will result in undefined values
   switch (selectedLocation) {
     case "location1":
       return genericSchemaA
@@ -144,17 +143,34 @@ const testStyles = StyleSheet.create({
   },
 })
 
-const renderPDFComponent = ({ schemaSection }) => {
-  switch (schemaSection.type) {
+const renderPDFComponent = ({
+  schemaSectionContent,
+  sectionIndex,
+  contentIndex,
+}) => {
+  const sectionNumber = sectionIndex + 1
+  const contentNumber = contentIndex + 1
+
+  switch (schemaSectionContent.type) {
     case "header":
-      return <Text style={testStyles.h1}>{schemaSection.value}</Text>
+      return (
+        <Text
+          style={testStyles.h1}
+        >{`${sectionNumber}. ${schemaSectionContent.value}`}</Text>
+      )
+    case "subheader":
+      return (
+        <Text
+          style={testStyles.h2}
+        >{`${sectionNumber}.${contentIndex} ${schemaSectionContent.value}`}</Text>
+      )
     case "body":
       return (
         <View style={testStyles.section}>
-          {schemaSection.value.map((item, index) => {
+          {schemaSectionContent.value.map((item, index) => {
             return (
               <Text key={index} style={testStyles.paragraph}>
-                {item}
+                {`${sectionNumber}.${contentIndex} ${item} `}
               </Text>
             )
           })}
@@ -162,7 +178,7 @@ const renderPDFComponent = ({ schemaSection }) => {
       )
 
     case "listUnordered":
-      return schemaSection.value.map((item, index) => {
+      return schemaSectionContent.value.map((item, index) => {
         return (
           <Text key={index} style={testStyles.listUnordered}>
             - {item}
@@ -170,7 +186,7 @@ const renderPDFComponent = ({ schemaSection }) => {
         )
       })
     case "listOrdered":
-      return schemaSection.value.map((item, index) => {
+      return schemaSectionContent.value.map((item, index) => {
         return (
           <Text key={index} style={testStyles.listOrdered}>
             {index + 1}. {item}
@@ -178,7 +194,11 @@ const renderPDFComponent = ({ schemaSection }) => {
         )
       })
     case "sectionStart":
-      return <Text style={testStyles.sectionStart}>{schemaSection.value}</Text>
+      return (
+        <Text
+          style={testStyles.sectionStart}
+        >{`${sectionNumber}.${contentIndex} ${schemaSectionContent.value}`}</Text>
+      )
     default:
       return genericSchemaA
   }
@@ -207,24 +227,33 @@ export const fillDocTemplate = ({ docTemplate, selectedLocation }) => {
           )} at index: ${JSON.stringify(sectionIndex)}`
         )
       }
-      // Check if the value field exists since template is incorrect if this is missing
-      if (schemaSection.value === undefined) {
-        //return <Text key={sectionIndex}>Nothing to see here</Text>
-        throw new Error(
-          `The following section is trying to access a non-existent value in your schema: ${JSON.stringify(
-            schemaSection.sectionID
-          )} at index: ${JSON.stringify(sectionIndex)} 
-         \n Troubleshooting: Review the following docTempate schema and also check that genericSchema and locationSchema are correct as they can lead to undefined values. => ${JSON.stringify(
-           docTemplate,
-           null,
-           2
-         )}.`
-        )
-      }
-      // End catch errors ----------------
-      return renderPDFComponent({ schemaSection }) // This could potentially just be a condition to render a style. Need to figure out how to handle lists though
+
+      // ------------------------------ MOVE TO schema content map function
+      // Check if the value field exists in content since template is incorrect if this is missing
+      // if (schemaSection.value === undefined) {
+      //   //return <Text key={sectionIndex}>Nothing to see here</Text>
+      //   throw new Error(
+      //     `The following section is trying to access a non-existent value in your schema: ${JSON.stringify(
+      //       schemaSection.sectionID
+      //     )} at index: ${JSON.stringify(sectionIndex)}
+      //    \n Troubleshooting: Review the following docTempate schema and also check that genericSchema and locationSchema are correct as they can lead to undefined values. => ${JSON.stringify(
+      //      docTemplate,
+      //      null,
+      //      2
+      //    )}.`
+      //   )
+      // }
+      // End  ----------------
+
+      return schemaSection.content.map((schemaSectionContent, contentIndex) => {
+        return renderPDFComponent({
+          schemaSectionContent: schemaSectionContent,
+          sectionIndex: sectionIndex,
+          contentIndex: contentIndex,
+        })
+      })
     } else {
-      return //<Text key={sectionIndex}>Failed</Text>
+      return null // to prevent rendering content for sections that don't match the location
     }
   })
 }
@@ -243,44 +272,89 @@ const buildFinalDoc = ({ formData }) => {
   const docTemplate = [
     {
       sectionID: "s1",
-      location: ["all"],
-      type: "header",
-      value:
-        genericSchema.checkboxExample.true.headerA ||
-        genericSchemaB.checkboxExample.true.headerA,
+      location: ["all"], // can be "all" or a specific location
+      content: [
+        {
+          location: ["all"],
+          type: "header",
+          value:
+            genericSchema.checkboxExample.true.headerA || // can also have conditional logic values but this should be minimized to avoid confusing schemas
+            genericSchemaB.checkboxExample.true.headerA,
+        },
+        {
+          // Can include multiple groups by spreading them into the array
+          location: [
+            ...locationGroups.locationGroupA,
+            ...locationGroups.locationGroupB,
+          ],
+          type: "body",
+          value: genericSchema.checkboxExample.true.bodyA,
+        },
+      ],
     },
     {
       sectionID: "s2",
-      location: [
-        ...locationGroups.locationGroupA,
-        ...locationGroups.locationGroupB,
+      location: [...locationGroups.locationGroupB],
+      content: [
+        {
+          location: [...locationGroups.locationGroupB],
+          type: "header",
+          value: "Section 2 Header",
+        },
+        {
+          location: [...locationGroups.locationGroupB],
+          type: "body",
+          value: locationSchema.radioExample.option2.bodyA,
+        },
       ],
-      type: "body",
-      value: genericSchema.checkboxExample.true.bodyA,
     },
     {
       sectionID: "s3",
-      location: [...locationGroups.locationGroupB],
-      type: "body",
-      value: locationSchema.radioExample.option2.bodyA,
+      location: [...locationGroups.locationGroupA],
+      content: [
+        {
+          location: [...locationGroups.locationGroupA],
+          type: "header",
+          value: "Section 3 Header",
+        },
+        {
+          location: [...locationGroups.locationGroupA],
+          type: "listUnordered",
+          value: genericSchema.checkboxExample.true.listA,
+        },
+      ],
     },
     {
       sectionID: "s4",
       location: [...locationGroups.locationGroupA],
-      type: "listUnordered",
-      value: genericSchema.checkboxExample.true.listA,
+      content: [
+        {
+          location: [...locationGroups.locationGroupA],
+          type: "header",
+          value: "Section 4 Header",
+        },
+        {
+          location: [...locationGroups.locationGroupA],
+          type: "listOrdered",
+          value: genericSchema.checkboxExample.true.listA,
+        },
+      ],
     },
     {
       sectionID: "s5",
       location: [...locationGroups.locationGroupA],
-      type: "listOrdered",
-      value: genericSchema.checkboxExample.true.listA,
-    },
-    {
-      sectionID: "s6",
-      location: [...locationGroups.locationGroupA],
-      type: "sectionStart",
-      value: "A New Section Starts Here",
+      content: [
+        {
+          location: [...locationGroups.locationGroupA],
+          type: "header",
+          value: "Hardcoded sectionStart",
+        },
+        {
+          location: [...locationGroups.locationGroupA],
+          type: "sectionStart",
+          value: "A New Section Starts Here",
+        },
+      ],
     },
   ]
 
@@ -293,3 +367,48 @@ const buildFinalDoc = ({ formData }) => {
 }
 
 export default buildFinalDoc
+
+// OLD DOC TEMPLATE
+// const docTemplate = [
+//   {
+//     sectionID: "s1",
+//     location: ["all"],
+//     type: "header",
+//     value:
+//       genericSchema.checkboxExample.true.headerA ||
+//       genericSchemaB.checkboxExample.true.headerA,
+//   },
+//   {
+//     sectionID: "s2",
+//     location: [
+//       ...locationGroups.locationGroupA,
+//       ...locationGroups.locationGroupB,
+//     ],
+//     type: "body",
+//     value: genericSchema.checkboxExample.true.bodyA,
+//   },
+//   {
+//     sectionID: "s3",
+//     location: [...locationGroups.locationGroupB],
+//     type: "body",
+//     value: locationSchema.radioExample.option2.bodyA,
+//   },
+//   {
+//     sectionID: "s4",
+//     location: [...locationGroups.locationGroupA],
+//     type: "listUnordered",
+//     value: genericSchema.checkboxExample.true.listA,
+//   },
+//   {
+//     sectionID: "s5",
+//     location: [...locationGroups.locationGroupA],
+//     type: "listOrdered",
+//     value: genericSchema.checkboxExample.true.listA,
+//   },
+//   {
+//     sectionID: "s6",
+//     location: [...locationGroups.locationGroupA],
+//     type: "sectionStart",
+//     value: "A New Section Starts Here",
+//   },
+// ]
