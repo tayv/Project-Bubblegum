@@ -1,6 +1,13 @@
 import React from "react"
 // import makePDF dependencies
-import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer"
+import {
+  Page,
+  Text,
+  View,
+  Image,
+  Document,
+  StyleSheet,
+} from "@react-pdf/renderer"
 import buildFinalDoc from "./product1SchemaTestRefactor"
 
 // Create PDF styles
@@ -27,10 +34,10 @@ const pdfStyles = StyleSheet.create({
   },
   page: {
     backgroundColor: "tomato",
-    paddingLeft: 20,
-    paddingRight: 20,
-    paddingTop: 20,
-    paddingBottom: 45,
+    paddingLeft: 25,
+    paddingRight: 25,
+    paddingTop: 30,
+    paddingBottom: 50,
     marginBottom: 0,
   },
   body: {
@@ -55,6 +62,16 @@ const TestPDFDoc = ({ docTemplate, formData }) => {
   return (
     <Document>
       <Page size="A4" style={pdfStyles.page}>
+        <View>
+          {/* eslint-disable-next-line jsx-a11y/alt-text*/}
+          <Image
+            src="/home.png"
+            style={{
+              width: 15,
+              height: 15,
+            }}
+          />
+        </View>
         <View>{formData && buildFinalDoc({ formData: formData })}</View>
         <View style={pdfStyles.footer} fixed>
           <Text>Product Name: 123 Box on Road</Text>
