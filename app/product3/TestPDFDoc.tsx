@@ -5,6 +5,21 @@ import buildFinalDoc from "./product1SchemaTestRefactor"
 
 // Create PDF styles
 const pdfStyles = StyleSheet.create({
+  footer: {
+    fontSize: 12,
+    textAlign: "center",
+    marginTop: 0,
+    paddingTop: 6,
+    paddingBottom: 0,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    opacity: 0.5,
+    borderTop: "1 solid #000",
+    position: "absolute",
+    bottom: 20,
+    left: 20,
+    right: 20,
+  },
   h1: {
     fontSize: 24,
     fontWeight: "bold",
@@ -12,7 +27,11 @@ const pdfStyles = StyleSheet.create({
   },
   page: {
     backgroundColor: "tomato",
-    padding: 20,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingTop: 20,
+    paddingBottom: 45,
+    marginBottom: 0,
   },
   body: {
     fontSize: 16,
@@ -36,30 +55,15 @@ const TestPDFDoc = ({ docTemplate, formData }) => {
   return (
     <Document>
       <Page size="A4" style={pdfStyles.page}>
-        <View fixed>
-          <Text>
-            ------------------THIS IS A FIXED HEADING-------------------
-          </Text>
-        </View>
-        <Text>PDF Fixed Heading</Text>
-        {/* <View>{generateSections()}</View> */}
         <View>{formData && buildFinalDoc({ formData: formData })}</View>
-        <Text
-          render={({ pageNumber, totalPages }) =>
-            `${pageNumber} / ${totalPages}`
-          }
-          fixed
-        />
-
-        <View
-          render={({ pageNumber }) =>
-            pageNumber % 2 === 0 && (
-              <View>
-                <Text>I am only visible in odd pages!</Text>
-              </View>
-            )
-          }
-        />
+        <View style={pdfStyles.footer} fixed>
+          <Text>Product Name: 123 Box on Road</Text>
+          <Text
+            render={({ pageNumber, totalPages }) =>
+              `${pageNumber} of ${totalPages}`
+            }
+          />
+        </View>
       </Page>
     </Document>
   )
