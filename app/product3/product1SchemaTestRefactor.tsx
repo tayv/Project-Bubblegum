@@ -198,6 +198,7 @@ const renderPDFComponent = ({
         <Text
           {...{ bookmark: schemaSectionContent.value }} // NOTE: Spread bookmark as a Typescript bug workaround. See: https://github.com/diegomura/react-pdf/issues/1979
           style={testStyles.sectionStart}
+          id="test"
         >{`${sectionNumber}.${contentIndex} ${schemaSectionContent.value}`}</Text>
       )
     default:

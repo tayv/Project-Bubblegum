@@ -6,6 +6,7 @@ import {
   View,
   Image,
   Document,
+  Link,
   StyleSheet,
 } from "@react-pdf/renderer"
 import buildFinalDoc from "./product1SchemaTestRefactor"
@@ -63,6 +64,14 @@ const TestPDFDoc = ({ docTemplate, formData }) => {
     <Document>
       <Page size="A4" style={pdfStyles.page}>
         <View>
+          <Text style={pdfStyles.h1}>This is a title page</Text>
+          <Link src="#test"> Go to section 5</Link>
+        </View>
+      </Page>
+
+      {/* Dynamic content goes here */}
+      <Page size="A4" style={pdfStyles.page}>
+        <View>
           {/* eslint-disable-next-line jsx-a11y/alt-text*/}
           <Image
             src="/home.png"
@@ -80,6 +89,12 @@ const TestPDFDoc = ({ docTemplate, formData }) => {
               `${pageNumber} of ${totalPages}`
             }
           />
+        </View>
+      </Page>
+
+      <Page size="A4" style={pdfStyles.page}>
+        <View>
+          <Text style={pdfStyles.h1}>This is an appendix / last page</Text>
         </View>
       </Page>
     </Document>
