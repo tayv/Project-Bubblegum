@@ -36,9 +36,30 @@ const TestPDFDoc = ({ docTemplate, formData }) => {
   return (
     <Document>
       <Page size="A4" style={pdfStyles.page}>
+        <View fixed>
+          <Text>
+            ------------------THIS IS A FIXED HEADING-------------------
+          </Text>
+        </View>
         <Text>PDF Fixed Heading</Text>
         {/* <View>{generateSections()}</View> */}
         <View>{formData && buildFinalDoc({ formData: formData })}</View>
+        <Text
+          render={({ pageNumber, totalPages }) =>
+            `${pageNumber} / ${totalPages}`
+          }
+          fixed
+        />
+
+        <View
+          render={({ pageNumber }) =>
+            pageNumber % 2 === 0 && (
+              <View>
+                <Text>I am only visible in odd pages!</Text>
+              </View>
+            )
+          }
+        />
       </Page>
     </Document>
   )
