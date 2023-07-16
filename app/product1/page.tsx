@@ -20,7 +20,8 @@ import ModalStandard from "@components/ui/ModalStandard"
 import ModalViewDoc from "@components/ui/ModalViewDoc"
 import { PDFViewer, StyleSheet } from "@react-pdf/renderer"
 import dynamic from "next/dynamic"
-import MyDocument from "../product2/MyDocument"
+
+import TestPDFDoc from "app/product3/TestPDFDoc"
 
 // Create PDF styles
 const styles = StyleSheet.create({
@@ -179,7 +180,7 @@ const Product1 = () => {
         description="This is a description"
       >
         <PDFViewer style={styles.page}>
-          <MyDocument />
+          <TestPDFDoc />
         </PDFViewer>
       </ModalViewDoc>
     </PageContext.Provider>

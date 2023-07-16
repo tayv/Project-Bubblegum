@@ -9,7 +9,7 @@ import {
   StyleSheet,
   Font,
 } from "@react-pdf/renderer"
-import buildFinalDoc from "./product1SchemaTestRefactor"
+import buildPDF from "./_helpers/buildPDF"
 
 // Register custom fonts. See: https://github.com/diegomura/react-pdf/issues/1075
 Font.register({
@@ -102,7 +102,7 @@ const pdfStyles = StyleSheet.create({
 
 // Helper functions
 
-const TestPDFDoc = ({ docTemplate, formData }) => {
+const DynamicPDF = ({ docTemplate, formData }) => {
   return (
     <Document>
       <Page size="A4" style={pdfStyles.page}>
@@ -122,7 +122,7 @@ const TestPDFDoc = ({ docTemplate, formData }) => {
 
       {/* Dynamic content goes here */}
       <Page size="A4" style={pdfStyles.page}>
-        <View>{formData && buildFinalDoc({ formData: formData })}</View>
+        <View>{formData && buildPDF({ formData: formData })}</View>
         <View style={pdfStyles.footer} fixed>
           <Text>Product Name: 123 Box on Road</Text>
           <Text
@@ -142,4 +142,4 @@ const TestPDFDoc = ({ docTemplate, formData }) => {
   )
 }
 
-export default TestPDFDoc
+export default DynamicPDF
