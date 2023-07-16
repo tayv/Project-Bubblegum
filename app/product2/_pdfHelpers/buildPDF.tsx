@@ -1,6 +1,6 @@
-import { combineSchemas } from "./combineSchemas"
-import { renderDocTemplateAsPDF } from "./renderDocTemplateAsPDF"
-import { generateDocTemplate } from "./generateDocTemplate"
+import { combineSubSchemas } from "./combineSubSchemas"
+import { renderTemplateAsPDF } from "./renderTemplateAsPDF"
+import { createTemplateSchema } from "./createTemplateSchema"
 
 // helper functions
 
@@ -9,13 +9,13 @@ const buildPDF = ({ formData }) => {
   // Get the user's selected location since this determines which parts of docTemplate to use
   const selectedLocation = formData.jurisdiction
   // Combined schemas needed for generating docTemplate
-  const { locationSchema, genericSchema } = combineSchemas({
+  const { locationSchema, genericSchema } = combineSubSchemas({
     selectedLocation: selectedLocation,
   })
 
-  const docTemplate = generateDocTemplate(locationSchema, genericSchema)
+  const docTemplate = createTemplateSchema(locationSchema, genericSchema)
 
-  const generatedPDF = renderDocTemplateAsPDF({
+  const generatedPDF = renderTemplateAsPDF({
     docTemplate: docTemplate,
     selectedLocation: selectedLocation,
   })

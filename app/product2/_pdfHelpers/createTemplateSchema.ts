@@ -12,7 +12,7 @@ import {
 
 // Document Template Schema
 // NOTE: Be careful using "all" since it can break if the genericSchema changes
-export const generateDocTemplate = (locationSchema, genericSchema) => [
+export const createTemplateSchema = (locationSchema, genericSchema) => [
   {
     sectionID: "s1",
     location: ["all"], // can be "all" or a specific location

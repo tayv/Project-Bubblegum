@@ -1,7 +1,7 @@
 import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer"
 import { pdfStyles } from "./pdfStyles"
 
-export const renderPDFComponents = ({
+export const renderPDFElements = ({
   schemaSectionContent,
   sectionIndex,
   contentIndex,

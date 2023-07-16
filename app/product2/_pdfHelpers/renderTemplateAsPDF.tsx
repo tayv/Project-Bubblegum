@@ -1,6 +1,6 @@
-import { renderPDFComponents } from "./renderPDFComponents"
+import { renderPDFElements } from "./renderPDFElements"
 
-export const renderDocTemplateAsPDF = ({ docTemplate, selectedLocation }) => {
+export const renderTemplateAsPDF = ({ docTemplate, selectedLocation }) => {
   // Render PDF according to docTemplate layout
   return docTemplate.map((schemaSection, sectionIndex) => {
     // get the location array inside each section
@@ -25,7 +25,7 @@ export const renderDocTemplateAsPDF = ({ docTemplate, selectedLocation }) => {
       }
 
       return schemaSection.content.map((schemaSectionContent, contentIndex) => {
-        return renderPDFComponents({
+        return renderPDFElements({
           schemaSectionContent: schemaSectionContent,
           sectionIndex: sectionIndex,
           contentIndex: contentIndex,

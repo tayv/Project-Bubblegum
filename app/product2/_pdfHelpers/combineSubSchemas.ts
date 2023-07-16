@@ -32,7 +32,7 @@ const getLocationSchema = ({ selectedLocation }) => {
 }
 
 // export from separate file
-export const combineSchemas = ({ selectedLocation }) => {
+export const combineSubSchemas = ({ selectedLocation }) => {
   // The schemas are specific to the location so need to be fetched dynamically
   const locationSchema = getLocationSchema({ selectedLocation })
   const genericSchema = getGenericSchema({ selectedLocation })
