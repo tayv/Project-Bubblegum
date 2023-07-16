@@ -27,12 +27,6 @@ export const pdfStyles = StyleSheet.create({
     marginBottom: 0,
     opacity: 0.8,
   },
-  body: {
-    fontSize: 16,
-    marginTop: 0,
-    marginBottom: 0,
-    padding: 0,
-  },
   section: {
     fontSize: 16,
     marginTop: 0,
