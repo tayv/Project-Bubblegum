@@ -13,15 +13,14 @@ import CardSection from "@components/ui/CardSection"
 import { useState, createContext } from "react"
 import RadioGroup from "@components/form/RadioGroup"
 import Select from "@components/form/Select"
-import product1SchemaTest from "./productSchema"
+
 import { PageContext } from "@template/context"
 import ModalStandard from "@components/ui/ModalStandard"
 import ModalViewDoc from "@components/ui/ModalViewDoc"
 import { PDFViewer, StyleSheet } from "@react-pdf/renderer"
 import dynamic from "next/dynamic"
 
-import buildFinalDoc from "./productSchema"
-import TestPDFDoc from "./DynamicPDF "
+import DynamicPDF from "./DynamicPDF "
 
 // Create PDF styles
 const styles = StyleSheet.create({
@@ -59,7 +58,7 @@ const Product3 = () => {
   // Setup pg context values to pass to template
   const pageContextValue = {
     formData: formData,
-    schema: product1SchemaTest,
+    //schema: product1SchemaTest,
   }
 
   // TEST initial PDF doc state
@@ -75,12 +74,7 @@ const Product3 = () => {
     console.log("event:", event)
     const body = data
 
-    // test buildFinalDoc -------------------------
-    // const finalDoc = await buildFinalDoc(data)
-    // setFinalDoc(finalDoc)
-    // console.log("finalDoc", finalDoc)
-    setIsSubmitted(true)
-    // --------------------------------------------
+    setIsSubmitted(true) // so we can render the PDFViewer after form is submitted
 
     try {
       const response = await fetch("/api/inquiry", {
@@ -112,7 +106,7 @@ const Product3 = () => {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 w-full xl:max-w-1400">
         {isSubmitted ? (
           <PDFViewer style={styles.page}>
-            <TestPDFDoc formData={formData} />
+            <DynamicPDF formData={formData} />
           </PDFViewer>
         ) : null}
 

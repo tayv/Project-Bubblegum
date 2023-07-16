@@ -1,70 +1,44 @@
 import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer"
-
-// build doc template
-// Need to fill the schema with correct formData values
-// Create PDF styles
-const testStyles = StyleSheet.create({
-  h1: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 0,
-  },
-  body: {
-    fontSize: 16,
-    marginTop: 0,
-    marginBottom: 0,
-    padding: 0,
-  },
-  section: {
-    fontSize: 16,
-    marginTop: 0,
-    marginBottom: 0,
-    padding: 0,
-  },
-  paragraph: {
-    marginBottom: 2,
-  },
-  listUnordered: {
-    textIndent: 10,
-  },
-  listOrdered: {
-    textIndent: 10,
-  },
-  sectionStart: {
-    fontSize: 20,
-    borderBottom: "2 solid #ccc",
-    paddingTop: 5,
-    paddingBottom: 5,
-  },
-})
+import { pdfStyles } from "./pdfStyles"
 
 export const renderPDFComponents = ({
   schemaSectionContent,
   sectionIndex,
   contentIndex,
 }) => {
-  const sectionNumber = sectionIndex + 1
-  const contentNumber = contentIndex + 1
+  const sectionNumber = sectionIndex + 1 // used for numbering sections
+  const contentNumber = contentIndex + 1 // used for numbering content within a section
+
+  // ------------------------------ Check for missing value field in schema ------------------------------
+  if (schemaSectionContent.value === undefined) {
+    throw new Error(
+      `The following section is trying to access a non-existent value in your schema: ${JSON.stringify(
+        schemaSectionContent.sectionID
+      )} at index: ${JSON.stringify(sectionIndex)}
+         \n Troubleshooting: Review the following docTempate schema and also check that genericSchema and locationSchema are correct as they can lead to undefined values.`
+    )
+  }
+  // ------------------------------ End ------------------------------
 
   switch (schemaSectionContent.type) {
     case "header":
       return (
         <Text
-          style={testStyles.h1}
+          style={pdfStyles.h1}
         >{`${sectionNumber}. ${schemaSectionContent.value}`}</Text>
       )
     case "subheader":
       return (
         <Text
-          style={testStyles.h2}
+          style={pdfStyles.h2}
         >{`${sectionNumber}.${contentIndex} ${schemaSectionContent.value}`}</Text>
       )
     case "body":
       return (
-        <View style={testStyles.section}>
+        <View style={pdfStyles.section}>
           {schemaSectionContent.value.map((item, index) => {
             return (
-              <Text key={index} style={testStyles.paragraph}>
+              <Text key={index} style={pdfStyles.paragraph}>
                 {`${sectionNumber}.${contentIndex} ${item} `}
               </Text>
             )
@@ -75,7 +49,7 @@ export const renderPDFComponents = ({
     case "listUnordered":
       return schemaSectionContent.value.map((item, index) => {
         return (
-          <Text key={index} style={testStyles.listUnordered}>
+          <Text key={index} style={pdfStyles.listUnordered}>
             - {item}
           </Text>
         )
@@ -83,7 +57,7 @@ export const renderPDFComponents = ({
     case "listOrdered":
       return schemaSectionContent.value.map((item, index) => {
         return (
-          <Text key={index} style={testStyles.listOrdered}>
+          <Text key={index} style={pdfStyles.listOrdered}>
             {index + 1}. {item}
           </Text>
         )
@@ -92,7 +66,7 @@ export const renderPDFComponents = ({
       return (
         <Text
           {...{ bookmark: schemaSectionContent.value }} // NOTE: Spread bookmark as a Typescript bug workaround. See: https://github.com/diegomura/react-pdf/issues/1979
-          style={testStyles.sectionStart}
+          style={pdfStyles.sectionStart}
           id="test"
         >{`${sectionNumber}.${contentIndex} ${schemaSectionContent.value}`}</Text>
       )

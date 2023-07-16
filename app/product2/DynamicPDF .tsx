@@ -9,7 +9,8 @@ import {
   StyleSheet,
   Font,
 } from "@react-pdf/renderer"
-import buildPDF from "./_helpers/buildPDF"
+import { pdfStyles } from "./_pdfHelpers/pdfStyles"
+import buildPDF from "./_pdfHelpers/buildPDF"
 
 // Register custom fonts. See: https://github.com/diegomura/react-pdf/issues/1075
 Font.register({
@@ -52,52 +53,6 @@ Font.register({
       fontWeight: 900,
     },
   ],
-})
-
-// Create PDF styles
-const pdfStyles = StyleSheet.create({
-  footer: {
-    fontSize: 12,
-    textAlign: "center",
-    marginTop: 0,
-    paddingTop: 6,
-    paddingBottom: 0,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    opacity: 0.5,
-    borderTop: "1 solid #000",
-    position: "absolute",
-    bottom: 20,
-    left: 20,
-    right: 20,
-  },
-  h1: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 10,
-  },
-  page: {
-    backgroundColor: "tomato",
-    paddingLeft: 25,
-    paddingRight: 25,
-    paddingTop: 30,
-    paddingBottom: 50,
-    marginBottom: 0,
-    fontFamily: "Inter",
-  },
-  body: {
-    fontSize: 16,
-    marginTop: 10,
-    marginBottom: 10,
-  },
-  list: {
-    textIndent: 10,
-  },
-  sectionStart: {
-    fontSize: 20,
-    borderBottom: "2 solid #ccc",
-    paddingBottom: 5,
-  },
 })
 
 // Helper functions

@@ -1,5 +1,5 @@
 import { combineSchemas } from "./combineSchemas"
-import { fillDocTemplate } from "./fillDocTemplate"
+import { renderDocTemplateAsPDF } from "./renderDocTemplateAsPDF"
 import {
   genericSchemaA,
   genericSchemaB,
@@ -9,7 +9,7 @@ import {
   schemaLocationB,
 } from "../_schemas/schemaProductALocation"
 
-// suppported location groups
+// supported location groups
 // Used to build docTemplate from correct schemas
 // Intended to be used to batch closely related locations/countries so the number of genericSchemas can be limited
 const locationGroups = {
@@ -23,16 +23,16 @@ const allLocations = [
 
 // helper functions
 
-// render final doc
+// render final doc based on the docTemplate
 const buildPDF = ({ formData }) => {
-  // get the user's selected location since this determines which parts of docTemplate to use
+  // Get the user's selected location since this determines which parts of docTemplate to use
   const selectedLocation = formData.jurisdiction
-  // get schemas
+  // Get combined schemas
   const { locationSchema, genericSchema } = combineSchemas({
     selectedLocation: selectedLocation,
   })
 
-  // set up doc template
+  // Document Template Schema
   // NOTE: Be careful using "all" since it can break if the genericSchema changes
   const docTemplate = [
     {
@@ -123,12 +123,12 @@ const buildPDF = ({ formData }) => {
     },
   ]
 
-  const generatedDoc = fillDocTemplate({
+  const generatedPDF = renderDocTemplateAsPDF({
     docTemplate: docTemplate,
     selectedLocation: selectedLocation,
   })
 
-  return generatedDoc
+  return generatedPDF
 }
 
 export default buildPDF

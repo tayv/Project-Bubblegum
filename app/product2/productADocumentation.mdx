@@ -1,0 +1,13 @@
+## react-pdf
+
+Using react-pdf renderer to generate pdfs. Note that it is different from react-pdf which is used to display existing pdfs.
+
+### react-pdf bookmark bug
+
+```
+ {...{ bookmark: schemaSectionContent.value }} // NOTE: Spread bookmark as a Typescript bug workaround. See: https://github.com/diegomura/react-pdf/issues/1979
+```
+
+### Fonts
+
+Fonts must be registered before they can be used. See: https://github.com/diegomura/react-pdf/issues/1075
