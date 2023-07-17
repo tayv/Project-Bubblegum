@@ -1,4 +1,17 @@
-// location specific schemas to be used alongside generic schema to create docTemplate schema
+// SUPPORTED LOCATIONS FOR THIS PRODUCT --------------------------
+// Used to batch closely related locations/countries to help streamline sub schema logic
+export const locationGroups = {
+  locationGroupA: ["location1", "location3"],
+  locationGroupB: ["location2"],
+}
+export const allLocations = [
+  ...locationGroups.locationGroupA,
+  ...locationGroups.locationGroupB,
+]
+// --------------------------
+
+// LOCATION SPECIFIC SCHEMAS --------------------------
+// Used alongside generic schema to create docTemplate schema
 export const schemaLocationA = {
   radioExample: {
     option1: {

@@ -93,7 +93,7 @@ const pdfStyles = StyleSheet.create({
   list: {
     textIndent: 10,
   },
-  sectionStart: {
+  sectionTitle: {
     fontSize: 20,
     borderBottom: "2 solid #ccc",
     paddingBottom: 5,

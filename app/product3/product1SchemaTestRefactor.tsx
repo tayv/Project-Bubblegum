@@ -14,7 +14,7 @@ const allLocations = [
 ]
 
 // generic schemas
-const genericSchemaA = {
+const schemaGenericA = {
   checkboxExample: {
     true: {
       bodyA: ["TRUE: Generic schema body A", "second paragraph starts here"],
@@ -28,7 +28,7 @@ const genericSchemaA = {
   },
 }
 
-const genericSchemaB = {
+const schemaGenericB = {
   checkboxExample: {
     true: {
       headerA: "1. GB: checkbox is true. ",
@@ -76,11 +76,11 @@ const schemaLocationB = {
 const getGenericSchema = ({ selectedLocation }) => {
   switch (selectedLocation) {
     case "location1":
-      return genericSchemaA
+      return schemaGenericA
     case "location2":
-      return genericSchemaB
+      return schemaGenericB
     default:
-      return genericSchemaA
+      return schemaGenericA
   }
 }
 
@@ -99,10 +99,10 @@ const getLocationSchema = ({ selectedLocation }) => {
 // export from separate file
 export const getSchemas = ({ selectedLocation }) => {
   // The schemas are specific to the location so need to be fetched dynamically
-  const locationSchema = getLocationSchema({ selectedLocation })
-  const genericSchema = getGenericSchema({ selectedLocation })
+  const schemaLocationFiltered = getLocationSchema({ selectedLocation })
+  const schemaGenericFiltered = getGenericSchema({ selectedLocation })
 
-  return { locationSchema, genericSchema } // destructure these and use in the next function. Didn't spread into a single object since the template needs to handle logic from many different locations.
+  return { schemaLocationFiltered, schemaGenericFiltered } // destructure these and use in the next function. Didn't spread into a single object since the template needs to handle logic from many different locations.
 }
 
 // build doc template
@@ -135,7 +135,7 @@ const testStyles = StyleSheet.create({
   listOrdered: {
     textIndent: 10,
   },
-  sectionStart: {
+  sectionTitle: {
     fontSize: 20,
     borderBottom: "2 solid #ccc",
     paddingTop: 5,
@@ -193,16 +193,16 @@ const renderPDFComponent = ({
           </Text>
         )
       })
-    case "sectionStart":
+    case "sectionTitle":
       return (
         <Text
           {...{ bookmark: schemaSectionContent.value }} // NOTE: Spread bookmark as a Typescript bug workaround. See: https://github.com/diegomura/react-pdf/issues/1979
-          style={testStyles.sectionStart}
+          style={testStyles.sectionTitle}
           id="test"
         >{`${sectionNumber}.${contentIndex} ${schemaSectionContent.value}`}</Text>
       )
     default:
-      return genericSchemaA
+      return schemaGenericA
   }
 }
 
@@ -238,7 +238,7 @@ export const fillDocTemplate = ({ docTemplate, selectedLocation }) => {
       //     `The following section is trying to access a non-existent value in your schema: ${JSON.stringify(
       //       schemaSection.sectionID
       //     )} at index: ${JSON.stringify(sectionIndex)}
-      //    \n Troubleshooting: Review the following docTempate schema and also check that genericSchema and locationSchema are correct as they can lead to undefined values. => ${JSON.stringify(
+      //    \n Troubleshooting: Review the following docTempate schema and also check that schemaGenericFiltered and schemaLocationFiltered are correct as they can lead to undefined values. => ${JSON.stringify(
       //      docTemplate,
       //      null,
       //      2
@@ -265,12 +265,12 @@ const buildFinalDoc = ({ formData }) => {
   // get the user's selected location since this determines which parts of docTemplate to use
   const selectedLocation = formData.jurisdiction
   // get schemas
-  const { locationSchema, genericSchema } = getSchemas({
+  const { schemaLocationFiltered, schemaGenericFiltered } = getSchemas({
     selectedLocation: selectedLocation,
   })
 
   // set up doc template
-  // NOTE: Be careful using "all" since it can break if the genericSchema changes
+  // NOTE: Be careful using "all" since it can break if the schemaGenericFiltered changes
   const docTemplate = [
     {
       sectionID: "s1",
@@ -280,8 +280,8 @@ const buildFinalDoc = ({ formData }) => {
           location: ["all"],
           type: "header",
           value:
-            genericSchema.checkboxExample.true.headerA || // can also have conditional logic values but this should be minimized to avoid confusing schemas
-            genericSchemaB.checkboxExample.true.headerA,
+            schemaGenericFiltered.checkboxExample.true.headerA || // can also have conditional logic values but this should be minimized to avoid confusing schemas
+            schemaGenericB.checkboxExample.true.headerA,
         },
         {
           // Can include multiple groups by spreading them into the array
@@ -290,7 +290,7 @@ const buildFinalDoc = ({ formData }) => {
             ...locationGroups.locationGroupB,
           ],
           type: "body",
-          value: genericSchema.checkboxExample.true.bodyA,
+          value: schemaGenericFiltered.checkboxExample.true.bodyA,
         },
       ],
     },
@@ -306,7 +306,7 @@ const buildFinalDoc = ({ formData }) => {
         {
           location: [...locationGroups.locationGroupB],
           type: "body",
-          value: locationSchema.radioExample.option2.bodyA,
+          value: schemaLocationFiltered.radioExample.option2.bodyA,
         },
       ],
     },
@@ -322,7 +322,7 @@ const buildFinalDoc = ({ formData }) => {
         {
           location: [...locationGroups.locationGroupA],
           type: "listUnordered",
-          value: genericSchema.checkboxExample.true.listA,
+          value: schemaGenericFiltered.checkboxExample.true.listA,
         },
       ],
     },
@@ -338,7 +338,7 @@ const buildFinalDoc = ({ formData }) => {
         {
           location: [...locationGroups.locationGroupA],
           type: "listOrdered",
-          value: genericSchema.checkboxExample.true.listA,
+          value: schemaGenericFiltered.checkboxExample.true.listA,
         },
       ],
     },
@@ -349,11 +349,11 @@ const buildFinalDoc = ({ formData }) => {
         {
           location: [...locationGroups.locationGroupA],
           type: "header",
-          value: "Hardcoded sectionStart",
+          value: "Hardcoded sectionTitle",
         },
         {
           location: [...locationGroups.locationGroupA],
-          type: "sectionStart",
+          type: "sectionTitle",
           value: "A New Section Starts Here",
         },
       ],

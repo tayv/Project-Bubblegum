@@ -14,14 +14,23 @@ Fonts must be registered before they can be used. See: https://github.com/diegom
 
 ### How PDF is generated
 
-1. `<DynamicPDF />` used in page
+1. `<DynamicPDF />` used in page conditionally so it only renders after form submitted
+
+```
+  {isSubmitted ? (
+    <PDFViewer style={pdfStyles.pdfViewer}>
+      <DynamicPDF formData={formData} />
+    </PDFViewer>
+  ) : null}
+```
+
 2. `<DynamicPDF />` uses `buildPDF()` to generate pdf based on user's formData and pre-defined schema
-3. `buildPDF()` uses `createTemplateSchema()` to generate a document template schema and then uses `renderTemplateAsPDF()` to render the template using `react-pdf`'s components.
-4. `renderTemplateAsPDF()` maps through the schema. Each object it maps is considered a section. It then uses `renderPDFElements()` to render the components in each section.
+3. `buildPDF()` uses `createTemplateSchema()` to generate a document template schema and then uses `renderFullPDF()` to render the template using `react-pdf`'s components.
+4. `renderFullPDF()` maps through the schema. Each object it maps is considered a section. It then uses `renderPDFElements()` to render the components in each section.
 5. `renderPDFElements()` matches the component type based on the schema and renders the correct component.
 
 Side Notes:
 
-- `createTemplateSchema()` uses `combineSubSchemas()` to return the pre-defined location and generic schemas
-- `combineSubSchemas()` returns the correct schema based on the location field in `formData`
+- `createTemplateSchema()` uses `filterSubSchemas()` to return the pre-defined location and generic schemas
+- `filterSubSchemas()` returns the correct schema based on the location field in `formData`
 - `pdfStyles` holds all the styles used in the pdf

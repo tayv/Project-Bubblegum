@@ -1,6 +1,17 @@
 import { renderPDFElements } from "./renderPDFElements"
+import { SelectedLocation, DocTemplate } from "../_schemas/productATypes"
+import { View } from "@react-pdf/renderer"
+import { pdfStyles } from "./pdfStyles"
 
-export const renderTemplateAsPDF = ({ docTemplate, selectedLocation }) => {
+type RenderFullPDFProps = {
+  docTemplate: DocTemplate
+  selectedLocation: SelectedLocation
+}
+
+export const renderFullPDF = ({
+  docTemplate,
+  selectedLocation,
+}: RenderFullPDFProps) => {
   // Render PDF according to docTemplate layout
   return docTemplate.map((schemaSection, sectionIndex) => {
     // get the location array inside each section
@@ -25,11 +36,15 @@ export const renderTemplateAsPDF = ({ docTemplate, selectedLocation }) => {
       }
 
       return schemaSection.content.map((schemaSectionContent, contentIndex) => {
-        return renderPDFElements({
-          schemaSectionContent: schemaSectionContent,
-          sectionIndex: sectionIndex,
-          contentIndex: contentIndex,
-        })
+        return (
+          <View key={schemaSection.sectionID} style={pdfStyles.section}>
+            {renderPDFElements({
+              schemaSectionContent: schemaSectionContent,
+              sectionIndex: sectionIndex,
+              contentIndex: contentIndex,
+            })}
+          </View>
+        )
       })
     } else {
       return null // to prevent rendering content for sections that don't match the location

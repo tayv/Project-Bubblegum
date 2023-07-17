@@ -1,6 +1,6 @@
 // generic schema to be used to build docTemplate schema alongside location shcmeas
 // Try to limit the number of generic schemas whenever possible
-export const genericSchemaA = {
+export const schemaGenericA = {
   checkboxExample: {
     true: {
       bodyA: ["TRUE: Generic schema body A", "second paragraph starts here"],
@@ -14,14 +14,14 @@ export const genericSchemaA = {
   },
 }
 
-export const genericSchemaB = {
+export const schemaGenericB = {
   checkboxExample: {
     true: {
-      headerA: "1. GB: checkbox is true. ",
-      bodyA: ["2. GB: checkbox is true"],
+      headerA: "GB: checkbox is true. ",
+      bodyA: ["GB: checkbox is true"],
     },
     false: {
-      bodyA: ["3. GB: checkbox is false"],
+      bodyA: ["GB: checkbox is false"],
     },
   },
 }

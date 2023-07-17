@@ -2,6 +2,10 @@ import { StyleSheet } from "@react-pdf/renderer"
 
 // Used to style the product PDF. For supported css see: https://react-pdf.org/styling
 export const pdfStyles = StyleSheet.create({
+  pdfViewer: {
+    width: "100%",
+    height: "100vh",
+  },
   page: {
     backgroundColor: "tomato",
     paddingLeft: 25,
@@ -11,10 +15,14 @@ export const pdfStyles = StyleSheet.create({
     marginBottom: 0,
     fontFamily: "Inter",
   },
-  body: {
-    fontSize: 16,
-    marginTop: 10,
-    marginBottom: 10,
+  section: {
+    paddingBottom: 10,
+  },
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: "semibold",
+    borderBottom: "2 solid #ccc",
+    paddingBottom: 5,
   },
   h1: {
     fontSize: 24,
@@ -27,26 +35,16 @@ export const pdfStyles = StyleSheet.create({
     marginBottom: 0,
     opacity: 0.8,
   },
-  section: {
-    fontSize: 16,
-    marginTop: 0,
-    marginBottom: 0,
-    padding: 0,
-  },
   paragraph: {
+    fontSize: 14,
     marginBottom: 2,
+    textIndent: 15,
   },
   listUnordered: {
-    textIndent: 10,
+    textIndent: 25,
   },
   listOrdered: {
-    textIndent: 10,
-  },
-  sectionStart: {
-    fontSize: 20,
-    borderBottom: "2 solid #ccc",
-    paddingTop: 5,
-    paddingBottom: 5,
+    textIndent: 25,
   },
   footer: {
     fontSize: 12,

@@ -17,19 +17,11 @@ import Select from "@components/form/Select"
 import { PageContext } from "@template/context"
 import ModalStandard from "@components/ui/ModalStandard"
 import ModalViewDoc from "@components/ui/ModalViewDoc"
-import { PDFViewer, StyleSheet } from "@react-pdf/renderer"
+import { PDFViewer } from "@react-pdf/renderer"
+import { pdfStyles } from "./_pdfHelpers/pdfStyles"
 import dynamic from "next/dynamic"
 
 import DynamicPDF from "./DynamicPDF "
-
-// Create PDF styles
-const styles = StyleSheet.create({
-  page: {
-    width: "100%",
-    height: "100vh",
-    backgroundColor: "#E4E4E4",
-  },
-})
 
 const Product3 = () => {
   // Dynamically import PDFViewer to fix build bug since Next uses SSR
@@ -105,7 +97,7 @@ const Product3 = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 w-full xl:max-w-1400">
         {isSubmitted ? (
-          <PDFViewer style={styles.page}>
+          <PDFViewer style={pdfStyles.pdfViewer}>
             <DynamicPDF formData={formData} />
           </PDFViewer>
         ) : null}

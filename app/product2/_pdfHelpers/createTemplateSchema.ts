@@ -1,18 +1,22 @@
-import { locationGroups } from "../_schemas/schemaProductALocationGroups"
 import {
-  genericSchemaA,
-  genericSchemaB,
+  schemaGenericA,
+  schemaGenericB,
 } from "../_schemas/schemaProductAGeneric"
 import {
+  locationGroups,
   schemaLocationA,
   schemaLocationB,
 } from "../_schemas/schemaProductALocation"
+import { SubSchemas } from "../_schemas/productATypes"
 
 // TODO: Remove need to import separate schemas
 
 // Document Template Schema
-// NOTE: Be careful using "all" since it can break if the genericSchema changes
-export const createTemplateSchema = (locationSchema, genericSchema) => [
+// NOTE: Be careful using "all" since it can break if the schemaGenericFiltered changes
+export const createTemplateSchema = (
+  schemaLocationFiltered: SubSchemas["schemaLocationFiltered"],
+  schemaGenericFiltered: SubSchemas["schemaGenericFiltered"]
+) => [
   {
     sectionID: "s1",
     location: ["all"], // can be "all" or a specific location
@@ -20,9 +24,7 @@ export const createTemplateSchema = (locationSchema, genericSchema) => [
       {
         location: ["all"],
         type: "header",
-        value:
-          genericSchema.checkboxExample.true.headerA || // can also have conditional logic values but this should be minimized to avoid confusing schemas
-          genericSchemaB.checkboxExample.true.headerA,
+        value: schemaGenericB.checkboxExample.true.headerA,
       },
       {
         // Can include multiple groups by spreading them into the array
@@ -30,8 +32,8 @@ export const createTemplateSchema = (locationSchema, genericSchema) => [
           ...locationGroups.locationGroupA,
           ...locationGroups.locationGroupB,
         ],
-        type: "body",
-        value: genericSchema.checkboxExample.true.bodyA,
+        type: "paragraph",
+        value: schemaGenericFiltered.checkboxExample.true.bodyA,
       },
     ],
   },
@@ -46,8 +48,8 @@ export const createTemplateSchema = (locationSchema, genericSchema) => [
       },
       {
         location: [...locationGroups.locationGroupB],
-        type: "body",
-        value: locationSchema.radioExample.option2.bodyA,
+        type: "paragraph",
+        value: schemaLocationFiltered.radioExample.option2.bodyA,
       },
     ],
   },
@@ -62,8 +64,8 @@ export const createTemplateSchema = (locationSchema, genericSchema) => [
       },
       {
         location: [...locationGroups.locationGroupA],
-        type: "listUnordered",
-        value: genericSchema.checkboxExample.true.listA,
+        type: "listOrdered",
+        value: schemaGenericFiltered.checkboxExample.true.listA,
       },
     ],
   },
@@ -79,7 +81,7 @@ export const createTemplateSchema = (locationSchema, genericSchema) => [
       {
         location: [...locationGroups.locationGroupA],
         type: "listOrdered",
-        value: genericSchema.checkboxExample.true.listA,
+        value: schemaGenericFiltered.checkboxExample.true.listA,
       },
     ],
   },
@@ -89,13 +91,18 @@ export const createTemplateSchema = (locationSchema, genericSchema) => [
     content: [
       {
         location: [...locationGroups.locationGroupA],
-        type: "header",
-        value: "Hardcoded sectionStart",
+        type: "sectionTitle",
+        value: "Hardcoded sectionTitle",
       },
       {
         location: [...locationGroups.locationGroupA],
-        type: "sectionStart",
-        value: "A New Section Starts Here",
+        type: "subheader",
+        value: "Hardcoded sub header",
+      },
+      {
+        location: [...locationGroups.locationGroupA],
+        type: "paragraph",
+        value: ["This is a hardcoded paragraph", "This is a second paragraph"],
       },
     ],
   },
