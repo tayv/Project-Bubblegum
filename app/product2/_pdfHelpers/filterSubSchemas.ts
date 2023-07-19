@@ -6,7 +6,7 @@ import {
   schemaLocationA,
   schemaLocationB,
 } from "../_schemas/schemaProductALocation"
-import { SelectedLocation } from "../_schemas/productATypes"
+import { SelectedLocation } from "../_schemas/productTypes"
 
 type FilterSubSchemaProps = {
   selectedLocation: SelectedLocation

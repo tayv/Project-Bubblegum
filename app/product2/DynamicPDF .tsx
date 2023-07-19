@@ -11,7 +11,7 @@ import {
 } from "@react-pdf/renderer"
 import { pdfStyles } from "./_pdfHelpers/pdfStyles"
 import buildPDF from "./_pdfHelpers/buildPDF"
-import { FormData, DocTemplate } from "./_schemas/productATypes"
+import { FormData, DocTemplate } from "./_schemas/productTypes"
 
 // TYPES
 type DynamicPDFProps = {
@@ -78,7 +78,7 @@ const DynamicPDF: FC<DynamicPDFProps> = ({ docTemplate, formData }) => {
             }}
           />
           <Text style={pdfStyles.h1}>This is a title page</Text>
-          <Link src="#test"> Go to section 5</Link>
+          <Link src="#3"> Go to section (hardcoded)</Link>
         </View>
       </Page>
 

@@ -1,13 +1,6 @@
 // SUPPORTED LOCATIONS FOR THIS PRODUCT --------------------------
 // Used to batch closely related locations/countries to help streamline sub schema logic
-export const locationGroups = {
-  locationGroupA: ["location1", "location3"],
-  locationGroupB: ["location2"],
-}
-export const allLocations = [
-  ...locationGroups.locationGroupA,
-  ...locationGroups.locationGroupB,
-]
+
 // --------------------------
 
 // LOCATION SPECIFIC SCHEMAS --------------------------
@@ -18,7 +11,7 @@ export const schemaLocationA = {
       bodyA: ["LA: Radio option 1"],
     },
     option2: {
-      bodyA: ["LA: Radio option 2"],
+      bodyA: 
     },
     option3: {
       headerA: "LA: Radio option 3 header",
@@ -36,7 +29,7 @@ export const schemaLocationB = {
       bodyA: ["LB: Radio option 1"],
     },
     option2: {
-      bodyA: ["LB: Radio option 2"],
+   
     },
   },
 }

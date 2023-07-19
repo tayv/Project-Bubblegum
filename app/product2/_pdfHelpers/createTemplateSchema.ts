@@ -7,20 +7,32 @@ import {
   schemaLocationA,
   schemaLocationB,
 } from "../_schemas/schemaProductALocation"
-import { SubSchemas } from "../_schemas/productATypes"
+import { SubSchemas, SelectedLocation } from "../_schemas/productTypes"
 
 // TODO: Remove need to import separate schemas
 
 // Document Template Schema
 // NOTE: Be careful using "all" since it can break if the schemaGenericFiltered changes
-export const createTemplateSchema = (
-  schemaLocationFiltered: SubSchemas["schemaLocationFiltered"],
-  schemaGenericFiltered: SubSchemas["schemaGenericFiltered"]
+export const createTemplateSchema = <T extends SelectedLocation>(
+  schemaLocationFiltered: SubSchemas<T>["schemaLocationFiltered"],
+  schemaGenericFiltered: SubSchemas<T>["schemaGenericFiltered"]
 ) => [
   {
     sectionID: "s1",
     location: ["all"], // can be "all" or a specific location
     content: [
+      {
+        location: ["all"],
+        type: "sectionTitle",
+        value: "Hardcoded Section Title",
+      },
+      {
+        location: ["all"],
+        type: "paragraph",
+        value: [
+          "Hardcoded introduction to section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam",
+        ],
+      },
       {
         location: ["all"],
         type: "header",
@@ -43,8 +55,20 @@ export const createTemplateSchema = (
     content: [
       {
         location: [...locationGroups.locationGroupB],
+        type: "sectionTitle",
+        value: "Hardcoded Section Title",
+      },
+      {
+        location: [...locationGroups.locationGroupB],
+        type: "paragraph",
+        value: [
+          "Hardcoded introduction to section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam",
+        ],
+      },
+      {
+        location: [...locationGroups.locationGroupB],
         type: "header",
-        value: "Section 2 Header",
+        value: "A header",
       },
       {
         location: [...locationGroups.locationGroupB],
@@ -59,8 +83,20 @@ export const createTemplateSchema = (
     content: [
       {
         location: [...locationGroups.locationGroupA],
+        type: "sectionTitle",
+        value: "Hardcoded Section Title",
+      },
+      {
+        location: [...locationGroups.locationGroupA],
+        type: "paragraph",
+        value: [
+          "Hardcoded introduction to section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam",
+        ],
+      },
+      {
+        location: [...locationGroups.locationGroupA],
         type: "header",
-        value: "Section 3 Header",
+        value: "A header",
       },
       {
         location: [...locationGroups.locationGroupA],
@@ -75,12 +111,24 @@ export const createTemplateSchema = (
     content: [
       {
         location: [...locationGroups.locationGroupA],
-        type: "header",
-        value: "Section 4 Header",
+        type: "sectionTitle",
+        value: "Hardcoded Section Title",
       },
       {
         location: [...locationGroups.locationGroupA],
-        type: "listOrdered",
+        type: "paragraph",
+        value: [
+          "Hardcoded introduction to section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam",
+        ],
+      },
+      {
+        location: [...locationGroups.locationGroupA],
+        type: "header",
+        value: "A header",
+      },
+      {
+        location: [...locationGroups.locationGroupA],
+        type: "listUnordered",
         value: schemaGenericFiltered.checkboxExample.true.listA,
       },
     ],
@@ -92,7 +140,24 @@ export const createTemplateSchema = (
       {
         location: [...locationGroups.locationGroupA],
         type: "sectionTitle",
-        value: "Hardcoded sectionTitle",
+        value: "Hardcoded Section Title",
+      },
+      {
+        location: [...locationGroups.locationGroupA],
+        type: "paragraph",
+        value: [
+          "Hardcoded introduction to section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam",
+        ],
+      },
+      {
+        location: [...locationGroups.locationGroupA],
+        type: "header",
+        value: "Hardcoded heading",
+      },
+      {
+        location: [...locationGroups.locationGroupA],
+        type: "paragraph",
+        value: ["This is a hardcoded paragraph"],
       },
       {
         location: [...locationGroups.locationGroupA],

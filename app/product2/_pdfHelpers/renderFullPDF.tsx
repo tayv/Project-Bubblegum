@@ -1,11 +1,11 @@
 import { renderPDFElements } from "./renderPDFElements"
-import { SelectedLocation, DocTemplate } from "../_schemas/productATypes"
+import { FormDataType, DocTemplate } from "../_schemas/productTypes"
 import { View } from "@react-pdf/renderer"
 import { pdfStyles } from "./pdfStyles"
 
 type RenderFullPDFProps = {
   docTemplate: DocTemplate
-  selectedLocation: SelectedLocation
+  selectedLocation: FormDataType["jurisdiction"]
 }
 
 export const renderFullPDF = ({
@@ -23,8 +23,13 @@ export const renderFullPDF = ({
         return location === "all" || location === selectedLocation
       }
     )
-    // and only return section values that match the location
-    if (hasCorrectLocation) {
+
+    // Check if section has a condition. If it does, check if it's satisfied
+    const isConditionSatisfied =
+      schemaSection.condition === undefined || schemaSection.condition
+
+    // and only return section values that match the location and pass the condition
+    if (hasCorrectLocation && isConditionSatisfied) {
       // CATCH ERRORS -----------------
       // Check if sectionValidLocations is defined since everything breaks if we don't have this info
       if (!sectionValidLocations) {
@@ -35,6 +40,7 @@ export const renderFullPDF = ({
         )
       }
 
+      // Map through the content array of objects inside each section. Each content object represents a paragraph, header, etc.
       return schemaSection.content.map((schemaSectionContent, contentIndex) => {
         return (
           <View key={schemaSection.sectionID} style={pdfStyles.section}>
@@ -42,6 +48,7 @@ export const renderFullPDF = ({
               schemaSectionContent: schemaSectionContent,
               sectionIndex: sectionIndex,
               contentIndex: contentIndex,
+              selectedLocation: selectedLocation,
             })}
           </View>
         )
