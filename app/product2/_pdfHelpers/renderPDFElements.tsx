@@ -1,13 +1,15 @@
 import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer"
 import { pdfStyles } from "./pdfStyles"
-import { ProductLocationKeys } from "../_schemas/productTypes"
-import { DocTemplateAType } from "../_schemas/createSchemaTemplateA"
+import {
+  AllProductLocationKeys,
+  DocTemplateCommonType,
+} from "../_schemas/productTypes"
 
 export type RenderPDFElementsProps = {
-  schemaSectionContent: DocTemplateAType[0]["content"][0]
+  schemaSectionContent: DocTemplateCommonType[0]["content"][0] // [0] index needed since map iterator refers to single objects not arrays
   sectionIndex: number
   contentIndex: number
-  selectedLocation: ProductLocationKeys
+  selectedLocation: AllProductLocationKeys
 }
 
 export const renderPDFElements = ({
@@ -18,7 +20,6 @@ export const renderPDFElements = ({
 }: RenderPDFElementsProps) => {
   const sectionNumber = String(sectionIndex + 1) // used for numbering sections. Convert to string since section ID must be a string
   const contentNumber = contentIndex // used for numbering content within a section
-
   // ------------------------- Location and Condition checks -------------------------
   // 1. Get the location array inside each section
   const sectionValidLocations = schemaSectionContent.location

@@ -3,7 +3,7 @@ import { FormDataType } from "./productTypes"
 
 // TYPES ------------------
 // The locations supported by this document template (may be a subset of all locations supported by the product)
-type LocationKeysDocTemplateA = "location1" | "location2" | "location3"
+export type LocationKeysDocTemplateA = "location1" | "location2" | "location3"
 // Each document template should follow this shape so rendering logic works
 export type DocTemplateAType = {
   sectionID: string
