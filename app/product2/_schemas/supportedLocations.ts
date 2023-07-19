@@ -2,6 +2,7 @@ import { SupportedLocationsType } from "./productTypes"
 
 // All the locations supported by this product
 export const supportedLocations: SupportedLocationsType = {
+  all: "all", // "all" is a special location that means "all locations
   location1: "location1",
   location2: "location2",
   location3: "location3",

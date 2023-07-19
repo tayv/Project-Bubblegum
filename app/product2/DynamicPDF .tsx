@@ -11,12 +11,11 @@ import {
 } from "@react-pdf/renderer"
 import { pdfStyles } from "./_pdfHelpers/pdfStyles"
 import buildPDF from "./_pdfHelpers/buildPDF"
-import { FormData, DocTemplate } from "./_schemas/productTypes"
+import { FormDataType } from "./_schemas/productTypes"
 
 // TYPES
 type DynamicPDFProps = {
-  docTemplate: DocTemplate
-  formData: FormData
+  formData: FormDataType
 }
 
 // Register custom fonts. See: https://github.com/diegomura/react-pdf/issues/1075
@@ -64,7 +63,7 @@ Font.register({
 
 // Helper functions
 
-const DynamicPDF: FC<DynamicPDFProps> = ({ docTemplate, formData }) => {
+const DynamicPDF: FC<DynamicPDFProps> = ({ formData }) => {
   return (
     <Document>
       <Page size="A4" style={pdfStyles.page}>

@@ -1,13 +1,13 @@
 import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer"
 import { pdfStyles } from "./pdfStyles"
-import { FormDataType } from "../_schemas/productTypes"
-import { DocTemplateAType } from "./createSchemaTemplateA"
+import { ProductLocationKeys } from "../_schemas/productTypes"
+import { DocTemplateAType } from "../_schemas/createSchemaTemplateA"
 
 export type RenderPDFElementsProps = {
   schemaSectionContent: DocTemplateAType[0]["content"][0]
   sectionIndex: number
   contentIndex: number
-  selectedLocation: FormDataType["jurisdiction"]
+  selectedLocation: ProductLocationKeys
 }
 
 export const renderPDFElements = ({
@@ -19,28 +19,20 @@ export const renderPDFElements = ({
   const sectionNumber = String(sectionIndex + 1) // used for numbering sections. Convert to string since section ID must be a string
   const contentNumber = contentIndex // used for numbering content within a section
 
-  // get the location array inside each section
+  // ------------------------- Location and Condition checks -------------------------
+  // 1. Get the location array inside each section
   const sectionValidLocations = schemaSectionContent.location
-  // check if section has supported location
-  const hasCorrectLocation = sectionValidLocations.some((location: string) => {
+  // 2. See if at least one location in the location array matches
+  const hasValidLocation = sectionValidLocations.some((location: string) => {
     return location === "all" || location === selectedLocation
   })
-  // ------------- Check if section has a condition. If it does, check if it's satisfied -----------------
+  // 3. Check if the section.content object has a condition property. If it does, check if it's satisfied
   const isConditionSatisfied =
     schemaSectionContent.condition === undefined ||
     schemaSectionContent.condition
-  // and only return section values that match the location and pass the condition
-  if (hasCorrectLocation && isConditionSatisfied) {
-    // CATCH ERRORS -----------------
-    // Check if sectionValidLocations is defined since everything breaks if we don't have this info
-    if (!sectionValidLocations) {
-      throw new Error(
-        `Location isn't defined for section: ${JSON.stringify(
-          sectionIndex
-        )} at index: ${JSON.stringify(sectionIndex)}`
-      )
-    }
 
+  // 4. Only return section.content value if it has a valid location and passes the condition from the user's answers
+  if (hasValidLocation && isConditionSatisfied) {
     // ------------------------------ Check for missing value field in schema ------------------------------
     if (schemaSectionContent.value === undefined) {
       throw new Error(
@@ -50,8 +42,9 @@ export const renderPDFElements = ({
          \n Troubleshooting: Review the docTempate schema and also check that schemaGenericFiltered and schemaLocationFiltered are correct as they can lead to undefined values.`
       )
     }
-    // ------------------------------ End ------------------------------
 
+    // ------------------------------ 5. Render PDF elements ------------------------------
+    // section.content.type is the key that determines which PDF element to render. Some elements need additional level of mapping (e.g. paragraph)
     switch (schemaSectionContent.type) {
       case "sectionTitle":
         return (
@@ -105,6 +98,8 @@ export const renderPDFElements = ({
           )
         }
       case "listUnordered":
+        // Need type guard since only some items are arrays
+        // Use ${sectionNumber}.${index + 1} if want heirarchical numbering
         if (Array.isArray(schemaSectionContent.value)) {
           return schemaSectionContent.value.map((item, index) => {
             return (
@@ -119,8 +114,6 @@ export const renderPDFElements = ({
           )
         }
       case "listOrdered":
-        // Need type guard since only some items are arrays
-        // Use ${sectionNumber}.${index + 1} if want heirarchical numbering
         if (Array.isArray(schemaSectionContent.value)) {
           return schemaSectionContent.value.map((item, index) => {
             return (

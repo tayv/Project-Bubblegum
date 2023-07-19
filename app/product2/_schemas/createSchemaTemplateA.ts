@@ -1,5 +1,5 @@
-import { supportedLocationGroups } from "../_schemas/supportedLocations"
-import { FormDataType } from "../_schemas/productTypes"
+import { supportedLocationGroups } from "./supportedLocations"
+import { FormDataType } from "./productTypes"
 
 // TYPES ------------------
 // The locations supported by this document template (may be a subset of all locations supported by the product)

@@ -1,10 +1,10 @@
 import { renderPDFElements } from "./renderPDFElements"
-import { FormDataType, DocTemplate } from "../_schemas/productTypes"
+import { FormDataType, DocTemplateType } from "../_schemas/productTypes"
 import { View } from "@react-pdf/renderer"
 import { pdfStyles } from "./pdfStyles"
 
 type RenderFullPDFProps = {
-  docTemplate: DocTemplate
+  docTemplate: DocTemplateType
   selectedLocation: FormDataType["jurisdiction"]
 }
 
@@ -12,35 +12,23 @@ export const renderFullPDF = ({
   docTemplate,
   selectedLocation,
 }: RenderFullPDFProps) => {
-  // Render PDF according to docTemplate layout
-  return docTemplate.map((schemaSection, sectionIndex) => {
-    // get the location array inside each section
+  // Render PDF using docTemplate schema---------------------------
+  return docTemplate.map((schemaSection: DocTemplateType[0], sectionIndex) => {
+    // 1. get the location array inside each section
     const sectionValidLocations = schemaSection.location
+    // 2. See if at least one location in the location array matches
+    const hasValidLocation = sectionValidLocations.some((location: string) => {
+      return location === "all" || location === selectedLocation
+    })
 
-    // See if at least one location matches
-    const hasCorrectLocation = sectionValidLocations.some(
-      (location: string) => {
-        return location === "all" || location === selectedLocation
-      }
-    )
-
-    // Check if section has a condition. If it does, check if it's satisfied
+    // 3. Check if section has a condition property. If it does, check if it's satisfied
     const isConditionSatisfied =
       schemaSection.condition === undefined || schemaSection.condition
 
-    // and only return section values that match the location and pass the condition
-    if (hasCorrectLocation && isConditionSatisfied) {
-      // CATCH ERRORS -----------------
-      // Check if sectionValidLocations is defined since everything breaks if we don't have this info
-      if (!sectionValidLocations) {
-        throw new Error(
-          `Location isn't defined for section: ${JSON.stringify(
-            sectionIndex
-          )} at index: ${JSON.stringify(sectionIndex)}`
-        )
-      }
-
-      // Map through the content array of objects inside each section. Each content object represents a paragraph, header, etc.
+    // 4. Only return section values if it has a valid location and passes the condition from the user's answers
+    if (hasValidLocation && isConditionSatisfied) {
+      // 5. Render the PDF element by mapping through the section.content array of objects.
+      // Each object in the section.content array represents a paragraph, header, etc.
       return schemaSection.content.map((schemaSectionContent, contentIndex) => {
         return (
           <View key={schemaSection.sectionID} style={pdfStyles.section}>

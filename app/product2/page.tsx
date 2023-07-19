@@ -20,6 +20,7 @@ import ModalViewDoc from "@components/ui/ModalViewDoc"
 import { PDFViewer } from "@react-pdf/renderer"
 import { pdfStyles } from "./_pdfHelpers/pdfStyles"
 import dynamic from "next/dynamic"
+import { FormDataType } from "./_schemas/productTypes"
 
 import DynamicPDF from "./DynamicPDF "
 
@@ -30,7 +31,7 @@ const Product3 = () => {
     { ssr: false }
   )
 
-  const defaultValues = {
+  const defaultValues: FormDataType = {
     checkboxExample: true,
     radioExample: "option1",
     textExample: "",
@@ -41,11 +42,11 @@ const Product3 = () => {
     checkboxExample: z.boolean().optional(),
     radioExample: z.enum(["option1", "option2", "option3"]).optional(),
     textExample: z.string().optional(),
-    jurisdiction: z.enum(["location1", "location2", "location3"]).optional(),
+    jurisdiction: z.enum(["location1", "location2", "location3"]),
   })
 
   // Setup initial state
-  const [formData, setFormData] = useState({})
+  const [formData, setFormData] = useState(defaultValues) // Need to set initial state to defaultValues to avoid type errors
 
   // Setup pg context values to pass to template
   const pageContextValue = {

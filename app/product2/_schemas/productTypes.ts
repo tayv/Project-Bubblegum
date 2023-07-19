@@ -1,5 +1,12 @@
+import { DocTemplateAType } from "./createSchemaTemplateA"
+
 // All locations supported by the Product
-type ProductLocationKeys = "location1" | "location2" | "location3" | "location4"
+export type ProductLocationKeys =
+  | "all"
+  | "location1"
+  | "location2"
+  | "location3"
+  | "location4"
 
 // Used by supportedLocations.ts
 export type SupportedLocationsType = {
@@ -11,5 +18,7 @@ export type FormDataType = {
   checkboxExample?: boolean
   radioExample?: "option1" | "option2" | "option3"
   textExample?: string
-  jurisdiction: ProductLocationKeys[] | ["all"]
+  jurisdiction: ProductLocationKeys
 }
+
+export type DocTemplateType = DocTemplateAType // could have multiple document templates
