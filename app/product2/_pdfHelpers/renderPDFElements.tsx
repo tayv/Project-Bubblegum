@@ -6,130 +6,158 @@ import {
 } from "../_schemas/productTypes"
 
 export type RenderPDFElementsProps = {
-  schemaSectionContent: DocTemplateCommonType[0]["content"][0] // [0] index needed since map iterator refers to single objects not arrays
-  sectionIndex: number
+  contentArray: DocTemplateCommonType[0]["content"] // [0] index needed since map iterator refers to single objects not arrays
+  sectionNumber: number
   contentIndex: number
   selectedLocation: AllProductLocationKeys
 }
+type ContentObjType = DocTemplateCommonType[0]["content"][0]
+type ContentObjValueType =
+  | DocTemplateCommonType[0]["content"][0]["value"]
+  | DocTemplateCommonType[0]["content"][0]["value"][]
+type AccumulatorType = {
+  components: React.ReactNode[]
+  paragraphNumber: number
+}
 
-export const renderPDFElements = ({
-  schemaSectionContent,
-  sectionIndex,
-  contentIndex,
-  selectedLocation,
-}: RenderPDFElementsProps) => {
-  const sectionNumber = String(sectionIndex + 1) // used for numbering sections. Convert to string since section ID must be a string
-  const contentNumber = contentIndex // used for numbering content within a section
-  // ------------------------- Location and Condition checks -------------------------
-  // 1. Get the location array inside each section
-  const sectionValidLocations = schemaSectionContent.location
-  // 2. See if at least one location in the location array matches
-  const hasValidLocation = sectionValidLocations.some((location: string) => {
-    return location === "all" || location === selectedLocation
-  })
-  // 3. Check if the section.content object has a condition property. If it does, check if it's satisfied
-  const isConditionSatisfied =
-    schemaSectionContent.condition === undefined ||
-    schemaSectionContent.condition
+// HELPER FUNCTIONS ---------------------
 
-  // 4. Only return section.content value if it has a valid location and passes the condition from the user's answers
-  if (hasValidLocation && isConditionSatisfied) {
-    // ------------------------------ Check for missing value field in schema ------------------------------
-    if (schemaSectionContent.value === undefined) {
-      throw new Error(
-        `The following section is trying to access a non-existent value in your schema: ${JSON.stringify(
-          schemaSectionContent
-        )} at index: ${JSON.stringify(sectionIndex)}
-         \n Troubleshooting: Review the docTempate schema and also check that schemaGenericFiltered and schemaLocationFiltered are correct as they can lead to undefined values.`
-      )
-    }
+// Render functions for each content type
+const renderSectionTitle = (
+  contentObjValue: ContentObjValueType,
+  sectionNumber: number
+) => (
+  <View style={pdfStyles.sectionTitle}>
+    <Text>{`${sectionNumber}. ${contentObjValue}`}</Text>
+  </View>
+)
 
-    // ------------------------------ 5. Render PDF elements ------------------------------
-    // section.content.type is the key that determines which PDF element to render. Some elements need additional level of mapping (e.g. paragraph)
-    switch (schemaSectionContent.type) {
-      case "sectionTitle":
-        return (
-          <View
-            {...{ bookmark: schemaSectionContent.value }} // NOTE: Spread bookmark as a Typescript bug workaround. See: https://github.com/diegomura/react-pdf/issues/1979
-            style={[pdfStyles.sectionTitle, pdfStyles.inlineItems]}
-            id={sectionNumber}
-          >
-            <View style={pdfStyles.numberSection}>
-              <Text
-                style={{ justifyContent: "flex-end" }}
-              >{`${sectionNumber}. `}</Text>
-            </View>
-            <Text>{schemaSectionContent.value}</Text>
-          </View>
-        )
-      case "header":
-        return (
-          <Text style={pdfStyles.h1}>{`${schemaSectionContent.value}`}</Text>
-        )
-      case "subheader":
-        // subheaders don't have numbers because it messes up the numbering of the sibling elements that follow
-        return (
-          <Text style={pdfStyles.h2}>{`${schemaSectionContent.value}`}</Text>
-        )
-      case "paragraph":
-        if (Array.isArray(schemaSectionContent.value)) {
-          return (
-            <View style={pdfStyles.paragraph}>
-              {schemaSectionContent.value.map((item, index) => {
-                return (
-                  <View key={index}>
-                    <View style={{ textAlign: "right" }}>
-                      <Text
-                        style={pdfStyles.numberParagraph}
-                      >{`${sectionNumber}.${index + 1}`}</Text>
-                    </View>
-                    <View>
-                      <Text key={index} style={pdfStyles.paragraph}>
-                        {`${item}`}
-                      </Text>
-                    </View>
-                  </View>
-                )
-              })}
-            </View>
-          )
-        } else {
-          throw new Error(
-            `Expected an array for 'paragraph' value, but got something else.`
-          )
-        }
-      case "listUnordered":
-        // Need type guard since only some items are arrays
-        // Use ${sectionNumber}.${index + 1} if want heirarchical numbering
-        if (Array.isArray(schemaSectionContent.value)) {
-          return schemaSectionContent.value.map((item, index) => {
-            return (
-              <Text key={index} style={pdfStyles.listUnordered}>
-                - {item}
-              </Text>
-            )
-          })
-        } else {
-          throw new Error(
-            `Expected an array for 'listUnordered' value, but got something else.`
-          )
-        }
-      case "listOrdered":
-        if (Array.isArray(schemaSectionContent.value)) {
-          return schemaSectionContent.value.map((item, index) => {
-            return (
-              <Text key={index} style={pdfStyles.listOrdered}>
-                {`${index + 1}.${item}`}
-              </Text>
-            )
-          })
-        } else {
-          throw new Error(
-            `Expected an array for 'listOrdered' value, but got something else.`
-          )
-        }
-      default:
-        return null
-    }
+const renderHeader = (contentObjValue: ContentObjValueType) => (
+  <View style={pdfStyles.h1}>
+    <Text>{contentObjValue}</Text>
+  </View>
+)
+
+const renderSubheader = (contentObjValue: ContentObjValueType) => (
+  <View style={pdfStyles.h2}>
+    <Text>{contentObjValue}</Text>
+  </View>
+)
+
+const renderParagraph = (
+  contentObjValue: ContentObjValueType,
+  sectionNumber: number,
+  paragraphNumber: number
+) => (
+  <View style={pdfStyles.paragraph}>
+    <Text>{`${sectionNumber}.${paragraphNumber} ${contentObjValue}`}</Text>
+  </View>
+)
+
+const renderListUnordered = (contentObjValue: ContentObjValueType) => {
+  if (Array.isArray(contentObjValue)) {
+    // type guard as value has string or array type
+    ;<View style={pdfStyles.listUnordered}>
+      {contentObjValue.map((item, index) => (
+        <Text key={index}>• {item}</Text>
+      ))}
+    </View>
+  } else {
+    return null // Return null when contentObjValue is not an array
   }
+}
+
+const renderListOrdered = (contentObjValue: ContentObjValueType) => {
+  if (Array.isArray(contentObjValue)) {
+    // type guard as value has string or array type
+    ;<View style={pdfStyles.listOrdered}>
+      {contentObjValue.map((item, index) => (
+        <Text key={index}>{`${index + 1}. ${item}`}</Text>
+      ))}
+    </View>
+  } else {
+    return null // Return null when contentObjValue is not an array
+  }
+}
+
+// Renderer Dictionary
+const renderers = {
+  sectionTitle: renderSectionTitle,
+  header: renderHeader,
+  subheader: renderSubheader,
+  paragraph: renderParagraph,
+  listUnordered: renderListUnordered,
+  listOrdered: renderListOrdered,
+}
+
+// MAIN FUNCTION ---------------------
+export const renderPDFElements = ({
+  contentArray,
+  selectedLocation,
+  sectionNumber,
+  contentIndex,
+}: RenderPDFElementsProps) => {
+  // Iterate over the contentArray with .reduce()
+  // The reduce function is a method that reduces the array to a single value,
+  // by performing a function (supplied as the first argument) on each element of the array, from left to right.
+  const result = contentArray.reduce<AccumulatorType>(
+    // The reduce method takes two arguments (callback function, initial value). The callback function takes up to four arguments.
+    // Calback arguments breakdown:
+    // accumulator object (represents current state), current value being processed, current index, source array (not used here)
+    // Example:
+    // array.reduce((accumulator, currentValue, currentIndex, array) => {
+    //   // callback function body
+    // }, initialValue)
+
+    // pass this callback function to reduce that runs on each iteration:
+    (
+      { components, paragraphNumber }: AccumulatorType,
+      contentObj: ContentObjType,
+      index: number
+    ) => {
+      // This function is the callback being run for each item in the contentArray.
+      // The returned value will be used as the accumulator in the next call.
+      // Here you are supposed to return an object containing updated `components` and `paragraphNumber`.
+
+      // Get the location array inside each section.content object
+      const validContentLocations = contentObj.location
+      // Check if at least one location in the location array matches
+      const hasValidContentLocation = validContentLocations.some(
+        (location) => location === "all" || location === selectedLocation
+      )
+      // Check if the section.content object has a condition property. If it does, check if it's satisfied
+      const isContentConditionSatisfied =
+        contentObj.condition === undefined || contentObj.condition
+
+      if (hasValidContentLocation && isContentConditionSatisfied) {
+        if (contentObj.value === undefined) {
+          throw new Error(
+            `The following section is trying to access a non-existent value in your schema: ${JSON.stringify(
+              contentObj
+            )} at index: ${JSON.stringify(index)}
+           \n Troubleshooting: Review the docTempate schema and also check that schemaGenericFiltered and schemaLocationFiltered are correct as they can lead to undefined values.`
+          )
+        }
+
+        const render = renderers[contentObj.type]
+        if (contentObj.type === "paragraph") {
+          // increment paragraph number when type is 'paragraph'
+          paragraphNumber += 1
+        }
+        const renderedComponent = render(
+          contentObj.value,
+          sectionNumber,
+          paragraphNumber
+        )
+        return {
+          components: [...components, renderedComponent],
+          paragraphNumber,
+        }
+      }
+      return { components, paragraphNumber }
+    },
+    { components: [], paragraphNumber: 0 }
+  )
+
+  return result.components
 }

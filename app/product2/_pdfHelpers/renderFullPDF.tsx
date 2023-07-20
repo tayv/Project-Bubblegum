@@ -15,23 +15,27 @@ export const renderFullPDF = ({
 }: RenderFullPDFProps) => {
   // 1. Filter out sections that don't have a valid location or don't pass the condition.
   // This is so section numbers don't increment on skipped sections
-  const displayValidSections = filterInvalidSections({
+  const validDocSectionsArray = filterInvalidSections({
     sectionsToFilter: docTemplate,
     selectedLocation: selectedLocation,
   })
 
   // 2. Map through remaining valid sections and render PDF elements
-  return displayValidSections.map(
+  return validDocSectionsArray.map(
     (sections: DocTemplateCommonType[0], sectionIndex: number) => {
-      return sections.content.map((schemaSectionContent, contentIndex) => {
+      // 3. Map through the valid section.content array and render PDF elements
+      return sections.content.map((contentArray, contentIndex) => {
+        // The components returned from renderPDFElements via reduce() method
+        const pdfElements = renderPDFElements({
+          contentArray: sections.content,
+          sectionIndex: sectionIndex,
+          contentIndex: contentIndex,
+          selectedLocation: selectedLocation,
+        })
         return (
           <View key={sections.sectionID} style={pdfStyles.section}>
-            {renderPDFElements({
-              schemaSectionContent: schemaSectionContent,
-              sectionIndex: sectionIndex,
-              contentIndex: contentIndex,
-              selectedLocation: selectedLocation,
-            })}
+            {/* // All the valid PDF Elements are rendered here */}
+            {pdfElements}
           </View>
         )
       })
