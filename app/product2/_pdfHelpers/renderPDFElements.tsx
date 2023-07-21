@@ -8,7 +8,6 @@ import {
 export type RenderPDFElementsProps = {
   contentArray: DocTemplateCommonType[0]["content"] // [0] index needed since map iterator refers to single objects not arrays
   sectionNumber: number
-  contentIndex: number
   selectedLocation: AllProductLocationKeys
 }
 type ContentObjType = DocTemplateCommonType[0]["content"][0]
@@ -25,7 +24,7 @@ type AccumulatorType = {
 // Render functions for each content type
 const renderSectionTitle = (
   contentObjValue: ContentObjValueType,
-  sectionNumber: number
+  sectionNumber: RenderPDFElementsProps["sectionNumber"]
 ) => (
   <View style={pdfStyles.sectionTitle}>
     <Text>{`${sectionNumber}. ${contentObjValue}`}</Text>
@@ -46,8 +45,8 @@ const renderSubheader = (contentObjValue: ContentObjValueType) => (
 
 const renderParagraph = (
   contentObjValue: ContentObjValueType,
-  sectionNumber: number,
-  paragraphNumber: number
+  sectionNumber: RenderPDFElementsProps["sectionNumber"],
+  paragraphNumber: AccumulatorType["paragraphNumber"]
 ) => (
   <View style={pdfStyles.paragraph}>
     <Text>{`${sectionNumber}.${paragraphNumber} ${contentObjValue}`}</Text>
@@ -80,8 +79,8 @@ const renderListOrdered = (contentObjValue: ContentObjValueType) => {
   }
 }
 
-// Renderer Dictionary
-const renderers = {
+// Renderer Dictionary. Used inside the reduce() method to dynamically call the correct render function based on the contentObj.type
+const rendererDictionary = {
   sectionTitle: renderSectionTitle,
   header: renderHeader,
   subheader: renderSubheader,
@@ -95,37 +94,24 @@ export const renderPDFElements = ({
   contentArray,
   selectedLocation,
   sectionNumber,
-  contentIndex,
 }: RenderPDFElementsProps) => {
-  // Iterate over the contentArray with .reduce()
-  // The reduce function is a method that reduces the array to a single value,
-  // by performing a function (supplied as the first argument) on each element of the array, from left to right.
+  // 1. Iterate over the array of content objects in the current section (passed from renderFullPDF() with reduce() method
+  // Note: using reduce because need to keep track of paragraph numbers between mappings.
+  // Reduce() returns a single value after iterating through the array. We use that return value in renderFullPDF() to render the PDF elements
   const result = contentArray.reduce<AccumulatorType>(
-    // The reduce method takes two arguments (callback function, initial value). The callback function takes up to four arguments.
-    // Calback arguments breakdown:
-    // accumulator object (represents current state), current value being processed, current index, source array (not used here)
-    // Example:
-    // array.reduce((accumulator, currentValue, currentIndex, array) => {
-    //   // callback function body
-    // }, initialValue)
-
-    // pass this callback function to reduce that runs on each iteration:
+    // We pass this callback function to reduce that runs on each iteration. It's goal is to return an object containing updated PDF components and paragraphNumber.
     (
       { components, paragraphNumber }: AccumulatorType,
       contentObj: ContentObjType,
       index: number
     ) => {
-      // This function is the callback being run for each item in the contentArray.
-      // The returned value will be used as the accumulator in the next call.
-      // Here you are supposed to return an object containing updated `components` and `paragraphNumber`.
-
-      // Get the location array inside each section.content object
+      // ------------------------- 2. Location and Condition checks -------------------------
       const validContentLocations = contentObj.location
-      // Check if at least one location in the location array matches
+      // We only want to render elements suitable for the user's selected location
       const hasValidContentLocation = validContentLocations.some(
         (location) => location === "all" || location === selectedLocation
       )
-      // Check if the section.content object has a condition property. If it does, check if it's satisfied
+      // Check if the section.content object has an optional condition property. If it does, check if it's satisfied
       const isContentConditionSatisfied =
         contentObj.condition === undefined || contentObj.condition
 
@@ -135,29 +121,34 @@ export const renderPDFElements = ({
             `The following section is trying to access a non-existent value in your schema: ${JSON.stringify(
               contentObj
             )} at index: ${JSON.stringify(index)}
-           \n Troubleshooting: Review the docTempate schema and also check that schemaGenericFiltered and schemaLocationFiltered are correct as they can lead to undefined values.`
+           \n Troubleshooting: Review the docTempate schema.`
           )
         }
 
-        const render = renderers[contentObj.type]
+        // 3. Dynamically call the correct render function using the renderers dictionary
+        const render = rendererDictionary[contentObj.type]
         if (contentObj.type === "paragraph") {
-          // increment paragraph number when type is 'paragraph'
+          // Note: only increment this number for paragraphs, otherwise we get miscounts from counting other elements
           paragraphNumber += 1
         }
+
+        // 4. Save the rendered PDF element
         const renderedComponent = render(
           contentObj.value,
           sectionNumber,
           paragraphNumber
         )
+        // 5. Return the updated components array and paragraphNumber to be used in the next iteration
         return {
           components: [...components, renderedComponent],
           paragraphNumber,
         }
       }
+      // 6. If the location or condition check fails, return the original accumulator object
       return { components, paragraphNumber }
     },
-    { components: [], paragraphNumber: 0 }
+    { components: [], paragraphNumber: 0 } // Initial value of the accumulator
   )
-
+  // 7. Return the components array from the accumulator object so it can be used in renderFullPDF() to render the PDF elements
   return result.components
 }
