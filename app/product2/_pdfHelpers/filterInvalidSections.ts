@@ -1,16 +1,15 @@
-import { DocTemplateCommonType, FormDataType } from "../_schemas/productTypes"
-
-type FilterInvalidSectionsProps = {
-  sectionsToFilter: DocTemplateCommonType
-  selectedLocation: FormDataType["jurisdiction"]
-}
+import {
+  DocTemplateCommonType,
+  FormDataType,
+  SelectedTemplateProps,
+} from "../_schemas/productTypes"
 
 export const filterInvalidSections = ({
-  sectionsToFilter,
+  docTemplate,
   selectedLocation,
-}: FilterInvalidSectionsProps) => {
+}: SelectedTemplateProps) => {
   // Filter out invalid top level sections based on location and condition properties
-  const validSections = sectionsToFilter.filter(
+  const validSections = docTemplate.filter(
     // NOTE: Use [0] since section is only ever a single object
     (section: DocTemplateCommonType[0]) => {
       // 1. get the array of valid locations inside each section

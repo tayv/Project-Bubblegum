@@ -26,8 +26,11 @@ const renderSectionTitle = (
   contentObjValue: ContentObjValueType,
   sectionNumber: RenderPDFElementsProps["sectionNumber"]
 ) => (
-  <View style={pdfStyles.sectionTitle}>
-    <Text>{`${sectionNumber}. ${contentObjValue}`}</Text>
+  // bookmarks used by the pdf viewer. Not the same as build in anchor links used by TOC.
+  <View style={pdfStyles.sectionTitle} {...{ bookmark: sectionNumber }}>
+    <Text
+      id={String(sectionNumber)} // used for TOC anchor links
+    >{`${sectionNumber}. ${contentObjValue}`}</Text>
   </View>
 )
 

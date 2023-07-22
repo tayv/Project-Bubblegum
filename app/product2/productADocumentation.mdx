@@ -4,6 +4,8 @@ Using react-pdf renderer to generate pdfs. Note that it is different from react-
 
 ### react-pdf bookmark bug
 
+Bookmarks show up in the pdf viewer, allowing users to jump to sections. Note: They're not the same as anchor links.
+
 ```
  {...{ bookmark: schemaSectionContent.value }} // NOTE: Spread bookmark as a Typescript bug workaround. See: https://github.com/diegomura/react-pdf/issues/1979
 ```

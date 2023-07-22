@@ -41,3 +41,9 @@ export type DocTemplateCommonType = {
     value: string | string[] // lists and paragraphs use map() so include string[]
   }[]
 }[]
+
+// ------------------------ PDF Helper Types ------------------------
+export type SelectedTemplateProps = {
+  docTemplate: DocTemplateCommonType
+  selectedLocation: FormDataType["jurisdiction"]
+}

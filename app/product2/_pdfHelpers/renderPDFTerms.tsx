@@ -1,23 +1,22 @@
 import { renderPDFElements } from "./renderPDFElements"
-import { FormDataType, DocTemplateCommonType } from "../_schemas/productTypes"
+import {
+  SelectedTemplateProps,
+  DocTemplateCommonType,
+} from "../_schemas/productTypes"
 import { View } from "@react-pdf/renderer"
 import { pdfStyles } from "./pdfStyles"
 import { filterInvalidSections } from "./filterInvalidSections"
 
-type RenderFullPDFProps = {
-  docTemplate: DocTemplateCommonType
-  selectedLocation: FormDataType["jurisdiction"]
-}
 type DocumentSectionType = DocTemplateCommonType[0]
 
-export const renderFullPDF = ({
+export const renderPDFTerms = ({
   docTemplate,
   selectedLocation,
-}: RenderFullPDFProps) => {
+}: SelectedTemplateProps) => {
   // 1. Filter out sections that don't have a valid location or don't pass the condition
   // This is so section numbers don't increment on skipped sections
   const validDocSectionsArray = filterInvalidSections({
-    sectionsToFilter: docTemplate,
+    docTemplate: docTemplate,
     selectedLocation: selectedLocation,
   })
 
@@ -28,12 +27,13 @@ export const renderFullPDF = ({
 
       const sectionNumber = sectionIndex + 1 // used for numbering section titles
 
-      //4. Save the components returned from renderPDFElements via reduce() method
+      //4. Save the components from the current section's content array that's returned from renderPDFElements via reduce() method
       const pdfElements = renderPDFElements({
         contentArray: documentSection.content,
         sectionNumber: sectionNumber,
         selectedLocation: selectedLocation,
       })
+      // This returns all the pdf elements to be rendered in the current section
       return (
         <View key={documentSection.sectionID} style={pdfStyles.section}>
           {/* // 5. All the valid PDF Elements are rendered here */}

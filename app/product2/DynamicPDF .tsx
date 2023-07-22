@@ -12,6 +12,8 @@ import {
 import { pdfStyles } from "./_pdfHelpers/pdfStyles"
 import buildPDF from "./_pdfHelpers/buildPDF"
 import { FormDataType } from "./_schemas/productTypes"
+import { renderPDFTOC } from "./_pdfHelpers/renderPDFTOC"
+import { createSchemaTemplateA } from "./_schemas/createSchemaTemplateA"
 
 // TYPES
 type DynamicPDFProps = {
@@ -64,6 +66,10 @@ Font.register({
 // Helper functions
 
 const DynamicPDF: FC<DynamicPDFProps> = ({ formData }) => {
+  // Create docTemplate schema
+  const docTemplate = createSchemaTemplateA(formData)
+  const selectedLocation = formData.jurisdiction
+
   return (
     <Document>
       <Page size="A4" style={pdfStyles.page}>
@@ -77,13 +83,15 @@ const DynamicPDF: FC<DynamicPDFProps> = ({ formData }) => {
             }}
           />
           <Text style={pdfStyles.h1}>This is a title page</Text>
-          <Link src="#3"> Go to section (hardcoded)</Link>
+          <Link src="#test"> Go to section (hardcoded)</Link>
         </View>
       </Page>
+      {/* Table of Contents */}
+      {renderPDFTOC({ docTemplate, selectedLocation })}
 
       {/* Dynamic content goes here */}
       <Page size="A4" style={pdfStyles.page}>
-        <View>{formData && buildPDF({ formData: formData })}</View>
+        <View>{formData && buildPDF({ docTemplate, selectedLocation })}</View>
         <View style={pdfStyles.footer} fixed>
           <Text>Product Name: 123 Box on Road</Text>
           <Text
