@@ -84,7 +84,7 @@ const DynamicPDF: FC<DynamicPDFProps> = ({ formData }) => {
           <View
             style={[
               pdfStyles.centerItems,
-              { paddingBottom: 50, fontSize: 12, lineHeight: 1.7 },
+              { paddingBottom: 70, fontSize: 12, lineHeight: 1.7 },
             ]}
           >
             <Text>Between:</Text>

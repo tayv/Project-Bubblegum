@@ -48,7 +48,7 @@ export const createSchemaTemplateA = (
         location: ["all"],
         type: "header",
         condition: formData.checkboxExample,
-        value: "GB Header: checkbox true",
+        value: "Conditional header: checkbox true",
       },
       {
         // Can include multiple groups by spreading them into the array
@@ -58,15 +58,15 @@ export const createSchemaTemplateA = (
         ],
         type: "paragraph",
         value: [
-          "TRUE: Generic schema body A",
-          "second paragraph starts here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam",
+          "Conditional paragraph: checkbox is true",
+          "Second paragraph starts here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam",
         ],
       },
       {
         location: [...supportedLocationGroups.locationGroupB],
         type: "paragraph",
         value: [
-          "GB: checkbox is true",
+          "Conditional paragraph: checkbox is true",
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam",
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam.",
         ],
@@ -142,16 +142,16 @@ export const createSchemaTemplateA = (
       {
         location: [...supportedLocationGroups.locationGroupA],
         type: "sectionTitle",
-        value: "Hardcoded Section Title",
+        value: "Here lies a Section Title",
       },
       {
         location: [...supportedLocationGroups.locationGroupA],
         type: "paragraph",
         value: [
-          "Hardcoded introduction to section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam",
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam.",
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam.",
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam.",
+          "Introduction to section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam",
+          "Second paragraph: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam.",
+          "Third paragraph: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam.",
+          "Fourth paragraph: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam.",
         ],
       },
       {
@@ -160,7 +160,7 @@ export const createSchemaTemplateA = (
         value: "A header to an unordered list:",
       },
       {
-        location: ["location2"],
+        location: [...supportedLocationGroups.locationGroupA],
         type: "listUnordered",
         value: ["item a", "item b", "item c"],
       },
@@ -194,6 +194,67 @@ export const createSchemaTemplateA = (
         value: [
           "This is a paragraph",
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam.",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam.",
+        ],
+      },
+      {
+        location: [...supportedLocationGroups.locationGroupA],
+        type: "subheader",
+        value: "This is a sub header",
+      },
+      {
+        location: [...supportedLocationGroups.locationGroupA],
+        type: "paragraph",
+        value: [
+          "This is a paragraph",
+          "This is a second paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam.",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam.",
+        ],
+      },
+    ],
+  },
+  {
+    sectionID: "s6",
+    location: [...supportedLocationGroups.locationGroupA],
+    content: [
+      {
+        location: [...supportedLocationGroups.locationGroupA],
+        type: "sectionTitle",
+        value: "The last section",
+      },
+      {
+        location: [...supportedLocationGroups.locationGroupA],
+        type: "paragraph",
+        value: [
+          "Introduction to section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam.",
+        ],
+      },
+      {
+        location: [...supportedLocationGroups.locationGroupA],
+        type: "header",
+        value: "A heading",
+      },
+      {
+        location: [...supportedLocationGroups.locationGroupA],
+        type: "paragraph",
+        value: [
+          "This is a paragraph",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam.",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam.",
+        ],
+      },
+      {
+        location: [...supportedLocationGroups.locationGroupA],
+        type: "subheader",
+        value: "This is a sub header",
+      },
+      {
+        location: [...supportedLocationGroups.locationGroupA],
+        type: "paragraph",
+        value: [
+          "This is a paragraph",
+          "This is a second paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam.",
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam.",
         ],
       },

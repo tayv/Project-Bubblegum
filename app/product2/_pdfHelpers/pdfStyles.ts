@@ -65,9 +65,11 @@ export const pdfStyles = StyleSheet.create({
   },
   listUnordered: {
     textIndent: 10,
+    paddingLeft: 15,
   },
   listOrdered: {
     textIndent: 10,
+    paddingLeft: 15,
   },
   footer: {
     fontSize: 12,

@@ -29,7 +29,11 @@ const renderSectionTitle = (
   sectionNumber: RenderPDFElementsProps["sectionNumber"]
 ) => (
   // bookmarks used by the pdf viewer. Not the same as build in anchor links used by TOC.
-  <View style={pdfStyles.sectionTitle} {...{ bookmark: sectionNumber }}>
+  <View
+    wrap={false}
+    style={pdfStyles.sectionTitle}
+    {...{ bookmark: sectionNumber }}
+  >
     <View style={pdfStyles.inlineItems}>
       <Text
         style={pdfStyles.numberSection}
@@ -58,25 +62,39 @@ const renderParagraph = (
   contentObjValue: ContentObjValueType,
   sectionNumber: RenderPDFElementsProps["sectionNumber"],
   paragraphNumber: AccumulatorType["paragraphNumber"]
-) => (
-  <View style={pdfStyles.paragraph}>
-    <View style={pdfStyles.inlineItems}>
-      <Text
-        style={pdfStyles.numberParagraph}
-      >{`${sectionNumber}.${paragraphNumber}`}</Text>
-      <Text>{`${contentObjValue}`}</Text>
-    </View>
-  </View>
-)
+) => {
+  if (Array.isArray(contentObjValue)) {
+    const paragraphNodes = contentObjValue.map((paragraph, index) => (
+      <View key={index} style={pdfStyles.paragraph}>
+        <View style={pdfStyles.inlineItems}>
+          <Text style={pdfStyles.numberParagraph}>{`${sectionNumber}.${
+            paragraphNumber + index
+          }`}</Text>
+          <Text>{`${paragraph}`}</Text>
+        </View>
+      </View>
+    ))
+    // update paragraphNumber based on index
+    paragraphNumber += contentObjValue.length
+
+    // return both the paragraph nodes and the updated paragraphNumber
+    return {
+      paragraphNodes: paragraphNodes,
+      paragraphNumber: paragraphNumber,
+    }
+  }
+}
 
 const renderListUnordered = (contentObjValue: ContentObjValueType) => {
   if (Array.isArray(contentObjValue)) {
     // type guard as value has string or array type
-    ;<View style={pdfStyles.listUnordered}>
-      {contentObjValue.map((item, index) => (
-        <Text key={index}>• {item}</Text>
-      ))}
-    </View>
+    return (
+      <View wrap={false} style={pdfStyles.listUnordered}>
+        {contentObjValue.map((item, index) => (
+          <Text key={index}>- {item}</Text>
+        ))}
+      </View>
+    )
   } else {
     return null // Return null when contentObjValue is not an array
   }
@@ -85,11 +103,13 @@ const renderListUnordered = (contentObjValue: ContentObjValueType) => {
 const renderListOrdered = (contentObjValue: ContentObjValueType) => {
   if (Array.isArray(contentObjValue)) {
     // type guard as value has string or array type
-    ;<View style={pdfStyles.listOrdered}>
-      {contentObjValue.map((item, index) => (
-        <Text key={index}>{`${index + 1}. ${item}`}</Text>
-      ))}
-    </View>
+    return (
+      <View wrap={false} style={pdfStyles.listOrdered}>
+        {contentObjValue.map((item, index) => (
+          <Text key={index}>{`${index + 1}. ${item}`}</Text>
+        ))}
+      </View>
+    )
   } else {
     return null // Return null when contentObjValue is not an array
   }
@@ -111,11 +131,11 @@ export const renderPDFElements = ({
   selectedLocation,
   sectionNumber,
 }: RenderPDFElementsProps) => {
-  // 1. Iterate over the array of content objects in the current section (passed from renderFullPDF() with reduce() method
+  // 1. ----- Iterate over the array of content objects in the current section (passed from renderFullPDF() with reduce() method -----
   // Note: using reduce because need to keep track of paragraph numbers between mappings.
-  // Reduce() returns a single value after iterating through the array. We use that return value in renderFullPDF() to render the PDF elements
+  // Reduce() returns a single value after iterating through the array. We use that return value in renderPDFTerms() to render the PDF elements
   const result = contentArray.reduce<AccumulatorType>(
-    // We pass this callback function to reduce that runs on each iteration. It's goal is to return an object containing updated PDF components and paragraphNumber.
+    // We pass this callback function to reduce that runs on each iteration. It's goal is to return an accummulator object containing updated PDF components and paragraphNumber.
     (
       { components, paragraphNumber }: AccumulatorType,
       contentObj: ContentObjType,
@@ -132,6 +152,7 @@ export const renderPDFElements = ({
         contentObj.condition === undefined || contentObj.condition
 
       if (hasValidContentLocation && isContentConditionSatisfied) {
+        // An undefined value shouldn't happen but throw an error since it's make final doc incorrect
         if (contentObj.value === undefined) {
           throw new Error(
             `The following section is trying to access a non-existent value in your schema: ${JSON.stringify(
@@ -141,30 +162,47 @@ export const renderPDFElements = ({
           )
         }
 
-        // 3. Dynamically call the correct render function using the renderers dictionary
-        const render = rendererDictionary[contentObj.type]
-        if (contentObj.type === "paragraph") {
-          // Note: only increment this number for paragraphs, otherwise we get miscounts from counting other elements
-          paragraphNumber += 1
-        }
+        // 3. ------------- Render all components in the current document template's section.content array  -------------
 
-        // 4. Save the rendered PDF element
-        const renderedComponent = render(
-          contentObj.value,
-          sectionNumber,
-          paragraphNumber
-        )
-        // 5. Return the updated components array and paragraphNumber to be used in the next iteration
+        // Each content type needs its own render function. Dynamically call the correct one using the renderers dictionary defined above
+        const render = rendererDictionary[contentObj.type]
+
+        // First check if the rendered component is a paragraph as it has unique logic to update the paragraphNumber
+        if (contentObj.type === "paragraph") {
+          const renderParagraphResult = render(
+            contentObj.value,
+            sectionNumber,
+            paragraphNumber
+          )
+          // Update the components array and paragraphNumber with the return value from renderParagraph()
+          // so that any other paragraph types in the same section.content array can use the correct paragraphNumber
+          if (renderParagraphResult !== undefined) {
+            components = [
+              ...components,
+              ...renderParagraphResult.paragraphNodes,
+            ]
+            paragraphNumber = renderParagraphResult.paragraphNumber
+          }
+        } else {
+          // If the contentObj is not of type "paragraph", just add it to the components array
+          const renderedComponent = render(contentObj.value, sectionNumber)
+          components = [...components, renderedComponent]
+        }
+        // 4. Return the updated components array and paragraphNumber to the accumulator object
         return {
-          components: [...components, renderedComponent],
+          components,
+          paragraphNumber,
+        }
+      } else {
+        // If there are no components to render then just return the current state of the accumulator
+        return {
+          components,
           paragraphNumber,
         }
       }
-      // 6. If the location or condition check fails, return the original accumulator object
-      return { components, paragraphNumber }
     },
-    { components: [], paragraphNumber: 0 } // Initial value of the accumulator
+    { components: [], paragraphNumber: 1 } // Initial value of the accumulator
   )
-  // 7. Return the components array from the accumulator object so it can be used in renderFullPDF() to render the PDF elements
+  // 7. Return the components array from the accumulator object so it can be used in renderPDFTerms() to render the PDF elements
   return result.components
 }

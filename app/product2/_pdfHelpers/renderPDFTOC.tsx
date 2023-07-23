@@ -23,6 +23,7 @@ export const renderPDFTOC = ({
             const sectionTitle = contentObj.value
             return (
               <Link
+                wrap={false}
                 key={sectionNumber}
                 src={`#${sectionNumber}`}
                 style={pdfStyles.tocItems}
@@ -51,6 +52,7 @@ export const renderPDFTOC = ({
   return (
     <View>
       <View
+        wrap={false}
         style={[
           pdfStyles.inlineIcon,
           { borderBottom: "0.5 solid #000", paddingBottom: 4, marginBottom: 4 },
