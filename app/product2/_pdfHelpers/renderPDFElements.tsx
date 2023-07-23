@@ -11,9 +11,11 @@ export type RenderPDFElementsProps = {
   selectedLocation: AllProductLocationKeys
 }
 type ContentObjType = DocTemplateCommonType[0]["content"][0]
+
 type ContentObjValueType =
   | DocTemplateCommonType[0]["content"][0]["value"]
   | DocTemplateCommonType[0]["content"][0]["value"][]
+
 type AccumulatorType = {
   components: React.ReactNode[]
   paragraphNumber: number
@@ -28,9 +30,15 @@ const renderSectionTitle = (
 ) => (
   // bookmarks used by the pdf viewer. Not the same as build in anchor links used by TOC.
   <View style={pdfStyles.sectionTitle} {...{ bookmark: sectionNumber }}>
-    <Text
-      id={String(sectionNumber)} // used for TOC anchor links
-    >{`${sectionNumber}. ${contentObjValue}`}</Text>
+    <View style={pdfStyles.inlineItems}>
+      <Text
+        style={pdfStyles.numberSection}
+        id={String(sectionNumber)} // used for TOC anchor links
+      >
+        {`${sectionNumber}.`}
+      </Text>
+      <Text>{`${contentObjValue}`}</Text>
+    </View>
   </View>
 )
 
@@ -52,7 +60,12 @@ const renderParagraph = (
   paragraphNumber: AccumulatorType["paragraphNumber"]
 ) => (
   <View style={pdfStyles.paragraph}>
-    <Text>{`${sectionNumber}.${paragraphNumber} ${contentObjValue}`}</Text>
+    <View style={pdfStyles.inlineItems}>
+      <Text
+        style={pdfStyles.numberParagraph}
+      >{`${sectionNumber}.${paragraphNumber}`}</Text>
+      <Text>{`${contentObjValue}`}</Text>
+    </View>
   </View>
 )
 

@@ -22,7 +22,7 @@ import { pdfStyles } from "./_pdfHelpers/pdfStyles"
 import dynamic from "next/dynamic"
 import { FormDataType } from "./_schemas/productTypes"
 
-import DynamicPDF from "./DynamicPDF "
+import DynamicPDF from "./DynamicPDF"
 
 const Product3 = () => {
   // Dynamically import PDFViewer to fix build bug since Next uses SSR

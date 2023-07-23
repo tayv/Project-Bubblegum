@@ -7,7 +7,7 @@ import { View } from "@react-pdf/renderer"
 import { pdfStyles } from "./pdfStyles"
 import { filterInvalidSections } from "./filterInvalidSections"
 
-type DocumentSectionType = DocTemplateCommonType[0]
+type DocumentSingleSectionType = DocTemplateCommonType[0]
 
 export const renderPDFTerms = ({
   docTemplate,
@@ -22,7 +22,7 @@ export const renderPDFTerms = ({
 
   // 2. Map through remaining valid document sections and render PDF elements that exist in each section
   return validDocSectionsArray.map(
-    (documentSection: DocumentSectionType, sectionIndex: number) => {
+    (documentSection: DocumentSingleSectionType, sectionIndex: number) => {
       // 3. For the current documentSection object, map through its section.content array to find child elements to render
 
       const sectionNumber = sectionIndex + 1 // used for numbering section titles

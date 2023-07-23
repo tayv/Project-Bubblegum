@@ -8,12 +8,15 @@ import {
   Link,
   StyleSheet,
   Font,
+  pdf,
 } from "@react-pdf/renderer"
 import { pdfStyles } from "./_pdfHelpers/pdfStyles"
 import buildPDF from "./_pdfHelpers/buildPDF"
 import { FormDataType } from "./_schemas/productTypes"
 import { renderPDFTOC } from "./_pdfHelpers/renderPDFTOC"
 import { createSchemaTemplateA } from "./_schemas/createSchemaTemplateA"
+import { renderFooter } from "./_pdfHelpers/renderFooter"
+import { renderPDFTerms } from "./_pdfHelpers/renderPDFTerms"
 
 // TYPES
 type DynamicPDFProps = {
@@ -73,39 +76,60 @@ const DynamicPDF: FC<DynamicPDFProps> = ({ formData }) => {
   return (
     <Document>
       <Page size="A4" style={pdfStyles.page}>
-        <View>
-          {/* eslint-disable-next-line jsx-a11y/alt-text*/}
-          <Image
-            src="/home.png"
-            style={{
-              width: 15,
-              height: 15,
-            }}
-          />
-          <Text style={pdfStyles.h1}>This is a title page</Text>
-          <Link src="#test"> Go to section (hardcoded)</Link>
+        <View style={{ justifyContent: "center", alignItems: "center" }}>
+          <Text style={pdfStyles.documentTitle}>Document Title Goes Here</Text>
+          <Text style={pdfStyles.documentSubTitle}>
+            Document Sub Title Goes Here
+          </Text>
+          <View
+            style={[
+              pdfStyles.centerItems,
+              { paddingBottom: 50, fontSize: 12, lineHeight: 1.7 },
+            ]}
+          >
+            <Text>Between:</Text>
+            <Text>Party Name 1</Text>
+            <Text>
+              & {formData.textExample ? formData.textExample : "______________"}
+            </Text>
+          </View>
         </View>
-      </Page>
-      {/* Table of Contents */}
-      {renderPDFTOC({ docTemplate, selectedLocation })}
 
-      {/* Dynamic content goes here */}
+        {/* Table of Contents */}
+        {renderPDFTOC({ docTemplate, selectedLocation })}
+        {/* Fixed footer */}
+        {renderFooter({
+          productTitle: "Product Title",
+          productHighlight: "1.0",
+        })}
+      </Page>
+
+      {/* Contract terms go here */}
       <Page size="A4" style={pdfStyles.page}>
-        <View>{formData && buildPDF({ docTemplate, selectedLocation })}</View>
-        <View style={pdfStyles.footer} fixed>
-          <Text>Product Name: 123 Box on Road</Text>
-          <Text
-            render={({ pageNumber, totalPages }) =>
-              `${pageNumber} of ${totalPages}`
-            }
-          />
+        <View>
+          {
+            /* need to wait for formData to be available */
+            formData &&
+              renderPDFTerms({
+                docTemplate,
+                selectedLocation,
+              })
+          }
         </View>
+        {renderFooter({
+          productTitle: "Product Title",
+          productHighlight: "1.0",
+        })}
       </Page>
 
       <Page size="A4" style={pdfStyles.page}>
         <View>
           <Text style={pdfStyles.h1}>This is an appendix / last page</Text>
         </View>
+        {renderFooter({
+          productTitle: "Product Title",
+          productHighlight: "1.0",
+        })}
       </Page>
     </Document>
   )

@@ -34,7 +34,7 @@ export const createSchemaTemplateA = (
       {
         location: ["all"],
         type: "sectionTitle",
-        value: "Hardcoded Section Title",
+        value: "This is a Section Title",
       },
       {
         location: ["all"],
@@ -57,12 +57,19 @@ export const createSchemaTemplateA = (
           ...supportedLocationGroups.locationGroupB,
         ],
         type: "paragraph",
-        value: ["TRUE: Generic schema body A", "second paragraph starts here"],
+        value: [
+          "TRUE: Generic schema body A",
+          "second paragraph starts here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam",
+        ],
       },
       {
         location: [...supportedLocationGroups.locationGroupB],
         type: "paragraph",
-        value: ["GB: checkbox is true"],
+        value: [
+          "GB: checkbox is true",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam.",
+        ],
       },
     ],
   },
@@ -80,18 +87,23 @@ export const createSchemaTemplateA = (
         location: [...supportedLocationGroups.locationGroupB],
         type: "paragraph",
         value: [
-          "Hardcoded introduction to section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam",
+          "Introduction to section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam.",
         ],
       },
       {
         location: [...supportedLocationGroups.locationGroupB],
         type: "header",
-        value: "A header",
+        value: "This is a header",
       },
       {
         location: [...supportedLocationGroups.locationGroupB],
         type: "paragraph",
-        value: ["Location: Radio option 2 paragraph"],
+        value: [
+          "Location: Radio option 2 paragraph",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam.",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam",
+        ],
       },
     ],
   },
@@ -102,19 +114,19 @@ export const createSchemaTemplateA = (
       {
         location: [...supportedLocationGroups.locationGroupA],
         type: "sectionTitle",
-        value: "Hardcoded Section Title",
+        value: "This is another section title",
       },
       {
         location: [...supportedLocationGroups.locationGroupA],
         type: "paragraph",
         value: [
-          "Hardcoded introduction to section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam",
+          "Introduction to section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam",
         ],
       },
       {
         location: [...supportedLocationGroups.locationGroupA],
         type: "header",
-        value: "A header",
+        value: "A header to an ordered list:",
       },
       {
         location: [...supportedLocationGroups.locationGroupA],
@@ -137,12 +149,15 @@ export const createSchemaTemplateA = (
         type: "paragraph",
         value: [
           "Hardcoded introduction to section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam.",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam.",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam.",
         ],
       },
       {
         location: [...supportedLocationGroups.locationGroupA],
         type: "header",
-        value: "A header",
+        value: "A header to an unordered list:",
       },
       {
         location: ["location2"],
@@ -165,27 +180,36 @@ export const createSchemaTemplateA = (
         type: "paragraph",
         value: [
           "Hardcoded introduction to section. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam.",
         ],
       },
       {
         location: [...supportedLocationGroups.locationGroupA],
         type: "header",
-        value: "Hardcoded heading",
+        value: "A heading",
       },
       {
         location: [...supportedLocationGroups.locationGroupA],
         type: "paragraph",
-        value: ["This is a hardcoded paragraph"],
+        value: [
+          "This is a paragraph",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam.",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam.",
+        ],
       },
       {
         location: [...supportedLocationGroups.locationGroupA],
         type: "subheader",
-        value: "Hardcoded sub header",
+        value: "This is a sub header",
       },
       {
         location: [...supportedLocationGroups.locationGroupA],
         type: "paragraph",
-        value: ["This is a hardcoded paragraph", "This is a second paragraph"],
+        value: [
+          "This is a paragraph",
+          "This is a second paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam.",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam.",
+        ],
       },
     ],
   },
