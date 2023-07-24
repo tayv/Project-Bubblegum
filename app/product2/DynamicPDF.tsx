@@ -17,6 +17,7 @@ import { renderPDFTOC } from "./_pdfHelpers/renderPDFTOC"
 import { createSchemaTemplateA } from "./_schemas/createSchemaTemplateA"
 import { renderFooter } from "./_pdfHelpers/renderFooter"
 import { renderPDFTerms } from "./_pdfHelpers/renderPDFTerms"
+import { renderSigning } from "./_pdfHelpers/renderSigning"
 
 // TYPES
 type DynamicPDFProps = {
@@ -116,6 +117,7 @@ const DynamicPDF: FC<DynamicPDFProps> = ({ formData }) => {
               })
           }
         </View>
+
         {renderFooter({
           productTitle: "Product Title",
           productHighlight: "1.0",
@@ -126,6 +128,8 @@ const DynamicPDF: FC<DynamicPDFProps> = ({ formData }) => {
         <View>
           <Text style={pdfStyles.h1}>This is an appendix / last page</Text>
         </View>
+        {renderSigning()}
+
         {renderFooter({
           productTitle: "Product Title",
           productHighlight: "1.0",
