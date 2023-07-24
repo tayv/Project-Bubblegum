@@ -21,7 +21,7 @@ type AccumulatorType = {
   paragraphNumber: number
 }
 
-// HELPER FUNCTIONS ---------------------
+// HELPER FUNCTIONS ---------------------------------------------
 
 // Render functions for each content type
 const renderSectionTitle = (
@@ -62,10 +62,10 @@ const renderParagraph = (
   contentObjValue: ContentObjValueType,
   sectionNumber: RenderPDFElementsProps["sectionNumber"],
   paragraphNumber: AccumulatorType["paragraphNumber"]
-) => {
+): React.ReactNode[] | null => {
   if (Array.isArray(contentObjValue)) {
-    const paragraphNodes = contentObjValue.map((paragraph, index) => (
-      <View key={index} style={pdfStyles.paragraph}>
+    return contentObjValue.map((paragraph, index) => (
+      <View key={index} style={pdfStyles.paragraph} wrap={false}>
         <View style={pdfStyles.inlineItems}>
           <Text style={pdfStyles.numberParagraph}>{`${sectionNumber}.${
             paragraphNumber + index
@@ -74,15 +74,9 @@ const renderParagraph = (
         </View>
       </View>
     ))
-    // update paragraphNumber based on index
-    paragraphNumber += contentObjValue.length
-
-    // return both the paragraph nodes and the updated paragraphNumber
-    return {
-      paragraphNodes: paragraphNodes,
-      paragraphNumber: paragraphNumber,
-    }
   }
+
+  return null
 }
 
 const renderListUnordered = (contentObjValue: ContentObjValueType) => {
@@ -125,7 +119,7 @@ const rendererDictionary = {
   listOrdered: renderListOrdered,
 }
 
-// MAIN FUNCTION ---------------------
+// MAIN FUNCTION ---------------------------------------------
 export const renderPDFElements = ({
   contentArray,
   selectedLocation,
@@ -167,25 +161,26 @@ export const renderPDFElements = ({
         // Each content type needs its own render function. Dynamically call the correct one using the renderers dictionary defined above
         const render = rendererDictionary[contentObj.type]
 
-        // First check if the rendered component is a paragraph as it has unique logic to update the paragraphNumber
+        // ----- 3.a Check if paragraph since it has unique logic to update the paragraphNumber and returns array instead of jsx element -----
         if (contentObj.type === "paragraph") {
-          const renderParagraphResult = render(
+          const renderedParagraphs: React.ReactNode[] | JSX.Element | null =
+            render(contentObj.value, sectionNumber, paragraphNumber)
+
+          // 3.b Need a type guard here since only renderParagraph returns an array (alternative is to refactor to return array for all render functions)
+          if (Array.isArray(renderedParagraphs)) {
+            // 3.c If paragraph is rendered then update components and paragraphNumber
+            if (renderedParagraphs !== null) {
+              components = [...components, ...renderedParagraphs]
+              paragraphNumber += renderedParagraphs.length
+            }
+          }
+        } else {
+          // If the contentObj is not of type "paragraph", just add it to the components array
+          const renderedComponent = render(
             contentObj.value,
             sectionNumber,
             paragraphNumber
           )
-          // Update the components array and paragraphNumber with the return value from renderParagraph()
-          // so that any other paragraph types in the same section.content array can use the correct paragraphNumber
-          if (renderParagraphResult !== undefined) {
-            components = [
-              ...components,
-              ...renderParagraphResult.paragraphNodes,
-            ]
-            paragraphNumber = renderParagraphResult.paragraphNumber
-          }
-        } else {
-          // If the contentObj is not of type "paragraph", just add it to the components array
-          const renderedComponent = render(contentObj.value, sectionNumber)
           components = [...components, renderedComponent]
         }
         // 4. Return the updated components array and paragraphNumber to the accumulator object
