@@ -11,7 +11,6 @@ import {
   pdf,
 } from "@react-pdf/renderer"
 import { pdfStyles } from "./_pdfHelpers/pdfStyles"
-import buildPDF from "./_pdfHelpers/buildPDF"
 import { FormDataType } from "./_schemas/productTypes"
 import { renderPDFTOC } from "./_pdfHelpers/renderPDFTOC"
 import { createSchemaTemplateA } from "./_schemas/createSchemaTemplateA"

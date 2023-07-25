@@ -18,6 +18,7 @@ export type FormDataType = {
   radioExample?: "option1" | "option2" | "option3"
   textExample?: string
   jurisdiction: AllProductLocationKeys
+  signingDate: string
 }
 
 // ------------------------ Document Template Types ------------------------
