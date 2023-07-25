@@ -1,5 +1,6 @@
 import { supportedLocationGroups } from "./supportedLocations"
 import { FormDataType } from "./productTypes"
+import { FieldValues } from "react-hook-form"
 
 // TYPES ------------------
 // The locations supported by this document template (may be a subset of all locations supported by the product)
@@ -25,7 +26,7 @@ export type DocTemplateAType = {
 
 // MAIN FUNCTION ------------------
 export const createSchemaTemplateA = (
-  formData: FormDataType
+  formData: FieldValues
 ): DocTemplateAType => [
   {
     sectionID: "s1",

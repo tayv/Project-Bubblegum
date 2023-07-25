@@ -26,6 +26,7 @@
       "@hooks/*": ["app/hooks/*"],
       "@utils/*": ["app/utils/*"],
       "@product1/*": ["app/product1/*"],
+      "@product2/*": ["app/product2/*"],
 
       // Page Router
       "@designSystem/*": ["designSystem/*"],

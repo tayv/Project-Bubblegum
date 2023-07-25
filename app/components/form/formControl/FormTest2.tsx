@@ -8,6 +8,9 @@ import { ProductNameProps } from "@template/templateTypes"
 import ModalAlert from "@ui/ModalAlert"
 import ModalViewDoc from "@ui/ModalViewDoc"
 import CardSection from "@ui/CardSection"
+import DynamicPDF from "@product2/DynamicPDF"
+import { PDFViewer } from "@react-pdf/renderer"
+import { pdfStyles } from "@product2/_pdfHelpers/pdfStyles"
 
 export type FormProps = {
   id: string
@@ -32,7 +35,7 @@ const FormTest2: FC<FormProps> = ({
   productName,
   ...props
 }) => {
-  const [formData, setFormData] = useState({})
+  // const [formData, setFormData] = useState({})
   const methods = useForm({ resolver: zodResolver(zodSchema), defaultValues })
   const formHasErrors = Object.keys(methods.formState.errors).length > 0
 
@@ -75,7 +78,10 @@ const FormTest2: FC<FormProps> = ({
             title="Document Title"
             description="This is a description"
           >
-            <p>Template goes here</p>
+            {/* Need to pass formData directly as prop instead of useFormContext() or passing all methods because PDFViewer creates a separate context */}
+            <PDFViewer style={pdfStyles.pdfViewer}>
+              <DynamicPDF formData={methods.getValues()} />
+            </PDFViewer>
           </ModalViewDoc>
         </div>
       </form>

@@ -27,7 +27,7 @@ export const pdfStyles = StyleSheet.create({
   documentSubTitle: {
     fontSize: 18,
     fontWeight: "medium",
-    paddingBottom: 24,
+    paddingBottom: 42,
     opacity: 0.8,
   },
   section: {

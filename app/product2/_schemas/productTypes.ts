@@ -1,3 +1,5 @@
+import { FieldValues } from "react-hook-form"
+
 // All locations supported by the Product
 export type AllProductLocationKeys =
   | "all"
@@ -13,13 +15,15 @@ export type AllSupportedLocationsType = {
 }
 
 // The shape of the formData when user submits form. This is the user data we use to fill the document template
-export type FormDataType = {
-  checkboxExample?: boolean
-  radioExample?: "option1" | "option2" | "option3"
-  textExample?: string
-  jurisdiction: AllProductLocationKeys
-  signingDate: string
-}
+export type FormDataType = FieldValues
+// ------------------------ Example Form Data ------------------------
+// {
+// checkboxExample?: boolean
+// radioExample?: "option1" | "option2" | "option3"
+// textExample?: string
+// jurisdiction: AllProductLocationKeys
+// signingDate: string
+// }
 
 // ------------------------ Document Template Types ------------------------
 // This is the general shape for the document template schema. Every sub template should follow this shape for rendering logic to work

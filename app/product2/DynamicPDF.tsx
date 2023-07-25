@@ -18,10 +18,12 @@ import { renderFooter } from "./_pdfHelpers/renderFooter"
 import { renderPDFTerms } from "./_pdfHelpers/renderPDFTerms"
 import { renderSigning } from "./_pdfHelpers/renderSigning"
 import { render } from "@headlessui/react/dist/utils/render"
+import { UseFormReturn } from "react-hook-form"
 
 // TYPES
 type DynamicPDFProps = {
   formData: FormDataType
+  //methods: UseFormReturn
 }
 
 // Register custom fonts. See: https://github.com/diegomura/react-pdf/issues/1075
@@ -70,6 +72,11 @@ Font.register({
 // Helper functions
 
 const DynamicPDF: FC<DynamicPDFProps> = ({ formData }) => {
+  // Can't use useFormContext() since PDFViewer creates a separate context. Need to accept method as prop
+
+  //const { getValues } = methods
+  //const formData = getValues()
+
   // Create docTemplate schema
   const docTemplate = createSchemaTemplateA(formData)
   const selectedLocation = formData.jurisdiction
@@ -97,12 +104,13 @@ const DynamicPDF: FC<DynamicPDFProps> = ({ formData }) => {
         </View>
 
         {/* Table of Contents */}
-        {renderPDFTOC({ docTemplate, selectedLocation })}
+        {formData && renderPDFTOC({ docTemplate, selectedLocation })}
         {/* Fixed footer */}
-        {renderFooter({
-          productTitle: "Product Title",
-          productHighlight: "1.0",
-        })}
+        {formData &&
+          renderFooter({
+            productTitle: "Product Title",
+            productHighlight: "1.0",
+          })}
       </Page>
 
       {/* Contract terms go here */}
@@ -117,11 +125,12 @@ const DynamicPDF: FC<DynamicPDFProps> = ({ formData }) => {
               })
           }
         </View>
-        {renderSigning({ formData })}
-        {renderFooter({
-          productTitle: "Product Title",
-          productHighlight: "1.0",
-        })}
+        {formData && renderSigning({ formData })}
+        {formData &&
+          renderFooter({
+            productTitle: "Product Title",
+            productHighlight: "1.0",
+          })}
       </Page>
 
       <Page size="A4" style={pdfStyles.page}>
@@ -129,10 +138,11 @@ const DynamicPDF: FC<DynamicPDFProps> = ({ formData }) => {
           <Text style={pdfStyles.h1}>This is an appendix / last page</Text>
         </View>
 
-        {renderFooter({
-          productTitle: "Product Title",
-          productHighlight: "1.0",
-        })}
+        {formData &&
+          renderFooter({
+            productTitle: "Product Title",
+            productHighlight: "1.0",
+          })}
       </Page>
     </Document>
   )

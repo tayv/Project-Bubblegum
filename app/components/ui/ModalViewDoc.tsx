@@ -4,7 +4,7 @@ import * as DialogRadix from "@radix-ui/react-dialog"
 import { X, Lock, ArrowDownToLine, Send, Pencil, Printer } from "lucide-react"
 import PrintButton from "@ui/PrintButton"
 import { useReactToPrint } from "react-to-print"
-import LoadTemplate from "@product1/product1Template.mdx"
+import DynamicPDF from "app/product2/DynamicPDF"
 
 export type ModalViewDocProps = {
   triggerText: string
@@ -79,11 +79,7 @@ const ModalViewDoc: FC<ModalViewDocProps> = ({
                 </button>
               </DialogRadix.Close>
 
-              <div ref={componentToPrintRefTest}>
-                {" "}
-                <LoadTemplate productName="product1" />
-                {children}
-              </div>
+              <div ref={componentToPrintRefTest}>{children}</div>
               {/* <PrintButton onClick={handlePrint}>
                 <Printer className="w-4" />
                 Print
