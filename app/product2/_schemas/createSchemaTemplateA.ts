@@ -34,7 +34,7 @@ export const createSchemaTemplateA = (
       {
         location: ["all"],
         type: "sectionTitle",
-        value: "This is a Section Title",
+        value: "This is a section title",
       },
       {
         location: ["all"],
@@ -142,7 +142,7 @@ export const createSchemaTemplateA = (
       {
         location: [...supportedLocationGroups.locationGroupA],
         type: "sectionTitle",
-        value: "Here lies a Section Title",
+        value: "Here lies a section title",
       },
       {
         location: [...supportedLocationGroups.locationGroupA],
@@ -173,7 +173,7 @@ export const createSchemaTemplateA = (
       {
         location: [...supportedLocationGroups.locationGroupA],
         type: "sectionTitle",
-        value: "Hardcoded Section Title",
+        value: "Hardcoded section title",
       },
       {
         location: [...supportedLocationGroups.locationGroupA],

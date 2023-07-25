@@ -21,6 +21,8 @@ import { PDFViewer } from "@react-pdf/renderer"
 import { pdfStyles } from "./_pdfHelpers/pdfStyles"
 import dynamic from "next/dynamic"
 import { FormDataType } from "./_schemas/productTypes"
+import { format, startOfToday } from "date-fns"
+import DatePick from "@components/form/DatePick"
 
 import DynamicPDF from "./DynamicPDF"
 
@@ -36,6 +38,7 @@ const Product3 = () => {
     radioExample: "option1",
     textExample: "",
     jurisdiction: "location1",
+    signingDate: format(startOfToday(), "MMM-dd-yyyy"),
   }
 
   const zodSchema = z.object({
@@ -43,6 +46,7 @@ const Product3 = () => {
     radioExample: z.enum(["option1", "option2", "option3"]).optional(),
     textExample: z.string().optional(),
     jurisdiction: z.enum(["location1", "location2", "location3"]),
+    signingDate: z.string().optional(),
   })
 
   // Setup initial state
@@ -174,6 +178,19 @@ const Product3 = () => {
             <Field.GroupLabel>Standard text input:</Field.GroupLabel>
             <Field.Control>
               <Input type="text" />
+            </Field.Control>
+          </Field>
+
+          <Field name="signingDate">
+            <Field.GroupLabel type="standard">
+              When will you sign this document?
+            </Field.GroupLabel>
+            <Field.Tip>Pick a date between today and 2030.</Field.Tip>
+            <Field.Control>
+              <DatePick
+                startYearRange={parseInt(format(startOfToday(), "yyyy"))}
+                endYearRange={2030}
+              />
             </Field.Control>
           </Field>
         </FormTest2>
