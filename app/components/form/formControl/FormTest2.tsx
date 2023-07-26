@@ -77,6 +77,7 @@ const FormTest2: FC<FormProps> = ({
             triggerText="View Doc"
             title="Document Title"
             description="This is a description"
+            formData={methods.getValues()}
           >
             {/* Need to pass formData directly as prop instead of useFormContext() or passing all methods because PDFViewer creates a separate context */}
             <PDFViewer style={pdfStyles.pdfViewer}>

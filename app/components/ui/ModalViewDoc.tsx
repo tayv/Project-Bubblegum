@@ -4,9 +4,12 @@ import * as DialogRadix from "@radix-ui/react-dialog"
 import { X, Lock, ArrowDownToLine, Send, Pencil, Printer } from "lucide-react"
 import PrintButton from "@ui/PrintButton"
 import { useReactToPrint } from "react-to-print"
-import DynamicPDF from "app/product2/DynamicPDF"
+import { PDFDownloadLink } from "@react-pdf/renderer"
+import DynamicPDF from "@product2/DynamicPDF"
+import { FormDataType } from "@product2/_schemas/productTypes"
 
 export type ModalViewDocProps = {
+  formData: FormDataType
   triggerText: string
   triggerType?: "button" | "text"
   title: string
@@ -18,6 +21,7 @@ export type ModalViewDocProps = {
 }
 
 const ModalViewDoc: FC<ModalViewDocProps> = ({
+  formData, // Needed by react-print's <PDFDownloadLink/> to download the doc
   triggerText,
   triggerType = "button",
   title,
@@ -31,9 +35,9 @@ const ModalViewDoc: FC<ModalViewDocProps> = ({
     printButtonRef.current?.focus()
   }
   // Setup ref for react-to-print
-  const componentToPrintRefTest = useRef<HTMLDivElement>(null)
+  const componentToPrintRef = useRef<HTMLDivElement>(null)
   const handlePrint = useReactToPrint({
-    content: () => componentToPrintRefTest.current,
+    content: () => componentToPrintRef.current,
   })
   // NOTE: Printing whole dialog. This is likely cause of special behavior when printing elements outside the regular document flow
   // Look into either applying print styles to hide dialog (might not work as ref is a child) or a function that removes excess elements on print or trying to print just standalone mdx page??
@@ -72,14 +76,16 @@ const ModalViewDoc: FC<ModalViewDocProps> = ({
 
             {/* -------- Document container starts here -------- */}
             <div className="relative overflow-y-auto max-h-[70vh] rounded-xl bg-white py-4 px-6 text-xl font-light">
-              {/* <div className=" flex justify-end"> */}
-              <DialogRadix.Close asChild>
-                <button className="z-50 absolute top-5 right-6 items-center justify-center gap-1 text-sky-500 hover:text-slate-400 focus:shadow-green-700 inline-flex  rounded-[4px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none">
-                  <Pencil className="w-5" /> Edit
-                </button>
-              </DialogRadix.Close>
+              {/* ------- Optional overlay button. ------- */}
+              {/* Currently disabled as doesn't work as well with broswer based PDF viewers */}
+              {/* <DialogRadix.Close asChild>
+                  <button className="z-50 absolute top-5 right-6 items-center justify-center gap-1 text-sky-500 hover:text-slate-400 focus:shadow-green-700 inline-flex  rounded-[4px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none">
+                    <Pencil className="w-5" /> Edit
+                  </button>
+                </DialogRadix.Close> */}
+              {/* -------------------------------- */}
 
-              <div ref={componentToPrintRefTest}>{children}</div>
+              <div ref={componentToPrintRef}>{children}</div>
               {/* <PrintButton onClick={handlePrint}>
                 <Printer className="w-4" />
                 Print
@@ -115,7 +121,16 @@ const ModalViewDoc: FC<ModalViewDocProps> = ({
               <div className="flex max-w-full w-full flex-nowrap overflow-x-auto bg-slate-100 rounded-full py-1">
                 <button className="items-center justify-center gap-1 text-slate-500 hover:text-slate-400 focus:shadow-green-700 inline-flex h-[35px] rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none">
                   <ArrowDownToLine className="w-4" />
-                  Download PDF
+
+                  {/* PDF download docs: https://react-pdf.org/advanced#on-the-fly-rendering */}
+                  <PDFDownloadLink
+                    document={<DynamicPDF formData={formData} />}
+                    fileName={`${title}.pdf`}
+                  >
+                    {({ blob, url, loading, error }) =>
+                      loading ? "Loading PDF..." : "Download PDF"
+                    }
+                  </PDFDownloadLink>
                 </button>
 
                 <button className="items-center justify-center gap-1 text-slate-500 hover:text-slate-400 focus:shadow-green-700 inline-flex h-[35px] rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none">

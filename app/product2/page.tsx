@@ -50,17 +50,17 @@ const Product3 = () => {
   })
 
   // Setup initial state
+  // TODO See if this can be removed after refactor to PDF since we rely on RHF to handle state now
   const [formData, setFormData] = useState(defaultValues) // Need to set initial state to defaultValues to avoid type errors
 
   // Setup pg context values to pass to template
+  // This may be able to be removed after refactor to PDF. May need it for snippets though.
   const pageContextValue = {
     formData: formData,
-    //schema: product1SchemaTest,
   }
 
   // TEST initial PDF doc state
-  const [finalDoc, setFinalDoc] = useState([])
-  const [isSubmitted, setIsSubmitted] = useState(false) // ONLY RENDER IF FORM IS SUBMITTED
+  const [isSubmitted, setIsSubmitted] = useState(false) // For rendering PDF checks
 
   // Sample onSubmit form handler
   // NOTES: Don't need to  e.preventDefault() since rhf's handleSubmit() automatically prevents page reloads

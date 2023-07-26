@@ -5,6 +5,7 @@ export const pdfStyles = StyleSheet.create({
   pdfViewer: {
     width: "100%",
     height: "100vh",
+    userSelect: "none",
   },
   page: {
     paddingLeft: 45,
@@ -105,11 +106,11 @@ export const pdfStyles = StyleSheet.create({
   numberSection: {
     position: "absolute",
     left: -2,
-    paddingTop: 2,
+    // paddingTop: 2,
     paddingRight: 10,
     marginLeft: -20,
-    fontWeight: "medium",
-    fontSize: 18,
+    fontWeight: "semibold",
+    fontSize: 22,
   },
   numberParagraph: {
     position: "absolute",
