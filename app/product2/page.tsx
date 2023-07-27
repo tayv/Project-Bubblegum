@@ -26,7 +26,7 @@ import DatePick from "@components/form/DatePick"
 
 import DynamicPDF from "./DynamicPDF"
 
-const Product3 = () => {
+const Product2 = () => {
   // Dynamically import PDFViewer to fix build bug since Next uses SSR
   const PDFViewer = dynamic(
     () => import("@react-pdf/renderer").then((mod) => mod.PDFViewer),
@@ -202,7 +202,6 @@ const Product3 = () => {
   )
 }
 
-export default Product3
+export default Product2
 
-// Need a useEffect for loading correct template. Want it to load dynamic values on first load based on location answer which should default based on estimated location.
 // Need a way to hide/show premium content based on license and auth state

@@ -1,3 +1,4 @@
+"use client"
 import { Image, Text, Link, View } from "@react-pdf/renderer"
 import { pdfStyles } from "./pdfStyles"
 import { filterInvalidSections } from "./filterInvalidSections"
