@@ -1,5 +1,6 @@
 🚧 WORK IN PROGRESS 🚧
-
+# Preview Deployment
+View the main branch at: https://bubblegum-template.vercel.app/ 
 - Keep in mind the project is still very rough, especially the design. Focusing on functionality and code quality first.
 
 # Documentation
