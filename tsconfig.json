@@ -24,8 +24,9 @@
       "@template/*": ["app/components/template/*"],
 
       "@hooks/*": ["app/hooks/*"],
-      "@utilities/*": ["app/utils/*"],
+      "@utils/*": ["app/utils/*"],
       "@product1/*": ["app/product1/*"],
+      "@product2/*": ["app/product2/*"],
 
       // Page Router
       "@designSystem/*": ["designSystem/*"],
@@ -37,7 +38,7 @@
       "@styles/*": ["styles/*"],
       "@helpers/*": ["designSystem/molecules/*"],
       "@templates/*": ["designSystem/templates/*"],
-      "@utils/*": ["utils/*"],
+      // "@utils/*": ["utils/*"],
       "@docs/*": ["pages/docs/*"],
       "@restricted/*": ["pages/restricted/*"] // private pages for authenticated users
     },

@@ -1,14 +1,16 @@
 "use client"
 
-import { FC, useState } from "react"
+import React, { FC, useState } from "react"
 import { useForm, FormProvider } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
-import LoadTemplate from "@template/LoadTemplate"
 import { ProductNameProps } from "@template/templateTypes"
 import ModalAlert from "@ui/ModalAlert"
 import ModalViewDoc from "@ui/ModalViewDoc"
 import CardSection from "@ui/CardSection"
+import DynamicPDF from "@product2/DynamicPDF"
+import { PDFViewer } from "@react-pdf/renderer"
+import { pdfStyles } from "@product2/_pdfHelpers/pdfStyles"
 
 export type FormProps = {
   id: string
@@ -23,7 +25,7 @@ export type FormProps = {
 // HELPER FUNCTIONS
 
 // MAIN COMPONENT
-const Form: FC<FormProps> = ({
+const FormTest2: FC<FormProps> = ({
   defaultValues,
   zodSchema,
   onSubmit,
@@ -33,7 +35,6 @@ const Form: FC<FormProps> = ({
   productName,
   ...props
 }) => {
-  const [formData, setFormData] = useState({})
   const methods = useForm({ resolver: zodResolver(zodSchema), defaultValues })
   const formHasErrors = Object.keys(methods.formState.errors).length > 0
 
@@ -77,7 +78,10 @@ const Form: FC<FormProps> = ({
             description="This is a description"
             formData={methods.getValues()}
           >
-            <LoadTemplate productName={productName} />
+            {/* Need to pass formData directly as prop instead of useFormContext() or passing all methods because PDFViewer creates a separate context */}
+            <PDFViewer style={pdfStyles.pdfViewer}>
+              <DynamicPDF formData={methods.getValues()} />
+            </PDFViewer>
           </ModalViewDoc>
         </div>
       </form>
@@ -88,7 +92,7 @@ const Form: FC<FormProps> = ({
         {/* select-none needed to prevent user from copying text from preview */}
         <div className="sticky top-0 overflow-y-auto select-none">
           <CardSection id="loadTemplatePreviewSection">
-            <LoadTemplate productName={productName} />
+            Preview goes here
           </CardSection>
         </div>
       </div>
@@ -97,4 +101,4 @@ const Form: FC<FormProps> = ({
   )
 }
 
-export default Form
+export default FormTest2

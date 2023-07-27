@@ -1,14 +1,16 @@
 "use client"
 
-import { FC, useState } from "react"
+import React, { FC, useState } from "react"
 import { useForm, FormProvider } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 import LoadTemplate from "@template/LoadTemplate"
 import { ProductNameProps } from "@template/templateTypes"
 import ModalAlert from "@ui/ModalAlert"
+import ModalStandard from "@ui/ModalStandard"
 import ModalViewDoc from "@ui/ModalViewDoc"
 import CardSection from "@ui/CardSection"
+import { useReactToPrint } from "react-to-print"
 
 export type FormProps = {
   id: string
@@ -23,7 +25,7 @@ export type FormProps = {
 // HELPER FUNCTIONS
 
 // MAIN COMPONENT
-const Form: FC<FormProps> = ({
+const FormTest: FC<FormProps> = ({
   defaultValues,
   zodSchema,
   onSubmit,
@@ -36,6 +38,26 @@ const Form: FC<FormProps> = ({
   const [formData, setFormData] = useState({})
   const methods = useForm({ resolver: zodResolver(zodSchema), defaultValues })
   const formHasErrors = Object.keys(methods.formState.errors).length > 0
+
+  // TESTING ----------------
+
+  const iframeRef = React.useRef<HTMLIFrameElement>(null)
+
+  // const handlePrint = () => {
+  //   if (iframeRef.current) {
+  //   const iframeContentWindow = iframeRef.current.contentWindow
+  //   iframeContentWindow.focus()
+  //   iframeContentWindow.print()
+  //   }
+
+  // }
+
+  const componentToPrintRef = React.useRef<HTMLDivElement>(null)
+  const handlePrint = useReactToPrint({
+    content: () => componentToPrintRef.current,
+  })
+
+  // ------------------------
 
   return (
     <FormProvider {...methods}>
@@ -77,7 +99,13 @@ const Form: FC<FormProps> = ({
             description="This is a description"
             formData={methods.getValues()}
           >
+            {/* <>
+            <div ref={componentToPrintRef}>
             <LoadTemplate productName={productName} />
+            </div> */}
+            {/* <div ref={componentToPrintRef}>some stuff to print </div> */}
+            {/* <button onClick={handlePrint}>Print this out!</button>
+             </> */}
           </ModalViewDoc>
         </div>
       </form>
@@ -87,14 +115,20 @@ const Form: FC<FormProps> = ({
         {/* div needed for sticky to work. Cannot use overflow: scroll/hidden/auto with sticky https://www.digitalocean.com/community/tutorials/css-position-sticky */}
         {/* select-none needed to prevent user from copying text from preview */}
         <div className="sticky top-0 overflow-y-auto select-none">
-          <CardSection id="loadTemplatePreviewSection">
-            <LoadTemplate productName={productName} />
-          </CardSection>
+          {/* <CardSection id="loadTemplatePreviewSection">
+            <iframe ref={iframeRef}>
+              <LoadTemplate productName={productName} />
+            </iframe>
+          </CardSection> */}
         </div>
+
+        {/* <button onClick={handlePrint} className="items-center justify-center inline-flex h-10 px-4 font-medium text-slate-500 hover:bg-white rounded-lg leading-none outline-none focus:shadow-[0_0_0_2px] shadow focus:shadow-sky-400">
+          Test iframe
+        </button> */}
       </div>
       {/* Template ends ---------------------------------------------- */}
     </FormProvider>
   )
 }
 
-export default Form
+export default FormTest
