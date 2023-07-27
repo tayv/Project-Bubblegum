@@ -16,7 +16,7 @@
     "@mdx-js/loader": "^2.3.0",
     "@mdx-js/react": "^2.3.0",
     "@next/mdx": "^13.4.4",
-    "@prisma/client": "^4.14.1",
+    "@prisma/client": "^5.0.0",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-alert-dialog": "^1.0.4",
     "@radix-ui/react-checkbox": "^1.0.4",
@@ -30,7 +30,7 @@
     "date-fns": "^2.30.0",
     "eslint-config-next": "^13.4.4",
     "html-to-pdfmake": "^2.4.22",
-    "lucide-react": "^0.244.0",
+    "lucide-react": "^0.263.1",
     "next": "^13.4.4",
     "pdfmake": "^0.2.7",
     "react": "^18.2.0",
@@ -53,8 +53,8 @@
     "jest": "^29.5.0",
     "jest-environment-jsdom": "^29.5.0",
     "postcss": "^8.4.24",
-    "prettier": "^2.8.8",
-    "prisma": "^4.14.1",
+    "prettier": "^3.0.0",
+    "prisma": "^5.0.0",
     "tailwindcss": "^3.3.2",
     "typescript": "^5.0.4"
   }
