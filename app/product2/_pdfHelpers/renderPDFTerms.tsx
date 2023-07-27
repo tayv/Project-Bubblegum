@@ -1,3 +1,4 @@
+"use client"
 import { renderPDFElements } from "./renderPDFElements"
 import {
   SelectedTemplateProps,

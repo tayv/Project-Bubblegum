@@ -1,3 +1,4 @@
+"use client"
 import { supportedLocationGroups } from "./supportedLocations"
 import { FormDataType } from "./productTypes"
 import { FieldValues } from "react-hook-form"

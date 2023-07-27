@@ -9,7 +9,8 @@ import ModalAlert from "@ui/ModalAlert"
 import ModalViewDoc from "@ui/ModalViewDoc"
 import CardSection from "@ui/CardSection"
 import DynamicPDF from "@product2/DynamicPDF"
-import { PDFViewer } from "@react-pdf/renderer"
+//import { PDFViewer } from "@react-pdf/renderer"
+import dynamic from "next/dynamic"
 import { pdfStyles } from "@product2/_pdfHelpers/pdfStyles"
 
 export type FormProps = {
@@ -37,6 +38,12 @@ const FormTest2: FC<FormProps> = ({
 }) => {
   const methods = useForm({ resolver: zodResolver(zodSchema), defaultValues })
   const formHasErrors = Object.keys(methods.formState.errors).length > 0
+
+  // Dynamically import PDFViewer to fix build bug since Next uses SSR
+  const PDFViewer = dynamic(
+    () => import("@react-pdf/renderer").then((mod) => mod.PDFViewer),
+    { ssr: false }
+  )
 
   return (
     <FormProvider {...methods}>
