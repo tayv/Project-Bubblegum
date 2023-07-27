@@ -116,10 +116,8 @@ const Product3 = () => {
           productName="product1"
         >
           <Field name="jurisdiction" validateOnBlur={false}>
-            <Field.GroupLabel>Location Select:</Field.GroupLabel>
-            <Field.Tip>
-              The template and template content can be customized by location.
-            </Field.Tip>
+            <Field.GroupLabel>Pick a location:</Field.GroupLabel>
+            <Field.Tip>The PDF template is customized by location.</Field.Tip>
             <Field.Control>
               <Select
                 placeholder="Select an option"
@@ -150,7 +148,7 @@ const Product3 = () => {
           >
             <Field.GroupLabel>Standard checkbox:</Field.GroupLabel>
             <Field.Control>
-              <Checkbox>This is a label</Checkbox>
+              <Checkbox>Toggle me to change some PDF content.</Checkbox>
             </Field.Control>
           </Field>
 
@@ -159,6 +157,10 @@ const Product3 = () => {
             //validateOnBlur={false}
           >
             <Field.GroupLabel>Standard radio:</Field.GroupLabel>
+            <Field.Tip>
+              Selecting option 2 when you are on location 3 will change PDF
+              content.
+            </Field.Tip>
             <Field.Control>
               <RadioGroup
                 variant="button"
@@ -176,6 +178,7 @@ const Product3 = () => {
             //validateOnBlur={false}
           >
             <Field.GroupLabel>Standard text input:</Field.GroupLabel>
+            <Field.Tip>The value here will be used for a party name.</Field.Tip>
             <Field.Control>
               <Input type="text" />
             </Field.Control>
