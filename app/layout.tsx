@@ -25,6 +25,8 @@ export default function RootLayout({
 
                 { title: "Products", groupTitle: true },
                 { title: "Product 1", path: "/product1" },
+                { title: "Product 2", path: "/product2" },
+                { title: "Product 3", path: "/product3" },
               ]}
             />
             <main className="w-full overflow-y-scroll pt-1">

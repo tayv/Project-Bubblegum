@@ -8,7 +8,7 @@ export type Schema = {
 
 export type PageContextType = {
   formData: FormData
-  schema: Schema
+  schema?: Schema
 }
 
 export type DynamicContentProps = {

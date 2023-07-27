@@ -97,6 +97,7 @@ const FormTest: FC<FormProps> = ({
             triggerText="View Doc"
             title="Document Title"
             description="This is a description"
+            formData={methods.getValues()}
           >
             {/* <>
             <div ref={componentToPrintRef}>

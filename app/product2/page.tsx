@@ -1,12 +1,11 @@
 "use client"
 
 import * as z from "zod"
-
-import Product1Template from "@product1/product1Template.mdx"
+import React from "react"
 import { PageContextType } from "@template/templateTypes"
 import Heading from "@ui/Heading"
 import Paragraph from "@ui/Paragraph"
-import Form from "@formControl/Form"
+import FormTest2 from "@formControl/FormTest2"
 import Field from "@formControl/Field"
 import Checkbox from "@components/form/Checkbox"
 import Input from "@components/form/Input"
@@ -14,60 +13,66 @@ import CardSection from "@components/ui/CardSection"
 import { useState, createContext } from "react"
 import RadioGroup from "@components/form/RadioGroup"
 import Select from "@components/form/Select"
-import product1SchemaTest from "@product1/product1SchemaTest.json"
+
 import { PageContext } from "@template/context"
 import ModalStandard from "@components/ui/ModalStandard"
 import ModalViewDoc from "@components/ui/ModalViewDoc"
-import { PDFViewer, StyleSheet } from "@react-pdf/renderer"
+import { PDFViewer } from "@react-pdf/renderer"
+import { pdfStyles } from "./_pdfHelpers/pdfStyles"
 import dynamic from "next/dynamic"
+import { FormDataType } from "./_schemas/productTypes"
+import { format, startOfToday } from "date-fns"
+import DatePick from "@components/form/DatePick"
 
-// Create PDF styles
-const styles = StyleSheet.create({
-  page: {
-    width: "100%",
-    height: "100vh",
-    backgroundColor: "#E4E4E4",
-  },
-})
+import DynamicPDF from "./DynamicPDF"
 
-const Product1 = () => {
+const Product3 = () => {
   // Dynamically import PDFViewer to fix build bug since Next uses SSR
   const PDFViewer = dynamic(
     () => import("@react-pdf/renderer").then((mod) => mod.PDFViewer),
     { ssr: false }
   )
 
-  const defaultValues = {
+  const defaultValues: FormDataType = {
     checkboxExample: true,
     radioExample: "option1",
     textExample: "",
     jurisdiction: "location1",
+    signingDate: format(startOfToday(), "MMM-dd-yyyy"),
   }
 
   const zodSchema = z.object({
     checkboxExample: z.boolean().optional(),
     radioExample: z.enum(["option1", "option2", "option3"]).optional(),
     textExample: z.string().optional(),
-    jurisdiction: z.enum(["location1", "location2", "location3"]).optional(),
+    jurisdiction: z.enum(["location1", "location2", "location3"]),
+    signingDate: z.string().optional(),
   })
 
   // Setup initial state
-  const [formData, setformData] = useState({})
+  // TODO See if this can be removed after refactor to PDF since we rely on RHF to handle state now
+  const [formData, setFormData] = useState(defaultValues) // Need to set initial state to defaultValues to avoid type errors
 
   // Setup pg context values to pass to template
+  // This may be able to be removed after refactor to PDF. May need it for snippets though.
   const pageContextValue = {
     formData: formData,
-    schema: product1SchemaTest,
   }
+
+  // TEST initial PDF doc state
+  const [isSubmitted, setIsSubmitted] = useState(false) // For rendering PDF checks
 
   // Sample onSubmit form handler
   // NOTES: Don't need to  e.preventDefault() since rhf's handleSubmit() automatically prevents page reloads
   // and handles errors for you https://www.react-hook-form.com/api/useform/handlesubmit/
   const onSubmit = async (data: any, event: any) => {
-    setformData(data) // Save form values to state so the test template table can show the values
+    setFormData(data) // Save form values to state so the test template table can show the values
     console.log("Form submitted. data:", data, "Submit form - errors", Error)
     console.log("event:", event)
     const body = data
+
+    setIsSubmitted(true) // so we can render the PDFViewer after form is submitted
+
     try {
       const response = await fetch("/api/inquiry", {
         method: "POST",
@@ -91,12 +96,18 @@ const Product1 = () => {
   return (
     <PageContext.Provider value={pageContextValue}>
       <Heading size="h1" weight="bold" padding="none">
-        Product 1
+        Product 2
       </Heading>
-      <Paragraph>This is a test form page with app router.</Paragraph>
+      <Paragraph>Refactoring Product 3 Demo</Paragraph>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 w-full xl:max-w-1400">
-        <Form
+        {isSubmitted ? (
+          <PDFViewer style={pdfStyles.pdfViewer}>
+            <DynamicPDF formData={formData} />
+          </PDFViewer>
+        ) : null}
+
+        <FormTest2
           id="product1Form"
           defaultValues={defaultValues}
           zodSchema={zodSchema}
@@ -105,10 +116,8 @@ const Product1 = () => {
           productName="product1"
         >
           <Field name="jurisdiction" validateOnBlur={false}>
-            <Field.GroupLabel>Location Select:</Field.GroupLabel>
-            <Field.Tip>
-              The template and template content can be customized by location.
-            </Field.Tip>
+            <Field.GroupLabel>Pick a location:</Field.GroupLabel>
+            <Field.Tip>The PDF template is customized by location.</Field.Tip>
             <Field.Control>
               <Select
                 placeholder="Select an option"
@@ -139,7 +148,7 @@ const Product1 = () => {
           >
             <Field.GroupLabel>Standard checkbox:</Field.GroupLabel>
             <Field.Control>
-              <Checkbox>This is a label</Checkbox>
+              <Checkbox>Toggle me to change some PDF content.</Checkbox>
             </Field.Control>
           </Field>
 
@@ -148,6 +157,10 @@ const Product1 = () => {
             //validateOnBlur={false}
           >
             <Field.GroupLabel>Standard radio:</Field.GroupLabel>
+            <Field.Tip>
+              Selecting option 2 when you are on location 3 will change PDF
+              content.
+            </Field.Tip>
             <Field.Control>
               <RadioGroup
                 variant="button"
@@ -165,24 +178,31 @@ const Product1 = () => {
             //validateOnBlur={false}
           >
             <Field.GroupLabel>Standard text input:</Field.GroupLabel>
+            <Field.Tip>The value here will be used for a party name.</Field.Tip>
             <Field.Control>
               <Input type="text" />
             </Field.Control>
           </Field>
-        </Form>
-      </div>
 
-      <ModalViewDoc
-        triggerText="Load PDF"
-        title="PDF Title"
-        description="This is a description"
-        formData={formData}
-      ></ModalViewDoc>
+          <Field name="signingDate">
+            <Field.GroupLabel type="standard">
+              When will you sign this document?
+            </Field.GroupLabel>
+            <Field.Tip>Pick a date between today and 2030.</Field.Tip>
+            <Field.Control>
+              <DatePick
+                startYearRange={parseInt(format(startOfToday(), "yyyy"))}
+                endYearRange={2030}
+              />
+            </Field.Control>
+          </Field>
+        </FormTest2>
+      </div>
     </PageContext.Provider>
   )
 }
 
-export default Product1
+export default Product3
 
 // Need a useEffect for loading correct template. Want it to load dynamic values on first load based on location answer which should default based on estimated location.
 // Need a way to hide/show premium content based on license and auth state

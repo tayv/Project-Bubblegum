@@ -3,6 +3,7 @@
 import React, { FC, useContext } from "react"
 import { useFormContext, useWatch } from "react-hook-form"
 import { PageContext } from "@template/context"
+import product1SchemaTest from "@product1/product1SchemaTest.json"
 import { DynamicContentProps, Schema } from "@template/templateTypes"
 
 export type DynamicTemplateContentProps = DynamicContentProps & {
@@ -50,7 +51,9 @@ const DynamicTemplateContent: FC<DynamicTemplateContentProps> = ({
 
   // Schema holds all the conditions for the template.
   // It matches the formData structure and must be a child of PageContext.Provider
-  const { schema } = contextValue
+
+  //const { schema } = contextValue // no longer using this after refactore
+  const schema = product1SchemaTest // TODO: Remove this after testing
 
   // Check as useWatch won't work if watchedInputName is undefined
   if (!watchedInputName === undefined) {
