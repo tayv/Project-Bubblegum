@@ -31,9 +31,9 @@ const ModalViewDoc: FC<ModalViewDocProps> = ({
     printButtonRef.current?.focus()
   }
   // Setup ref for react-to-print
-  const componentToPrintRef = useRef<HTMLDivElement>(null)
+  const componentToPrintRefTest = useRef<HTMLDivElement>(null)
   const handlePrint = useReactToPrint({
-    content: () => componentToPrintRef.current,
+    content: () => componentToPrintRefTest.current,
   })
   // NOTE: Printing whole dialog. This is likely cause of special behavior when printing elements outside the regular document flow
   // Look into either applying print styles to hide dialog (might not work as ref is a child) or a function that removes excess elements on print or trying to print just standalone mdx page??
@@ -79,10 +79,16 @@ const ModalViewDoc: FC<ModalViewDocProps> = ({
                 </button>
               </DialogRadix.Close>
 
-              <div ref={componentToPrintRef}>
+              <div ref={componentToPrintRefTest}>
                 {" "}
-                <LoadTemplate productName="product1" />{" "}
+                <LoadTemplate productName="product1" />
+                {children}
               </div>
+              {/* <PrintButton onClick={handlePrint}>
+                <Printer className="w-4" />
+                Print
+              </PrintButton> */}
+              <button onClick={handlePrint}>Print</button>
             </div>
 
             {/* -------- Sticky bottom section starts here -------- */}
