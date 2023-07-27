@@ -1,6 +1,6 @@
 "use client"
 
-import { FC, useState } from "react"
+import React, { FC, useState } from "react"
 import { useForm, FormProvider } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
@@ -35,7 +35,6 @@ const FormTest2: FC<FormProps> = ({
   productName,
   ...props
 }) => {
-  // const [formData, setFormData] = useState({})
   const methods = useForm({ resolver: zodResolver(zodSchema), defaultValues })
   const formHasErrors = Object.keys(methods.formState.errors).length > 0
 

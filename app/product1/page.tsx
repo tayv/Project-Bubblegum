@@ -14,14 +14,12 @@ import CardSection from "@components/ui/CardSection"
 import { useState, createContext } from "react"
 import RadioGroup from "@components/form/RadioGroup"
 import Select from "@components/form/Select"
-import product1SchemaTest from "./product1SchemaTest"
+import product1SchemaTest from "@product1/product1SchemaTest.json"
 import { PageContext } from "@template/context"
 import ModalStandard from "@components/ui/ModalStandard"
 import ModalViewDoc from "@components/ui/ModalViewDoc"
 import { PDFViewer, StyleSheet } from "@react-pdf/renderer"
 import dynamic from "next/dynamic"
-
-import TestPDFDoc from "app/product3/TestPDFDoc"
 
 // Create PDF styles
 const styles = StyleSheet.create({
@@ -178,11 +176,8 @@ const Product1 = () => {
         triggerText="Load PDF"
         title="PDF Title"
         description="This is a description"
-      >
-        <PDFViewer style={styles.page}>
-          <TestPDFDoc />
-        </PDFViewer>
-      </ModalViewDoc>
+        formData={formData}
+      ></ModalViewDoc>
     </PageContext.Provider>
   )
 }

@@ -4,9 +4,10 @@ import * as DialogRadix from "@radix-ui/react-dialog"
 import { X, Lock, ArrowDownToLine, Send, Pencil, Printer } from "lucide-react"
 import PrintButton from "@ui/PrintButton"
 import { useReactToPrint } from "react-to-print"
-import { PDFDownloadLink } from "@react-pdf/renderer"
+import { PDFDownloadLink, PDFViewer, pdf } from "@react-pdf/renderer"
 import DynamicPDF from "@product2/DynamicPDF"
 import { FormDataType } from "@product2/_schemas/productTypes"
+import { pdfStyles } from "@product2/_pdfHelpers/pdfStyles"
 
 export type ModalViewDocProps = {
   formData: FormDataType
@@ -34,11 +35,13 @@ const ModalViewDoc: FC<ModalViewDocProps> = ({
     event.preventDefault()
     printButtonRef.current?.focus()
   }
+  const pdfRefTest = useRef<HTMLDivElement>(null)
   // Setup ref for react-to-print
   const componentToPrintRef = useRef<HTMLDivElement>(null)
   const handlePrint = useReactToPrint({
-    content: () => componentToPrintRef.current,
+    content: () => pdfRefTest.current,
   })
+
   // NOTE: Printing whole dialog. This is likely cause of special behavior when printing elements outside the regular document flow
   // Look into either applying print styles to hide dialog (might not work as ref is a child) or a function that removes excess elements on print or trying to print just standalone mdx page??
 
@@ -75,7 +78,7 @@ const ModalViewDoc: FC<ModalViewDocProps> = ({
             </DialogRadix.Description>
 
             {/* -------- Document container starts here -------- */}
-            <div className="relative overflow-y-auto max-h-[70vh] rounded-xl bg-white py-4 px-6 text-xl font-light">
+            <div className="relative overflow-y-auto max-h-[70vh] print:max-h-none rounded-xl bg-white py-4 px-6 text-xl font-light">
               {/* ------- Optional overlay button. ------- */}
               {/* Currently disabled as doesn't work as well with broswer based PDF viewers */}
               {/* <DialogRadix.Close asChild>
@@ -85,12 +88,18 @@ const ModalViewDoc: FC<ModalViewDocProps> = ({
                 </DialogRadix.Close> */}
               {/* -------------------------------- */}
 
-              <div ref={componentToPrintRef}>{children}</div>
+              <div
+                // ref={componentToPrintRef}
+                ref={pdfRefTest}
+                className={"max-h-[70vh] print:max-h-none w-full"}
+              >
+                {children}
+              </div>
               {/* <PrintButton onClick={handlePrint}>
                 <Printer className="w-4" />
                 Print
               </PrintButton> */}
-              <button onClick={handlePrint}>Print</button>
+              <button onClick={() => window.print()}>Print</button>
             </div>
 
             {/* -------- Sticky bottom section starts here -------- */}

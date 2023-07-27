@@ -1,7 +1,7 @@
 "use client"
 
 import * as z from "zod"
-
+import React from "react"
 import { PageContextType } from "@template/templateTypes"
 import Heading from "@ui/Heading"
 import Paragraph from "@ui/Paragraph"

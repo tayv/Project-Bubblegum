@@ -75,6 +75,7 @@ const Form: FC<FormProps> = ({
             triggerText="View Doc"
             title="Document Title"
             description="This is a description"
+            formData={methods.getValues()}
           >
             <LoadTemplate productName={productName} />
           </ModalViewDoc>
