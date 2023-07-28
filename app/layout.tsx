@@ -16,24 +16,24 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        <div className="flex flex-col h-screen bg-neutral-100">
-          <div className="flex flex-1 overflow-hidden">
-            <SideNav
-              articleList={[
-                { title: "Testing", groupTitle: true },
+      <body className="bg-neutral-100">
+        {/* use lg:flex-row because want the nav to move to the side on laptops and above */}
+        <div className="flex flex-col lg:flex-row h-screen">
+          {/* <div className="flex flex-1 overflow-hidden"> */}
+          <SideNav
+            articleList={[
+              { title: "Testing", groupTitle: true },
 
-                { title: "Products", groupTitle: true },
-                { title: "Product 1", path: "/product1" },
-                { title: "Product 2", path: "/product2" },
-                { title: "Product 3", path: "/product3" },
-              ]}
-            />
-            <main className="w-full overflow-y-scroll pt-1">
-              <div className="block px-6 py-3">{children}</div>
-            </main>
-          </div>
+              { title: "Products", groupTitle: true },
+              { title: "Product 1 (MDX)", path: "/product1" },
+              { title: "Product 2 (PDF", path: "/product2" },
+            ]}
+          />
+          <main className="w-full overflow-y-scroll pt-1">
+            <div className="block px-6 py-3">{children}</div>
+          </main>
         </div>
+        {/* </div> */}
       </body>
     </html>
   )
