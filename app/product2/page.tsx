@@ -94,111 +94,115 @@ const Product2 = () => {
   }
 
   return (
-    <PageContext.Provider value={pageContextValue}>
-      <Heading size="h1" weight="bold" padding="none">
-        Product 2
-      </Heading>
-      <Paragraph>Refactoring Product 3 Demo</Paragraph>
+    <>
+      <PageContext.Provider value={pageContextValue}>
+        <Heading size="h1" weight="bold" padding="none">
+          Product 2
+        </Heading>
+        <Paragraph>Demo: Building a dynamic PDF via form answers</Paragraph>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 w-full xl:max-w-1400">
-        {isSubmitted ? (
-          <PDFViewer style={pdfStyles.pdfViewer}>
-            <DynamicPDF formData={formData} />
-          </PDFViewer>
-        ) : null}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 w-full xl:max-w-1400">
+          {isSubmitted ? (
+            <PDFViewer style={pdfStyles.pdfViewer}>
+              <DynamicPDF formData={formData} />
+            </PDFViewer>
+          ) : null}
 
-        <FormTest2
-          id="product1Form"
-          defaultValues={defaultValues}
-          zodSchema={zodSchema}
-          onSubmit={onSubmit}
-          buttonLabel="Submit Form"
-          productName="product1"
-        >
-          <Field name="jurisdiction" validateOnBlur={false}>
-            <Field.GroupLabel>Pick a location:</Field.GroupLabel>
-            <Field.Tip>The PDF template is customized by location.</Field.Tip>
-            <Field.Control>
-              <Select
-                placeholder="Select an option"
-                itemOptions={[
-                  {
-                    value: "location1",
-                    labelText: "Location 1",
-                    separator: false,
-                  },
-                  {
-                    value: "location2",
-                    labelText: "Location 2",
-                    separator: false,
-                  },
-                  {
-                    value: "location3",
-                    labelText: "Location 3",
-                    separator: false,
-                  },
-                ]}
-              />
-            </Field.Control>
-          </Field>
-
-          <Field
-            name="checkboxExample"
-            //validateOnBlur={false}
+          <FormTest2
+            id="product1Form"
+            defaultValues={defaultValues}
+            zodSchema={zodSchema}
+            onSubmit={onSubmit}
+            buttonLabel="Submit Form"
+            productName="product1"
           >
-            <Field.GroupLabel>Standard checkbox:</Field.GroupLabel>
-            <Field.Control>
-              <Checkbox>Toggle me to change some PDF content.</Checkbox>
-            </Field.Control>
-          </Field>
+            <Field name="jurisdiction" validateOnBlur={false}>
+              <Field.GroupLabel>Pick a location:</Field.GroupLabel>
+              <Field.Tip>The PDF template is customized by location.</Field.Tip>
+              <Field.Control>
+                <Select
+                  placeholder="Select an option"
+                  itemOptions={[
+                    {
+                      value: "location1",
+                      labelText: "Location 1",
+                      separator: false,
+                    },
+                    {
+                      value: "location2",
+                      labelText: "Location 2",
+                      separator: false,
+                    },
+                    {
+                      value: "location3",
+                      labelText: "Location 3",
+                      separator: false,
+                    },
+                  ]}
+                />
+              </Field.Control>
+            </Field>
 
-          <Field
-            name="radioExample"
-            //validateOnBlur={false}
-          >
-            <Field.GroupLabel>Standard radio:</Field.GroupLabel>
-            <Field.Tip>
-              Selecting option 2 when you are on location 3 will change PDF
-              content.
-            </Field.Tip>
-            <Field.Control>
-              <RadioGroup
-                variant="button"
-                options={[
-                  { value: "option1", label: "Option 1" },
-                  { value: "option2", label: "Option 2" },
-                  { value: "option3", label: "Option 3" },
-                ]}
-              />
-            </Field.Control>
-          </Field>
+            <Field
+              name="checkboxExample"
+              //validateOnBlur={false}
+            >
+              <Field.GroupLabel>Standard checkbox:</Field.GroupLabel>
+              <Field.Control>
+                <Checkbox>Toggle me to change some PDF content.</Checkbox>
+              </Field.Control>
+            </Field>
 
-          <Field
-            name="textExample"
-            //validateOnBlur={false}
-          >
-            <Field.GroupLabel>Standard text input:</Field.GroupLabel>
-            <Field.Tip>The value here will be used for a party name.</Field.Tip>
-            <Field.Control>
-              <Input type="text" />
-            </Field.Control>
-          </Field>
+            <Field
+              name="radioExample"
+              //validateOnBlur={false}
+            >
+              <Field.GroupLabel>Standard radio:</Field.GroupLabel>
+              <Field.Tip>
+                Selecting option 2 when you are on location 3 will change PDF
+                content.
+              </Field.Tip>
+              <Field.Control>
+                <RadioGroup
+                  variant="button"
+                  options={[
+                    { value: "option1", label: "Option 1" },
+                    { value: "option2", label: "Option 2" },
+                    { value: "option3", label: "Option 3" },
+                  ]}
+                />
+              </Field.Control>
+            </Field>
 
-          <Field name="signingDate">
-            <Field.GroupLabel type="standard">
-              When will you sign this document?
-            </Field.GroupLabel>
-            <Field.Tip>Pick a date between today and 2030.</Field.Tip>
-            <Field.Control>
-              <DatePick
-                startYearRange={parseInt(format(startOfToday(), "yyyy"))}
-                endYearRange={2030}
-              />
-            </Field.Control>
-          </Field>
-        </FormTest2>
-      </div>
-    </PageContext.Provider>
+            <Field
+              name="textExample"
+              //validateOnBlur={false}
+            >
+              <Field.GroupLabel>Standard text input:</Field.GroupLabel>
+              <Field.Tip>
+                The value here will be used for a party name.
+              </Field.Tip>
+              <Field.Control>
+                <Input type="text" />
+              </Field.Control>
+            </Field>
+
+            <Field name="signingDate">
+              <Field.GroupLabel type="standard">
+                When will you sign this document?
+              </Field.GroupLabel>
+              <Field.Tip>Pick a date between today and 2030.</Field.Tip>
+              <Field.Control>
+                <DatePick
+                  startYearRange={parseInt(format(startOfToday(), "yyyy"))}
+                  endYearRange={2030}
+                />
+              </Field.Control>
+            </Field>
+          </FormTest2>
+        </div>
+      </PageContext.Provider>
+    </>
   )
 }
 

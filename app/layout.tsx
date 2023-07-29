@@ -26,10 +26,17 @@ export default function RootLayout({
 
               { title: "Products", groupTitle: true },
               { title: "Product 1 (MDX)", path: "/product1" },
-              { title: "Product 2 (PDF", path: "/product2" },
+              { title: "Product 2 (PDF)", path: "/product2" },
+              { title: "Placeholder", path: "/" },
+              { title: "Placeholder", path: "/" },
+              { title: "Placeholder", path: "/" },
+              { title: "Placeholder", path: "/" },
             ]}
           />
           <main className="w-full overflow-y-scroll pt-1">
+            {/* Placeholder for progress bar */}
+            <div className="flex flex-row w-full bg-sky-300 h-2 shadow" />
+
             <div className="block px-6 py-3">{children}</div>
           </main>
         </div>

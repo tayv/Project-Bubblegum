@@ -21,27 +21,86 @@ const SideNav: FC<SideNavProps> = ({ articleList, ...props }) => {
   }
 
   return (
-    <nav
-      className="flex flex-col lg:w-64 m-4 px-4 pt-3 rounded-3xl bg-sky-200 drop-shadow-sm border border-white/60"
-      aria-label="Sidebar"
-    >
-      <div>
-        <Link
-          href="/"
-          className={classNames(
-            "flex items-center p-1 text-base font-semibold text-gray-900 hover:text-gray-600 "
-          )}
+    <>
+      <nav
+        className="
+        flex flex-row justify-between px-2 py-1 
+        lg:flex-col lg:justify-start lg:w-64 lg:m-4 lg:px-4 lg:pt-3 lg:rounded-3xl lg:bg-sky-200 lg:drop-shadow-sm lg:border lg:border-white/60"
+        aria-label="Home and Account"
+      >
+        <div>
+          <Link
+            href="/"
+            className={classNames(
+              "flex items-center p-1 text-base font-semibold text-gray-900 hover:text-gray-600 "
+            )}
+          >
+            <span className="flex-1 ml-3 text-xl whitespace-nowrap">
+              🏠 Home
+            </span>
+          </Link>
+        </div>
+        <div>
+          <Link
+            href="/"
+            className={classNames(
+              "flex items-center p-1 text-base font-semibold text-gray-900 hover:text-gray-600 "
+            )}
+          >
+            <span className="flex-1 ml-3 text-xl whitespace-nowrap">
+              👤 Account
+            </span>
+          </Link>
+        </div>
+
+        {/* --------Laptop screen and above -------- */}
+        <div
+          aria-label="Sub Menu"
+          className="hidden lg:flex lg:flex-row lg:flex-nowrap lg:overflow-x-scroll lg:py-2 lg:px-1"
         >
-          <span className="flex-1 ml-3 text-xl whitespace-nowrap">🏠 Home</span>
-        </Link>
-      </div>
+          <ul className="grow space-y-1 ">
+            {
+              // The side nav is made up of these list items
+              articleList.map((article) => {
+                // Used by classnames to set the correct css style
+                // let isSelected: SideNavStyle =
+                // asPath === article.path ? "selected" : "notSelected"
 
-      <div className="flex overflow-scroll py-2 px-1">
-        <ul className="grow space-y-1">
-          <span className="flex-1 whitespace-nowrap uppercase text-xs opacity-50 ">
-            Authentication
-          </span>
+                return (
+                  <li key={article.title.toString()}>
+                    {
+                      !article.groupTitle ? (
+                        <a
+                          href={article.path}
+                          className={classNames([
+                            "cursor-pointer flex items-center p-1", // standard css styles go here
+                            // sideNavStyleMap[isSelected],
+                          ])}
+                        >
+                          <span className="flex-1 ml-2 whitespace-nowrap">
+                            {article.title}
+                          </span>
+                        </a>
+                      ) : (
+                        <span className="flex-1 whitespace-nowrap uppercase text-xs opacity-50 ">
+                          {article.title}
+                        </span>
+                      ) // Group title styling
+                    }
+                  </li>
+                )
+              })
+            }
+          </ul>
+        </div>
+      </nav>
 
+      {/* --------Mobile and tablet screens -------- */}
+      <nav
+        aria-label="Sub Menu"
+        className="lg:hidden flex flex-row flex-nowrap pt-1 pb-2 px-2 overflow-x-scroll text-sm bg-neutral-100"
+      >
+        <ul className="grow space-y-1 flex flex-row place-items-center ">
           {
             // The side nav is made up of these list items
             articleList.map((article) => {
@@ -64,19 +123,15 @@ const SideNav: FC<SideNavProps> = ({ articleList, ...props }) => {
                           {article.title}
                         </span>
                       </a>
-                    ) : (
-                      <span className="flex-1  whitespace-nowrap uppercase text-xs opacity-50 ">
-                        {article.title}
-                      </span>
-                    ) // Group title styling
+                    ) : null // Group title styling
                   }
                 </li>
               )
             })
           }
         </ul>
-      </div>
-    </nav>
+      </nav>
+    </>
   )
 }
 
