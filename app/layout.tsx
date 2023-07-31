@@ -23,7 +23,6 @@ export default function RootLayout({
           <SideNav
             articleList={[
               { title: "Testing", groupTitle: true },
-
               { title: "Products", groupTitle: true },
               { title: "Product 1 (MDX)", path: "/product1" },
               { title: "Product 2 (PDF)", path: "/product2" },
@@ -39,6 +38,11 @@ export default function RootLayout({
 
             <div className="block px-6 py-3">{children}</div>
           </main>
+          <div className="flex flex-col px-4 py-2 bg-white">
+            <button className="max-w-xs bg-sky-500 rounded-xl sticky bottom-0 py-2 ">
+              ↩️ Reset Form
+            </button>
+          </div>
         </div>
         {/* </div> */}
       </body>
