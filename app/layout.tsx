@@ -1,6 +1,6 @@
 import "./globals.css" // These styles apply to every route in the application
 import { Metadata } from "next"
-import SideNav from "./components/ui/SideNav"
+import NavSideBar from "./components/ui/NavSideBar"
 
 export const metadata: Metadata = {
   title: "Home",
@@ -20,7 +20,7 @@ export default function RootLayout({
         {/* use lg:flex-row because want the nav to move to the side on laptops and above */}
         <div className="flex flex-col lg:flex-row h-screen">
           {/* <div className="flex flex-1 overflow-hidden"> */}
-          <SideNav
+          <NavSideBar
             articleList={[
               { title: "Testing", groupTitle: true },
               { title: "Products", groupTitle: true },
@@ -38,7 +38,7 @@ export default function RootLayout({
 
             <div className="block px-6 py-3">{children}</div>
           </main>
-          <div className="flex flex-col px-4 py-2 bg-white">
+          <div className="lg:hidden flex flex-col px-4 py-2 bg-white">
             <button className="max-w-xs bg-sky-500 rounded-xl sticky bottom-0 py-2 ">
               ↩️ Reset Form
             </button>

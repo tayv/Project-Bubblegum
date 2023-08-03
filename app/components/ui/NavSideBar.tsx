@@ -5,16 +5,17 @@ import classNames from "classnames"
 import { UserButton, SignedIn, SignedOut, SignInButton } from "@clerk/nextjs"
 import { LogIn } from "lucide-react"
 import Link from "next/link"
+import NavHorizontal from "./NavHorizontal"
 
-type SideNavStyle = "selected" | "notSelected"
+type NavSideBarStyle = "selected" | "notSelected"
 type ArticleList = { title: string; path?: string; groupTitle?: boolean }[] // This is the list of articles that will be displayed in the side nav
-export type SideNavProps = { articleList: ArticleList }
+export type NavSideBarProps = { articleList: ArticleList }
 
-const SideNav: FC<SideNavProps> = ({ articleList, ...props }) => {
+const NavSideBar: FC<NavSideBarProps> = ({ articleList, ...props }) => {
   // const { asPath } = useRouter() // This hook returns the current url path
 
   // The styles for the side nav are set here
-  const sideNavStyleMap: { [key in SideNavStyle]: string } = {
+  const sideNavStyleMap: { [key in NavSideBarStyle]: string } = {
     notSelected: "text-base text-gray-900 hover:text-gray-600",
     selected:
       "cursor-default text-base text-pink-500 border-l-2 border-pink-500",
@@ -96,43 +97,9 @@ const SideNav: FC<SideNavProps> = ({ articleList, ...props }) => {
       </nav>
 
       {/* --------Mobile and tablet screens -------- */}
-      <nav
-        aria-label="Sub Menu"
-        className="lg:hidden flex flex-row flex-nowrap pt-1 pb-2 px-2 overflow-x-scroll text-sm bg-neutral-100"
-      >
-        <ul className="grow space-y-1 flex flex-row place-items-center ">
-          {
-            // The side nav is made up of these list items
-            articleList.map((article) => {
-              // Used by classnames to set the correct css style
-              // let isSelected: SideNavStyle =
-              // asPath === article.path ? "selected" : "notSelected"
-
-              return (
-                <li key={article.title.toString()}>
-                  {
-                    !article.groupTitle ? (
-                      <a
-                        href={article.path}
-                        className={classNames([
-                          "cursor-pointer flex items-center p-1", // standard css styles go here
-                          // sideNavStyleMap[isSelected],
-                        ])}
-                      >
-                        <span className="flex-1 ml-2 whitespace-nowrap">
-                          {article.title}
-                        </span>
-                      </a>
-                    ) : null // Group title styling
-                  }
-                </li>
-              )
-            })
-          }
-        </ul>
-      </nav>
+      {/* <NavHorizontal LinkList={articleList} /> */}
     </>
   )
 }
 
-export default SideNav
+export default NavSideBar
