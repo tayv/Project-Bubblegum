@@ -49,7 +49,7 @@ const FormTest2: FC<FormProps> = ({
     <FormProvider {...methods}>
       <form
         id={id}
-        className="col-span-2 py-3 px-8 my-8 rounded-3xl bg-zinc-200/10 border"
+        className="max-w-4xl col-span-2 rounded-3xl bg-zinc-200/10 border"
         onSubmit={methods.handleSubmit(onSubmit)} // use RHF's handleSubmit to prevent default form submission behavior
       >
         {children}
