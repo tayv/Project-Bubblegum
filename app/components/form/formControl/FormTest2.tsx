@@ -49,7 +49,7 @@ const FormTest2: FC<FormProps> = ({
     <FormProvider {...methods}>
       <form
         id={id}
-        className="max-w-4xl col-span-2 rounded-3xl bg-zinc-200/10 border"
+        className=""
         onSubmit={methods.handleSubmit(onSubmit)} // use RHF's handleSubmit to prevent default form submission behavior
       >
         {children}
@@ -91,10 +91,16 @@ const FormTest2: FC<FormProps> = ({
             </PDFViewer>
           </ModalViewDoc>
         </div>
+
+        <div className="z-10 lg:hidden flex flex-col items-center px-4 py-2 bg-white backdrop-blur-md">
+          <button className="sticky max-w-xs bottom-0 py-2 bg-sky-500 rounded-xl ">
+            TEST BUTTON
+          </button>
+        </div>
       </form>
 
       {/* Template starts ---------------------------------------------- */}
-      <div className="overflow-visible my-4">
+      <div className="overflow-visible my-4 ">
         {/* div needed for sticky to work. Cannot use overflow: scroll/hidden/auto with sticky https://www.digitalocean.com/community/tutorials/css-position-sticky */}
         {/* select-none needed to prevent user from copying text from preview */}
         <div className="sticky top-0 overflow-y-auto select-none">
@@ -103,6 +109,7 @@ const FormTest2: FC<FormProps> = ({
           </CardSection>
         </div>
       </div>
+
       {/* Template ends ---------------------------------------------- */}
     </FormProvider>
   )

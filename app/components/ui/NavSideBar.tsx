@@ -25,9 +25,11 @@ const NavSideBar: FC<NavSideBarProps> = ({ articleList, ...props }) => {
     <>
       <nav
         className="
-        flex flex-row justify-between px-2 py-1 
-        lg:flex-col lg:justify-start lg:w-64 lg:m-4 lg:px-4 lg:pt-3 lg:rounded-3xl lg:bg-sky-200 lg:drop-shadow-sm lg:border lg:border-white/60"
-        aria-label="Home and Account"
+        sticky z-10 top-0 flex flex-row justify-between px-2 py-1 
+        backdrop-blur-sm 
+        lg:flex-col lg:justify-start lg:w-52 lg:m-4 lg:px-4 lg:pt-3 
+        "
+        aria-label="Navigation"
       >
         <div>
           <Link
@@ -78,12 +80,10 @@ const NavSideBar: FC<NavSideBarProps> = ({ articleList, ...props }) => {
                             // sideNavStyleMap[isSelected],
                           ])}
                         >
-                          <span className="flex-1 ml-2 whitespace-nowrap">
-                            {article.title}
-                          </span>
+                          <span className="flex-1 ml-2">{article.title}</span>
                         </a>
                       ) : (
-                        <span className="flex-1 whitespace-nowrap uppercase text-xs opacity-50 ">
+                        <span className="flex-1 uppercase text-xs opacity-50 ">
                           {article.title}
                         </span>
                       ) // Group title styling
