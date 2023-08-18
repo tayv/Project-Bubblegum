@@ -33,7 +33,7 @@ export default function RootLayout({
                 { title: "Placeholder", path: "/" },
               ]}
             />
-            <main className="w-full lg:max-w-full lg:overflow-y-scroll pt-1">
+            <main className="w-full lg:max-w-full lg:overflow-y-scroll pt-16">
               <div className="block px-6 py-3">{children}</div>
             </main>
           </div>

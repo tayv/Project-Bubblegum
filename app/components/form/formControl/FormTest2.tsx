@@ -10,6 +10,12 @@ import ModalViewDoc from "@ui/ModalViewDoc"
 import CardSection from "@ui/CardSection"
 import DynamicPDF from "@product2/DynamicPDF"
 //import { PDFViewer } from "@react-pdf/renderer"
+import {
+  ArrowBigDown,
+  ArrowBigDownDash,
+  ArrowBigUp,
+  ArrowBigUpDash,
+} from "lucide-react"
 import dynamic from "next/dynamic"
 import { pdfStyles } from "@product2/_pdfHelpers/pdfStyles"
 
@@ -91,10 +97,14 @@ const FormTest2: FC<FormProps> = ({
             </PDFViewer>
           </ModalViewDoc>
         </div>
-        <div className="z-10 fixed bottom-0 w-full">
-          <div className="z-10 lg:hidden flex flex-col items-center m-4 px-4 py-2 rounded-xl bg-white drop-shadow max-w-md">
-            <button className="max-w-xs bottom-0 py-2 bg-sky-500 rounded-xl ">
-              TEST BUTTON
+        <div className="z-10 fixed bottom-0 w-full flex justify-center">
+          <div className="lg:hidden flex flex-row gap-4 items-center m-4 px-6 py-3 border border-slate-300 rounded-full bg-white drop-shadow-md max-w-md">
+            <button className="max-w-xs bottom-0 py-2 border-2 border-slate-500 rounded-full p-2 ">
+              <ArrowBigUpDash className="text-slate-500" />
+            </button>
+
+            <button className="max-w-xs bottom-0 py-2 shadow border-2 border-sky-600 bg-sky-500 rounded-full p-2 ">
+              <ArrowBigDownDash fill="white" stroke="white" />
             </button>
           </div>
         </div>
