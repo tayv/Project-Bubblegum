@@ -24,7 +24,6 @@ export default function RootLayout({
             {/* <div className="flex flex-1 overflow-hidden"> */}
             <NavSideBar
               articleList={[
-                { title: "Testing", groupTitle: true },
                 { title: "Products", groupTitle: true },
                 { title: "Product 1 (MDX)", path: "/product1" },
                 { title: "Product 2 (PDF)", path: "/product2" },

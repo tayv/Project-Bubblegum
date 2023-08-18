@@ -25,6 +25,7 @@ import { format, startOfToday } from "date-fns"
 import DatePick from "@components/form/DatePick"
 
 import DynamicPDF from "./DynamicPDF"
+import Space from "@components/ui/Space"
 
 const Product2 = () => {
   // Dynamically import PDFViewer to fix build bug since Next uses SSR
@@ -96,10 +97,11 @@ const Product2 = () => {
   return (
     <>
       <PageContext.Provider value={pageContextValue}>
-        <Heading size="h1" weight="bold" padding="none">
+        <Heading size="h1" weight="bold" padding="standard">
           Product 2
         </Heading>
         <Paragraph>Demo: Building a dynamic PDF via form answers</Paragraph>
+        <Space />
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 w-full xl:max-w-1400">
           {isSubmitted ? (

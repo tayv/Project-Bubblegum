@@ -3,9 +3,10 @@
 import { FC } from "react"
 import classNames from "classnames"
 import { UserButton, SignedIn, SignedOut, SignInButton } from "@clerk/nextjs"
-import { LogIn } from "lucide-react"
 import Link from "next/link"
 import NavHorizontal from "./NavHorizontal"
+import { Frame, LogIn } from "lucide-react"
+import Divider from "@designSystem/atoms/Divider"
 
 type NavSideBarStyle = "selected" | "notSelected"
 type ArticleList = { title: string; path?: string; groupTitle?: boolean }[] // This is the list of articles that will be displayed in the side nav
@@ -25,41 +26,38 @@ const NavSideBar: FC<NavSideBarProps> = ({ articleList, ...props }) => {
     <>
       <nav
         className="
-        sticky z-10 top-0 flex flex-row justify-between px-2 py-1 
-        backdrop-blur-sm 
-        lg:flex-col lg:justify-start lg:w-52 lg:m-2 lg:px-4 lg:pt-3 
+        fixed z-10 top-0 left-0 flex flex-row justify-between px-3 py-1 sm:px-8
+        backdrop-blur-sm bg-white/60 w-screen drop-shadow
+        lg:relative lg:flex-col lg:justify-start lg:w-52 lg:m-2 lg:px-4 lg:pt-3 lg:bg-transparent lg:drop-shadow-none
         "
         aria-label="Navigation"
       >
-        <div>
-          <Link
-            href="/"
-            className={classNames(
-              "flex items-center p-1 text-base font-semibold text-gray-900 hover:text-gray-600 "
-            )}
-          >
-            <span className="flex-1 ml-3 lg:ml-0 text-xl whitespace-nowrap">
-              🏠 Home
+        <div className="flex flex-row justify-between w-full py-2 lg:flex-col lg:gap-3">
+          <Link href="/" className="flex flex-row gap-2 items-center ">
+            <Frame />
+            <span className="lg:ml-0 text-xl whitespace-nowrap">
+              Brand Name
             </span>
           </Link>
-        </div>
-        <div>
+
           <Link
             href="/"
-            className={classNames(
-              "flex items-center p-1 text-base font-semibold text-gray-900 hover:text-gray-600 "
-            )}
+            className="flex flex-row gap-2 items-center lg:items-start"
           >
-            <span className="flex-1 ml-3 lg:ml-0 text-xl whitespace-nowrap">
-              👤 Account
-            </span>
+            <LogIn className="hidden lg:block" />
+            <span className="lg:ml-0 text-xl whitespace-nowrap">Sign In</span>
           </Link>
+
+          {/* span needed here because custom classes get set to a child div in Divider so it remains in the DOM */}
+          <span className="hidden lg:block">
+            <Divider />
+          </span>
         </div>
 
         {/* --------Laptop screen and above -------- */}
         <div
           aria-label="Sub Menu"
-          className="hidden lg:flex lg:flex-row lg:flex-nowrap lg:overflow-x-scroll lg:py-2 lg:px-1"
+          className="hidden lg:flex lg:flex-row lg:flex-nowrap lg:overflow-x-scroll lg:px-1"
         >
           <ul className="grow space-y-1 ">
             {

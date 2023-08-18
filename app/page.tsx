@@ -5,10 +5,10 @@ import HelloWorld from "./hello.mdx"
 export default function Home() {
   return (
     <>
-      <Heading size="h1" weight="bold" padding="none">
+      <Heading size="h1" weight="bold" padding="standard">
         Home
       </Heading>
-      <Paragraph>This is a test home page with app router.</Paragraph>
+
       <HelloWorld />
     </>
   )

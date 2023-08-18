@@ -91,8 +91,8 @@ const FormTest2: FC<FormProps> = ({
             </PDFViewer>
           </ModalViewDoc>
         </div>
-        <div className="z-10 fixed bottom-0 left-0 w-full">
-          <div className="z-10 lg:hidden flex flex-col items-center m-4 px-4 py-2 rounded-xl bg-white/40 backdrop-blur-md">
+        <div className="z-10 fixed bottom-0 w-full">
+          <div className="z-10 lg:hidden flex flex-col items-center m-4 px-4 py-2 rounded-xl bg-white drop-shadow max-w-md">
             <button className="max-w-xs bottom-0 py-2 bg-sky-500 rounded-xl ">
               TEST BUTTON
             </button>
