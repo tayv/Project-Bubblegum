@@ -34,8 +34,15 @@ const secondarySelectColor = "rgb(100 116 139)"
 
 // HELPER COMPONENTS ----------
 const ToolBox: FC<ToolBoxProps> = ({ showToolBox, setShowToolBox }) => {
+  // Start by getting context values from product page and Form
   const pageContextValue = useContext(PageContext) // Values are defined in page.tsx
   const { reset } = useFormContext()
+
+  // Event handlers for toolbox
+  const handleResetForm = () => {
+    reset((pageContextValue as any).defaultValues) // type cast here as check less important because the form won't work if defaultValues doesn't exist anyways
+    setShowToolBox(false) // want to hide the toolbox if user resets form
+  }
 
   return (
     <>
@@ -46,9 +53,7 @@ const ToolBox: FC<ToolBoxProps> = ({ showToolBox, setShowToolBox }) => {
         </button>
 
         <ModalAlert
-          handleConfirmClick={() =>
-            reset((pageContextValue as any).defaultValues)
-          } // type cast here as check less important because the form won't work if defaultValues doesn't exist anyways
+          handleConfirmClick={handleResetForm}
           title="Are you sure you want to reset the form?"
           description="This action can't be undone. Any unsaved values will be lost."
           confirmText="Reset Form"
