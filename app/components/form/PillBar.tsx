@@ -25,6 +25,7 @@ type ToolBoxProps = {
   setShowToolBox: StandardBarProps["setShowToolBox"]
 }
 
+// HELPER COMPONENTS
 const ToolBox: FC<ToolBoxProps> = ({ showToolBox, setShowToolBox }) => (
   <>
     <div className="flex gap-4 justify-between items-center h-10 w-full max-w-md p-4 bg-slate-400 shadow sm:rounded-lg">
@@ -77,11 +78,14 @@ const StandardBar: FC<StandardBarProps> = ({ showToolBox, setShowToolBox }) => (
   </>
 )
 
-const MultiBar: FC = () => (
+const MultiBar: FC<ToolBoxProps> = ({ showToolBox, setShowToolBox }) => (
   <>
     {/* Bottom pill bar */}
-    <div className="z-10 fixed bottom-0 left-0 w-full flex  justify-center items-center">
-      {/* Action toolbar */}
+    <div className="z-10 fixed bottom-0 left-0 w-full flex flex-col justify-center items-center">
+      {showToolBox && (
+        <ToolBox showToolBox={showToolBox} setShowToolBox={setShowToolBox} />
+      )}
+
       <div className="flex flex-row flex-1 justify-center items-center">
         <div className="flex flex-1 pl-6">
           {/* This invisible div is needed so flexbox can center the stepper buttons while right aligning the toolbar button*/}
@@ -98,7 +102,10 @@ const MultiBar: FC = () => (
 
         {/* Toolbar options don't need to be collapsed on desktop so also hide it for large screens*/}
         <div className="flex flex-1 justify-end pr-6 lg:hidden">
-          <button className="max-w-xs bottom-0 p-2  border bg-slate-100 border-slate-300 rounded-full drop-shadow ">
+          <button
+            onClick={() => setShowToolBox(!showToolBox)}
+            className="max-w-xs bottom-0 p-2  border bg-slate-100 border-slate-300 rounded-full drop-shadow "
+          >
             <Wrench className="text-slate-500 " />
           </button>
         </div>
@@ -112,7 +119,7 @@ const PillBar: FC<PillBarProps> = ({ variant = "standard", ...props }) => {
   const [showToolBox, setShowToolBox] = useState(false)
 
   return variant === "multibar" ? (
-    <MultiBar />
+    <MultiBar showToolBox={showToolBox} setShowToolBox={setShowToolBox} />
   ) : (
     <StandardBar showToolBox={showToolBox} setShowToolBox={setShowToolBox} />
   )
