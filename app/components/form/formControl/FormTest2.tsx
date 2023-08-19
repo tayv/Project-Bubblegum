@@ -70,7 +70,7 @@ const FormTest2: FC<FormProps> = ({
             </p>
           ) : null}
 
-          <ModalAlert
+          {/* <ModalAlert
             handleConfirmClick={() => methods.reset(defaultValues)}
             title="Are you sure you want to reset the form?"
             description="This action can't be undone. Any unsaved values will be lost."
@@ -79,7 +79,7 @@ const FormTest2: FC<FormProps> = ({
             <button className="items-center justify-center inline-flex h-10 px-4 font-medium text-slate-500 hover:bg-white rounded-lg leading-none outline-none focus:shadow-[0_0_0_2px] shadow focus:shadow-sky-400">
               ↩️ Reset Form
             </button>
-          </ModalAlert>
+          </ModalAlert> */}
 
           <ModalViewDoc
             triggerText="View Doc"
@@ -94,7 +94,7 @@ const FormTest2: FC<FormProps> = ({
           </ModalViewDoc>
         </div>
 
-        <PillBar variant="multibar" />
+        <PillBar variant="standard" />
       </form>
 
       {/* Template starts ---------------------------------------------- */}
