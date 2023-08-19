@@ -101,9 +101,7 @@ const FormTest2: FC<FormProps> = ({
           </ModalViewDoc>
         </div>
 
-        {/* -------------------- Center pillbar with right aligned tool button ------------------- */}
         <PillBar />
-        {/* ------------------------------------------------------------------------------------- */}
       </form>
 
       {/* Template starts ---------------------------------------------- */}

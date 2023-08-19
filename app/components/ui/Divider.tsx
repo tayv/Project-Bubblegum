@@ -7,7 +7,7 @@ export type DividerProps = {
   padding?: DividerPadding
   variant?: "horizontal" | "vertical"
   color?: DividerColor
-  size?: DividerSize
+  stroke?: DividerStroke
   className?: string
 }
 
@@ -20,6 +20,14 @@ const dividerPaddingMap: { [key in DividerPadding]: string } = {
   xxl: "py-8",
   none: "py-0",
 }
+const dividerVerticalPaddingMap: { [key in DividerPadding]: string } = {
+  standard: "px-px", // prop specific css styles go here
+  medium: "px-2",
+  large: "px-4",
+  xl: "px-6",
+  xxl: "px-8",
+  none: "px-0",
+}
 
 type DividerColor = "standard" | "darkmode" | "white" | "black" | "highlight"
 const dividerColorMap: { [key in DividerColor]: string } = {
@@ -30,38 +38,57 @@ const dividerColorMap: { [key in DividerColor]: string } = {
   black: "bg-black",
 }
 
-type DividerSize = "standard" | "medium" | "large" | "xl"
-const dividerSizeMap: { [key in DividerSize]: string } = {
+type DividerStroke = "standard" | "medium" | "large" | "xl"
+const dividerStrokeMap: { [key in DividerStroke]: string } = {
   standard: "h-px",
   medium: "h-0.5",
   large: "h-1",
   xl: "h-2",
 }
+const dividerVerticalStrokeMap: { [key in DividerStroke]: string } = {
+  standard: "w-px",
+  medium: "w-0.5",
+  large: "w-1",
+  xl: "w-2",
+}
 
 const Divider: FC<DividerProps> = ({
   variant = "horizontal",
   color = "standard",
-  size = "standard",
+  stroke = "standard",
   padding = "standard",
   ...props
 }) => {
   return (
-    <div
-      className={classNames([
-        "flex w-full", // standard css styles
-        dividerPaddingMap[padding], // dynamically set styling based on padding prop
-      ])}
-    >
-      <div
-        className={classNames([
-          "w-full rounded-full",
-          dividerColorMap[color],
-          dividerSizeMap[size],
-          props.className, // custom styling passed as prop
-        ])}
-      ></div>
-    </div>
+    <>
+      {" "}
+      {variant === "horizontal" ? (
+        <div
+          className={classNames([
+            "w-full rounded-full",
+            dividerColorMap[color],
+            dividerStrokeMap[stroke],
+            dividerPaddingMap[padding],
+            props.className, // custom styling passed as prop
+          ])}
+        ></div>
+      ) : (
+        <div
+          className={classNames([
+            "h-full rounded-full",
+            dividerColorMap[color],
+            dividerVerticalStrokeMap[stroke],
+            dividerVerticalPaddingMap[padding],
+            props.className, // custom styling passed as prop
+          ])}
+        ></div>
+      )}
+    </>
   )
 }
 
 export default Divider
+
+// Notes:
+// Divider takes up the width of its parent container.
+// If it's not appearing or sizing is off customize the width/height of parent div or wrap in a div
