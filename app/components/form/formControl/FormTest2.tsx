@@ -10,16 +10,9 @@ import ModalViewDoc from "@ui/ModalViewDoc"
 import CardSection from "@ui/CardSection"
 import DynamicPDF from "@product2/DynamicPDF"
 //import { PDFViewer } from "@react-pdf/renderer"
-import {
-  ArrowBigDown,
-  ArrowBigDownDash,
-  ArrowBigUp,
-  ArrowBigUpDash,
-  Wrench,
-} from "lucide-react"
+
 import dynamic from "next/dynamic"
 import { pdfStyles } from "@product2/_pdfHelpers/pdfStyles"
-import Divider from "@components/ui/Divider"
 import PillBar from "@form/PillBar"
 
 export type FormProps = {

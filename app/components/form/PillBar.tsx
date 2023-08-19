@@ -1,16 +1,50 @@
-import { FC } from "react"
-import { ArrowBigDownDash, ArrowBigUpDash, Wrench } from "lucide-react"
+import { FC, useState } from "react"
+import {
+  ArrowBigDownDash,
+  ArrowBigUpDash,
+  HelpCircle,
+  RotateCcwIcon,
+  Send,
+  Trash2,
+  Wrench,
+  XCircle,
+} from "lucide-react"
 import Divider from "@ui/Divider"
 
 type PillBarProps = {
   variant?: "standard" | "multibar"
 }
 
-const standardPillBar = (
+type StandardBarProps = {
+  showToolBox: boolean
+  setShowToolBox: React.Dispatch<React.SetStateAction<boolean>>
+}
+const StandardBar: FC<StandardBarProps> = ({ showToolBox, setShowToolBox }) => (
   <>
     <div className="z-10 fixed bottom-0 left-0 w-full flex flex-col justify-center items-center">
-      {/* Action toolbar */}
-      <div className="h-6 bg-slate-400 w-full"></div>
+      {/* Toolbox works best with 3 items. Any more and will have to remove labels to fit on mobile. */}
+      {showToolBox && (
+        <div className="flex gap-4 justify-between items-center h-10 w-full max-w-md p-4 bg-slate-400 shadow sm:rounded-lg">
+          <button className="flex flex-row gap-1 p-2 text-red-600 ">
+            <Trash2 className="text-red-600" />
+            Delete
+          </button>
+
+          <button className="flex flex-row gap-1 p-2  ">
+            <RotateCcwIcon className="" />
+            Reset
+          </button>
+
+          <button className="flex flex-row gap-1 p-2  ">
+            <HelpCircle className="" />
+            Help
+          </button>
+
+          <button onClick={() => setShowToolBox(!showToolBox)}>
+            <XCircle className="text-slate-500" />
+          </button>
+        </div>
+      )}
       <div className="flex flex-row flex-1 justify-center items-center">
         <div className="lg:hidden flex flex-row gap-4 items-center m-4 px-6 py-3 border border-slate-300 rounded-full bg-white drop-shadow-md max-w-md">
           <button className="max-w-xs bottom-0 p-2 border-2 border-slate-500 rounded-full ">
@@ -22,14 +56,16 @@ const standardPillBar = (
           <div className="flex items-center ml-px h-6">
             <Divider variant="vertical" color="standard" />
           </div>
-          <Wrench className="w-6 shrink-0 text-slate-500 hover:text-slate-300" />
+          <button onClick={() => setShowToolBox(!showToolBox)}>
+            <Wrench className="w-6 shrink-0 text-slate-500 hover:text-slate-300" />
+          </button>
         </div>
       </div>
     </div>
   </>
 )
 
-const multiBar = (
+const MultiBar: FC = () => (
   <>
     {/* Bottom pill bar */}
     <div className="z-10 fixed bottom-0 left-0 w-full flex  justify-center items-center">
@@ -56,13 +92,18 @@ const multiBar = (
         </div>
       </div>
     </div>
-    {/* ------------------------------------------------------------------------------------- */}
   </>
 )
 
 // MAIN FUNCTION
 const PillBar: FC<PillBarProps> = ({ variant = "standard", ...props }) => {
-  return variant === "multibar" ? multiBar : standardPillBar
+  const [showToolBox, setShowToolBox] = useState(false)
+
+  return variant === "multibar" ? (
+    <MultiBar />
+  ) : (
+    <StandardBar showToolBox={showToolBox} setShowToolBox={setShowToolBox} />
+  )
 }
 
 export default PillBar
