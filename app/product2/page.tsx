@@ -57,7 +57,8 @@ const Product2 = () => {
   // Setup pg context values to pass to template
   // This may be able to be removed after refactor to PDF. May need it for snippets though.
   const pageContextValue = {
-    formData: formData,
+    formData: formData, // need to confirm but could prob get rid of this since using rhf's FormProvider in Form
+    defaultValues: defaultValues, // used by rhf reset()
   }
 
   // TEST initial PDF doc state
