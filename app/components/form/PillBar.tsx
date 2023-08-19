@@ -19,31 +19,43 @@ type StandardBarProps = {
   showToolBox: boolean
   setShowToolBox: React.Dispatch<React.SetStateAction<boolean>>
 }
+
+type ToolBoxProps = {
+  showToolBox: StandardBarProps["showToolBox"]
+  setShowToolBox: StandardBarProps["setShowToolBox"]
+}
+
+const ToolBox: FC<ToolBoxProps> = ({ showToolBox, setShowToolBox }) => (
+  <>
+    <div className="flex gap-4 justify-between items-center h-10 w-full max-w-md p-4 bg-slate-400 shadow sm:rounded-lg">
+      <button className="flex flex-row gap-1 p-2 text-red-600 ">
+        <Trash2 className="text-red-600" />
+        Delete
+      </button>
+
+      <button className="flex flex-row gap-1 p-2  ">
+        <RotateCcwIcon className="" />
+        Reset
+      </button>
+
+      <button className="flex flex-row gap-1 p-2  ">
+        <HelpCircle className="" />
+        Help
+      </button>
+
+      <button onClick={() => setShowToolBox(!showToolBox)}>
+        <XCircle className="text-slate-500" />
+      </button>
+    </div>
+  </>
+)
+
 const StandardBar: FC<StandardBarProps> = ({ showToolBox, setShowToolBox }) => (
   <>
     <div className="z-10 fixed bottom-0 left-0 w-full flex flex-col justify-center items-center">
       {/* Toolbox works best with 3 items. Any more and will have to remove labels to fit on mobile. */}
       {showToolBox && (
-        <div className="flex gap-4 justify-between items-center h-10 w-full max-w-md p-4 bg-slate-400 shadow sm:rounded-lg">
-          <button className="flex flex-row gap-1 p-2 text-red-600 ">
-            <Trash2 className="text-red-600" />
-            Delete
-          </button>
-
-          <button className="flex flex-row gap-1 p-2  ">
-            <RotateCcwIcon className="" />
-            Reset
-          </button>
-
-          <button className="flex flex-row gap-1 p-2  ">
-            <HelpCircle className="" />
-            Help
-          </button>
-
-          <button onClick={() => setShowToolBox(!showToolBox)}>
-            <XCircle className="text-slate-500" />
-          </button>
-        </div>
+        <ToolBox showToolBox={showToolBox} setShowToolBox={setShowToolBox} />
       )}
       <div className="flex flex-row flex-1 justify-center items-center">
         <div className="lg:hidden flex flex-row gap-4 items-center m-4 px-6 py-3 border border-slate-300 rounded-full bg-white drop-shadow-md max-w-md">
