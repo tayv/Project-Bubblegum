@@ -1,4 +1,5 @@
 import { FC, useState } from "react"
+import { useFormContext } from "react-hook-form"
 import {
   ArrowBigDownDash,
   ArrowBigUpDash,
@@ -26,7 +27,12 @@ type ToolBoxProps = {
 }
 
 // HELPER COMPONENTS
-const ToolBox: FC<ToolBoxProps> = ({ showToolBox, setShowToolBox }) => (
+const ToolBox: FC<ToolBoxProps> = ({
+  showToolBox,
+  setShowToolBox,
+  resetForm,
+  defaultValues,
+}) => (
   <>
     <div className="flex gap-4 justify-between items-center h-10 w-full max-w-md p-4 bg-slate-400 shadow sm:rounded-lg">
       <button className="flex flex-row gap-1 p-2 text-red-600 ">
@@ -34,7 +40,10 @@ const ToolBox: FC<ToolBoxProps> = ({ showToolBox, setShowToolBox }) => (
         Delete
       </button>
 
-      <button className="flex flex-row gap-1 p-2  ">
+      <button
+        onClick={() => resetForm(defaultValues)}
+        className="flex flex-row gap-1 p-2  "
+      >
         <RotateCcwIcon className="" />
         Reset
       </button>
@@ -51,12 +60,22 @@ const ToolBox: FC<ToolBoxProps> = ({ showToolBox, setShowToolBox }) => (
   </>
 )
 
-const StandardBar: FC<StandardBarProps> = ({ showToolBox, setShowToolBox }) => (
+const StandardBar: FC<StandardBarProps> = ({
+  showToolBox,
+  setShowToolBox,
+  resetForm,
+  defaultValues,
+}) => (
   <>
     <div className="z-10 fixed bottom-0 left-0 w-full flex flex-col justify-center items-center">
       {/* Toolbox works best with 3 items. Any more and will have to remove labels to fit on mobile. */}
       {showToolBox && (
-        <ToolBox showToolBox={showToolBox} setShowToolBox={setShowToolBox} />
+        <ToolBox
+          showToolBox={showToolBox}
+          setShowToolBox={setShowToolBox}
+          resetForm={resetForm}
+          defaultValues={defaultValues}
+        />
       )}
       <div className="flex flex-row flex-1 justify-center items-center">
         <div className="lg:hidden flex flex-row gap-4 items-center m-4 px-6 py-3 border border-slate-300 rounded-full bg-white drop-shadow-md max-w-md">
@@ -115,13 +134,23 @@ const MultiBar: FC<ToolBoxProps> = ({ showToolBox, setShowToolBox }) => (
 )
 
 // MAIN FUNCTION
-const PillBar: FC<PillBarProps> = ({ variant = "standard", ...props }) => {
+const PillBar: FC<PillBarProps> = ({
+  variant = "standard",
+  defaultValues,
+  ...props
+}) => {
   const [showToolBox, setShowToolBox] = useState(false)
+  const { reset } = useFormContext()
 
   return variant === "multibar" ? (
     <MultiBar showToolBox={showToolBox} setShowToolBox={setShowToolBox} />
   ) : (
-    <StandardBar showToolBox={showToolBox} setShowToolBox={setShowToolBox} />
+    <StandardBar
+      showToolBox={showToolBox}
+      setShowToolBox={setShowToolBox}
+      resetForm={reset}
+      defaultValues={defaultValues}
+    />
   )
 }
 

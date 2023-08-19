@@ -94,7 +94,7 @@ const FormTest2: FC<FormProps> = ({
           </ModalViewDoc>
         </div>
 
-        <PillBar variant="multibar" />
+        <PillBar variant="standard" defaultValues={defaultValues} />
       </form>
 
       {/* Template starts ---------------------------------------------- */}
