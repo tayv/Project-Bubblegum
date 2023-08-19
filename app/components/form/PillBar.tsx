@@ -12,6 +12,7 @@ import {
   XCircle,
 } from "lucide-react"
 import Divider from "@ui/Divider"
+import ModalAlert from "@ui/ModalAlert"
 
 type PillBarProps = {
   variant?: "standard" | "multibar"
@@ -44,13 +45,19 @@ const ToolBox: FC<ToolBoxProps> = ({ showToolBox, setShowToolBox }) => {
           Delete
         </button>
 
-        <button
-          onClick={() => reset((pageContextValue as any).defaultValues)} // type cast here as check less important because the form won't work if defaultValues doesn't exist anyways
-          className="flex flex-row gap-1 p-2  "
+        <ModalAlert
+          handleConfirmClick={() =>
+            reset((pageContextValue as any).defaultValues)
+          } // type cast here as check less important because the form won't work if defaultValues doesn't exist anyways
+          title="Are you sure you want to reset the form?"
+          description="This action can't be undone. Any unsaved values will be lost."
+          confirmText="Reset Form"
         >
-          <RotateCcwIcon className="" />
-          Reset
-        </button>
+          <button className="flex flex-row gap-1 p-2  ">
+            <RotateCcwIcon className="" />
+            Reset
+          </button>
+        </ModalAlert>
 
         <button className="flex flex-row gap-1 p-2  ">
           <HelpCircle className="" />
