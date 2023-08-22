@@ -15,6 +15,7 @@ import dynamic from "next/dynamic"
 import { pdfStyles } from "@product2/_pdfHelpers/pdfStyles"
 import PillBar from "@form/PillBar"
 import { Wrench } from "lucide-react"
+import SubmitButton from "@form/SubmitButton"
 
 export type FormProps = {
   id: string
@@ -58,7 +59,7 @@ const FormTest2: FC<FormProps> = ({
         {children}
         {/* <SubmitButton onSubmit={onSubmit} formData={formData}/> */}
 
-        <div className="flex justify-start gap-[25px] mt-10">
+        <div className="flex justify-start gap-[25px] mt-10 mb-28 ">
           <button
             type="submit"
             className="items-center justify-center inline-flex h-10 px-4 font-medium text-slate-500 bg-sky-200 hover:bg-white rounded-lg leading-none outline-none focus:shadow-[0_0_0_2px] shadow focus:shadow-sky-400"
@@ -70,6 +71,8 @@ const FormTest2: FC<FormProps> = ({
               The form can&apos;t be submitted until you fix the errors above.
             </p>
           ) : null}
+
+          <SubmitButton formHasErrors={formHasErrors} />
 
           <ModalViewDoc
             triggerText="View Doc"
