@@ -23,17 +23,19 @@ export default function RootLayout({
           <div className="flex flex-col lg:flex-row h-screen">
             {/* <div className="flex flex-1 overflow-hidden"> */}
             <NavSideBar
+              // NOTE: These titles must be unique to avoid react list key error
               articleList={[
                 { title: "Products", groupTitle: true },
                 { title: "Product 1 (MDX)", path: "/product1" },
                 { title: "Product 2 (PDF)", path: "/product2" },
-                { title: "Placeholder", path: "/" },
-                { title: "Placeholder", path: "/" },
-                { title: "Placeholder", path: "/" },
-                { title: "Placeholder", path: "/" },
+                { title: "Placeholder A", path: "/" },
+                { title: "Placeholder B", path: "/" },
+                { title: "Placeholder C", path: "/" },
+                { title: "Placeholder D", path: "/" },
               ]}
             />
-            <main className="w-full lg:max-w-full lg:overflow-y-scroll pt-16">
+            {/* Only mobile styles needs a large top padding to offset fixed header */}
+            <main className="w-full lg:max-w-full  pt-16 lg:pt-2">
               <div className="block px-6 py-3">{children}</div>
             </main>
           </div>

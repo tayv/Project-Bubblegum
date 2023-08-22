@@ -104,7 +104,7 @@ const Product2 = () => {
         <Paragraph>Demo: Building a dynamic PDF via form answers</Paragraph>
         <Space />
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 w-full xl:max-w-1400">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-5 w-full xl:max-w-1400">
           {isSubmitted ? (
             <PDFViewer style={pdfStyles.pdfViewer}>
               <DynamicPDF formData={formData} />
