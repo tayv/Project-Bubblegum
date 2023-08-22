@@ -59,10 +59,10 @@ const ModalViewDoc: FC<ModalViewDocProps> = ({
         )}
       </DialogRadix.Trigger>
       <DialogRadix.Portal>
-        <DialogRadix.Overlay className="bg-black data-[state=open]:animate-overlayShow fixed inset-0 ">
+        <DialogRadix.Overlay className="z-50 bg-black data-[state=open]:animate-overlayShow fixed inset-0 ">
           <DialogRadix.Content
             onOpenAutoFocus={handleInitialFocus}
-            className="select-none overflow-y-auto data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] max-h-[100vh] w-[100vw] max-w-[1000px] translate-x-[-50%] translate-y-[-50%] rounded-xl bg-slate-100 p-6 shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none"
+            className="z-50 select-none overflow-y-auto data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] max-h-[100vh] w-[100vw] max-w-[1000px] translate-x-[-50%] translate-y-[-50%] rounded-xl bg-slate-100 p-6 shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none"
           >
             <div className="flex flex-row items-center">
               <DialogRadix.Title className="text-slate-500 text-base font-medium">

@@ -13,12 +13,12 @@ export type DividerProps = {
 
 type DividerPadding = "standard" | "medium" | "large" | "xl" | "xxl" | "none"
 const dividerPaddingMap: { [key in DividerPadding]: string } = {
-  standard: "py-px", // prop specific css styles go here
-  medium: "py-2",
-  large: "py-4",
-  xl: "py-6",
-  xxl: "py-8",
-  none: "py-0",
+  standard: "my-px", // prop specific css styles go here
+  medium: "my-2",
+  large: "my-4",
+  xl: "my-6",
+  xxl: "my-8",
+  none: "my-0",
 }
 const dividerVerticalPaddingMap: { [key in DividerPadding]: string } = {
   standard: "px-px", // prop specific css styles go here

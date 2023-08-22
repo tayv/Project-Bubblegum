@@ -46,7 +46,7 @@ const ToolBox: FC<ToolBoxProps> = ({ showToolBox, setShowToolBox }) => {
 
   return (
     <>
-      <div className="flex gap-4 justify-between items-center h-10 w-full max-w-md p-4 bg-slate-300 shadow sm:rounded-lg">
+      <div className="lg:hidden flex gap-4 justify-between items-center h-10 w-full max-w-md p-4 bg-slate-300 shadow sm:rounded-lg">
         <button type="button" className="flex flex-row gap-1 p-2 text-red-600 ">
           <Trash2 className="text-red-600" />
           Delete

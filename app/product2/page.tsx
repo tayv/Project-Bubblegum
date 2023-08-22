@@ -45,7 +45,7 @@ const Product2 = () => {
   const zodSchema = z.object({
     checkboxExample: z.boolean().optional(),
     radioExample: z.enum(["option1", "option2", "option3"]).optional(),
-    textExample: z.string().optional(),
+    textExample: z.string().nonempty("This field cannot be empty."),
     jurisdiction: z.enum(["location1", "location2", "location3"]),
     signingDate: z.string().optional(),
   })
@@ -196,10 +196,7 @@ const Product2 = () => {
               <Heading size="h2" weight="bold">
                 Party Names
               </Heading>
-              <Field
-                name="textExample"
-                //validateOnBlur={false}
-              >
+              <Field name="textExample" validateOnBlur={true}>
                 <Field.GroupLabel>Enter a party name:</Field.GroupLabel>
                 <Field.Tip>
                   The value here will be used for a party name.

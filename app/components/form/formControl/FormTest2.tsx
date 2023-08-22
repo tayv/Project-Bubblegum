@@ -16,6 +16,7 @@ import { pdfStyles } from "@product2/_pdfHelpers/pdfStyles"
 import PillBar from "@form/PillBar"
 import { Wrench } from "lucide-react"
 import SubmitButton from "@form/SubmitButton"
+import Divider from "@ui/Divider"
 
 export type FormProps = {
   id: string
@@ -59,32 +60,8 @@ const FormTest2: FC<FormProps> = ({
         {children}
         {/* <SubmitButton onSubmit={onSubmit} formData={formData}/> */}
 
-        <div className="flex justify-start gap-[25px] mt-10 mb-28 ">
-          <button
-            type="submit"
-            className="items-center justify-center inline-flex h-10 px-4 font-medium text-slate-500 bg-sky-200 hover:bg-white rounded-lg leading-none outline-none focus:shadow-[0_0_0_2px] shadow focus:shadow-sky-400"
-          >
-            {buttonLabel}
-          </button>
-          {!!formHasErrors ? (
-            <p className="text-red-600">
-              The form can&apos;t be submitted until you fix the errors above.
-            </p>
-          ) : null}
-
+        <div className="flex justify-center gap-[25px] mt-10 mb-28 ">
           <SubmitButton formHasErrors={formHasErrors} />
-
-          <ModalViewDoc
-            triggerText="View Doc"
-            title="Document Title"
-            description="This is a description"
-            formData={methods.getValues()}
-          >
-            {/* Need to pass formData directly as prop instead of useFormContext() or passing all methods because PDFViewer creates a separate context */}
-            <PDFViewer style={pdfStyles.pdfViewer}>
-              <DynamicPDF formData={methods.getValues()} />
-            </PDFViewer>
-          </ModalViewDoc>
         </div>
 
         <PillBar variant="standard" />
@@ -98,8 +75,20 @@ const FormTest2: FC<FormProps> = ({
           <CardSection id="loadTemplatePreviewSection">
             <div className="flex flex-row gap-2">
               <Wrench />
-              TODO Toolbox goes here
+              TODO: Toolbox goes here
             </div>
+            <Divider padding="large" />
+            <ModalViewDoc
+              triggerText="Preview Doc"
+              title="Document Title"
+              description="This is a description"
+              formData={methods.getValues()}
+            >
+              {/* Need to pass formData directly as prop instead of useFormContext() or passing all methods because PDFViewer creates a separate context */}
+              <PDFViewer style={pdfStyles.pdfViewer}>
+                <DynamicPDF formData={methods.getValues()} />
+              </PDFViewer>
+            </ModalViewDoc>
           </CardSection>
         </div>
       </div>
