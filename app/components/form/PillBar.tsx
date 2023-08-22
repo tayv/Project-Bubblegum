@@ -47,7 +47,7 @@ const ToolBox: FC<ToolBoxProps> = ({ showToolBox, setShowToolBox }) => {
   return (
     <>
       <div className="flex gap-4 justify-between items-center h-10 w-full max-w-md p-4 bg-slate-300 shadow sm:rounded-lg">
-        <button className="flex flex-row gap-1 p-2 text-red-600 ">
+        <button type="button" className="flex flex-row gap-1 p-2 text-red-600 ">
           <Trash2 className="text-red-600" />
           Delete
         </button>
@@ -58,18 +58,18 @@ const ToolBox: FC<ToolBoxProps> = ({ showToolBox, setShowToolBox }) => {
           description="This action can't be undone. Any unsaved values will be lost."
           confirmText="Reset Form"
         >
-          <button className="flex flex-row gap-1 p-2  ">
+          <button type="button" className="flex flex-row gap-1 p-2  ">
             <RotateCcwIcon className="" />
             Reset
           </button>
         </ModalAlert>
 
-        <button className="flex flex-row gap-1 p-2  ">
+        <button type="button" className="flex flex-row gap-1 p-2  ">
           <HelpCircle className="" />
           Help
         </button>
 
-        <button onClick={() => setShowToolBox(!showToolBox)}>
+        <button type="button" onClick={() => setShowToolBox(!showToolBox)}>
           <XCircle className="text-slate-500" />
         </button>
       </div>
@@ -86,16 +86,22 @@ const StandardBar: FC<StandardBarProps> = ({ showToolBox, setShowToolBox }) => (
       )}
       <div className="flex flex-row flex-1 justify-center items-center">
         <div className="lg:hidden flex flex-row gap-4 items-center m-4 px-6 py-3 border border-slate-300 rounded-full bg-white drop-shadow-md max-w-md">
-          <button className="max-w-xs bottom-0 p-2 border-2 border-slate-500 rounded-full ">
+          <button
+            type="button"
+            className="max-w-xs bottom-0 p-2 border-2 border-slate-500 rounded-full "
+          >
             <ArrowBigUpDash className="text-slate-500" />
           </button>
-          <button className="max-w-xs bottom-0 p-2 shadow border-2 border-sky-600 bg-sky-500 rounded-full ">
+          <button
+            type="button"
+            className="max-w-xs bottom-0 p-2 shadow border-2 border-sky-600 bg-sky-500 rounded-full "
+          >
             <ArrowBigDownDash fill="white" stroke="white" />
           </button>
           <div className="flex items-center ml-px h-6">
             <Divider variant="vertical" color="standard" />
           </div>
-          <button onClick={() => setShowToolBox(!showToolBox)}>
+          <button type="button" onClick={() => setShowToolBox(!showToolBox)}>
             <Wrench
               fill={showToolBox ? secondarySelectColor : "transparent"}
               stroke={secondarySelectColor}
