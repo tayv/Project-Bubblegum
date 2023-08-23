@@ -21,7 +21,6 @@ const ModalSheet: FC<ModalSheetProps> = ({
   triggerText,
   triggerType = "button",
   triggerComponent,
-  formHasErrors,
   title,
   description,
   confirmText = "Close",
@@ -31,9 +30,10 @@ const ModalSheet: FC<ModalSheetProps> = ({
 }) => (
   <DialogRadix.Root>
     <DialogRadix.Trigger asChild>
-      <button className="items-center justify-center inline-flex h-10 px-4 font-medium text-slate-500 hover:bg-white rounded-lg leading-none outline-none focus:shadow-[0_0_0_2px] shadow-md focus:shadow-sky-400">
+      {triggerComponent}
+      {/* <button className="items-center justify-center inline-flex h-10 px-4 font-medium text-slate-500 hover:bg-white rounded-lg leading-none outline-none focus:shadow-[0_0_0_2px] shadow-md focus:shadow-sky-400">
         {triggerText}
-      </button>
+      </button> */}
     </DialogRadix.Trigger>
 
     <DialogRadix.Portal>
@@ -41,30 +41,34 @@ const ModalSheet: FC<ModalSheetProps> = ({
       <DialogRadix.Content
         // Goal is to have modal centered for screens larger than tablets and sheet styling for mobile
         className="
-          z-50 flex justify-center fixed bottom-0 left-0 right-0 max-h-[75vh] h-full w-full max-w-4xl mx-auto 
-          bg-white shadow focus:outline-none :bottom-auto select-none rounded-t-[36px]
+          z-50 flex flex-col items-center fixed bottom-0 left-0 right-0 max-h-[75vh] h-full w-full max-w-4xl mx-auto 
+          bg-white shadow-md focus:outline-none :bottom-auto select-none rounded-t-[36px]
           lg:w-[80%] lg:top-1/2 lg:left-1/2 lg:right-1/2 lg:translate-x-[-50%] lg:translate-y-[-50%] 
           lg:rounded-[36px]
         "
       >
-        <div className="flex flex-col pt-2 min-w-[52px]">
-          <DialogRadix.Title className="text-center text-slate-500 m-0 text-[17px] font-medium">
-            {/* {title} */}
-            <Divider stroke="large" color="standard" padding="medium" />
+        <div className="flex flex-col items-center w-full">
+          <Divider
+            stroke="large"
+            color="standard"
+            padding="large"
+            className="w-[52px] lg:hidden"
+          />
+          <DialogRadix.Title className="hidden lg:block text-center text-slate-500 pt-3 pb-2 font-medium w-full border-b ">
+            <div>{title}</div>
           </DialogRadix.Title>
           {/* <DialogRadix.Description className="text-slate-500 mt-[10px] mb-5 text-[15px] leading-normal">
             {description}
           </DialogRadix.Description> */}
         </div>
-
-        {children}
+        <div className="flex justify-center">{children}</div>
 
         <DialogRadix.Close asChild>
           <button
             className="
             absolute top-[14px] right-[16px] inline-flex h-[25px] w-[25px] items-center justify-center
             rounded-full text-slate-400 hover:bg-slate-200 focus:shadow-sky-500 appearance-none focus:shadow-[0_0_0_2px] focus:outline-none
-            lg:top-[16px] lg:right-[18px]"
+            lg:top-[13px] lg:right-[15px]"
             aria-label="Close"
           >
             <X />
