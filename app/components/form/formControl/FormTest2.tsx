@@ -17,6 +17,7 @@ import PillBar from "@form/PillBar"
 import { Wrench } from "lucide-react"
 import SubmitButton from "@form/SubmitButton"
 import Divider from "@ui/Divider"
+import ModalSheet from "@components/ui/ModalSheet"
 
 export type FormProps = {
   id: string
@@ -61,7 +62,12 @@ const FormTest2: FC<FormProps> = ({
         {/* <SubmitButton onSubmit={onSubmit} formData={formData}/> */}
 
         <div className="flex justify-center gap-[25px] mt-10 mb-28 ">
-          <SubmitButton formHasErrors={formHasErrors} />
+          <ModalSheet
+            //triggerComponent={<SubmitButton formHasErrors={formHasErrors} />}
+            formHasErrors={formHasErrors}
+            title="Document Title"
+            description="This is a description"
+          ></ModalSheet>
         </div>
 
         <PillBar variant="standard" />

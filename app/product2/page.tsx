@@ -115,7 +115,7 @@ const Product2 = () => {
             zodSchema={zodSchema}
             onSubmit={onSubmit}
             buttonLabel="Submit Form"
-            productName="product1"
+            productName="product2"
           >
             <CardSection id="location">
               <Heading size="h2" weight="bold">
