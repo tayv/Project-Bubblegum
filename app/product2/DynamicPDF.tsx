@@ -18,8 +18,6 @@ import { createSchemaTemplateA } from "./_schemas/createSchemaTemplateA"
 import { renderFooter } from "./_pdfHelpers/renderFooter"
 import { renderPDFTerms } from "./_pdfHelpers/renderPDFTerms"
 import { renderSigning } from "./_pdfHelpers/renderSigning"
-import { render } from "@headlessui/react/dist/utils/render"
-import { UseFormReturn } from "react-hook-form"
 
 // TYPES
 type DynamicPDFProps = {

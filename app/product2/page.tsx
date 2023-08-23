@@ -15,9 +15,7 @@ import RadioGroup from "@components/form/RadioGroup"
 import Select from "@components/form/Select"
 
 import { PageContext } from "@template/context"
-import ModalStandard from "@components/ui/ModalStandard"
-import ModalViewDoc from "@components/ui/ModalViewDoc"
-import { PDFViewer } from "@react-pdf/renderer"
+
 import { pdfStyles } from "./_pdfHelpers/pdfStyles"
 import dynamic from "next/dynamic"
 import { FormDataType } from "./_schemas/productTypes"
