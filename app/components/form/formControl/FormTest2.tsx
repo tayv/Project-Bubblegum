@@ -100,3 +100,6 @@ const FormTest2: FC<FormProps> = ({
 }
 
 export default FormTest2
+
+// NOTES
+// Need to wrap the form with RHF's FormProvider so that the Field component has access to methods and can manage form state
