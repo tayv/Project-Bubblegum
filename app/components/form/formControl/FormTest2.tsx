@@ -15,7 +15,7 @@ import dynamic from "next/dynamic"
 import { pdfStyles } from "@product2/_pdfHelpers/pdfStyles"
 import PillBar from "@form/PillBar"
 import { Wrench } from "lucide-react"
-import SubmitButton from "@form/SubmitButton"
+import ButtonCTA from "@form/ButtonCTA"
 import Divider from "@ui/Divider"
 import SheetSignUp from "@uiTemplates/SheetSignUp"
 
@@ -59,7 +59,7 @@ const FormTest2: FC<FormProps> = ({
         onSubmit={methods.handleSubmit(onSubmit)} // use RHF's handleSubmit to prevent default form submission behavior
       >
         {children}
-        {/* <SubmitButton onSubmit={onSubmit} formData={formData}/> */}
+        {/* <ButtonCTA onSubmit={onSubmit} formData={formData} /> */}
 
         {/* --------- Testing sign up modal --------------- */}
         <SheetSignUp id="signupSheetTest" />

@@ -2,14 +2,15 @@
 import React, { FC } from "react"
 import * as DialogRadix from "@radix-ui/react-dialog"
 import { X } from "lucide-react"
-import SubmitButton from "@components/form/SubmitButton"
+import SubmitButton from "@components/form/ButtonCTA"
 import Divider from "@ui/Divider"
 
 export type ModalSheetProps = {
+  isOpen: boolean
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
   triggerText?: string
   triggerType?: "button" | "text"
   triggerComponent: React.ReactElement
-  ctaButton: React.ReactElement
   title: string
   description: string
   confirmText?: string
@@ -22,10 +23,9 @@ const ModalSheet: FC<ModalSheetProps> = ({
   triggerText,
   triggerType = "button",
   triggerComponent,
-  ctaButton,
   title,
-  open,
-  setOpen,
+  isOpen,
+  setIsOpen,
   description,
   confirmText = "Close",
   cancelText = "Cancel",
@@ -33,7 +33,7 @@ const ModalSheet: FC<ModalSheetProps> = ({
   children,
 }) => {
   return (
-    <DialogRadix.Root open={open} onOpenChange={setOpen}>
+    <DialogRadix.Root open={isOpen} onOpenChange={setIsOpen}>
       <DialogRadix.Trigger asChild>
         {triggerComponent}
         {/* <button className="items-center justify-center inline-flex h-10 px-4 font-medium text-slate-500 hover:bg-white rounded-lg leading-none outline-none focus:shadow-[0_0_0_2px] shadow-md focus:shadow-sky-400">
@@ -46,7 +46,7 @@ const ModalSheet: FC<ModalSheetProps> = ({
         <DialogRadix.Content
           // Goal is to have modal centered for screens larger than tablets and sheet styling for mobile
           className="
-          z-50 flex flex-col items-center fixed bottom-0 left-0 right-0 max-h-[75vh] h-full w-full max-w-4xl mx-auto 
+          z-50 flex flex-col items-center fixed bottom-0 left-0 right-0 max-h-[75vh] h-full w-full max-w-4xl mx-auto overflow-y-auto
           bg-white shadow-md focus:outline-none :bottom-auto select-none rounded-t-[36px]
           lg:w-[80%] lg:top-1/2 lg:left-1/2 lg:right-1/2 lg:translate-x-[-50%] lg:translate-y-[-50%] 
           lg:rounded-[36px]
@@ -57,17 +57,16 @@ const ModalSheet: FC<ModalSheetProps> = ({
               stroke="large"
               color="standard"
               padding="large"
-              className="w-[52px] lg:hidden"
+              className="w-[42px] lg:hidden"
             />
             <DialogRadix.Title className="hidden lg:block text-center text-slate-500 pt-3 pb-2 font-medium w-full border-b ">
               <div>{title}</div>
             </DialogRadix.Title>
             {/* <DialogRadix.Description className="text-slate-500 mt-[10px] mb-5 text-[15px] leading-normal">
             {description}
-          </DialogRadix.Description> */}
+            </DialogRadix.Description> */}
           </div>
           <div className="flex justify-center">{children}</div>
-          {/* <DialogRadix.Close asChild>{ctaButton}</DialogRadix.Close> */}
 
           <DialogRadix.Close asChild>
             <button

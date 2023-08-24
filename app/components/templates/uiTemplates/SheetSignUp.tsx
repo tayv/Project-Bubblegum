@@ -12,6 +12,7 @@ import Field from "@formControl/Field"
 import Input from "@form/Input"
 import Checkbox from "@form/Checkbox"
 import CardSection from "@ui/CardSection"
+import ButtonCTA from "@form/ButtonCTA"
 
 // TYPES ---------
 type SheetSignUpProps = {
@@ -25,7 +26,6 @@ const defaultValues = {
   userEmailInput: "",
   checkboxAcceptMarketingEmails: false,
 }
-
 const zodSchema = z.object({
   userEmailInput: z.string().nonempty("This field cannot be empty."),
   checkboxAcceptMarketingEmails: z.boolean().optional(),
@@ -35,18 +35,18 @@ const zodSchema = z.object({
 
 // MAIN FUNCTION
 const SheetSignUp: FC<SheetSignUpProps> = ({ id, ...props }) => {
-  // Start by getting context values from product page and Form
-  const pageContextValue = useContext(PageContext) // Values are defined in page.tsx
-
+  // Setup RHF
   const methods = useForm({ resolver: zodResolver(zodSchema), defaultValues })
+  const formHasErrors = Object.keys(methods.formState.errors).length > 0
   // State
-  const [buttonDisabled, setButtonDisabled] = useState(false)
-  const [open, setOpen] = useState(false)
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
 
-  const onSubmit = methods.handleSubmit(
+  // Actions
+  const handleSignUpSubmit = methods.handleSubmit(
     (data) => {
       console.log("This is sent", data)
-      setOpen(false)
+      setIsOpen(false) // Need to close the modal after submitting form
     },
     (errors) => {
       console.log("Errors", errors)
@@ -56,8 +56,8 @@ const SheetSignUp: FC<SheetSignUpProps> = ({ id, ...props }) => {
   return (
     <div className="flex justify-center gap-[25px] mt-10 mb-28 ">
       <ModalSheet
-        open={open}
-        setOpen={setOpen}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
         triggerComponent={
           <button className="items-center justify-center inline-flex h-10 px-4 font-medium text-slate-500 bg-slate-200 hover:bg-slate-300 border-2 border-slate-400 rounded-lg leading-none outline-none focus:shadow-[0_0_0_2px] shadow-md focus:shadow-sky-400">
             Test
@@ -67,16 +67,12 @@ const SheetSignUp: FC<SheetSignUpProps> = ({ id, ...props }) => {
         description="This is a description"
       >
         <div className="max-w-prose">
+          {/* Need to wrap in FormProvider or the state won't work */}
           <FormProvider {...methods}>
             <form
               id={id}
               className="lg:col-span-3"
-              onSubmit={onSubmit}
-
-              //   methods.handleSubmit((data) => {
-              //   console.log("Submitted contact details", data)
-              //   setOpen(false)
-              // })} // use RHF's handleSubmit to prevent default form submission behavior
+              onSubmit={handleSignUpSubmit}
             >
               <CardSection id="signupModalContent" variant="blank">
                 <Heading size="h2">Last step ...</Heading>
@@ -112,7 +108,15 @@ const SheetSignUp: FC<SheetSignUpProps> = ({ id, ...props }) => {
                   </Field.Control>
                 </Field>
               </CardSection>
-              <button type="submit">Sign Up Test</button>
+              <CardSection id="signupButton" variant="blank">
+                <ButtonCTA
+                  formHasErrors={formHasErrors}
+                  type="submit"
+                  icon="user"
+                  buttonText="Create Account"
+                  variant="secondary"
+                />
+              </CardSection>
             </form>
           </FormProvider>
         </div>
