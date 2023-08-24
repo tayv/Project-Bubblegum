@@ -2,7 +2,7 @@
 
 import { FC } from "react"
 import { useFormContext, useWatch } from "react-hook-form"
-import { DynamicContentProps } from "@template/templateTypes"
+import { DynamicContentProps } from "@components/templates/templateTypes"
 
 export type HideContentProps = DynamicContentProps & {
   hideFor: string[]

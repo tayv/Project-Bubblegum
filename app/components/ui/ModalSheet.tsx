@@ -9,6 +9,7 @@ export type ModalSheetProps = {
   triggerText?: string
   triggerType?: "button" | "text"
   triggerComponent: React.ReactElement
+  ctaButton: React.ReactElement
   title: string
   description: string
   confirmText?: string
@@ -21,6 +22,7 @@ const ModalSheet: FC<ModalSheetProps> = ({
   triggerText,
   triggerType = "button",
   triggerComponent,
+  ctaButton,
   title,
   description,
   confirmText = "Close",
@@ -62,6 +64,7 @@ const ModalSheet: FC<ModalSheetProps> = ({
           </DialogRadix.Description> */}
         </div>
         <div className="flex justify-center">{children}</div>
+        <DialogRadix.Close asChild>{ctaButton}</DialogRadix.Close>
 
         <DialogRadix.Close asChild>
           <button

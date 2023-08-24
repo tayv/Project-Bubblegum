@@ -1,9 +1,12 @@
 "use client"
 
 import React, { FC, useContext, useEffect } from "react"
-import { PageContext } from "@template/context"
+import { PageContext } from "@components/templates/context"
 import { useFormContext, useWatch } from "react-hook-form"
-import { PageContextType, DynamicContentProps } from "@template/templateTypes"
+import {
+  PageContextType,
+  DynamicContentProps,
+} from "@components/templates/templateTypes"
 
 export type DynamicUserContentProps = DynamicContentProps & {
   emptySize: "standard" | "large" | "xlarge" | "xxlarge"

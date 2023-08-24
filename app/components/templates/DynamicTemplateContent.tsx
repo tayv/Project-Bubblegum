@@ -2,9 +2,12 @@
 
 import React, { FC, useContext } from "react"
 import { useFormContext, useWatch } from "react-hook-form"
-import { PageContext } from "@template/context"
+import { PageContext } from "@components/templates/context"
 import product1SchemaTest from "@product1/product1SchemaTest.json"
-import { DynamicContentProps, Schema } from "@template/templateTypes"
+import {
+  DynamicContentProps,
+  Schema,
+} from "@components/templates/templateTypes"
 
 export type DynamicTemplateContentProps = DynamicContentProps & {
   schema: Schema

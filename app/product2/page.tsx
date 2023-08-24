@@ -2,7 +2,7 @@
 
 import * as z from "zod"
 import React from "react"
-import { PageContextType } from "@template/templateTypes"
+import { PageContextType } from "@components/templates/templateTypes"
 import Heading from "@ui/Heading"
 import Paragraph from "@ui/Paragraph"
 import FormTest2 from "@formControl/FormTest2"
@@ -14,7 +14,7 @@ import { useState, createContext } from "react"
 import RadioGroup from "@components/form/RadioGroup"
 import Select from "@components/form/Select"
 
-import { PageContext } from "@template/context"
+import { PageContext } from "@components/templates/context"
 
 import { pdfStyles } from "./_pdfHelpers/pdfStyles"
 import dynamic from "next/dynamic"

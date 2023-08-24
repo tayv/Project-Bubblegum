@@ -1,6 +1,6 @@
 import { FC, useState, useContext } from "react"
 import { useFormContext } from "react-hook-form"
-import { PageContext } from "@template/context"
+import { PageContext } from "@components/templates/context"
 import {
   ArrowBigDownDash,
   ArrowBigUpDash,
