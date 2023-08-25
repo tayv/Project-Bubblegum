@@ -27,6 +27,8 @@ export type FormProps = {
   buttonLabel?: string
   children: React.ReactElement | React.ReactElement[] // Expects one or more Field components
   productName: ProductNameProps["productName"]
+  isFormSubmitted: boolean
+  setIsFormSubmitted: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 // HELPER FUNCTIONS
@@ -40,6 +42,8 @@ const FormTest2: FC<FormProps> = ({
   buttonLabel = "Submit Form",
   children,
   productName,
+  isFormSubmitted,
+  setIsFormSubmitted,
   ...props
 }) => {
   const methods = useForm({ resolver: zodResolver(zodSchema), defaultValues })
@@ -59,14 +63,19 @@ const FormTest2: FC<FormProps> = ({
         onSubmit={methods.handleSubmit(onSubmit)} // use RHF's handleSubmit to prevent default form submission behavior
       >
         {children}
-        {/* <ButtonCTA onSubmit={onSubmit} formData={formData} /> */}
 
-        {/* --------- Testing sign up modal --------------- */}
-        <SheetSignUp id="signupSheetTest" />
-        {/* ----------------------------- */}
+        <ButtonCTA formID={id} type="submit" formHasErrors={formHasErrors} />
 
         <PillBar variant="standard" />
       </form>
+
+      {/* --------- Note: sign up sheet needs to be outside form so the nested submit button won't submit parent form --------------- */}
+      <SheetSignUp
+        formID="signupSheetTest"
+        isFormSubmitted={isFormSubmitted}
+        setIsFormSubmitted={setIsFormSubmitted}
+      />
+      {/* ----------------------------- */}
 
       {/* Template starts ---------------------------------------------- */}
       <div className="hidden lg:block lg:col-span-1 overflow-visible ">

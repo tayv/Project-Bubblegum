@@ -14,6 +14,7 @@ type ButtonCTAVariant =
 type ButtonCTAIcon = "standard" | "user" | "none"
 type ButtonCTASize = "standard" | "large"
 export type ButtonCTAProps = {
+  formID: string
   formHasErrors: boolean // from RHF. Should be result of Object.keys(methods.formState.errors).length > 0
   type: "button" | "submit"
   variant?: ButtonCTAVariant
@@ -52,12 +53,13 @@ const ButtonCTA: FC<ButtonCTAProps> = forwardRef<
   ButtonCTAProps
 >(function setRefButtonCTA(
   {
+    formID,
+    formHasErrors = false,
     variant = "primary",
     type = "button",
     size = "standard",
     icon = "standard",
     buttonText = "Submit",
-    formHasErrors = false,
     errorMessage = "Your answers can't be submitted until you fix the errors above 👆",
     isDisabled = false,
     onClick = null,
@@ -78,6 +80,7 @@ const ButtonCTA: FC<ButtonCTAProps> = forwardRef<
   return (
     <div className="flex flex-col gap-2 items-center">
       <button
+        form={formID}
         type={type}
         disabled={isDisabled}
         onClick={onClick}

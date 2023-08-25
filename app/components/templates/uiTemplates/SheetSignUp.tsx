@@ -1,4 +1,4 @@
-import { FC, useState, useContext } from "react"
+import { FC, useState, useContext, useEffect } from "react"
 import { PageContext } from "@components/templates/context"
 import * as z from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -16,7 +16,9 @@ import ButtonCTA from "@form/ButtonCTA"
 
 // TYPES ---------
 type SheetSignUpProps = {
-  id: string
+  formID: string
+  isFormSubmitted?: boolean
+  setIsFormSubmitted?: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 // COLOR TOKENS ---------
@@ -34,43 +36,62 @@ const zodSchema = z.object({
 // HELPER COMPONENTS ----------
 
 // MAIN FUNCTION
-const SheetSignUp: FC<SheetSignUpProps> = ({ id, ...props }) => {
+const SheetSignUp: FC<SheetSignUpProps> = ({
+  formID,
+  isFormSubmitted,
+  setIsFormSubmitted,
+  ...props
+}) => {
   // Setup RHF
   const methods = useForm({ resolver: zodResolver(zodSchema), defaultValues })
   const formHasErrors = Object.keys(methods.formState.errors).length > 0
-  // State
-  const [isButtonDisabled, setIsButtonDisabled] = useState(false)
-  const [isOpen, setIsOpen] = useState(false)
 
-  // Actions
+  // State
+  const [isSheetOpen, setIsSheetOpen] = useState(isFormSubmitted || false) // This sign up sheet might be used outside forms so need to have logical gate
+
+  // Need to recheck since user could cancel out of modal and resubmit form
+  useEffect(() => {
+    setIsSheetOpen(!!isFormSubmitted)
+  }, [isFormSubmitted])
+
+  // Event handlers
   const handleSignUpSubmit = methods.handleSubmit(
     (data) => {
+      console.log("is form Submitted", isFormSubmitted)
       console.log("This is sent", data)
-      setIsOpen(false) // Need to close the modal after submitting form
+      setIsSheetOpen(false) // Need to close the modal after submitting form
     },
     (errors) => {
       console.log("Errors", errors)
     }
   )
+  // Used by Radix UI Dialog for modal open/close
+  const handleOnOpenChange = () => {
+    setIsSheetOpen(!isSheetOpen)
+    !!setIsFormSubmitted && setIsFormSubmitted(false) // To reset the form submission state if user cancels out of sign up/in. Need logical check since this might be trigger from non-form pages.
+  }
+
+  console.log("isFormSubmitted:", isFormSubmitted, "isSheetOpen:", isSheetOpen)
 
   return (
     <div className="flex justify-center gap-[25px] mt-10 mb-28 ">
       <ModalSheet
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
-        triggerComponent={
-          <button className="items-center justify-center inline-flex h-10 px-4 font-medium text-slate-500 bg-slate-200 hover:bg-slate-300 border-2 border-slate-400 rounded-lg leading-none outline-none focus:shadow-[0_0_0_2px] shadow-md focus:shadow-sky-400">
-            Test
-          </button>
-        }
+        isSheetOpen={isSheetOpen}
+        setIsSheetOpen={setIsSheetOpen}
+        // triggerComponent={
+        //   <button className="items-center justify-center inline-flex h-10 px-4 font-medium text-slate-500 bg-slate-200 hover:bg-slate-300 border-2 border-slate-400 rounded-lg leading-none outline-none focus:shadow-[0_0_0_2px] shadow-md focus:shadow-sky-400">
+        //     Test
+        //   </button>
+        // }
         title="Document Title"
         description="This is a description"
+        handleOnOpenChange={handleOnOpenChange}
       >
         <div className="max-w-prose">
           {/* Need to wrap in FormProvider or the state won't work */}
           <FormProvider {...methods}>
             <form
-              id={id}
+              id={formID}
               className="lg:col-span-3"
               onSubmit={handleSignUpSubmit}
             >
@@ -110,12 +131,22 @@ const SheetSignUp: FC<SheetSignUpProps> = ({ id, ...props }) => {
               </CardSection>
               <CardSection id="signupButton" variant="blank">
                 <ButtonCTA
+                  formID={formID}
                   formHasErrors={formHasErrors}
                   type="submit"
+                  variant="secondary"
                   icon="user"
                   buttonText="Create Account"
-                  variant="secondary"
                 />
+              </CardSection>
+
+              <CardSection
+                id="signupButton"
+                variant="blank"
+                className="flex flex-col items-center"
+              >
+                <Paragraph>or</Paragraph>
+                <Paragraph size="large">Sign In</Paragraph>
               </CardSection>
             </form>
           </FormProvider>

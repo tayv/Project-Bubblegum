@@ -51,6 +51,7 @@ const Product2 = () => {
   // Setup initial state
   // TODO See if this can be removed after refactor to PDF since we rely on RHF to handle state now
   const [formData, setFormData] = useState(defaultValues) // Need to set initial state to defaultValues to avoid type errors
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false) // For rendering next step (ie. open SignUpSheet)
 
   // Setup pg context values to pass to template
   // This may be able to be removed after refactor to PDF. May need it for snippets though.
@@ -58,9 +59,6 @@ const Product2 = () => {
     formData: formData, // need to confirm but could prob get rid of this since using rhf's FormProvider in Form
     defaultValues: defaultValues, // used by rhf reset()
   }
-
-  // TEST initial PDF doc state
-  const [isSubmitted, setIsSubmitted] = useState(false) // For rendering PDF checks
 
   // Sample onSubmit form handler
   // NOTES: Don't need to  e.preventDefault() since rhf's handleSubmit() automatically prevents page reloads
@@ -71,7 +69,7 @@ const Product2 = () => {
     console.log("event:", event)
     const body = data
 
-    setIsSubmitted(true) // so we can render the PDFViewer after form is submitted
+    setIsFormSubmitted(true) // so we can load the next step after form is submitted (modal or document viewer)
 
     try {
       const response = await fetch("/api/inquiry", {
@@ -103,7 +101,7 @@ const Product2 = () => {
         <Space />
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-5 w-full xl:max-w-1400">
-          {isSubmitted ? (
+          {isFormSubmitted ? (
             <PDFViewer style={pdfStyles.pdfViewer}>
               <DynamicPDF formData={formData} />
             </PDFViewer>
@@ -116,6 +114,8 @@ const Product2 = () => {
             onSubmit={onSubmit}
             buttonLabel="Submit Form"
             productName="product2"
+            isFormSubmitted={isFormSubmitted}
+            setIsFormSubmitted={setIsFormSubmitted}
           >
             <CardSection id="location">
               <Heading size="h2" weight="bold">

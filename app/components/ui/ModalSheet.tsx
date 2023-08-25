@@ -5,41 +5,42 @@ import { X } from "lucide-react"
 import SubmitButton from "@components/form/ButtonCTA"
 import Divider from "@ui/Divider"
 
+// TYPES ---
 export type ModalSheetProps = {
-  isOpen: boolean
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
-  triggerText?: string
-  triggerType?: "button" | "text"
-  triggerComponent: React.ReactElement
+  isSheetOpen: boolean
+  setIsSheetOpen: React.Dispatch<React.SetStateAction<boolean>>
   title: string
   description: string
+  triggerText?: string
+  triggerType?: "button" | "text"
+  triggerComponent?: React.ReactElement
   confirmText?: string
   cancelText?: string | null // Pass null when only want to render one button such as a single "Close"
   handleConfirmClick?: (event: React.SyntheticEvent) => void
+  handleOnOpenChange?: () => void
   children?: React.ReactElement | React.ReactElement[]
 }
+
+// HELPER FUNCTIONS ---
 
 const ModalSheet: FC<ModalSheetProps> = ({
   triggerText,
   triggerType = "button",
   triggerComponent,
   title,
-  isOpen,
-  setIsOpen,
+  isSheetOpen,
+  setIsSheetOpen,
   description,
   confirmText = "Close",
   cancelText = "Cancel",
   handleConfirmClick,
+  handleOnOpenChange,
   children,
+  ...props
 }) => {
   return (
-    <DialogRadix.Root open={isOpen} onOpenChange={setIsOpen}>
-      <DialogRadix.Trigger asChild>
-        {triggerComponent}
-        {/* <button className="items-center justify-center inline-flex h-10 px-4 font-medium text-slate-500 hover:bg-white rounded-lg leading-none outline-none focus:shadow-[0_0_0_2px] shadow-md focus:shadow-sky-400">
-        {triggerText}
-      </button> */}
-      </DialogRadix.Trigger>
+    <DialogRadix.Root open={isSheetOpen} onOpenChange={handleOnOpenChange}>
+      <DialogRadix.Trigger asChild>{triggerComponent}</DialogRadix.Trigger>
 
       <DialogRadix.Portal>
         <DialogRadix.Overlay className="z-50 bg-black data-[state=open]:animate-overlayShow fixed inset-0" />
