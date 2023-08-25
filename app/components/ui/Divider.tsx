@@ -8,6 +8,8 @@ export type DividerProps = {
   variant?: "horizontal" | "vertical"
   color?: DividerColor
   stroke?: DividerStroke
+  width?: DividerWidth
+  height?: DividerHeight
   className?: string
 }
 
@@ -52,20 +54,62 @@ const dividerVerticalStrokeMap: { [key in DividerStroke]: string } = {
   xl: "w-2",
 }
 
+type DividerWidth =
+  | "none"
+  | "full"
+  | "standard"
+  | "xsmall"
+  | "small"
+  | "medium"
+  | "large"
+  | "xlarge"
+const dividerWidthMap: { [key in DividerWidth]: string } = {
+  none: "",
+  full: "w-full",
+  standard: "w-96",
+  xsmall: "w-10",
+  small: "w-24",
+  medium: "w-64",
+  large: "w-[500px]",
+  xlarge: "w-[900px]",
+}
+type DividerHeight =
+  | "none"
+  | "full"
+  | "standard"
+  | "xsmall"
+  | "small"
+  | "medium"
+  | "large"
+  | "xlarge"
+const dividerHeightMap: { [key in DividerHeight]: string } = {
+  none: "",
+  full: "h-full",
+  standard: "h-96",
+  xsmall: "h-10",
+  small: "h-24",
+  medium: "h-64",
+  large: "h-[500px]",
+  xlarge: "h-[900px]",
+}
+
+// MAIN FUNCTION
 const Divider: FC<DividerProps> = ({
   variant = "horizontal",
   color = "standard",
+  width = "standard",
+  height = "standard",
   stroke = "standard",
   padding = "standard",
   ...props
 }) => {
   return (
     <>
-      {" "}
       {variant === "horizontal" ? (
         <div
           className={classNames([
-            "w-full rounded-full",
+            "rounded-full max-h-full max-w-full",
+            dividerWidthMap[width],
             dividerColorMap[color],
             dividerStrokeMap[stroke],
             dividerPaddingMap[padding],
@@ -75,8 +119,9 @@ const Divider: FC<DividerProps> = ({
       ) : (
         <div
           className={classNames([
-            "h-full rounded-full",
+            "max-h-full max-w-full rounded-full",
             dividerColorMap[color],
+            dividerHeightMap[height],
             dividerVerticalStrokeMap[stroke],
             dividerVerticalPaddingMap[padding],
             props.className, // custom styling passed as prop

@@ -13,6 +13,8 @@ import Input from "@form/Input"
 import Checkbox from "@form/Checkbox"
 import CardSection from "@ui/CardSection"
 import ButtonCTA from "@form/ButtonCTA"
+import LayoutContainer from "@components/ui/LayoutContainer"
+import Space from "@components/ui/Space"
 
 // TYPES ---------
 type SheetSignUpProps = {
@@ -71,8 +73,6 @@ const SheetSignUp: FC<SheetSignUpProps> = ({
     !!setIsFormSubmitted && setIsFormSubmitted(false) // To reset the form submission state if user cancels out of sign up/in. Need logical check since this might be trigger from non-form pages.
   }
 
-  console.log("isFormSubmitted:", isFormSubmitted, "isSheetOpen:", isSheetOpen)
-
   return (
     <div className="flex justify-center gap-[25px] mt-10 mb-28 ">
       <ModalSheet
@@ -119,17 +119,17 @@ const SheetSignUp: FC<SheetSignUpProps> = ({
                   name="checkboxAcceptMarketingEmails"
                   //validateOnBlur={false}
                 >
-                  <Field.GroupLabel>
-                    Toggle checkbox to change PDF content:
-                  </Field.GroupLabel>
                   <Field.Control>
                     <Checkbox>
                       Send me the newsletter for tips & promos
                     </Checkbox>
                   </Field.Control>
                 </Field>
-              </CardSection>
-              <CardSection id="signupButton" variant="blank">
+                {/* <Field.Example>
+                  Unsubscribe anytime. Your email is kept private and is only
+                  used to send you the newsletter.
+                </Field.Example> */}
+                <Space ySize="large" />
                 <ButtonCTA
                   formID={formID}
                   formHasErrors={formHasErrors}
@@ -138,15 +138,35 @@ const SheetSignUp: FC<SheetSignUpProps> = ({
                   icon="user"
                   buttonText="Create Account"
                 />
-              </CardSection>
-
-              <CardSection
-                id="signupButton"
-                variant="blank"
-                className="flex flex-col items-center"
-              >
-                <Paragraph>or</Paragraph>
-                <Paragraph size="large">Sign In</Paragraph>
+                <LayoutContainer
+                  variant="flex"
+                  alignX="center"
+                  padding="standard"
+                  margin="none"
+                >
+                  <aside className="text-sm text-center">
+                    No credit card required. Delete your account at any time.
+                  </aside>
+                </LayoutContainer>
+                <div className="flex flex-row justify-center ">
+                  <Divider padding="large" width="medium" />
+                </div>
+                <LayoutContainer
+                  variant="flex"
+                  direction="row"
+                  alignX="center"
+                  margin="none"
+                  gap="xsmall"
+                  padding="none"
+                >
+                  <Paragraph size="large">Already have an account?</Paragraph>
+                  <button
+                    type="button"
+                    className="underline underline-offset-2"
+                  >
+                    Sign In
+                  </button>
+                </LayoutContainer>
               </CardSection>
             </form>
           </FormProvider>

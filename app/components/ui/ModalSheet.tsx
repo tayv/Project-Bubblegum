@@ -58,7 +58,8 @@ const ModalSheet: FC<ModalSheetProps> = ({
               stroke="large"
               color="standard"
               padding="large"
-              className="w-[42px] lg:hidden"
+              width="xsmall"
+              className="lg:hidden"
             />
             <DialogRadix.Title className="hidden lg:block text-center text-slate-500 pt-3 pb-2 font-medium w-full border-b ">
               <div>{title}</div>

@@ -8,7 +8,16 @@ export type ParagraphProps = {
   size?: ParagraphSize
   variant?: ParagraphVariant
   space?: ParagraphSpace
+  textAlign?: ParagraphTextAlign
   className?: string
+}
+
+type ParagraphTextAlign = "none" | "left" | "center" | "right"
+const paragraphTextAlignMap: { [key in ParagraphTextAlign]: string } = {
+  none: "",
+  left: "text-align-left",
+  center: "text-align-center",
+  right: "text-align-right",
 }
 
 type ParagraphSize =
@@ -47,6 +56,7 @@ type ParagraphSpace =
   | "loose"
   | "none"
   | "override"
+
 const paragraphSpaceMap: { [key in ParagraphSpace]: string } = {
   tight: "leading-tight",
   snug: "leading-snug",
@@ -61,21 +71,23 @@ const Paragraph: FC<ParagraphProps> = ({
   size = "standard",
   space = "standard",
   variant = "primary",
+  textAlign = "none",
   className = "",
   children,
 }) => {
   return (
-    <div
+    <p
       className={classNames([
         "whitespace-pre-wrap", // standard css Variants (pre-wrap allows for line breaks in template literals)
         paragraphSizeMap[size], // dynamically set styling based on padding prop
         paragraphSpaceMap[space],
         paragraphVariantMap[variant],
+        paragraphTextAlignMap[textAlign],
         className, // custom styling passed as prop
       ])}
     >
       {children}
-    </div>
+    </p>
   )
 }
 
