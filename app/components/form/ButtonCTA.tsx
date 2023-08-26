@@ -12,10 +12,10 @@ type ButtonCTAVariant =
   | "secondary"
   | "secondaryDisabled"
 type ButtonCTAIcon = "standard" | "user" | "none"
-type ButtonCTASize = "standard" | "large"
+type ButtonCTASize = "standard" | "small" | "large"
 export type ButtonCTAProps = {
-  formID: string
-  formHasErrors: boolean // from RHF. Should be result of Object.keys(methods.formState.errors).length > 0
+  formID?: string
+  formHasErrors?: boolean // from RHF. Should be result of Object.keys(methods.formState.errors).length > 0
   type: "button" | "submit"
   variant?: ButtonCTAVariant
   buttonText?: string
@@ -31,8 +31,9 @@ export type ButtonCTAProps = {
 // DYNAMIC STYLING
 // Using maps so full Tailwind classes can be seen for purging https://tailwindcss.com/docs/optimizing-for-production#writing-purgeable-html
 const buttonCTASizeMap: { [key in ButtonCTASize]: string } = {
-  standard: "py-2 px-3",
-  large: "w-full py-3 px-4",
+  standard: "gap-2 font-medium text-base py-4 px-6",
+  small: "gap-1 font-normal text-sm py-2 px-4",
+  large: "gap-2 font-medium text-xl py-6 px-8",
 }
 // Make sure to follow this pattern or buttonStyles won't work: ${variant}Disabled`
 const buttonCTAVariantMap: { [key in ButtonCTAVariant]: string } = {
@@ -70,8 +71,9 @@ const ButtonCTA: FC<ButtonCTAProps> = forwardRef<
 ) {
   // Dynamically render correct button variant styling
   const buttonStyles = classNames([
-    "flex flex-row items-center justify-center min-fit-content max-w-[17rem] gap-2 px-6 py-4",
-    "font-medium rounded-full outline-none focus:shadow-[0_0_0_2px]  focus:shadow-sky-400",
+    "flex flex-row items-center justify-center min-fit-content max-w-[17rem] ",
+    "rounded-full outline-none focus:shadow-[0_0_0_2px]  focus:shadow-sky-400",
+    buttonCTASizeMap[size],
     !!formHasErrors
       ? buttonCTAVariantMap[`${variant}Disabled` as ButtonCTAVariant]
       : buttonCTAVariantMap[variant as ButtonCTAVariant],
