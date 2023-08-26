@@ -1,3 +1,6 @@
+"use client"
+
+import { useRouter } from "next/navigation"
 import { FC, useState, useContext, useEffect } from "react"
 import { PageContext } from "@components/templates/context"
 import * as z from "zod"
@@ -47,6 +50,9 @@ const SheetSignUp: FC<SheetSignUpProps> = ({
   // Setup RHF
   const methods = useForm({ resolver: zodResolver(zodSchema), defaultValues })
   const formHasErrors = Object.keys(methods.formState.errors).length > 0
+
+  // Setup routes for loading steps after signup completed
+  const router = useRouter()
 
   // State
   const [isSheetOpen, setIsSheetOpen] = useState(isFormSubmitted || false) // This sign up sheet might be used outside forms so need to have logical gate
@@ -137,6 +143,7 @@ const SheetSignUp: FC<SheetSignUpProps> = ({
                   variant="secondary"
                   icon="user"
                   buttonText="Create Account"
+                  onClick={() => router.push("/docview")}
                 />
                 <LayoutContainer
                   variant="flex"

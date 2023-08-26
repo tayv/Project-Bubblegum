@@ -9,15 +9,16 @@ export type ParagraphProps = {
   variant?: ParagraphVariant
   space?: ParagraphSpace
   textAlign?: ParagraphTextAlign
+  padding?: ParagraphPadding
   className?: string
 }
 
 type ParagraphTextAlign = "none" | "left" | "center" | "right"
 const paragraphTextAlignMap: { [key in ParagraphTextAlign]: string } = {
   none: "",
-  left: "text-align-left",
-  center: "text-align-center",
-  right: "text-align-right",
+  left: "text-left",
+  center: "text-center",
+  right: "text-right",
 }
 
 type ParagraphSize =
@@ -29,7 +30,6 @@ type ParagraphSize =
   | "xxlarge"
   | "xxxlarge"
   | "override"
-
 const paragraphSizeMap: { [key in ParagraphSize]: string } = {
   xsmall: "text-xs", // prop specific css styles go here
   small: "text-sm",
@@ -56,7 +56,6 @@ type ParagraphSpace =
   | "loose"
   | "none"
   | "override"
-
 const paragraphSpaceMap: { [key in ParagraphSpace]: string } = {
   tight: "leading-tight",
   snug: "leading-snug",
@@ -67,22 +66,45 @@ const paragraphSpaceMap: { [key in ParagraphSpace]: string } = {
   override: "",
 }
 
+type ParagraphPadding =
+  | "none"
+  | "xsmall"
+  | "small"
+  | "standard"
+  | "medium"
+  | "large"
+  | "xl"
+  | "xxl"
+const paragraphPaddingMap: { [key in ParagraphPadding]: string } = {
+  none: "py-0",
+  standard: "py-2",
+  xsmall: "py-px",
+  small: "py-1",
+  medium: "py-4",
+  large: "py-6",
+  xl: "py-8",
+  xxl: "py-10",
+}
+
+// MAIN FUNCTION ---
 const Paragraph: FC<ParagraphProps> = ({
   size = "standard",
   space = "standard",
   variant = "primary",
   textAlign = "none",
+  padding = "standard",
   className = "",
   children,
 }) => {
   return (
     <p
       className={classNames([
-        "whitespace-pre-wrap", // standard css Variants (pre-wrap allows for line breaks in template literals)
-        paragraphSizeMap[size], // dynamically set styling based on padding prop
+        "whitespace-pre-wrap",
+        paragraphSizeMap[size],
         paragraphSpaceMap[space],
         paragraphVariantMap[variant],
         paragraphTextAlignMap[textAlign],
+        paragraphPaddingMap[padding],
         className, // custom styling passed as prop
       ])}
     >
