@@ -9,7 +9,7 @@ import { ProductNameProps } from "@components/templates/templateTypes"
 import ModalAlert from "@ui/ModalAlert"
 import ModalStandard from "@ui/ModalStandard"
 import ModalViewDoc from "@ui/ModalViewDoc"
-import CardSection from "@ui/CardSection"
+import CardSection from "@components/ui/Card"
 import { useReactToPrint } from "react-to-print"
 
 export type FormProps = {

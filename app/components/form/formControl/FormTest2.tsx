@@ -7,7 +7,7 @@ import * as z from "zod"
 import { ProductNameProps } from "@components/templates/templateTypes"
 import ModalAlert from "@ui/ModalAlert"
 import ModalViewDoc from "@ui/ModalViewDoc"
-import CardSection from "@ui/CardSection"
+import CardSection from "@components/ui/Card"
 import DynamicPDF from "@product2/DynamicPDF"
 //import { PDFViewer } from "@react-pdf/renderer"
 

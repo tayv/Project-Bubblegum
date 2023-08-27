@@ -8,7 +8,7 @@ import LoadTemplate from "@components/templates/LoadTemplate"
 import { ProductNameProps } from "@components/templates/templateTypes"
 import ModalAlert from "@ui/ModalAlert"
 import ModalViewDoc from "@ui/ModalViewDoc"
-import CardSection from "@ui/CardSection"
+import CardSection from "@components/ui/Card"
 
 export type FormProps = {
   id: string
