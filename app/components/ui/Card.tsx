@@ -26,17 +26,14 @@ export type SectionCardProps = SharedCardProps & {
 }
 
 type CardVariant = "section" | "div" | "aside" | "span"
-const cardVariantMap: { [key in CardVariant]: string } = {
-  section: "bg-white drop-shadow-sm",
-  div: "bg-white/50 drop-shadow-sm border border-white/60",
-  aside: "bg-transparent",
-  span: "bg-gradient-to-b from-blue-400 to-blue-300 drop-shadow-sm",
-}
 
 type CardColor =
   | "none"
   | "standard"
+  | "dark"
+  | "light"
   | "white"
+  | "black"
   | "glass"
   | "gradient1"
   | "gradient2"
@@ -47,20 +44,21 @@ type CardColor =
 const cardColorMap: { [key in CardColor]: string } = {
   none: "",
   standard: "bg-white",
+  light: "bg-white",
+  dark: "bg-stone-800",
   white: "bg-white",
+  black: "bg-gradient-to-r from-gray-700 via-gray-900 to-black",
   glass: " backdrop-blur-sm bg-white/60 drop-shadow",
   gradient1:
-    "conic-gradient(at 0% 0%, rgb(250, 204, 21), rgb(34, 211, 238), rgb(219, 234, 254))",
-  gradient2:
-    "linear-gradient(to right bottom, rgb(251, 146, 60), rgb(248, 113, 113), rgb(59, 130, 246))",
+    "bg-[radial-gradient(ellipse_at_left,_var(--tw-gradient-stops))] from-blue-400 via-zinc-400 to-rose-300",
+  gradient2: "bg-gradient-to-r from-indigo-200 via-red-200 to-yellow-100",
   gradient3:
-    "conic-gradient(at 50% 0%, rgb(244, 114, 182), rgb(192, 132, 252), rgb(37, 99, 235))",
+    "bg-[conic-gradient(at_top,_var(--tw-gradient-stops))] from-yellow-200 via-emerald-200 to-yellow-200",
   gradient4:
-    "radial-gradient(at 100% 0%, rgb(68, 64, 60), rgb(191, 219, 254), rgb(129, 140, 248))",
+    "bg-[conic-gradient(at_right,_var(--tw-gradient-stops))] from-indigo-200 via-slate-600 to-indigo-200",
   gradient5:
-    "linear-gradient(to right top, rgb(100, 116, 139), rgb(68, 64, 60), rgb(71, 85, 105))",
-  gradient6:
-    "linear-gradient(to right bottom, rgb(196, 181, 253), rgb(214, 211, 209), rgb(253, 164, 175))",
+    "bg-[conic-gradient(at_top,_var(--tw-gradient-stops))] from-gray-900 via-gray-100 to-gray-900",
+  gradient6: "bg-gradient-to-br from-violet-300 via-voilet-100 to-rose-300",
 }
 
 type CardPadding = "none" | "standard" | "small" | "medium" | "large"
@@ -115,7 +113,6 @@ const Card = ({
       id={id}
       className={classNames([
         "",
-        cardVariantMap[variant],
         cardColorMap[color],
         cardPaddingMap[padding],
         cardMarginMap[margin],

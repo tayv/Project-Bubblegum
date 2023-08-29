@@ -17,15 +17,26 @@ export default function Home() {
         <em>No credit card required.</em>
       </Paragraph>
 
-      <CardSection id="introProduct" className="" color="white">
-        <LayoutContainer variant="flex" direction="row" padding="none">
-          <div className="p-4 mr-4 flex items-center">
-            <Armchair className="w-[60] h-[60]" />
+      <CardSection id="featuredProduct" className="" color="gradient3">
+        <LayoutContainer
+          variant="flex"
+          direction="row"
+          padding="none"
+          margin="none"
+        >
+          <div className="mr-6 flex items-center">
+            <Armchair className="w-[60px] h-[60px]" />
           </div>
           <div className="py-2">
             <Heading size="h3">Featured Product</Heading>
             <Paragraph>A short description of the product goes here.</Paragraph>
-            <ButtonCTA size="small" type="button" buttonText="Create Product" />
+            <ButtonCTA
+              size="small"
+              type="button"
+              buttonText="Create Product"
+              icon="none"
+              className="mt-4"
+            />
           </div>
         </LayoutContainer>
       </CardSection>

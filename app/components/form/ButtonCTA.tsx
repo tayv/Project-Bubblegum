@@ -4,15 +4,6 @@ import React, { FC, forwardRef } from "react"
 import classNames from "classnames"
 import { User2, Wand } from "lucide-react"
 
-// TYPES
-// This Submit Button component only intended for use within the Form component
-type ButtonCTAVariant =
-  | "primary"
-  | "primaryDisabled"
-  | "secondary"
-  | "secondaryDisabled"
-type ButtonCTAIcon = "standard" | "user" | "none"
-type ButtonCTASize = "standard" | "small" | "large"
 export type ButtonCTAProps = {
   formID?: string
   formHasErrors?: boolean // from RHF. Should be result of Object.keys(methods.formState.errors).length > 0
@@ -28,13 +19,19 @@ export type ButtonCTAProps = {
   className?: string // to pass custom one-off styling
 }
 
-// DYNAMIC STYLING
 // Using maps so full Tailwind classes can be seen for purging https://tailwindcss.com/docs/optimizing-for-production#writing-purgeable-html
+type ButtonCTASize = "standard" | "small" | "large"
 const buttonCTASizeMap: { [key in ButtonCTASize]: string } = {
   standard: "gap-2 font-medium text-base py-4 px-6",
   small: "gap-1 font-normal text-sm py-2 px-4",
   large: "gap-2 font-medium text-xl py-6 px-8",
 }
+
+type ButtonCTAVariant =
+  | "primary"
+  | "primaryDisabled"
+  | "secondary"
+  | "secondaryDisabled"
 // Make sure to follow this pattern or buttonStyles won't work: ${variant}Disabled`
 const buttonCTAVariantMap: { [key in ButtonCTAVariant]: string } = {
   primary: "text-white bg-sky-500 hover:bg-sky-600 shadow",
@@ -42,14 +39,17 @@ const buttonCTAVariantMap: { [key in ButtonCTAVariant]: string } = {
   secondary: "text-sky-500 border-2 border-sky-500 hover:bg-sky-100 shadow",
   secondaryDisabled: "text-neutral-300 border-2 border-neutral-300",
 }
+
+type ButtonCTAIcon = "standard" | "user" | "none"
 const buttonCTAIconMap: { [key in ButtonCTAIcon]: React.ReactNode } = {
   standard: <Wand />,
   user: <User2 />,
   none: null,
 }
 
-// forwardRef so RHF can work properly
+// MAIN FUNCTION
 const ButtonCTA: FC<ButtonCTAProps> = forwardRef<
+  // forwardRef used so RHF can work properly
   HTMLButtonElement,
   ButtonCTAProps
 >(function setRefButtonCTA(
@@ -73,6 +73,7 @@ const ButtonCTA: FC<ButtonCTAProps> = forwardRef<
   const buttonStyles = classNames([
     "flex flex-row items-center justify-center min-fit-content max-w-[17rem] ",
     "rounded-full outline-none focus:shadow-[0_0_0_2px]  focus:shadow-sky-400",
+    className, // custom prop styles
     buttonCTASizeMap[size],
     !!formHasErrors
       ? buttonCTAVariantMap[`${variant}Disabled` as ButtonCTAVariant]
@@ -80,7 +81,7 @@ const ButtonCTA: FC<ButtonCTAProps> = forwardRef<
   ])
 
   return (
-    <div className="flex flex-col gap-2 items-center">
+    <>
       <button
         form={formID}
         type={type}
@@ -108,7 +109,7 @@ const ButtonCTA: FC<ButtonCTAProps> = forwardRef<
           <p className="text-red-600">{errorMessage}</p>
         </div>
       ) : null}
-    </div>
+    </>
   )
 })
 

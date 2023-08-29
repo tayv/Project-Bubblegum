@@ -136,21 +136,24 @@ const SheetSignUp: FC<SheetSignUpProps> = ({
                   used to send you the newsletter.
                 </Field.Example> */}
                 <Space ySize="large" />
-                <ButtonCTA
-                  formID={formID}
-                  formHasErrors={formHasErrors}
-                  type="submit"
-                  variant="secondary"
-                  icon="user"
-                  buttonText="Create Account"
-                  onClick={() => router.push("/docview")}
-                />
+
                 <LayoutContainer
                   variant="flex"
+                  direction="col"
+                  gap="standard"
                   alignX="center"
                   padding="standard"
                   margin="none"
                 >
+                  <ButtonCTA
+                    formID={formID}
+                    formHasErrors={formHasErrors}
+                    type="submit"
+                    variant="secondary"
+                    icon="user"
+                    buttonText="Create Account"
+                    onClick={() => router.push("/docview")}
+                  />
                   <aside className="text-sm text-center">
                     No credit card required. Delete your account at any time.
                   </aside>
