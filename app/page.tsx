@@ -14,17 +14,23 @@ export default function Home() {
       </Heading>
       <Paragraph>
         Pick a product to get started for free.
-        <em>No credit card required.</em>
+        <em> No credit card required.</em>
       </Paragraph>
 
-      <CardSection id="featuredProduct" className="" color="gradient3">
+      <CardSection
+        id="featuredProduct"
+        color="gradient3"
+        width="standard"
+        className="mb-0"
+        corners="none"
+      >
         <LayoutContainer
           variant="flex"
           direction="row"
           padding="none"
           margin="none"
         >
-          <div className="mr-6 flex items-center">
+          <div className="mr-5 flex items-center">
             <Armchair className="w-[60px] h-[60px]" />
           </div>
           <div className="py-2">
@@ -40,6 +46,52 @@ export default function Home() {
           </div>
         </LayoutContainer>
       </CardSection>
+
+      <LayoutContainer
+        variant="flex"
+        direction="row"
+        gap="standard"
+        padding="none"
+        margin="none"
+        className="lg:gap-4"
+      >
+        <CardSection
+          id="secondaryProductA"
+          color="white"
+          width="standard"
+          className="mb-8"
+          corners="none"
+        >
+          <Heading size="h3">Secondary Product A</Heading>
+          <Paragraph>A short description of the product goes here.</Paragraph>
+          <ButtonCTA
+            variant="text"
+            size="small"
+            type="button"
+            buttonText="Create Product"
+            icon="arrowRight"
+            className="mt-4"
+          />
+        </CardSection>
+        <CardSection
+          id="secondaryProductB"
+          color="white"
+          width="standard"
+          className="mb-8"
+          corners="none"
+        >
+          <Heading size="h3">Secondary Product B</Heading>
+          <Paragraph>A short description of the product goes here.</Paragraph>
+          <ButtonCTA
+            variant="text"
+            size="small"
+            type="button"
+            buttonText="Create Product"
+            icon="arrowRight"
+            className="mt-4"
+          />
+        </CardSection>
+      </LayoutContainer>
 
       <Heading size="h2" padding="standard">
         How it works

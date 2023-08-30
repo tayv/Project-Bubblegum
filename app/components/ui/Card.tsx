@@ -6,6 +6,7 @@ import classNames from "classnames"
 type SharedCardProps = {
   color?: CardColor
   cardPadding?: CardPadding
+  width?: CardWidth
   padding?: CardPadding
   margin?: CardMargin
   corners?: CardCorners
@@ -61,6 +62,14 @@ const cardColorMap: { [key in CardColor]: string } = {
   gradient6: "bg-gradient-to-br from-violet-300 via-voilet-100 to-rose-300",
 }
 
+type CardWidth = "none" | "standard" | "maxContent" | "fitContent"
+const cardWidthMap: { [key in CardWidth]: string } = {
+  none: "",
+  standard: "w-full",
+  maxContent: "w-max",
+  fitContent: "w-fit",
+}
+
 type CardPadding = "none" | "standard" | "small" | "medium" | "large"
 const cardPaddingMap: { [key in CardPadding]: string } = {
   none: "",
@@ -101,6 +110,7 @@ const Card = ({
   id,
   variant = "div",
   color = "standard",
+  width = "standard",
   padding = "standard",
   margin = "standard",
   corners = "standard",
@@ -114,6 +124,7 @@ const Card = ({
       className={classNames([
         "",
         cardColorMap[color],
+        cardWidthMap[width],
         cardPaddingMap[padding],
         cardMarginMap[margin],
         cardCornersMap[corners],

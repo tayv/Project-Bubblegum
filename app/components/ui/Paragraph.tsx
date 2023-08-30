@@ -5,6 +5,7 @@ import classNames from "classnames"
 
 export type ParagraphProps = {
   children: ReactNode
+  width?: string
   size?: ParagraphSize
   variant?: ParagraphVariant
   space?: ParagraphSpace
@@ -89,6 +90,7 @@ const paragraphPaddingMap: { [key in ParagraphPadding]: string } = {
 // MAIN FUNCTION ---
 const Paragraph: FC<ParagraphProps> = ({
   size = "standard",
+  width = "max-w-prose",
   space = "standard",
   variant = "primary",
   textAlign = "none",
@@ -100,6 +102,7 @@ const Paragraph: FC<ParagraphProps> = ({
     <p
       className={classNames([
         "whitespace-pre-wrap",
+        width,
         paragraphSizeMap[size],
         paragraphSpaceMap[space],
         paragraphVariantMap[variant],

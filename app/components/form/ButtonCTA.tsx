@@ -2,7 +2,7 @@
 
 import React, { FC, forwardRef } from "react"
 import classNames from "classnames"
-import { User2, Wand } from "lucide-react"
+import { ArrowRight, User2, Wand } from "lucide-react"
 
 export type ButtonCTAProps = {
   formID?: string
@@ -32,18 +32,21 @@ type ButtonCTAVariant =
   | "primaryDisabled"
   | "secondary"
   | "secondaryDisabled"
+  | "text"
 // Make sure to follow this pattern or buttonStyles won't work: ${variant}Disabled`
 const buttonCTAVariantMap: { [key in ButtonCTAVariant]: string } = {
   primary: "text-white bg-sky-500 hover:bg-sky-600 shadow",
   primaryDisabled: "bg-neutral-300 hover:bg-neutral-400 text-neutral-500",
   secondary: "text-sky-500 border-2 border-sky-500 hover:bg-sky-100 shadow",
   secondaryDisabled: "text-neutral-300 border-2 border-neutral-300",
+  text: "text-sky-500 font-semibold border-none hover:text-sky-600",
 }
 
-type ButtonCTAIcon = "standard" | "user" | "none"
+type ButtonCTAIcon = "none" | "standard" | "user" | "arrowRight"
 const buttonCTAIconMap: { [key in ButtonCTAIcon]: React.ReactNode } = {
   standard: <Wand />,
   user: <User2 />,
+  arrowRight: <ArrowRight />,
   none: null,
 }
 
@@ -90,20 +93,36 @@ const ButtonCTA: FC<ButtonCTAProps> = forwardRef<
         className={buttonStyles}
         {...props}
       >
+        {/* Standard variant uses an icon on left side */}
         <div
           className={classNames([
             "flex w-5",
-            icon === "none" ? "hidden" : "block",
+            variant === "text" || icon === "none" ? "hidden" : "block",
           ])}
         >
           {buttonCTAIconMap[icon]}
         </div>
+        {/* Need conditional padding in case CTA has no icon */}
         <div
-          className={classNames(["flex", icon === "none" ? "pr-0" : "pr-1"])} // padding needed to optically align content when icon is used
+          className={classNames([
+            "flex",
+            variant === "text" || icon === "none" ? "pr-0" : "pr-1",
+          ])} // padding needed to optically align content when icon is used inside a button with a border
         >
           {buttonText}
         </div>
+        {/* Text only CTAs have an icon on the right side */}
+        <div
+          className={classNames([
+            "flex w-5",
+            variant !== "text" || icon === "none" ? "hidden" : "block",
+          ])}
+        >
+          {buttonCTAIconMap[icon]}
+        </div>
       </button>
+
+      {/* If type = submit and used inside a form need to provide a message if validation fails */}
       {formHasErrors ? (
         <div className="flex text-center">
           <p className="text-red-600">{errorMessage}</p>
