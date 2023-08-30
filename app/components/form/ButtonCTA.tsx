@@ -20,11 +20,18 @@ export type ButtonCTAProps = {
 }
 
 // Using maps so full Tailwind classes can be seen for purging https://tailwindcss.com/docs/optimizing-for-production#writing-purgeable-html
-type ButtonCTASize = "standard" | "small" | "large"
+type ButtonCTASize =
+  | "standardButton"
+  | "smallButton"
+  | "largeButton"
+  | "standardText"
+  | "largeText"
 const buttonCTASizeMap: { [key in ButtonCTASize]: string } = {
-  standard: "gap-2 font-medium text-base py-4 px-6",
-  small: "gap-1 font-normal text-sm py-2 px-4",
-  large: "gap-2 font-medium text-xl py-6 px-8",
+  standardButton: "gap-2 font-normal text-base py-4 px-6",
+  smallButton: "gap-1 font-normal text-sm py-2 px-4",
+  largeButton: "gap-3 font-medium text-xl py-6 px-8",
+  standardText: "font-semibold text-base gap-1",
+  largeText: "font-semibold text-xl gap-2",
 }
 
 type ButtonCTAVariant =
@@ -39,7 +46,7 @@ const buttonCTAVariantMap: { [key in ButtonCTAVariant]: string } = {
   primaryDisabled: "bg-neutral-300 hover:bg-neutral-400 text-neutral-500",
   secondary: "text-sky-500 border-2 border-sky-500 hover:bg-sky-100 shadow",
   secondaryDisabled: "text-neutral-300 border-2 border-neutral-300",
-  text: "text-sky-500 font-semibold border-none hover:text-sky-600",
+  text: "text-sky-500 border-none hover:text-sky-600",
 }
 
 type ButtonCTAIcon = "none" | "standard" | "user" | "arrowRight"
@@ -61,7 +68,7 @@ const ButtonCTA: FC<ButtonCTAProps> = forwardRef<
     formHasErrors = false,
     variant = "primary",
     type = "button",
-    size = "standard",
+    size = "standardButton",
     icon = "standard",
     buttonText = "Submit",
     errorMessage = "Your answers can't be submitted until you fix the errors above 👆",
@@ -75,7 +82,7 @@ const ButtonCTA: FC<ButtonCTAProps> = forwardRef<
   // Dynamically render correct button variant styling
   const buttonStyles = classNames([
     "flex flex-row items-center justify-center min-fit-content max-w-[17rem] ",
-    "rounded-full outline-none focus:shadow-[0_0_0_2px]  focus:shadow-sky-400",
+    "rounded-full outline-none focus:shadow-[0_0_0_2px] focus:shadow-sky-400",
     className, // custom prop styles
     buttonCTASizeMap[size],
     !!formHasErrors
@@ -96,7 +103,7 @@ const ButtonCTA: FC<ButtonCTAProps> = forwardRef<
         {/* Standard variant uses an icon on left side */}
         <div
           className={classNames([
-            "flex w-5",
+            "flex",
             variant === "text" || icon === "none" ? "hidden" : "block",
           ])}
         >
@@ -114,7 +121,7 @@ const ButtonCTA: FC<ButtonCTAProps> = forwardRef<
         {/* Text only CTAs have an icon on the right side */}
         <div
           className={classNames([
-            "flex w-5",
+            "flex",
             variant !== "text" || icon === "none" ? "hidden" : "block",
           ])}
         >

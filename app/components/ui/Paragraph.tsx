@@ -5,13 +5,46 @@ import classNames from "classnames"
 
 export type ParagraphProps = {
   children: ReactNode
-  width?: string
   size?: ParagraphSize
+  color?: ParagraphColor
+  weight?: ParagraphWeight
+  width?: string
   variant?: ParagraphVariant
   space?: ParagraphSpace
   textAlign?: ParagraphTextAlign
   padding?: ParagraphPadding
   className?: string
+}
+
+// Consider refactoring variant out in future. Likely not necessary since have color prop now
+type ParagraphVariant = "primary" | "secondary" | "override"
+const paragraphVariantMap: { [key in ParagraphVariant]: string } = {
+  primary: "text-gray-900", // prop specific css styles go here
+  secondary: "text-gray-300",
+  override: "",
+}
+
+type ParagraphColor = "none" | "standard" | "secondary"
+const paragraphColorMap: { [key in ParagraphColor]: string } = {
+  none: "",
+  standard: "text-slate-900",
+  secondary: "text-slate-500",
+}
+
+type ParagraphWeight =
+  | "none"
+  | "standard"
+  | "light"
+  | "medium"
+  | "semibold"
+  | "bold"
+const paragraphWeightMap: { [key in ParagraphWeight]: string } = {
+  none: "",
+  standard: "font-normal",
+  light: "font-light",
+  medium: "font-medium",
+  semibold: "font-semibold",
+  bold: "font-bold",
 }
 
 type ParagraphTextAlign = "none" | "left" | "center" | "right"
@@ -32,20 +65,13 @@ type ParagraphSize =
   | "xxxlarge"
   | "override"
 const paragraphSizeMap: { [key in ParagraphSize]: string } = {
-  xsmall: "text-xs", // prop specific css styles go here
-  small: "text-sm",
-  standard: "text-base",
-  large: "text-lg",
-  xlarge: "text-xl",
-  xxlarge: "text-2xl",
-  xxxlarge: "text-3xl",
-  override: "",
-}
-
-type ParagraphVariant = "primary" | "secondary" | "override"
-const paragraphVariantMap: { [key in ParagraphVariant]: string } = {
-  primary: "text-gray-900", // prop specific css styles go here
-  secondary: "text-gray-300",
+  xsmall: "text-xs lg:text-sm", // prop specific css styles go here
+  small: "text-sm lg:text-base",
+  standard: "text-md lg:text-lg",
+  large: "text-lg lg:text-xl",
+  xlarge: "text-xl lg:text-2xl",
+  xxlarge: "text-2xl lg:text-3xl",
+  xxxlarge: "text-3xl lg:text-4xl",
   override: "",
 }
 
@@ -91,6 +117,8 @@ const paragraphPaddingMap: { [key in ParagraphPadding]: string } = {
 const Paragraph: FC<ParagraphProps> = ({
   size = "standard",
   width = "max-w-prose",
+  color = "standard",
+  weight = "standard",
   space = "standard",
   variant = "primary",
   textAlign = "none",
@@ -103,8 +131,10 @@ const Paragraph: FC<ParagraphProps> = ({
       className={classNames([
         "whitespace-pre-wrap",
         width,
+        paragraphColorMap[color],
         paragraphSizeMap[size],
         paragraphSpaceMap[space],
+        paragraphWeightMap[weight],
         paragraphVariantMap[variant],
         paragraphTextAlignMap[textAlign],
         paragraphPaddingMap[padding],

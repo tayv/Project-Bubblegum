@@ -21,28 +21,35 @@ export default function Home() {
         id="featuredProduct"
         color="gradient3"
         width="standard"
-        className="mb-0"
-        corners="none"
+        className="mb-0 lg:mb-2"
+        // corners="none"
       >
         <LayoutContainer
           variant="flex"
-          direction="row"
+          direction="col"
           padding="none"
           margin="none"
         >
-          <div className="mr-5 flex items-center">
-            <Armchair className="w-[60px] h-[60px]" />
-          </div>
-          <div className="py-2">
-            <Heading size="h3">Featured Product</Heading>
-            <Paragraph>A short description of the product goes here.</Paragraph>
+          <div className="flex flex-col items-center py-2">
+            <Paragraph weight="medium" size="large">
+              Featured Product
+            </Paragraph>
+            <Heading color="standard" size="h2" textAlign="center">
+              Catchy product phrase goes here
+            </Heading>
+            <Paragraph weight="light" size="large" color="secondary">
+              Helpful context
+            </Paragraph>
             <ButtonCTA
-              size="small"
+              size="standardButton"
               type="button"
               buttonText="Create Product"
               icon="none"
               className="mt-4"
             />
+          </div>
+          <div className="flex grow items-center">
+            <Armchair className="max-h-56 w-full h-full " />
           </div>
         </LayoutContainer>
       </CardSection>
@@ -53,24 +60,24 @@ export default function Home() {
         gap="standard"
         padding="none"
         margin="none"
-        className="lg:gap-4"
+        className="lg:gap-6"
       >
         <CardSection
           id="secondaryProductA"
           color="white"
           width="standard"
           className="mb-8"
-          corners="none"
+          //  corners="none"
         >
           <Heading size="h3">Secondary Product A</Heading>
           <Paragraph>A short description of the product goes here.</Paragraph>
           <ButtonCTA
             variant="text"
-            size="small"
+            size="standardText"
             type="button"
             buttonText="Create Product"
             icon="arrowRight"
-            className="mt-4"
+            className=""
           />
         </CardSection>
         <CardSection
@@ -78,17 +85,17 @@ export default function Home() {
           color="white"
           width="standard"
           className="mb-8"
-          corners="none"
+          // corners="none"
         >
           <Heading size="h3">Secondary Product B</Heading>
           <Paragraph>A short description of the product goes here.</Paragraph>
           <ButtonCTA
             variant="text"
-            size="small"
+            size="standardText"
             type="button"
             buttonText="Create Product"
             icon="arrowRight"
-            className="mt-4"
+            className=""
           />
         </CardSection>
       </LayoutContainer>

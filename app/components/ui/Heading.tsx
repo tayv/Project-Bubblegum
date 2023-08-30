@@ -6,7 +6,8 @@ import classNames from "classnames"
 export type HeadingProps = {
   children: ReactNode
   size: HeadingSize
-  variant?: HeadingVariant
+  color?: HeadingColor
+  textAlign?: HeadingTextAlign
   weight?: HeadingWeight
   padding?: HeadingPadding
   id?: string // Optionally used for anchor links
@@ -15,20 +16,38 @@ export type HeadingProps = {
 
 type HeadingSize = "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "override"
 const headingSizeMap: { [key in HeadingSize]: string } = {
-  h1: "text-4xl",
-  h2: "text-2xl",
-  h3: "text-xl",
-  h4: "text-lg",
-  h5: "text-base",
-  h6: "text-sm",
+  h1: "text-5xl lg:text-6xl",
+  h2: "text-4xl lg:text-5xl",
+  h3: "text-3xl lg:text-4xl",
+  h4: "text-xl lg:text-2xl",
+  h5: "text-lg lg:text-xl",
+  h6: "text-md lg:text-lg",
   override: "",
 }
 
-type HeadingVariant = "primary" | "secondary" | "override"
-const headingVariantMap: { [key in HeadingVariant]: string } = {
-  primary: "text-gray-900",
+type HeadingColor =
+  | "none"
+  | "standard"
+  | "secondary"
+  | "white"
+  | "gradient1"
+  | "gradient2"
+const headingColorMap: { [key in HeadingColor]: string } = {
+  none: "",
+  standard: "text-gray-900",
   secondary: "text-gray-500",
-  override: "",
+  white: "text-white",
+  gradient1:
+    "bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent",
+  gradient2:
+    "bg-gradient-to-r from-indigo-200 via-red-200 to-yellow-100 bg-clip-text text-transparent",
+}
+
+type HeadingTextAlign = "left" | "center" | "right"
+const headingTextAlignMap: { [key in HeadingTextAlign]: string } = {
+  left: "text-left",
+  center: "text-center",
+  right: "text-right",
 }
 
 type HeadingWeight =
@@ -60,9 +79,10 @@ const headingPaddingMap: { [key in HeadingPadding]: string } = {
 
 const Heading: FC<HeadingProps> = ({
   size,
-  variant = "primary",
+  color = "standard",
   weight = "semibold",
   padding = "standard",
+  textAlign = "left",
   className = "",
   children,
   ...props
@@ -76,8 +96,9 @@ const Heading: FC<HeadingProps> = ({
       className={classNames([
         "", // standard css styles (pre-wrap allows for line breaks in template literals)
         headingSizeMap[size],
-        headingVariantMap[variant],
+        headingColorMap[color],
         headingWeightMap[weight],
+        headingTextAlignMap[textAlign],
         headingPaddingMap[padding],
         className, // custom styling passed as prop
       ])}
