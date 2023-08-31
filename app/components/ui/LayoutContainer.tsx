@@ -4,35 +4,9 @@ import { FC, ReactNode } from "react"
 import classNames from "classnames"
 
 // TYPES ---
-type LayoutContainerVariants = "none" | "flex" | "grid"
-type LayoutContainerDirection = "none" | "row" | "col"
-type LayoutContainerAlignmentX = "none" | "start" | "center" | "end"
-type LayoutContainerAlignmentY = "none" | "top" | "center" | "bottom"
-type LayoutContainerPadding =
-  | "none"
-  | "standard"
-  | "small"
-  | "medium"
-  | "large"
-  | "xlarge"
-type LayoutContainerMargin =
-  | "none"
-  | "standard"
-  | "small"
-  | "medium"
-  | "large"
-  | "xlarge"
-type LayoutContainerGap =
-  | "none"
-  | "standard"
-  | "xsmall"
-  | "small"
-  | "medium"
-  | "large"
-  | "xlarge"
-
 export type LayoutContainerProps = {
-  variant?: LayoutContainerVariants
+  tag?: "div" | "span" | "section" | "aside"
+  variant: LayoutContainerVariants
   direction?: LayoutContainerDirection
   alignX?: LayoutContainerAlignmentX
   alignY?: LayoutContainerAlignmentY
@@ -44,12 +18,15 @@ export type LayoutContainerProps = {
 }
 
 // DYNAMIC STYLE MAPS ---
+type LayoutContainerVariants = "standard" | "flex" | "grid"
 const layoutContainerVariantsMap: { [key in LayoutContainerVariants]: string } =
   {
-    none: "",
+    standard: "",
     flex: "flex",
     grid: "grid",
   }
+
+type LayoutContainerDirection = "none" | "row" | "col"
 const layoutContainerDirectionMap: {
   [key in LayoutContainerDirection]: string
 } = {
@@ -57,6 +34,8 @@ const layoutContainerDirectionMap: {
   row: "flex-row",
   col: "flex-col",
 }
+
+type LayoutContainerAlignmentX = "none" | "start" | "center" | "end"
 const layoutContainerAlignmentXMap: {
   [key in LayoutContainerAlignmentX]: string
 } = {
@@ -65,6 +44,8 @@ const layoutContainerAlignmentXMap: {
   center: "justify-center items-center",
   end: "justify-end items-center",
 }
+
+type LayoutContainerAlignmentY = "none" | "top" | "center" | "bottom"
 const layoutContainerAlignmentYMap: {
   [key in LayoutContainerAlignmentY]: string
 } = {
@@ -73,14 +54,50 @@ const layoutContainerAlignmentYMap: {
   center: "items-center",
   bottom: "items-end",
 }
+
+type LayoutContainerPadding =
+  | "none"
+  | "standard"
+  | "small"
+  | "medium"
+  | "large"
+  | "xlarge"
+  | "xStandard"
+  | "xSmall"
+  | "xMedium"
+  | "xLarge"
+  | "xXlarge"
+  | "yStandard"
+  | "ySmall"
+  | "yMedium"
+  | "yLarge"
+  | "yXlarge"
 const layoutContainerPaddingMap: { [key in LayoutContainerPadding]: string } = {
   none: "p-0",
   standard: "p-4",
   small: "p-2",
   medium: "p-6",
   large: "p-10",
-  xlarge: "p-14",
+  xlarge: "px-14",
+  xStandard: "px-4",
+  xSmall: "px-2",
+  xMedium: "px-6",
+  xLarge: "px-10",
+  xXlarge: "px-14",
+  yStandard: "py-4",
+  ySmall: "py-2",
+  yMedium: "py-6",
+  yLarge: "py-10",
+  yXlarge: "py-14",
 }
+
+type LayoutContainerMargin =
+  | "none"
+  | "standard"
+  | "small"
+  | "medium"
+  | "large"
+  | "xlarge"
 const layoutContainerMarginMap: { [key in LayoutContainerMargin]: string } = {
   none: "m-0",
   standard: "m-4",
@@ -89,19 +106,29 @@ const layoutContainerMarginMap: { [key in LayoutContainerMargin]: string } = {
   large: "m-10",
   xlarge: "m-14",
 }
+
+type LayoutContainerGap =
+  | "none"
+  | "standard"
+  | "xsmall"
+  | "small"
+  | "medium"
+  | "large"
+  | "xlarge"
 const layoutContainerGapMap: { [key in LayoutContainerGap]: string } = {
   none: "gap-0",
   standard: "gap-4",
   xsmall: "gap-1",
   small: "gap-2",
-  medium: "gap-6",
-  large: "gap-10",
-  xlarge: "gap-14",
+  medium: "gap-5 lg:gap-6",
+  large: "gap-8 lg:gap-10",
+  xlarge: "gap-12 lg:gap-14",
 }
 
 // MAIN FUNCTION ---
 const LayoutContainer = ({
-  variant = "none",
+  variant = "standard",
+  tag = "div",
   direction = "none",
   alignX = "none",
   alignY = "none",
@@ -112,8 +139,9 @@ const LayoutContainer = ({
   children,
   ...props
 }: LayoutContainerProps) => {
+  const TagName = tag as keyof JSX.IntrinsicElements
   return (
-    <div
+    <TagName
       className={classNames([
         "",
         layoutContainerVariantsMap[variant],
@@ -127,7 +155,7 @@ const LayoutContainer = ({
       ])}
     >
       {children}
-    </div>
+    </TagName>
   )
 }
 
