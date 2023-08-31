@@ -4,7 +4,7 @@ import HelloWorld from "./hello.mdx"
 import CardSection from "@components/ui/Card"
 import ButtonCTA from "@components/form/ButtonCTA"
 import LayoutContainer from "@components/ui/LayoutContainer"
-import { Armchair } from "lucide-react"
+import { Armchair, TrafficCone, PocketKnife } from "lucide-react"
 
 export default function Home() {
   return (
@@ -12,11 +12,12 @@ export default function Home() {
       <Heading size="h1" weight="bold" padding="standard">
         Welcome to [Name] 👋
       </Heading>
-      <Paragraph>
+      <Paragraph weight="medium" color="secondary" size="large">
         Pick a product to get started for free.
         <em> No credit card required.</em>
       </Paragraph>
 
+      {/* FEATURED PRODUCT */}
       <CardSection
         id="featuredProduct"
         color="gradient3"
@@ -48,29 +49,34 @@ export default function Home() {
               className="mt-4"
             />
           </div>
-          <div className="flex grow items-center">
-            <Armchair className="max-h-56 w-full h-full " />
+          <div className="flex items-center">
+            <Armchair className="w-full max-h-40 h-full" />
           </div>
         </LayoutContainer>
       </CardSection>
 
+      {/* SECONDARY PRODUCTS */}
       <LayoutContainer
         variant="flex"
-        direction="row"
-        gap="standard"
+        direction="col"
+        gap="none"
         padding="none"
         margin="none"
-        className="lg:gap-6"
+        className="my-4 lg:gap-6 lg:flex-row"
       >
         <CardSection
           id="secondaryProductA"
           color="white"
           width="standard"
-          className="mb-8"
-          //  corners="none"
+          className=""
         >
+          <div className="flex flex-row justify-start w-10 h-10 lg:w-14 lg:h-14">
+            <TrafficCone className="max-h-40 h-full w-full" />
+          </div>
           <Heading size="h3">Secondary Product A</Heading>
-          <Paragraph>A short description of the product goes here.</Paragraph>
+          <Paragraph color="secondary">
+            A short description of the product goes here.
+          </Paragraph>
           <ButtonCTA
             variant="text"
             size="standardText"
@@ -84,11 +90,16 @@ export default function Home() {
           id="secondaryProductB"
           color="white"
           width="standard"
-          className="mb-8"
+          className=""
           // corners="none"
         >
+          <div className="flex flex-row justify-start w-10 h-10 lg:w-12 lg:h-12 mb-1">
+            <PocketKnife className="max-h-40 h-full w-full" />
+          </div>
           <Heading size="h3">Secondary Product B</Heading>
-          <Paragraph>A short description of the product goes here.</Paragraph>
+          <Paragraph color="secondary">
+            A short description of the product goes here.
+          </Paragraph>
           <ButtonCTA
             variant="text"
             size="standardText"

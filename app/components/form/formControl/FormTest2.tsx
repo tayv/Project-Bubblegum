@@ -59,7 +59,7 @@ const FormTest2: FC<FormProps> = ({
     <FormProvider {...methods}>
       <form
         id={id}
-        className="lg:col-span-3"
+        className="flex flex-col gap-6 max-w-screen-lg w-full items-center pb-32"
         onSubmit={methods.handleSubmit(onSubmit)} // use RHF's handleSubmit to prevent default form submission behavior
       >
         {children}
@@ -78,7 +78,7 @@ const FormTest2: FC<FormProps> = ({
       {/* ----------------------------- */}
 
       {/* Template starts ---------------------------------------------- */}
-      <div className="hidden lg:block lg:col-span-1 overflow-visible ">
+      <div className="hidden lg:block max-w-xs overflow-visible ">
         {/* div needed for sticky to work. Cannot use overflow: scroll/hidden/auto with sticky https://www.digitalocean.com/community/tutorials/css-position-sticky */}
         {/* select-none needed to prevent user from copying text from preview */}
         <div className="lg:sticky top-0 overflow-y-auto select-none">

@@ -82,9 +82,9 @@ const cardPaddingMap: { [key in CardPadding]: string } = {
 type CardMargin = "none" | "standard" | "small" | "medium" | "large"
 const cardMarginMap: { [key in CardMargin]: string } = {
   none: "",
-  standard: "my-4",
-  small: "my-1",
-  medium: "my-2",
+  standard: "",
+  small: "my-2",
+  medium: "my-4",
   large: "my-6",
 }
 

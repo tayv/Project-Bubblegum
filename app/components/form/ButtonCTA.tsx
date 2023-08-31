@@ -27,11 +27,11 @@ type ButtonCTASize =
   | "standardText"
   | "largeText"
 const buttonCTASizeMap: { [key in ButtonCTASize]: string } = {
-  standardButton: "gap-2 font-normal text-base py-4 px-6",
-  smallButton: "gap-1 font-normal text-sm py-2 px-4",
-  largeButton: "gap-3 font-medium text-xl py-6 px-8",
-  standardText: "font-semibold text-base gap-1",
-  largeText: "font-semibold text-xl gap-2",
+  standardButton: "gap-2 font-normal text-base lg:text-md py-4 px-6",
+  smallButton: "gap-1 font-normal text-sm lg:text-base py-2 px-4",
+  largeButton: "gap-3 font-medium text-xl lg:text-2xl py-6 px-8",
+  standardText: "font-semibold text-md lg:text-lg gap-1",
+  largeText: "font-semibold text-xl lg:text-2xl gap-2",
 }
 
 type ButtonCTAVariant =

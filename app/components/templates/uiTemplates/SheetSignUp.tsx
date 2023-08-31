@@ -80,7 +80,8 @@ const SheetSignUp: FC<SheetSignUpProps> = ({
   }
 
   return (
-    <div className="flex justify-center gap-[25px] mt-10 mb-28 ">
+    // Need lg:hidden otherwise on large screens the toolbox will be bumped to bottom instead of sticking to right column because the SheetSignUp div will be visually hidden but appear in the DOM and take up a grid column
+    <div className="flex justify-center gap-[25px] mt-10 mb-28 lg:hidden">
       <ModalSheet
         isSheetOpen={isSheetOpen}
         setIsSheetOpen={setIsSheetOpen}
