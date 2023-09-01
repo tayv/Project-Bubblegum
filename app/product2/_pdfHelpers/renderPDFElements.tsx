@@ -10,6 +10,7 @@ export type RenderPDFElementsProps = {
   contentArray: DocTemplateCommonType[0]["content"] // [0] index needed since map iterator refers to single objects not arrays
   sectionNumber: number
   selectedLocation: AllProductLocationKeys
+  parentIndex?: number
 }
 type ContentObjType = DocTemplateCommonType[0]["content"][0]
 
@@ -27,13 +28,15 @@ type AccumulatorType = {
 // Render functions for each content type
 const renderSectionTitle = (
   contentObjValue: ContentObjValueType,
-  sectionNumber: RenderPDFElementsProps["sectionNumber"]
+  sectionNumber: RenderPDFElementsProps["sectionNumber"],
+  parentIndex: RenderPDFElementsProps["parentIndex"]
 ) => (
   // bookmarks used by the pdf viewer. Not the same as build in anchor links used by TOC.
   <View
     wrap={false}
     style={pdfStyles.sectionTitle}
     {...{ bookmark: sectionNumber }}
+    key={"sectionTitle" + parentIndex}
   >
     <View style={pdfStyles.inlineItems}>
       <Text
@@ -47,14 +50,20 @@ const renderSectionTitle = (
   </View>
 )
 
-const renderHeader = (contentObjValue: ContentObjValueType) => (
-  <View style={pdfStyles.h1}>
+const renderHeader = (
+  contentObjValue: ContentObjValueType,
+  parentIndex: RenderPDFElementsProps["parentIndex"]
+) => (
+  <View key={"header" + parentIndex} style={pdfStyles.h1}>
     <Text>{contentObjValue}</Text>
   </View>
 )
 
-const renderSubheader = (contentObjValue: ContentObjValueType) => (
-  <View style={pdfStyles.h2}>
+const renderSubheader = (
+  contentObjValue: ContentObjValueType,
+  parentIndex: RenderPDFElementsProps["parentIndex"]
+) => (
+  <View key={"subHeader" + parentIndex} style={pdfStyles.h2}>
     <Text>{contentObjValue}</Text>
   </View>
 )
@@ -62,11 +71,16 @@ const renderSubheader = (contentObjValue: ContentObjValueType) => (
 const renderParagraph = (
   contentObjValue: ContentObjValueType,
   sectionNumber: RenderPDFElementsProps["sectionNumber"],
-  paragraphNumber: AccumulatorType["paragraphNumber"]
+  paragraphNumber: AccumulatorType["paragraphNumber"],
+  parentIndex: RenderPDFElementsProps["parentIndex"]
 ): React.ReactNode[] | null => {
   if (Array.isArray(contentObjValue)) {
     return contentObjValue.map((paragraph, index) => (
-      <View key={index} style={pdfStyles.paragraph} wrap={false}>
+      <View
+        key={"para" + sectionNumber + paragraphNumber + index}
+        style={pdfStyles.paragraph}
+        wrap={false}
+      >
         <View style={pdfStyles.inlineItems}>
           <Text style={pdfStyles.numberParagraph}>{`${sectionNumber}.${
             paragraphNumber + index
@@ -80,13 +94,20 @@ const renderParagraph = (
   return null
 }
 
-const renderListUnordered = (contentObjValue: ContentObjValueType) => {
+const renderListUnordered = (
+  contentObjValue: ContentObjValueType,
+  parentIndex: RenderPDFElementsProps["parentIndex"]
+) => {
   if (Array.isArray(contentObjValue)) {
     // type guard as value has string or array type
     return (
-      <View wrap={false} style={pdfStyles.listUnordered}>
+      <View
+        key={"fullUOList" + parentIndex}
+        wrap={false}
+        style={pdfStyles.listUnordered}
+      >
         {contentObjValue.map((item, index) => (
-          <Text key={index}>- {item}</Text>
+          <Text key={"uoList" + index}>- {item}</Text>
         ))}
       </View>
     )
@@ -95,13 +116,20 @@ const renderListUnordered = (contentObjValue: ContentObjValueType) => {
   }
 }
 
-const renderListOrdered = (contentObjValue: ContentObjValueType) => {
+const renderListOrdered = (
+  contentObjValue: ContentObjValueType,
+  parentIndex: RenderPDFElementsProps["parentIndex"]
+) => {
   if (Array.isArray(contentObjValue)) {
     // type guard as value has string or array type
     return (
-      <View wrap={false} style={pdfStyles.listOrdered}>
+      <View
+        key={"fullOLLIst" + parentIndex}
+        wrap={false}
+        style={pdfStyles.listOrdered}
+      >
         {contentObjValue.map((item, index) => (
-          <Text key={index}>{`${index + 1}. ${item}`}</Text>
+          <Text key={"olList" + index}>{`${index + 1}. ${item}`}</Text>
         ))}
       </View>
     )
@@ -165,7 +193,7 @@ export const renderPDFElements = ({
         // ----- 3.a Check if paragraph since it has unique logic to update the paragraphNumber and returns array instead of jsx element -----
         if (contentObj.type === "paragraph") {
           const renderedParagraphs: React.ReactNode[] | JSX.Element | null =
-            render(contentObj.value, sectionNumber, paragraphNumber)
+            render(contentObj.value, sectionNumber, paragraphNumber, index)
 
           // 3.b Need a type guard here since only renderParagraph returns an array (alternative is to refactor to return array for all render functions)
           if (Array.isArray(renderedParagraphs)) {
@@ -180,7 +208,8 @@ export const renderPDFElements = ({
           const renderedComponent = render(
             contentObj.value,
             sectionNumber,
-            paragraphNumber
+            paragraphNumber,
+            index // used for keys in render functions
           )
           components = [...components, renderedComponent]
         }

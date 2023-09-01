@@ -25,14 +25,10 @@ const ModalAlert: FC<ModalAlertProps> = ({
 }) => {
   return (
     <AlertDialogRadix.Root>
-      <AlertDialogRadix.Trigger asChild>
-        <button className="items-center justify-center inline-flex h-10 px-4 font-medium text-slate-500 bg-slate-200 hover:bg-white rounded-lg leading-none outline-none border border-slate-300 hover-border-slate-100 focus:shadow-[0_0_0_2px] shadow focus:shadow-sky-400">
-          ↩️ Reset Form
-        </button>
-      </AlertDialogRadix.Trigger>
+      <AlertDialogRadix.Trigger asChild>{children}</AlertDialogRadix.Trigger>
       <AlertDialogRadix.Portal>
-        <AlertDialogRadix.Overlay className="bg-black/40 data-[state=open]:animate-overlayShow fixed inset-0" />
-        <AlertDialogRadix.Content className="data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] max-h-[85vh] w-[90vw] max-w-[500px] translate-x-[-50%] translate-y-[-50%] rounded-[6px] bg-white p-[25px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none">
+        <AlertDialogRadix.Overlay className="z-50 bg-black/40 data-[state=open]:animate-overlayShow fixed inset-0" />
+        <AlertDialogRadix.Content className="z-50 data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] max-h-[85vh] w-[90vw] max-w-[500px] translate-x-[-50%] translate-y-[-50%] rounded-[6px] bg-white p-[25px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none">
           <AlertDialogRadix.Title className="text-slate-500 m-0 text-[17px] font-medium">
             {title}
           </AlertDialogRadix.Title>

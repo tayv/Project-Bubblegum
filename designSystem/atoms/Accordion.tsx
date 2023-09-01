@@ -18,7 +18,7 @@ type MyAccordionProps = {
 type ToggleStyle = "standard" | "shrink"
 const ToggleStyleMap: { [key in ToggleStyle]: string } = {
   standard: "",
-  shrink: "flex flex-col shrink",
+  shrink: "flex flex-col shrink", // used by Calendar for shrinking effect on toggle
 }
 
 type AccordionStyle = "standard" | "warning" | "tip"
@@ -87,6 +87,7 @@ const Accordion: FC<MyAccordionProps> = ({
   collapsible = true,
   ToggleStyle = "standard",
   accordionStyle = "standard",
+  // className,
 }) => (
   <AccordionRadix.Root
     type={type}
@@ -95,7 +96,7 @@ const Accordion: FC<MyAccordionProps> = ({
     className={classNames([
       "max-w-lg", // standard css styles go here.
       ToggleStyleMap[ToggleStyle],
-      // className
+      //className,
     ])}
   >
     {renderAccordionItems(items, accordionStyle)}

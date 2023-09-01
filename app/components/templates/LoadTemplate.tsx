@@ -4,7 +4,7 @@ import { FC } from "react"
 import Product1Template from "@product1/product1Template.mdx"
 import Product1TemplateB from "@product1/product1TemplateB.mdx"
 import { useFormContext, useWatch } from "react-hook-form"
-import { ProductNameProps } from "@template/templateTypes"
+import { ProductNameProps } from "@components/templates/templateTypes"
 
 export type LoadTemplateProps = {
   watchedInputName?: "jurisdiction"

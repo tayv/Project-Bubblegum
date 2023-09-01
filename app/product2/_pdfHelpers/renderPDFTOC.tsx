@@ -25,7 +25,7 @@ export const renderPDFTOC = ({
             return (
               <Link
                 wrap={false}
-                key={sectionNumber}
+                key={"sectionTitle" + sectionNumber}
                 src={`#${sectionNumber}`}
                 style={pdfStyles.tocItems}
               >
