@@ -5,7 +5,7 @@ import React from "react"
 import { PageContextType } from "@components/templates/templateTypes"
 import Heading from "@ui/Heading"
 import Paragraph from "@ui/Paragraph"
-import FormTest2 from "@formControl/FormTest2"
+import Form from "@components/form/formControl/Form"
 import Field from "@formControl/Field"
 import Checkbox from "@components/form/Checkbox"
 import Input from "@components/form/Input"
@@ -107,7 +107,7 @@ const Product2 = () => {
             </PDFViewer>
           ) : null}
 
-          <FormTest2
+          <Form
             id="product1Form"
             defaultValues={defaultValues}
             zodSchema={zodSchema}
@@ -222,7 +222,7 @@ const Product2 = () => {
                 </Field.Control>
               </Field>
             </Card>
-          </FormTest2>
+          </Form>
         </div>
       </PageContext.Provider>
     </>

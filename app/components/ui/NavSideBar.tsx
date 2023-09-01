@@ -6,7 +6,7 @@ import { UserButton, SignedIn, SignedOut, SignInButton } from "@clerk/nextjs"
 import Link from "next/link"
 import NavHorizontal from "./NavHorizontal"
 import { Frame, LogIn } from "lucide-react"
-import Divider from "@designSystem/atoms/Divider"
+import Divider from "@ui/Divider"
 
 type NavSideBarStyle = "selected" | "notSelected"
 type ArticleList = { title: string; path?: string; groupTitle?: boolean }[] // This is the list of articles that will be displayed in the side nav

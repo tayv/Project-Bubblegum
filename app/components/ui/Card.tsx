@@ -55,11 +55,11 @@ const cardColorMap: { [key in CardColor]: string } = {
   black: "bg-gradient-to-r from-gray-700 via-gray-900 to-black",
   glass: " backdrop-blur-sm bg-white/60 drop-shadow",
   gradient1:
-    "bg-[radial-gradient(ellipse_at_left,_var(--tw-gradient-stops))] from-blue-400 via-zinc-400 to-rose-300 hover:mix-blend-multiply hover:ring-8 hover:ring-blue-200/40",
+    "bg-gradient-to-br from-orange-400 via-red-400 to-rose-400 hover:mix-blend-multiply hover:ring-8 hover:ring-orange-200/40",
   gradient2:
     "bg-gradient-to-r from-indigo-200 via-red-200 to-yellow-100 hover:mix-blend-multiply hover:ring-8 hover:ring-indigo-200/40",
   gradient3:
-    "bg-[conic-gradient(at_top,_var(--tw-gradient-stops))] from-yellow-200 via-emerald-200 to-yellow-200 hover:mix-blend-multiply hover:ring-8 hover:ring-emerald-200/40 ",
+    "bg-[conic-gradient(at_top,_var(--tw-gradient-stops))] from-emerald-200 via-yellow-200 to-emerald-200 hover:mix-blend-multiply hover:ring-8 hover:ring-emerald-200/40 ",
   gradient4:
     "bg-[conic-gradient(at_right,_var(--tw-gradient-stops))] from-indigo-200 via-slate-600 to-indigo-200 hover:mix-blend-multiply hover:ring-8 hover:ring-indigo-200/40",
   gradient5:
