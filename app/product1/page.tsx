@@ -6,7 +6,7 @@ import Product1Template from "@product1/product1Template.mdx"
 import { PageContextType } from "@components/templates/templateTypes"
 import Heading from "@ui/Heading"
 import Paragraph from "@ui/Paragraph"
-import Form from "@formControl/Form"
+import Form from "@components/form/formControl/Form"
 import Field from "@formControl/Field"
 import Checkbox from "@components/form/Checkbox"
 import Input from "@components/form/Input"
@@ -53,6 +53,7 @@ const Product1 = () => {
 
   // Setup initial state
   const [formData, setformData] = useState({})
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false) // For rendering next step (ie. open SignUpSheet)
 
   // Setup pg context values to pass to template
   const pageContextValue = {
@@ -68,6 +69,9 @@ const Product1 = () => {
     console.log("Form submitted. data:", data, "Submit form - errors", Error)
     console.log("event:", event)
     const body = data
+
+    setIsFormSubmitted(true) // so we can load the next step after form is submitted (modal or document viewer)
+
     try {
       const response = await fetch("/api/inquiry", {
         method: "POST",
@@ -93,7 +97,7 @@ const Product1 = () => {
       <Heading size="h1" weight="bold" padding="none">
         Product 1
       </Heading>
-      <Paragraph>This is a test form page with app router.</Paragraph>
+      <Paragraph>This is a test form using MDX to build a document.</Paragraph>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 w-full xl:max-w-1400">
         <Form
@@ -103,72 +107,82 @@ const Product1 = () => {
           onSubmit={onSubmit}
           buttonLabel="Submit Form"
           productName="product1"
+          isFormSubmitted={isFormSubmitted}
+          setIsFormSubmitted={setIsFormSubmitted}
         >
-          <Field name="jurisdiction" validateOnBlur={false}>
-            <Field.GroupLabel>Location Select:</Field.GroupLabel>
-            <Field.Tip>
-              The template and template content can be customized by location.
-            </Field.Tip>
-            <Field.Control>
-              <Select
-                placeholder="Select an option"
-                itemOptions={[
-                  {
-                    value: "location1",
-                    labelText: "Location 1",
-                    separator: false,
-                  },
-                  {
-                    value: "location2",
-                    labelText: "Location 2",
-                    separator: false,
-                  },
-                  {
-                    value: "location3",
-                    labelText: "Location 3",
-                    separator: false,
-                  },
-                ]}
-              />
-            </Field.Control>
-          </Field>
+          <Card id="jurisdiction">
+            <Field name="jurisdiction" validateOnBlur={false}>
+              <Field.GroupLabel>Location Select:</Field.GroupLabel>
+              <Field.Tip>
+                The template and template content can be customized by location.
+              </Field.Tip>
+              <Field.Control>
+                <Select
+                  placeholder="Select an option"
+                  itemOptions={[
+                    {
+                      value: "location1",
+                      labelText: "Location 1",
+                      separator: false,
+                    },
+                    {
+                      value: "location2",
+                      labelText: "Location 2",
+                      separator: false,
+                    },
+                    {
+                      value: "location3",
+                      labelText: "Location 3",
+                      separator: false,
+                    },
+                  ]}
+                />
+              </Field.Control>
+            </Field>
+          </Card>
 
-          <Field
-            name="checkboxExample"
-            //validateOnBlur={false}
-          >
-            <Field.GroupLabel>Standard checkbox:</Field.GroupLabel>
-            <Field.Control>
-              <Checkbox>This is a label</Checkbox>
-            </Field.Control>
-          </Field>
+          <Card id="checkboxSection">
+            <Field
+              name="checkboxExample"
+              //validateOnBlur={false}
+            >
+              <Field.GroupLabel>Standard checkbox:</Field.GroupLabel>
+              <Field.Control>
+                <Checkbox>This is a label</Checkbox>
+              </Field.Control>
+            </Field>
+          </Card>
 
-          <Field
-            name="radioExample"
-            //validateOnBlur={false}
-          >
-            <Field.GroupLabel>Standard radio:</Field.GroupLabel>
-            <Field.Control>
-              <RadioGroup
-                variant="button"
-                options={[
-                  { value: "option1", label: "Option 1" },
-                  { value: "option2", label: "Option 2" },
-                  { value: "option3", label: "Option 3" },
-                ]}
-              />
-            </Field.Control>
-          </Field>
+          <Card id="radioSection">
+            <Field
+              name="radioExample"
+              //validateOnBlur={false}
+            >
+              <Field.GroupLabel>Standard radio:</Field.GroupLabel>
+              <Field.Control>
+                <RadioGroup
+                  variant="button"
+                  options={[
+                    { value: "option1", label: "Option 1" },
+                    { value: "option2", label: "Option 2" },
+                    { value: "option3", label: "Option 3" },
+                  ]}
+                />
+              </Field.Control>
+            </Field>
+          </Card>
 
-          <Field
-            name="textExample"
-            //validateOnBlur={false}
-          >
-            <Field.GroupLabel>Standard text input:</Field.GroupLabel>
-            <Field.Control>
-              <Input type="text" />
-            </Field.Control>
-          </Field>
+          <Card id="textSection">
+            <Field
+              name="textExample"
+              //validateOnBlur={false}
+            >
+              <Field.GroupLabel>Standard text input:</Field.GroupLabel>
+              <Field.Control>
+                <Input type="text" />
+              </Field.Control>
+            </Field>
+          </Card>
         </Form>
       </div>
 
