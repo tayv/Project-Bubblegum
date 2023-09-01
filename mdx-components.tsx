@@ -40,7 +40,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <Divider
         variant="horizontal"
         color="standard"
-        size="standard"
+        stroke="standard"
         padding="large"
       />
     ),

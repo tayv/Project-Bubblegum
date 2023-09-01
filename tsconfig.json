@@ -21,7 +21,8 @@
       "@formControl/*": ["app/components/form/formControl/*"],
       "@formActions/*": ["app/components/form/formActions/*"],
       "@ui/*": ["app/components/ui/*"],
-      "@template/*": ["app/components/template/*"],
+      "@templates/*": ["app/components/templates/*"],
+      "@uiTemplates/*": ["app/components/templates/uiTemplates/*"],
 
       "@hooks/*": ["app/hooks/*"],
       "@utils/*": ["app/utils/*"],
@@ -37,7 +38,7 @@
       "@layouts/*": ["designSystem/layouts/*"],
       "@styles/*": ["styles/*"],
       "@helpers/*": ["designSystem/molecules/*"],
-      "@templates/*": ["designSystem/templates/*"],
+      //"@templates/*": ["designSystem/templates/*"],
       // "@utils/*": ["utils/*"],
       "@docs/*": ["pages/docs/*"],
       "@restricted/*": ["pages/restricted/*"] // private pages for authenticated users
