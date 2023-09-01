@@ -78,7 +78,7 @@ const NavSideBar: FC<NavSideBarProps> = ({ articleList, ...props }) => {
                             // sideNavStyleMap[isSelected],
                           ])}
                         >
-                          <span className="flex-1 ml-1 text-sm ">
+                          <span className="flex-1 ml-1 text-normal ">
                             {article.title}
                           </span>
                         </a>

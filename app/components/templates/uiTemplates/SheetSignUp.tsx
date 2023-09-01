@@ -14,7 +14,7 @@ import Paragraph from "@ui/Paragraph"
 import Field from "@formControl/Field"
 import Input from "@form/Input"
 import Checkbox from "@form/Checkbox"
-import CardSection from "@components/ui/Card"
+import Card from "@components/ui/Card"
 import ButtonCTA from "@form/ButtonCTA"
 import LayoutContainer from "@components/ui/LayoutContainer"
 import Space from "@components/ui/Space"
@@ -102,7 +102,7 @@ const SheetSignUp: FC<SheetSignUpProps> = ({
               className="lg:col-span-3"
               onSubmit={handleSignUpSubmit}
             >
-              <CardSection id="signupModalContent" color="none">
+              <Card id="signupModalContent" color="none">
                 <Heading size="h2">Last step ...</Heading>
                 <Paragraph>
                   Your document contains sensitive information. Protect your
@@ -111,7 +111,7 @@ const SheetSignUp: FC<SheetSignUpProps> = ({
                 </Paragraph>
                 <Field
                   name="userEmailInput"
-                  //</CardSection>validateOnBlur={true}
+                  //</Card>validateOnBlur={true}
                 >
                   <Field.GroupLabel>Email:</Field.GroupLabel>
                   <Field.Tip>
@@ -178,7 +178,7 @@ const SheetSignUp: FC<SheetSignUpProps> = ({
                     Sign In
                   </button>
                 </LayoutContainer>
-              </CardSection>
+              </Card>
             </form>
           </FormProvider>
         </div>

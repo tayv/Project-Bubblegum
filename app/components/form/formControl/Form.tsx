@@ -8,7 +8,7 @@ import LoadTemplate from "@components/templates/LoadTemplate"
 import { ProductNameProps } from "@components/templates/templateTypes"
 import ModalAlert from "@ui/ModalAlert"
 import ModalViewDoc from "@ui/ModalViewDoc"
-import CardSection from "@components/ui/Card"
+import Card from "@components/ui/Card"
 
 export type FormProps = {
   id: string
@@ -87,9 +87,9 @@ const Form: FC<FormProps> = ({
         {/* div needed for sticky to work. Cannot use overflow: scroll/hidden/auto with sticky https://www.digitalocean.com/community/tutorials/css-position-sticky */}
         {/* select-none needed to prevent user from copying text from preview */}
         <div className="sticky top-0 overflow-y-auto select-none">
-          <CardSection id="loadTemplatePreviewSection">
+          <Card id="loadTemplatePreviewSection">
             <LoadTemplate productName={productName} />
-          </CardSection>
+          </Card>
         </div>
       </div>
       {/* Template ends ---------------------------------------------- */}

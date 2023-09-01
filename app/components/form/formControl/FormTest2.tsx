@@ -7,7 +7,7 @@ import * as z from "zod"
 import { ProductNameProps } from "@components/templates/templateTypes"
 import ModalAlert from "@ui/ModalAlert"
 import ModalViewDoc from "@ui/ModalViewDoc"
-import CardSection from "@components/ui/Card"
+import Card from "@components/ui/Card"
 import DynamicPDF from "@product2/DynamicPDF"
 //import { PDFViewer } from "@react-pdf/renderer"
 
@@ -82,7 +82,7 @@ const FormTest2: FC<FormProps> = ({
         {/* div needed for sticky to work. Cannot use overflow: scroll/hidden/auto with sticky https://www.digitalocean.com/community/tutorials/css-position-sticky */}
         {/* select-none needed to prevent user from copying text from preview */}
         <div className="lg:sticky top-0 overflow-y-auto select-none">
-          <CardSection id="loadTemplatePreviewSection">
+          <Card id="loadTemplatePreviewSection">
             <div className="flex flex-row gap-2">
               <Wrench />
               TODO: Toolbox goes here
@@ -99,7 +99,7 @@ const FormTest2: FC<FormProps> = ({
                 <DynamicPDF formData={methods.getValues()} />
               </PDFViewer>
             </ModalViewDoc>
-          </CardSection>
+          </Card>
         </div>
       </div>
 

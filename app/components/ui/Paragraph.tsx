@@ -12,6 +12,7 @@ export type ParagraphProps = {
   variant?: ParagraphVariant
   space?: ParagraphSpace
   textAlign?: ParagraphTextAlign
+  indent?: ParagraphIndent
   padding?: ParagraphPadding
   className?: string
 }
@@ -113,6 +114,14 @@ const paragraphPaddingMap: { [key in ParagraphPadding]: string } = {
   xxl: "py-10",
 }
 
+type ParagraphIndent = "none" | "small" | "medium" | "large"
+const paragraphIndentMap: { [key in ParagraphIndent]: string } = {
+  none: "",
+  small: "indent-2",
+  medium: "indent-4",
+  large: "indent-6",
+}
+
 // MAIN FUNCTION ---
 const Paragraph: FC<ParagraphProps> = ({
   size = "standard",
@@ -122,6 +131,7 @@ const Paragraph: FC<ParagraphProps> = ({
   space = "standard",
   variant = "primary",
   textAlign = "none",
+  indent = "none",
   padding = "standard",
   className = "",
   children,
@@ -137,6 +147,7 @@ const Paragraph: FC<ParagraphProps> = ({
         paragraphWeightMap[weight],
         paragraphVariantMap[variant],
         paragraphTextAlignMap[textAlign],
+        paragraphIndentMap[indent],
         paragraphPaddingMap[padding],
         className, // custom styling passed as prop
       ])}

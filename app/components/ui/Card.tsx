@@ -14,6 +14,7 @@ type SharedCardProps = {
   corners?: CardCorners
   linkPath?: string
   className?: string
+  [key: string]: any // for ...props
 }
 
 export type CardProps = SharedCardProps & {
@@ -46,7 +47,8 @@ type CardColor =
   | "gradient6"
 const cardColorMap: { [key in CardColor]: string } = {
   none: "",
-  standard: "bg-white hover:bg-gray-100 hover:ring-8 hover:ring-slate-200/40",
+  standard:
+    "group bg-white hover:bg-gray-100 hover:ring-8 hover:ring-slate-200/40",
   light: "bg-white hover:slate-100  hover:ring-8 hover:ring-slate-100/40",
   dark: "bg-stone-800 hover:bg-stone-900 hover:mix-blend-multiply hover:ring-8 hover:ring-stone-900/40",
   white: "bg-white hover:bg-slate-100 hover:ring-8 hover:ring-slate-100/40",
@@ -121,9 +123,10 @@ const Card = ({
   corners = "standard",
   className = "", // to pass custom one-off styling
   children,
+  ...props
 }: CardProps | SectionCardProps) => {
   const TagName = variant as keyof JSX.IntrinsicElements
-  return (
+  const cardContent = (
     <TagName
       id={id}
       className={classNames([
@@ -135,10 +138,12 @@ const Card = ({
         cardCornersMap[corners],
         className,
       ])}
+      {...props}
     >
-      {linkPath ? <Link href={linkPath}>{children}</Link> : children}
+      {children}
     </TagName>
   )
+  return linkPath ? <Link href={linkPath}>{cardContent}</Link> : cardContent
 }
 
 export default Card

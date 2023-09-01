@@ -9,7 +9,7 @@ import { ProductNameProps } from "@components/templates/templateTypes"
 import ModalAlert from "@ui/ModalAlert"
 import ModalStandard from "@ui/ModalStandard"
 import ModalViewDoc from "@ui/ModalViewDoc"
-import CardSection from "@components/ui/Card"
+import Card from "@components/ui/Card"
 import { useReactToPrint } from "react-to-print"
 
 export type FormProps = {
@@ -115,11 +115,11 @@ const FormTest: FC<FormProps> = ({
         {/* div needed for sticky to work. Cannot use overflow: scroll/hidden/auto with sticky https://www.digitalocean.com/community/tutorials/css-position-sticky */}
         {/* select-none needed to prevent user from copying text from preview */}
         <div className="sticky top-0 overflow-y-auto select-none">
-          {/* <CardSection id="loadTemplatePreviewSection">
+          {/* <Card id="loadTemplatePreviewSection">
             <iframe ref={iframeRef}>
               <LoadTemplate productName={productName} />
             </iframe>
-          </CardSection> */}
+          </Card> */}
         </div>
 
         {/* <button onClick={handlePrint} className="items-center justify-center inline-flex h-10 px-4 font-medium text-slate-500 hover:bg-white rounded-lg leading-none outline-none focus:shadow-[0_0_0_2px] shadow focus:shadow-sky-400">

@@ -1,10 +1,11 @@
 import Heading from "@ui/Heading"
 import Paragraph from "@ui/Paragraph"
-import HelloWorld from "./hello.mdx"
 import Card from "@components/ui/Card"
 import ButtonCTA from "@components/form/ButtonCTA"
 import LayoutContainer from "@components/ui/LayoutContainer"
 import { Armchair, TrafficCone, PocketKnife } from "lucide-react"
+import Accordion from "@ui/Accordion"
+import Space from "@components/ui/Space"
 
 export default function Home() {
   return (
@@ -29,7 +30,12 @@ export default function Home() {
           <Heading size="h1" weight="bold" padding="standard">
             Welcome to [Name] 👋
           </Heading>
-          <Paragraph weight="medium" color="secondary" size="large">
+          <Paragraph
+            weight="medium"
+            color="secondary"
+            size="large"
+            className="pl-1"
+          >
             Pick a product to get started for free.
             <em> No credit card required.</em>
           </Paragraph>
@@ -49,6 +55,7 @@ export default function Home() {
             color="gradient3"
             width="standard"
             linkPath="/product2"
+            role="featuredProductCard"
           >
             <LayoutContainer
               variant="flex"
@@ -56,8 +63,9 @@ export default function Home() {
               padding="none"
               margin="none"
               gap="medium"
+              className="group/featuredProductCard"
             >
-              <div className="flex flex-col items-center py-2">
+              <div className="group/featuredProductCard flex flex-col items-center py-2">
                 <Paragraph weight="medium" size="large">
                   Featured Product
                 </Paragraph>
@@ -77,7 +85,7 @@ export default function Home() {
                   type="button"
                   buttonText="Create Product"
                   icon="none"
-                  className="mt-4"
+                  className="mt-4 group-hover/featuredProductCard:bg-sky-900"
                 />
               </div>
               <div className="flex items-center">
@@ -100,7 +108,7 @@ export default function Home() {
               linkPath="/product2"
               color="standard"
               width="standard"
-              className=""
+              className="group"
             >
               <div className="flex flex-row justify-start w-9 h-9 lg:w-12 lg:h-12 mb-2">
                 <TrafficCone className="max-h-40 h-full w-full" />
@@ -115,7 +123,7 @@ export default function Home() {
                 type="button"
                 buttonText="Create Product"
                 icon="arrowRight"
-                className=""
+                className=" group-hover:text-sky-900"
               />
             </Card>
             <Card
@@ -123,7 +131,7 @@ export default function Home() {
               linkPath="/product2"
               color="standard"
               width="standard"
-              className=""
+              className="group"
             >
               <div className="flex flex-row justify-start w-9 h-9 lg:w-12 lg:h-12 mb-2">
                 <PocketKnife className="max-h-40 h-full w-full" />
@@ -138,7 +146,7 @@ export default function Home() {
                 type="button"
                 buttonText="Create Product"
                 icon="arrowRight"
-                className=""
+                className="group-hover:text-sky-900"
               />
             </Card>
           </LayoutContainer>
@@ -160,7 +168,96 @@ export default function Home() {
             Some info about the company and how it works. Here’s some more
             information about how to create a document or use a product.
           </Paragraph>
+
+          {/* STEPS */}
+          <Card id="howStep1" color="none" width="standard" margin="standard">
+            <LayoutContainer
+              direction="row"
+              variant="flex"
+              padding="none"
+              margin="none"
+              gap="standard"
+            >
+              <div className="flex shrink-0 items-center justify-start w-12 border-r-2 border-sky-500 text-4xl font-bold">
+                1
+              </div>
+              <Paragraph color="secondary">
+                <span className="text-slate-900">A short summary.</span>{" "}
+                Followed by a brief description of the step here.
+              </Paragraph>
+            </LayoutContainer>
+          </Card>
+
+          <Card id="howStep2" color="none" width="standard" margin="standard">
+            <LayoutContainer
+              direction="row"
+              variant="flex"
+              padding="none"
+              margin="none"
+              gap="standard"
+            >
+              <div className="flex shrink-0 items-center justify-start w-12 border-r-2 border-sky-500 text-4xl font-bold">
+                2
+              </div>
+              <Paragraph color="secondary">
+                <span className="text-slate-900">A short summary.</span>{" "}
+                Followed by a brief description of the step here. Followed by a
+                brief description of the step here. Followed by a brief
+                description of the step here. Followed by a brief description of
+                the step here. Followed by a brief description of the step here.
+              </Paragraph>
+            </LayoutContainer>
+          </Card>
+
+          <Card id="howStep3" color="none" width="standard" margin="standard">
+            <LayoutContainer
+              direction="row"
+              variant="flex"
+              padding="none"
+              margin="none"
+              gap="standard"
+            >
+              <div className="flex shrink-0 items-center justify-start w-12 border-r-2 border-sky-500 text-4xl font-bold">
+                3
+              </div>
+              <Paragraph color="secondary">
+                <span className="text-slate-900">A short summary.</span>{" "}
+                Followed by a brief description of the step here.
+              </Paragraph>
+            </LayoutContainer>
+          </Card>
         </LayoutContainer>
+
+        {/* FAQs */}
+        <LayoutContainer
+          tag="section"
+          direction="col"
+          variant="flex"
+          // gap="medium"
+          padding="none"
+          margin="none"
+        >
+          <Heading size="h2" padding="standard">
+            Got questions?
+          </Heading>
+          <Paragraph>
+            This section is TBD. Will add accordions highlighting common
+            questions.
+          </Paragraph>
+
+          {/* <Accordion
+          type="single"
+          items={[
+            {
+              value: "accordionSingleExample",
+              headerText: "This is a single Accordion",
+              contentText: "Write your details here.",
+            },
+          ]}
+        /> */}
+        </LayoutContainer>
+
+        <Space ySize="xxlarge" />
       </LayoutContainer>
     </>
   )

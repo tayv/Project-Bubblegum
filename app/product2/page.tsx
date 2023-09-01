@@ -9,7 +9,7 @@ import FormTest2 from "@formControl/FormTest2"
 import Field from "@formControl/Field"
 import Checkbox from "@components/form/Checkbox"
 import Input from "@components/form/Input"
-import CardSection from "@components/ui/Card"
+import Card from "@components/ui/Card"
 import { useState, createContext } from "react"
 import RadioGroup from "@components/form/RadioGroup"
 import Select from "@components/form/Select"
@@ -117,7 +117,7 @@ const Product2 = () => {
             isFormSubmitted={isFormSubmitted}
             setIsFormSubmitted={setIsFormSubmitted}
           >
-            <CardSection id="location">
+            <Card id="location">
               <Heading size="h2" weight="bold">
                 Your location
               </Heading>
@@ -149,9 +149,9 @@ const Product2 = () => {
                   />
                 </Field.Control>
               </Field>
-            </CardSection>
+            </Card>
 
-            <CardSection id="conditionalFields">
+            <Card id="conditionalFields">
               <Heading size="h2" weight="bold">
                 Conditional fields
               </Heading>
@@ -188,9 +188,9 @@ const Product2 = () => {
                   />
                 </Field.Control>
               </Field>
-            </CardSection>
+            </Card>
 
-            <CardSection id="textInput">
+            <Card id="textInput">
               <Heading size="h2" weight="bold">
                 Party Names
               </Heading>
@@ -203,9 +203,9 @@ const Product2 = () => {
                   <Input type="text" />
                 </Field.Control>
               </Field>
-            </CardSection>
+            </Card>
 
-            <CardSection id="signing">
+            <Card id="signing">
               <Heading size="h2" weight="bold">
                 Signing
               </Heading>
@@ -221,7 +221,7 @@ const Product2 = () => {
                   />
                 </Field.Control>
               </Field>
-            </CardSection>
+            </Card>
           </FormTest2>
         </div>
       </PageContext.Provider>
