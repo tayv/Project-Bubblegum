@@ -67,7 +67,7 @@ export default function Home() {
             >
               <div className="group/featuredProductCard flex flex-col items-center py-2">
                 <Paragraph weight="medium" size="large">
-                  Featured Product
+                  Featured Product Name
                 </Paragraph>
                 <Heading color="standard" size="h2" textAlign="center">
                   Catchy product phrase goes here

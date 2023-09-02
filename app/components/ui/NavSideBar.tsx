@@ -1,11 +1,12 @@
 "use client"
 
 import { FC } from "react"
+import { usePathname } from "next/navigation"
 import classNames from "classnames"
 import { UserButton, SignedIn, SignedOut, SignInButton } from "@clerk/nextjs"
 import Link from "next/link"
 import NavHorizontal from "./NavHorizontal"
-import { Frame, LogIn } from "lucide-react"
+import { ArrowLeftCircle, Frame, LogIn } from "lucide-react"
 import Divider from "@ui/Divider"
 
 type NavSideBarStyle = "selected" | "notSelected"
@@ -13,7 +14,7 @@ type ArticleList = { title: string; path?: string; groupTitle?: boolean }[] // T
 export type NavSideBarProps = { articleList: ArticleList }
 
 const NavSideBar: FC<NavSideBarProps> = ({ articleList, ...props }) => {
-  // const { asPath } = useRouter() // This hook returns the current url path
+  const pathname = usePathname()
 
   // The styles for the side nav are set here
   const sideNavStyleMap: { [key in NavSideBarStyle]: string } = {
@@ -21,6 +22,7 @@ const NavSideBar: FC<NavSideBarProps> = ({ articleList, ...props }) => {
     selected:
       "cursor-default text-base text-pink-500 border-l-2 border-pink-500",
   }
+  console.log(pathname)
 
   return (
     <>
@@ -33,12 +35,20 @@ const NavSideBar: FC<NavSideBarProps> = ({ articleList, ...props }) => {
         aria-label="Navigation"
       >
         <div className="flex flex-row justify-between w-full py-2 lg:flex-col lg:gap-3">
-          <Link href="/" className="flex flex-row gap-2 items-center ">
-            <Frame />
-            <span className="lg:ml-0 text-xl whitespace-nowrap">
-              Brand Name
-            </span>
-          </Link>
+          {/* Give user a clearern way back on mobile. In future this will be dynamic as more pages added */}
+          {pathname !== "/" ? (
+            <Link href="/" className="flex flex-row gap-2 items-center ">
+              <ArrowLeftCircle />
+              <span className="lg:ml-0 text-xl whitespace-nowrap">Home</span>
+            </Link>
+          ) : (
+            <Link href="/" className="flex flex-row gap-2 items-center ">
+              <Frame />
+              <span className="lg:ml-0 text-xl whitespace-nowrap">
+                Brand Name
+              </span>
+            </Link>
+          )}
 
           <Link
             href="/"
