@@ -22,7 +22,6 @@ const NavSideBar: FC<NavSideBarProps> = ({ articleList, ...props }) => {
     selected:
       "cursor-default text-base text-pink-500 border-l-2 border-pink-500",
   }
-  console.log(pathname)
 
   return (
     <>

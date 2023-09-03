@@ -1,5 +1,5 @@
 "use client"
-import React, { FC, useRef } from "react"
+import { FC, useRef } from "react"
 import * as DialogRadix from "@radix-ui/react-dialog"
 import { X, Lock, ArrowDownToLine, Send, Pencil, Printer } from "lucide-react"
 import PrintButton from "@ui/PrintButton"
@@ -28,6 +28,7 @@ const ModalViewDoc: FC<ModalViewDocProps> = ({
   title,
   description,
   children,
+  ...props
 }) => {
   // Want focus to initially be on Print button. This allows secondary buttons to be ordered according to what's easiest to style
   const printButtonRef = useRef<HTMLButtonElement>(null)

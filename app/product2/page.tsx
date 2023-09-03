@@ -14,7 +14,7 @@ import { useState, createContext } from "react"
 import RadioGroup from "@components/form/RadioGroup"
 import Select from "@components/form/Select"
 
-import { PageContext } from "@components/templates/context"
+import { ProductContext } from "@contexts/ProductContext"
 
 import { pdfStyles } from "./_pdfHelpers/pdfStyles"
 import dynamic from "next/dynamic"
@@ -72,7 +72,7 @@ const Product2 = () => {
     setIsFormSubmitted(true) // so we can load the next step after form is submitted (modal or document viewer)
 
     try {
-      const response = await fetch("/api/inquiry", {
+      const response = await fetch("pages/api/inquiry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
@@ -93,7 +93,7 @@ const Product2 = () => {
 
   return (
     <>
-      <PageContext.Provider value={pageContextValue}>
+      <ProductContext.Provider value={pageContextValue}>
         <Heading size="h1" weight="bold" padding="standard">
           Product 2
         </Heading>
@@ -224,7 +224,7 @@ const Product2 = () => {
             </Card>
           </Form>
         </div>
-      </PageContext.Provider>
+      </ProductContext.Provider>
     </>
   )
 }

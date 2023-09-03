@@ -24,6 +24,7 @@
       "@templates/*": ["app/components/templates/*"],
       "@uiTemplates/*": ["app/components/templates/uiTemplates/*"],
 
+      "@contexts/*": ["app/contexts/*"],
       "@hooks/*": ["app/hooks/*"],
       "@utils/*": ["app/utils/*"],
       "@product1/*": ["app/product1/*"],
