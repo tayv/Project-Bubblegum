@@ -19,6 +19,7 @@ import dynamic from "next/dynamic"
 import ModalAlert from "@ui/ModalAlert"
 import { pdfStyles } from "@product2/_pdfHelpers/pdfStyles"
 import DynamicPDF from "@product2/DynamicPDF"
+import { useLoadPreviewPDF } from "@hooks/useLoadPreviewPDF"
 
 type PillBarProps = {
   methods: UseFormReturn // used so we can render preview of document in Toolbox for authenticated users
@@ -65,13 +66,8 @@ const ToolBox: FC<ToolBoxProps> = ({
     { ssr: false }
   )
 
-  // Use state so PDFViewer will rerender when new in-progress formData exists after button click
-  const [latestFormData, setlatestFormData] = useState(getValues())
-  // Pass this to ModalViewDoc so it will run onClick to open modal
-  const handlePreviewPDF = () => {
-    const updatedValue = getValues()
-    setlatestFormData(updatedValue)
-  }
+  // This hook gets use the latest form values based on when trigger button is clicked
+  const { handlePreviewPDF, latestFormData } = useLoadPreviewPDF()
 
   return (
     <>
