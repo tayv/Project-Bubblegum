@@ -23,6 +23,7 @@
       "@ui/*": ["app/components/ui/*"],
       "@templates/*": ["app/components/templates/*"],
       "@uiTemplates/*": ["app/components/templates/uiTemplates/*"],
+      "@buildDoc/*": ["app/components/buildDoc/*"],
 
       "@contexts/*": ["app/contexts/*"],
       "@hooks/*": ["app/hooks/*"],

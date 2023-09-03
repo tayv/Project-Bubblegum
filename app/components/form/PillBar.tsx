@@ -65,6 +65,14 @@ const ToolBox: FC<ToolBoxProps> = ({
     { ssr: false }
   )
 
+  // Use state so PDFViewer will rerender when new in-progress formData exists after button click
+  const [latestFormData, setlatestFormData] = useState(getValues())
+  // Pass this to ModalViewDoc so it will run onClick to open modal
+  const handlePreviewPDF = () => {
+    const updatedValue = getValues()
+    setlatestFormData(updatedValue)
+  }
+
   return (
     <>
       <div className="lg:hidden flex gap-4 justify-between items-center h-10 w-full max-w-md p-4 bg-slate-300 shadow sm:rounded-lg">
@@ -89,9 +97,9 @@ const ToolBox: FC<ToolBoxProps> = ({
           triggerText="Preview Doc"
           title="Document Title"
           description="This is a description"
-          formData={getValues()}
+          formData={latestFormData}
+          handlePreviewPDF={handlePreviewPDF}
         >
-          {/* BUG: Need to trigger re-render when click on button. Currently only re-renders after text changes because it validates onBlur */}
           {/* Need to pass formData directly as prop instead of useFormContext() or passing all methods because PDFViewer creates a separate context */}
           <PDFViewer style={pdfStyles.pdfViewer}>
             <DynamicPDF formData={getValues()} />

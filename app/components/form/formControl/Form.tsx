@@ -103,9 +103,6 @@ const Form: FC<FormProps> = ({
           </Card>
         </div>
       </div>
-      <PDFViewer style={pdfStyles.pdfViewer}>
-        <DynamicPDF formData={methods.getValues()} />
-      </PDFViewer>
 
       {/* Template ends ---------------------------------------------- */}
     </FormProvider>
