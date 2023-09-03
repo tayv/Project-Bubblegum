@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation"
 import { FC, useState, useContext, useEffect } from "react"
-import { PageContext } from "@components/templates/context"
+import { ProductContext } from "@contexts/ProductContext"
 import * as z from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm, FormProvider } from "react-hook-form"

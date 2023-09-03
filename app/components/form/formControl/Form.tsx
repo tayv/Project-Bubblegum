@@ -49,13 +49,14 @@ const Form: FC<FormProps> = ({
   const methods = useForm({ resolver: zodResolver(zodSchema), defaultValues })
   const formHasErrors = Object.keys(methods.formState.errors).length > 0
 
-  // Dynamically import PDFViewer to fix build bug since Next uses SSR
+  // Dynamically import PDFViewer to fix build bug since Next uses SSR. See: https://www.youtube.com/watch?v=HhLa-D0SXlI
   const PDFViewer = dynamic(
     () => import("@react-pdf/renderer").then((mod) => mod.PDFViewer),
     { ssr: false }
   )
 
   return (
+    // FormProvider needed for Field component and preview in ToolBox
     <FormProvider {...methods}>
       <form
         id={id}
@@ -66,7 +67,7 @@ const Form: FC<FormProps> = ({
 
         <ButtonCTA formID={id} type="submit" formHasErrors={formHasErrors} />
 
-        <PillBar variant="standard" />
+        <PillBar methods={methods} variant="standard" />
       </form>
 
       {/* --------- Note: sign up sheet needs to be outside form so the nested submit button won't submit parent form --------------- */}

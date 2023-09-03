@@ -15,7 +15,7 @@ const HideContent: FC<HideContentProps> = ({
   children,
 }) => {
   // RHF Setup ----------------------------
-  // Watch input value with RHF so don't need to pass formData via PageContext and manually handle defaultValues
+  // Watch input value with RHF so don't need to pass formData via ProductContext and manually handle defaultValues
   const { control } = useFormContext()
   // Check as must be child of RHF FormContext.Provider to use useFormContext()
   if (!control) {
@@ -30,7 +30,7 @@ const HideContent: FC<HideContentProps> = ({
   const watchedInputValue = useWatch({
     control,
     name: watchedInputName,
-    // defaultValue: // keep this disabled or the defaultValues won't auto load on initial render and will have to manually pass defaultValues via PageContext
+    // defaultValue: // keep this disabled or the defaultValues won't auto load on initial render and will have to manually pass defaultValues via ProductContext
   })
   // End RHF Setup -------------------------------------
 

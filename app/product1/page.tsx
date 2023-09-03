@@ -15,7 +15,7 @@ import { useState, createContext } from "react"
 import RadioGroup from "@components/form/RadioGroup"
 import Select from "@components/form/Select"
 import product1SchemaTest from "@product1/product1SchemaTest.json"
-import { PageContext } from "@components/templates/context"
+import { ProductContext } from "@contexts/ProductContext"
 import ModalStandard from "@components/ui/ModalStandard"
 import ModalViewDoc from "@components/ui/ModalViewDoc"
 import { PDFViewer, StyleSheet } from "@react-pdf/renderer"
@@ -93,7 +93,7 @@ const Product1 = () => {
   }
 
   return (
-    <PageContext.Provider value={pageContextValue}>
+    <ProductContext.Provider value={pageContextValue}>
       <Heading size="h1" weight="bold" padding="none">
         Product 1
       </Heading>
@@ -192,7 +192,7 @@ const Product1 = () => {
         description="This is a description"
         formData={formData}
       ></ModalViewDoc>
-    </PageContext.Provider>
+    </ProductContext.Provider>
   )
 }
 

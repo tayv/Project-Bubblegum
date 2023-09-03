@@ -1,7 +1,15 @@
 "use client"
-import React, { FC, useRef } from "react"
+import { FC, useRef } from "react"
 import * as DialogRadix from "@radix-ui/react-dialog"
-import { X, Lock, ArrowDownToLine, Send, Pencil, Printer } from "lucide-react"
+import {
+  X,
+  Lock,
+  ArrowDownToLine,
+  Send,
+  Pencil,
+  Printer,
+  View,
+} from "lucide-react"
 import PrintButton from "@ui/PrintButton"
 import { useReactToPrint } from "react-to-print"
 import { PDFDownloadLink, PDFViewer, pdf } from "@react-pdf/renderer"
@@ -13,6 +21,7 @@ export type ModalViewDocProps = {
   formData: FormDataType
   triggerText: string
   triggerType?: "button" | "text"
+  handlePreviewPDF?: React.MouseEventHandler<HTMLButtonElement> // used when displaying a PDF inside an unfinished form
   title: string
   description: string
   confirmText?: string
@@ -28,6 +37,8 @@ const ModalViewDoc: FC<ModalViewDocProps> = ({
   title,
   description,
   children,
+  handlePreviewPDF, // used to ensure we have latest formData for forms still in progress
+  ...props
 }) => {
   // Want focus to initially be on Print button. This allows secondary buttons to be ordered according to what's easiest to style
   const printButtonRef = useRef<HTMLButtonElement>(null)
@@ -49,7 +60,11 @@ const ModalViewDoc: FC<ModalViewDocProps> = ({
     <DialogRadix.Root>
       <DialogRadix.Trigger asChild>
         {triggerType === "button" ? (
-          <button className="items-center justify-center inline-flex h-10 px-4 font-medium text-slate-500 hover:bg-white rounded-lg leading-none outline-none focus:shadow-[0_0_0_2px] shadow-md focus:shadow-sky-400">
+          <button
+            onClick={handlePreviewPDF}
+            className="flex flex-row gap-1 p-2"
+          >
+            <View />
             {triggerText}
           </button>
         ) : (
@@ -95,11 +110,6 @@ const ModalViewDoc: FC<ModalViewDocProps> = ({
               >
                 {children}
               </div>
-              {/* <PrintButton onClick={handlePrint}>
-                <Printer className="w-4" />
-                Print
-              </PrintButton> */}
-              <button onClick={() => window.print()}>Print</button>
             </div>
 
             {/* -------- Sticky bottom section starts here -------- */}

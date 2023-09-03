@@ -1,7 +1,7 @@
 "use client"
 
 import React, { FC, useContext, useEffect } from "react"
-import { PageContext } from "@components/templates/context"
+import { ProductContext } from "@contexts/ProductContext"
 import { useFormContext, useWatch } from "react-hook-form"
 import {
   PageContextType,
@@ -55,10 +55,10 @@ const DynamicUserContent: FC<DynamicUserContentProps> = ({
   emptySize = "standard",
 }) => {
   // Get context from Page
-  const contextValue = useContext(PageContext)
+  const contextValue = useContext(ProductContext)
   if (!contextValue) {
     throw new Error(
-      "DynamicUserContent must be used within a PageContext provider"
+      "DynamicUserContent must be used within a ProductContext provider"
     )
   }
 
@@ -74,7 +74,7 @@ const DynamicUserContent: FC<DynamicUserContentProps> = ({
   const watchedInputValue = useWatch({
     control,
     name: watchedInputName,
-    // defaultValue: // keep this disabled or the defaultValues won't auto load on initial render. Will have to manually pass defaultValues via PageContext
+    // defaultValue: // keep this disabled or the defaultValues won't auto load on initial render. Will have to manually pass defaultValues via ProductContext
   })
 
   return (
