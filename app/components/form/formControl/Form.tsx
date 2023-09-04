@@ -9,6 +9,7 @@ import ModalAlert from "@ui/ModalAlert"
 import ModalViewDoc from "@ui/ModalViewDoc"
 import Card from "@components/ui/Card"
 import DynamicPDF from "@product2/DynamicPDF"
+import { useLoadPreviewPDF } from "@hooks/useLoadPreviewPDF"
 //import { PDFViewer } from "@react-pdf/renderer"
 
 import dynamic from "next/dynamic"
@@ -48,6 +49,8 @@ const Form: FC<FormProps> = ({
 }) => {
   const methods = useForm({ resolver: zodResolver(zodSchema), defaultValues })
   const formHasErrors = Object.keys(methods.formState.errors).length > 0
+
+  const { handlePreviewPDF, latestFormData } = useLoadPreviewPDF({ methods })
 
   // Dynamically import PDFViewer to fix build bug since Next uses SSR. See: https://www.youtube.com/watch?v=HhLa-D0SXlI
   const PDFViewer = dynamic(
@@ -93,7 +96,9 @@ const Form: FC<FormProps> = ({
               triggerText="Preview Doc"
               title="Document Title"
               description="This is a description"
-              formData={methods.getValues()}
+              //formData={methods.getValues()}
+              formData={latestFormData}
+              handlePreviewPDF={handlePreviewPDF}
             >
               {/* Need to pass formData directly as prop instead of useFormContext() or passing all methods because PDFViewer creates a separate context */}
               <PDFViewer style={pdfStyles.pdfViewer}>
