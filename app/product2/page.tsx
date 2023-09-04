@@ -14,7 +14,7 @@ import { useState, createContext } from "react"
 import RadioGroup from "@components/form/RadioGroup"
 import Select from "@components/form/Select"
 
-import { PageContext } from "@components/templates/context"
+import { ProductContext } from "@contexts/ProductContext"
 
 import { pdfStyles } from "./_pdfHelpers/pdfStyles"
 import dynamic from "next/dynamic"
@@ -26,12 +26,6 @@ import DynamicPDF from "./DynamicPDF"
 import Space from "@components/ui/Space"
 
 const Product2 = () => {
-  // Dynamically import PDFViewer to fix build bug since Next uses SSR
-  const PDFViewer = dynamic(
-    () => import("@react-pdf/renderer").then((mod) => mod.PDFViewer),
-    { ssr: false }
-  )
-
   const defaultValues: FormDataType = {
     checkboxExample: true,
     radioExample: "option1",
@@ -55,7 +49,7 @@ const Product2 = () => {
 
   // Setup pg context values to pass to template
   // This may be able to be removed after refactor to PDF. May need it for snippets though.
-  const pageContextValue = {
+  const ProductContextValue = {
     formData: formData, // need to confirm but could prob get rid of this since using rhf's FormProvider in Form
     defaultValues: defaultValues, // used by rhf reset()
   }
@@ -72,7 +66,7 @@ const Product2 = () => {
     setIsFormSubmitted(true) // so we can load the next step after form is submitted (modal or document viewer)
 
     try {
-      const response = await fetch("/api/inquiry", {
+      const response = await fetch("pages/api/inquiry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
@@ -93,7 +87,7 @@ const Product2 = () => {
 
   return (
     <>
-      <PageContext.Provider value={pageContextValue}>
+      <ProductContext.Provider value={ProductContextValue}>
         <Heading size="h1" weight="bold" padding="standard">
           Product 2
         </Heading>
@@ -101,12 +95,6 @@ const Product2 = () => {
         <Space />
 
         <div className="flex lg:flex-row lg:gap-5 w-full xl:max-w-1400">
-          {isFormSubmitted ? (
-            <PDFViewer style={pdfStyles.pdfViewer}>
-              <DynamicPDF formData={formData} />
-            </PDFViewer>
-          ) : null}
-
           <Form
             id="product1Form"
             defaultValues={defaultValues}
@@ -224,7 +212,7 @@ const Product2 = () => {
             </Card>
           </Form>
         </div>
-      </PageContext.Provider>
+      </ProductContext.Provider>
     </>
   )
 }

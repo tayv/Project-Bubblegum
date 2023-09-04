@@ -26,8 +26,7 @@ export default function RootLayout({
               // NOTE: These titles must be unique to avoid react list key error
               articleList={[
                 { title: "Products", groupTitle: true },
-                { title: "Product 1 (MDX)", path: "/product1" },
-                { title: "Product 2 (PDF)", path: "/product2" },
+                { title: "Product Demo (PDF Builder)", path: "/product2" },
                 { title: "Placeholder A", path: "/" },
                 { title: "Placeholder B", path: "/" },
                 { title: "Placeholder C", path: "/" },

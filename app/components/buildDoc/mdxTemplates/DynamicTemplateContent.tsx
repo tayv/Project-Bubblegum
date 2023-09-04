@@ -2,7 +2,7 @@
 
 import React, { FC, useContext } from "react"
 import { useFormContext, useWatch } from "react-hook-form"
-import { PageContext } from "@components/templates/context"
+import { ProductContext } from "@contexts/ProductContext"
 import product1SchemaTest from "@product1/product1SchemaTest.json"
 import {
   DynamicContentProps,
@@ -45,15 +45,15 @@ const DynamicTemplateContent: FC<DynamicTemplateContentProps> = ({
   ...props
 }) => {
   // Get context from Page
-  const contextValue = useContext(PageContext)
+  const contextValue = useContext(ProductContext)
   if (!contextValue) {
     throw new Error(
-      "DynamicTemplateContent must be used within a PageContext provider"
+      "DynamicTemplateContent must be used within a ProductContext provider"
     )
   }
 
   // Schema holds all the conditions for the template.
-  // It matches the formData structure and must be a child of PageContext.Provider
+  // It matches the formData structure and must be a child of ProductContext.Provider
 
   //const { schema } = contextValue // no longer using this after refactore
   const schema = product1SchemaTest // TODO: Remove this after testing
@@ -65,12 +65,12 @@ const DynamicTemplateContent: FC<DynamicTemplateContentProps> = ({
     )
   }
 
-  // Use RHF to watch input value so don't need to pass formData via PageContext and manually handle defaultValues
+  // Use RHF to watch input value so don't need to pass formData via ProductContext and manually handle defaultValues
   const { control } = useFormContext() // Must be child of RHF FormContext.Provider
   const watchedInputValue = useWatch({
     control,
     name: watchedInputName,
-    // defaultValue: // keep this disabled or the defaultValues won't auto load on initial render. Will have to manually pass defaultValues via PageContext
+    // defaultValue: // keep this disabled or the defaultValues won't auto load on initial render. Will have to manually pass defaultValues via ProductContext
   })
 
   return (
@@ -87,6 +87,6 @@ const DynamicTemplateContent: FC<DynamicTemplateContentProps> = ({
 
 export default DynamicTemplateContent
 
-// This component uses react hook form's FormProvier and useWatch to get input values instead of PageContext.
-// This is so the formData and defaultValues don't have to be manually handled and passed via PageContext
-// PageContext is still required for the condition schema to work though
+// This component uses react hook form's FormProvier and useWatch to get input values instead of ProductContext.
+// This is so the formData and defaultValues don't have to be manually handled and passed via ProductContext
+// ProductContext is still required for the condition schema to work though

@@ -1,6 +1,8 @@
-import { FC, useState, useContext } from "react"
-import { useFormContext } from "react-hook-form"
-import { PageContext } from "@components/templates/context"
+"use client"
+
+import { FC, useState, useContext, useEffect } from "react"
+import { useFormContext, UseFormReturn } from "react-hook-form"
+import { ProductContext } from "@contexts/ProductContext"
 import {
   ArrowBigDownDash,
   ArrowBigUpDash,
@@ -12,13 +14,20 @@ import {
   XCircle,
 } from "lucide-react"
 import Divider from "@ui/Divider"
+import ModalViewDoc from "@ui/ModalViewDoc"
+import dynamic from "next/dynamic"
 import ModalAlert from "@ui/ModalAlert"
+import { pdfStyles } from "@product2/_pdfHelpers/pdfStyles"
+import DynamicPDF from "@product2/DynamicPDF"
+import { useLoadPreviewPDF } from "@hooks/useLoadPreviewPDF"
 
 type PillBarProps = {
+  methods: UseFormReturn // used so we can render preview of document in Toolbox for authenticated users
   variant?: "standard" | "multibar"
 }
 
 type StandardBarProps = {
+  methods: UseFormReturn
   showToolBox: boolean
   setShowToolBox: React.Dispatch<React.SetStateAction<boolean>>
 }
@@ -26,6 +35,7 @@ type StandardBarProps = {
 type ToolBoxProps = {
   showToolBox: StandardBarProps["showToolBox"]
   setShowToolBox: StandardBarProps["setShowToolBox"]
+  methods: UseFormReturn
 }
 
 // COLOR TOKENS ---------
@@ -33,21 +43,36 @@ const primarySelectColor = "rgb(2 132 199)"
 const secondarySelectColor = "rgb(100 116 139)"
 
 // HELPER COMPONENTS ----------
-const ToolBox: FC<ToolBoxProps> = ({ showToolBox, setShowToolBox }) => {
-  // Start by getting context values from product page and Form
-  const pageContextValue = useContext(PageContext) // Values are defined in page.tsx
-  const { reset } = useFormContext()
+const ToolBox: FC<ToolBoxProps> = ({
+  showToolBox,
+  setShowToolBox,
+  methods,
+}) => {
+  // Start by getting context values from product page and Form ----
+  // NOTE: Used valueFromProductContext in ToolBox because rhf's reset() needs defaultValues which are defined in the product's page.tsx
+  // NOTES: Used rhf's FormProvider in ToolBox so we can reset the form. Methods grabbed from Form component.
+  const valueFromProductContext = useContext(ProductContext) // Values are defined in page.tsx
+  const { reset, getValues } = useFormContext()
 
   // Event handlers for toolbox
   const handleResetForm = () => {
-    reset((pageContextValue as any).defaultValues) // type cast here as check less important because the form won't work if defaultValues doesn't exist anyways
+    reset((valueFromProductContext as any).defaultValues) // type cast here as check less important because the form won't work if defaultValues doesn't exist anyways
     setShowToolBox(false) // want to hide the toolbox if user resets form
   }
 
+  // Dynamically import PDFViewer to fix build bug since Next uses SSR. See: https://www.youtube.com/watch?v=HhLa-D0SXlI
+  const PDFViewer = dynamic(
+    () => import("@react-pdf/renderer").then((mod) => mod.PDFViewer),
+    { ssr: false }
+  )
+
+  // This hook gets use the latest form values based on when trigger button is clicked
+  const { handlePreviewPDF, latestFormData } = useLoadPreviewPDF()
+
   return (
     <>
-      <div className="lg:hidden flex gap-4 justify-between items-center h-10 w-full max-w-md p-4 bg-slate-300 shadow sm:rounded-lg">
-        <button type="button" className="flex flex-row gap-1 p-2 text-red-600 ">
+      <div className="lg:hidden flex gap-4 justify-between items-center h-12 w-full max-w-md p-4 bg-slate-200  border border-slate-300 shadow-md sm:rounded-lg">
+        <button type="button" className="flex flex-row gap-1 p-2 text-red-600">
           <Trash2 className="text-red-600" />
           Delete
         </button>
@@ -64,10 +89,23 @@ const ToolBox: FC<ToolBoxProps> = ({ showToolBox, setShowToolBox }) => {
           </button>
         </ModalAlert>
 
-        <button type="button" className="flex flex-row gap-1 p-2  ">
+        <ModalViewDoc
+          triggerText="Preview Doc"
+          title="Document Title"
+          description="This is a description"
+          formData={latestFormData}
+          handlePreviewPDF={handlePreviewPDF}
+        >
+          {/* Need to pass formData directly as prop instead of useFormContext() or passing all methods because PDFViewer creates a separate context */}
+          <PDFViewer style={pdfStyles.pdfViewer}>
+            <DynamicPDF formData={getValues()} />
+          </PDFViewer>
+        </ModalViewDoc>
+
+        {/* <button type="button" className="flex flex-row gap-1 p-2  ">
           <HelpCircle className="" />
           Help
-        </button>
+        </button> */}
 
         <button type="button" onClick={() => setShowToolBox(!showToolBox)}>
           <XCircle className="text-slate-500" />
@@ -77,12 +115,20 @@ const ToolBox: FC<ToolBoxProps> = ({ showToolBox, setShowToolBox }) => {
   )
 }
 
-const StandardBar: FC<StandardBarProps> = ({ showToolBox, setShowToolBox }) => (
+const StandardBar: FC<StandardBarProps> = ({
+  showToolBox,
+  setShowToolBox,
+  methods,
+}) => (
   <>
     <div className="z-10 fixed bottom-0 left-0 w-full flex flex-col justify-center items-center">
       {/* Toolbox works best with 3 items. Any more and will have to remove labels to fit on mobile. */}
       {showToolBox && (
-        <ToolBox showToolBox={showToolBox} setShowToolBox={setShowToolBox} />
+        <ToolBox
+          methods={methods}
+          showToolBox={showToolBox}
+          setShowToolBox={setShowToolBox}
+        />
       )}
       <div className="flex flex-row flex-1 justify-center items-center">
         <div className="lg:hidden flex flex-row gap-4 items-center m-4 px-6 py-3 border border-slate-300 rounded-full bg-white drop-shadow-md max-w-md">
@@ -114,12 +160,20 @@ const StandardBar: FC<StandardBarProps> = ({ showToolBox, setShowToolBox }) => (
   </>
 )
 
-const MultiBar: FC<ToolBoxProps> = ({ showToolBox, setShowToolBox }) => (
+const MultiBar: FC<ToolBoxProps> = ({
+  showToolBox,
+  setShowToolBox,
+  methods,
+}) => (
   <>
     {/* Bottom pill bar */}
     <div className="z-10 fixed bottom-0 left-0 w-full flex flex-col justify-center items-center">
       {showToolBox && (
-        <ToolBox showToolBox={showToolBox} setShowToolBox={setShowToolBox} />
+        <ToolBox
+          methods={methods}
+          showToolBox={showToolBox}
+          setShowToolBox={setShowToolBox}
+        />
       )}
 
       <div className="flex flex-row flex-1 justify-center items-center">
@@ -155,17 +209,21 @@ const MultiBar: FC<ToolBoxProps> = ({ showToolBox, setShowToolBox }) => (
 )
 
 // MAIN FUNCTION
-const PillBar: FC<PillBarProps> = ({
-  variant = "standard",
-
-  ...props
-}) => {
+const PillBar: FC<PillBarProps> = ({ variant = "standard", ...props }) => {
   const [showToolBox, setShowToolBox] = useState(false)
 
   return variant === "multibar" ? (
-    <MultiBar showToolBox={showToolBox} setShowToolBox={setShowToolBox} />
+    <MultiBar
+      methods={props.methods}
+      showToolBox={showToolBox}
+      setShowToolBox={setShowToolBox}
+    />
   ) : (
-    <StandardBar showToolBox={showToolBox} setShowToolBox={setShowToolBox} />
+    <StandardBar
+      showToolBox={showToolBox}
+      setShowToolBox={setShowToolBox}
+      methods={props.methods}
+    />
   )
 }
 
@@ -178,5 +236,5 @@ export default PillBar
 // Intended for actions that need to be kept separated from main pillbar actions.
 
 // CONTEXT
-// Use of pageContextValue in ToolBox because rhf's reset() needs defaultValues which are defined in the product's page.tsx
+// Use of valueFromProductContext in ToolBox because rhf's reset() needs defaultValues which are defined in the product's page.tsx
 // Use rhf's FormProvider in ToolBox so we can reset the form. Methods grabbed from Form component.
