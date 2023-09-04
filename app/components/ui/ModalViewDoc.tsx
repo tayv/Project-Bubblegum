@@ -46,11 +46,11 @@ const ModalViewDoc: FC<ModalViewDocProps> = ({
     event.preventDefault()
     printButtonRef.current?.focus()
   }
-  const pdfRefTest = useRef<HTMLDivElement>(null)
+  const pdfRef = useRef<HTMLDivElement>(null)
   // Setup ref for react-to-print
   const componentToPrintRef = useRef<HTMLDivElement>(null)
   const handlePrint = useReactToPrint({
-    content: () => pdfRefTest.current,
+    content: () => pdfRef.current,
   })
 
   // NOTE: Printing whole dialog. This is likely cause of special behavior when printing elements outside the regular document flow
@@ -105,7 +105,7 @@ const ModalViewDoc: FC<ModalViewDocProps> = ({
 
               <div
                 // ref={componentToPrintRef}
-                ref={pdfRefTest}
+                ref={pdfRef}
                 className={"max-h-[70vh] print:max-h-none w-full"}
               >
                 {children}
