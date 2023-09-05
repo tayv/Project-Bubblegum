@@ -173,7 +173,7 @@ const SheetSignUp: FC<SheetSignUpProps> = ({
                   <Paragraph size="large">Already have an account?</Paragraph>
                   <button
                     type="button"
-                    className="underline underline-offset-2"
+                    className="underline underline-offset-2 text-lg lg:text-xl"
                   >
                     Sign In
                   </button>

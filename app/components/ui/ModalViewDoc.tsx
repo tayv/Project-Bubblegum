@@ -13,9 +13,9 @@ import {
 import PrintButton from "@ui/PrintButton"
 import { useReactToPrint } from "react-to-print"
 import { PDFDownloadLink, PDFViewer, pdf } from "@react-pdf/renderer"
-import DynamicPDF from "@product2/DynamicPDF"
+import DynamicPDF from "@components/buildDoc/DynamicPDF"
 import { FormDataType } from "@product2/_schemas/productTypes"
-import { pdfStyles } from "@product2/_pdfHelpers/pdfStyles"
+import { pdfStyles } from "utils/_pdfHelpers/pdfStyles"
 
 export type ModalViewDocProps = {
   formData: FormDataType

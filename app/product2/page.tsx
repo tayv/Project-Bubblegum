@@ -16,13 +16,13 @@ import Select from "@components/form/Select"
 
 import { ProductContext } from "@contexts/ProductContext"
 
-import { pdfStyles } from "./_pdfHelpers/pdfStyles"
+import { pdfStyles } from "../../utils/_pdfHelpers/pdfStyles"
 import dynamic from "next/dynamic"
 import { FormDataType } from "./_schemas/productTypes"
 import { format, startOfToday } from "date-fns"
 import DatePick from "@components/form/DatePick"
 
-import DynamicPDF from "./DynamicPDF"
+import DynamicPDF from "../components/buildDoc/DynamicPDF"
 import Space from "@components/ui/Space"
 
 const Product2 = () => {

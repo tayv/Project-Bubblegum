@@ -11,13 +11,13 @@ import {
   Font,
   pdf,
 } from "@react-pdf/renderer"
-import { pdfStyles } from "./_pdfHelpers/pdfStyles"
-import { FormDataType } from "./_schemas/productTypes"
-import { renderPDFTOC } from "./_pdfHelpers/renderPDFTOC"
-import { createSchemaTemplateA } from "./_schemas/createSchemaTemplateA"
-import { renderFooter } from "./_pdfHelpers/renderFooter"
-import { renderPDFTerms } from "./_pdfHelpers/renderPDFTerms"
-import { renderSigning } from "./_pdfHelpers/renderSigning"
+import { pdfStyles } from "../../../utils/_pdfHelpers/pdfStyles"
+import { FormDataType } from "../../product2/_schemas/productTypes"
+import { renderPDFTOC } from "../../../utils/_pdfHelpers/renderPDFTOC"
+import { createSchemaTemplateA } from "../../product2/_schemas/createSchemaTemplateA"
+import { renderFooter } from "../../../utils/_pdfHelpers/renderFooter"
+import { renderPDFTerms } from "../../../utils/_pdfHelpers/renderPDFTerms"
+import { renderSigning } from "../../../utils/_pdfHelpers/renderSigning"
 
 // TYPES
 type DynamicPDFProps = {

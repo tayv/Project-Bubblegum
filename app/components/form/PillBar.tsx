@@ -17,8 +17,8 @@ import Divider from "@ui/Divider"
 import ModalViewDoc from "@ui/ModalViewDoc"
 import dynamic from "next/dynamic"
 import ModalAlert from "@ui/ModalAlert"
-import { pdfStyles } from "@product2/_pdfHelpers/pdfStyles"
-import DynamicPDF from "@product2/DynamicPDF"
+import { pdfStyles } from "utils/_pdfHelpers/pdfStyles"
+import DynamicPDF from "@components/buildDoc/DynamicPDF"
 import { useLoadPreviewPDF } from "@hooks/useLoadPreviewPDF"
 
 type PillBarProps = {

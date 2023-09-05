@@ -9,9 +9,9 @@ import Card from "@ui/Card"
 import PrintButton from "@ui/PrintButton"
 import { useReactToPrint } from "react-to-print"
 import { PDFDownloadLink, PDFViewer, pdf } from "@react-pdf/renderer"
-import DynamicPDF from "@product2/DynamicPDF"
+import DynamicPDF from "@components/buildDoc/DynamicPDF"
 import dynamic from "next/dynamic"
-import { pdfStyles } from "@product2/_pdfHelpers/pdfStyles"
+import { pdfStyles } from "utils/_pdfHelpers/pdfStyles"
 
 // TEST DATA
 const testData = {
@@ -102,14 +102,17 @@ export default function DocView() {
                 <ArrowDownToLine className="w-4" />
 
                 {/* PDF download docs: https://react-pdf.org/advanced#on-the-fly-rendering */}
-                <PDFDownloadLink
-                  document={<DynamicPDF formData={testData} />}
-                  fileName={`${testProductTitle}.pdf`}
-                >
-                  {({ blob, url, loading, error }) =>
-                    loading ? "Loading PDF..." : "Download PDF"
-                  }
-                </PDFDownloadLink>
+                {/* NOTE: Need conditional check to prevent SSR of PDFDownloadLink */}
+                {displayPDF && (
+                  <PDFDownloadLink
+                    document={<DynamicPDF formData={testData} />}
+                    fileName={`${testProductTitle}.pdf`}
+                  >
+                    {({ blob, url, loading, error }) =>
+                      loading ? "Loading PDF..." : "Download PDF"
+                    }
+                  </PDFDownloadLink>
+                )}
               </button>
 
               <button className="items-center justify-center gap-1 text-slate-500 hover:text-slate-400 focus:shadow-green-700 inline-flex h-[35px] rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none">

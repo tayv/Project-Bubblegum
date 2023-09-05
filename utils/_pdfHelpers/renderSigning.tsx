@@ -1,7 +1,7 @@
 "use client"
 import { View, Text, StyleSheet } from "@react-pdf/renderer"
 import { pdfStyles } from "./pdfStyles"
-import { FormDataType } from "../_schemas/productTypes"
+import { FormDataType } from "../../app/product2/_schemas/productTypes"
 import { capitalizeFirstLetter } from "@utils/capitalizeFirstLetter"
 
 const pdfSigningStyles = StyleSheet.create({
