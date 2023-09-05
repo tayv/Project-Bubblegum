@@ -128,20 +128,51 @@ export default function DocView() {
         margin="none"
       > */}
       {/* --- PDF container starts here --- */}
-      <div className="relative overflow-y-auto max-h-[70vh] lg:w-[70vw] print:max-h-none rounded-xl lg:bg-white lg:py-4 lg:px-6 text-xl font-light">
-        {!displayPDF ? (
-          loadingMessage
-        ) : (
-          // <div className="relative overflow-y-auto max-h-[70vh] lg:w-[70vw] print:max-h-none rounded-xl lg:bg-white lg:py-4 lg:px-6 text-xl font-light">
-          <div ref={pdfRef} className={"max-h-[70vh] print:max-h-none w-full "}>
-            {/* Need to pass formData directly as prop instead of useFormContext() or passing all methods because PDFViewer creates a separate context */}
-            <PDFViewer style={pdfStyles.pdfViewer}>
-              <DynamicPDF formData={testData} />
-            </PDFViewer>
+      <Card
+        id="pdfView"
+        interactionStyle="none"
+        className="
+          overflow-y-hidden 
+          lg:max-h-[70vh] lg:w-[70vw] rounded-xl lg:p-6
+          print:max-h-none"
+      >
+        <LayoutContainer
+          variant="flex"
+          direction="col"
+          gap="medium"
+          padding="none"
+          margin="none"
+          className="w-full lg:flex-row xl:max-w-1400"
+        >
+          {!displayPDF ? (
+            loadingMessage
+          ) : (
+            // <div className="relative overflow-y-auto max-h-[70vh] lg:w-[70vw] print:max-h-none rounded-xl lg:bg-white lg:py-4 lg:px-6 text-xl font-light">
+            <div
+              ref={pdfRef}
+              className={"max-h-[70vh] print:max-h-none w-full "}
+            >
+              {/* Need to pass formData directly as prop instead of useFormContext() or passing all methods because PDFViewer creates a separate context */}
+              <PDFViewer style={pdfStyles.pdfViewer}>
+                <DynamicPDF formData={testData} />
+              </PDFViewer>
+            </div>
+            // </div>
+          )}
+          <div className="hidden lg:block max-w-xs overflow-visible ">
+            {/* div needed for sticky to work. Cannot use overflow: scroll/hidden/auto with sticky https://www.digitalocean.com/community/tutorials/css-position-sticky */}
+            {/* select-none needed to prevent user from copying text from preview */}
+            <div className="lg:sticky top-0 overflow-y-auto select-none">
+              <Card id="loadTemplatePreviewSection" variant="aside" type="flex">
+                <div className="flex flex-row gap-2">
+                  TODO: Toolbox goes here
+                </div>
+                <Divider padding="large" />
+              </Card>
+            </div>
           </div>
-          // </div>
-        )}
-      </div>
+        </LayoutContainer>
+      </Card>
       {/* --- Toolbar starts here --- */}
       <div className="flex max-w-full w-full flex-nowrap overflow-x-auto bg-slate-100 rounded-full py-1">
         <PrintToolBar displayPDF={displayPDF} handlePrint={handlePrint} />

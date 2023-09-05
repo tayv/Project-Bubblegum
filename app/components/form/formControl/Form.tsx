@@ -81,7 +81,7 @@ const Form: FC<FormProps> = ({
       />
       {/* ----------------------------- */}
 
-      {/* Template starts ---------------------------------------------- */}
+      {/* Toolbox starts ---------------------------------------------- */}
       <div className="hidden lg:block max-w-xs overflow-visible ">
         {/* div needed for sticky to work. Cannot use overflow: scroll/hidden/auto with sticky https://www.digitalocean.com/community/tutorials/css-position-sticky */}
         {/* select-none needed to prevent user from copying text from preview */}
@@ -109,7 +109,7 @@ const Form: FC<FormProps> = ({
         </div>
       </div>
 
-      {/* Template ends ---------------------------------------------- */}
+      {/* Toolbox ends ---------------------------------------------- */}
     </FormProvider>
   )
 }
