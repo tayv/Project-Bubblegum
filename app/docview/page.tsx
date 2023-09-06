@@ -4,7 +4,7 @@ import { FC, useRef, useEffect, useState } from "react"
 import LayoutContainer from "@ui/LayoutContainer"
 import Heading from "@ui/Heading"
 import Paragraph from "@ui/Paragraph"
-import { Wand, ArrowDownToLine, Send, Printer } from "lucide-react"
+import { Wand, ArrowDownToLine, Send, Printer, PencilRuler } from "lucide-react"
 import Card from "@ui/Card"
 import PrintButton from "@ui/PrintButton"
 import { useReactToPrint } from "react-to-print"
@@ -13,6 +13,7 @@ import DynamicPDF from "@components/buildDoc/DynamicPDF"
 import dynamic from "next/dynamic"
 import { pdfStyles } from "utils/_pdfHelpers/pdfStyles"
 import Divider from "@ui/Divider"
+import ButtonCTA from "@components/form/ButtonCTA"
 
 // TEST DATA
 const testData = {
@@ -111,29 +112,21 @@ export default function DocView() {
     <>
       <Heading
         size="h4"
-        weight="bold"
+        color="secondary"
+        weight="normal"
         padding="standard"
-        className="text-center"
+        className="pl-2 text-center lg:text-left"
       >
-        Product Name
+        {testProductTitle}
       </Heading>
-      {/* <div className="flex lg:flex-row lg:gap-5 w-full xl:max-w-1400"> */}
-      {/* <Card id="pdfView" margin="none" padding="none"> */}
-      {/* <LayoutContainer
-        variant="flex"
-        direction="col"
-        alignY="center"
-        alignX="center"
-        padding="none"
-        margin="none"
-      > */}
+
       {/* --- PDF container starts here --- */}
       <Card
         id="pdfView"
         interactionStyle="none"
         className="
-          overflow-y-hidden 
-          lg:max-h-[70vh] lg:w-[70vw] rounded-xl lg:p-6
+          overflow-y-hidden w-full rounded-xl 
+          lg:p-6
           print:max-h-none"
       >
         <LayoutContainer
@@ -142,7 +135,7 @@ export default function DocView() {
           gap="medium"
           padding="none"
           margin="none"
-          className="w-full lg:flex-row xl:max-w-1400"
+          className="w-full lg:flex-row max-w-screen-lg"
         >
           {!displayPDF ? (
             loadingMessage
@@ -150,7 +143,9 @@ export default function DocView() {
             // <div className="relative overflow-y-auto max-h-[70vh] lg:w-[70vw] print:max-h-none rounded-xl lg:bg-white lg:py-4 lg:px-6 text-xl font-light">
             <div
               ref={pdfRef}
-              className={"max-h-[70vh] print:max-h-none w-full "}
+              className={
+                "lg:max-h-[80vh] w-[50vw] max-w-screen-lg print:max-h-none select-none"
+              }
             >
               {/* Need to pass formData directly as prop instead of useFormContext() or passing all methods because PDFViewer creates a separate context */}
               <PDFViewer style={pdfStyles.pdfViewer}>
@@ -159,56 +154,81 @@ export default function DocView() {
             </div>
             // </div>
           )}
-          <div className="hidden lg:block max-w-xs overflow-visible ">
-            {/* div needed for sticky to work. Cannot use overflow: scroll/hidden/auto with sticky https://www.digitalocean.com/community/tutorials/css-position-sticky */}
-            {/* select-none needed to prevent user from copying text from preview */}
-            <div className="lg:sticky top-0 overflow-y-auto select-none">
-              <Card id="loadTemplatePreviewSection" variant="aside" type="flex">
-                <div className="flex flex-row gap-2">
-                  TODO: Toolbox goes here
-                </div>
-                <Divider padding="large" />
-              </Card>
-            </div>
-          </div>
+
+          <Card
+            id="desktopPrintToolbox"
+            variant="aside"
+            color="glass"
+            type="flex"
+            direction="col"
+            margin="none"
+            className="hidden lg:flex lg:flex-col shrink max-w-[200px]"
+          >
+            {/* Design decision: Necessary to call out toolbox or is it implied? */}
+            {/* <LayoutContainer
+              variant="flex"
+              direction="row"
+              alignY="center"
+              alignX="center"
+              gap="xsmall"
+              margin="none"
+              padding="small"
+              className=""
+            >
+              <PencilRuler
+                strokeWidth={1.5}
+                className="w-5 shrink-0 text-slate-500"
+              />
+              <div className="font-normal text-base text-slate-500">
+                TOOLBOX
+              </div>
+            </LayoutContainer>
+            <div className="flex flex-row justify-center">
+              <Divider padding="standard" width="small" />
+            </div> */}
+
+            <LayoutContainer
+              variant="flex"
+              direction="col"
+              alignY="top"
+              gap="xsmall"
+              margin="none"
+              padding="none"
+              className=""
+            >
+              <PrintButton onClick={handlePrint} className="w-full mb-3">
+                <Printer className="w-5 shrink-0" />
+                Print
+              </PrintButton>
+
+              <button className="items-center justify-center gap-1 text-slate-500 hover:text-slate-400  inline-flex h-[35px] rounded-[4px] focus:outline-none focus:ring-2 focus:ring-lime-500 text-md font-medium leading-none py-4">
+                <ArrowDownToLine className="w-5 shrink-0" />
+                {/* PDF download docs: https://react-pdf.org/advanced#on-the-fly-rendering */}
+                {/* NOTE: Need conditional check to prevent SSR of PDFDownloadLink */}
+                {displayPDF && (
+                  <PDFDownloadLink
+                    document={<DynamicPDF formData={testData} />}
+                    fileName={`${testProductTitle}.pdf`}
+                  >
+                    {({ blob, url, loading, error }) =>
+                      loading ? "Loading PDF..." : "Download PDF"
+                    }
+                  </PDFDownloadLink>
+                )}
+              </button>
+
+              <button className="items-center justify-center gap-1 text-slate-500 hover:text-slate-400  inline-flex h-[35px] rounded-[4px] focus:outline-none focus:ring-2 focus:ring-lime-500 text-md font-medium leading-none py-4">
+                <Send className="w-5 shrink-0" /> Send Copy
+              </button>
+            </LayoutContainer>
+          </Card>
         </LayoutContainer>
       </Card>
-      {/* --- Toolbar starts here --- */}
+
+      {/* --- Mobile Toolbar starts here --- */}
       <div className="flex max-w-full w-full flex-nowrap overflow-x-auto bg-slate-100 rounded-full py-1">
         <PrintToolBar displayPDF={displayPDF} handlePrint={handlePrint} />
-        <button className="items-center justify-center gap-1 text-slate-500 hover:text-slate-400 focus:shadow-green-700 inline-flex h-[35px] rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none">
-          <ArrowDownToLine className="w-4" />
-
-          {/* PDF download docs: https://react-pdf.org/advanced#on-the-fly-rendering */}
-          {/* NOTE: Need conditional check to prevent SSR of PDFDownloadLink */}
-          {displayPDF && (
-            <PDFDownloadLink
-              document={<DynamicPDF formData={testData} />}
-              fileName={`${testProductTitle}.pdf`}
-            >
-              {({ blob, url, loading, error }) =>
-                loading ? "Loading PDF..." : "Download PDF"
-              }
-            </PDFDownloadLink>
-          )}
-        </button>
-
-        <button className="items-center justify-center gap-1 text-slate-500 hover:text-slate-400 focus:shadow-green-700 inline-flex h-[35px] rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none">
-          <Send className="w-4" /> Share
-        </button>
-
-        <button className="text-slate-500 hover:text-slate-400 focus:shadow-green-700 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none">
-          Lock
-        </button>
-
-        <PrintButton onClick={handlePrint}>
-          <Printer className="w-4" />
-          Print
-        </PrintButton>
       </div>
-      {/* </LayoutContainer> */}
-      {/* </Card> */}
-      {/* </div> */}
     </>
   )
 }

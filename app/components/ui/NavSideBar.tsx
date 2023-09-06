@@ -27,9 +27,10 @@ const NavSideBar: FC<NavSideBarProps> = ({ articleList, ...props }) => {
     <>
       <nav
         className="
-        fixed z-10 top-0 left-0 flex flex-row justify-between px-3 py-1 sm:px-8
+        fixed z-10 top-0 left-0 
+        flex flex-row justify-between px-3 py-1 sm:px-8
         backdrop-blur-sm bg-white/60 w-screen drop-shadow
-        lg:relative lg:flex-col lg:justify-start lg:w-52 lg:m-2 lg:px-4 lg:pt-3 lg:bg-transparent lg:drop-shadow-none
+        lg:relative lg:z-auto lg:top-auto lg:left-auto lg:flex lg:flex-col lg:justify-start lg:w-52 lg:m-2 lg:px-4 lg:pt-3 lg:bg-transparent lg:drop-shadow-none
         "
         aria-label="Navigation"
       >
