@@ -36,7 +36,7 @@ const testProductTitle = "Test Product"
 
 // HELPERS ---
 const loadingMessage = (
-  <div className="flex flex-col items-center">
+  <div className="flex flex-col items-center w-full">
     <Wand className="w-[30%] h-[30%]" />
     <Paragraph
       size="xxxlarge"
@@ -120,9 +120,11 @@ const PrintToolBarDesktop: FC<PrintToolBarProps> = ({
         )}
       </button>
 
+      {/* 
+      // Future functionality
       <button className="items-center justify-center gap-1 text-slate-500 hover:text-slate-400  inline-flex h-[35px] rounded-[4px] focus:outline-none focus:ring-2 focus:ring-lime-500 text-md font-medium leading-none py-4">
         <Send className="w-5 shrink-0" /> Send Copy
-      </button>
+      </button> */}
     </LayoutContainer>
   </Card>
 )
@@ -155,10 +157,13 @@ const PrintToolBarMobile: FC<PrintToolBarProps> = ({
             </>
           )}
         </button>
+
+        {/* 
+        // Future functionality
         <button className="flex flex-col flex-wrap items-center justify-center text-center font-normal text-xs gap-1 px-1 text-slate-500 hover:text-slate-400 leading-none focus:shadow focus:outline-none focus:ring-2 focus:ring-lime-500">
           <Send className="w-5 shrink-0" />
           <div className="min-w-max">Send Copy</div>
-        </button>
+        </button> */}
 
         <PrintButton onClick={handlePrint}>
           <Printer className="w-6 shrink-0" />

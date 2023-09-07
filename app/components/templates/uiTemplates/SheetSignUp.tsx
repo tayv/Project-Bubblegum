@@ -153,7 +153,7 @@ const SheetSignUp: FC<SheetSignUpProps> = ({
                     variant="secondary"
                     icon="user"
                     buttonText="Create Account"
-                    onClick={() => router.push("/docview")}
+                    onClick={() => router.push("/docviewer")}
                   />
                   <aside className="text-sm text-center">
                     No credit card required. Delete your account at any time.
