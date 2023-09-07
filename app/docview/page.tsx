@@ -4,7 +4,14 @@ import { FC, useRef, useEffect, useState } from "react"
 import LayoutContainer from "@ui/LayoutContainer"
 import Heading from "@ui/Heading"
 import Paragraph from "@ui/Paragraph"
-import { Wand, ArrowDownToLine, Send, Printer, PencilRuler } from "lucide-react"
+import {
+  Wand,
+  ArrowDownToLine,
+  Send,
+  Printer,
+  PencilRuler,
+  Maximize2,
+} from "lucide-react"
 import Card from "@ui/Card"
 import PrintButton from "@ui/PrintButton"
 import { useReactToPrint } from "react-to-print"
@@ -14,6 +21,7 @@ import dynamic from "next/dynamic"
 import { pdfStyles } from "utils/_pdfHelpers/pdfStyles"
 import Divider from "@ui/Divider"
 import ButtonCTA from "@components/form/ButtonCTA"
+import ModalFullScreenView from "@components/ui/ModalFullScreenView"
 
 // TEST DATA ---
 const testData = {
@@ -147,7 +155,7 @@ const PrintToolBarMobile: FC<PrintToolBarProps> = ({
             </>
           )}
         </button>
-        <button className="flex flex-col flex-wrap items-center justify-center text-center font-normal text-xs gap-1 px-1 text-slate-500 hover:text-slate-400  leading-none focus:shadow focus:outline-none focus:ring-2 focus:ring-lime-500">
+        <button className="flex flex-col flex-wrap items-center justify-center text-center font-normal text-xs gap-1 px-1 text-slate-500 hover:text-slate-400 leading-none focus:shadow focus:outline-none focus:ring-2 focus:ring-lime-500">
           <Send className="w-5 shrink-0" />
           <div className="min-w-max">Send Copy</div>
         </button>
@@ -193,15 +201,30 @@ export default function DocView() {
 
   return (
     <>
-      <Heading
-        size="h4"
-        color="secondary"
-        weight="normal"
-        padding="standard"
-        className="pl-2 text-center lg:text-left"
+      <LayoutContainer
+        variant="flex"
+        direction="row"
+        // alignY="bottom"
+        padding="none"
+        margin="none"
+        className="px-3 sm:px-6 sm:pt-2 sm:pb-1 justify-between max-w-screen-lg"
       >
-        {testProductTitle}
-      </Heading>
+        <Heading
+          size="h4"
+          color="secondary"
+          weight="normal"
+          padding="none"
+          className="text-center lg:text-left"
+        >
+          {testProductTitle}
+        </Heading>
+
+        <ModalFullScreenView>
+          <PDFViewer style={pdfStyles.pdfViewer}>
+            <DynamicPDF formData={testData} />
+          </PDFViewer>
+        </ModalFullScreenView>
+      </LayoutContainer>
 
       {/* --- PDF container starts here --- */}
       <Card
