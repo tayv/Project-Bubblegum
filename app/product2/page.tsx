@@ -97,6 +97,7 @@ const Product2 = () => {
         <div className="flex lg:flex-row lg:gap-5 w-full xl:max-w-1400">
           <Form
             id="product1Form"
+            productTitle="Product Demo"
             defaultValues={defaultValues}
             zodSchema={zodSchema}
             onSubmit={onSubmit}

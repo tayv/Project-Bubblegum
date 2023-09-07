@@ -22,6 +22,7 @@ import SheetSignUp from "@uiTemplates/SheetSignUp"
 
 export type FormProps = {
   id: string
+  productTitle: string
   defaultValues: Record<string, any>
   zodSchema: z.ZodObject<any>
   onSubmit: (data: any, event: any) => Promise<void>
@@ -36,6 +37,7 @@ export type FormProps = {
 
 // MAIN COMPONENT
 const Form: FC<FormProps> = ({
+  productTitle,
   defaultValues,
   zodSchema,
   onSubmit,
@@ -70,7 +72,11 @@ const Form: FC<FormProps> = ({
 
         <ButtonCTA formID={id} type="submit" formHasErrors={formHasErrors} />
 
-        <PillBar methods={methods} variant="standard" />
+        <PillBar
+          productTitle={productTitle}
+          methods={methods}
+          variant="standard"
+        />
       </form>
 
       {/* --------- Note: sign up sheet needs to be outside form so the nested submit button won't submit parent form --------------- */}
@@ -93,9 +99,10 @@ const Form: FC<FormProps> = ({
             </div>
             <Divider padding="large" />
             <ModalViewDoc
+              variant="preview"
               triggerText="Preview Doc"
-              title="Document Title"
-              description="This is a description"
+              title={`Preview: ${productTitle}`}
+              description="This is a preview not your final document."
               //formData={methods.getValues()}
               formData={latestFormData}
               handlePreviewPDF={handlePreviewPDF}

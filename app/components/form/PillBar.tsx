@@ -22,17 +22,20 @@ import DynamicPDF from "@components/buildDoc/DynamicPDF"
 import { useLoadPreviewPDF } from "@hooks/useLoadPreviewPDF"
 
 type PillBarProps = {
+  productTitle: string
   methods: UseFormReturn // used so we can render preview of document in Toolbox for authenticated users
   variant?: "standard" | "multibar"
 }
 
 type StandardBarProps = {
+  productTitle: string
   methods: UseFormReturn
   showToolBox: boolean
   setShowToolBox: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 type ToolBoxProps = {
+  productTitle: string
   showToolBox: StandardBarProps["showToolBox"]
   setShowToolBox: StandardBarProps["setShowToolBox"]
   methods: UseFormReturn
@@ -44,6 +47,7 @@ const secondarySelectColor = "rgb(100 116 139)"
 
 // HELPER COMPONENTS ----------
 const ToolBox: FC<ToolBoxProps> = ({
+  productTitle,
   showToolBox,
   setShowToolBox,
   methods,
@@ -90,9 +94,10 @@ const ToolBox: FC<ToolBoxProps> = ({
         </ModalAlert>
 
         <ModalViewDoc
-          triggerText="Preview Doc"
-          title="Document Title"
-          description="This is a description"
+          variant="preview"
+          triggerText="Preview"
+          title={`Preview: ${productTitle}`}
+          description="This is a preview not your final document."
           formData={latestFormData}
           handlePreviewPDF={handlePreviewPDF}
         >
@@ -116,6 +121,7 @@ const ToolBox: FC<ToolBoxProps> = ({
 }
 
 const StandardBar: FC<StandardBarProps> = ({
+  productTitle,
   showToolBox,
   setShowToolBox,
   methods,
@@ -125,6 +131,7 @@ const StandardBar: FC<StandardBarProps> = ({
       {/* Toolbox works best with 3 items. Any more and will have to remove labels to fit on mobile. */}
       {showToolBox && (
         <ToolBox
+          productTitle={productTitle}
           methods={methods}
           showToolBox={showToolBox}
           setShowToolBox={setShowToolBox}
@@ -161,6 +168,7 @@ const StandardBar: FC<StandardBarProps> = ({
 )
 
 const MultiBar: FC<ToolBoxProps> = ({
+  productTitle,
   showToolBox,
   setShowToolBox,
   methods,
@@ -170,6 +178,7 @@ const MultiBar: FC<ToolBoxProps> = ({
     <div className="z-10 fixed bottom-0 left-0 w-full flex flex-col justify-center items-center">
       {showToolBox && (
         <ToolBox
+          productTitle={productTitle}
           methods={methods}
           showToolBox={showToolBox}
           setShowToolBox={setShowToolBox}
@@ -209,17 +218,23 @@ const MultiBar: FC<ToolBoxProps> = ({
 )
 
 // MAIN FUNCTION
-const PillBar: FC<PillBarProps> = ({ variant = "standard", ...props }) => {
+const PillBar: FC<PillBarProps> = ({
+  variant = "standard",
+  productTitle,
+  ...props
+}) => {
   const [showToolBox, setShowToolBox] = useState(false)
 
   return variant === "multibar" ? (
     <MultiBar
+      productTitle={productTitle}
       methods={props.methods}
       showToolBox={showToolBox}
       setShowToolBox={setShowToolBox}
     />
   ) : (
     <StandardBar
+      productTitle={productTitle}
       showToolBox={showToolBox}
       setShowToolBox={setShowToolBox}
       methods={props.methods}
