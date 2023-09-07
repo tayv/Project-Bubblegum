@@ -16,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-neutral-100 overscroll-none">
+      <body className="bg-neutral-100 overscroll-none max-w-screen">
         {/* Need separate div so don't conflict with child flex items */}
         <div className="flex justify-center items-center h-screen">
           {/* use lg:flex-row because want the nav to move to the side on laptops and above */}
@@ -33,9 +33,9 @@ export default function RootLayout({
                 { title: "Placeholder D", path: "/" },
               ]}
             />
-            {/* Only mobile styles needs a large top padding to offset fixed header */}
-            <main className="w-full max-w-screen pt-16 pb-32 lg:pt-2">
-              <div className="block px-6 py-3">{children}</div>
+            {/* Only mobile styles need more top padding to offset fixed header */}
+            <main className="w-full max-w-screen pt-16 pb-32 lg:px-6 lg:py-3 lg:pt-2">
+              {children}
             </main>
           </div>
         </div>

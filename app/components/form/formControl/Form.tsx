@@ -8,12 +8,12 @@ import { ProductNameProps } from "@components/templates/templateTypes"
 import ModalAlert from "@ui/ModalAlert"
 import ModalViewDoc from "@ui/ModalViewDoc"
 import Card from "@components/ui/Card"
-import DynamicPDF from "@product2/DynamicPDF"
+import DynamicPDF from "@components/buildDoc/DynamicPDF"
 import { useLoadPreviewPDF } from "@hooks/useLoadPreviewPDF"
 //import { PDFViewer } from "@react-pdf/renderer"
 
 import dynamic from "next/dynamic"
-import { pdfStyles } from "@product2/_pdfHelpers/pdfStyles"
+import { pdfStyles } from "utils/_pdfHelpers/pdfStyles"
 import PillBar from "@form/PillBar"
 import { Wrench } from "lucide-react"
 import ButtonCTA from "@form/ButtonCTA"
@@ -22,6 +22,7 @@ import SheetSignUp from "@uiTemplates/SheetSignUp"
 
 export type FormProps = {
   id: string
+  productTitle: string
   defaultValues: Record<string, any>
   zodSchema: z.ZodObject<any>
   onSubmit: (data: any, event: any) => Promise<void>
@@ -36,6 +37,7 @@ export type FormProps = {
 
 // MAIN COMPONENT
 const Form: FC<FormProps> = ({
+  productTitle,
   defaultValues,
   zodSchema,
   onSubmit,
@@ -70,7 +72,11 @@ const Form: FC<FormProps> = ({
 
         <ButtonCTA formID={id} type="submit" formHasErrors={formHasErrors} />
 
-        <PillBar methods={methods} variant="standard" />
+        <PillBar
+          productTitle={productTitle}
+          methods={methods}
+          variant="standard"
+        />
       </form>
 
       {/* --------- Note: sign up sheet needs to be outside form so the nested submit button won't submit parent form --------------- */}
@@ -81,7 +87,7 @@ const Form: FC<FormProps> = ({
       />
       {/* ----------------------------- */}
 
-      {/* Template starts ---------------------------------------------- */}
+      {/* Toolbox starts ---------------------------------------------- */}
       <div className="hidden lg:block max-w-xs overflow-visible ">
         {/* div needed for sticky to work. Cannot use overflow: scroll/hidden/auto with sticky https://www.digitalocean.com/community/tutorials/css-position-sticky */}
         {/* select-none needed to prevent user from copying text from preview */}
@@ -93,9 +99,10 @@ const Form: FC<FormProps> = ({
             </div>
             <Divider padding="large" />
             <ModalViewDoc
+              variant="preview"
               triggerText="Preview Doc"
-              title="Document Title"
-              description="This is a description"
+              title={`Preview: ${productTitle}`}
+              description="This is a preview not your final document."
               //formData={methods.getValues()}
               formData={latestFormData}
               handlePreviewPDF={handlePreviewPDF}
@@ -109,7 +116,7 @@ const Form: FC<FormProps> = ({
         </div>
       </div>
 
-      {/* Template ends ---------------------------------------------- */}
+      {/* Toolbox ends ---------------------------------------------- */}
     </FormProvider>
   )
 }

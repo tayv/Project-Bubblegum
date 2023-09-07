@@ -153,7 +153,7 @@ const SheetSignUp: FC<SheetSignUpProps> = ({
                     variant="secondary"
                     icon="user"
                     buttonText="Create Account"
-                    onClick={() => router.push("/docview")}
+                    onClick={() => router.push("/docviewer")}
                   />
                   <aside className="text-sm text-center">
                     No credit card required. Delete your account at any time.
@@ -173,7 +173,7 @@ const SheetSignUp: FC<SheetSignUpProps> = ({
                   <Paragraph size="large">Already have an account?</Paragraph>
                   <button
                     type="button"
-                    className="underline underline-offset-2"
+                    className="underline underline-offset-2 text-lg lg:text-xl"
                   >
                     Sign In
                   </button>

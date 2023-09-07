@@ -16,13 +16,13 @@ import Select from "@components/form/Select"
 
 import { ProductContext } from "@contexts/ProductContext"
 
-import { pdfStyles } from "./_pdfHelpers/pdfStyles"
+import { pdfStyles } from "../../utils/_pdfHelpers/pdfStyles"
 import dynamic from "next/dynamic"
 import { FormDataType } from "./_schemas/productTypes"
 import { format, startOfToday } from "date-fns"
 import DatePick from "@components/form/DatePick"
 
-import DynamicPDF from "./DynamicPDF"
+import DynamicPDF from "../components/buildDoc/DynamicPDF"
 import Space from "@components/ui/Space"
 
 const Product2 = () => {
@@ -97,6 +97,7 @@ const Product2 = () => {
         <div className="flex lg:flex-row lg:gap-5 w-full xl:max-w-1400">
           <Form
             id="product1Form"
+            productTitle="Product Demo"
             defaultValues={defaultValues}
             zodSchema={zodSchema}
             onSubmit={onSubmit}
