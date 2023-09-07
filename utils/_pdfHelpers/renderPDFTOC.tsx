@@ -2,7 +2,7 @@
 import { Image, Text, Link, View } from "@react-pdf/renderer"
 import { pdfStyles } from "./pdfStyles"
 import { filterInvalidSections } from "./filterInvalidSections"
-import { SelectedTemplateProps } from "../_schemas/productTypes"
+import { SelectedTemplateProps } from "../../app/product2/_schemas/productTypes"
 
 export const renderPDFTOC = ({
   docTemplate,

@@ -102,6 +102,7 @@ const Product1 = () => {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 w-full xl:max-w-1400">
         <Form
           id="product1Form"
+          productTitle="Product 1"
           defaultValues={defaultValues}
           zodSchema={zodSchema}
           onSubmit={onSubmit}

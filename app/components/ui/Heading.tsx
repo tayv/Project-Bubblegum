@@ -54,6 +54,7 @@ type HeadingWeight =
   | "xlight"
   | "light"
   | "normal"
+  | "medium"
   | "semibold"
   | "bold"
   | "black"
@@ -62,6 +63,7 @@ const headingWeightMap: { [key in HeadingWeight]: string } = {
   xlight: "font-extralight",
   light: "font-light",
   normal: "font-normal",
+  medium: "font-medium",
   semibold: "font-semibold",
   bold: "font-bold",
   black: "font-black",
