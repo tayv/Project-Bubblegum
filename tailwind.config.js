@@ -10,7 +10,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        cta: colors.sky, // cta buttons
+        brand: colors.stone,
+        cta: colors.indigo, // cta buttons
         link: colors.violet, // links
         accent: colors.lime, // focus rings, etc.
       },
