@@ -27,8 +27,6 @@ export default function Home() {
           margin="none"
           className=""
         >
-          <a href="/">hi</a>
-          <p className="">test</p>
           <Heading size="h1" weight="bold" padding="standard">
             Welcome to [Name] 👋
           </Heading>
