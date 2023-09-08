@@ -86,7 +86,7 @@ const SheetSignUp: FC<SheetSignUpProps> = ({
         isSheetOpen={isSheetOpen}
         setIsSheetOpen={setIsSheetOpen}
         // triggerComponent={
-        //   <button className="items-center justify-center inline-flex h-10 px-4 font-medium text-slate-500 bg-slate-200 hover:bg-slate-300 border-2 border-slate-400 rounded-lg leading-none outline-none focus:shadow-[0_0_0_2px] shadow-md focus:shadow-sky-400">
+        //   <button className="items-center justify-center inline-flex h-10 px-4 font-medium text-slate-500 bg-slate-200 hover:bg-slate-300 border-2 border-slate-400 rounded-lg leading-none outline-none focus:shadow-[0_0_0_2px] shadow-md focus:shadow-cta-400">
         //     Test
         //   </button>
         // }

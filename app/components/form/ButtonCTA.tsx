@@ -42,11 +42,11 @@ type ButtonCTAVariant =
   | "text"
 // Make sure to follow this pattern or buttonStyles won't work: ${variant}Disabled`
 const buttonCTAVariantMap: { [key in ButtonCTAVariant]: string } = {
-  primary: "text-white bg-sky-500 hover:bg-sky-600 shadow",
+  primary: "text-white bg-cta-500 hover:bg-cta-600 shadow",
   primaryDisabled: "bg-neutral-300 hover:bg-neutral-400 text-neutral-500",
-  secondary: "text-sky-500 border-2 border-sky-500 hover:bg-sky-100 shadow",
+  secondary: "text-cta-500 border-2 border-cta-500 hover:bg-cta-100 shadow",
   secondaryDisabled: "text-neutral-300 border-2 border-neutral-300",
-  text: "text-sky-500 border-none hover:text-sky-600",
+  text: "text-cta-500 border-none hover:text-cta-600",
 }
 
 type ButtonCTAIcon = "none" | "standard" | "user" | "arrowRight"
@@ -82,7 +82,7 @@ const ButtonCTA: FC<ButtonCTAProps> = forwardRef<
   // Dynamically render correct button variant styling
   const buttonStyles = classNames([
     "flex flex-row items-center justify-center min-fit-content max-w-[17rem] ",
-    "rounded-full outline-none focus:shadow-[0_0_0_2px] focus:shadow-sky-400",
+    "rounded-full outline-none focus:shadow-[0_0_0_2px] focus:shadow-cta-400",
     className, // custom prop styles
     buttonCTASizeMap[size],
     !!formHasErrors

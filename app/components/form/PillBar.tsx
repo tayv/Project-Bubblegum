@@ -147,7 +147,7 @@ const StandardBar: FC<StandardBarProps> = ({
           </button>
           <button
             type="button"
-            className="max-w-xs bottom-0 p-2 shadow border-2 border-sky-600 bg-sky-500 rounded-full "
+            className="max-w-xs bottom-0 p-2 shadow border-2 border-cta-600 bg-cta-500 rounded-full "
           >
             <ArrowBigDownDash fill="white" stroke="white" />
           </button>
@@ -194,7 +194,7 @@ const MultiBar: FC<ToolBoxProps> = ({
           <button className="max-w-xs bottom-0 p-2 border-2 border-slate-500 rounded-full ">
             <ArrowBigUpDash className="text-slate-500" />
           </button>
-          <button className="max-w-xs bottom-0 p-2 shadow border-2 border-sky-600 bg-sky-500 rounded-full ">
+          <button className="max-w-xs bottom-0 p-2 shadow border-2 border-cta-600 bg-cta-500 rounded-full ">
             <ArrowBigDownDash fill="white" stroke="white" />
           </button>
         </div>

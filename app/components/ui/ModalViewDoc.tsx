@@ -131,7 +131,7 @@ const ModalViewDoc: FC<ModalViewDocProps> = ({
             {triggerText}
           </button>
         ) : (
-          <a href="#" className="text-sky-500">
+          <a href="#" className="text-cta-500">
             {triggerText}
           </a>
         )}
@@ -162,7 +162,7 @@ const ModalViewDoc: FC<ModalViewDocProps> = ({
               {/* ------- Optional overlay button. ------- */}
               {/* Currently disabled as doesn't work as well with broswer based PDF viewers */}
               {/* <DialogRadix.Close asChild>
-                  <button className="z-50 absolute top-5 right-6 items-center justify-center gap-1 text-sky-500 hover:text-slate-400 focus:shadow-green-700 inline-flex  rounded-[4px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none">
+                  <button className="z-50 absolute top-5 right-6 items-center justify-center gap-1 text-cta-500 hover:text-slate-400 focus:shadow-green-700 inline-flex  rounded-[4px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none">
                     <Pencil className="w-5" /> Edit
                   </button>
                 </DialogRadix.Close> */}
@@ -189,7 +189,7 @@ const ModalViewDoc: FC<ModalViewDocProps> = ({
 
             <DialogRadix.Close asChild>
               <button
-                className="absolute top-[10px] right-[10px] inline-flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-full text-slate-400 hover:bg-slate-200 focus:shadow-sky-500 focus:shadow-[0_0_0_2px] focus:outline-none"
+                className="absolute top-[10px] right-[10px] inline-flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-full text-slate-400 hover:bg-slate-200 focus:shadow-cta-500 focus:shadow-[0_0_0_2px] focus:outline-none"
                 aria-label="Close"
               >
                 <X />

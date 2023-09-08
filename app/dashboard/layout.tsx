@@ -1,4 +1,4 @@
-// import "./globals.css" // These styles apply to every route in the application
+// import "@styles/globals.css" // These styles apply to every route in the application
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
