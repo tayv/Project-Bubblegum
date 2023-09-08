@@ -16,6 +16,7 @@ export type GroupListItems = {
 export type SelectProps = {
   value?: string
   name?: string
+  hasError?: boolean
   placeholder: string
   itemOptions: Array<FlatListItems | GroupListItems>
   onChange?: (value: string) => void
@@ -79,7 +80,10 @@ const renderGroupedItems = (itemOptions: Array<GroupListItems>) => {
 
 // MAIN COMPONENT
 const Select: FC<SelectProps> = forwardRef<HTMLButtonElement, SelectProps>(
-  function setRefSelect({ placeholder, itemOptions, ...props }, ref) {
+  function setRefSelect(
+    { placeholder, itemOptions, hasError = false, ...props },
+    ref
+  ) {
     return (
       <SelectRadix.Root {...props} onValueChange={props.onChange}>
         <SelectRadix.Trigger

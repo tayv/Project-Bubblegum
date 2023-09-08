@@ -97,6 +97,7 @@ Field.Control = function FieldControl({ children }: FieldControlProps) {
         return (
           <>
             {/* Unable to pass custom type to Slot so type assertion used on field to supress hasError TS error */}
+            {/* Make sure to destructure hasError in any child components to prevent react dom hasError. See: https://github.com/tayv/Project-Bubblegum/issues/62 */}
             <Slot {...(field as any)} onBlur={handleOnBlur} hasError={hasError}>
               {children}
             </Slot>
