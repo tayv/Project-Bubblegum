@@ -50,13 +50,24 @@ const NavSideBar: FC<NavSideBarProps> = ({ articleList, ...props }) => {
             </Link>
           )}
 
-          <Link
-            href="/"
-            className="flex flex-row gap-2 items-center lg:items-start"
-          >
-            <LogIn className="hidden lg:block" />
-            <span className="lg:ml-0 text-xl whitespace-nowrap">Sign In</span>
-          </Link>
+          <div className="flex flex-row gap-2 items-center lg:items-start">
+            {/* <LogIn className="hidden lg:block" />
+            <span className="lg:ml-0 text-xl whitespace-nowrap">Sign In</span> */}
+
+            <SignedIn>
+              {/* Mount the UserButton component */}
+              <span className="lg:ml-0 text-xl whitespace-nowrap">
+                <UserButton afterSignOutUrl="/" userProfileMode="modal" />
+              </span>
+            </SignedIn>
+            <SignedOut>
+              {/* Signed out users get sign in button */}
+              <div className="flex flex-row gap-2 items-center text-xl whitespace-nowrap">
+                <LogIn className="hidden lg:block" />
+                <SignInButton />
+              </div>
+            </SignedOut>
+          </div>
 
           {/* span needed here because custom classes get set to a child div in Divider so it remains in the DOM */}
           <span className="hidden lg:block">
