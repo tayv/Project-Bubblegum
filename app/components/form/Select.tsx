@@ -32,7 +32,7 @@ const renderItems = (itemOptions: Array<FlatListItems>) => {
           <SelectRadix.Item
             key={index}
             value={item.value}
-            className="px-2 py-1 outline-none cursor-pointer hover:bg-sky-300 rounded"
+            className="px-2 py-1 outline-none cursor-pointer hover:bg-cta-300 rounded"
           >
             <SelectRadix.ItemText>{item.labelText}</SelectRadix.ItemText>
             <SelectRadix.ItemIndicator />

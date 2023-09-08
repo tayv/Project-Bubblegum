@@ -14,8 +14,8 @@ const PrintButton = forwardRef<HTMLButtonElement, PrintButtonProps>(
       <button
         ref={ref}
         className={classNames([
-          "flex flex-row items-center justify-center gap-2 max-w-xs bg-sky-200 text-sky-700",
-          "hover:bg-sky-300 rounded-r-full h-full px-6 py-2 font-medium leading-none",
+          "flex flex-row items-center justify-center gap-2 max-w-xs bg-cta-200 text-cta-700",
+          "hover:bg-cta-300 rounded-r-full h-full px-6 py-2 font-medium leading-none",
           "focus:ring-lime-500 focus:ring-2 focus:outline-none",
           "lg:rounded-full",
           className,

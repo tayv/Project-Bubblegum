@@ -27,11 +27,11 @@ const ModalStandard: FC<ModalStandardProps> = ({
   <DialogRadix.Root>
     <DialogRadix.Trigger asChild>
       {triggerType === "button" ? (
-        <button className="items-center justify-center inline-flex h-10 px-4 font-medium text-slate-500 hover:bg-white rounded-lg leading-none outline-none focus:shadow-[0_0_0_2px] shadow focus:shadow-sky-400">
+        <button className="items-center justify-center inline-flex h-10 px-4 font-medium text-slate-500 hover:bg-white rounded-lg leading-none outline-none focus:shadow-[0_0_0_2px] shadow focus:shadow-cta-400">
           {triggerText}
         </button>
       ) : (
-        <a href="#" className="text-sky-500">
+        <a href="#" className="text-cta-500">
           {triggerText}
         </a>
       )}
@@ -65,7 +65,7 @@ const ModalStandard: FC<ModalStandardProps> = ({
         </div>
         <DialogRadix.Close asChild>
           <button
-            className="text-slate-400 hover:bg-slate-200 focus:shadow-sky-500 absolute top-[10px] right-[10px] inline-flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-full focus:shadow-[0_0_0_2px] focus:outline-none"
+            className="text-slate-400 hover:bg-slate-200 focus:shadow-cta-500 absolute top-[10px] right-[10px] inline-flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-full focus:shadow-[0_0_0_2px] focus:outline-none"
             aria-label="Close"
           >
             <X />

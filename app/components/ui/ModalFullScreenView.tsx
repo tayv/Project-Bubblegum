@@ -55,7 +55,7 @@ const ModalFullScreenView: FC<ModalFullScreenViewProps> = ({
               <button
                 className="absolute top-0 flex flex-row h-4 sm:h-8 w-full appearance-none gap-1 items-center justify-center py-3
                  sm:font-medium text-sm text-yellow-400 hover:bg-yellow-300 hover:text-slate-900
-                focus:shadow-sky-500 focus:shadow focus:outline-none"
+                focus:shadow-cta-500 focus:shadow focus:outline-none"
                 aria-label="Close"
               >
                 <div>Exit Full Screen</div> <Minimize2 className="w-4" />

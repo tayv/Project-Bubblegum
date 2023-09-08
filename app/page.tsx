@@ -27,6 +27,8 @@ export default function Home() {
           margin="none"
           className=""
         >
+          <a href="/">hi</a>
+          <p className="">test</p>
           <Heading size="h1" weight="bold" padding="standard">
             Welcome to [Name] 👋
           </Heading>
@@ -85,7 +87,7 @@ export default function Home() {
                   type="button"
                   buttonText="Create Product"
                   icon="none"
-                  className="mt-4 group-hover/featuredProductCard:bg-sky-900"
+                  className="mt-4 group-hover/featuredProductCard:bg-cta-900"
                 />
               </div>
               <div className="flex items-center">
@@ -123,7 +125,7 @@ export default function Home() {
                 type="button"
                 buttonText="Create Product"
                 icon="arrowRight"
-                className=" group-hover:text-sky-900"
+                className=" group-hover:text-cta-900"
               />
             </Card>
             <Card
@@ -146,7 +148,7 @@ export default function Home() {
                 type="button"
                 buttonText="Create Product"
                 icon="arrowRight"
-                className="group-hover:text-sky-900"
+                className="group-hover:text-cta-900"
               />
             </Card>
           </LayoutContainer>
@@ -178,7 +180,7 @@ export default function Home() {
               margin="none"
               gap="standard"
             >
-              <div className="flex shrink-0 items-center justify-start w-12 border-r-2 border-sky-500 text-4xl font-bold">
+              <div className="flex shrink-0 items-center justify-start w-12 border-r-2 border-cta-500 text-4xl font-bold">
                 1
               </div>
               <Paragraph color="secondary">
@@ -196,7 +198,7 @@ export default function Home() {
               margin="none"
               gap="standard"
             >
-              <div className="flex shrink-0 items-center justify-start w-12 border-r-2 border-sky-500 text-4xl font-bold">
+              <div className="flex shrink-0 items-center justify-start w-12 border-r-2 border-cta-500 text-4xl font-bold">
                 2
               </div>
               <Paragraph color="secondary">
@@ -217,7 +219,7 @@ export default function Home() {
               margin="none"
               gap="standard"
             >
-              <div className="flex shrink-0 items-center justify-start w-12 border-r-2 border-sky-500 text-4xl font-bold">
+              <div className="flex shrink-0 items-center justify-start w-12 border-r-2 border-cta-500 text-4xl font-bold">
                 3
               </div>
               <Paragraph color="secondary">

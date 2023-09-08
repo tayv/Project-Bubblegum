@@ -28,20 +28,11 @@
       "@contexts/*": ["app/contexts/*"],
       "@hooks/*": ["app/hooks/*"],
       "@utils/*": ["app/utils/*"],
+      "@styles/*": ["styles/*"],
       "@product1/*": ["app/product1/*"],
       "@product2/*": ["app/product2/*"],
 
       // Page Router
-      "@designSystem/*": ["designSystem/*"],
-      "@atoms/*": ["designSystem/atoms/*"],
-      "@molecules/*": ["designSystem/molecules/*"],
-      "@organisms/*": ["designSystem/organisms/*"],
-      "@forms/*": ["designSystem/forms/*"],
-      "@layouts/*": ["designSystem/layouts/*"],
-      "@styles/*": ["styles/*"],
-      "@helpers/*": ["designSystem/molecules/*"],
-      //"@templates/*": ["designSystem/templates/*"],
-      // "@utils/*": ["utils/*"],
       "@docs/*": ["pages/docs/*"],
       "@restricted/*": ["pages/restricted/*"] // private pages for authenticated users
     },
@@ -51,12 +42,6 @@
       }
     ]
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "designSystem/molecules/Breadcrumbs.tsx",
-    ".next/types/**/*.ts"
-  ],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }

@@ -74,7 +74,7 @@ const ModalSheet: FC<ModalSheetProps> = ({
             <button
               className="
             absolute top-[14px] right-[16px] inline-flex h-[25px] w-[25px] items-center justify-center
-            rounded-full text-slate-400 hover:bg-slate-200 focus:shadow-sky-500 appearance-none focus:shadow-[0_0_0_2px] focus:outline-none
+            rounded-full text-slate-400 hover:bg-slate-200 focus:shadow-cta-500 appearance-none focus:shadow-[0_0_0_2px] focus:outline-none
             lg:top-[13px] lg:right-[15px]"
               aria-label="Close"
             >

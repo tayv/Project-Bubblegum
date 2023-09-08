@@ -35,12 +35,12 @@ const Checkbox: FC<CheckboxProps> = forwardRef<
         // name={name}
         className="peer flex items-center justify-center text-md font-bold text-gray-900 bg-white border-2 border-slate-600 rounded w-6 h-6 shadow-md"
       >
-        <RadixCheckbox.Indicator className="cursor-pointer p-px text-white rounded data-[state=checked]:bg-sky-500  ">
+        <RadixCheckbox.Indicator className="cursor-pointer p-px text-white rounded data-[state=checked]:bg-cta-500  ">
           <CheckIcon className="stroke-[4px] " />
         </RadixCheckbox.Indicator>
       </RadixCheckbox.Root>
       <label
-        className="cursor-pointer pl-2 leading-none text-slate-800 text-md peer-[[data-state=checked]]:text-sky-500"
+        className="cursor-pointer pl-2 leading-none text-slate-800 text-md peer-[[data-state=checked]]:text-cta-500"
         htmlFor={id}
       >
         {children}

@@ -18,7 +18,7 @@ export type TemplateProps = {
 let renderTable = ({ docID, formData }: FormDataObj) => {
   return (
     <table className="table-fixed w-full border-2 p-2">
-      <thead className="text-left bg-sky-100">
+      <thead className="text-left bg-cta-100">
         <tr>
           <th colSpan={2} className="p-2">
             Document ID: {docID}
