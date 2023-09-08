@@ -14,6 +14,7 @@ export type DatePickProps = {
   value?: string | number
   tipText?: string | null
   defaultValue?: string | Date // should add a type guard function to validate format in future
+  hasError?: boolean
 }
 
 // Component ----------------------------------------------------------------------
@@ -29,6 +30,8 @@ const DatePick: FC<DatePickProps & Omit<CalendarProps, "name"> & InputProps> =
       startYearRange,
       endYearRange,
       defaultValue = format(startOfToday(), "MMM-dd-yyyy"), // Want the calendar to open to today's date by default unless a custom value is passed
+      hasError = false,
+      ...props
     },
     ref
   ) {

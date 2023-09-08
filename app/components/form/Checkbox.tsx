@@ -15,13 +15,23 @@ export type CheckboxProps = {
   className?: string
   onChange?: any
   defaultChecked?: boolean
+  hasError?: boolean
 }
 
 const Checkbox: FC<CheckboxProps> = forwardRef<
   HTMLButtonElement,
   CheckboxProps
 >(function setRefCheckbox(
-  { children, name, type = "standard", onChange, value, id = name, ...props },
+  {
+    children,
+    name,
+    type = "standard",
+    onChange,
+    value,
+    id = name,
+    hasError = false,
+    ...props
+  },
   ref
 ) {
   return (
