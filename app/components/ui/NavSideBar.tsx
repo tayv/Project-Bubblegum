@@ -9,10 +9,15 @@ import NavHorizontal from "./NavHorizontal"
 import { ArrowLeftCircle, Frame, LogIn } from "lucide-react"
 import Divider from "@ui/Divider"
 
+// TYPES ---
 type NavSideBarStyle = "selected" | "notSelected"
 type ArticleList = { title: string; path?: string; groupTitle?: boolean }[] // This is the list of articles that will be displayed in the side nav
 export type NavSideBarProps = { articleList: ArticleList }
 
+// HELPERS ---
+const isLargeScreen = window.innerWidth >= 1024 // Used by Clerk UserButton to only show name on large screens. 1024px is Tailwind's lg breakpoint
+
+// MAIN FUNCTION ---
 const NavSideBar: FC<NavSideBarProps> = ({ articleList, ...props }) => {
   const pathname = usePathname()
 
@@ -57,14 +62,21 @@ const NavSideBar: FC<NavSideBarProps> = ({ articleList, ...props }) => {
             <SignedIn>
               {/* Mount the UserButton component */}
               <span className="lg:ml-0 text-xl whitespace-nowrap">
-                <UserButton afterSignOutUrl="/" userProfileMode="modal" />
+                <UserButton
+                  afterSignOutUrl="/"
+                  userProfileMode="modal"
+                  showName={isLargeScreen}
+                />
               </span>
             </SignedIn>
             <SignedOut>
               {/* Signed out users get sign in button */}
               <div className="flex flex-row gap-2 items-center text-xl whitespace-nowrap">
                 <LogIn className="hidden lg:block" />
-                <SignInButton />
+                <SignInButton
+                  mode="modal"
+                  redirectUrl={pathname ? pathname : undefined}
+                />
               </div>
             </SignedOut>
           </div>
