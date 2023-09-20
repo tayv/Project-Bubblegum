@@ -56,7 +56,7 @@ const SheetSignUpClerk: FC<SheetSignUpClerkProps> = ({
   const router = useRouter()
 
   // State
-  const [isSheetOpen, setIsSheetOpen] = useState(isFormSubmitted || false) // This sign up sheet might be used outside forms so need to have logical gate
+  const [isSheetOpen, setIsSheetOpen] = useState(isFormSubmitted || false) // This sign up sheet might be used outside forms so need to have logic gate
 
   // Need to recheck since user could cancel out of modal and resubmit form
   useEffect(() => {
@@ -86,13 +86,7 @@ const SheetSignUpClerk: FC<SheetSignUpClerkProps> = ({
       <ModalSheet
         isSheetOpen={isSheetOpen}
         setIsSheetOpen={setIsSheetOpen}
-        // triggerComponent={
-        //   <button className="items-center justify-center inline-flex h-10 px-4 font-medium text-slate-500 bg-slate-200 hover:bg-slate-300 border-2 border-slate-400 rounded-lg leading-none outline-none focus:shadow-[0_0_0_2px] shadow-md focus:shadow-cta-400">
-        //     Test
-        //   </button>
-        // }
-        //title="Document Title"
-        description="This is a description"
+        description="Sign up"
         handleOnOpenChange={handleOnOpenChange}
       >
         <div className="max-w-prose">
@@ -107,16 +101,14 @@ const SheetSignUpClerk: FC<SheetSignUpClerkProps> = ({
                 <Heading size="h2" textAlign="center">
                   Last step ...
                 </Heading>
-                <Paragraph>
-                  Your document contains sensitive information. Protect your
-                  privacy by creating a free account to save, edit, and download
-                  your document.
+                <Paragraph textAlign="center">
+                  Save, edit, and download your document with a free account.
                 </Paragraph>
-                <aside className="text-sm text-center">
+                <aside className="text-sm text-center text-brand-500">
                   No credit card required. Delete your account at any time.
                 </aside>
 
-                <Space ySize="large" />
+                <Space ySize="medium" />
 
                 <LayoutContainer
                   variant="flex"
@@ -126,7 +118,25 @@ const SheetSignUpClerk: FC<SheetSignUpClerkProps> = ({
                   gap="xsmall"
                   padding="none"
                 >
-                  <SignUp redirectUrl="/docviewer" />
+                  <SignUp
+                    redirectUrl="/docviewer"
+                    appearance={{
+                      elements: {
+                        card: "gap-6 p-8",
+                        headerSubtitle: "hidden",
+                        formFieldInput:
+                          "border border-gray-900 rounded-lg bg-white shadow-sm",
+                        formButtonPrimary: "bg-cta-500 hover:bg-cta-600",
+                        footerActionLink: "text-cta-500 font-semibold",
+                      },
+                      layout: {
+                        socialButtonsPlacement: "bottom",
+                        socialButtonsVariant: "iconButton",
+                        privacyPageUrl: "/",
+                        termsPageUrl: "/",
+                      },
+                    }}
+                  />
                 </LayoutContainer>
               </Card>
             </form>

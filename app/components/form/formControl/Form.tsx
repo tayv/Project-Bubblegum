@@ -20,6 +20,7 @@ import ButtonCTA from "@form/ButtonCTA"
 import Divider from "@ui/Divider"
 import SheetSignUp from "@uiTemplates/SheetSignUp"
 import SheetSignUpClerk from "@components/templates/uiTemplates/SheetSignUpClerk"
+import { SignedOut } from "@clerk/nextjs"
 
 export type FormProps = {
   id: string
@@ -86,11 +87,13 @@ const Form: FC<FormProps> = ({
         isFormSubmitted={isFormSubmitted}
         setIsFormSubmitted={setIsFormSubmitted}
       /> */}
-      <SheetSignUpClerk
-        formID="signupSheetTest"
-        isFormSubmitted={isFormSubmitted}
-        setIsFormSubmitted={setIsFormSubmitted}
-      />
+      <SignedOut>
+        <SheetSignUpClerk
+          formID="signupSheetTest"
+          isFormSubmitted={isFormSubmitted}
+          setIsFormSubmitted={setIsFormSubmitted}
+        />
+      </SignedOut>
       {/* ----------------------------- */}
 
       {/* Toolbox starts ---------------------------------------------- */}

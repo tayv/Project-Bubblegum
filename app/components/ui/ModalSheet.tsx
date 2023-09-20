@@ -50,8 +50,11 @@ const ModalSheet: FC<ModalSheetProps> = ({
           className="
           z-50 flex flex-col items-center fixed bottom-0 left-0 right-0 max-h-[90vh] h-full w-full max-w-4xl mx-auto overflow-y-auto
           bg-white shadow-md focus:outline-none :bottom-auto select-none rounded-t-[36px]
-          lg:w-[80%] lg:top-1/2 lg:left-1/2 lg:right-1/2 lg:translate-x-[-50%] lg:translate-y-[-50%] lg:rounded-[36px]
-          2xl:max-h-[75vh]
+          lg:w-[80%] lg:top-1/2 lg:left-1/2 lg:right-1/2 lg:translate-x-[-50%] lg:translate-y-[-50%]
+         
+          lg:max-h-[100vh] lg:mt-8
+          2xl:mt-16
+          
         "
         >
           <div className="flex flex-col items-center w-full">
