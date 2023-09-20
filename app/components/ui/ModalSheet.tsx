@@ -4,12 +4,13 @@ import * as DialogRadix from "@radix-ui/react-dialog"
 import { X } from "lucide-react"
 import SubmitButton from "@components/form/ButtonCTA"
 import Divider from "@ui/Divider"
+import classNames from "classnames"
 
 // TYPES ---
 export type ModalSheetProps = {
   isSheetOpen: boolean
   setIsSheetOpen: React.Dispatch<React.SetStateAction<boolean>>
-  title: string
+  title?: string
   description: string
   triggerText?: string
   triggerType?: "button" | "text"
@@ -47,10 +48,10 @@ const ModalSheet: FC<ModalSheetProps> = ({
         <DialogRadix.Content
           // Goal is to have modal centered for screens larger than tablets and sheet styling for mobile
           className="
-          z-50 flex flex-col items-center fixed bottom-0 left-0 right-0 max-h-[75vh] h-full w-full max-w-4xl mx-auto overflow-y-auto
+          z-50 flex flex-col items-center fixed bottom-0 left-0 right-0 max-h-[90vh] h-full w-full max-w-4xl mx-auto overflow-y-auto
           bg-white shadow-md focus:outline-none :bottom-auto select-none rounded-t-[36px]
-          lg:w-[80%] lg:top-1/2 lg:left-1/2 lg:right-1/2 lg:translate-x-[-50%] lg:translate-y-[-50%] 
-          lg:rounded-[36px]
+          lg:w-[80%] lg:top-1/2 lg:left-1/2 lg:right-1/2 lg:translate-x-[-50%] lg:translate-y-[-50%] lg:rounded-[36px]
+          2xl:max-h-[75vh]
         "
         >
           <div className="flex flex-col items-center w-full">
@@ -61,7 +62,13 @@ const ModalSheet: FC<ModalSheetProps> = ({
               width="xsmall"
               className="lg:hidden"
             />
-            <DialogRadix.Title className="hidden lg:block text-center text-slate-500 pt-3 pb-2 font-medium w-full border-b ">
+            <DialogRadix.Title
+              className={classNames([
+                "hidden text-center text-slate-500 pt-3 pb-2 font-medium w-full",
+                "lg:block",
+                title ? "border-b" : "pt-0", // title prop is optional for large screens
+              ])}
+            >
               <div>{title}</div>
             </DialogRadix.Title>
             {/* <DialogRadix.Description className="text-slate-500 mt-[10px] mb-5 text-[15px] leading-normal">
