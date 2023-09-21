@@ -120,9 +120,10 @@ const SheetSignUpClerk: FC<SheetSignUpClerkProps> = ({
                 >
                   <SignUp
                     redirectUrl="/docviewer"
+                    signInUrl="/signin"
                     appearance={{
                       elements: {
-                        card: "gap-6 p-8",
+                        card: "gap-6 p-8 shadow-none border border-slate-100 bg-slate-50/30 rounded-none lg:rounded-xl",
                         headerSubtitle: "hidden",
                         formFieldInput:
                           "border border-gray-900 rounded-lg bg-white shadow-sm",

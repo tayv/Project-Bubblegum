@@ -3,7 +3,7 @@ import { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "Product PDF Builder Demo",
-  description: "Welcome to Bubblegum",
+  description: "Build your document",
 }
 
 export default function RootLayout({
