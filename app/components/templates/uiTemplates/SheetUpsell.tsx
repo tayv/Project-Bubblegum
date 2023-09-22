@@ -1,6 +1,6 @@
 "use client"
 
-import { useRouter } from "next/navigation"
+import { usePathname } from "next/navigation"
 import { FC, useState, useContext, useEffect } from "react"
 import { ProductContext } from "@contexts/ProductContext"
 import * as z from "zod"
@@ -21,10 +21,11 @@ import Space from "@components/ui/Space"
 import { SignUp } from "@clerk/nextjs"
 
 // TYPES ---------
-type SheetSignUpClerkProps = {
+type SheetUpsellProps = {
   formID: string
   isFormSubmitted?: boolean
   setIsFormSubmitted?: React.Dispatch<React.SetStateAction<boolean>>
+  triggerComponent: React.ReactElement
 }
 
 // COLOR TOKENS ---------
@@ -42,18 +43,19 @@ const zodSchema = z.object({
 // HELPER COMPONENTS ----------
 
 // MAIN FUNCTION
-const SheetSignUpClerk: FC<SheetSignUpClerkProps> = ({
+const SheetUpsell: FC<SheetUpsellProps> = ({
   formID,
   isFormSubmitted,
   setIsFormSubmitted,
+  triggerComponent,
   ...props
 }) => {
   // Setup RHF
   const methods = useForm({ resolver: zodResolver(zodSchema), defaultValues })
   const formHasErrors = Object.keys(methods.formState.errors).length > 0
 
-  // Setup routes for loading steps after signup completed
-  const router = useRouter()
+  // Setup routes for reloading current page after clerk signup completed
+  const pathname = usePathname()
 
   // State
   const [isSheetOpen, setIsSheetOpen] = useState(isFormSubmitted || false) // This sign up sheet might be used outside forms so need to have logic gate
@@ -81,13 +83,14 @@ const SheetSignUpClerk: FC<SheetSignUpClerkProps> = ({
   }
 
   return (
-    // Need lg:hidden otherwise on large screens the toolbox will be bumped to bottom instead of sticking to right column because the SheetSignUpClerkClerk div will be visually hidden but appear in the DOM and take up a grid column
-    <div className="flex justify-center gap-[25px] mt-10 mb-28 lg:hidden">
+    // Need lg:hidden otherwise on large screens the toolbox will be bumped to bottom instead of sticking to right column because the SheetUpsellClerk div will be visually hidden but appear in the DOM and take up a grid column
+    <div className="flex justify-start gap-[25px]">
       <ModalSheet
         isSheetOpen={isSheetOpen}
         setIsSheetOpen={setIsSheetOpen}
         description="Sign up"
         handleOnOpenChange={handleOnOpenChange}
+        triggerComponent={triggerComponent}
       >
         <div className="max-w-prose">
           {/* Need to wrap in FormProvider or the state won't work */}
@@ -99,10 +102,11 @@ const SheetSignUpClerk: FC<SheetSignUpClerkProps> = ({
             >
               <Card id="signupModalContent" color="none">
                 <Heading size="h2" textAlign="center">
-                  Last step ...
+                  Member-only feature
                 </Heading>
                 <Paragraph textAlign="center">
-                  Save, edit, and download your document with a free account.
+                  Access this and other member-only features with a free
+                  account.
                 </Paragraph>
                 <aside className="text-sm text-center text-brand-500">
                   No credit card required. Delete your account at any time.
@@ -119,8 +123,8 @@ const SheetSignUpClerk: FC<SheetSignUpClerkProps> = ({
                   padding="none"
                 >
                   <SignUp
-                    redirectUrl="/docviewer"
-                    //  signInUrl="/signin"
+                    redirectUrl={pathname}
+                    // afterSignInUrl={`${initialPathname}`}
                     appearance={{
                       elements: {
                         card: "gap-6 p-8 shadow-none border border-slate-100 bg-slate-50/30 rounded-none lg:rounded-xl",
@@ -129,12 +133,6 @@ const SheetSignUpClerk: FC<SheetSignUpClerkProps> = ({
                           "border border-gray-900 rounded-lg bg-white shadow-sm",
                         formButtonPrimary: "bg-cta-500 hover:bg-cta-600",
                         footerActionLink: "text-cta-500 font-semibold",
-                      },
-                      layout: {
-                        socialButtonsPlacement: "bottom",
-                        socialButtonsVariant: "iconButton",
-                        privacyPageUrl: "/",
-                        termsPageUrl: "/",
                       },
                     }}
                   />
@@ -148,4 +146,4 @@ const SheetSignUpClerk: FC<SheetSignUpClerkProps> = ({
   )
 }
 
-export default SheetSignUpClerk
+export default SheetUpsell
