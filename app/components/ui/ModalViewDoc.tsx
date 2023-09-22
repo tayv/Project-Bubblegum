@@ -125,7 +125,7 @@ const ModalViewDoc: FC<ModalViewDocProps> = ({
         {triggerType === "button" ? (
           <button
             onClick={handlePreviewPDF}
-            className="flex flex-row gap-1 p-2"
+            className="flex flex-row gap-1 py-2"
           >
             <View />
             {triggerText}

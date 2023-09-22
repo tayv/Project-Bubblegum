@@ -15,10 +15,14 @@ import { useLoadPreviewPDF } from "@hooks/useLoadPreviewPDF"
 import dynamic from "next/dynamic"
 import { pdfStyles } from "utils/_pdfHelpers/pdfStyles"
 import PillBar from "@form/PillBar"
-import { Wrench } from "lucide-react"
+import { View, Wrench } from "lucide-react"
 import ButtonCTA from "@form/ButtonCTA"
 import Divider from "@ui/Divider"
 import SheetSignUp from "@uiTemplates/SheetSignUp"
+import SheetSignUpClerk from "@components/templates/uiTemplates/SheetSignUpClerk"
+import { SignedIn, SignedOut } from "@clerk/nextjs"
+import ModalStandard from "@components/ui/ModalStandard"
+import SheetUpsell from "@components/templates/uiTemplates/SheetUpsell"
 
 export type FormProps = {
   id: string
@@ -80,11 +84,18 @@ const Form: FC<FormProps> = ({
       </form>
 
       {/* --------- Note: sign up sheet needs to be outside form so the nested submit button won't submit parent form --------------- */}
-      <SheetSignUp
+      {/* <SheetSignUp
         formID="signupSheetTest"
         isFormSubmitted={isFormSubmitted}
         setIsFormSubmitted={setIsFormSubmitted}
-      />
+      /> */}
+      <SignedOut>
+        <SheetSignUpClerk
+          formID="signupSheetTest"
+          isFormSubmitted={isFormSubmitted}
+          setIsFormSubmitted={setIsFormSubmitted}
+        />
+      </SignedOut>
       {/* ----------------------------- */}
 
       {/* Toolbox starts ---------------------------------------------- */}
@@ -98,20 +109,38 @@ const Form: FC<FormProps> = ({
               TODO: Toolbox goes here
             </div>
             <Divider padding="large" />
-            <ModalViewDoc
-              variant="preview"
-              triggerText="Preview Doc"
-              title={`Preview: ${productTitle}`}
-              description="This is a preview not your final document."
-              //formData={methods.getValues()}
-              formData={latestFormData}
-              handlePreviewPDF={handlePreviewPDF}
-            >
-              {/* Need to pass formData directly as prop instead of useFormContext() or passing all methods because PDFViewer creates a separate context */}
-              <PDFViewer style={pdfStyles.pdfViewer}>
-                <DynamicPDF formData={methods.getValues()} />
-              </PDFViewer>
-            </ModalViewDoc>
+            <SignedOut>
+              <SheetUpsell
+                formID="signupSheetTest"
+                isFormSubmitted={isFormSubmitted}
+                setIsFormSubmitted={setIsFormSubmitted}
+                triggerComponent={
+                  <button
+                    onClick={handlePreviewPDF}
+                    className="flex flex-row gap-1 py-2"
+                  >
+                    <View />
+                    Preview document
+                  </button>
+                }
+              />
+            </SignedOut>
+            <SignedIn>
+              <ModalViewDoc
+                variant="preview"
+                triggerText="Preview Doc"
+                title={`Preview: ${productTitle}`}
+                description="This is a preview not your final document."
+                //formData={methods.getValues()}
+                formData={latestFormData}
+                handlePreviewPDF={handlePreviewPDF}
+              >
+                {/* Need to pass formData directly as prop instead of useFormContext() or passing all methods because PDFViewer creates a separate context */}
+                <PDFViewer style={pdfStyles.pdfViewer}>
+                  <DynamicPDF formData={methods.getValues()} />
+                </PDFViewer>
+              </ModalViewDoc>
+            </SignedIn>
           </Card>
         </div>
       </div>

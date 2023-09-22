@@ -16,7 +16,24 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <ClerkProvider>
+    <ClerkProvider
+      appearance={{
+        variables: {
+          colorPrimary: "#6366F1",
+          colorText: "#111827",
+        },
+        layout: {
+          socialButtonsPlacement: "bottom",
+          socialButtonsVariant: "iconButton",
+          privacyPageUrl: "/",
+          termsPageUrl: "/",
+        },
+        // elements: {
+        //   card: "gap-6 p-8 shadow-none border border-slate-100 bg-slate-50/30 rounded-none lg:rounded-xl",
+        //   formButtonPrimary: "hover:bg-cta-600",
+        // },
+      }}
+    >
       <html lang="en">
         <body className="bg-neutral-100 overscroll-none max-w-screen">
           {/* Need separate div so don't conflict with child flex items */}

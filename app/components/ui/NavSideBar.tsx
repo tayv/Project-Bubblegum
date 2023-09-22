@@ -66,6 +66,12 @@ const NavSideBar: FC<NavSideBarProps> = ({ articleList, ...props }) => {
                   afterSignOutUrl="/"
                   userProfileMode="modal"
                   showName={isLargeScreen}
+                  appearance={{
+                    elements: {
+                      userButtonBox: "lg:flex-row-reverse",
+                      userButtonOuterIdentifier: "hidden md:block",
+                    },
+                  }}
                 />
               </span>
             </SignedIn>
