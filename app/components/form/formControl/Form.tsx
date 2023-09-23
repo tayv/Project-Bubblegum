@@ -111,9 +111,6 @@ const Form: FC<FormProps> = ({
             <Divider padding="large" />
             <SignedOut>
               <SheetUpsell
-                formID="signupSheetTest"
-                isFormSubmitted={isFormSubmitted}
-                setIsFormSubmitted={setIsFormSubmitted}
                 triggerComponent={
                   <button
                     onClick={handlePreviewPDF}

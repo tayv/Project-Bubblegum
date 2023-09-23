@@ -20,14 +20,14 @@ import LayoutContainer from "@components/ui/LayoutContainer"
 import Space from "@components/ui/Space"
 import { SignUp } from "@clerk/nextjs"
 
+// NOTES: Form/FormProvider/etc. isn't actually necessary as its been refactored to use standard clerk auth component. Keeping for now in case want to have opt in newsletter checkbox then will need form.
+
 // TYPES ---------
 type SheetSignUpClerkProps = {
   formID: string
   isFormSubmitted?: boolean
   setIsFormSubmitted?: React.Dispatch<React.SetStateAction<boolean>>
 }
-
-// COLOR TOKENS ---------
 
 // FORM SETUP ----------
 const defaultValues = {

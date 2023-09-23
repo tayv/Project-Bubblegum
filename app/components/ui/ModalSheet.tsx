@@ -8,8 +8,8 @@ import classNames from "classnames"
 
 // TYPES ---
 export type ModalSheetProps = {
-  isSheetOpen: boolean
-  setIsSheetOpen: React.Dispatch<React.SetStateAction<boolean>>
+  isSheetOpen?: boolean // Optional as clerk auth components will auto close modal on redirect. Otherwise set via event handler in the sheet
+  setIsSheetOpen?: React.Dispatch<React.SetStateAction<boolean>>
   title?: string
   description: string
   triggerText?: string
