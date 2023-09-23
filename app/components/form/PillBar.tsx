@@ -98,9 +98,6 @@ const ToolBox: FC<ToolBoxProps> = ({
 
         <SignedOut>
           <SheetUpsell
-            formID="signupSheetTest"
-            //  isFormSubmitted={isFormSubmitted}
-            //  setIsFormSubmitted={setIsFormSubmitted}
             triggerComponent={
               <button
                 onClick={handlePreviewPDF}
