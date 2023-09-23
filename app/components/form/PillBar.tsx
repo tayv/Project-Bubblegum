@@ -10,6 +10,7 @@ import {
   RotateCcwIcon,
   Send,
   Trash2,
+  View,
   Wrench,
   XCircle,
 } from "lucide-react"
@@ -20,6 +21,8 @@ import ModalAlert from "@ui/ModalAlert"
 import { pdfStyles } from "utils/_pdfHelpers/pdfStyles"
 import DynamicPDF from "@components/buildDoc/DynamicPDF"
 import { useLoadPreviewPDF } from "@hooks/useLoadPreviewPDF"
+import { SignedIn, SignedOut } from "@clerk/nextjs"
+import SheetUpsell from "@uiTemplates/SheetUpsell"
 
 type PillBarProps = {
   productTitle: string
@@ -93,19 +96,35 @@ const ToolBox: FC<ToolBoxProps> = ({
           </button>
         </ModalAlert>
 
-        <ModalViewDoc
-          variant="preview"
-          triggerText="Preview"
-          title={`Preview: ${productTitle}`}
-          description="This is a preview not your final document."
-          formData={latestFormData}
-          handlePreviewPDF={handlePreviewPDF}
-        >
-          {/* Need to pass formData directly as prop instead of useFormContext() or passing all methods because PDFViewer creates a separate context */}
-          <PDFViewer style={pdfStyles.pdfViewer}>
-            <DynamicPDF formData={getValues()} />
-          </PDFViewer>
-        </ModalViewDoc>
+        <SignedOut>
+          <SheetUpsell
+            triggerComponent={
+              <button
+                onClick={handlePreviewPDF}
+                className="flex flex-row gap-1 py-2"
+              >
+                <View />
+                Preview
+              </button>
+            }
+          />
+        </SignedOut>
+
+        <SignedIn>
+          <ModalViewDoc
+            variant="preview"
+            triggerText="Preview"
+            title={`Preview: ${productTitle}`}
+            description="This is a preview not your final document."
+            formData={latestFormData}
+            handlePreviewPDF={handlePreviewPDF}
+          >
+            {/* Need to pass formData directly as prop instead of useFormContext() or passing all methods because PDFViewer creates a separate context */}
+            <PDFViewer style={pdfStyles.pdfViewer}>
+              <DynamicPDF formData={getValues()} />
+            </PDFViewer>
+          </ModalViewDoc>
+        </SignedIn>
 
         {/* <button type="button" className="flex flex-row gap-1 p-2  ">
           <HelpCircle className="" />

@@ -24,6 +24,8 @@ import DatePick from "@components/form/DatePick"
 
 import DynamicPDF from "../components/buildDoc/DynamicPDF"
 import Space from "@components/ui/Space"
+import { auth, currentUser, useUser } from "@clerk/nextjs"
+import { useRouter } from "next/navigation"
 
 const Product2 = () => {
   const defaultValues: FormDataType = {
@@ -53,12 +55,16 @@ const Product2 = () => {
     formData: formData, // need to confirm but could prob get rid of this since using rhf's FormProvider in Form
     defaultValues: defaultValues, // used by rhf reset()
   }
-
+  const { isSignedIn } = useUser()
+  const router = useRouter()
   // Sample onSubmit form handler
   // NOTES: Don't need to  e.preventDefault() since rhf's handleSubmit() automatically prevents page reloads
   // and handles errors for you https://www.react-hook-form.com/api/useform/handlesubmit/
   const onSubmit = async (data: any, event: any) => {
-    setFormData(data) // Save form values to state so the test template table can show the values
+    // If user's signed in then go direct to docviewer pg
+    if (isSignedIn) {
+      router.push("/docviewer")
+    } else setFormData(data) // Save form values to state so the test template table can show the values
     console.log("Form submitted. data:", data, "Submit form - errors", Error)
     console.log("event:", event)
     const body = data
