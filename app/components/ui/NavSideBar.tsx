@@ -15,7 +15,7 @@ type ArticleList = { title: string; path?: string; groupTitle?: boolean }[] // T
 export type NavSideBarProps = { articleList: ArticleList }
 
 // HELPERS ---
-const isLargeScreen = window.innerWidth >= 1024 // Used by Clerk UserButton to only show name on large screens. 1024px is Tailwind's lg breakpoint
+const isLargeScreen = typeof window !== "undefined" && window.innerWidth >= 1024 // Used by Clerk UserButton to only show name on large screens. 1024px is Tailwind's lg breakpoint
 
 // MAIN FUNCTION ---
 const NavSideBar: FC<NavSideBarProps> = ({ articleList, ...props }) => {
