@@ -3,7 +3,6 @@
 
 generator client {
   provider = "prisma-client-js"
- // previewFeatures = ["referentialIntegrity"]
 }
 
 datasource db {
@@ -12,8 +11,81 @@ datasource db {
   relationMode = "prisma"
 }
 
-model Inquiry {
-  id      Int   @default(autoincrement()) @id
-  name    String
-  formData Json? @default("{}") 
+enum LicenseType {
+  FREE
+  LUMP_SUM
+  ONE_MONTH
+  THREE_MONTHS
+  SIX_MONTHS
+  ONE_YEAR
 }
+
+model license {
+  licenseKey        Int               @unique @id
+  licenseType       LicenseType
+  licenseStart      DateTime
+  licenseExpire     DateTime
+}
+
+model User {
+  userId            Int               @id @default(autoincrement())
+  license           Boolean
+
+  docData           DocData?  // A virtual relation. Makes queries easier since intended to be unidirectional relation to DocData. Solves Prisma back-relations error. See:  https://github.com/prisma/prisma/discussions/8857
+}
+
+model ProductCatalog {
+  id                Int               @id @default(autoincrement())
+  productName       String            @unique
+  productSchema     String // intend to be the json file name holding logic
+
+  docData           DocData? // virtual relation only 
+} 
+
+enum DocStatus {
+  DRAFT
+  PENDING_SIGNATURE
+  DONE_ESIGN
+  DONE_PRINTSIGN
+}
+
+model DocData {
+  id          Int            @default(autoincrement()) @id
+  docName     String
+  formData    Json?          @default("{}") 
+  status      DocStatus
+
+  productId   Int            @unique
+  product     ProductCatalog @relation(fields: [productId], references: [id])
+
+  userId      Int            @unique
+  user        User           @relation(fields: [userId], references: [userId]) 
+
+  @@index([productId]) // See: https://www.prisma.io/docs/concepts/components/prisma-schema/relations/relation-mode#indexes
+  @@index([userId])
+}
+
+
+// If decide to store product jurisdictions in db... 
+
+// Add to ProductCatalog model ->   jurisdictions     JoinProductCatJurisdiction[] // relation to join table  
+
+// model Jurisdiction {
+//   id                Int               @id @default(autoincrement())
+//   name              String            @unique
+//   products          JoinProductCatJurisdiction[] // relation to join table
+// }
+
+// // Many-to-many relation requires a join table
+// model JoinProductCatJurisdiction {
+//   productId         Int
+//   product           ProductCatalog @relation(fields: [productId], references: [id])
+
+//   jurisdictionId    Int
+//   jurisdiction      Jurisdiction  @relation(fields: [jurisdictionId], references: [id])
+ 
+//   @@id([productId, jurisdictionId])
+ 
+//   @@index([jurisdictionId])
+//   @@index([productId])
+// }
