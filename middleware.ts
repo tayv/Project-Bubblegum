@@ -3,7 +3,7 @@ import { authMiddleware } from "@clerk/nextjs"
 // See https://clerk.com/docs/references/nextjs/auth-middleware for more information about configuring middleware
 export default authMiddleware({
   // "/" will be accessible to all users
-  publicRoutes: ["/", "/product2", "/signin", "/api/inquiry"],
+  publicRoutes: ["/", "/product2", "/signin", "/api/saveForm"],
 })
 
 export const config = {
