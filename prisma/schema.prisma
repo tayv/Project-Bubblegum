@@ -34,6 +34,8 @@ model License {
   licenseDuration   LicenseDuration
   licenseStart      DateTime
   licenseExpire     DateTime
+
+  @@index([userId]) // Improves look-up performance See: https://www.prisma.io/docs/concepts/components/prisma-schema/relations/relation-mode#indexes
 }
 
 // App product catalog ---
@@ -70,18 +72,18 @@ enum DocStatus {
 }
 
 model UserDocData {
-  docId       Int            @default(autoincrement()) @id
-  docName     String
-  formData    Json?          @default("{}") 
-  status      DocStatus
+  userId      String         // Don't use @unique here so we can associate multiple documents to a user
+  user        User           @relation(fields: [userId], references: [userId]) 
 
   productId   ProductId            
   product     ProductCatalog @relation(fields: [productId], references: [productId])
 
-  userId      String         // Don't use @unique here so we can associate multiple documents to a user
-  user        User           @relation(fields: [userId], references: [userId]) 
+  docId       Int            @default(autoincrement()) @id
+  docName     String
+  status      DocStatus
+  formData    Json?          @default("{}") 
 
-  @@index([productId]) // See: https://www.prisma.io/docs/concepts/components/prisma-schema/relations/relation-mode#indexes
+  @@index([productId]) 
   @@index([userId])
 }
 
