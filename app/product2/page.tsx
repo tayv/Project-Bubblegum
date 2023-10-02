@@ -61,7 +61,7 @@ const Product2 = () => {
   // NOTES: Don't need to  e.preventDefault() since rhf's handleSubmit() automatically prevents page reloads
   // and handles errors for you https://www.react-hook-form.com/api/useform/handlesubmit/
   const onSubmit = async (data: any, event: any) => {
-    // If user's signed in then go direct to docviewer pg
+    // If user's signed in via Clerk then go direct to docviewer pg
     if (isSignedIn) {
       router.push("/docviewer")
     } else setFormData(data) // Save form values to state so the test template table can show the values

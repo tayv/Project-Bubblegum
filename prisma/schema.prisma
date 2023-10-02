@@ -1,5 +1,4 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+// Prisma schema file docs: https://pris.ly/d/prisma-schema
 
 generator client {
   provider = "prisma-client-js"
@@ -57,7 +56,6 @@ model ProductCatalog {
 model User {
   userId            String               @id 
 
- // licenseKey        Int                  @unique @default(autoincrement())
   license           License?             
 
   docData           UserDocData[]  // one to many relation since each user can have multiple docs saved

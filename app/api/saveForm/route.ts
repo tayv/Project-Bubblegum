@@ -6,8 +6,9 @@ const prisma = new PrismaClient()
 export async function POST(request: Request) {
   // For testing. Replace with webhook that fetches userId from Clerk
   const testUserId = "user_" + Math.floor(Math.random() * 1000000)
+  // const testUserId = "user_360376"
 
-  // Get the data
+  // Get the form data
   let body
   try {
     body = await request.json()
@@ -19,11 +20,29 @@ export async function POST(request: Request) {
     })
   }
 
-  // Create new User entry in database
-  // TODO Check if user already exists
+  // Use prisma's upsert to check if user exists and update their entry to add new document
   try {
-    const newUserEntry = await prisma.user.create({
-      data: {
+    const userEntry = await prisma.user.upsert({
+      where: { userId: testUserId },
+      // If user exists add the new document data
+      update: {
+        docData: {
+          create: {
+            status: "DRAFT",
+            product: {
+              connect: {
+                productId: "PRODUCT1",
+              },
+            },
+            docName: body.textExample,
+            formData: body,
+          },
+        },
+      },
+
+      // If user doesn't exist, create new user + add their license and document info
+      // In future consider moving license creation into separate endpoint
+      create: {
         userId: testUserId,
         license: {
           create: {
@@ -34,7 +53,7 @@ export async function POST(request: Request) {
           },
         },
 
-        // Create the UserDocData entry for this User
+        // Create the user's docData entry
         docData: {
           create: {
             status: "DRAFT",
@@ -50,38 +69,21 @@ export async function POST(request: Request) {
       },
     })
 
-    // const newEntry = await prisma.userDocData.create({
-    //   data: {
-    //     status: "DRAFT",
-    //     product: {
-    //       connect: {
-    //         productId: "PRODUCT1",
-    //       },
-    //     },
-    //     user: {
-    //       connect: {
-    //         userId: "user_123",
-    //       },
-    //     },
-    //     docName: body.textExample,
-    //     formData: body,
-    //   },
-    // })
-
-    return NextResponse.json(newUserEntry)
+    return NextResponse.json(userEntry)
   } catch (error) {
     if (error instanceof Error) {
-      console.error("[Error][POST User Creation]", {
+      console.error("[Error][POST User and/or Document Creation]", {
         errorMessage: error.message,
-        requestBody: body,
+        // requestBody: body,
         generatedUserId: testUserId,
       })
     } else {
-      console.error("Unknown error:", error)
+      console.error("Unknown error. Please contact support.", error)
     }
 
     return NextResponse.json({
-      error: "Error occurred while creating a user.",
+      error:
+        "Error occurred while creating a user. Please try again or contact support.",
       success: false,
     })
   }
