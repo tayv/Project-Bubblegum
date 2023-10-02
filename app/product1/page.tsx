@@ -73,7 +73,7 @@ const Product1 = () => {
     setIsFormSubmitted(true) // so we can load the next step after form is submitted (modal or document viewer)
 
     try {
-      const response = await fetch("/api/inquiry", {
+      const response = await fetch("/api/saveForm", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),

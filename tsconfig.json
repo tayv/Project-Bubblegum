@@ -25,16 +25,13 @@
       "@uiTemplates/*": ["app/components/templates/uiTemplates/*"],
       "@buildDoc/*": ["app/components/buildDoc/*"],
 
+      "@api/*": ["app/api/*"],
       "@contexts/*": ["app/contexts/*"],
       "@hooks/*": ["app/hooks/*"],
       "@utils/*": ["app/utils/*"],
       "@styles/*": ["styles/*"],
       "@product1/*": ["app/product1/*"],
-      "@product2/*": ["app/product2/*"],
-
-      // Page Router
-      "@docs/*": ["pages/docs/*"],
-      "@restricted/*": ["pages/restricted/*"] // private pages for authenticated users
+      "@product2/*": ["app/product2/*"]
     },
     "plugins": [
       {
