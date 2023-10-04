@@ -7,7 +7,7 @@ export async function POST(request: Request) {
   // For testing. Replace with webhook that fetches userId from Clerk
   const testUserId = "user_" + Math.floor(Math.random() * 1000000)
   // const testUserId = "user_360376"
-
+  console.log("API ROUTE FIRED")
   // Get the form data
   let body
   try {

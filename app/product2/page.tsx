@@ -94,11 +94,20 @@ const Product2 = () => {
   return (
     <>
       <ProductContext.Provider value={ProductContextValue}>
-        <Heading size="h1" weight="bold" padding="standard">
-          Product 2
-        </Heading>
-        <Paragraph>Demo: Building a dynamic PDF via form answers</Paragraph>
-        <Space />
+        <Card color="none">
+          <Heading
+            size="h1"
+            weight="bold"
+            padding="standard"
+            textAlign="center"
+            className="lg:text-left"
+          >
+            Product 2
+          </Heading>
+          <Paragraph textAlign="center" className="lg:text-left">
+            Demo: Building a dynamic PDF via form answers
+          </Paragraph>
+        </Card>
 
         <div className="flex lg:flex-row lg:gap-5 w-full xl:max-w-1400">
           <Form

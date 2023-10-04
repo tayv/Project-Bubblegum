@@ -53,7 +53,7 @@ export default function RootLayout({
                 ]}
               />
               {/* Only mobile styles need more top padding to offset fixed header */}
-              <main className="w-full max-w-screen pt-16 pb-32 lg:px-6 lg:py-3 lg:pt-2">
+              <main className="w-full max-w-screen px-2 pt-16 pb-32 lg:px-6 lg:py-3 lg:pt-2">
                 {children}
               </main>
             </div>
