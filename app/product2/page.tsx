@@ -27,6 +27,9 @@ import Space from "@components/ui/Space"
 import { auth, currentUser, useUser } from "@clerk/nextjs"
 import { useRouter } from "next/navigation"
 
+import useActiveSection from "@hooks/useActiveSection"
+import FormSectionCard from "@components/form/SectionCard"
+
 const Product2 = () => {
   const defaultValues: FormDataType = {
     checkboxExample: true,
@@ -90,6 +93,7 @@ const Product2 = () => {
       console.log("there was an error submitting", error)
     }
   }
+  const scrollToTarget = useActiveSection("true")
 
   return (
     <>
@@ -121,6 +125,13 @@ const Product2 = () => {
             isFormSubmitted={isFormSubmitted}
             setIsFormSubmitted={setIsFormSubmitted}
           >
+            <button
+              type="button"
+              className="h-6 bg-slate-500"
+              onClick={scrollToTarget}
+            >
+              Scroll to Target
+            </button>
             <Card id="location">
               <Heading size="h2" weight="bold">
                 Your location
@@ -208,6 +219,11 @@ const Product2 = () => {
                 </Field.Control>
               </Field>
             </Card>
+
+            <FormSectionCard
+              id="formSectionCard1"
+              dataActive="true"
+            ></FormSectionCard>
 
             <Card id="signing">
               <Heading size="h2" weight="bold">

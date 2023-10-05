@@ -245,7 +245,7 @@ const Calendar: FC<CalendarProps & CalendarStateProps> = ({
               </div>
             </div>
 
-            {/* Quick Jump SectionCard */}
+            {/* Quick Jump Section */}
             <section className="border-t border-neutral-200 md:border-t-0 mt-4 md:mt-0 md:px-8 md:pt-4 sm:pt-2 sm:pl-0  ">
               <h2 className="pb-1 pt-4 md:pt-0 text-neutral-500 font-medium text-sm">
                 Quick Jump
