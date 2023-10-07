@@ -3,7 +3,7 @@ import {
   DocTemplateCommonType,
   FormDataType,
   SelectedTemplateProps,
-} from "../../app/product2/_schemas/productTypes"
+} from "../../app/components/templates/productSchemas/productTypes"
 
 export const filterInvalidSections = ({
   docTemplate,

@@ -2,7 +2,6 @@
 
 import * as z from "zod"
 import React from "react"
-import { PageContextType } from "@components/templates/templateTypes"
 import Heading from "@ui/Heading"
 import Paragraph from "@ui/Paragraph"
 import Form from "@components/form/formControl/Form"
@@ -14,11 +13,11 @@ import { useState, createContext } from "react"
 import RadioGroup from "@components/form/RadioGroup"
 import Select from "@components/form/Select"
 
-import { ProductContext } from "@contexts/ProductContext"
+import { ProductContext, ProductProvider } from "@contexts/ProductContext"
 
 import { pdfStyles } from "../../utils/_pdfHelpers/pdfStyles"
 import dynamic from "next/dynamic"
-import { FormDataType } from "./_schemas/productTypes"
+import { FormDataType } from "@productSchemas/productTypes"
 import { format, startOfToday } from "date-fns"
 import DatePick from "@components/form/DatePick"
 
@@ -27,10 +26,21 @@ import Space from "@components/ui/Space"
 import { auth, currentUser, useUser } from "@clerk/nextjs"
 import { useRouter } from "next/navigation"
 
-import useActiveSection from "@hooks/useActiveSection"
-import FormSectionCard from "@components/form/SectionCard"
+//import useActiveSection from "@hooks/useActiveSection"
+import FormSection from "@form/FormSection"
 
 const Product2 = () => {
+  // Initialize hooks
+  const { isSignedIn } = useUser()
+  const router = useRouter()
+
+  // Context to be used in all product pages
+  const contextValues = React.useContext(ProductContext)
+  if (!contextValues) {
+    console.log("Error: You must use ProductContext in each page.")
+    return null
+  }
+
   const defaultValues: FormDataType = {
     checkboxExample: true,
     radioExample: "option1",
@@ -47,19 +57,6 @@ const Product2 = () => {
     signingDate: z.string().optional(),
   })
 
-  // Setup initial state
-  // TODO See if this can be removed after refactor to PDF since we rely on RHF to handle state now
-  const [formData, setFormData] = useState(defaultValues) // Need to set initial state to defaultValues to avoid type errors
-  const [isFormSubmitted, setIsFormSubmitted] = useState(false) // For rendering next step (ie. open SignUpSheet)
-
-  // Setup pg context values to pass to template
-  // This may be able to be removed after refactor to PDF. May need it for snippets though.
-  const ProductContextValue = {
-    formData: formData, // need to confirm but could prob get rid of this since using rhf's FormProvider in Form
-    defaultValues: defaultValues, // used by rhf reset()
-  }
-  const { isSignedIn } = useUser()
-  const router = useRouter()
   // Sample onSubmit form handler
   // NOTES: Don't need to  e.preventDefault() since rhf's handleSubmit() automatically prevents page reloads
   // and handles errors for you https://www.react-hook-form.com/api/useform/handlesubmit/
@@ -67,12 +64,12 @@ const Product2 = () => {
     // If user's signed in via Clerk then go direct to docviewer pg
     if (isSignedIn) {
       router.push("/docviewer")
-    } else setFormData(data) // Save form values to state so the test template table can show the values
+    } else contextValues.setFormData(data) // Save form values to state so the test template table can show the values
     console.log("Form submitted. data:", data, "Submit form - errors", Error)
     console.log("event:", event)
     const body = data
 
-    setIsFormSubmitted(true) // so we can load the next step after form is submitted (modal or document viewer)
+    contextValues.setIsFormSubmitted(true) // so we can load the next step after form is submitted (modal or document viewer)
 
     try {
       const response = await fetch("/api/saveForm", {
@@ -93,11 +90,10 @@ const Product2 = () => {
       console.log("there was an error submitting", error)
     }
   }
-  const scrollToTarget = useActiveSection("true")
 
   return (
     <>
-      <ProductContext.Provider value={ProductContextValue}>
+      <ProductContext.Provider value={contextValues}>
         <Card color="none">
           <Heading
             size="h1"
@@ -122,16 +118,9 @@ const Product2 = () => {
             onSubmit={onSubmit}
             buttonLabel="Submit Form"
             productName="product2"
-            isFormSubmitted={isFormSubmitted}
-            setIsFormSubmitted={setIsFormSubmitted}
+            isFormSubmitted={contextValues.isFormSubmitted}
+            setIsFormSubmitted={contextValues.setIsFormSubmitted}
           >
-            <button
-              type="button"
-              className="h-6 bg-slate-500"
-              onClick={scrollToTarget}
-            >
-              Scroll to Target
-            </button>
             <Card id="location">
               <Heading size="h2" weight="bold">
                 Your location
@@ -183,6 +172,19 @@ const Product2 = () => {
                 </Field.Control>
               </Field>
 
+              <FormSection
+                id="formSectionCard1"
+                activeSection={contextValues.activeSection}
+                formSections={contextValues.formSections}
+                setFormSections={contextValues.setFormSections}
+                setActiveSection={contextValues.setActiveSection}
+                registerFormSection={contextValues.registerFormSection}
+              >
+                <Heading size="h2" weight="bold">
+                  Test Scroll 1
+                </Heading>
+              </FormSection>
+
               <Field
                 name="radioExample"
                 //validateOnBlur={false}
@@ -220,10 +222,18 @@ const Product2 = () => {
               </Field>
             </Card>
 
-            <FormSectionCard
-              id="formSectionCard1"
-              dataActive="true"
-            ></FormSectionCard>
+            <FormSection
+              id="formSectionCard2"
+              activeSection={contextValues.activeSection}
+              formSections={contextValues.formSections}
+              setFormSections={contextValues.setFormSections}
+              setActiveSection={contextValues.setActiveSection}
+              registerFormSection={contextValues.registerFormSection}
+            >
+              <Heading size="h2" weight="bold">
+                Test Scroll 2
+              </Heading>
+            </FormSection>
 
             <Card id="signing">
               <Heading size="h2" weight="bold">

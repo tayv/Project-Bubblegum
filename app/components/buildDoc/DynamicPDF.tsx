@@ -12,9 +12,9 @@ import {
   pdf,
 } from "@react-pdf/renderer"
 import { pdfStyles } from "../../../utils/_pdfHelpers/pdfStyles"
-import { FormDataType } from "../../product2/_schemas/productTypes"
+import { FormDataType } from "../templates/productSchemas/productTypes"
 import { renderPDFTOC } from "../../../utils/_pdfHelpers/renderPDFTOC"
-import { createSchemaTemplateA } from "../../product2/_schemas/createSchemaTemplateA"
+import { createSchemaTemplateA } from "../templates/productSchemas/createSchemaTemplateA"
 import { renderFooter } from "../../../utils/_pdfHelpers/renderFooter"
 import { renderPDFTerms } from "../../../utils/_pdfHelpers/renderPDFTerms"
 import { renderSigning } from "../../../utils/_pdfHelpers/renderSigning"

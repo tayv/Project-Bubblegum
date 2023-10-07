@@ -1,5 +1,6 @@
 // import "./globals.css" // These styles apply to every route in the application
 import { Metadata } from "next"
+import { ProductProvider } from "@contexts/ProductContext"
 
 export const metadata: Metadata = {
   title: "Product PDF Builder Demo",
@@ -12,5 +13,5 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  return <>{children}</>
+  return <ProductProvider defaultValues={{}}>{children}</ProductProvider>
 }
