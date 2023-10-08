@@ -163,6 +163,12 @@ const StandardBar: FC<StandardBarProps> = ({
         <div className="lg:hidden flex flex-row gap-4 items-center m-4 px-6 py-3 border border-slate-300 rounded-full bg-white drop-shadow-md max-w-md">
           <button
             type="button"
+            onClick={() =>
+              scrollToActiveSection({
+                attributeValue: "true",
+                action: "prev",
+              })
+            }
             className="max-w-xs bottom-0 p-2 border-2 border-slate-500 rounded-full "
           >
             <ArrowBigUpDash className="text-slate-500" />
