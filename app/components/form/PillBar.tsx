@@ -24,12 +24,15 @@ import { useLoadPreviewPDF } from "@hooks/useLoadPreviewPDF"
 import { SignedIn, SignedOut } from "@clerk/nextjs"
 import SheetUpsell from "@uiTemplates/SheetUpsell"
 
-import useActiveSection from "@hooks/useActiveSection"
+import useActiveSection, {
+  UseActiveSectionProps,
+} from "@hooks/useActiveSection"
 
 type PillBarProps = {
   productTitle: string
   methods: UseFormReturn // used so we can render preview of document in Toolbox for authenticated users
   variant?: "standard" | "multibar"
+  scrollToActiveSection: UseActiveSectionProps["scrollToActiveSection"]
 }
 
 type StandardBarProps = {
@@ -37,6 +40,7 @@ type StandardBarProps = {
   methods: UseFormReturn
   showToolBox: boolean
   setShowToolBox: React.Dispatch<React.SetStateAction<boolean>>
+  scrollToActiveSection: UseActiveSectionProps["scrollToActiveSection"]
 }
 
 type ToolBoxProps = {

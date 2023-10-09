@@ -1,7 +1,15 @@
 import React, { useRef } from "react"
 import { ProductContext } from "@contexts/ProductContext"
+import useDataAttributes from "@hooks/useDataAttributes"
 
-type UseActiveSectionProps = {
+export type UseActiveSectionProps = {
+  scrollToActiveSection: ({
+    attributeValue,
+    action,
+  }: ScrollToActiveSectionProps) => void
+}
+
+type ScrollToActiveSectionProps = {
   attributeValue?: string
   action?: "next" | "prev"
 }
@@ -10,17 +18,10 @@ type UseUpdateActiveSectionProps = {
   updateType: "next" | "prev" | "reset"
 }
 
+// HELPERS
+// Can be split out into own file if end up reusing elsewhere
 const useUpdateActiveSection = () => {
-  // useCallback so we can memoize this
-  const setDataAttribute = React.useCallback(
-    (sectionId: string, value: string) => {
-      const element = document.getElementById(sectionId)
-      if (element) {
-        element.setAttribute("data-active-section", value)
-      }
-    },
-    []
-  )
+  const { setDataAttribute } = useDataAttributes()
 
   // Context so we can get the activeSection state from the product page and update it
   const contextValues = React.useContext(ProductContext)
@@ -32,11 +33,12 @@ const useUpdateActiveSection = () => {
   }
 
   return ({ updateType }: UseUpdateActiveSectionProps) => {
-    const activeSectionData = document.querySelector(
+    // 1. Get the current active section. If none will return null
+    const currentActiveSectionElement = document.querySelector(
       `[data-active-section="true"]`
     )
 
-    // Get indexes
+    // 2.  Get indexes
     const currentIndex = contextValues.formSections.indexOf(
       contextValues.activeSection
     )
@@ -44,41 +46,39 @@ const useUpdateActiveSection = () => {
     const maxIndex = contextValues.formSections.length - 1
     let newSectionIndex
 
+    // 3. Update indexes based on conditions
     if (updateType === "next" && currentIndex < maxIndex) {
       newSectionIndex = currentIndex + 1
-
-      if (activeSectionData) {
-        // Toggle its 'data-active-section' attribute value to 'false'
-        activeSectionData.setAttribute("data-active-section", "false")
-      }
     } else if (updateType === "prev" && currentIndex > minIndex) {
       newSectionIndex = currentIndex - 1
-
-      if (activeSectionData) {
-        // Toggle its 'data-active-section' attribute value to 'false'
-        activeSectionData.setAttribute("data-active-section", "false")
-      }
-
-      // let newSectionId = contextValues.formSections[newSectionIndex]
-      // contextValues.setActiveSection(newSectionId)
-
-      // let newSectionElement = document.getElementById(newSectionId)
-      // if (newSectionElement) {
-      //   newSectionElement.setAttribute("data-active-section", "true")
-      // }
     } else return
-    // Update the data attribute of the active section
-    let newSectionId = contextValues.formSections[newSectionIndex]
+
+    // 3. Toggle the current active section to false to remove styling
+    if (currentActiveSectionElement) {
+      setDataAttribute({
+        elementId: currentActiveSectionElement,
+        attributeName: "active-section",
+        value: "false",
+      })
+    }
+
+    // 4. Update the active section tracked in the product context's state
+    const newSectionId = contextValues.formSections[newSectionIndex]
     contextValues.setActiveSection(newSectionId)
 
-    let newSectionElement = document.getElementById(newSectionId)
+    // 5. Update data attribute for new active section to add styling
+    const newSectionElement = document.getElementById(newSectionId)
     if (newSectionElement) {
-      //  newSectionElement.setAttribute("data-active-section", "true")
-      setDataAttribute(newSectionId, "true")
+      setDataAttribute({
+        elementId: newSectionId,
+        attributeName: "active-section",
+        value: "true",
+      })
     }
   }
 }
 
+// MAIN HOOK
 const useActiveSection = () => {
   const targetRef = useRef<HTMLElement | null>(null)
   const handleUpdateActiveSection = useUpdateActiveSection()
@@ -86,21 +86,27 @@ const useActiveSection = () => {
   const scrollToActiveSection = ({
     attributeValue,
     action = "next",
-  }: UseActiveSectionProps) => {
-    // Determine scroll direction
+  }: ScrollToActiveSectionProps) => {
+    // 1. Update active section based on scroll direction
     if (action === "next") {
       handleUpdateActiveSection({ updateType: "next" })
     } else if (action === "prev") {
       handleUpdateActiveSection({ updateType: "prev" })
     }
-    const element = document.querySelector(
+
+    // 2. Get the current active section so we can scroll to it
+    const activeSectionElement = document.querySelector(
       `[data-active-section="${attributeValue}"]`
     ) // NOTE: data attributes use all lowercase and avoid hyphens as required by React
-    console.log("ELEMENT HERE", element)
 
-    // type guard needed since querySelector returns the more generic Element type but we need to ensure an HTMLElement
-    if (element instanceof HTMLElement) {
-      targetRef.current = element // Attach the found element to the ref.
+    // 3. Get top nav height so we can calculate scroll position. Refer to SideNav to view it.
+    const mainNavElement = document.getElementById("mainNav")
+    const mainNavHeight = mainNavElement ? mainNavElement.offsetHeight : 0
+
+    // 4. Scroll to the new active section
+    // type guard needed since querySelector returns the more generic activeSectionElement type but we need to ensure an HTMLElement
+    if (activeSectionElement instanceof HTMLElement) {
+      targetRef.current = activeSectionElement // Attach the found activeSectionElement to the ref.
       targetRef.current.scrollIntoView({ behavior: "smooth", block: "start" })
     }
   }

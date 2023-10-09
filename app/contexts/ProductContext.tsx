@@ -55,7 +55,6 @@ export const ProductProvider: FC<ProductProviderProps> = ({
       }
       return formSections
     })
-    console.log("formSections:", formSections)
   }
 
   // 2. Pass state values and methods to the context provider

@@ -20,15 +20,14 @@ const FormSection = forwardRef<HTMLDivElement, SectionCardProps>(
     useEffect(() => {
       registerFormSection(id)
     }, [id, registerFormSection])
-    console.log("active section", activeSection)
+
     return (
       <Card
+        id={id}
         variant="section"
         ref={ref}
-        id={id}
-        // data-active-section={dataactivesection}
         data-active-section={activeSection === id ? "true" : "false"}
-        className="data-[active-section=true]:bg-sky-300 "
+        className="data-[active-section=true]:bg-sky-300 scroll-mt-16" // scroll top used to offset the fixed header for when scrollIntoView() in useActiveSection hook runs
       >
         {children}
       </Card>
