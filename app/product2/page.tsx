@@ -120,6 +120,8 @@ const Product2 = () => {
             productName="product2"
             isFormSubmitted={contextValues.isFormSubmitted}
             setIsFormSubmitted={contextValues.setIsFormSubmitted}
+            //   initialActiveSection={"formSectionCard1"}
+            //   setActiveSection={contextValues.setActiveSection}
           >
             <Card id="location">
               <Heading size="h2" weight="bold">
@@ -174,11 +176,11 @@ const Product2 = () => {
 
               <FormSection
                 id="formSectionCard1"
-                activeSection={contextValues.activeSection}
-                formSections={contextValues.formSections}
-                setFormSections={contextValues.setFormSections}
-                setActiveSection={contextValues.setActiveSection}
-                registerFormSection={contextValues.registerFormSection}
+                // activeSection={contextValues.activeSection}
+                // formSections={contextValues.formSections}
+                // setFormSections={contextValues.setFormSections}
+                // setActiveSection={contextValues.setActiveSection}
+                // registerFormSection={contextValues.registerFormSection}
               >
                 <Heading size="h2" weight="bold">
                   Test Scroll 1
@@ -224,11 +226,11 @@ const Product2 = () => {
 
             <FormSection
               id="formSectionCard2"
-              activeSection={contextValues.activeSection}
-              formSections={contextValues.formSections}
-              setFormSections={contextValues.setFormSections}
-              setActiveSection={contextValues.setActiveSection}
-              registerFormSection={contextValues.registerFormSection}
+              //  activeSection={contextValues.activeSection}
+              // formSections={contextValues.formSections}
+              // setFormSections={contextValues.setFormSections}
+              // setActiveSection={contextValues.setActiveSection}
+              //  registerFormSection={contextValues.registerFormSection}
             >
               <Heading size="h2" weight="bold">
                 Test Scroll 2

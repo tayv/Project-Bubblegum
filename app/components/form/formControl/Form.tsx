@@ -51,6 +51,8 @@ const Form: FC<FormProps> = ({
   productName,
   isFormSubmitted,
   setIsFormSubmitted,
+  //initialActiveSection,
+  // setActiveSection,
   ...props
 }) => {
   const methods = useForm({ resolver: zodResolver(zodSchema), defaultValues })
@@ -63,6 +65,11 @@ const Form: FC<FormProps> = ({
     () => import("@react-pdf/renderer").then((mod) => mod.PDFViewer),
     { ssr: false }
   )
+
+  // Passing and setting initial active section here for clarity because ProductContext is reused for all product forms
+  // React.useEffect(() => {
+  //   setActiveSection(initialActiveSection)
+  // }, [initialActiveSection, setActiveSection])
 
   return (
     // FormProvider needed for Field component and preview in ToolBox
