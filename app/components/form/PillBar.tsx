@@ -32,7 +32,6 @@ type PillBarProps = {
   productTitle: string
   methods: UseFormReturn // used so we can render preview of document in Toolbox for authenticated users
   variant?: "standard" | "multibar"
-  scrollToActiveSection: UseActiveSectionProps["scrollToActiveSection"]
 }
 
 type StandardBarProps = {

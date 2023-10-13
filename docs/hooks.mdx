@@ -65,3 +65,17 @@ Used to add/remove the `FormSection`'s ref from the section ref dictionary in `P
     )
   }
 ```
+
+### useDataAttributes
+
+Provides utility functions to manage `data-*` attributes by updating the DOM directly.
+
+Pass it the element's id and desired data attribute + value to it and it will add it to the dom element.
+
+```
+ setDataAttribute({ elementId: "myElementId", attributeName: "test", value: "123" });
+```
+
+NOTE: It returns a NodeList. Convert it to an array if you need to use array methods like `.map()`.
+
+Note: Not actively used for setting the active section anymore. Was originally used by `useManageActiveSection` hook before it was refactored.
