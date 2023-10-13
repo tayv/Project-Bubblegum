@@ -28,6 +28,7 @@ import { useRouter } from "next/navigation"
 
 //import useActiveSection from "@hooks/useActiveSection"
 import FormSection from "@form/FormSection"
+import WatchField from "@components/form/formControl/WatchField"
 
 const Product2 = () => {
   // Initialize hooks
@@ -217,8 +218,19 @@ const Product2 = () => {
 
             <FormSection id="formSectionCard2">
               <Heading size="h2" weight="bold">
-                Test Scroll 2
+                Conditional question
               </Heading>
+              <WatchField
+                name="conditionalTest"
+                conditionLogic={{
+                  watchName: "checkboxExample",
+                  watchValue: true,
+                }}
+              >
+                <Field.GroupLabel>
+                  Toggle the checkbox above to see my visibility change
+                </Field.GroupLabel>
+              </WatchField>
             </FormSection>
 
             <FormSection id="signing">
