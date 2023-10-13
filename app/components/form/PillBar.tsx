@@ -24,7 +24,7 @@ import { useLoadPreviewPDF } from "@hooks/useLoadPreviewPDF"
 import { SignedIn, SignedOut } from "@clerk/nextjs"
 import SheetUpsell from "@uiTemplates/SheetUpsell"
 
-import useActiveSection, {
+import useManageActiveSection, {
   UseActiveSectionProps,
 } from "@hooks/useActiveSection"
 
@@ -169,7 +169,6 @@ const StandardBar: FC<StandardBarProps> = ({
             type="button"
             onClick={() =>
               scrollToActiveSection({
-                attributeValue: "true",
                 action: "prev",
               })
             }
@@ -181,7 +180,6 @@ const StandardBar: FC<StandardBarProps> = ({
             type="button"
             onClick={() =>
               scrollToActiveSection({
-                attributeValue: "true",
                 action: "next",
               })
             }
@@ -263,8 +261,9 @@ const PillBar: FC<PillBarProps> = ({
 }) => {
   const [showToolBox, setShowToolBox] = useState(false)
 
-  // Hook to scroll to active section based on data attribute
-  const scrollToActiveSection = useActiveSection()
+  // Desctructure custom hook so we can trigger scroll to active section based on data attribute
+  const { useScrollActiveSection } = useManageActiveSection()
+  const scrollToActiveSection = useScrollActiveSection()
 
   return variant === "multibar" ? (
     <MultiBar
