@@ -9,7 +9,7 @@ type WatchFieldProps = {
   defaultValue?: any // Handled by defaultValues object passed to Form so not passed at field level
   validationRules?: any
   validateOnBlur?: boolean
-  conditionLogic: { watchName: string; watchValue: string }
+  conditionLogic: { watchName: string; watchValue: string | boolean | number }
   children: React.ReactNode
 }
 

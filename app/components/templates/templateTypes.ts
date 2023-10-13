@@ -6,11 +6,6 @@ export type Schema = {
   [key: string]: { [key: string]: { [key: string]: string } }
 } // 2 level deep nested object with key/value pairs
 
-export type PageContextType = {
-  formData: FormData
-  schema?: Schema
-}
-
 export type DynamicContentProps = {
   watchedInputName: string
   watchedInputValue: string | number | boolean | Date

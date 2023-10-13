@@ -22,6 +22,7 @@
       "@formActions/*": ["app/components/form/formActions/*"],
       "@ui/*": ["app/components/ui/*"],
       "@templates/*": ["app/components/templates/*"],
+      "@productSchemas/*": ["app/components/templates/productSchemas/*"],
       "@uiTemplates/*": ["app/components/templates/uiTemplates/*"],
       "@buildDoc/*": ["app/components/buildDoc/*"],
 

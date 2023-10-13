@@ -2,7 +2,6 @@
 
 import * as z from "zod"
 import React from "react"
-import { PageContextType } from "@components/templates/templateTypes"
 import Heading from "@ui/Heading"
 import Paragraph from "@ui/Paragraph"
 import Form from "@components/form/formControl/Form"
@@ -14,11 +13,11 @@ import { useState, createContext } from "react"
 import RadioGroup from "@components/form/RadioGroup"
 import Select from "@components/form/Select"
 
-import { ProductContext } from "@contexts/ProductContext"
+import { ProductContext, ProductProvider } from "@contexts/ProductContext"
 
 import { pdfStyles } from "../../utils/_pdfHelpers/pdfStyles"
 import dynamic from "next/dynamic"
-import { FormDataType } from "./_schemas/productTypes"
+import { FormDataType } from "@productSchemas/productTypes"
 import { format, startOfToday } from "date-fns"
 import DatePick from "@components/form/DatePick"
 
@@ -27,7 +26,22 @@ import Space from "@components/ui/Space"
 import { auth, currentUser, useUser } from "@clerk/nextjs"
 import { useRouter } from "next/navigation"
 
+//import useActiveSection from "@hooks/useActiveSection"
+import FormSection from "@form/FormSection"
+import WatchField from "@components/form/formControl/WatchField"
+
 const Product2 = () => {
+  // Initialize hooks
+  const { isSignedIn } = useUser()
+  const router = useRouter()
+
+  // Context to be used in all product pages
+  const contextValues = React.useContext(ProductContext)
+  if (!contextValues) {
+    console.log("Error: You must use ProductContext in each page.")
+    return null
+  }
+
   const defaultValues: FormDataType = {
     checkboxExample: true,
     radioExample: "option1",
@@ -44,19 +58,6 @@ const Product2 = () => {
     signingDate: z.string().optional(),
   })
 
-  // Setup initial state
-  // TODO See if this can be removed after refactor to PDF since we rely on RHF to handle state now
-  const [formData, setFormData] = useState(defaultValues) // Need to set initial state to defaultValues to avoid type errors
-  const [isFormSubmitted, setIsFormSubmitted] = useState(false) // For rendering next step (ie. open SignUpSheet)
-
-  // Setup pg context values to pass to template
-  // This may be able to be removed after refactor to PDF. May need it for snippets though.
-  const ProductContextValue = {
-    formData: formData, // need to confirm but could prob get rid of this since using rhf's FormProvider in Form
-    defaultValues: defaultValues, // used by rhf reset()
-  }
-  const { isSignedIn } = useUser()
-  const router = useRouter()
   // Sample onSubmit form handler
   // NOTES: Don't need to  e.preventDefault() since rhf's handleSubmit() automatically prevents page reloads
   // and handles errors for you https://www.react-hook-form.com/api/useform/handlesubmit/
@@ -64,12 +65,12 @@ const Product2 = () => {
     // If user's signed in via Clerk then go direct to docviewer pg
     if (isSignedIn) {
       router.push("/docviewer")
-    } else setFormData(data) // Save form values to state so the test template table can show the values
+    } else contextValues.setFormData(data) // Save form values to state so the test template table can show the values
     console.log("Form submitted. data:", data, "Submit form - errors", Error)
     console.log("event:", event)
     const body = data
 
-    setIsFormSubmitted(true) // so we can load the next step after form is submitted (modal or document viewer)
+    contextValues.setIsFormSubmitted(true) // so we can load the next step after form is submitted (modal or document viewer)
 
     try {
       const response = await fetch("/api/saveForm", {
@@ -93,12 +94,21 @@ const Product2 = () => {
 
   return (
     <>
-      <ProductContext.Provider value={ProductContextValue}>
-        <Heading size="h1" weight="bold" padding="standard">
-          Product 2
-        </Heading>
-        <Paragraph>Demo: Building a dynamic PDF via form answers</Paragraph>
-        <Space />
+      <ProductContext.Provider value={contextValues}>
+        <Card color="none">
+          <Heading
+            size="h1"
+            weight="bold"
+            padding="standard"
+            textAlign="center"
+            className="lg:text-left"
+          >
+            Product 2
+          </Heading>
+          <Paragraph textAlign="center" className="lg:text-left">
+            Demo: Building a dynamic PDF via form answers
+          </Paragraph>
+        </Card>
 
         <div className="flex lg:flex-row lg:gap-5 w-full xl:max-w-1400">
           <Form
@@ -109,10 +119,10 @@ const Product2 = () => {
             onSubmit={onSubmit}
             buttonLabel="Submit Form"
             productName="product2"
-            isFormSubmitted={isFormSubmitted}
-            setIsFormSubmitted={setIsFormSubmitted}
+            isFormSubmitted={contextValues.isFormSubmitted}
+            setIsFormSubmitted={contextValues.setIsFormSubmitted}
           >
-            <Card id="location">
+            <FormSection id="location">
               <Heading size="h2" weight="bold">
                 Your location
               </Heading>
@@ -144,9 +154,15 @@ const Product2 = () => {
                   />
                 </Field.Control>
               </Field>
-            </Card>
+            </FormSection>
 
-            <Card id="conditionalFields">
+            <FormSection id="formSectionCard1">
+              <Heading size="h2" weight="bold">
+                Test Scroll 1
+              </Heading>
+            </FormSection>
+
+            <FormSection id="conditionalFields">
               <Heading size="h2" weight="bold">
                 Conditional fields
               </Heading>
@@ -183,9 +199,9 @@ const Product2 = () => {
                   />
                 </Field.Control>
               </Field>
-            </Card>
+            </FormSection>
 
-            <Card id="textInput">
+            <FormSection id="textInput">
               <Heading size="h2" weight="bold">
                 Party Names
               </Heading>
@@ -198,9 +214,26 @@ const Product2 = () => {
                   <Input type="text" />
                 </Field.Control>
               </Field>
-            </Card>
+            </FormSection>
 
-            <Card id="signing">
+            <FormSection id="formSectionCard2">
+              <Heading size="h2" weight="bold">
+                Conditional question
+              </Heading>
+              <WatchField
+                name="conditionalTest"
+                conditionLogic={{
+                  watchName: "checkboxExample",
+                  watchValue: true,
+                }}
+              >
+                <Field.GroupLabel>
+                  Toggle the checkbox above to see my visibility change
+                </Field.GroupLabel>
+              </WatchField>
+            </FormSection>
+
+            <FormSection id="signing">
               <Heading size="h2" weight="bold">
                 Signing
               </Heading>
@@ -216,7 +249,7 @@ const Product2 = () => {
                   />
                 </Field.Control>
               </Field>
-            </Card>
+            </FormSection>
           </Form>
         </div>
       </ProductContext.Provider>

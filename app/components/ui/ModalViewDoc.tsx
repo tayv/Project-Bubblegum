@@ -14,7 +14,7 @@ import PrintButton from "@ui/PrintButton"
 import { useReactToPrint } from "react-to-print"
 import { PDFDownloadLink, PDFViewer, pdf } from "@react-pdf/renderer"
 import DynamicPDF from "@components/buildDoc/DynamicPDF"
-import { FormDataType } from "@product2/_schemas/productTypes"
+import { FormDataType } from "@components/templates/productSchemas/productTypes"
 import { pdfStyles } from "utils/_pdfHelpers/pdfStyles"
 
 // TYPES ---

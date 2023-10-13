@@ -23,7 +23,7 @@ export default function Home() {
         <LayoutContainer
           variant="flex"
           direction="col"
-          padding="none"
+          padding="xStandard"
           margin="none"
           className=""
         >
@@ -158,7 +158,7 @@ export default function Home() {
           direction="col"
           variant="flex"
           // gap="medium"
-          padding="none"
+          padding="xStandard"
           margin="none"
         >
           <Heading size="h2" padding="standard">
@@ -234,7 +234,7 @@ export default function Home() {
           direction="col"
           variant="flex"
           // gap="medium"
-          padding="none"
+          padding="xStandard"
           margin="none"
         >
           <Heading size="h2" padding="standard">

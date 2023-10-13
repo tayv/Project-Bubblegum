@@ -4,7 +4,7 @@ import { pdfStyles } from "./pdfStyles"
 import {
   AllProductLocationKeys,
   DocTemplateCommonType,
-} from "../../app/product2/_schemas/productTypes"
+} from "../../app/components/templates/productSchemas/productTypes"
 
 export type RenderPDFElementsProps = {
   contentArray: DocTemplateCommonType[0]["content"] // [0] index needed since map iterator refers to single objects not arrays

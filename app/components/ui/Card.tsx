@@ -1,6 +1,6 @@
 "use client"
 
-import { FC, ReactNode } from "react"
+import { FC, ReactNode, forwardRef } from "react"
 import classNames from "classnames"
 import Link from "next/link"
 
@@ -15,6 +15,7 @@ type SharedCardProps = {
   corners?: CardCorners
   linkPath?: string
   className?: string
+  ref?: React.ForwardedRef<HTMLDivElement>
   [key: string]: any // for ...props
 }
 
@@ -151,43 +152,49 @@ const cardCornersMap: { [key in CardCorners]: string } = {
   full: "rounded-full",
 }
 
-const Card = ({
-  id,
-  linkPath,
-  variant = "div",
-  color = "standard",
-  interactionStyle = "none",
-  width = "standard",
-  padding = "standard",
-  margin = "standard",
-  corners = "standard",
-  className = "", // to pass custom one-off styling
-  children,
-  ...props
-}: CardProps | SectionCardProps) => {
-  const TagName = variant as keyof JSX.IntrinsicElements
+const Card = forwardRef<HTMLDivElement, CardProps | SectionCardProps>(
+  function setCardRef(
+    {
+      id,
+      linkPath,
+      variant = "div",
+      color = "standard",
+      interactionStyle = "none",
+      width = "standard",
+      padding = "standard",
+      margin = "standard",
+      corners = "standard",
+      className = "", // to pass custom one-off styling
+      children,
+      ...props
+    },
+    ref
+  ) {
+    const TagName: CardVariant = variant
 
-  // Get the card color map object since it uses dynamic styling based on interactionStyle prop
-  const cardColorMap = getCardColorMap(interactionStyle)
+    // Get the card color map object since it uses dynamic styling based on interactionStyle prop
+    const cardColorMap = getCardColorMap(interactionStyle)
 
-  const cardContent = (
-    <TagName
-      id={id}
-      className={classNames([
-        "",
-        cardColorMap[color],
-        cardWidthMap[width],
-        cardPaddingMap[padding],
-        cardMarginMap[margin],
-        cardCornersMap[corners],
-        className,
-      ])}
-      {...props}
-    >
-      {children}
-    </TagName>
-  )
-  return linkPath ? <Link href={linkPath}>{cardContent}</Link> : cardContent
-}
+    const cardContent = (
+      <TagName
+        ref={ref}
+        id={id}
+        className={classNames([
+          "",
+          cardColorMap[color],
+          cardWidthMap[width],
+          cardPaddingMap[padding],
+          cardMarginMap[margin],
+          cardCornersMap[corners],
+          className,
+        ])}
+        {...props}
+      >
+        {children}
+      </TagName>
+    )
+    return linkPath ? <Link href={linkPath}>{cardContent}</Link> : cardContent
+  }
+)
 
 export default Card

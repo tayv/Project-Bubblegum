@@ -3,10 +3,7 @@
 import React, { FC, useContext, useEffect } from "react"
 import { ProductContext } from "@contexts/ProductContext"
 import { useFormContext, useWatch } from "react-hook-form"
-import {
-  PageContextType,
-  DynamicContentProps,
-} from "@components/templates/templateTypes"
+import { DynamicContentProps } from "@components/templates/templateTypes"
 
 export type DynamicUserContentProps = DynamicContentProps & {
   emptySize: "standard" | "large" | "xlarge" | "xxlarge"
