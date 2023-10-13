@@ -2,8 +2,6 @@
 
 import * as z from "zod"
 
-import Product1Template from "@product1/product1Template.mdx"
-import { PageContextType } from "@components/templates/templateTypes"
 import Heading from "@ui/Heading"
 import Paragraph from "@ui/Paragraph"
 import Form from "@components/form/formControl/Form"
@@ -11,7 +9,7 @@ import Field from "@formControl/Field"
 import Checkbox from "@components/form/Checkbox"
 import Input from "@components/form/Input"
 import Card from "@components/ui/Card"
-import { useState, createContext } from "react"
+import { useState, createContext, useContext } from "react"
 import RadioGroup from "@components/form/RadioGroup"
 import Select from "@components/form/Select"
 import product1SchemaTest from "@product1/product1SchemaTest.json"
@@ -56,10 +54,7 @@ const Product1 = () => {
   const [isFormSubmitted, setIsFormSubmitted] = useState(false) // For rendering next step (ie. open SignUpSheet)
 
   // Setup pg context values to pass to template
-  const pageContextValue = {
-    formData: formData,
-    schema: product1SchemaTest,
-  }
+  const pageContextValue = useContext(ProductContext)
 
   // Sample onSubmit form handler
   // NOTES: Don't need to  e.preventDefault() since rhf's handleSubmit() automatically prevents page reloads

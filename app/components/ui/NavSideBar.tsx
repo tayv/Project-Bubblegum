@@ -31,6 +31,7 @@ const NavSideBar: FC<NavSideBarProps> = ({ articleList, ...props }) => {
   return (
     <>
       <nav
+        id="appMainNav"
         className="
         fixed z-10 top-0 left-0 
         flex flex-row justify-between px-3 py-1 sm:px-8

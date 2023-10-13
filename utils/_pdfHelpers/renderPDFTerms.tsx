@@ -3,7 +3,7 @@ import { renderPDFElements } from "./renderPDFElements"
 import {
   SelectedTemplateProps,
   DocTemplateCommonType,
-} from "../../app/product2/_schemas/productTypes"
+} from "../../app/components/templates/productSchemas/productTypes"
 import { View } from "@react-pdf/renderer"
 import { pdfStyles } from "./pdfStyles"
 import { filterInvalidSections } from "./filterInvalidSections"

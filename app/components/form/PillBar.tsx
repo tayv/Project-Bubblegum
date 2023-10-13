@@ -24,6 +24,10 @@ import { useLoadPreviewPDF } from "@hooks/useLoadPreviewPDF"
 import { SignedIn, SignedOut } from "@clerk/nextjs"
 import SheetUpsell from "@uiTemplates/SheetUpsell"
 
+import useManageActiveSection, {
+  UseActiveSectionProps,
+} from "@hooks/useManageActiveSection"
+
 type PillBarProps = {
   productTitle: string
   methods: UseFormReturn // used so we can render preview of document in Toolbox for authenticated users
@@ -35,6 +39,7 @@ type StandardBarProps = {
   methods: UseFormReturn
   showToolBox: boolean
   setShowToolBox: React.Dispatch<React.SetStateAction<boolean>>
+  scrollToActiveSection: UseActiveSectionProps["scrollToActiveSection"]
 }
 
 type ToolBoxProps = {
@@ -143,6 +148,7 @@ const StandardBar: FC<StandardBarProps> = ({
   productTitle,
   showToolBox,
   setShowToolBox,
+  scrollToActiveSection,
   methods,
 }) => (
   <>
@@ -160,12 +166,22 @@ const StandardBar: FC<StandardBarProps> = ({
         <div className="lg:hidden flex flex-row gap-4 items-center m-4 px-6 py-3 border border-slate-300 rounded-full bg-white drop-shadow-md max-w-md">
           <button
             type="button"
+            onClick={() =>
+              scrollToActiveSection({
+                action: "prev",
+              })
+            }
             className="max-w-xs bottom-0 p-2 border-2 border-slate-500 rounded-full "
           >
             <ArrowBigUpDash className="text-slate-500" />
           </button>
           <button
             type="button"
+            onClick={() =>
+              scrollToActiveSection({
+                action: "next",
+              })
+            }
             className="max-w-xs bottom-0 p-2 shadow border-2 border-cta-600 bg-cta-500 rounded-full "
           >
             <ArrowBigDownDash fill="white" stroke="white" />
@@ -244,6 +260,10 @@ const PillBar: FC<PillBarProps> = ({
 }) => {
   const [showToolBox, setShowToolBox] = useState(false)
 
+  // Desctructure custom hook so we can trigger scroll to active section based on data attribute
+  const { useScrollActiveSection } = useManageActiveSection()
+  const scrollToActiveSection = useScrollActiveSection()
+
   return variant === "multibar" ? (
     <MultiBar
       productTitle={productTitle}
@@ -257,6 +277,7 @@ const PillBar: FC<PillBarProps> = ({
       showToolBox={showToolBox}
       setShowToolBox={setShowToolBox}
       methods={props.methods}
+      scrollToActiveSection={scrollToActiveSection}
     />
   )
 }

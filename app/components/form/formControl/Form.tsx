@@ -51,6 +51,8 @@ const Form: FC<FormProps> = ({
   productName,
   isFormSubmitted,
   setIsFormSubmitted,
+  //initialActiveSection,
+  // setActiveSection,
   ...props
 }) => {
   const methods = useForm({ resolver: zodResolver(zodSchema), defaultValues })
@@ -63,6 +65,11 @@ const Form: FC<FormProps> = ({
     () => import("@react-pdf/renderer").then((mod) => mod.PDFViewer),
     { ssr: false }
   )
+
+  // Passing and setting initial active section here for clarity because ProductContext is reused for all product forms
+  // React.useEffect(() => {
+  //   setActiveSection(initialActiveSection)
+  // }, [initialActiveSection, setActiveSection])
 
   return (
     // FormProvider needed for Field component and preview in ToolBox
@@ -103,10 +110,10 @@ const Form: FC<FormProps> = ({
         {/* div needed for sticky to work. Cannot use overflow: scroll/hidden/auto with sticky https://www.digitalocean.com/community/tutorials/css-position-sticky */}
         {/* select-none needed to prevent user from copying text from preview */}
         <div className="lg:sticky top-0 overflow-y-auto select-none">
-          <Card id="loadTemplatePreviewSection">
-            <div className="flex flex-row gap-2">
+          <Card id="loadTemplatePreviewSection" color="blank">
+            <div className="flex flex-row gap-2 font-semibold">
               <Wrench />
-              TODO: Toolbox goes here
+              Document Toolbox
             </div>
             <Divider padding="large" />
             <SignedOut>
@@ -114,7 +121,7 @@ const Form: FC<FormProps> = ({
                 triggerComponent={
                   <button
                     onClick={handlePreviewPDF}
-                    className="flex flex-row gap-1 py-2"
+                    className="flex flex-row gap-2 py-1 "
                   >
                     <View />
                     Preview document
