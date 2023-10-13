@@ -50,6 +50,15 @@ const useManageActiveSection = () => {
     }
   }
 
+  const updateActiveSectionById = (sectionId: string) => {
+    const updatedIndex = sectionOrderedIds.findIndex(
+      (existingId) => existingId === sectionId
+    )
+    if (updatedIndex !== -1) {
+      setActiveSectionIndex(updatedIndex)
+    }
+  }
+
   // 2. Register/unregister used by FormSection component to add or remove the component to the section ref dictionary on mount/unmount
   const useRegisterSectionRef = (id: string) => {
     const targetSectionRef = React.useRef<HTMLDivElement | null>(null)
@@ -122,6 +131,7 @@ const useManageActiveSection = () => {
 
   return {
     updateActiveSectionIndex,
+    updateActiveSectionById,
     useRegisterSectionRef,
     useScrollActiveSection,
   }

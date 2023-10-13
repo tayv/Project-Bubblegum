@@ -120,10 +120,8 @@ const Product2 = () => {
             productName="product2"
             isFormSubmitted={contextValues.isFormSubmitted}
             setIsFormSubmitted={contextValues.setIsFormSubmitted}
-            //   initialActiveSection={"formSectionCard1"}
-            //   setActiveSection={contextValues.setActiveSection}
           >
-            <Card id="location">
+            <FormSection id="location">
               <Heading size="h2" weight="bold">
                 Your location
               </Heading>
@@ -155,9 +153,15 @@ const Product2 = () => {
                   />
                 </Field.Control>
               </Field>
-            </Card>
+            </FormSection>
 
-            <Card id="conditionalFields">
+            <FormSection id="formSectionCard1">
+              <Heading size="h2" weight="bold">
+                Test Scroll 1
+              </Heading>
+            </FormSection>
+
+            <FormSection id="conditionalFields">
               <Heading size="h2" weight="bold">
                 Conditional fields
               </Heading>
@@ -173,19 +177,6 @@ const Product2 = () => {
                   <Checkbox>Toggle me</Checkbox>
                 </Field.Control>
               </Field>
-
-              <FormSection
-                id="formSectionCard1"
-                // activeSection={contextValues.activeSection}
-                // formSections={contextValues.formSections}
-                // setFormSections={contextValues.setFormSections}
-                // setActiveSection={contextValues.setActiveSection}
-                // registerFormSection={contextValues.registerFormSection}
-              >
-                <Heading size="h2" weight="bold">
-                  Test Scroll 1
-                </Heading>
-              </FormSection>
 
               <Field
                 name="radioExample"
@@ -207,9 +198,9 @@ const Product2 = () => {
                   />
                 </Field.Control>
               </Field>
-            </Card>
+            </FormSection>
 
-            <Card id="textInput">
+            <FormSection id="textInput">
               <Heading size="h2" weight="bold">
                 Party Names
               </Heading>
@@ -222,22 +213,15 @@ const Product2 = () => {
                   <Input type="text" />
                 </Field.Control>
               </Field>
-            </Card>
+            </FormSection>
 
-            <FormSection
-              id="formSectionCard2"
-              //  activeSection={contextValues.activeSection}
-              // formSections={contextValues.formSections}
-              // setFormSections={contextValues.setFormSections}
-              // setActiveSection={contextValues.setActiveSection}
-              //  registerFormSection={contextValues.registerFormSection}
-            >
+            <FormSection id="formSectionCard2">
               <Heading size="h2" weight="bold">
                 Test Scroll 2
               </Heading>
             </FormSection>
 
-            <Card id="signing">
+            <FormSection id="signing">
               <Heading size="h2" weight="bold">
                 Signing
               </Heading>
@@ -253,7 +237,7 @@ const Product2 = () => {
                   />
                 </Field.Control>
               </Field>
-            </Card>
+            </FormSection>
           </Form>
         </div>
       </ProductContext.Provider>

@@ -26,7 +26,7 @@ import SheetUpsell from "@uiTemplates/SheetUpsell"
 
 import useManageActiveSection, {
   UseActiveSectionProps,
-} from "@hooks/useActiveSection"
+} from "@hooks/useManageActiveSection"
 
 type PillBarProps = {
   productTitle: string
