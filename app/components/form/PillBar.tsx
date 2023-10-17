@@ -23,6 +23,7 @@ import DynamicPDF from "@components/buildDoc/DynamicPDF"
 import { useLoadPreviewPDF } from "@hooks/useLoadPreviewPDF"
 import { SignedIn, SignedOut } from "@clerk/nextjs"
 import SheetUpsell from "@uiTemplates/SheetUpsell"
+import StepperButton from "@form/StepperButton"
 
 import useManageActiveSection, {
   UseActiveSectionProps,
@@ -40,19 +41,15 @@ type StandardBarProps = {
   showToolBox: boolean
   setShowToolBox: React.Dispatch<React.SetStateAction<boolean>>
   scrollToActiveSection: UseActiveSectionProps["scrollToActiveSection"]
+  sectionOrderedIds: UseActiveSectionProps["sectionOrderedIds"]
+  activeSectionIndex: UseActiveSectionProps["activeSectionIndex"]
 }
 
 type ToolBoxProps = {
   productTitle: string
+  methods: UseFormReturn
   showToolBox: StandardBarProps["showToolBox"]
   setShowToolBox: StandardBarProps["setShowToolBox"]
-  methods: UseFormReturn
-}
-
-type StepperButtonProps = {
-  variant: "next" | "prev"
-  scrollToActiveSection: UseActiveSectionProps["scrollToActiveSection"]
-  className?: string
 }
 
 // COLOR TOKENS ---------
@@ -60,42 +57,6 @@ const primarySelectColor = "rgb(2 132 199)"
 const secondarySelectColor = "rgb(100 116 139)"
 
 // HELPER COMPONENTS ----------
-export const StepperButton: FC<StepperButtonProps> = ({
-  variant,
-  scrollToActiveSection,
-  className,
-  ...props
-}) => {
-  const nextButton = (
-    <button
-      type="button"
-      onClick={() =>
-        scrollToActiveSection({
-          action: "prev",
-        })
-      }
-      className="max-w-xs bottom-0 p-2 border-2 border-slate-500 rounded-full "
-    >
-      <ArrowBigUpDash className="text-slate-500" />
-    </button>
-  )
-
-  const prevButton = (
-    <button
-      type="button"
-      onClick={() =>
-        scrollToActiveSection({
-          action: "next",
-        })
-      }
-      className="max-w-xs bottom-0 p-2 shadow border-2 border-cta-600 bg-cta-500 rounded-full "
-    >
-      <ArrowBigDownDash fill="white" stroke="white" />
-    </button>
-  )
-
-  return <>{variant === "next" ? nextButton : prevButton}</>
-}
 
 const ToolBox: FC<ToolBoxProps> = ({
   productTitle,
@@ -192,6 +153,8 @@ const StandardBar: FC<StandardBarProps> = ({
   showToolBox,
   setShowToolBox,
   scrollToActiveSection,
+  sectionOrderedIds,
+  activeSectionIndex,
   methods,
 }) => (
   <>
@@ -205,37 +168,19 @@ const StandardBar: FC<StandardBarProps> = ({
           setShowToolBox={setShowToolBox}
         />
       )}
-      <div className="flex flex-row flex-1 justify-center items-center backdrop-blur-sm bg-white/20 border-white/20 px-10 rounded-3xl">
-        <div className="flex flex-row gap-4 items-center m-4 px-6 py-3 border border-slate-100 rounded-full bg-white drop-shadow-md max-w-md">
-          {/* <button
-            type="button"
-            onClick={() =>
-              scrollToActiveSection({
-                action: "prev",
-              })
-            }
-            className="max-w-xs bottom-0 p-2 border-2 border-slate-500 rounded-full "
-          >
-            <ArrowBigUpDash className="text-slate-500" />
-          </button>
-          <button
-            type="button"
-            onClick={() =>
-              scrollToActiveSection({
-                action: "next",
-              })
-            }
-            className="max-w-xs bottom-0 p-2 shadow border-2 border-cta-600 bg-cta-500 rounded-full "
-          >
-            <ArrowBigDownDash fill="white" stroke="white" />
-          </button> */}
+      <div className="flex flex-row flex-1 justify-center items-center ">
+        <div className="flex flex-row gap-4 items-center m-4 px-6 py-3 border border-slate-100 rounded-3xl bg-white drop-shadow-md max-w-md">
           <StepperButton
             variant="next"
             scrollToActiveSection={scrollToActiveSection}
+            activeSectionIndex={activeSectionIndex}
+            sectionOrderedIds={sectionOrderedIds}
           />
           <StepperButton
             variant="prev"
             scrollToActiveSection={scrollToActiveSection}
+            activeSectionIndex={activeSectionIndex}
+            sectionOrderedIds={sectionOrderedIds}
           />
 
           <div className="flex items-center ml-px h-6">
@@ -255,11 +200,14 @@ const StandardBar: FC<StandardBarProps> = ({
   </>
 )
 
-const MultiBar: FC<ToolBoxProps> = ({
+const MultiBar: FC<StandardBarProps> = ({
   productTitle,
   showToolBox,
   setShowToolBox,
   methods,
+  scrollToActiveSection,
+  sectionOrderedIds,
+  activeSectionIndex,
 }) => (
   <>
     {/* Bottom pill bar */}
@@ -279,12 +227,18 @@ const MultiBar: FC<ToolBoxProps> = ({
           {/* IMPORTANT: left padding here must match right padding on toolbar button so steppers are centered.*/}
         </div>
         <div className="flex flex-row gap-4 items-center m-4 px-6 py-3 border border-slate-300 rounded-full bg-white drop-shadow-md max-w-md">
-          <button className="max-w-xs bottom-0 p-2 border-2 border-slate-500 rounded-full ">
-            <ArrowBigUpDash className="text-slate-500" />
-          </button>
-          <button className="max-w-xs bottom-0 p-2 shadow border-2 border-cta-600 bg-cta-500 rounded-full ">
-            <ArrowBigDownDash fill="white" stroke="white" />
-          </button>
+          <StepperButton
+            variant="next"
+            scrollToActiveSection={scrollToActiveSection}
+            activeSectionIndex={activeSectionIndex}
+            sectionOrderedIds={sectionOrderedIds}
+          />
+          <StepperButton
+            variant="prev"
+            scrollToActiveSection={scrollToActiveSection}
+            activeSectionIndex={activeSectionIndex}
+            sectionOrderedIds={sectionOrderedIds}
+          />
         </div>
 
         {/* Toolbar options don't need to be collapsed on desktop so also hide it for large screens*/}
@@ -314,7 +268,8 @@ const PillBar: FC<PillBarProps> = ({
   const [showToolBox, setShowToolBox] = useState(false)
 
   // Destructure custom hook so we can trigger scroll to active section based on data attribute
-  const { useScrollActiveSection } = useManageActiveSection()
+  const { useScrollActiveSection, activeSectionIndex, sectionOrderedIds } =
+    useManageActiveSection()
   const scrollToActiveSection = useScrollActiveSection()
 
   return variant === "multibar" ? (
@@ -323,6 +278,9 @@ const PillBar: FC<PillBarProps> = ({
       methods={props.methods}
       showToolBox={showToolBox}
       setShowToolBox={setShowToolBox}
+      scrollToActiveSection={scrollToActiveSection}
+      activeSectionIndex={activeSectionIndex}
+      sectionOrderedIds={sectionOrderedIds}
     />
   ) : (
     <StandardBar
@@ -331,6 +289,8 @@ const PillBar: FC<PillBarProps> = ({
       setShowToolBox={setShowToolBox}
       methods={props.methods}
       scrollToActiveSection={scrollToActiveSection}
+      activeSectionIndex={activeSectionIndex}
+      sectionOrderedIds={sectionOrderedIds}
     />
   )
 }
