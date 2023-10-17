@@ -169,15 +169,15 @@ const StandardBar: FC<StandardBarProps> = ({
         />
       )}
       <div className="flex flex-row flex-1 justify-center items-center ">
-        <div className="flex flex-row gap-4 items-center m-4 px-6 py-3 border border-slate-100 rounded-3xl bg-white drop-shadow-md max-w-md">
+        <div className="flex flex-row gap-4 items-center m-4 px-7 py-4 border border-slate-100 rounded-3xl bg-white drop-shadow-md max-w-md">
           <StepperButton
-            variant="next"
+            variant="prev"
             scrollToActiveSection={scrollToActiveSection}
             activeSectionIndex={activeSectionIndex}
             sectionOrderedIds={sectionOrderedIds}
           />
           <StepperButton
-            variant="prev"
+            variant="next"
             scrollToActiveSection={scrollToActiveSection}
             activeSectionIndex={activeSectionIndex}
             sectionOrderedIds={sectionOrderedIds}
@@ -228,13 +228,13 @@ const MultiBar: FC<StandardBarProps> = ({
         </div>
         <div className="flex flex-row gap-4 items-center m-4 px-6 py-3 border border-slate-300 rounded-full bg-white drop-shadow-md max-w-md">
           <StepperButton
-            variant="next"
+            variant="prev"
             scrollToActiveSection={scrollToActiveSection}
             activeSectionIndex={activeSectionIndex}
             sectionOrderedIds={sectionOrderedIds}
           />
           <StepperButton
-            variant="prev"
+            variant="next"
             scrollToActiveSection={scrollToActiveSection}
             activeSectionIndex={activeSectionIndex}
             sectionOrderedIds={sectionOrderedIds}
