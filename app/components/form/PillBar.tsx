@@ -49,11 +49,54 @@ type ToolBoxProps = {
   methods: UseFormReturn
 }
 
+type StepperButtonProps = {
+  variant: "next" | "prev"
+  scrollToActiveSection: UseActiveSectionProps["scrollToActiveSection"]
+  className?: string
+}
+
 // COLOR TOKENS ---------
 const primarySelectColor = "rgb(2 132 199)"
 const secondarySelectColor = "rgb(100 116 139)"
 
 // HELPER COMPONENTS ----------
+export const StepperButton: FC<StepperButtonProps> = ({
+  variant,
+  scrollToActiveSection,
+  className,
+  ...props
+}) => {
+  const nextButton = (
+    <button
+      type="button"
+      onClick={() =>
+        scrollToActiveSection({
+          action: "prev",
+        })
+      }
+      className="max-w-xs bottom-0 p-2 border-2 border-slate-500 rounded-full "
+    >
+      <ArrowBigUpDash className="text-slate-500" />
+    </button>
+  )
+
+  const prevButton = (
+    <button
+      type="button"
+      onClick={() =>
+        scrollToActiveSection({
+          action: "next",
+        })
+      }
+      className="max-w-xs bottom-0 p-2 shadow border-2 border-cta-600 bg-cta-500 rounded-full "
+    >
+      <ArrowBigDownDash fill="white" stroke="white" />
+    </button>
+  )
+
+  return <>{variant === "next" ? nextButton : prevButton}</>
+}
+
 const ToolBox: FC<ToolBoxProps> = ({
   productTitle,
   showToolBox,
@@ -152,7 +195,7 @@ const StandardBar: FC<StandardBarProps> = ({
   methods,
 }) => (
   <>
-    <div className="z-10 fixed bottom-0 left-0 w-full flex flex-col justify-center items-center">
+    <div className="lg:hidden z-10 fixed bottom-0 left-0 w-full flex flex-col justify-center items-center">
       {/* Toolbox works best with 3 items. Any more and will have to remove labels to fit on mobile. */}
       {showToolBox && (
         <ToolBox
@@ -162,9 +205,9 @@ const StandardBar: FC<StandardBarProps> = ({
           setShowToolBox={setShowToolBox}
         />
       )}
-      <div className="flex flex-row flex-1 justify-center items-center">
-        <div className="lg:hidden flex flex-row gap-4 items-center m-4 px-6 py-3 border border-slate-300 rounded-full bg-white drop-shadow-md max-w-md">
-          <button
+      <div className="flex flex-row flex-1 justify-center items-center backdrop-blur-sm bg-white/20 border-white/20 px-10 rounded-3xl">
+        <div className="flex flex-row gap-4 items-center m-4 px-6 py-3 border border-slate-100 rounded-full bg-white drop-shadow-md max-w-md">
+          {/* <button
             type="button"
             onClick={() =>
               scrollToActiveSection({
@@ -185,10 +228,20 @@ const StandardBar: FC<StandardBarProps> = ({
             className="max-w-xs bottom-0 p-2 shadow border-2 border-cta-600 bg-cta-500 rounded-full "
           >
             <ArrowBigDownDash fill="white" stroke="white" />
-          </button>
+          </button> */}
+          <StepperButton
+            variant="next"
+            scrollToActiveSection={scrollToActiveSection}
+          />
+          <StepperButton
+            variant="prev"
+            scrollToActiveSection={scrollToActiveSection}
+          />
+
           <div className="flex items-center ml-px h-6">
             <Divider variant="vertical" color="standard" />
           </div>
+
           <button type="button" onClick={() => setShowToolBox(!showToolBox)}>
             <Wrench
               fill={showToolBox ? secondarySelectColor : "transparent"}
@@ -220,12 +273,12 @@ const MultiBar: FC<ToolBoxProps> = ({
         />
       )}
 
-      <div className="flex flex-row flex-1 justify-center items-center">
+      <div className="lg:hidden flex flex-row flex-1 justify-center items-center">
         <div className="flex flex-1 pl-6">
           {/* This invisible div is needed so flexbox can center the stepper buttons while right aligning the toolbar button*/}
           {/* IMPORTANT: left padding here must match right padding on toolbar button so steppers are centered.*/}
         </div>
-        <div className="lg:hidden flex flex-row gap-4 items-center m-4 px-6 py-3 border border-slate-300 rounded-full bg-white drop-shadow-md max-w-md">
+        <div className="flex flex-row gap-4 items-center m-4 px-6 py-3 border border-slate-300 rounded-full bg-white drop-shadow-md max-w-md">
           <button className="max-w-xs bottom-0 p-2 border-2 border-slate-500 rounded-full ">
             <ArrowBigUpDash className="text-slate-500" />
           </button>
@@ -260,7 +313,7 @@ const PillBar: FC<PillBarProps> = ({
 }) => {
   const [showToolBox, setShowToolBox] = useState(false)
 
-  // Desctructure custom hook so we can trigger scroll to active section based on data attribute
+  // Destructure custom hook so we can trigger scroll to active section based on data attribute
   const { useScrollActiveSection } = useManageActiveSection()
   const scrollToActiveSection = useScrollActiveSection()
 
