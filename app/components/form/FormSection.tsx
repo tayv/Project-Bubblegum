@@ -33,7 +33,7 @@ const FormSection = forwardRef<HTMLDivElement, SectionCardProps>(
         onClick={handleSectionClick}
         className={classNames([
           "data-[active-section=true]:bg-white data-[active-section=true]:shadow-lg data-[active-section=true]:shadow-cta-500/50 data-[active-section=true]:ring-8 data-[active-section=true]:ring-cta-100/40 scroll-mt-16",
-          "data-[active-section=false]:opacity-40",
+          "data-[active-section=false]:opacity-30 data-[active-section=false]:cursor-pointer data-[active-section=false]:grayscale data-[active-section=false]:bg-transparent data-[active-section=false]:border-2",
           "ease-in duration-500",
         ])} // scroll top used to offset the fixed header for when scrollIntoView() in useActiveSection hook runs
       >
