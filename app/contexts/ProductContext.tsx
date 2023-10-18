@@ -3,7 +3,7 @@ import React, { useRef, createContext, useState, ReactNode, FC } from "react"
 import { Schema } from "@templates/templateTypes"
 import { FormDataType } from "@productSchemas/productTypes"
 
-type ProductContextProps = {
+export type ProductContextProps = {
   activeSectionIndex: number
   setActiveSectionIndex: React.Dispatch<
     React.SetStateAction<ProductContextProps["activeSectionIndex"]>

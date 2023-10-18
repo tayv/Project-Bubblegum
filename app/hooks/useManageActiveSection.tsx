@@ -1,11 +1,13 @@
 import React from "react"
-import { ProductContext } from "@contexts/ProductContext"
+import { ProductContext, ProductContextProps } from "@contexts/ProductContext"
 import useDataAttributes from "@hooks/useDataAttributes"
 
 export type UseActiveSectionProps = {
   scrollToActiveSection: ({ action }: ScrollToActiveSectionProps) => void
   registerSection: (id: string, ref: React.RefObject<HTMLElement>) => void
   unregisterSection: (id: string) => void
+  sectionOrderedIds: ProductContextProps["sectionOrderedIds"]
+  activeSectionIndex: ProductContextProps["activeSectionIndex"]
 }
 
 type ScrollToActiveSectionProps = {
@@ -134,6 +136,8 @@ const useManageActiveSection = () => {
     updateActiveSectionById,
     useRegisterSectionRef,
     useScrollActiveSection,
+    sectionOrderedIds,
+    activeSectionIndex,
   }
 }
 export default useManageActiveSection
