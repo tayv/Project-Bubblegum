@@ -2,17 +2,11 @@ import { PrismaClient } from "@prisma/client"
 import { NextResponse, NextRequest } from "next/server"
 
 // const prisma = new PrismaClient()
-const prisma = new PrismaClient({
-  log: ["query", "info", "warn", "error"],
-})
-
-// export async function GET(request: NextRequest) {
-//   return NextResponse.json({ message: "Hello from API Endpoint" })
-// }
+const prisma = new PrismaClient()
 
 export async function GET(request: NextRequest) {
   console.log("[GET User's docData] Start")
-  // Extract query params so we can dynamically pass userId
+  // Extract query params so we can dynamically receive userId
   const { searchParams } = new URL(request.url)
   const userId = searchParams.get("userId")
 
@@ -49,7 +43,10 @@ export async function GET(request: NextRequest) {
         userId,
       })
     } else {
-      console.error("Unknown error. Please contact support.", error)
+      console.error(
+        "Unknown error fetching user's docData. Please contact support.",
+        error
+      )
     }
 
     return NextResponse.json({

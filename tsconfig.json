@@ -29,7 +29,7 @@
       "@api/*": ["app/api/*"],
       "@contexts/*": ["app/contexts/*"],
       "@hooks/*": ["app/hooks/*"],
-      "@utils/*": ["app/utils/*"],
+      "@utils/*": ["utils/*"],
       "@styles/*": ["styles/*"],
       "@product1/*": ["app/product1/*"],
       "@product2/*": ["app/product2/*"]
