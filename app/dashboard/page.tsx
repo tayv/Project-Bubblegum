@@ -60,9 +60,18 @@ export default function Dashboard() {
         variant="flex"
         direction="col"
         padding="none"
-        alignY="center"
-        alignX="center"
+        // alignY="center"
+        //  alignX="center"
       >
+        <Heading
+          size="h3"
+          weight="medium"
+          padding="large"
+          className="text-left"
+        >
+          Your Documents
+        </Heading>
+
         {userData &&
           userData.map((document, index) => {
             return (
