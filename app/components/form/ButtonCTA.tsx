@@ -10,11 +10,12 @@ export type ButtonCTAProps = {
   type: "button" | "submit"
   variant?: ButtonCTAVariant
   buttonText?: string
-  icon?: ButtonCTAIcon
+  icon?: React.ReactNode | ButtonCTAIcon // User can also pass a custom icon so need ReactNode
+  iconPosition?: "left" | "right"
   size?: ButtonCTASize
   isDisabled?: boolean
   errorMessage?: string
-  onClick?: any
+  onClick?: React.MouseEventHandler<HTMLButtonElement>
   children?: React.ReactElement
   className?: string // to pass custom one-off styling
 }
@@ -27,10 +28,13 @@ type ButtonCTASize =
   | "standardText"
   | "largeText"
 const buttonCTASizeMap: { [key in ButtonCTASize]: string } = {
-  standardButton: "gap-2 font-normal text-base lg:text-md py-4 px-6",
-  smallButton: "gap-1 font-normal text-sm lg:text-base py-2 px-4",
-  largeButton: "gap-3 font-medium text-xl lg:text-2xl py-6 px-8",
-  standardText: "font-semibold text-md lg:text-lg gap-1",
+  standardButton:
+    "gap-2 font-normal text-base lg:text-md py-2 px-4 md:py-4 md:px-6",
+  smallButton:
+    "gap-1 font-normal text-sm lg:text-base py-px px-2 md:py-2 md:px-4",
+  largeButton:
+    "gap-3 font-medium text-xl lg:text-2xl py-3 px-5 md:py-6 md:px-8",
+  standardText: "font-normal text-md lg:text-lg gap-1",
   largeText: "font-semibold text-xl lg:text-2xl gap-2",
 }
 
@@ -70,10 +74,11 @@ const ButtonCTA: FC<ButtonCTAProps> = forwardRef<
     type = "button",
     size = "standardButton",
     icon = "standard",
+    iconPosition = "left",
     buttonText = "Submit",
     errorMessage = "Your answers can't be submitted until you fix the errors above 👆",
     isDisabled = false,
-    onClick = null,
+    onClick,
     className = "",
     ...props
   },
@@ -104,10 +109,13 @@ const ButtonCTA: FC<ButtonCTAProps> = forwardRef<
         <div
           className={classNames([
             "flex",
-            variant === "text" || icon === "none" ? "hidden" : "block",
+            iconPosition !== "left" || icon === "none" ? "hidden" : "block",
           ])}
         >
-          {buttonCTAIconMap[icon]}
+          {/* Allow user to pass in an icon or use existing one in map */}
+          {typeof icon === "string"
+            ? buttonCTAIconMap[icon as ButtonCTAIcon]
+            : icon}
         </div>
         {/* Need conditional padding in case CTA has no icon */}
         <div
@@ -118,14 +126,16 @@ const ButtonCTA: FC<ButtonCTAProps> = forwardRef<
         >
           {buttonText}
         </div>
-        {/* Text only CTAs have an icon on the right side */}
+        {/* Display icon on the right side */}
         <div
           className={classNames([
             "flex",
-            variant !== "text" || icon === "none" ? "hidden" : "block",
+            iconPosition !== "right" || icon === "none" ? "hidden" : "block",
           ])}
         >
-          {buttonCTAIconMap[icon]}
+          {typeof icon === "string"
+            ? buttonCTAIconMap[icon as ButtonCTAIcon]
+            : icon}
         </div>
       </button>
 

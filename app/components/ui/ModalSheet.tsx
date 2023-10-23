@@ -76,7 +76,7 @@ const ModalSheet: FC<ModalSheetProps> = ({
             {description}
             </DialogRadix.Description> */}
           </div>
-          <div className="flex justify-center">{children}</div>
+          <div className="flex justify-center w-full">{children}</div>
 
           <DialogRadix.Close asChild>
             <button
