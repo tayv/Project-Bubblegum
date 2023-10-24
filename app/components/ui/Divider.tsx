@@ -8,7 +8,7 @@ export type DividerProps = {
   variant?: "horizontal" | "vertical"
   color?: DividerColor
   stroke?: DividerStroke
-  width?: DividerWidth
+  width: DividerWidth
   height?: DividerHeight
   className?: string
 }

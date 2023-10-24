@@ -10,11 +10,14 @@ import {
   Trash2,
   Pencil,
   File,
+  Calendar,
 } from "lucide-react"
 import ButtonCTA from "@components/form/ButtonCTA"
 import { getUserData } from "@utils/getUserData"
 import Card from "@ui/Card"
-import ModalSheet from "@components/ui/ModalSheet"
+import ModalSheet from "@ui/ModalSheet"
+import Divider from "@ui/Divider"
+import Space from "@components/ui/Space"
 
 // This should probably be centralized as will be reused
 type DocumentData = {
@@ -22,6 +25,9 @@ type DocumentData = {
   docName: string
   formData: {
     jurisdiction: string
+    signingDate: string
+    party1Name: string
+    party2Name: string
     // add other properties of formData
   }
 }
@@ -191,13 +197,14 @@ export default function Dashboard() {
                 <LayoutContainer
                   variant="flex"
                   direction="col"
-                  alignY="top"
-                  className="w-full"
+                  margin="none"
+                  gap="small"
+                  className="w-full h-full px-8 lg:px-10"
                 >
                   <Heading size="h3" padding="none" textAlign="left">
                     {document.docName ? document.docName : "No document name"}
                   </Heading>
-
+                  <Divider width="full" />
                   <LayoutContainer
                     variant="flex"
                     direction="row"
@@ -207,31 +214,89 @@ export default function Dashboard() {
                     className="opacity-60 gap-px lg:gap-1"
                   >
                     <MapPin className="min-h-4 max-h-5 lg:max-h-6  " />
-                    <Paragraph size="small" weight="standard" textAlign="left">
+                    <Paragraph
+                      size="small"
+                      weight="standard"
+                      textAlign="left"
+                      padding="small"
+                    >
                       {document.formData.jurisdiction
                         ? document.formData.jurisdiction
                         : "No location"}
                     </Paragraph>
                   </LayoutContainer>
+
+                  <LayoutContainer
+                    variant="flex"
+                    direction="row"
+                    margin="none"
+                    padding="none"
+                    alignX="start"
+                    className="opacity-60 gap-px lg:gap-1"
+                  >
+                    <Calendar className="min-h-4 max-h-5 lg:max-h-6  " />
+                    <Paragraph
+                      size="small"
+                      weight="standard"
+                      textAlign="left"
+                      padding="small"
+                    >
+                      {document.formData.signingDate
+                        ? document.formData.signingDate
+                        : "No Signing Date"}
+                    </Paragraph>
+                  </LayoutContainer>
+
+                  <Space ySize="standard" />
                   <LayoutContainer
                     variant="flex"
                     direction="col"
                     padding="none"
                     margin="none"
+                    gap="small"
                     alignY="top"
-                    className="w-full"
+                    className="w-full h-full"
                   >
-                    <Heading size="h4" padding="none" textAlign="left">
+                    <Heading size="h4" padding="none" textAlign="center">
                       Actions
                     </Heading>
+                    <Divider width="full" />
+                    <Space ySize="standard" />
                     <LayoutContainer
                       variant="flex"
-                      direction="row"
+                      direction="col"
                       margin="none"
                       padding="none"
-                      alignX="start"
-                      className="opacity-60 gap-px lg:gap-1"
+                      gap="large"
+                      className=" lg:gap-4 w-full lg:flex-row items-center lg:justify-between"
                     >
+                      <LayoutContainer
+                        variant="flex"
+                        direction="col"
+                        margin="none"
+                        padding="none"
+                        gap="medium"
+                        className="lg:gap-1 lg:flex-row"
+                      >
+                        <ButtonCTA
+                          type="button"
+                          variant="primary"
+                          size="standardButton"
+                          buttonText="View Document"
+                          iconPosition="left"
+                          icon={<File />}
+                          className=""
+                        />
+                        <ButtonCTA
+                          type="button"
+                          variant="secondary"
+                          size="standardButton"
+                          buttonText="Edit Answers"
+                          iconPosition="left"
+                          icon={<Pencil />}
+                          className=""
+                        />
+                      </LayoutContainer>
                       <ButtonCTA
                         type="button"
                         variant="text"
@@ -239,34 +304,7 @@ export default function Dashboard() {
                         buttonText="Delete Document"
                         iconPosition="left"
                         icon={<Trash2 />}
-                        className="text-red-600"
-                      />
-                    </LayoutContainer>
-                    <LayoutContainer
-                      variant="flex"
-                      direction="row"
-                      margin="none"
-                      padding="none"
-                      alignX="start"
-                      className="opacity-60 gap-px lg:gap-1"
-                    >
-                      <ButtonCTA
-                        type="button"
-                        variant="primary"
-                        size="standardButton"
-                        buttonText="View Document"
-                        iconPosition="left"
-                        icon={<File />}
-                        className=""
-                      />
-                      <ButtonCTA
-                        type="button"
-                        variant="secondary"
-                        size="standardButton"
-                        buttonText="Edit Answers"
-                        iconPosition="left"
-                        icon={<Pencil />}
-                        className=""
+                        className="text-red-600 hover:text-red-700"
                       />
                     </LayoutContainer>
                   </LayoutContainer>

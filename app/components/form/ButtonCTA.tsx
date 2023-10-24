@@ -46,8 +46,10 @@ type ButtonCTAVariant =
   | "text"
 // Make sure to follow this pattern or buttonStyles won't work: ${variant}Disabled`
 const buttonCTAVariantMap: { [key in ButtonCTAVariant]: string } = {
-  primary: "text-white bg-cta-500 hover:bg-cta-600 shadow",
-  primaryDisabled: "bg-neutral-300 hover:bg-neutral-400 text-neutral-500",
+  primary:
+    "text-white bg-cta-500 hover:bg-cta-600 border-2 border-cta-500 shadow",
+  primaryDisabled:
+    "bg-neutral-300 hover:bg-neutral-400 border-2 border-neutral-300 text-neutral-500",
   secondary: "text-cta-500 border-2 border-cta-500 hover:bg-cta-100 shadow",
   secondaryDisabled: "text-neutral-300 border-2 border-neutral-300",
   text: "text-cta-500 border-none hover:text-cta-600",
