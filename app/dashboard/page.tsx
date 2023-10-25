@@ -63,19 +63,25 @@ const OverviewCard = forwardRef<HTMLDivElement, OverviewCardProps>(
             padding="none"
             alignX="center"
             gap="xsmall"
-            className="basis-2/12 lg:basis-1/12 "
+            className="basis-2/12 lg:basis-1/12 opacity-60 "
           >
-            <ScrollText className="min-h-12 max-h-10 lg:max-h-12 min-w-12 max-w-10 lg:max-w-12 w-full h-full" />
+            <ScrollText className="min-h-8 max-h-10 lg:max-h-10 min-w-8 max-w-10 lg:max-w-10 w-full h-full " />
             <Paragraph
-              size="small"
+              size="xsmall"
               weight="medium"
               textAlign="center"
               padding="none"
+              color="none"
             >
               {document.status ? document.status : "No status"}
             </Paragraph>
           </LayoutContainer>
-
+          <Divider
+            width="full"
+            height="xsmall"
+            variant="vertical"
+            className="self-center"
+          />
           <LayoutContainer
             variant="flex"
             direction="col"
@@ -162,27 +168,29 @@ export default function Dashboard() {
         className="max-w-3xl"
         tag="section"
       >
+        <Heading
+          size="h3"
+          weight="medium"
+          padding="large"
+          className="text-left"
+        >
+          Your Documents
+        </Heading>
         <LayoutContainer
           variant="flex"
           direction="row"
           padding="none"
-          className="justify-between"
+          margin="none"
+          alignX="end"
+          className="pb-2"
         >
-          <Heading
-            size="h3"
-            weight="medium"
-            padding="large"
-            className="text-left"
-          >
-            Your Documents
-          </Heading>
           <ButtonCTA
             variant="secondary"
             type="button"
             size="smallButton"
-            icon="none"
+            icon={<RefreshCcw className="h-5" />}
             onClick={handleGetUserData}
-            buttonText="Fetch User Data"
+            buttonText="Refresh"
           />
         </LayoutContainer>
 
@@ -242,7 +250,7 @@ export default function Dashboard() {
                       padding="small"
                     >
                       {document.formData.signingDate
-                        ? document.formData.signingDate
+                        ? `Signing: ${document.formData.signingDate}`
                         : "No Signing Date"}
                     </Paragraph>
                   </LayoutContainer>
@@ -257,7 +265,12 @@ export default function Dashboard() {
                     alignY="top"
                     className="w-full h-full"
                   >
-                    <Heading size="h4" padding="none" textAlign="center">
+                    <Heading
+                      size="h4"
+                      padding="none"
+                      textAlign="center"
+                      color="secondary"
+                    >
                       Actions
                     </Heading>
                     <Divider width="full" />

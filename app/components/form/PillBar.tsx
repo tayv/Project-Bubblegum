@@ -184,7 +184,7 @@ const StandardBar: FC<StandardBarProps> = ({
           />
 
           <div className="flex items-center ml-px h-6">
-            <Divider variant="vertical" color="standard" />
+            <Divider width="full" variant="vertical" color="standard" />
           </div>
 
           <button type="button" onClick={() => setShowToolBox(!showToolBox)}>

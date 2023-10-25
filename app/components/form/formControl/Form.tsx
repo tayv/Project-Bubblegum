@@ -111,11 +111,11 @@ const Form: FC<FormProps> = ({
         {/* select-none needed to prevent user from copying text from preview */}
         <div className="lg:sticky top-0 overflow-y-auto select-none">
           <Card id="loadTemplatePreviewSection" color="blank">
-            <div className="flex flex-row gap-2 font-semibold">
+            <div className="flex flex-row gap-2 font-semibold w-max">
               <Wrench />
               Document Toolbox
             </div>
-            <Divider padding="large" />
+            <Divider width="full" padding="large" />
             <SignedOut>
               <SheetUpsell
                 triggerComponent={

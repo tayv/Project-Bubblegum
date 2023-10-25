@@ -20,8 +20,8 @@ export type ParagraphProps = {
 // Consider refactoring variant out in future. Likely not necessary since have color prop now
 type ParagraphVariant = "primary" | "secondary" | "override"
 const paragraphVariantMap: { [key in ParagraphVariant]: string } = {
-  primary: "text-gray-900", // prop specific css styles go here
-  secondary: "text-gray-300",
+  primary: "", // prop specific css styles go here
+  secondary: "",
   override: "",
 }
 

@@ -90,7 +90,7 @@ const NavSideBar: FC<NavSideBarProps> = ({ articleList, ...props }) => {
 
           {/* span needed here because custom classes get set to a child div in Divider so it remains in the DOM */}
           <span className="hidden lg:block">
-            <Divider />
+            <Divider width="full" />
           </span>
         </div>
 

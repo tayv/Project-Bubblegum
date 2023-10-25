@@ -82,7 +82,7 @@ const TemplateGeneric: FC<TemplateProps> = ({
         document template. Document ID functionality is TBD — will be use to
         organize multiple instances of form submissions in the database.
       </Paragraph>
-      <Divider padding="large" />
+      <Divider width="standard" padding="large" />
       <button
         form="test-form"
         type="submit"
@@ -90,7 +90,7 @@ const TemplateGeneric: FC<TemplateProps> = ({
       >
         📫 Submit Form
       </button>
-      <Divider padding="large" />
+      <Divider width="standard" padding="large" />
       {renderTemplate({ location, docData })}
     </>
   )

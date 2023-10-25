@@ -38,6 +38,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ),
     hr: ({ children }: { children?: React.ReactNode }) => (
       <Divider
+        width="standard"
         variant="horizontal"
         color="standard"
         stroke="standard"
