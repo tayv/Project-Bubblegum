@@ -9,6 +9,6 @@ export async function getUserData(userId: string) {
   }
 
   const data = await res.json()
-  console.log("GET REQUEST RESULT:", data)
+
   return data
 }

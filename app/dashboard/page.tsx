@@ -18,11 +18,15 @@ import Card from "@ui/Card"
 import ModalSheet from "@ui/ModalSheet"
 import Divider from "@ui/Divider"
 import Space from "@components/ui/Space"
+import { deleteDoc, DeleteDocParams } from "@utils/deleteDoc"
+import ModalAlert from "@components/ui/ModalAlert"
 
 // This should probably be centralized as will be reused
 type DocumentData = {
   status: string
   docName: string
+  docId: number
+  productId: "PRODUCT1"
   formData: {
     jurisdiction: string
     signingDate: string
@@ -89,7 +93,7 @@ const OverviewCard = forwardRef<HTMLDivElement, OverviewCardProps>(
             padding="none"
             className=""
           >
-            <Heading size="h2" padding="none">
+            <Heading size="h3" padding="none">
               {document.docName ? document.docName : "No document name"}
             </Heading>
             <LayoutContainer
@@ -98,7 +102,6 @@ const OverviewCard = forwardRef<HTMLDivElement, OverviewCardProps>(
               margin="none"
               padding="none"
               alignX="start"
-              //  gap="xsmall"
               className="opacity-60 gap-px lg:gap-1"
             >
               <MapPin className="min-h-4 max-h-5 lg:max-h-6  " />
@@ -115,6 +118,214 @@ const OverviewCard = forwardRef<HTMLDivElement, OverviewCardProps>(
   }
 )
 
+type OverviewCardContentProps = {
+  document: OverviewCardProps["document"]
+  handleDeleteDoc: ({
+    userId,
+    productId,
+    docId,
+  }: DeleteDocParams) => Promise<void>
+}
+const OverviewCardContent = ({
+  document,
+  handleDeleteDoc,
+}: OverviewCardContentProps) => {
+  const [confirmDelete, setConfirmDelete] = useState(false)
+
+  const messageConfirmDelete = (
+    <ModalSheet
+      key={document.docName}
+      description={`${document.docName} Details`}
+      handleOnOpenChange={() => setConfirmDelete(!confirmDelete)}
+      triggerComponent={<OverviewCard document={document} />}
+    >
+      <LayoutContainer
+        variant="flex"
+        direction="col"
+        margin="none"
+        padding="standard"
+        gap="medium"
+        alignX="center"
+        className=""
+      >
+        <Heading size="h4" padding="none" textAlign="center">
+          Are you sure you want to delete this document?
+        </Heading>
+
+        <Paragraph
+          size="standard"
+          weight="standard"
+          textAlign="center"
+          padding="small"
+        >
+          Deletion is permanent. Your document will be gone forever.
+        </Paragraph>
+
+        <Space ySize="xsmall" />
+
+        <ButtonCTA
+          type="button"
+          onClick={() =>
+            handleDeleteDoc({
+              userId: userId,
+              productId: document.productId,
+              docId: document.docId,
+            })
+          }
+          variant="primary"
+          size="standardButton"
+          buttonText="Delete Document"
+          iconPosition="left"
+          icon={<Trash2 />}
+          className="w-full bg-red-500 hover:bg-red-600 border-red-500 "
+        />
+        <ButtonCTA
+          type="button"
+          onClick={() => setConfirmDelete(false)}
+          variant="secondary"
+          size="standardButton"
+          buttonText="Cancel"
+          icon="none"
+          className="w-full"
+        />
+      </LayoutContainer>
+    </ModalSheet>
+  )
+
+  const standardView = (
+    <ModalSheet
+      key={document.docName}
+      description={`${document.docName} Details`}
+      triggerComponent={<OverviewCard document={document} />}
+    >
+      <LayoutContainer
+        variant="flex"
+        direction="col"
+        margin="none"
+        gap="small"
+        className="w-full h-full px-8 lg:px-10"
+      >
+        <Heading size="h3" padding="none" textAlign="left">
+          {document.docName ? document.docName : "No document name"}
+        </Heading>
+        <Divider width="full" />
+        <LayoutContainer
+          variant="flex"
+          direction="row"
+          margin="none"
+          padding="none"
+          alignX="start"
+          className="opacity-60 gap-px lg:gap-1"
+        >
+          <MapPin className="min-h-4 max-h-5 lg:max-h-6  " />
+          <Paragraph
+            size="small"
+            weight="standard"
+            textAlign="left"
+            padding="small"
+          >
+            {document.formData.jurisdiction
+              ? document.formData.jurisdiction
+              : "No location"}
+          </Paragraph>
+        </LayoutContainer>
+
+        <LayoutContainer
+          variant="flex"
+          direction="row"
+          margin="none"
+          padding="none"
+          alignX="start"
+          className="opacity-60 gap-px lg:gap-1"
+        >
+          <Calendar className="min-h-4 max-h-5 lg:max-h-6  " />
+          <Paragraph
+            size="small"
+            weight="standard"
+            textAlign="left"
+            padding="small"
+          >
+            {document.formData.signingDate
+              ? `Signing: ${document.formData.signingDate}`
+              : "No Signing Date"}
+          </Paragraph>
+        </LayoutContainer>
+
+        <Space ySize="standard" />
+        <LayoutContainer
+          variant="flex"
+          direction="col"
+          padding="none"
+          margin="none"
+          gap="small"
+          alignY="top"
+          className="w-full h-full"
+        >
+          <Heading
+            size="h4"
+            padding="none"
+            textAlign="center"
+            color="secondary"
+          >
+            Actions
+          </Heading>
+          <Divider width="full" />
+          <Space ySize="standard" />
+          <LayoutContainer
+            variant="flex"
+            direction="col"
+            margin="none"
+            padding="none"
+            gap="large"
+            className=" lg:gap-4 w-full lg:flex-row items-center lg:justify-between"
+          >
+            <LayoutContainer
+              variant="flex"
+              direction="col"
+              margin="none"
+              padding="none"
+              gap="medium"
+              className="lg:gap-1 lg:flex-row"
+            >
+              <ButtonCTA
+                type="button"
+                variant="primary"
+                size="standardButton"
+                buttonText="View Document"
+                iconPosition="left"
+                icon={<File />}
+                className=""
+              />
+              <ButtonCTA
+                type="button"
+                variant="secondary"
+                size="standardButton"
+                buttonText="Edit Answers"
+                iconPosition="left"
+                icon={<Pencil />}
+                className=""
+              />
+            </LayoutContainer>
+
+            <ButtonCTA
+              type="button"
+              onClick={() => setConfirmDelete(!confirmDelete)}
+              variant="text"
+              size="standardText"
+              buttonText="Delete Document"
+              iconPosition="left"
+              icon={<Trash2 />}
+              className="text-red-600 hover:text-red-700"
+            />
+          </LayoutContainer>
+        </LayoutContainer>
+      </LayoutContainer>
+    </ModalSheet>
+  )
+
+  return confirmDelete ? messageConfirmDelete : standardView
+}
+
 // FETCH USERS DOCUMENT DATA
 const userId = "user_22665" // TODO replace with function that gets userId from clerk
 
@@ -125,6 +336,22 @@ export default function Dashboard() {
     try {
       const data = await getUserData(userId)
       setUserData(data)
+      console.log("FETCHED DATE:", userData)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+  const handleDeleteDoc = async ({
+    userId,
+    productId,
+    docId,
+  }: DeleteDocParams) => {
+    try {
+      console.log("DELETE ATTEMPTED")
+      await deleteDoc({ userId, productId, docId }) // Updated to match the signature
+      const data = await getUserData(userId)
+      setUserData(data)
+      console.log("DELETE COMPLETE. New userData:", userData)
     } catch (error) {
       console.error(error)
     }
@@ -140,8 +367,6 @@ export default function Dashboard() {
       variant="flex"
       direction="col"
       padding="none"
-      // alignY="center"
-      //  alignX="center"
       className="max-w-3xl"
     >
       <Heading
@@ -197,132 +422,17 @@ export default function Dashboard() {
         {userData &&
           userData.map((document, index) => {
             return (
-              <ModalSheet
-                key={document.docName}
-                description={`${document.docName} Details`}
-                triggerComponent={<OverviewCard document={document} />}
-              >
-                <LayoutContainer
-                  variant="flex"
-                  direction="col"
-                  margin="none"
-                  gap="small"
-                  className="w-full h-full px-8 lg:px-10"
-                >
-                  <Heading size="h3" padding="none" textAlign="left">
-                    {document.docName ? document.docName : "No document name"}
-                  </Heading>
-                  <Divider width="full" />
-                  <LayoutContainer
-                    variant="flex"
-                    direction="row"
-                    margin="none"
-                    padding="none"
-                    alignX="start"
-                    className="opacity-60 gap-px lg:gap-1"
-                  >
-                    <MapPin className="min-h-4 max-h-5 lg:max-h-6  " />
-                    <Paragraph
-                      size="small"
-                      weight="standard"
-                      textAlign="left"
-                      padding="small"
-                    >
-                      {document.formData.jurisdiction
-                        ? document.formData.jurisdiction
-                        : "No location"}
-                    </Paragraph>
-                  </LayoutContainer>
-
-                  <LayoutContainer
-                    variant="flex"
-                    direction="row"
-                    margin="none"
-                    padding="none"
-                    alignX="start"
-                    className="opacity-60 gap-px lg:gap-1"
-                  >
-                    <Calendar className="min-h-4 max-h-5 lg:max-h-6  " />
-                    <Paragraph
-                      size="small"
-                      weight="standard"
-                      textAlign="left"
-                      padding="small"
-                    >
-                      {document.formData.signingDate
-                        ? `Signing: ${document.formData.signingDate}`
-                        : "No Signing Date"}
-                    </Paragraph>
-                  </LayoutContainer>
-
-                  <Space ySize="standard" />
-                  <LayoutContainer
-                    variant="flex"
-                    direction="col"
-                    padding="none"
-                    margin="none"
-                    gap="small"
-                    alignY="top"
-                    className="w-full h-full"
-                  >
-                    <Heading
-                      size="h4"
-                      padding="none"
-                      textAlign="center"
-                      color="secondary"
-                    >
-                      Actions
-                    </Heading>
-                    <Divider width="full" />
-                    <Space ySize="standard" />
-                    <LayoutContainer
-                      variant="flex"
-                      direction="col"
-                      margin="none"
-                      padding="none"
-                      gap="large"
-                      className=" lg:gap-4 w-full lg:flex-row items-center lg:justify-between"
-                    >
-                      <LayoutContainer
-                        variant="flex"
-                        direction="col"
-                        margin="none"
-                        padding="none"
-                        gap="medium"
-                        className="lg:gap-1 lg:flex-row"
-                      >
-                        <ButtonCTA
-                          type="button"
-                          variant="primary"
-                          size="standardButton"
-                          buttonText="View Document"
-                          iconPosition="left"
-                          icon={<File />}
-                          className=""
-                        />
-                        <ButtonCTA
-                          type="button"
-                          variant="secondary"
-                          size="standardButton"
-                          buttonText="Edit Answers"
-                          iconPosition="left"
-                          icon={<Pencil />}
-                          className=""
-                        />
-                      </LayoutContainer>
-                      <ButtonCTA
-                        type="button"
-                        variant="text"
-                        size="standardText"
-                        buttonText="Delete Document"
-                        iconPosition="left"
-                        icon={<Trash2 />}
-                        className="text-red-600 hover:text-red-700"
-                      />
-                    </LayoutContainer>
-                  </LayoutContainer>
-                </LayoutContainer>
-              </ModalSheet>
+              <OverviewCardContent
+                key={document.docId}
+                document={document}
+                handleDeleteDoc={() =>
+                  handleDeleteDoc({
+                    userId: userId,
+                    productId: document.productId,
+                    docId: document.docId,
+                  })
+                }
+              />
             )
           })}
       </LayoutContainer>

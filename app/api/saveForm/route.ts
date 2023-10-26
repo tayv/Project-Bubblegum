@@ -5,8 +5,8 @@ const prisma = new PrismaClient()
 
 export async function POST(request: Request) {
   // For testing. Replace with webhook that fetches userId from Clerk
-  const testUserId = "user_" + Math.floor(Math.random() * 1000000)
-  //const testUserId = "user_22665"
+  //const testUserId = "user_" + Math.floor(Math.random() * 1000000)
+  const testUserId = "user_22665"
 
   // Get the form data
   let body

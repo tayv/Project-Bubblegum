@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url)
   const userId = searchParams.get("userId")
 
-  // Validate the userId, if necessary
+  // Validate the userId
   if (!userId) {
     return NextResponse.json({
       error: "UserId is missing from the request.",
