@@ -1,5 +1,11 @@
 "use client"
-import { forwardRef, useEffect, useState, FC } from "react"
+import {
+  forwardRef,
+  useEffect,
+  useState,
+  Dispatch,
+  SetStateAction,
+} from "react"
 import LayoutContainer from "@ui/LayoutContainer"
 import Heading from "@ui/Heading"
 import Paragraph from "@ui/Paragraph"
@@ -11,6 +17,7 @@ import {
   Pencil,
   File,
   Calendar,
+  Loader2,
 } from "lucide-react"
 import ButtonCTA from "@components/form/ButtonCTA"
 import { getUserData } from "@utils/getUserData"
@@ -19,7 +26,6 @@ import ModalSheet from "@ui/ModalSheet"
 import Divider from "@ui/Divider"
 import Space from "@components/ui/Space"
 import { deleteDoc, DeleteDocParams } from "@utils/deleteDoc"
-import ModalAlert from "@components/ui/ModalAlert"
 
 // This should probably be centralized as will be reused
 type DocumentData = {
@@ -120,17 +126,42 @@ const OverviewCard = forwardRef<HTMLDivElement, OverviewCardProps>(
 
 type OverviewCardContentProps = {
   document: OverviewCardProps["document"]
-  handleDeleteDoc: ({
+  handleDeleteDoc?: ({
     userId,
     productId,
     docId,
   }: DeleteDocParams) => Promise<void>
+  setUserData: Dispatch<SetStateAction<DocumentData[] | null>>
+  userData: DocumentData[] | null
 }
 const OverviewCardContent = ({
   document,
-  handleDeleteDoc,
+  setUserData,
+  userData,
 }: OverviewCardContentProps) => {
-  const [confirmDelete, setConfirmDelete] = useState(false)
+  // Setup state
+  const [confirmDelete, setConfirmDelete] = useState<boolean>(false)
+  const [deleteInProgress, setDeleteInProgress] = useState<boolean>(false)
+  const [deleteError, setDeleteError] = useState<boolean>(false)
+
+  //
+  const handleDeleteDoc = async ({
+    userId,
+    productId,
+    docId,
+  }: DeleteDocParams) => {
+    try {
+      console.log("DELETE ATTEMPTED")
+      await deleteDoc({ userId, productId, docId }) // Updated to match the signature
+      const data = await getUserData(userId)
+      setUserData(data)
+      console.log("DELETE COMPLETE. New userData:", userData)
+    } catch (error) {
+      console.error(error)
+      setDeleteError(true)
+      setDeleteInProgress(false)
+    }
+  }
 
   const messageConfirmDelete = (
     <ModalSheet
@@ -165,23 +196,34 @@ const OverviewCardContent = ({
 
         <ButtonCTA
           type="button"
-          onClick={() =>
+          onClick={() => {
+            setDeleteInProgress(true)
             handleDeleteDoc({
               userId: userId,
               productId: document.productId,
               docId: document.docId,
             })
-          }
-          variant="primary"
+          }}
+          variant="delete"
+          isDisabled={deleteInProgress}
           size="standardButton"
           buttonText="Delete Document"
           iconPosition="left"
-          icon={<Trash2 />}
-          className="w-full bg-red-500 hover:bg-red-600 border-red-500 "
+          icon={
+            deleteInProgress ? <Loader2 className="animate-spin" /> : <Trash2 />
+          }
+          className="w-full"
+          actionError={deleteError}
+          errorMessage="Failed to delete the document. Please try again or contact support."
         />
         <ButtonCTA
           type="button"
-          onClick={() => setConfirmDelete(false)}
+          onClick={() => {
+            setConfirmDelete(false)
+            setDeleteInProgress(false)
+            setDeleteError(false)
+          }}
+          isDisabled={deleteInProgress}
           variant="secondary"
           size="standardButton"
           buttonText="Cancel"
@@ -309,8 +351,9 @@ const OverviewCardContent = ({
 
             <ButtonCTA
               type="button"
-              onClick={() => setConfirmDelete(!confirmDelete)}
+              onClick={() => setConfirmDelete(true)}
               variant="text"
+              isDisabled={confirmDelete}
               size="standardText"
               buttonText="Delete Document"
               iconPosition="left"
@@ -336,22 +379,6 @@ export default function Dashboard() {
     try {
       const data = await getUserData(userId)
       setUserData(data)
-      console.log("FETCHED DATE:", userData)
-    } catch (error) {
-      console.error(error)
-    }
-  }
-  const handleDeleteDoc = async ({
-    userId,
-    productId,
-    docId,
-  }: DeleteDocParams) => {
-    try {
-      console.log("DELETE ATTEMPTED")
-      await deleteDoc({ userId, productId, docId }) // Updated to match the signature
-      const data = await getUserData(userId)
-      setUserData(data)
-      console.log("DELETE COMPLETE. New userData:", userData)
     } catch (error) {
       console.error(error)
     }
@@ -360,6 +387,7 @@ export default function Dashboard() {
   useEffect(() => {
     // Fetch user data when component mounts
     handleGetUserData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
@@ -378,7 +406,7 @@ export default function Dashboard() {
         Hello 👋
       </Heading>
       <Paragraph
-        size="xxxlarge"
+        size="xxlarge"
         textAlign="center"
         padding="large"
         space="snug"
@@ -425,13 +453,8 @@ export default function Dashboard() {
               <OverviewCardContent
                 key={document.docId}
                 document={document}
-                handleDeleteDoc={() =>
-                  handleDeleteDoc({
-                    userId: userId,
-                    productId: document.productId,
-                    docId: document.docId,
-                  })
-                }
+                setUserData={setUserData}
+                userData={userData}
               />
             )
           })}

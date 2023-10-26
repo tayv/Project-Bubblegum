@@ -7,6 +7,7 @@ import { ArrowRight, User2, Wand } from "lucide-react"
 export type ButtonCTAProps = {
   formID?: string
   formHasErrors?: boolean // from RHF. Should be result of Object.keys(methods.formState.errors).length > 0
+  actionError?: boolean // Typically used for onClick event failures
   type: "button" | "submit"
   variant?: ButtonCTAVariant
   buttonText?: string
@@ -38,21 +39,16 @@ const buttonCTASizeMap: { [key in ButtonCTASize]: string } = {
   largeText: "font-semibold text-xl lg:text-2xl gap-2",
 }
 
-type ButtonCTAVariant =
-  | "primary"
-  | "primaryDisabled"
-  | "secondary"
-  | "secondaryDisabled"
-  | "text"
+type ButtonCTAVariant = "primary" | "secondary" | "text" | "delete" | "none"
 // Make sure to follow this pattern or buttonStyles won't work: ${variant}Disabled`
 const buttonCTAVariantMap: { [key in ButtonCTAVariant]: string } = {
   primary:
     "text-white bg-cta-500 hover:bg-cta-600 border-2 border-cta-500 shadow",
-  primaryDisabled:
-    "bg-neutral-300 hover:bg-neutral-400 border-2 border-neutral-300 text-neutral-500",
   secondary: "text-cta-500 border-2 border-cta-500 hover:bg-cta-100 shadow",
-  secondaryDisabled: "text-neutral-300 border-2 border-neutral-300",
   text: "text-cta-500 border-none hover:text-cta-600",
+  delete:
+    "text-white bg-red-500 hover:bg-red-600 border-2 border-red-500 shadow",
+  none: "",
 }
 
 type ButtonCTAIcon = "none" | "standard" | "user" | "arrowRight"
@@ -71,7 +67,8 @@ const ButtonCTA: FC<ButtonCTAProps> = forwardRef<
 >(function setRefButtonCTA(
   {
     formID,
-    formHasErrors = false,
+    formHasErrors = false, //used for forms
+    actionError = false, // used for onClick events like deleting
     variant = "primary",
     type = "button",
     size = "standardButton",
@@ -92,9 +89,8 @@ const ButtonCTA: FC<ButtonCTAProps> = forwardRef<
     "rounded-full outline-none focus:shadow-[0_0_0_2px] focus:shadow-cta-400",
     className, // custom prop styles
     buttonCTASizeMap[size],
-    !!formHasErrors
-      ? buttonCTAVariantMap[`${variant}Disabled` as ButtonCTAVariant]
-      : buttonCTAVariantMap[variant as ButtonCTAVariant],
+    buttonCTAVariantMap[variant as ButtonCTAVariant],
+    "disabled:grayscale disabled:opacity-60 disabled:cursor-not-allowed disabled:shadow-none",
   ])
 
   return (
@@ -102,7 +98,7 @@ const ButtonCTA: FC<ButtonCTAProps> = forwardRef<
       <button
         form={formID}
         type={type}
-        disabled={isDisabled}
+        disabled={isDisabled || !!formHasErrors}
         onClick={onClick}
         className={buttonStyles}
         {...props}
@@ -142,7 +138,7 @@ const ButtonCTA: FC<ButtonCTAProps> = forwardRef<
       </button>
 
       {/* If type = submit and used inside a form need to provide a message if validation fails */}
-      {formHasErrors ? (
+      {formHasErrors || actionError ? (
         <div className="flex text-center">
           <p className="text-red-600">{errorMessage}</p>
         </div>

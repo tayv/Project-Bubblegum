@@ -47,13 +47,16 @@ const ModalSheet: FC<ModalSheetProps> = ({
         <DialogRadix.Overlay className="z-50 bg-black data-[state=open]:animate-overlayShow fixed inset-0" />
         <DialogRadix.Content
           // Goal is to have modal centered for screens larger than tablets and sheet styling for mobile
-          className="
+          className={`
           z-50 flex flex-col items-center fixed bottom-0 left-0 right-0 max-h-[90vh] min-h-[55vh] h-fit lg:h-full w-full max-w-4xl mx-auto overflow-y-auto
           bg-white shadow-md focus:outline-none :bottom-auto select-none rounded-t-[36px]
           lg:w-[80%] lg:top-1/2 lg:left-1/2 lg:right-1/2 lg:translate-x-[-50%] lg:translate-y-[-50%]
           lg:max-h-[100vh] lg:mt-8
           2xl:mt-16
-        "
+          
+           data-[state=open]:translate-y-full data-[state=closed]:translate-y-0 origin-bottom duration-1000 ease-in-out 
+          
+        `}
         >
           <div className="flex flex-col items-center w-full">
             <Divider
