@@ -14,3 +14,39 @@
 
 @tailwind components;
 @tailwind utilities;
+
+@keyframes sheet-slide-in-desktop {
+  from {
+    transform: translateY(100%) translateX(-50%);
+  }
+  to {
+    transform: translateY(-50%) translateX(-50%);
+  }
+}
+
+@keyframes sheet-slide-out-desktop {
+  from {
+    transform: translateY(0) translateX(-50%);
+  }
+  to {
+    transform: translateY(100%) translateX(-50%);
+  }
+}
+
+@keyframes sheet-slide-in-mobile {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes sheet-slide-out-mobile {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}

@@ -48,13 +48,14 @@ const ModalSheet: FC<ModalSheetProps> = ({
         <DialogRadix.Content
           // Goal is to have modal centered for screens larger than tablets and sheet styling for mobile
           className={`
-          z-50 flex flex-col items-center fixed bottom-0 left-0 right-0 max-h-[90vh] min-h-[55vh] h-fit lg:h-full w-full max-w-4xl mx-auto overflow-y-auto
-          bg-white shadow-md focus:outline-none :bottom-auto select-none rounded-t-[36px]
-          lg:w-[80%] lg:top-1/2 lg:left-1/2 lg:right-1/2 lg:translate-x-[-50%] lg:translate-y-[-50%]
+          z-50 flex flex-col items-center fixed bottom-0 left-0 right-0 max-h-[90vh] min-h-[55vh] h-fit  w-full max-w-4xl mx-auto overflow-y-auto
+          bg-white shadow-md focus:outline-none :bottom-auto select-none rounded-t-4xl
+          lg:h-full lg:w-[80%] lg:top-1/2 lg:left-1/2 lg:right-1/2 lg:translate-x-[-50%] lg:translate-y-[-50%]
           lg:max-h-[100vh] lg:mt-8
           2xl:mt-16
           
-           data-[state=open]:translate-y-full data-[state=closed]:translate-y-0 origin-bottom duration-1000 ease-in-out 
+          data-[state=open]:animate-[sheet-slide-in-mobile_300ms] data-[state=closed]:animate-[sheet-slide-out-mobile_400ms] 
+          lg:data-[state=open]:animate-[sheet-slide-in-desktop_600ms] lg:data-[state=closed]:animate-[sheet-slide-out-desktop_700ms] 
           
         `}
         >
@@ -84,9 +85,9 @@ const ModalSheet: FC<ModalSheetProps> = ({
           <DialogRadix.Close asChild>
             <button
               className="
-            absolute top-[14px] right-[16px] inline-flex h-[25px] w-[25px] items-center justify-center
+            absolute top-[16px] right-[22px] inline-flex h-[25px] w-[25px] items-center justify-center
             rounded-full text-slate-400 hover:bg-slate-200 focus:shadow-cta-500 appearance-none focus:shadow-[0_0_0_2px] focus:outline-none
-            lg:top-[13px] lg:right-[15px]"
+            lg:top-[20px] lg:right-[25px]"
               aria-label="Close"
             >
               <X />

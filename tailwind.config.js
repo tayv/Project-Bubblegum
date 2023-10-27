@@ -15,6 +15,11 @@ module.exports = {
         link: colors.violet, // links
         accent: colors.lime, // focus rings, etc.
       },
+
+      borderRadius: {
+        "4xl": "50px",
+        "5xl": "65px",
+      },
     },
   },
   plugins: [require("@tailwindcss/forms")],

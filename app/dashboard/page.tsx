@@ -301,7 +301,7 @@ const OverviewCardContent = ({
           margin="none"
           gap="small"
           alignY="top"
-          className="w-full h-full"
+          className="w-full h-full pb-4"
         >
           <Heading
             size="h4"
