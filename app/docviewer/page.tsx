@@ -4,14 +4,7 @@ import { FC, useRef, useEffect, useState } from "react"
 import LayoutContainer from "@ui/LayoutContainer"
 import Heading from "@ui/Heading"
 import Paragraph from "@ui/Paragraph"
-import {
-  Wand,
-  ArrowDownToLine,
-  Send,
-  Printer,
-  PencilRuler,
-  Maximize2,
-} from "lucide-react"
+import { Wand, ArrowDownToLine, Printer } from "lucide-react"
 import Card from "@ui/Card"
 import PrintButton from "@ui/PrintButton"
 import { useReactToPrint } from "react-to-print"
@@ -19,8 +12,6 @@ import { PDFDownloadLink, PDFViewer, pdf } from "@react-pdf/renderer"
 import DynamicPDF from "@components/buildDoc/DynamicPDF"
 import dynamic from "next/dynamic"
 import { pdfStyles } from "utils/_pdfHelpers/pdfStyles"
-import Divider from "@ui/Divider"
-import ButtonCTA from "@components/form/ButtonCTA"
 import ModalFullScreenView from "@components/ui/ModalFullScreenView"
 
 // TEST DATA ---
@@ -35,6 +26,7 @@ const testData = {
 const testProductTitle = "Test Product"
 
 // HELPERS ---
+
 const loadingMessage = (
   <div className="flex flex-col items-center w-full">
     <Wand className="w-[30%] h-[30%]" />
