@@ -28,7 +28,7 @@ export type FormProps = {
   id: string
   productTitle: string
   defaultValues: Record<string, any>
-  zodSchema: z.ZodObject<any>
+  zodProductSchema: z.ZodObject<any>
   onSubmit: (data: any, event: any) => Promise<void>
   buttonLabel?: string
   children: React.ReactElement | React.ReactElement[] // Expects one or more Field components
@@ -43,7 +43,7 @@ export type FormProps = {
 const Form: FC<FormProps> = ({
   productTitle,
   defaultValues,
-  zodSchema,
+  zodProductSchema,
   onSubmit,
   id,
   buttonLabel = "Submit Form",
@@ -55,7 +55,10 @@ const Form: FC<FormProps> = ({
   // setActiveSection,
   ...props
 }) => {
-  const methods = useForm({ resolver: zodResolver(zodSchema), defaultValues })
+  const methods = useForm({
+    resolver: zodResolver(zodProductSchema),
+    defaultValues,
+  })
   const formHasErrors = Object.keys(methods.formState.errors).length > 0
 
   const { handlePreviewPDF, latestFormData } = useLoadPreviewPDF({ methods })

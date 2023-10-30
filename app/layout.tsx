@@ -2,6 +2,8 @@ import "@styles/globals.css" // These styles apply to every route in the applica
 import { Metadata } from "next"
 import NavSideBar from "./components/ui/NavSideBar"
 import { ClerkProvider } from "@clerk/nextjs"
+import { AppProvider, AppContext } from "@contexts/AppContext"
+import React from "react"
 
 export const metadata: Metadata = {
   title: "Home",
@@ -54,7 +56,7 @@ export default function RootLayout({
               />
               {/* Only mobile styles need more top padding to offset fixed header */}
               <main className="w-full max-w-screen px-2 pt-16 pb-32 lg:px-6 lg:py-3 lg:pt-2">
-                {children}
+                <AppProvider> {children} </AppProvider>
               </main>
             </div>
           </div>

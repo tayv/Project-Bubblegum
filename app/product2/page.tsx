@@ -1,7 +1,7 @@
 "use client"
 
-import * as z from "zod"
 import React from "react"
+import { zodProductSchema } from "./zodProductSchema"
 import Heading from "@ui/Heading"
 import Paragraph from "@ui/Paragraph"
 import Form from "@components/form/formControl/Form"
@@ -9,20 +9,15 @@ import Field from "@formControl/Field"
 import Checkbox from "@components/form/Checkbox"
 import Input from "@components/form/Input"
 import Card from "@components/ui/Card"
-import { useState, createContext } from "react"
 import RadioGroup from "@components/form/RadioGroup"
 import Select from "@components/form/Select"
 
 import { ProductContext, ProductProvider } from "@contexts/ProductContext"
 
-import { pdfStyles } from "../../utils/_pdfHelpers/pdfStyles"
-import dynamic from "next/dynamic"
 import { FormDataType } from "@productSchemas/productTypes"
 import { format, startOfToday } from "date-fns"
 import DatePick from "@components/form/DatePick"
 
-import DynamicPDF from "../components/buildDoc/DynamicPDF"
-import Space from "@components/ui/Space"
 import { auth, currentUser, useUser } from "@clerk/nextjs"
 import { useRouter } from "next/navigation"
 
@@ -49,14 +44,6 @@ const Product2 = () => {
     jurisdiction: "location1",
     signingDate: format(startOfToday(), "MMM-dd-yyyy"),
   }
-
-  const zodSchema = z.object({
-    checkboxExample: z.boolean().optional(),
-    radioExample: z.enum(["option1", "option2", "option3"]).optional(),
-    textExample: z.string().nonempty("This field cannot be empty."),
-    jurisdiction: z.enum(["location1", "location2", "location3"]),
-    signingDate: z.string().optional(),
-  })
 
   // Sample onSubmit form handler
   // NOTES: Don't need to  e.preventDefault() since rhf's handleSubmit() automatically prevents page reloads
@@ -115,7 +102,7 @@ const Product2 = () => {
             id="product1Form"
             productTitle="Product Demo"
             defaultValues={defaultValues}
-            zodSchema={zodSchema}
+            zodProductSchema={zodProductSchema}
             onSubmit={onSubmit}
             buttonLabel="Submit Form"
             productName="product2"

@@ -2,14 +2,20 @@
 import { UserDocData } from "@prisma/client"
 import React, { createContext, useState, ReactNode, FC } from "react"
 
+export type UserDataTypes = {
+  document: UserDocData
+  userDocData: UserDocData[]
+  currentDoc: UserDataTypes["document"]
+}
+
 export type AppContextProps = {
-  userDocData: UserDocData | null // TODO: Add types for docData shape as it should be standardized
+  userDocData: UserDataTypes["userDocData"] | null
   setUserDocData: React.Dispatch<
     React.SetStateAction<AppContextProps["userDocData"]>
   >
-  selectedDoc: { productId: string; docId: string } | null
-  setSelectedDoc: React.Dispatch<
-    React.SetStateAction<AppContextProps["selectedDoc"]>
+  currentDoc: UserDataTypes["currentDoc"] | null
+  setCurrentDoc: React.Dispatch<
+    React.SetStateAction<AppContextProps["currentDoc"]>
   >
 }
 
@@ -26,13 +32,13 @@ export const AppProvider: FC<AppProviderProps> = ({ children }) => {
 
   const [userDocData, setUserDocData] =
     useState<AppContextProps["userDocData"]>(null)
-  const [selectedDoc, setSelectedDoc] =
-    useState<AppContextProps["selectedDoc"]>(null)
+  const [currentDoc, setCurrentDoc] =
+    useState<AppContextProps["currentDoc"]>(null)
 
   // 2. Pass state values and methods to the context provider
   return (
     <AppContext.Provider
-      value={{ userDocData, setUserDocData, selectedDoc, setSelectedDoc }}
+      value={{ userDocData, setUserDocData, currentDoc, setCurrentDoc }}
     >
       {children}
     </AppContext.Provider>

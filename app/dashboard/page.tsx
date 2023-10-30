@@ -26,25 +26,12 @@ import ModalSheet from "@ui/ModalSheet"
 import Divider from "@ui/Divider"
 import Space from "@components/ui/Space"
 import { deleteDoc, DeleteDocParams } from "@utils/deleteDoc"
-
-// This should probably be centralized as will be reused
-type DocumentData = {
-  status: string
-  docName: string
-  docId: number
-  productId: "PRODUCT1"
-  formData: {
-    jurisdiction: string
-    signingDate: string
-    party1Name: string
-    party2Name: string
-    // add other properties of formData
-  }
-}
+import useLoadSavedDoc from "@hooks/useLoadSavedDoc"
+import { AppContextProps, UserDataTypes } from "@contexts/AppContext"
 
 // HELPERS
 type OverviewCardProps = {
-  document: DocumentData
+  document: UserDataTypes["document"]
 }
 
 const OverviewCard = forwardRef<HTMLDivElement, OverviewCardProps>(
@@ -131,13 +118,13 @@ type OverviewCardContentProps = {
     productId,
     docId,
   }: DeleteDocParams) => Promise<void>
-  setUserData: Dispatch<SetStateAction<DocumentData[] | null>>
-  userData: DocumentData[] | null
+  setUserDocData: AppContextProps["setUserDocData"]
+  userDocData: AppContextProps["userDocData"]
 }
 const OverviewCardContent = ({
   document,
-  setUserData,
-  userData,
+  setUserDocData,
+  userDocData,
 }: OverviewCardContentProps) => {
   // Setup state
   const [confirmDelete, setConfirmDelete] = useState<boolean>(false)
@@ -154,8 +141,8 @@ const OverviewCardContent = ({
       console.log("DELETE ATTEMPTED")
       await deleteDoc({ userId, productId, docId }) // Updated to match the signature
       const data = await getUserData(userId)
-      setUserData(data)
-      console.log("DELETE COMPLETE. New userData:", userData)
+      setUserDocData(data)
+      console.log("DELETE COMPLETE. New userDocData:", userDocData)
     } catch (error) {
       console.error(error)
       setDeleteError(true)
@@ -266,7 +253,7 @@ const OverviewCardContent = ({
             textAlign="left"
             padding="small"
           >
-            {document.formData.jurisdiction
+            {document.formData?.jurisdiction
               ? document.formData.jurisdiction
               : "No location"}
           </Paragraph>
@@ -373,12 +360,12 @@ const OverviewCardContent = ({
 const userId = "user_22665" // TODO replace with function that gets userId from clerk
 
 export default function Dashboard() {
-  const [userData, setUserData] = useState<DocumentData[] | null>(null)
+  const { userDocData, setUserDocData } = useLoadSavedDoc()
 
   const handleGetUserData = async () => {
     try {
       const data = await getUserData(userId)
-      setUserData(data)
+      setUserDocData(data)
     } catch (error) {
       console.error(error)
     }
@@ -389,7 +376,7 @@ export default function Dashboard() {
     handleGetUserData()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
+  console.log("This:", userDocData)
   return (
     <LayoutContainer
       variant="flex"
@@ -447,14 +434,14 @@ export default function Dashboard() {
           />
         </LayoutContainer>
 
-        {userData &&
-          userData.map((document, index) => {
+        {userDocData &&
+          userDocData.map((document, index) => {
             return (
               <OverviewCardContent
                 key={document.docId}
                 document={document}
-                setUserData={setUserData}
-                userData={userData}
+                setUserDocData={setUserDocData}
+                userDocData={userDocData}
               />
             )
           })}
