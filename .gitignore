@@ -39,3 +39,6 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+#turbo repo https://turbo.build/repo/docs/getting-started/existing-monorepo
+.turbo
