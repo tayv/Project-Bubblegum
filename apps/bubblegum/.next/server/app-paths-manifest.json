@@ -1,0 +1,7 @@
+{
+  "/not-found": "app/not-found.js",
+  "/page": "app/page.js",
+  "/docviewer/page": "app/docviewer/page.js",
+  "/product2/page": "app/product2/page.js",
+  "/api/saveForm/route": "app/api/saveForm/route.js"
+}

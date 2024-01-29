@@ -1,0 +1,111 @@
+// Prisma schema file docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+// Licensing ---
+enum LicenseType {
+  FREE
+  PRO
+}
+
+enum LicenseDuration {
+  INDEFINITE
+  ONE_MONTH
+  THREE_MONTHS
+  SIX_MONTHS
+  ONE_YEAR
+}
+
+model License {
+  userId            String            @unique
+  user              User              @relation(fields: [userId], references: [userId])  
+
+//  licenseKey        Int               @unique @id @default(1)
+  licenseType       LicenseType
+  licenseDuration   LicenseDuration
+  licenseStart      DateTime
+  licenseExpire     DateTime
+
+  @@index([userId]) // Improves look-up performance See: https://www.prisma.io/docs/concepts/components/prisma-schema/relations/relation-mode#indexes
+}
+
+// App product catalog ---
+enum ProductId {
+  PRODUCT1
+  PRODUCT2
+  PRODUCT3
+}
+
+model ProductCatalog {
+  productId         ProductId         @id 
+  productSchema     String // intend to be the json file name holding logic
+  //docData         UserDocData? // A virtual relation for 1 to 1 relations. Makes queries easier since intended to be unidirectional relation to DocData. Solves Prisma back-relations error. See:  https://github.com/prisma/prisma/discussions/8857
+  docData           UserDocData[]
+} 
+
+// Users ---
+// userId fetched via webhook from Clerk Auth
+model User {
+  userId            String               @id 
+
+  license           License?             
+
+  docData           UserDocData[]  // one to many relation since each user can have multiple docs saved
+}
+
+// User's document data ---
+enum DocStatus {
+  DRAFT
+  PENDING_SIGNATURE
+  DONE_ESIGN
+  DONE_PRINTSIGN
+}
+
+model UserDocData {
+  userId      String         // Don't use @unique here so we can associate multiple documents to a user
+  user        User           @relation(fields: [userId], references: [userId]) 
+
+  productId   ProductId            
+  product     ProductCatalog @relation(fields: [productId], references: [productId])
+
+  docId       Int            @default(autoincrement()) @id
+  docName     String
+  status      DocStatus
+  formData    Json?          @default("{}") 
+
+  @@index([productId]) 
+  @@index([userId])
+}
+
+
+// If decide to store product jurisdictions in db... 
+
+// Add to ProductCatalog model ->   jurisdictions     JoinProductCatJurisdiction[] // relation to join table  
+
+// model Jurisdiction {
+//   id                Int               @id @default(autoincrement())
+//   name              String            @unique
+//   products          JoinProductCatJurisdiction[] // relation to join table
+// }
+
+// // Many-to-many relation requires a join table
+// model JoinProductCatJurisdiction {
+//   productId         Int
+//   product           ProductCatalog @relation(fields: [productId], references: [id])
+
+//   jurisdictionId    Int
+//   jurisdiction      Jurisdiction  @relation(fields: [jurisdictionId], references: [id])
+ 
+//   @@id([productId, jurisdictionId])
+ 
+//   @@index([jurisdictionId])
+//   @@index([productId])
+// }

@@ -1,0 +1,24 @@
+/*
+ * ATTENTION: An "eval-source-map" devtool has been used.
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+exports.id = "vendor-chunks/parse-svg-path";
+exports.ids = ["vendor-chunks/parse-svg-path"];
+exports.modules = {
+
+/***/ "(ssr)/../../node_modules/parse-svg-path/index.js":
+/*!**************************************************!*\
+  !*** ../../node_modules/parse-svg-path/index.js ***!
+  \**************************************************/
+/***/ ((module) => {
+
+eval("\nmodule.exports = parse\n\n/**\n * expected argument lengths\n * @type {Object}\n */\n\nvar length = {a: 7, c: 6, h: 1, l: 2, m: 2, q: 4, s: 4, t: 2, v: 1, z: 0}\n\n/**\n * segment pattern\n * @type {RegExp}\n */\n\nvar segment = /([astvzqmhlc])([^astvzqmhlc]*)/ig\n\n/**\n * parse an svg path data string. Generates an Array\n * of commands where each command is an Array of the\n * form `[command, arg1, arg2, ...]`\n *\n * @param {String} path\n * @return {Array}\n */\n\nfunction parse(path) {\n\tvar data = []\n\tpath.replace(segment, function(_, command, args){\n\t\tvar type = command.toLowerCase()\n\t\targs = parseValues(args)\n\n\t\t// overloaded moveTo\n\t\tif (type == 'm' && args.length > 2) {\n\t\t\tdata.push([command].concat(args.splice(0, 2)))\n\t\t\ttype = 'l'\n\t\t\tcommand = command == 'm' ? 'l' : 'L'\n\t\t}\n\n\t\twhile (true) {\n\t\t\tif (args.length == length[type]) {\n\t\t\t\targs.unshift(command)\n\t\t\t\treturn data.push(args)\n\t\t\t}\n\t\t\tif (args.length < length[type]) throw new Error('malformed path data')\n\t\t\tdata.push([command].concat(args.splice(0, length[type])))\n\t\t}\n\t})\n\treturn data\n}\n\nvar number = /-?[0-9]*\\.?[0-9]+(?:e[-+]?\\d+)?/ig\n\nfunction parseValues(args) {\n\tvar numbers = args.match(number)\n\treturn numbers ? numbers.map(Number) : []\n}\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHNzcikvLi4vLi4vbm9kZV9tb2R1bGVzL3BhcnNlLXN2Zy1wYXRoL2luZGV4LmpzIiwibWFwcGluZ3MiOiI7QUFDQTs7QUFFQTtBQUNBO0FBQ0EsVUFBVTtBQUNWOztBQUVBLGNBQWM7O0FBRWQ7QUFDQTtBQUNBLFVBQVU7QUFDVjs7QUFFQTs7QUFFQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EsV0FBVyxRQUFRO0FBQ25CLFlBQVk7QUFDWjs7QUFFQTtBQUNBO0FBQ0E7QUFDQTtBQUNBOztBQUVBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTs7QUFFQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EsRUFBRTtBQUNGO0FBQ0E7O0FBRUE7O0FBRUE7QUFDQTtBQUNBO0FBQ0EiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9idWJibGVndW0vLi4vLi4vbm9kZV9tb2R1bGVzL3BhcnNlLXN2Zy1wYXRoL2luZGV4LmpzPzQ5ZDkiXSwic291cmNlc0NvbnRlbnQiOlsiXG5tb2R1bGUuZXhwb3J0cyA9IHBhcnNlXG5cbi8qKlxuICogZXhwZWN0ZWQgYXJndW1lbnQgbGVuZ3Roc1xuICogQHR5cGUge09iamVjdH1cbiAqL1xuXG52YXIgbGVuZ3RoID0ge2E6IDcsIGM6IDYsIGg6IDEsIGw6IDIsIG06IDIsIHE6IDQsIHM6IDQsIHQ6IDIsIHY6IDEsIHo6IDB9XG5cbi8qKlxuICogc2VnbWVudCBwYXR0ZXJuXG4gKiBAdHlwZSB7UmVnRXhwfVxuICovXG5cbnZhciBzZWdtZW50ID0gLyhbYXN0dnpxbWhsY10pKFteYXN0dnpxbWhsY10qKS9pZ1xuXG4vKipcbiAqIHBhcnNlIGFuIHN2ZyBwYXRoIGRhdGEgc3RyaW5nLiBHZW5lcmF0ZXMgYW4gQXJyYXlcbiAqIG9mIGNvbW1hbmRzIHdoZXJlIGVhY2ggY29tbWFuZCBpcyBhbiBBcnJheSBvZiB0aGVcbiAqIGZvcm0gYFtjb21tYW5kLCBhcmcxLCBhcmcyLCAuLi5dYFxuICpcbiAqIEBwYXJhbSB7U3RyaW5nfSBwYXRoXG4gKiBAcmV0dXJuIHtBcnJheX1cbiAqL1xuXG5mdW5jdGlvbiBwYXJzZShwYXRoKSB7XG5cdHZhciBkYXRhID0gW11cblx0cGF0aC5yZXBsYWNlKHNlZ21lbnQsIGZ1bmN0aW9uKF8sIGNvbW1hbmQsIGFyZ3Mpe1xuXHRcdHZhciB0eXBlID0gY29tbWFuZC50b0xvd2VyQ2FzZSgpXG5cdFx0YXJncyA9IHBhcnNlVmFsdWVzKGFyZ3MpXG5cblx0XHQvLyBvdmVybG9hZGVkIG1vdmVUb1xuXHRcdGlmICh0eXBlID09ICdtJyAmJiBhcmdzLmxlbmd0aCA+IDIpIHtcblx0XHRcdGRhdGEucHVzaChbY29tbWFuZF0uY29uY2F0KGFyZ3Muc3BsaWNlKDAsIDIpKSlcblx0XHRcdHR5cGUgPSAnbCdcblx0XHRcdGNvbW1hbmQgPSBjb21tYW5kID09ICdtJyA/ICdsJyA6ICdMJ1xuXHRcdH1cblxuXHRcdHdoaWxlICh0cnVlKSB7XG5cdFx0XHRpZiAoYXJncy5sZW5ndGggPT0gbGVuZ3RoW3R5cGVdKSB7XG5cdFx0XHRcdGFyZ3MudW5zaGlmdChjb21tYW5kKVxuXHRcdFx0XHRyZXR1cm4gZGF0YS5wdXNoKGFyZ3MpXG5cdFx0XHR9XG5cdFx0XHRpZiAoYXJncy5sZW5ndGggPCBsZW5ndGhbdHlwZV0pIHRocm93IG5ldyBFcnJvcignbWFsZm9ybWVkIHBhdGggZGF0YScpXG5cdFx0XHRkYXRhLnB1c2goW2NvbW1hbmRdLmNvbmNhdChhcmdzLnNwbGljZSgwLCBsZW5ndGhbdHlwZV0pKSlcblx0XHR9XG5cdH0pXG5cdHJldHVybiBkYXRhXG59XG5cbnZhciBudW1iZXIgPSAvLT9bMC05XSpcXC4/WzAtOV0rKD86ZVstK10/XFxkKyk/L2lnXG5cbmZ1bmN0aW9uIHBhcnNlVmFsdWVzKGFyZ3MpIHtcblx0dmFyIG51bWJlcnMgPSBhcmdzLm1hdGNoKG51bWJlcilcblx0cmV0dXJuIG51bWJlcnMgPyBudW1iZXJzLm1hcChOdW1iZXIpIDogW11cbn1cbiJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///(ssr)/../../node_modules/parse-svg-path/index.js\n");
+
+/***/ })
+
+};
+;

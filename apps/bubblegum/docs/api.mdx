@@ -1,0 +1,26 @@
+# API How Tos
+
+## Test endpoint using Insomnia:
+
+More info: https://www.youtube.com/watch?v=cQ6V7ZHzg8c
+
+1. Create new collection
+2. Click `+` and select `HTTP Request`
+3. Name the request (e.g., "Test saveForm API")
+4. Set the request type (e.g. "POST")
+5. Configure the Request:
+
+- Set the URL (e.g. http://localhost:3000/api/saveForm )
+- Choose `JSON` body type from dropdown and paste in test request body
+  ```
+  {
+    "checkboxExample": true,
+    "radioExample": "option1",
+    "textExample": "John Doe",
+    "jurisdiction": "location1",
+    "signingDate": "Sep-25-2023"
+  }
+  ```
+- Headers tab: Set `Content-Type` to `application/json`
+
+6. Send request and see response in right column

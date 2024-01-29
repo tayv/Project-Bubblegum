@@ -1,0 +1,81 @@
+# Custom Hooks
+
+## useManageActiveSection
+
+Used to handle the functionality around setting the `FormSection` component's active section styling and scrolling into view.
+
+### How to use:
+
+```
+  // Destructure main utility or child hooks from parent hook
+  const {   updateActiveSectionIndex, useRegisterSectionRef, useScrollActiveSection, } = useManageActiveSection()
+
+  // Utility functions can also be destructured
+  const { targetSectionRef, activeSectionId } = useRegisterSectionRef(id)
+```
+
+### updateActiveSectionIndex()
+
+Updates the state tracking the active section in `ProductContext`
+
+```
+  // From ProductContext:
+  // Index used for stepping through array of ordered section IDs
+  const [activeSectionIndex, setActiveSectionIndex] = useState(0)
+  const [sectionOrderedIds, setSectionOrderedIds] = useState<string[]>([])
+```
+
+### scrollActiveSection()
+
+Used to scroll to the active section's ref
+
+```
+ <button
+    type="button"
+    onClick={() =>
+      scrollToActiveSection({
+        action: "prev",
+      })
+    }
+    className="max-w-xs bottom-0 p-2 border-2 border-slate-500 rounded-full "
+  >
+    <ArrowBigUpDash className="text-slate-500" />
+  </button>
+```
+
+### useRegisterSectionRef
+
+Used to add/remove the `FormSection`'s ref from the section ref dictionary in `ProductContext` as well as conditionally set the correct data attribute for styling.
+
+```
+ function SetFormSectionRef({ id, children }, ref) {
+    const { useRegisterSectionRef } = useManageActiveSection()
+    const { targetSectionRef, activeSectionId } = useRegisterSectionRef(id)
+
+    return (
+      <Card
+        id={id}
+        variant="section"
+        ref={targetSectionRef}
+        data-active-section={activeSectionId === id ? "true" : "false"}
+        className="data-[active-section=true]:bg-sky-300 scroll-mt-16" // scroll top used to offset the fixed header for when scrollIntoView() in useActiveSection hook runs
+      >
+        {children}
+      </Card>
+    )
+  }
+```
+
+### useDataAttributes
+
+Provides utility functions to manage `data-*` attributes by updating the DOM directly.
+
+Pass it the element's id and desired data attribute + value to it and it will add it to the dom element.
+
+```
+ setDataAttribute({ elementId: "myElementId", attributeName: "test", value: "123" });
+```
+
+NOTE: It returns a NodeList. Convert it to an array if you need to use array methods like `.map()`.
+
+Note: Not actively used for setting the active section anymore. Was originally used by `useManageActiveSection` hook before it was refactored.
