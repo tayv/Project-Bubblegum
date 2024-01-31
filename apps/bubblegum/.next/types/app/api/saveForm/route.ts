@@ -49,11 +49,12 @@ if ('GET' in entry) {
       'GET'
     >
   >()
+  
   checkFields<
     Diff<
       {
         __tag__: 'GET',
-        __return_type__: Response | Promise<Response>
+        __return_type__: Response | void | never | Promise<Response | void | never>
       },
       {
         __tag__: 'GET',
@@ -87,11 +88,12 @@ if ('HEAD' in entry) {
       'HEAD'
     >
   >()
+  
   checkFields<
     Diff<
       {
         __tag__: 'HEAD',
-        __return_type__: Response | Promise<Response>
+        __return_type__: Response | void | never | Promise<Response | void | never>
       },
       {
         __tag__: 'HEAD',
@@ -125,11 +127,12 @@ if ('OPTIONS' in entry) {
       'OPTIONS'
     >
   >()
+  
   checkFields<
     Diff<
       {
         __tag__: 'OPTIONS',
-        __return_type__: Response | Promise<Response>
+        __return_type__: Response | void | never | Promise<Response | void | never>
       },
       {
         __tag__: 'OPTIONS',
@@ -163,11 +166,12 @@ if ('POST' in entry) {
       'POST'
     >
   >()
+  
   checkFields<
     Diff<
       {
         __tag__: 'POST',
-        __return_type__: Response | Promise<Response>
+        __return_type__: Response | void | never | Promise<Response | void | never>
       },
       {
         __tag__: 'POST',
@@ -201,11 +205,12 @@ if ('PUT' in entry) {
       'PUT'
     >
   >()
+  
   checkFields<
     Diff<
       {
         __tag__: 'PUT',
-        __return_type__: Response | Promise<Response>
+        __return_type__: Response | void | never | Promise<Response | void | never>
       },
       {
         __tag__: 'PUT',
@@ -239,11 +244,12 @@ if ('DELETE' in entry) {
       'DELETE'
     >
   >()
+  
   checkFields<
     Diff<
       {
         __tag__: 'DELETE',
-        __return_type__: Response | Promise<Response>
+        __return_type__: Response | void | never | Promise<Response | void | never>
       },
       {
         __tag__: 'DELETE',
@@ -277,11 +283,12 @@ if ('PATCH' in entry) {
       'PATCH'
     >
   >()
+  
   checkFields<
     Diff<
       {
         __tag__: 'PATCH',
-        __return_type__: Response | Promise<Response>
+        __return_type__: Response | void | never | Promise<Response | void | never>
       },
       {
         __tag__: 'PATCH',

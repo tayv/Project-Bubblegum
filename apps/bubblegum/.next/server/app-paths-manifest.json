@@ -1,7 +1,10 @@
 {
-  "/not-found": "app/not-found.js",
+  "/_not-found": "app/_not-found.js",
+  "/api/saveForm/route": "app/api/saveForm/route.js",
   "/page": "app/page.js",
+  "/product1/page": "app/product1/page.js",
+  "/signin/page": "app/signin/page.js",
   "/docviewer/page": "app/docviewer/page.js",
   "/product2/page": "app/product2/page.js",
-  "/api/saveForm/route": "app/api/saveForm/route.js"
+  "/dashboard/page": "app/dashboard/page.js"
 }

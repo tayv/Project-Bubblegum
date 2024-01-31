@@ -30,16 +30,16 @@
       "@contexts/*": ["app/contexts/*"],
       "@hooks/*": ["app/hooks/*"],
       "@utils/*": ["app/utils/*"],
-      "@styles/*": ["styles/*"],
+      "@styles/*": ["./styles/*"],
       "@product1/*": ["app/product1/*"],
-      "@product2/*": ["app/product2/*"]
+      "@product2/*": ["app/product2/*"],
     },
     "plugins": [
       {
-        "name": "next"
-      }
-    ]
+        "name": "next",
+      },
+    ],
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
 }

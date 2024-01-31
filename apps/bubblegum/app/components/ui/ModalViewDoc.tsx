@@ -15,7 +15,7 @@ import { useReactToPrint } from "react-to-print"
 import { PDFDownloadLink, PDFViewer, pdf } from "@react-pdf/renderer"
 import DynamicPDF from "@buildDoc/DynamicPDF"
 import { FormDataType } from "@templates/productSchemas/productTypes"
-import { pdfStyles } from "apps/bubblegum/utils/_pdfHelpers/pdfStyles"
+import { pdfStyles } from "@utils/_pdfHelpers/pdfStyles"
 
 // TYPES ---
 export type ModalViewDocProps = {
