@@ -21,6 +21,6 @@
       "name": "next"
     }
   ],
-  "include": ["src", "next-env.d.ts"],
+  "include": ["src", "next-env.d.ts", "**/*.mdx"],
   "exclude": ["node_modules"]
 }

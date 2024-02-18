@@ -1,4 +1,4 @@
 {
   // Extending because we to hold all config in packages/config-typescript
-  "extends": "tsconfig/base.json",
+  "extends": "./packages/config-typescript/base.json",
 }

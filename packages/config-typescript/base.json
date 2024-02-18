@@ -20,8 +20,9 @@
     "strict": true,
     "strictNullChecks": true
   },
-  "baseUrl": "./",
+  "baseUrl": "../",
   "paths": {
+    "@monorepo/*": ["../"],
     "@packages/*": ["./packages/*"]
   },
   "exclude": ["node_modules"]

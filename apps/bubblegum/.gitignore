@@ -1,23 +1,19 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# documentation
-documentation.md
-
 # dependencies
-node_modules
-.pnp
+/node_modules
+/.pnp
 .pnp.js
 
 # testing
-coverage
+/coverage
 
 # next.js
-.next/
-out/
-.swc/
+/.next/
+/out/
 
 # production
-build
+/build
 
 # misc
 .DS_Store
@@ -29,7 +25,6 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
-.env 
 .env.local
 .env.development.local
 .env.test.local
@@ -37,9 +32,3 @@ yarn-error.log*
 
 # vercel
 .vercel
-
-# typescript
-*.tsbuildinfo
-
-#turbo repo https://turbo.build/repo/docs/getting-started/existing-monorepo
-.turbo

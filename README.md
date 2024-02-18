@@ -52,3 +52,12 @@ Using turbo to manage the monorepo. Basic structure:
 - `config-eslint` and `config-typescript` in `packages` are used to have a consistent base for the whole monorepo. These can be extended or overridden in the individual `apps` via their own `eslintrc.json` and `tsconfig.json`.
 - Each project as well as the root gets their own `package.json`. Root handles monorepo-wide dependencies like prettier. Each workspace needs to have a unique title in `package.json`.
 - `pnpm-workspaces.yaml` defines the monorepo's workspaces like `packages` and `apps`.
+
+### Bug fixes
+
+- Add `{
+  "eslint.workingDirectories": [
+    { "pattern": "apps/*/" },
+    { "pattern": "packages/*/" }
+  ]
+}` to VS Code `settings.json` to fix error finding `next/babel`. Appears to be a [known turborepo issue](https://stackoverflow.com/questions/71662525/failed-to-load-config-next-babel-to-extend-from-eslintrc-json).
