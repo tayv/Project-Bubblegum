@@ -45,6 +45,7 @@ Using turbo to manage the monorepo. Basic structure:
 
 - `apps` holds projects
 - `packages` holds anything reusable across `apps` such as `ui` for components as well as extendable configurations for `estlint` and `tsconfig`.
+- Each workspace gets its own `package.json`.[ Vercel recommends](You can use an npm organization or user scope to avoid collisions with existing packages on npm. For instance, you could use @mycompany/shared-utils) prepending the org name to avoid npm namespace conflicts. For example: `@organizationname/packagename`.
 
 ### Turbo configuration
 
