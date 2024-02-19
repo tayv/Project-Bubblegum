@@ -61,4 +61,4 @@ Using turbo to manage the monorepo. Basic structure:
     { "pattern": "apps/*/" },
     { "pattern": "packages/*/" }
   ]
-}` to VS Code `settings.json` to fix error finding `next/babel`. Appears to be a [known turborepo issue](https://stackoverflow.com/questions/71662525/failed-to-load-config-next-babel-to-extend-from-eslintrc-json).
+}` to `.vscode > settings.json` to fix error finding `next/babel`. Appears to be a [known turborepo issue](https://stackoverflow.com/questions/71662525/failed-to-load-config-next-babel-to-extend-from-eslintrc-json).
