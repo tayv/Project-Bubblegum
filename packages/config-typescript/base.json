@@ -22,7 +22,7 @@
   },
   "baseUrl": "../",
   "paths": {
-    "@monorepo/*": ["../"],
+    "@/*": ["./src/*"],
     "@packages/*": ["./packages/*"]
   },
   "exclude": ["node_modules"]

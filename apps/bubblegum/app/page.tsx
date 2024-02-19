@@ -4,7 +4,7 @@ import Card from "@ui/Card"
 import ButtonCTA from "@form/ButtonCTA"
 import LayoutContainer from "@ui/LayoutContainer"
 import { Armchair, TrafficCone, PocketKnife } from "lucide-react"
-import Accordion from "@ui/Accordion"
+import { Accordion } from "@monorepo/ui"
 import Space from "@ui/Space"
 
 export default function Home() {
@@ -30,6 +30,16 @@ export default function Home() {
           <Heading size="h1" weight="bold" padding="standard">
             Welcome to [Name] 👋
           </Heading>
+          <Accordion
+            type="single"
+            items={[
+              {
+                value: "string",
+                headerText: "string",
+                contentText: "string",
+              },
+            ]}
+          ></Accordion>
           <Paragraph
             weight="medium"
             color="secondary"

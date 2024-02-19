@@ -1,5 +1,33 @@
 {
-  "name": "ui",
-  "version": "0.0.1",
-  "private": true
+  "name": "@monorepo/ui",
+  "version": "1.0.0",
+  "description": "Shared React UI component library",
+  "scripts": {
+    "clean": "rm -rf dist && rm -rf node_modules && rm -rf .turbo",
+    "lint": "TIMING=1 eslint *.ts*",
+    "test": "echo no test required"
+  },
+  "keywords": [
+    "React",
+    "UI library"
+  ],
+  "author": "@tayvan",
+  "license": "MIT",
+  "exports": {
+    ".": "./src/index.tsx"
+  },
+  "types": "./src/index.tsx",
+  "devDependencies": {
+    "@monorepo/config-tailwind": "0.0.0",
+    "@radix-ui/react-accordion": "^1.1.2",
+    "@types/react": "^18.2.48",
+    "@types/react-dom": "^18.0.10",
+    "classnames": "^2.5.1",
+    "config-typescript": "0.0.0",
+    "eslint-config": "0.0.0",
+    "lucide-react": "^0.279.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^5.3.3"
+  }
 }
