@@ -3,6 +3,8 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
+      "@uiRepo/*": ["../../packages/ui/src/*"],
+
       "@api/*": ["app/api/*"],
       "@contexts/*": ["app/contexts/*"],
       "@hooks/*": ["app/hooks/*"],

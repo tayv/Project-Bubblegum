@@ -2,7 +2,9 @@
   "extends": "../../packages/config-typescript/nextjs.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "paths": {},
+    "paths": {
+      "@uiRepo/*": ["./*"],
+    },
   },
   "include": ["."],
   "exclude": ["dist", "build", "node_modules"],

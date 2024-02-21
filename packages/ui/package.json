@@ -16,6 +16,7 @@
   "exports": {
     ".": "./src/index.tsx"
   },
+  "main": "./src/index.tsx",
   "types": "./src/index.tsx",
   "devDependencies": {
     "@monorepo/config-tailwind": "0.0.0",

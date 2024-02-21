@@ -4,7 +4,7 @@ import Card from "@ui/Card"
 import ButtonCTA from "@form/ButtonCTA"
 import LayoutContainer from "@ui/LayoutContainer"
 import { Armchair, TrafficCone, PocketKnife } from "lucide-react"
-import { Accordion } from "@monorepo/ui"
+import { Accordion } from "@uiRepo/components"
 import Space from "@ui/Space"
 
 export default function Home() {
