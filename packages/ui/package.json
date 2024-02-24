@@ -4,7 +4,7 @@
   "description": "Shared React UI component library",
   "scripts": {
     "clean": "rm -rf dist && rm -rf node_modules && rm -rf .turbo",
-    "lint": "TIMING=1 eslint *.ts*",
+    "lint": "TIMING=1 eslint **/*.ts*",
     "test": "echo no test required"
   },
   "keywords": [

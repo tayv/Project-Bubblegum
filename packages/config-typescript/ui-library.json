@@ -1,10 +1,12 @@
 {
-  "display": "UI Library",
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "UI React Library",
   "extends": "./base.json",
   "compilerOptions": {
     "jsx": "react-jsx",
     "lib": ["DOM", "ES2015"],
     "module": "ESNext",
     "target": "es6"
-  }
+  },
+  "exclude": ["node_modules"]
 }

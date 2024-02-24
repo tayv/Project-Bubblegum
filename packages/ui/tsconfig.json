@@ -1,5 +1,5 @@
 {
-  "extends": "../../packages/config-typescript/nextjs.json",
+  "extends": "../../packages/config-typescript/ui-library.json",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
