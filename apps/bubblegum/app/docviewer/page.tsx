@@ -2,7 +2,7 @@
 
 import { FC, useRef, useEffect, useState } from "react"
 import { LayoutContainer } from "@uiRepo/layout"
-import Heading from "@ui/Heading"
+import { Heading } from "@uiRepo/components"
 import Paragraph from "@ui/Paragraph"
 import {
   Wand,

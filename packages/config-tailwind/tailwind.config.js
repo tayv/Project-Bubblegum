@@ -4,7 +4,7 @@ const colors = require("tailwindcss/colors")
 module.exports = {
   content: [
     "../../apps/bubblegum/app/**/*.{js,ts,jsx,tsx,mdx}",
-    "../../packages/ui/app/**/*.{html,js,ts,jsx,tsx, mdx}",
+    "../../packages/ui/src/**/*.{html,js,ts,jsx,tsx, mdx}",
   ],
   theme: {
     extend: {

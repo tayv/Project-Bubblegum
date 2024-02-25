@@ -1,5 +1,5 @@
 import { forwardRef } from "react"
-import Card, { SectionCardProps } from "@ui/Card"
+import { Card, SectionCardProps } from "@uiRepo/components"
 import useManageActiveSection from "@hooks/useManageActiveSection"
 import classNames from "classnames"
 import { StepperButton } from "@form/StepperButton"

@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation"
 import { FC, useState, useContext, useEffect } from "react"
 import ModalSheet from "@ui/ModalSheet"
-import Heading from "@ui/Heading"
+import { Heading } from "@uiRepo/components"
 import Paragraph from "@ui/Paragraph"
 import { Card } from "@uiRepo/components"
 import { LayoutContainer } from "@uiRepo/layout"

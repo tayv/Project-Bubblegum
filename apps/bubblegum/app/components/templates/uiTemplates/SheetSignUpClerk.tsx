@@ -9,7 +9,7 @@ import { useForm, FormProvider } from "react-hook-form"
 
 import Divider from "@ui/Divider"
 import ModalSheet from "@ui/ModalSheet"
-import Heading from "@ui/Heading"
+import { Heading } from "@uiRepo/components"
 import Paragraph from "@ui/Paragraph"
 import Field from "@form/formControl/Field"
 import Input from "@form/Input"

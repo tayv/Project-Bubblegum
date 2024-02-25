@@ -1,5 +1,5 @@
 import type { MDXComponents } from "mdx/types"
-import Heading from "@ui/Heading"
+import { Heading } from "@uiRepo/components"
 import Paragraph from "@ui/Paragraph"
 import Divider from "@ui/Divider"
 

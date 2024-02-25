@@ -1,12 +1,13 @@
-import Heading from "@ui/Heading"
-import Paragraph from "@ui/Paragraph"
+import { Heading } from "@uiRepo/components"
+import { Accordion } from "@uiRepo/components"
+import { Space } from "@uiRepo/layout"
 import { Card } from "@uiRepo/components"
 import Link from "next/link"
+
+import Paragraph from "@ui/Paragraph"
 import ButtonCTA from "@form/ButtonCTA"
 import { LayoutContainer } from "@uiRepo/layout"
 import { Armchair, TrafficCone, PocketKnife } from "lucide-react"
-import { Accordion } from "@uiRepo/components"
-import { Space } from "@uiRepo/layout"
 
 export default function Home() {
   return (
@@ -31,16 +32,7 @@ export default function Home() {
           <Heading size="h1" weight="bold" padding="standard">
             Welcome to [Name] 👋
           </Heading>
-          <Accordion
-            type="single"
-            items={[
-              {
-                value: "string",
-                headerText: "string",
-                contentText: "string",
-              },
-            ]}
-          ></Accordion>
+
           <Paragraph
             weight="medium"
             color="secondary"

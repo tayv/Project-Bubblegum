@@ -2,7 +2,7 @@
 
 import * as z from "zod"
 import React from "react"
-import Heading from "@ui/Heading"
+import { Heading } from "@uiRepo/components"
 import Paragraph from "@ui/Paragraph"
 import Form from "@form/formControl/Form"
 import Field from "@form/formControl/Field"
