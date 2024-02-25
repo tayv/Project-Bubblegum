@@ -4,7 +4,7 @@ import React, { FC, forwardRef } from "react"
 import classNames from "classnames"
 import { ArrowRight, User2, Wand } from "lucide-react"
 
-export type ButtonCTAProps = {
+type ButtonCTAProps = {
   formID?: string
   formHasErrors?: boolean // from RHF. Should be result of Object.keys(methods.formState.errors).length > 0
   type: "button" | "submit"
@@ -139,4 +139,5 @@ const ButtonCTA: FC<ButtonCTAProps> = forwardRef<
   )
 })
 
-export default ButtonCTA
+export { ButtonCTA }
+export type { ButtonCTAProps }

@@ -1,7 +1,7 @@
 import React from "react"
 import { render } from "@testing-library/react"
 import "@testing-library/jest-dom/extend-expect"
-import Select from "@form/Select" // why doesn't @atoms/SelectRadix work here?
+import { Select } from "@uiRepo/forms"
 
 describe("Select component", () => {
   test("renders only once", () => {

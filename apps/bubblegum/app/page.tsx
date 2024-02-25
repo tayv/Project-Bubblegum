@@ -5,7 +5,7 @@ import { Card } from "@uiRepo/components"
 import Link from "next/link"
 
 import { Paragraph } from "@uiRepo/components"
-import ButtonCTA from "@form/ButtonCTA"
+import { ButtonCTA } from "@uiRepo/forms"
 import { LayoutContainer } from "@uiRepo/layout"
 import { Armchair, TrafficCone, PocketKnife } from "lucide-react"
 

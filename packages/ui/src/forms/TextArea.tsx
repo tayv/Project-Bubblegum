@@ -9,11 +9,11 @@ import React, {
 } from "react"
 import classNames from "classnames"
 import { Control } from "react-hook-form"
-import { InputState } from "@form/Input"
+import { InputState } from "@uiRepo/forms"
 
 // TYPES
-export type TextAreaSize = "standard" | "large"
-export type TextAreaProps = {
+type TextAreaSize = "standard" | "large"
+type TextAreaProps = {
   name: string
   size?: TextAreaSize
   className?: string
@@ -41,7 +41,7 @@ const inputFocusStyleMap: { [key in InputState]: string } = {
 }
 
 // forwardRef so RHF can work properly in WrapperInput
-export const TextArea: FC<TextAreaProps> = forwardRef<
+const TextArea: FC<TextAreaProps> = forwardRef<
   HTMLTextAreaElement,
   TextAreaProps
 >(function setRefTextArea(
@@ -73,4 +73,5 @@ export const TextArea: FC<TextAreaProps> = forwardRef<
   )
 })
 
-export default TextArea
+export { TextArea }
+export type { TextAreaSize, TextAreaProps }

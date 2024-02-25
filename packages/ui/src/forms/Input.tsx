@@ -9,10 +9,10 @@ import classNames from "classnames"
 
 // TYPES
 // This input component is intended to be used for all single line inputs (phone, numbers, text input)
-export type InputSize = "standard" | "large"
-export type InputState = "standard" | "error"
-export type InputType = "text" | "email" | "tel" | "number"
-export type InputProps = {
+type InputSize = "standard" | "large"
+type InputState = "standard" | "error"
+type InputType = "text" | "email" | "tel" | "number"
+type InputProps = {
   name?: string
   type?: InputType
   size?: InputSize
@@ -71,4 +71,5 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
   }
 )
 
-export default Input
+export { Input }
+export type { InputSize, InputState, InputType, InputProps }

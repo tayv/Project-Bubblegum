@@ -4,13 +4,13 @@ import { Check, AlertCircle, AlertTriangle } from "lucide-react"
 import { FC, ReactNode } from "react"
 import classNames from "classnames"
 
-export type InputMessageProps = {
+type InputMessageProps = {
   type?: InputMessageType
   children: ReactNode
   className?: string
 }
 
-export type InputMessageType = "tip" | "example" | "valid" | "warn" | "error"
+type InputMessageType = "tip" | "example" | "valid" | "warn" | "error"
 
 const inputMessageTypeMap: { [key in InputMessageType]: string } = {
   tip: "block text-sm font-light text-gray-500 mb-2",
@@ -48,4 +48,5 @@ const InputMessage: FC<InputMessageProps> = ({
   )
 }
 
-export default InputMessage
+export { InputMessage }
+export type { InputMessageProps, InputMessageType }

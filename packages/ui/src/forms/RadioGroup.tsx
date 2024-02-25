@@ -5,7 +5,7 @@ import classNames from "classnames"
 import * as RadixRadioGroup from "@radix-ui/react-radio-group"
 import { Check } from "lucide-react"
 
-export type RadioGroupProps = {
+type RadioGroupProps = {
   options: Array<{ value: string; label: string; icon?: ReactElement }>
   variant?: RadioGroupVariant
   name?: string
@@ -155,4 +155,5 @@ const RadioGroup: FC<RadioGroupProps> = forwardRef<
   )
 })
 
-export default RadioGroup
+export { RadioGroup }
+export type { RadioGroupProps }

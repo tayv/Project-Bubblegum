@@ -5,8 +5,8 @@ import classNames from "classnames"
 import * as RadixCheckbox from "@radix-ui/react-checkbox"
 import { CheckIcon } from "lucide-react"
 
-export type CheckboxType = "standard" | "toggle"
-export type CheckboxProps = {
+type CheckboxType = "standard" | "toggle"
+type CheckboxProps = {
   name?: string // Optional as handled by Field
   id?: string // used for multi checkboxes and htmlFor label
   children: string
@@ -59,4 +59,5 @@ const Checkbox: FC<CheckboxProps> = forwardRef<
   )
 })
 
-export default Checkbox
+export { Checkbox }
+export type { CheckboxType, CheckboxProps }

@@ -4,14 +4,14 @@ import { FC, ReactNode } from "react"
 import * as Label from "@radix-ui/react-label"
 import classNames from "classnames"
 
-export type InputGroupLabelProps = {
+type InputGroupLabelProps = {
   htmlFor: string
   type?: InputGroupLabelType
   children?: ReactNode
   className?: string
 }
 
-export type InputGroupLabelType = "standard" | "secondary"
+type InputGroupLabelType = "standard" | "secondary"
 
 const inputGroupLabelTypeMap: { [key in InputGroupLabelType]: string } = {
   standard: "block text-md font-bold text-gray-900",
@@ -39,4 +39,5 @@ const InputGroupLabel: FC<InputGroupLabelProps> = ({
   )
 }
 
-export default InputGroupLabel
+export { InputGroupLabel }
+export type { InputGroupLabelType, InputGroupLabelProps }

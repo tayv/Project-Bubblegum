@@ -2,13 +2,13 @@
 
 import { FC, forwardRef, useState } from "react"
 import { CalendarDays, Minus } from "lucide-react"
-import { InputProps } from "@form/Input"
+import { InputProps } from "@uiRepo/forms"
 import * as Accordion from "@radix-ui/react-accordion"
 import { format, startOfToday } from "date-fns"
-import Calendar, { CalendarProps } from "@form/Calendar"
+import { Calendar, CalendarProps } from "@uiRepo/forms"
 import { useForm } from "react-hook-form"
 
-export type DatePickProps = {
+type DatePickProps = {
   name?: string // Optional because wrapper Field component will require and pass it in
   label?: string | null
   value?: string | number
@@ -129,4 +129,5 @@ let firstDayStartingCol = [
   "col-start-7",
 ]
 
-export default DatePick
+export { DatePick }
+export type { DatePickProps }

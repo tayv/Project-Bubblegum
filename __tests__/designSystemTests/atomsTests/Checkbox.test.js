@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom/extend-expect"
-import Checkbox from "@form/Checkbox.tsx"
+import { Checkbox } from "@uiRepo/forms"
 
 describe("Test Checkbox", () => {
   it("renders with label", () => {

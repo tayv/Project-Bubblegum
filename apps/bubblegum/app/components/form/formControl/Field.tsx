@@ -9,11 +9,12 @@ import React, {
 } from "react"
 import { Controller, useFormContext } from "react-hook-form"
 import { Slot } from "@radix-ui/react-slot"
-import InputGroupLabel, { InputGroupLabelProps } from "@form/InputGroupLabel"
-import InputMessage, {
+import { InputGroupLabel, InputGroupLabelProps } from "@uiRepo/forms"
+import {
+  InputMessage,
   InputMessageProps,
   InputMessageType,
-} from "@form/InputMessage"
+} from "@uiRepo/forms"
 import useMatchRegex from "@hooks/useMatchRegex"
 
 type FieldContextProps = {

@@ -20,7 +20,7 @@ import DynamicPDF from "@buildDoc/DynamicPDF"
 import dynamic from "next/dynamic"
 import { pdfStyles } from "@utils/_pdfHelpers/pdfStyles"
 import { Divider } from "@uiRepo/components"
-import ButtonCTA from "@form/ButtonCTA"
+import { ButtonCTA } from "@uiRepo/forms"
 import { ModalFullScreenView } from "@uiRepo/components"
 
 // TEST DATA ---

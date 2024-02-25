@@ -28,7 +28,7 @@ import {
   eachYearOfInterval,
 } from "date-fns"
 
-export type CalendarProps = {
+type CalendarProps = {
   name: string
   startYearRange: number // Range determines the years used by the Select in the calendar
   endYearRange: number
@@ -297,4 +297,5 @@ let firstDayStartingCol = [
   "col-start-7",
 ]
 
-export default Calendar
+export { Calendar }
+export type { CalendarProps }

@@ -3,17 +3,17 @@
 import { Ref, forwardRef, FC } from "react"
 import * as SelectRadix from "@radix-ui/react-select"
 
-export type FlatListItems = {
+type FlatListItems = {
   value: string
   labelText: string
   separator: Boolean
 }
-export type GroupListItems = {
+type GroupListItems = {
   groupLabel: string | null
   items: Array<FlatListItems>
 }
 
-export type SelectProps = {
+type SelectProps = {
   value?: string
   name?: string
   hasError?: boolean
@@ -109,7 +109,8 @@ const Select: FC<SelectProps> = forwardRef<HTMLButtonElement, SelectProps>(
   }
 )
 
-export default Select
+export { Select }
+export type { FlatListItems, GroupListItems, SelectProps }
 
 // Usage
 // Schema will change whether the select is grouped or not
