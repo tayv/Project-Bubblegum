@@ -10,7 +10,7 @@ import {
   Printer,
   View,
 } from "lucide-react"
-import PrintButton from "@ui/PrintButton"
+import { PrintButton } from "@uiRepo/components"
 import { useReactToPrint } from "react-to-print"
 import { PDFDownloadLink, PDFViewer, pdf } from "@react-pdf/renderer"
 import DynamicPDF from "@buildDoc/DynamicPDF"

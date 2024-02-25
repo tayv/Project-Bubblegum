@@ -7,7 +7,7 @@ import { UserButton, SignedIn, SignedOut, SignInButton } from "@clerk/nextjs"
 import Link from "next/link"
 import NavHorizontal from "./NavHorizontal"
 import { ArrowLeftCircle, Frame, LogIn } from "lucide-react"
-import Divider from "@ui/Divider"
+import { Divider } from "@uiRepo/components"
 
 // TYPES ---
 type NavSideBarStyle = "selected" | "notSelected"

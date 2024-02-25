@@ -56,7 +56,7 @@ const ModalAlert: FC<ModalAlertProps> = ({
   )
 }
 
-export default ModalAlert
+export { ModalAlert }
 
 // NOTES:
 // If need to more control over modal state, use this:

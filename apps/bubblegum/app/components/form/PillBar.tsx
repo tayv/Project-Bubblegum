@@ -14,10 +14,10 @@ import {
   Wrench,
   XCircle,
 } from "lucide-react"
-import Divider from "@ui/Divider"
+import { Divider } from "@uiRepo/components"
 import ModalViewDoc from "@ui/ModalViewDoc"
 import dynamic from "next/dynamic"
-import ModalAlert from "@ui/ModalAlert"
+import { ModalAlert } from "@uiRepo/components"
 import { pdfStyles } from "@utils/_pdfHelpers/pdfStyles"
 import DynamicPDF from "@buildDoc/DynamicPDF"
 import { useLoadPreviewPDF } from "@hooks/useLoadPreviewPDF"

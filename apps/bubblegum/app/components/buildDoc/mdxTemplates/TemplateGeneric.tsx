@@ -1,8 +1,8 @@
 "use client"
 
 import React, { FC, JSXElementConstructor } from "react"
-import Paragraph from "@ui/Paragraph"
-import Divider from "@ui/Divider"
+import { Paragraph } from "@uiRepo/components"
+import { Divider } from "@uiRepo/components"
 
 export type FormDataObj = {
   docID: number

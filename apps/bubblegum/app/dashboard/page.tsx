@@ -1,6 +1,6 @@
 import { LayoutContainer } from "@uiRepo/layout"
 import { Heading } from "@uiRepo/components"
-import Paragraph from "@ui/Paragraph"
+import { Paragraph } from "@uiRepo/components"
 import { Wand } from "lucide-react"
 
 export default function Dashboard() {

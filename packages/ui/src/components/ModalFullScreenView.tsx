@@ -68,4 +68,4 @@ const ModalFullScreenView: FC<ModalFullScreenViewProps> = ({
   )
 }
 
-export default ModalFullScreenView
+export { ModalFullScreenView }

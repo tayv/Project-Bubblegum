@@ -29,4 +29,4 @@ const PrintButton = forwardRef<HTMLButtonElement, PrintButtonProps>(
   }
 )
 
-export default PrintButton
+export { PrintButton }

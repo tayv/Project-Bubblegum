@@ -2,8 +2,8 @@
 import React, { FC } from "react"
 import * as DialogRadix from "@radix-ui/react-dialog"
 import { X } from "lucide-react"
-import SubmitButton from "@form/ButtonCTA"
-import Divider from "@ui/Divider"
+//import SubmitButton from "@form/ButtonCTA"
+import { Divider } from "@uiRepo/components"
 import classNames from "classnames"
 
 // TYPES ---
@@ -94,4 +94,4 @@ const ModalSheet: FC<ModalSheetProps> = ({
     </DialogRadix.Root>
   )
 }
-export default ModalSheet
+export { ModalSheet }

@@ -1,5 +1,3 @@
-"use client"
-
 import { FC } from "react"
 import classNames from "classnames"
 
@@ -132,7 +130,7 @@ const Divider: FC<DividerProps> = ({
   )
 }
 
-export default Divider
+export { Divider }
 
 // Notes:
 // Divider takes up the width of its parent container.

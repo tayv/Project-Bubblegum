@@ -1,5 +1,5 @@
 import { Heading } from "@uiRepo/components"
-import Paragraph from "@ui/Paragraph"
+import { Paragraph } from "@uiRepo/components"
 import { LayoutContainer } from "@uiRepo/layout"
 import { Space } from "@uiRepo/layout"
 import { SignIn } from "@clerk/nextjs"

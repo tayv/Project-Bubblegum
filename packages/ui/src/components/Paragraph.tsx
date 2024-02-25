@@ -1,5 +1,3 @@
-"use client"
-
 import { FC, ReactNode } from "react"
 import classNames from "classnames"
 
@@ -157,4 +155,4 @@ const Paragraph: FC<ParagraphProps> = ({
   )
 }
 
-export default Paragraph
+export { Paragraph }

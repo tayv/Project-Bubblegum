@@ -1,7 +1,7 @@
 import type { MDXComponents } from "mdx/types"
 import { Heading } from "@uiRepo/components"
-import Paragraph from "@ui/Paragraph"
-import Divider from "@ui/Divider"
+import { Paragraph } from "@uiRepo/components"
+import { Divider } from "@uiRepo/components"
 
 // This file allows you to provide custom React components
 // to be used in MDX files. You can import and use any

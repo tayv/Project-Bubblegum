@@ -76,4 +76,4 @@ const ModalStandard: FC<ModalStandardProps> = ({
   </DialogRadix.Root>
 )
 
-export default ModalStandard
+export { ModalStandard }

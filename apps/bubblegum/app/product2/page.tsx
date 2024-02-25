@@ -3,7 +3,7 @@
 import * as z from "zod"
 import React from "react"
 import { Heading } from "@uiRepo/components"
-import Paragraph from "@ui/Paragraph"
+import { Paragraph } from "@uiRepo/components"
 import Form from "@form/formControl/Form"
 import Field from "@form/formControl/Field"
 import Checkbox from "@form/Checkbox"

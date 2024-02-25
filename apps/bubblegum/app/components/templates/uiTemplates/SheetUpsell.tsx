@@ -2,9 +2,9 @@
 
 import { usePathname } from "next/navigation"
 import { FC, useState, useContext, useEffect } from "react"
-import ModalSheet from "@ui/ModalSheet"
+import { ModalSheet } from "@uiRepo/components"
 import { Heading } from "@uiRepo/components"
-import Paragraph from "@ui/Paragraph"
+import { Paragraph } from "@uiRepo/components"
 import { Card } from "@uiRepo/components"
 import { LayoutContainer } from "@uiRepo/layout"
 import { Space } from "@uiRepo/layout"

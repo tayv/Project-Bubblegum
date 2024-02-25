@@ -3,7 +3,7 @@
 import { FC, useRef, useEffect, useState } from "react"
 import { LayoutContainer } from "@uiRepo/layout"
 import { Heading } from "@uiRepo/components"
-import Paragraph from "@ui/Paragraph"
+import { Paragraph } from "@uiRepo/components"
 import {
   Wand,
   ArrowDownToLine,
@@ -13,15 +13,15 @@ import {
   Maximize2,
 } from "lucide-react"
 import { Card } from "@uiRepo/components"
-import PrintButton from "@ui/PrintButton"
+import { PrintButton } from "@uiRepo/components"
 import { useReactToPrint } from "react-to-print"
 import { PDFDownloadLink, PDFViewer, pdf } from "@react-pdf/renderer"
 import DynamicPDF from "@buildDoc/DynamicPDF"
 import dynamic from "next/dynamic"
 import { pdfStyles } from "@utils/_pdfHelpers/pdfStyles"
-import Divider from "@ui/Divider"
+import { Divider } from "@uiRepo/components"
 import ButtonCTA from "@form/ButtonCTA"
-import ModalFullScreenView from "@ui/ModalFullScreenView"
+import { ModalFullScreenView } from "@uiRepo/components"
 
 // TEST DATA ---
 const testData = {

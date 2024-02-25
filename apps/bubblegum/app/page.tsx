@@ -4,7 +4,7 @@ import { Space } from "@uiRepo/layout"
 import { Card } from "@uiRepo/components"
 import Link from "next/link"
 
-import Paragraph from "@ui/Paragraph"
+import { Paragraph } from "@uiRepo/components"
 import ButtonCTA from "@form/ButtonCTA"
 import { LayoutContainer } from "@uiRepo/layout"
 import { Armchair, TrafficCone, PocketKnife } from "lucide-react"
