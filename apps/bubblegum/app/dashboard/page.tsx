@@ -1,4 +1,4 @@
-import LayoutContainer from "@ui/LayoutContainer"
+import { LayoutContainer } from "@uiRepo/layout"
 import Heading from "@ui/Heading"
 import Paragraph from "@ui/Paragraph"
 import { Wand } from "lucide-react"

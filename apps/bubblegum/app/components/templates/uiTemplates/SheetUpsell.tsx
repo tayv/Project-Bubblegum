@@ -5,9 +5,9 @@ import { FC, useState, useContext, useEffect } from "react"
 import ModalSheet from "@ui/ModalSheet"
 import Heading from "@ui/Heading"
 import Paragraph from "@ui/Paragraph"
-import Card from "@ui/Card"
-import LayoutContainer from "@ui/LayoutContainer"
-import Space from "@ui/Space"
+import { Card } from "@uiRepo/components"
+import { LayoutContainer } from "@uiRepo/layout"
+import { Space } from "@uiRepo/layout"
 import { SignUp } from "@clerk/nextjs"
 
 // TYPES ---------

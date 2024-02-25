@@ -1,7 +1,7 @@
 "use client"
 
 import { FC, useRef, useEffect, useState } from "react"
-import LayoutContainer from "@ui/LayoutContainer"
+import { LayoutContainer } from "@uiRepo/layout"
 import Heading from "@ui/Heading"
 import Paragraph from "@ui/Paragraph"
 import {
@@ -12,7 +12,7 @@ import {
   PencilRuler,
   Maximize2,
 } from "lucide-react"
-import Card from "@ui/Card"
+import { Card } from "@uiRepo/components"
 import PrintButton from "@ui/PrintButton"
 import { useReactToPrint } from "react-to-print"
 import { PDFDownloadLink, PDFViewer, pdf } from "@react-pdf/renderer"

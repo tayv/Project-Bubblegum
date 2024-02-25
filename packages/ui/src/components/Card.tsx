@@ -2,7 +2,6 @@
 
 import { FC, ReactNode, forwardRef } from "react"
 import classNames from "classnames"
-import Link from "next/link"
 
 type SharedCardProps = {
   children: ReactNode
@@ -14,6 +13,7 @@ type SharedCardProps = {
   margin?: CardMargin
   corners?: CardCorners
   linkPath?: string
+  linkComponent: React.ElementType
   className?: string
   ref?: React.ForwardedRef<HTMLDivElement>
   [key: string]: any // for ...props
@@ -156,6 +156,7 @@ const Card = forwardRef<HTMLDivElement, CardProps | SectionCardProps>(
   function setCardRef(
     {
       id,
+      linkComponent,
       linkPath,
       variant = "div",
       color = "standard",
@@ -193,8 +194,19 @@ const Card = forwardRef<HTMLDivElement, CardProps | SectionCardProps>(
         {children}
       </TagName>
     )
-    return linkPath ? <Link href={linkPath}>{cardContent}</Link> : cardContent
+
+    // To keep shared ui library neutral. Check if passed framework Link component
+    const renderLink = (linkComponent: SharedCardProps["linkComponent"]) => {
+      if (linkComponent) {
+        const LinkComponent = linkComponent
+        return <LinkComponent href={linkPath}>{cardContent}</LinkComponent>
+      } else {
+        return <a href={linkPath}>{cardContent}</a>
+      }
+    }
+
+    return linkPath ? renderLink(linkComponent) : cardContent
   }
 )
 
-export default Card
+export { Card }

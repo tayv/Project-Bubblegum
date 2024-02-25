@@ -159,4 +159,4 @@ const LayoutContainer = ({
   )
 }
 
-export default LayoutContainer
+export { LayoutContainer }

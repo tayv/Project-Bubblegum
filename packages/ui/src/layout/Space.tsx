@@ -67,4 +67,4 @@ const Space: FC<BlankSpaceProps> = ({
   )
 }
 
-export default Space
+export { Space }

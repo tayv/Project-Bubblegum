@@ -14,10 +14,10 @@ import Paragraph from "@ui/Paragraph"
 import Field from "@form/formControl/Field"
 import Input from "@form/Input"
 import Checkbox from "@form/Checkbox"
-import Card from "@ui/Card"
+import { Card } from "@uiRepo/components"
 import ButtonCTA from "@form/ButtonCTA"
-import LayoutContainer from "@ui/LayoutContainer"
-import Space from "@ui/Space"
+import { LayoutContainer } from "@uiRepo/layout"
+import { Space } from "@uiRepo/layout"
 import { SignUp } from "@clerk/nextjs"
 
 // NOTES: Form/FormProvider/etc. isn't actually necessary as its been refactored to use standard clerk auth component. Keeping for now in case want to have opt in newsletter checkbox then will need form.

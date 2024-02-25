@@ -1,11 +1,12 @@
 import Heading from "@ui/Heading"
 import Paragraph from "@ui/Paragraph"
-import Card from "@ui/Card"
+import { Card } from "@uiRepo/components"
+import Link from "next/link"
 import ButtonCTA from "@form/ButtonCTA"
-import LayoutContainer from "@ui/LayoutContainer"
+import { LayoutContainer } from "@uiRepo/layout"
 import { Armchair, TrafficCone, PocketKnife } from "lucide-react"
 import { Accordion } from "@uiRepo/components"
-import Space from "@ui/Space"
+import { Space } from "@uiRepo/layout"
 
 export default function Home() {
   return (
@@ -66,6 +67,7 @@ export default function Home() {
             width="standard"
             linkPath="/product2"
             role="featuredProductCard"
+            linkComponent={Link}
           >
             <LayoutContainer
               variant="flex"
@@ -116,6 +118,7 @@ export default function Home() {
             <Card
               id="secondaryProductA"
               linkPath="/product2"
+              linkComponent={Link}
               color="standard"
               width="standard"
               className="group"
@@ -139,6 +142,7 @@ export default function Home() {
             <Card
               id="secondaryProductB"
               linkPath="/product2"
+              linkComponent={Link}
               color="standard"
               width="standard"
               className="group"

@@ -14,10 +14,10 @@ import Paragraph from "@ui/Paragraph"
 import Field from "@formControl/Field"
 import Input from "@form/Input"
 import Checkbox from "@form/Checkbox"
-import Card from "@ui/Card"
+import { Card } from "@uiRepo/components"
 import ButtonCTA from "@form/ButtonCTA"
-import LayoutContainer from "@ui/LayoutContainer"
-import Space from "@ui/Space"
+import { LayoutContainer } from "@uiRepo/layout"
+import { Space } from "@uiRepo/layout"
 
 // TYPES ---------
 type SheetSignUpProps = {

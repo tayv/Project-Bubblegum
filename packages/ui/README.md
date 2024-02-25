@@ -22,3 +22,7 @@ The root `src` directory and any nested directories like `components` need an `i
 ## `package.json` notes
 
 Need to set the `main` and `types` properties in the shared ui `package.json` to point to the `index.tsx` file in `src` since you no longer have the build step to create the `index.js` in the dist folder.
+
+## Framework specific components
+
+Want to avoid installing framework specific components like `next/Link`. Instead design the UI component to expect a generic prop like `linkComponent` that can be used to pass `next/Link`. [More info](https://www.shew.dev/monorepos/tools/nextjs#using-framework-specific-components-in-your-ui-package)

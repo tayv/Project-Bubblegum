@@ -1,7 +1,7 @@
 import Heading from "@ui/Heading"
 import Paragraph from "@ui/Paragraph"
-import LayoutContainer from "@ui/LayoutContainer"
-import Space from "@ui/Space"
+import { LayoutContainer } from "@uiRepo/layout"
+import { Space } from "@uiRepo/layout"
 import { SignIn } from "@clerk/nextjs"
 
 export default function Home() {
