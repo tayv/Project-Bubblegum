@@ -15,7 +15,7 @@ import {
   InputMessageProps,
   InputMessageType,
 } from "@uiRepo/forms"
-import useMatchRegex from "@hooks/useMatchRegex"
+import { useMatchRegex } from "@uiRepo/hooks"
 
 type FieldContextProps = {
   name: string

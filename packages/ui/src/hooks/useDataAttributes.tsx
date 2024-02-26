@@ -49,4 +49,4 @@ const useDataAttributes = () => {
   return { getDataAttributes, setDataAttribute }
 }
 
-export default useDataAttributes
+export { useDataAttributes }

@@ -1,6 +1,6 @@
 import React from "react"
 import { ProductContext, ProductContextProps } from "@contexts/ProductContext"
-import useDataAttributes from "@hooks/useDataAttributes"
+import { useDataAttributes } from "@uiRepo/hooks"
 
 export type UseActiveSectionProps = {
   scrollToActiveSection: ({ action }: ScrollToActiveSectionProps) => void

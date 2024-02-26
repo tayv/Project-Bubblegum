@@ -58,4 +58,4 @@ const useMatchRegex = ({
   return checkForMatch(watchInput, regexFormula, message)
 }
 
-export default useMatchRegex
+export { useMatchRegex }
