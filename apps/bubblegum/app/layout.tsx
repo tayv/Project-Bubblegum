@@ -1,6 +1,6 @@
 import "@styles/globals.css" // These styles apply to every route in the application
 import { Metadata } from "next"
-import NavSideBar from "./components/ui/NavSideBar"
+import NavSideBar from "./components/templates/NavSideBar"
 import { ClerkProvider } from "@clerk/nextjs"
 
 export const metadata: Metadata = {

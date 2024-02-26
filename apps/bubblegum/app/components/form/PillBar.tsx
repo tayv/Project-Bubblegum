@@ -15,14 +15,14 @@ import {
   XCircle,
 } from "lucide-react"
 import { Divider } from "@uiRepo/components"
-import ModalViewDoc from "@ui/ModalViewDoc"
+import ModalViewDoc from "@components/templates/ModalViewDoc"
 import dynamic from "next/dynamic"
 import { ModalAlert } from "@uiRepo/components"
 import { pdfStyles } from "@utils/_pdfHelpers/pdfStyles"
 import DynamicPDF from "@buildDoc/DynamicPDF"
 import { useLoadPreviewPDF } from "@hooks/useLoadPreviewPDF"
 import { SignedIn, SignedOut } from "@clerk/nextjs"
-import SheetUpsell from "@templates/uiTemplates/SheetUpsell"
+import SheetUpsell from "@components/templates/SheetUpsell"
 import StepperButton from "@form/StepperButton"
 
 import useManageActiveSection, {

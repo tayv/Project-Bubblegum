@@ -15,7 +15,7 @@ import { Select } from "@uiRepo/forms"
 import product1SchemaTest from "@product1/product1SchemaTest.json"
 import { ProductContext } from "@contexts/ProductContext"
 import { ModalStandard } from "@uiRepo/components"
-import ModalViewDoc from "@ui/ModalViewDoc"
+import ModalViewDoc from "@components/templates/ModalViewDoc"
 import { PDFViewer, StyleSheet } from "@react-pdf/renderer"
 import dynamic from "next/dynamic"
 
