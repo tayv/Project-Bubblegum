@@ -43,4 +43,4 @@ function useSyncDefaultValues(
   return inputValueWatch
 }
 
-export default useSyncDefaultValues
+export { useSyncDefaultValues }

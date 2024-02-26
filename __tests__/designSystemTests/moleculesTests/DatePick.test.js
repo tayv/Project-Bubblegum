@@ -7,7 +7,7 @@ import { FormProvider, useForm, useFormContext } from "react-hook-form"
 import { DatePick } from "@uiRepo/forms"
 import Field from "@forms/FieldTest"
 import { format, parse } from "date-fns"
-import useSyncDefaultValues from "@utils/useSyncDefaultValues"
+import { useSyncDefaultValues } from "@uiRepo/hooks"
 
 // Utility functions
 const openAccordion = (container, getByRole) => {

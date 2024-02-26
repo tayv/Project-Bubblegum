@@ -2,7 +2,7 @@
 import { View, Text, StyleSheet } from "@react-pdf/renderer"
 import { pdfStyles } from "./pdfStyles"
 import { FormDataType } from "../../components/templates/productSchemas/productTypes"
-import { capitalizeFirstLetter } from "@utils/capitalizeFirstLetter"
+import { capitalizeFirstLetter } from "@uiRepo/utils"
 
 const pdfSigningStyles = StyleSheet.create({
   tableContainer: {
