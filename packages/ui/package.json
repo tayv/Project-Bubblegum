@@ -5,7 +5,8 @@
   "scripts": {
     "clean": "rm -rf dist && rm -rf node_modules && rm -rf .turbo",
     "lint": "TIMING=1 eslint **/*.ts*",
-    "test": "echo no test required"
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "keywords": [
     "React",

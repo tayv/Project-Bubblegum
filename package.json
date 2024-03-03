@@ -8,7 +8,9 @@
     "type-check": "turbo type-check",
     "clean": "turbo clean",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "postinstall": "manypkg check"
+    "postinstall": "manypkg check",
+    "test": "turbo run test",
+    "test:watch": "turbo run test:watch"
   },
   "dependencies": {
     "@manypkg/cli": "latest",

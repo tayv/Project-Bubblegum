@@ -26,3 +26,9 @@ Need to set the `main` and `types` properties in the shared ui `package.json` to
 ## Framework specific components
 
 Want to avoid installing framework specific components like `next/Link`. Instead design the UI component to expect a generic prop like `linkComponent` that can be used to pass `next/Link`. [More info](https://www.shew.dev/monorepos/tools/nextjs#using-framework-specific-components-in-your-ui-package)
+
+## Useful links
+
+- https://github.com/retconned/pnpm-turborepo-boilerplate/tree/main/apps
+- https://github.com/mrizkiaiman/turborepo-withtailwind/blob/main/apps/web/package.json
+- https://github.com/Armadillidiid/pnpm-monorepo-demo/blob/main/packages/ui/package.json
