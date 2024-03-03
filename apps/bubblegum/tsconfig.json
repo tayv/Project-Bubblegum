@@ -17,7 +17,7 @@
       "@form/*": ["app/components/form/*"],
       "@formControl/*": ["app/components/form/formControl/*"],
       "@formActions/*": ["../../packages/ui/src/forms/formActions/*"],
-      "@ui/*": ["app/components/ui/*"],
+      "@app/components*": ["app/components/*"],
       "@templates/*": ["app/components/templates/*"],
       "@productSchemas/*": ["app/components/templates/productSchemas/*"],
       "@uiTemplates/*": ["app/components/templates/uiTemplates/*"],
