@@ -166,4 +166,4 @@ Field.Validate = function FieldValid({ type = "error" }) {
   )
 }
 
-export default Field
+export { Field }

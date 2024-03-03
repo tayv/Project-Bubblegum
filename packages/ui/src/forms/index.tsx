@@ -8,3 +8,8 @@ export * from "./RadioGroup"
 export * from "./Select"
 export * from "./TextArea"
 export * from "./DatePick"
+
+export * from "./formActions/SyncDefaultValue"
+
+export * from "./formControl/Field"
+export * from "./formControl/WatchField"

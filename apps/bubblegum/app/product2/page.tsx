@@ -5,7 +5,7 @@ import React from "react"
 import { Heading } from "@uiRepo/components"
 import { Paragraph } from "@uiRepo/components"
 import Form from "@form/formControl/Form"
-import Field from "@form/formControl/Field"
+import { Field } from "@uiRepo/forms"
 import { Checkbox } from "@uiRepo/forms"
 import { Input } from "@uiRepo/forms"
 import { Card } from "@uiRepo/components"
@@ -28,7 +28,7 @@ import { useRouter } from "next/navigation"
 
 //import useActiveSection from "@hooks/useActiveSection"
 import FormSection from "@form/FormSection"
-import WatchField from "@form/formControl/WatchField"
+import { WatchField } from "@uiRepo/forms"
 
 const Product2 = () => {
   // Initialize hooks

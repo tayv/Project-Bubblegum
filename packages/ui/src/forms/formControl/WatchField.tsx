@@ -2,7 +2,7 @@
 
 import React, { FC, useEffect } from "react"
 import { useFormContext, useWatch } from "react-hook-form"
-import Field from "@form/formControl/Field"
+import { Field } from "./Field"
 
 type WatchFieldProps = {
   name: string
@@ -70,4 +70,4 @@ const WatchField: FC<WatchFieldProps> = ({
   }
 }
 
-export default WatchField
+export { WatchField }
