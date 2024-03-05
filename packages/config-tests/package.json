@@ -4,7 +4,6 @@
   "main": "./index.js",
   "license": "MIT",
   "files": [
-    "jest-common.js",
     "jest-next.js"
   ],
   "devDependencies": {
