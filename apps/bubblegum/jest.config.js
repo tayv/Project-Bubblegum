@@ -2,6 +2,6 @@ const base = require("../../packages/config-tests/jest-next")
 
 module.exports = {
   ...base,
-  name: "bubblegum",
+  // name: "bubblegum",
   displayName: "Bubblegum Tests",
 }

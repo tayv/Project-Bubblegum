@@ -1,7 +1,10 @@
+const path = require("path")
+
 module.exports = {
   ...require("./jest-common"),
   testEnvironment: "jsdom",
   setupFilesAfterEnv: ["@testing-library/jest-dom"],
+
   collectCoverageFrom: ["**/src/**/*.{js,ts,jsx,tsx}"],
   moduleFileExtensions: ["js", "jsx", "json", "ts", "tsx"],
   transform: {
@@ -10,6 +13,9 @@ module.exports = {
   },
   coveragePathIgnorePatterns: [],
   coverageThreshold: null,
+  moduleNameMapper: {
+    "^@uiRepo/(.*)$": "<rootDir>/packages/ui/src/$1",
+  },
 }
 
 // // jest.config.js

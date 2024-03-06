@@ -9,15 +9,24 @@ describe("Select component", () => {
 
     const { getByRole } = render(
       <Select
-        // onValueChange={onChange}
-        value={"test-value"}
-        forwardedRef={selectRef}
-        placeholder="test-placeholder"
+        placeholder="Select an option"
         itemOptions={[
-          { value: "first", labelText: "firstText", separator: false },
-          { value: "second", labelText: "secondText", separator: true },
+          {
+            value: "location1",
+            labelText: "Location 1",
+            separator: false,
+          },
+          {
+            value: "location2",
+            labelText: "Location 2",
+            separator: false,
+          },
+          {
+            value: "location3",
+            labelText: "Location 3",
+            separator: false,
+          },
         ]}
-        data-testid="select-test"
       />
     )
 
