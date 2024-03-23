@@ -1,6 +1,9 @@
 🚧 WORK IN PROGRESS 🚧
+
 # Preview Deployment
-View the main branch at: https://bubblegum-template.vercel.app/ 
+
+View the main branch at: https://bubblegum-template.vercel.app/
+
 - Keep in mind the project is still very rough, especially the design. Focusing on functionality and code quality first.
 
 # Documentation
@@ -11,9 +14,7 @@ Bubblegum UI docs 🚧: https://bubblegumui.vercel.app/
 
 Building a design library of reusable, flexible, and accessible React form and UI components. The form components will be largely unstyled out of the box and intended to be easily adapted on the fly using customizable variations.
 
-
 https://github.com/tayv/Project-Bubblegum/assets/48400779/e7e3c04b-2217-4a6d-bce1-193d347c36c6
-
 
 ## Useful Links:
 
@@ -37,3 +38,35 @@ This project uses the [Tailwind CSS](https://tailwindcss.com/) [(v3.0)](https://
 3. Run the development server `npm run dev`
 
 4. Open [http://localhost:3000](http://localhost:3000) in the browser
+
+## Turbo structure
+
+Using turbo to manage the monorepo. Basic structure:
+
+- `apps` holds projects
+- `packages` holds anything reusable across `apps` such as `ui` for components as well as extendable configurations for `estlint` and `tsconfig`.
+
+### Internal packages
+
+- Each workspace gets its own `package.json`.[ Vercel recommends](You can use an npm organization or user scope to avoid collisions with existing packages on npm. For instance, you could use @mycompany/shared-utils) prepending the org name to avoid npm namespace conflicts. For example: `@organizationname/packagename`.
+- [Instructions on importing internal packages](https://turbo.build/repo/docs/handbook/sharing-code/internal-packages).
+  - In the importing project add this to the `package.json`: ` "@monorepo/name": "workspace:*"` to import dependencies based on the name of the internal package's name in its `package.json`
+- **Troubleshooting:** In a monorepo, mismatched dependency versions can cause problems. Added a postinstall script to the root `package.json` that runs `@manypkg/cli` after `pnpm install` [as suggested by Vercel](https://turbo.build/repo/docs/handbook/troubleshooting). Can also run `pnpm manypkg fix` to attempt to fix errors.
+
+### Turbo configuration
+
+- In the monorepo root: `turbo.json` handles `pipeline` scripts for the whole repo such as build or linting scripts. `dependsOn` can be used to only run these pipeline scripts after project specific scripts have run.
+- `config-eslint` and `config-typescript` in `packages` are used to have a consistent base for the whole monorepo. These can be extended or overridden in the individual `apps` via their own `eslintrc.json` and `tsconfig.json`.
+- Each project as well as the root gets their own `package.json`. Root handles monorepo-wide dependencies like prettier. Each workspace needs to have a unique title in `package.json`.
+- `pnpm-workspaces.yaml` defines the monorepo's workspaces like `packages` and `apps`.
+
+### Bug fixes
+
+- Add `{
+  "eslint.workingDirectories": [
+    { "pattern": "apps/*/" },
+    { "pattern": "packages/*/" }
+  ]
+}` to `.vscode > settings.json` to fix error finding `next/babel`. Appears to be a [known turborepo issue](https://stackoverflow.com/questions/71662525/failed-to-load-config-next-babel-to-extend-from-eslintrc-json).
+
+-
