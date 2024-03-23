@@ -4,7 +4,7 @@ import { FC, ReactNode } from "react"
 import classNames from "classnames"
 
 export type HeadingProps = {
-  children: ReactNode
+  children?: ReactNode
   size: HeadingSize
   color?: HeadingColor
   textAlign?: HeadingTextAlign
