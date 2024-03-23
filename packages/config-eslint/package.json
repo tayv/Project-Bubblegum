@@ -1,0 +1,12 @@
+{
+  "name": "eslint-config",
+  "version": "0.0.0",
+  "private": true,
+  "files": [
+    "eslint-next.js"
+  ],
+  "dependencies": {
+    "eslint-config-next": "^13.5.6",
+    "eslint-config-prettier": "^9.1.0"
+  }
+}

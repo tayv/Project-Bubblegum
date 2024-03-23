@@ -1,0 +1,22 @@
+import { Card } from "@uiRepo/components"
+import TemplateTest from "@templates/TemplateTest"
+import product1SchemaTest from "./product1SchemaTest"
+import DynamicTemplateContent from "@templates/DynamicTemplateContent"
+import DynamicUserContent from "@templates/DynamicUserContent"
+import HideContent from "@templates/HideContent"
+
+## Product Template B
+
+# <DynamicTemplateContent watchedInputName="checkboxExample" condition="b_header" />
+
+<DynamicUserContent watchedInputName="textExample" emptySize="xxlarge" />
+
+### Body
+
+<HideContent
+  watchedInputName="jurisdiction"
+  hideFor={["location1", "location2"]}
+>
+  - Here's some body content
+</HideContent>
+- Blah blah blah{" "}

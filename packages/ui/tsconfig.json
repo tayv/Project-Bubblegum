@@ -1,0 +1,11 @@
+{
+  "extends": "../../packages/config-typescript/ui-library.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@uiRepo/*": ["../../packages/ui/src/*"],
+    },
+  },
+  "include": ["."],
+  "exclude": ["dist", "build", "node_modules"],
+}

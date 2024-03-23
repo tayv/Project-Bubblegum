@@ -1,45 +1,4 @@
 {
-  "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true,
-    "baseUrl": "./",
-    "paths": {
-      "@components/*": ["app/components/*"],
-      "@form/*": ["app/components/form/*"],
-      "@formControl/*": ["app/components/form/formControl/*"],
-      "@formActions/*": ["app/components/form/formActions/*"],
-      "@ui/*": ["app/components/ui/*"],
-      "@templates/*": ["app/components/templates/*"],
-      "@productSchemas/*": ["app/components/templates/productSchemas/*"],
-      "@uiTemplates/*": ["app/components/templates/uiTemplates/*"],
-      "@buildDoc/*": ["app/components/buildDoc/*"],
-
-      "@api/*": ["app/api/*"],
-      "@contexts/*": ["app/contexts/*"],
-      "@hooks/*": ["app/hooks/*"],
-      "@utils/*": ["app/utils/*"],
-      "@styles/*": ["styles/*"],
-      "@product1/*": ["app/product1/*"],
-      "@product2/*": ["app/product2/*"]
-    },
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ]
-  },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  // Extending because we to hold all config in packages/config-typescript
+  "extends": "./packages/config-typescript/base.json",
 }

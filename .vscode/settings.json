@@ -1,0 +1,12 @@
+{
+  "eslint.workingDirectories": [{ "mode": "auto" }]
+}
+// {
+//   "eslint.workingDirectories": [
+//     { "pattern": "apps/*/" },
+//     { "pattern": "packages/*/" }
+//   ]
+// }
+
+
+// This is added to fix error finding next/babel. See: https://stackoverflow.com/questions/71662525/failed-to-load-config-next-babel-to-extend-from-eslintrc-json

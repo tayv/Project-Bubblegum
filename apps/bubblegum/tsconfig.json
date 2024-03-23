@@ -1,0 +1,37 @@
+{
+  "extends": "../../packages/config-typescript/nextjs.json",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@uiRepo/*": ["../../packages/ui/src/*"],
+
+      "@api/*": ["app/api/*"],
+      "@contexts/*": ["app/contexts/*"],
+      "@hooks/*": ["app/hooks/*"],
+      "@utils/*": ["app/utils/*"],
+      "@styles/*": ["./styles/*"],
+      "@product1/*": ["app/product1/*"],
+      "@product2/*": ["app/product2/*"],
+
+      "@components/*": ["app/components/*"],
+      "@form/*": ["app/components/form/*"],
+      "@formControl/*": ["app/components/form/formControl/*"],
+      "@formActions/*": ["../../packages/ui/src/forms/formActions/*"],
+      "@app/components*": ["app/components/*"],
+      "@templates/*": ["app/components/templates/*"],
+      "@productSchemas/*": ["app/components/templates/productSchemas/*"],
+      "@uiTemplates/*": ["app/components/templates/uiTemplates/*"],
+      "@buildDoc/*": ["app/components/buildDoc/*"],
+    },
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "**/*.mdx",
+    "../../packages/ui/src/utils/updateInputState.tsx",
+    "__tests__/components/NavSideBar.test.jsx",
+  ],
+  "exclude": ["node_modules"],
+}
