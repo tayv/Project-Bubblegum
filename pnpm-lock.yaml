@@ -4,11 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  '@react-pdf/image': 2.2.3
-  '@react-pdf/pdfkit': 3.0.4
-  '@react-pdf/layout': 3.5.0
-
 importers:
 
   .:
@@ -2490,12 +2485,6 @@ packages:
     dependencies:
       '@babel/runtime': 7.24.1
 
-  /@react-pdf/fns@2.0.1:
-    resolution: {integrity: sha512-/vgecczzFYBQFkgUupH+sxXhLWQtBwdwCgweyh25XOlR4NZuaMD/UVUDl4loFHhRQqDMQq37lkTcchh7zzW6ug==}
-    dependencies:
-      '@babel/runtime': 7.24.1
-    dev: false
-
   /@react-pdf/fns@2.2.1:
     resolution: {integrity: sha512-s78aDg0vDYaijU5lLOCsUD+qinQbfOvcNeaoX9AiE7+kZzzCo6B/nX+l48cmt9OosJmvZvE9DWR9cLhrhOi2pA==}
     dependencies:
@@ -2514,43 +2503,45 @@ packages:
       - encoding
     dev: false
 
-  /@react-pdf/image@2.2.3(encoding@0.1.13):
-    resolution: {integrity: sha512-ckGsBEXwZ1fF3xK2ymERMiRLrvDeYrGD29wDq0iP7SwrVjBex5tHIWwHTHHfShFPEgCvrMF2FT9LaNXI7j9d8Q==}
+  /@react-pdf/image@2.3.6(encoding@0.1.13):
+    resolution: {integrity: sha512-7iZDYZrZlJqNzS6huNl2XdMcLFUo68e6mOdzQeJ63d5eApdthhSHBnkGzHfLhH5t8DCpZNtClmklzuLL63ADfw==}
     dependencies:
       '@babel/runtime': 7.24.1
       '@react-pdf/png-js': 2.3.1
       cross-fetch: 3.1.8(encoding@0.1.13)
+      jay-peg: 1.0.2
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /@react-pdf/layout@3.5.0(encoding@0.1.13):
-    resolution: {integrity: sha512-7aGCIIZsQXNq2B2is1dfaEKS8c1pxbXZnLQRuyVmBwak6DkSDn7dtiUb/psqPTV4R8h5dwUh9qNy7DXpi6tNsg==}
+  /@react-pdf/layout@3.11.5(encoding@0.1.13):
+    resolution: {integrity: sha512-VLOzWIODUKw0ZTrS9XDkwl3q1OHKG8qd6OyCZZ7Q8/SijAh9ho70HEc/f1ffBFmM0nGrKMG0M3L0/7z1XKmOGw==}
     dependencies:
       '@babel/runtime': 7.24.1
-      '@react-pdf/fns': 2.0.1
-      '@react-pdf/image': 2.2.3(encoding@0.1.13)
-      '@react-pdf/pdfkit': 3.0.4
+      '@react-pdf/fns': 2.2.1
+      '@react-pdf/image': 2.3.6(encoding@0.1.13)
+      '@react-pdf/pdfkit': 3.1.9
       '@react-pdf/primitives': 3.1.1
       '@react-pdf/stylesheet': 4.2.4
       '@react-pdf/textkit': 4.4.1
       '@react-pdf/types': 2.4.1
-      '@react-pdf/yoga': 4.1.2
       cross-fetch: 3.1.8(encoding@0.1.13)
-      emoji-regex: 8.0.0
+      emoji-regex: 10.3.0
       queue: 6.0.2
+      yoga-layout: 2.0.1
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /@react-pdf/pdfkit@3.0.4:
-    resolution: {integrity: sha512-3TiuFqCUHwgcYd0NYe6v3y9b5hyfSc3C6KttuEVpYFSsMssN1vMzodchl9ibAMtMu3N0S/nTZ3HxZyistDXZZA==}
+  /@react-pdf/pdfkit@3.1.9:
+    resolution: {integrity: sha512-9ZPF9gGkBWLcEc+HMkbJ5bHsxenej5Kz9YWWs10EeS8d5v6UF027Ffl+75HXZmgiO5iLVONTYj06LnyYZ95XMQ==}
     dependencies:
       '@babel/runtime': 7.24.1
       '@react-pdf/png-js': 2.3.1
       browserify-zlib: 0.2.0
       crypto-js: 4.2.0
       fontkit: 2.0.2
+      jay-peg: 1.0.2
       vite-compatible-readable-stream: 3.6.1
     dev: false
 
@@ -2586,8 +2577,8 @@ packages:
     dependencies:
       '@babel/runtime': 7.24.1
       '@react-pdf/font': 2.4.4(encoding@0.1.13)
-      '@react-pdf/layout': 3.5.0(encoding@0.1.13)
-      '@react-pdf/pdfkit': 3.0.4
+      '@react-pdf/layout': 3.11.5(encoding@0.1.13)
+      '@react-pdf/pdfkit': 3.1.9
       '@react-pdf/primitives': 3.1.1
       '@react-pdf/render': 3.4.3
       '@react-pdf/types': 2.4.1
@@ -2625,12 +2616,6 @@ packages:
 
   /@react-pdf/types@2.4.1:
     resolution: {integrity: sha512-w8pk7svhjVj5f7d7kjEGXSk26ffCqRSQcgWR4DwcFltNpSM18ZJmzmM6WrNeeP437y48LlykLnmGDA3oATakgw==}
-    dev: false
-
-  /@react-pdf/yoga@4.1.2:
-    resolution: {integrity: sha512-OlMZkFrJDj4GyKZ70thiObwwPVZ52B7mlPyfzwa+sgwsioqHXg9nMWOO+7SQFNUbbOGagMUu0bCuTv+iXYZuaQ==}
-    dependencies:
-      '@babel/runtime': 7.24.1
     dev: false
 
   /@rushstack/eslint-patch@1.8.0:
@@ -4554,6 +4539,10 @@ packages:
     resolution: {integrity: sha512-DeWwawk6r5yR9jFgnDKYt4sLS0LmHJJi3ZOnb5/JdbYwj3nW+FxQnHIjhBKz8YLC7oRNPVM9NQ47I3CVx34eqQ==}
     engines: {node: '>=12'}
 
+  /emoji-regex@10.3.0:
+    resolution: {integrity: sha512-QpLs9D9v9kArv4lfDEgg1X/gN5XLnf/A6l9cs8SPZLRZR3ZkY9+kwIQTxm+fsSej5UMYGE8fdoaZVIBlqG0XTw==}
+    dev: false
+
   /emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
 
@@ -6214,6 +6203,12 @@ packages:
     optionalDependencies:
       '@pkgjs/parseargs': 0.11.0
     dev: true
+
+  /jay-peg@1.0.2:
+    resolution: {integrity: sha512-fyV3NVvv6pTys/3BTapBUGAWAuU9rM2gRcgijZHzptd5KKL+s+S7hESFN+wOsbDH1MzFwdlRAXi0aGxS6uiMKg==}
+    dependencies:
+      restructure: 3.0.1
+    dev: false
 
   /jest-changed-files@29.7.0:
     resolution: {integrity: sha512-fEArFiwf1BpQ+4bXSprcDc3/x4HSzL4al2tozwVpDFpsxALjLYdyiIK4e5Vz66GQJIbXJ82+35PtysofptNX2w==}
@@ -10117,6 +10112,10 @@ packages:
   /yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+
+  /yoga-layout@2.0.1:
+    resolution: {integrity: sha512-tT/oChyDXelLo2A+UVnlW9GU7CsvFMaEnd9kVFsaiCQonFAXd3xrHhkLYu+suwwosrAEQ746xBU+HvYtm1Zs2Q==}
+    dev: false
 
   /zod@3.22.4:
     resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
