@@ -32,10 +32,6 @@
     "node": ">=18"
   },
   "pnpm": {
-    "overrides": {
-      "@react-pdf/image": "2.2.3",
-      "@react-pdf/pdfkit": "3.0.4",
-      "@react-pdf/layout": "3.5.0"
-    }
+    "overrides": {}
   }
 }
