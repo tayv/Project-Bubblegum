@@ -147,7 +147,7 @@ export const renderSigning = ({ formData }: RenderSigningProps) => {
     index: number
   ) => {
     return (
-      <>
+      <div key={`${partyDetailsObj.partyRole}-${index}`}>
         <View style={pdfSigningStyles.tableRow}>
           <Text style={pdfSigningStyles.tableCellTitle}>
             {`${partyDetailsObj.partyRole.toUpperCase()} ${index + 1}`}
@@ -182,7 +182,7 @@ export const renderSigning = ({ formData }: RenderSigningProps) => {
           <Text style={pdfSigningStyles.tableCellLabel}>Signature</Text>
           <Text style={pdfSigningStyles.tableCellLabel}>Date</Text>
         </View>
-      </>
+      </div>
     )
   }
 
