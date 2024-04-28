@@ -10,12 +10,14 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "postinstall": "manypkg check",
     "test": "turbo run test",
-    "test:watch": "turbo run test:watch"
+    "test:watch": "turbo run test:watch",
+    "update": "pnpm update",
+    "outdated": "pnpm outdated"
   },
   "dependencies": {
     "@manypkg/cli": "latest",
     "@testing-library/jest-dom": "^6.4.2",
-    "@testing-library/react": "^14.2.2",
+    "@testing-library/react": "^14.3.1",
     "@testing-library/user-event": "^14.5.2",
     "@types/jest": "^29.5.12",
     "esbuild": "^0.19.12",
@@ -24,8 +26,8 @@
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "prettier": "^3.2.5",
-    "prettier-plugin-tailwindcss": "^0.5.12",
-    "turbo": "^1.13.0"
+    "prettier-plugin-tailwindcss": "^0.5.14",
+    "turbo": "^1.13.3"
   },
   "packageManager": "pnpm@8.15.1+sha256.245fe901f8e7fa8782d7f17d32b6a83995e2ae03984cb5b62b8949bfdc27c7b5",
   "engines": {
