@@ -1,15 +1,15 @@
-import { PrismaClient } from "@prisma/client"
+import { PrismaClient, Prisma } from "@prisma/client"
 import { NextResponse } from "next/server"
 
 const prisma = new PrismaClient()
 
 export async function POST(request: Request) {
   // For testing. Replace with webhook that fetches userId from Clerk
-  const testUserId = "user_" + Math.floor(Math.random() * 1000000)
-  // const testUserId = "user_360376"
+  // const testUserId = "user_" + Math.floor(Math.random() * 1000000)
 
   // Get the form data
-  let body
+  let body: { userId: string | null | undefined } = { userId: null }
+  const testUserId = body.userId
   try {
     body = await request.json()
   } catch (err) {
@@ -22,6 +22,7 @@ export async function POST(request: Request) {
 
   // Use prisma's upsert to check if user exists and update their entry to add new document
   try {
+    const testUserId = body.userId
     const userEntry = await prisma.user.upsert({
       where: { userId: testUserId },
       // If user exists add the new document data
@@ -76,6 +77,12 @@ export async function POST(request: Request) {
         errorMessage: error.message,
         // requestBody: body,
         generatedUserId: testUserId,
+      })
+    } // Generic catch for any PrismaClientKnownRequestError
+    else if (error instanceof Prisma.PrismaClientKnownRequestError) {
+      return NextResponse.json({
+        error: `A database error occurred: ${error.message}`,
+        success: false,
       })
     } else {
       console.error("Unknown error. Please contact support.", error)

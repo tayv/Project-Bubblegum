@@ -13,6 +13,8 @@ datasource db {
 }
 
 // Licensing ---
+
+// TODO consider adding an EXPIRED field. Also track account creation day and license history
 enum LicenseType {
   FREE       
   PRO             
@@ -27,14 +29,14 @@ enum LicenseDuration {
 }
 
 model License {
-  userId            String            @unique                                            @map("user_id")
+  userId            String            @unique                                            @default("user_id_test")     @map("user_id")
   user              User              @relation(fields: [userId], references: [userId])  
 
 //  licenseKey        Int               @unique @id @default(1)
-  licenseType       LicenseType       @map("license_type")
-  licenseDuration   LicenseDuration   @map("license_duration")
-  licenseStart      DateTime          @map("license_start")
-  licenseExpire     DateTime          @map("license_expire")
+  licenseType       LicenseType                                                          @default(FREE)               @map("license_type")         
+  licenseDuration   LicenseDuration                                                      @default(INDEFINITE)         @map("license_duration")
+  licenseStart      DateTime                                                             @default(now())              @map("license_start")
+  licenseExpire     DateTime                                                             @default(now())              @map("license_expire")
 
   @@index([userId]) // Improves look-up performance See: https://www.prisma.io/docs/concepts/components/prisma-schema/relations/relation-mode#indexes
 
@@ -48,9 +50,10 @@ enum ProductId {
   PRODUCT3
 }
 
+// NOTE: may want to add a mapping model for holding product schema
 model ProductCatalog {
-  productId         ProductId         @id          @map("product_id")
-  productSchema     String                         @map("product_schema") // intend to be the json file name holding logic
+  productId         ProductId         @id          @default(PRODUCT1)          @map("product_id")
+  productSchema     String                         @default("/product1")       @map("product_schema") // intend to be the json file name holding logic
   //docData         UserDocData? // A virtual relation for 1 to 1 relations. Makes queries easier since intended to be unidirectional relation to DocData. Solves Prisma back-relations error. See:  https://github.com/prisma/prisma/discussions/8857
   docData           UserDocData[]                
 
@@ -60,9 +63,9 @@ model ProductCatalog {
 // Users ---
 // userId fetched via webhook from Clerk Auth
 model User {
-  userId            String               @id       @map("user_id")
+  userId            String               @id      @default("user_id_1")        @map("user_id")
 
-  license           License?           
+  license           License?                     
 
   docData           UserDocData[]  // one to many relation since each user can have multiple docs saved
 
@@ -78,16 +81,16 @@ enum DocStatus {
 }
 
 model UserDocData {
-  userId      String                                                                    @map("user_id") // Don't use @unique here so we can associate multiple documents to a user
+  userId      String                                                                  @default("user_id_test")        @map("user_id") // Don't use @unique here so we can associate multiple documents to a user
   user        User           @relation(fields: [userId], references: [userId])      
 
-  productId   ProductId            
+  productId   ProductId                                                               @default(PRODUCT1)              @map("product_id")
   product     ProductCatalog @relation(fields: [productId], references: [productId])
 
-  docId       Int            @default(autoincrement()) @id                              @map("doc_id")
-  docName     String                                                                    @map("doc_name")
-  status      DocStatus                                                                 @map("status")
-  formData    Json?          @default("{}")                                             @map("form_data")
+  docId       Int                                                                     @default(autoincrement()) @id   @map("doc_id")
+  docName     String                                                                  @default("doc_name_test")       @map("doc_name")
+  status      DocStatus                                                               @default(DRAFT)                 @map("status")
+  formData    Json?                                                                   @default("{}")                  @map("form_data")
 
   @@index([productId]) 
   @@index([userId])
