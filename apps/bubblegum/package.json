@@ -21,7 +21,7 @@
     "@mdx-js/react": "^2.3.0",
     "@monorepo/ui": "workspace:*",
     "@next/mdx": "^13.5.6",
-    "@prisma/client": "^5.13.0",
+    "@prisma/client": "^5.14.0",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-checkbox": "^1.0.4",
@@ -55,7 +55,7 @@
     "@types/react": "^18.3.1",
     "config-tests": "workspace:*",
     "prettier": "^3.2.5",
-    "prisma": "^5.13.0"
+    "prisma": "^5.14.0"
   },
   "overrides": {}
 }

@@ -30,10 +30,13 @@ import { useRouter } from "next/navigation"
 import FormSection from "@form/FormSection"
 import { WatchField } from "@uiRepo/forms"
 
+import { useAuth } from "@clerk/nextjs"
+
 const Product2 = () => {
   // Initialize hooks
   const { isSignedIn } = useUser()
   const router = useRouter()
+  const { userId } = useAuth() // Needed so that we can save the form data to correct userId in db
 
   // Context to be used in all product pages
   const contextValues = React.useContext(ProductContext)
@@ -65,10 +68,15 @@ const Product2 = () => {
     // If user's signed in via Clerk then go direct to docviewer pg
     if (isSignedIn) {
       router.push("/docviewer")
+
+      console.log("signed in userId", userId)
     } else contextValues.setFormData(data) // Save form values to state so the test template table can show the values
     console.log("Form submitted. data:", data, "Submit form - errors", Error)
     console.log("event:", event)
-    const body = data
+    const body = {
+      ...data,
+      userId, //Needed so data can be saved to correct userId in db
+    }
 
     contextValues.setIsFormSubmitted(true) // so we can load the next step after form is submitted (modal or document viewer)
 
@@ -79,16 +87,25 @@ const Product2 = () => {
         body: JSON.stringify(body),
       })
       if (response.status !== 200) {
-        console.log("something went wrong oops")
+        console.log(
+          "Something went wrong on the server and your data likely was not saved to your account. Contact support and mention this error message and the time it happened."
+        )
+        alert(
+          "Something went wrong on the server and your data likely was not saved to your account. Contact support and mention this error message and the time it happened."
+        )
         //set an error banner here
       } else {
-        // resetForm();
-        console.log("form submitted successfully !!!")
+        // resetForm()
         //set a success banner here
+        const result = await response.json()
+        if (result.success) {
+          console.log("form submitted successfully :)")
+          //set a success banner here
+        }
       }
       //check response, if success is false, dont take them to success page
     } catch (error) {
-      console.log("there was an error submitting", error)
+      console.log("there was an error submitting :(", error)
     }
   }
 
