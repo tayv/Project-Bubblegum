@@ -8,8 +8,10 @@ export async function POST(request: Request) {
   // const testUserId = "user_" + Math.floor(Math.random() * 1000000)
 
   // Get the form data
-  let body: { userId: string | null | undefined } = { userId: null }
-  const testUserId = body.userId
+  let body: { userId: string | undefined; [key: string]: any } = {
+    userId: undefined,
+  }
+  // const testUserId = body.userId
   try {
     body = await request.json()
   } catch (err) {
@@ -20,11 +22,10 @@ export async function POST(request: Request) {
     })
   }
 
-  // Use prisma's upsert to check if user exists and update their entry to add new document
+  // Prisma's upsert handles logic for both creation and update of records based on unique identifier. Don't need if/else.
   try {
-    const testUserId = body.userId
     const userEntry = await prisma.user.upsert({
-      where: { userId: testUserId },
+      where: { userId: body.userId },
       // If user exists add the new document data
       update: {
         docData: {
@@ -44,7 +45,7 @@ export async function POST(request: Request) {
       // If user doesn't exist, create new user + add their license and document info
       // In future consider moving license creation into separate endpoint
       create: {
-        userId: testUserId,
+        userId: body.userId,
         license: {
           create: {
             licenseType: "FREE",
@@ -73,25 +74,34 @@ export async function POST(request: Request) {
     return NextResponse.json(userEntry)
   } catch (error) {
     if (error instanceof Error) {
-      console.error("[Error][POST User and/or Document Creation]", {
-        errorMessage: error.message,
-        // requestBody: body,
-        generatedUserId: testUserId,
-      })
+      console.error(
+        "[Error][POST User and/or Document Creation]",
+        {
+          errorMessage: error.message,
+          requestBody: body,
+          // generatedUserId: testUserId,
+        },
+        { status: 400 }
+      )
     } // Generic catch for any PrismaClientKnownRequestError
     else if (error instanceof Prisma.PrismaClientKnownRequestError) {
-      return NextResponse.json({
-        error: `A database error occurred: ${error.message}`,
-        success: false,
-      })
+      return NextResponse.json(
+        {
+          error: `A database error occurred: ${error.message}`,
+          success: false,
+        },
+        { status: 400 }
+      )
     } else {
       console.error("Unknown error. Please contact support.", error)
+      return NextResponse.json(
+        {
+          error:
+            "Unknown error while creating a user. Please try again or contact support.",
+          success: false,
+        },
+        { status: 400 }
+      )
     }
-
-    return NextResponse.json({
-      error:
-        "Error occurred while creating a user. Please try again or contact support.",
-      success: false,
-    })
   }
 }

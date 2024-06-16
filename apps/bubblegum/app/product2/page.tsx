@@ -87,16 +87,25 @@ const Product2 = () => {
         body: JSON.stringify(body),
       })
       if (response.status !== 200) {
-        console.log("something went wrong oops")
+        console.log(
+          "Something went wrong on the server and your data likely was not saved to your account. Contact support and mention this error message and the time it happened."
+        )
+        alert(
+          "Something went wrong on the server and your data likely was not saved to your account. Contact support and mention this error message and the time it happened."
+        )
         //set an error banner here
-      } else if (response.status === 200) {
-        // resetForm();
-        console.log("form submitted successfully !!!")
+      } else {
+        // resetForm()
         //set a success banner here
+        const result = await response.json()
+        if (result.success) {
+          console.log("form submitted successfully :)")
+          //set a success banner here
+        }
       }
       //check response, if success is false, dont take them to success page
     } catch (error) {
-      console.log("there was an error submitting", error)
+      console.log("there was an error submitting :(", error)
     }
   }
 
