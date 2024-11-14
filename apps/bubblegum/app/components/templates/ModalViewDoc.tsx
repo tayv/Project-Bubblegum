@@ -67,8 +67,11 @@ const ActionBar: FC<ActionBarProps> = ({
             document={<DynamicPDF formData={formData} />}
             fileName={`${title}.pdf`}
           >
-            {({ blob, url, loading, error }) =>
-              loading ? "Loading PDF..." : "Download PDF"
+            {
+              //@ts-ignore temporary type error fix for https://github.com/diegomura/react-pdf/issues/2886
+              ({ blob, url, loading, error }) => (
+                <>{loading ? "Loading PDF..." : "Download PDF"}</>
+              )
             }
           </PDFDownloadLink>
         </button>
