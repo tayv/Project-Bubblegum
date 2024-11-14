@@ -113,8 +113,10 @@ const PrintToolBarDesktop: FC<PrintToolBarProps> = ({
             document={<DynamicPDF formData={testData} />}
             fileName={`${testProductTitle}.pdf`}
           >
-            {({ blob, url, loading, error }) =>
-              loading ? "Loading PDF..." : "Download PDF"
+            {
+              //@ts-ignore temporary type error fix for https://github.com/diegomura/react-pdf/issues/2886
+              ({ blob, url, loading, error }) =>
+                loading ? "Loading PDF..." : "Download PDF"
             }
           </PDFDownloadLink>
         )}
@@ -149,8 +151,10 @@ const PrintToolBarMobile: FC<PrintToolBarProps> = ({
                   document={<DynamicPDF formData={testData} />}
                   fileName={`${testProductTitle}.pdf`}
                 >
-                  {({ blob, url, loading, error }) =>
-                    loading ? "Loading PDF..." : "Download PDF"
+                  {
+                    //@ts-ignore temporary type error fix for https://github.com/diegomura/react-pdf/issues/2886
+                    ({ blob, url, loading, error }) =>
+                      loading ? "Loading PDF..." : "Download PDF"
                   }
                 </PDFDownloadLink>
               </div>

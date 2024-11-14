@@ -182,11 +182,11 @@ const Card = forwardRef<HTMLDivElement, CardProps | SectionCardProps>(
         id={id}
         className={classNames([
           "",
-          cardColorMap[color],
-          cardWidthMap[width],
-          cardPaddingMap[padding],
-          cardMarginMap[margin],
-          cardCornersMap[corners],
+          cardColorMap[color as CardColor],
+          cardWidthMap[width as CardWidth],
+          cardPaddingMap[padding as CardPadding],
+          cardMarginMap[margin as CardMargin],
+          cardCornersMap[corners as CardCorners],
           className,
         ])}
         {...props}
