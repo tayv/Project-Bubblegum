@@ -38,7 +38,7 @@
     "config-typescript": "workspace:*",
     "date-fns": "^2.30.0",
     "eslint-config": "workspace:*",
-    "lucide-react": "^0.279.0",
+    "lucide-react": "^0.456.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.51.3"
