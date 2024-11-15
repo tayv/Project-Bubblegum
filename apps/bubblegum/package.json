@@ -50,7 +50,7 @@
   },
   "devDependencies": {
     "@monorepo/config-tailwind": "workspace:*",
-    "@types/node": "^20.12.7",
+    "@types/node": "^22.9.0",
     "@types/pdfmake": "^0.2.9",
     "@types/react": "^18.3.1",
     "config-tests": "workspace:*",
