@@ -33,11 +33,13 @@ This project uses the [Tailwind CSS](https://tailwindcss.com/) [(v3.0)](https://
 
 1. [Clone the repo](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
 
-2. Install dependencies `npm install`
+2. Install dependencies `pnpm install`
 
-3. Run the development server `npm run dev`
+3. Run the development server `turbo dev`
 
 4. Open [http://localhost:3000](http://localhost:3000) in the browser
+
+5. Run `turbo build` before pushing to production to test local changes
 
 ## Turbo structure
 
